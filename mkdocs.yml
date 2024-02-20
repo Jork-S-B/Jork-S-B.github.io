@@ -96,7 +96,7 @@ plugins:
     - git-revision-date-localized:
         timezone: Asia/Shanghai
         type: iso_datetime
-        fallback_to_build_date: true  # mkdocs build的日期
+        # fallback_to_build_date: true  # mkdocs build的日期
         enable_creation_date: false
         exclude:  # 以下文件/目录排除
           - index.md

@@ -11,7 +11,7 @@ jobs:
       - name: Checkout master
         uses: actions/checkout@v2
         with:
-          fetch-depth: 0
+          fetch-depth: 0  # 默认为1，只取最近的1个提交，导致无法获取到每个文件的最后修改时间
 
       - name: Set up Python3.x
         uses: actions/setup-python@v2
