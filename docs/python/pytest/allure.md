@@ -9,4 +9,3 @@ os.system(f'allure open -h {ip} -p {port} {allure_report}')
 [参考的这一篇博客](https://www.cnblogs.com/yxm-yxwz/p/16638703.html)
 
 ---
-最后更新: 2024/02/07 21:25

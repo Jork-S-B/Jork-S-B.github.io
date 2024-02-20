@@ -111,4 +111,3 @@ sqlldr userid=${target_dbstr} control=./${table}.ctl log=./${table}.log bad=./${
     ```
 
 ---
-最后更新: 2024/01/07 15:02
