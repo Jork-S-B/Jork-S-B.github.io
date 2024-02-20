@@ -17,7 +17,11 @@ jobs:
           python-version: 3.x
 
       - name: Install dependencies
-        run: pip install mkdocs-material
+        run:
+        - pip install mkdocs
+        - pip install mkdocs-material
+        - pip install mkdocs-glightbox
+        - pip install jieba
 
       - name: Deploy
         run: mkdocs gh-deploy --force
