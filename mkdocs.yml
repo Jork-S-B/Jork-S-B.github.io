@@ -13,9 +13,9 @@ nav:
       - 自定义标签: python/pytest/custom_tag.md
     - docx:
       - 获取指定范围内的表格: python/docx/docx_notes.md
-    - mkdocs使用记录: python/other/mkdocs_notes.md
     - 其他:
       - Python路径迁移: python/other/mv_py_path.md
+      - mkdocs使用记录: python/other/mkdocs_notes.md
 - SQL:
     - Oracle:
       - sqlldr导入大量数据: sql/oracle/sqlldr_import.md
@@ -93,10 +93,11 @@ plugins:
           - zh  # 搜中文时输入关键字后删掉1位能查到
     # 显示文件最后修改时间插件，需要先pip install mkdocs-git-revision-date-localized-plugin
     # 参考资料：https://timvink.github.io/mkdocs-git-revision-date-localized-plugin/options/
-    - git-revision-date-localized:
-        timezone: Asia/Shanghai
-        type: iso_datetime
-        # fallback_to_build_date: true  # mkdocs build的日期
-        enable_creation_date: false
-        exclude:  # 以下文件/目录排除
-          - index.md
+# 调试时注释掉
+#    - git-revision-date-localized:
+#        timezone: Asia/Shanghai
+#        type: iso_datetime
+#        # fallback_to_build_date: true  # mkdocs build的日期
+#        enable_creation_date: false
+#        exclude:  # 以下文件/目录排除
+#          - index.md

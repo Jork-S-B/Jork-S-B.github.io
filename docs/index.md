@@ -6,4 +6,4 @@ hide:
   - navigation
 ---
 
-# :smile:Welcome to myblob
+# :smile:Welcome to myblog

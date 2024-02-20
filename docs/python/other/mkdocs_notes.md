@@ -4,7 +4,7 @@ mkdocs：基于Python的文档生成工具，用于快速、简单的生成网�
 
 ---
 
-### mkdocs常用命令
+## mkdocs常用命令
 
 |            命令             | 说明                          |
 |:-------------------------:|:----------------------------|
@@ -18,13 +18,13 @@ mkdocs：基于Python的文档生成工具，用于快速、简单的生成网�
 
 ---
 
-### Material for MkDocs
+## Material for MkDocs
 
 [点击这里跳转至官方使用文档](https://squidfunk.github.io/mkdocs-material/getting-started/)
 
 mkcocs-material是mkdocs的主题之一 ，在mkdocs.yml中配置。下列是可能有用的组件示例。
 
-\# todo，mkdocs-material可以直接通过Github action部署到github page。
+mkdocs编写的文档提交到github后，可以通过github action[部署到github page](#github-page)。
 
 ---
 
@@ -132,7 +132,9 @@ mkcocs-material是mkdocs的主题之一 ，在mkdocs.yml中配置。下列是可
 
     === "示例"
 
-        提示框类型还有note、tip、success、fail、question、warning等。[参考链接](https://squidfunk.github.io/mkdocs-material/reference/admonitions/#admonition-icons-fontawesome)
+        提示框类型还有note、tip、success、fail、question、warning等。
+
+        参考资料：[mkdocs-material官方使用文档示例](https://squidfunk.github.io/mkdocs-material/reference/admonitions/#admonition-icons-fontawesome)
          
     === "code.md"
 
@@ -278,6 +280,15 @@ mkcocs-material是mkdocs的主题之一 ，在mkdocs.yml中配置。下列是可
             lang:
               - en  # 英文搜索时按单词搜
               - zh  # 搜中文时输入关键字后删掉1位能查到
+        # 显示文件最后修改时间插件，需要先pip install mkdocs-git-revision-date-localized-plugin
+        # 参考资料：https://timvink.github.io/mkdocs-git-revision-date-localized-plugin/options/
+        - git-revision-date-localized:
+            timezone: Asia/Shanghai
+            type: iso_datetime
+            # fallback_to_build_date: true  # mkdocs build的日期
+            enable_creation_date: false
+            exclude:  # 以下文件/目录排除
+              - index.md
     ```
 === "stylesheets/extra.css"
 
@@ -286,5 +297,50 @@ mkcocs-material是mkdocs的主题之一 ，在mkdocs.yml中配置。下列是可
       max-width: 1555px;
     }
     ```
+
+## 部署到github page
+
+1.项目根目录下建./github/workflows/xxx.yml文件，定义工作流，表示持续集成执行的任务。内容如下：
+
+```yaml
+name: blog_ci
+on:
+  push:
+    branches:
+      - master
+      - main
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout master
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 0  # 默认为1，只取最近的1个提交，导致无法获取到每个文件的最后修改时间
+
+      - name: Set up Python3.x
+        uses: actions/setup-python@v2
+        with:
+          python-version: 3.x
+
+      - run: pip install mkdocs
+      - run: pip install mkdocs-material
+      - run: pip install mkdocs-glightbox
+      - run: pip install jieba
+      - run: pip install mkdocs-git-revision-date-localized-plugin
+
+      - name: Deploy
+        run: mkdocs gh-deploy --force
+```
+
+2.在GitHub仓库页，进入路径：`Settings`->`Actions`->`General` ，
+
+将`Workflow Permissions`设置为`Read an write permissions`，点击`Save`保存。
+
+![Workflow_Permissions](./img/Snipaste_2024-02-20_22-27-13.jpg)
+
+3.之后push代码时便会触发工作流，运行成功后访问`https://{username}.github.io`即可查看。
+
+参考资料：[Quickstart for GitHub Actions](https://docs.github.com/en/actions/quickstart)
 
 ---

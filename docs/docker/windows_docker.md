@@ -4,7 +4,7 @@
 
 已知Docker依赖于linux内核环境，但总有大冤种（也就是我😓）想在Windows 10操作系统中部署。
 
-[Window Docker安装教程](https://www.runoob.com/docker/windows-docker-install.html)
+参考资料：[Window Docker安装教程](https://www.runoob.com/docker/windows-docker-install.html)
 
 安装教程第一步是安装并开启Hyper-V，但我并未执行这一步（根据提供的步骤查看也未启用Hyper-V），而是直接在官网下载了安装包，但安装时提示系统版本太低。
 
@@ -27,6 +27,6 @@ netsh int ipv4 set dynamic tcp start=49152 num=16384
 netsh int ipv6 set dynamic tcp start=49152 num=16384
 ```
 
-[参考来源及错误原因分析请看这篇博客](https://cloud.tencent.com/developer/article/2168217)
+参考资料：[错误原因分析](https://cloud.tencent.com/developer/article/2168217)
 
 ---
