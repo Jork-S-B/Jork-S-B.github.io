@@ -35,7 +35,7 @@ sqlldr userid=${target_dbstr} control=./${table}.ctl log=./${table}.log bad=./${
 
     \# record=0x0a ASCII码，代表记录分隔符为换行符
 
-    `sqluldr2 user="user/pw" query="select * from table" field="0x09" record="0x0a" file="./tablename.txt" charset=UTF8`
+    `./sqluldr2 user="user/pw" query="select * from table" head=no field="|" record="0x0a" file="./tablename.txt" charset=ZHS16GBK`
 
 ---
 
