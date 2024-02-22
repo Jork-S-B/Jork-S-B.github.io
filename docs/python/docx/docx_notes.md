@@ -1,6 +1,4 @@
-# 
-
-### 🚁 文档内容
+## 文档内容
 
 先建个word文档，并保存为`./output.docx`。
 
@@ -35,7 +33,10 @@
     def make_doc():
         """生成word文档"""
         doc = Document()
-        doc.add_paragraph('第一行')
+        first = doc.add_paragraph('第一行')
+        # 设置“第一行”为Heading 1样式
+        first.style = doc.styles['Heading 1']
+
         add_table(doc)
         doc.add_paragraph('我的文档标题')
         add_table(doc)
@@ -116,7 +117,7 @@
         res = dr.get_sepcified_table_content('第一行', '结束')
         for k, v in res.items():
             print(f'表名：{k}\n表内容：{v}\n')
-        res = dr.get_sepcified_table_content_with_th('结束')
+        res = dr.get_sepcified_table_content('结束')
         for k, v in res.items():
             print(f'表名：{k}\n表内容：{v}\n')
     
@@ -137,5 +138,26 @@
     ```
 
 [参考的这一篇博客](https://blog.csdn.net/chelseady/article/details/102689683)
+
+
+### 🚁 遍历文档所有h1标题的内容
+
+=== "DocxReader.py"
+
+    ```python
+    if __name__ == '__main__':
+        make_doc()  # 生成文件至./output.docx
+        dr = DocxReader('output.docx')
+
+        for paragraph in dr.paragraphs:
+            if 'Heading 1' in paragraph.style.name:
+                print(paragraph.text)
+    ```
+
+=== "运行结果"
+
+    ```
+    第一行
+    ```
 
 ---
