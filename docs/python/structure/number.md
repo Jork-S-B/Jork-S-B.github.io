@@ -26,3 +26,18 @@ def decimal_calculate():
     # 1.230000000000000071054273576
     # 1.23
 ```
+
+## 📌 四舍五入，保留两位小数
+
+```python
+def round_format():
+    str1 = 3.7477926
+    str2 = '{:.2f}'.format(str1)
+    print(str2)  # 输出3.75
+    str2 = round(str1, 2)
+    print(str2)  # 输出3.75
+
+    str1 = 3.00
+    print('{:.2f}'.format(str1))  # 输出3.00
+    print(round(str1, 2))  # 输出3.0
+```
