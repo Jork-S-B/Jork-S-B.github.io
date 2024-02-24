@@ -1,5 +1,3 @@
-# 
-
 ### 🚁 pytest + jaydebeapi
 
 pytest运行，用例调用jaydebeapi库时，日志出现`Windows fatal exception`等一大串报错。
