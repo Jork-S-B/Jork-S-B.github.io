@@ -6,7 +6,8 @@ site_name: whm
 nav:
 - Home: index.md
 - Python:
-    - 数据类型:
+    - 数据结构:
+      - 数值型: python/structure/number.md
       - 序列: python/structure/sequence.md
       - 字典和集合: python/structure/dict&set.md
       - 可变/不可变类型: python/structure/mutable&immutable.md

@@ -33,9 +33,9 @@ print(s)  # 输出{"no": "1", "regex_str": "物品\t单价\t数量"}
 d = json.loads(s)  # str转dict
 print(d)  # 输出{'no': '1', 'regex_str': '物品\t单价\t数量'}
 
-print(d.get('regex_str'))  # 直接print()会自动转义，输出`物品    单价  数量`
-print(repr(d.get('regex_str')))  # repr()会保留转义或者特殊字符，输出`'物品\t单价\t数量'`
-print(eval(repr(d.get('regex_str'))))  # eval()执行转义，输出`物品    单价  数量`
+print(d.get('regex_str'))  # 直接print()会自动转义，输出：物品    单价  数量
+print(repr(d.get('regex_str')))  # repr()会保留转义或者特殊字符，输出：'物品\t单价\t数量'
+print(eval(repr(d.get('regex_str'))))  # eval()执行转义，输出：物品    单价  数量
 
 ```
 
