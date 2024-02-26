@@ -1,7 +1,7 @@
 site_name: whm
 # site_url: 站点 URL 链接
-# site_author: 站点作者
-# site_description: 站点描述
+site_author: whm
+site_description: myblog
 
 nav:
 - Home: index.md
@@ -39,8 +39,8 @@ nav:
     - Nginx笔记: other/nginx_notes.md
 
 # 搜索栏右侧git链接
-repo_url: https://gitee.com/Jork-S-B/myblog
-repo_name: 'mypage'
+repo_url: https://github.com/Jork-S-B/Jork-S-B.github.io/tree/main
+repo_name: 'myblog'
 
 theme:
     # favicon: logo.png  # 网站logo，默认从./docs/logo.png读取
