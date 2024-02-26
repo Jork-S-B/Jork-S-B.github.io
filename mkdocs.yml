@@ -13,7 +13,7 @@ nav:
       - 可变/不可变类型: python/structure/mutable&immutable.md
       - 二叉树: python/structure/binary_tree.md
     - pytest:
-      - 参数化: python/pytest/parametrize.md
+      - 测试夹具: python/pytest/fixture.md
       - pytest.main参数: python/pytest/pytest.main.md
       - allure参数: python/pytest/allure.md
       - pytest.ini: python/pytest/pytest.ini.md
@@ -91,6 +91,9 @@ markdown_extensions:
     - pymdownx.superfences
     # 表格扩展
     - tables
+    # 支持markdown任务列表的插件
+    - pymdownx.tasklist:
+        custom_checkbox: true
 
 plugins:
     # 图片放大插件，需要先pip install mkdocs-glightbox
@@ -100,8 +103,8 @@ plugins:
         # 正则表达式，\s 匹配任何空白字符，包括空格、制表符、换行符等；\u200b 不可视的特殊占位符，文本渲染时用到，此处实测对搜索结果挺大
         separator: '[\s\u200b\-,:!=\[\]()"/]+|(?!\b)(?=[A-Z][a-z])|\.(?!\d)|&[lg]t;'
         lang:
-          - en  # 英文搜索时按单词搜
-          - zh  # 搜中文时输入关键字后删掉1位能查到
+          - en
+          - zh
     # 显示文件最后修改时间插件，需要先pip install mkdocs-git-revision-date-localized-plugin
     # 参考资料：https://timvink.github.io/mkdocs-git-revision-date-localized-plugin/options/
     - git-revision-date-localized:

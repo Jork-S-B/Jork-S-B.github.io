@@ -19,7 +19,7 @@ dict1 = {'no': '1', 'regex_str': '物品\t单价\t数量'}
 filename = 'output.json'
 
 with open(filename, 'w') as f:
-    # ensure_ascii=False，默认True会将中文转为ASCII码
+    # ensure_ascii=False，保留非ASCII字符如汉字
     # indent=2，格式化，指定每级缩进的空格数为2
     json.dump(dict1, f, ensure_ascii=False, indent=2)  # dict1写入到output.json
 

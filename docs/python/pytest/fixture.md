@@ -1,6 +1,53 @@
-pytest参数化的方式：
+### 🚁 Fixture 作用域
 
-* 使用测试夹具函数，`return request.param`返回参数化的数据。
+当测试第一次请求时创建fixture，并根据它们的`scope`参数值销毁：
+
+* function：默认值，函数级每个测试函数执行一次。
+
+* class：类级别，每个测试类执行一次。
+
+* module：模块级，每个测试模块执行一次。
+
+* package: 包级别，每个测试包执行一次。要求testcase目录是package而非directory。
+
+* session: 会话级，整个会话只执行一次。
+
+### 🚁 setUp/tearDown方法
+
+setUp/tearDown是执行测试用例的前置/后置方法，用于初始化/清理环境。继承unittest的类可直接使用同名方法。
+
+pytest中也有[类似名称的方法](https://blog.csdn.net/qq_36502272/article/details/100671845)，也可通过`yield fixtures`
+实现类似功能。
+
+=== "conftest.py"
+
+    ```python
+    @pytest.fixture(scope='package')
+    def myfunc():
+        conn = dbUtils.connect()  # 数据库工具类实例
+        driver = webdriver.Chrome()  # webdriver实例
+        yield conn,driver
+        conn.close()
+        driver.quit()
+
+    ```
+
+=== "Testcase.py"
+
+    ```python
+    def test_case1(myfunc):
+        conn, driver = myfunc
+        conn.execute("select * from table")
+        driver.get("http://www.baidu.com")
+        assert driver.title == "百度一下，你就知道"
+
+    ```
+
+### 🚁 参数化
+
+pytest参数化的方式包括：
+
+* 使用测试夹具params参数，`return request.param`返回参数化的数据。
 * 使用`pytest.mark.parametrize`装饰器。
 
 === "测试用例"
@@ -101,23 +148,33 @@ pytest参数化的方式：
         expected: '支付(Pay)<b>{0}</b>(<b>{1}</b> 来自国库)获取此资源。(in treasury) to claim this resource.)'
     ```
 
-运行结果：
+=== "运行结果"
 
-```text
-TestZhEnMerge.py::TestZhEnMerge::test_zh_en_merge[param_testdata0] PASSED [ 25%]
-TestZhEnMerge.py::TestZhEnMerge::test_zh_en_merge[param_testdata1] PASSED [ 50%]
-TestZhEnMerge.py::TestZhEnMerge::test_zh_en_merge_with_parametrize[<b>{description}<\b>\n\u65e5\u671f:{1}\n\u65f6\u95f4:{2}-<b>{description}<\b>\nDate:{1}\nTime:{2}-<b>{description}<\b>\n\u65e5\u671f(\nDate):{1}\n\u65f6\u95f4(\nTime):{2}] PASSED [ 75%]
-TestZhEnMerge.py::TestZhEnMerge::test_zh_en_merge_with_parametrize[\u652f\u4ed8<b>{0}<\b>(<b>{1}<\b> \u6765\u81ea\u56fd\u5e93)\u83b7\u53d6\u6b64\u8d44\u6e90\u3002-Pay <b>{0}<\b> (<b>{1}<\b> in treasury) to claim this resource.-\u652f\u4ed8(Pay)<b>{0}<\b>(<b>{1}<\b> \u6765\u81ea\u56fd\u5e93)\u83b7\u53d6\u6b64\u8d44\u6e90\u3002(in treasury) to claim this resource.)] PASSED [100%]
-```
+    ```text
+    TestZhEnMerge.py::TestZhEnMerge::test_zh_en_merge[param_testdata0] PASSED [ 25%]
+    TestZhEnMerge.py::TestZhEnMerge::test_zh_en_merge[param_testdata1] PASSED [ 50%]
+    TestZhEnMerge.py::TestZhEnMerge::test_zh_en_merge_with_parametrize[<b>{description}<\b>\n\u65e5\u671f:{1}\n\u65f6\u95f4:{2}-<b>{description}<\b>\nDate:{1}\nTime:{2}-<b>{description}<\b>\n\u65e5\u671f(\nDate):{1}\n\u65f6\u95f4(\nTime):{2}] PASSED [ 75%]
+    TestZhEnMerge.py::TestZhEnMerge::test_zh_en_merge_with_parametrize[\u652f\u4ed8<b>{0}<\b>(<b>{1}<\b> \u6765\u81ea\u56fd\u5e93)\u83b7\u53d6\u6b64\u8d44\u6e90\u3002-Pay <b>{0}<\b> (<b>{1}<\b> in treasury) to claim this resource.-\u652f\u4ed8(Pay)<b>{0}<\b>(<b>{1}<\b> \u6765\u81ea\u56fd\u5e93)\u83b7\u53d6\u6b64\u8d44\u6e90\u3002(in treasury) to claim this resource.)] PASSED [100%]
+    ```
 
-### 🚁 关于控制台打印将汉字转为ASCII码
+#### ❓ 关于控制台打印将汉字转为Unicode字符
 
-从上述运行结果可以看出，使用`pytest.mark.parametrize`装饰器时，控制台打印将汉字转为了ASCII码。
+从上述运行结果可以看出，使用`pytest.mark.parametrize`装饰器时，控制台打印将汉字转为了Unicode字符。
 
-实际上各文件编码都是utf-8，且调试时也能正常解析汉字，不影响运行结果。
+实际上各文件编码、IDE的输出编码、pytest.ini编码设置都是utf-8，且调试时也能正常解析汉字，不影响运行结果。
 
 ![parametrize_debug](./img/Snipaste_2024-02-25_13-08-27.jpg)
 
-[解决方案](https://dandelioncloud.cn/article/details/1596087866059079681)可参考这一篇
+[解决方案](https://dandelioncloud.cn/article/details/1596087866059079681)可参考这一篇，使用pytest钩子函数，在测试项收集完成阶段处理编码问题。
+
+!!! note "补充"
+
+    pytest提供了大量的钩子函数，这些函数允许在测试执行的各个阶段进行定制和扩展。
+
+参考资料：
+
+1.[How to use fixtures](https://docs.pytest.org/en/latest/how-to/fixtures.html#how-to-fixtures)
+
+2.[pytest hooks函数](https://docs.pytest.org/en/latest/reference/reference.html#hooks)
 
 ---

@@ -31,11 +31,11 @@ sqlldr userid=${target_dbstr} control=./${table}.ctl log=./${table}.log bad=./${
 ```
 !!! note "补充：使用sqluldr2导出查询结果"
 
-    \# field="0x09" ASCII码，代表字段分隔符为水平制表符（|=0x7c，但可以直接用field="|"）
+    \# field="|" 代表字段分隔符为"|"
 
-    \# record=0x0a ASCII码，代表记录分隔符为换行符
+    \# record="\n" 代表记录分隔符为换行符，也是该参数的默认值
 
-    `./sqluldr2 user="user/pw" query="select * from table" head=no field="|" record="0x0a" file="./tablename.txt" charset=ZHS16GBK`
+    `./sqluldr2 user="user/pw" query="select * from table" head=no field="|" record="\n" file="./tablename.txt" charset=ZHS16GBK`
 
 ---
 
