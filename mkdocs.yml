@@ -24,7 +24,7 @@ nav:
     - 其他:
       - Python路径迁移: python/other/mv_py_path.md
       - mkdocs使用记录: python/other/mkdocs_notes.md
-      - fiddler: python/fiddler_notes.md
+      - fiddler: fiddler_notes.md
 - 数据库:
     - Oracle:
       - sqlldr导入大量数据: sql/oracle/sqlldr_import.md
