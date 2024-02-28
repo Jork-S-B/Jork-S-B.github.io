@@ -13,12 +13,15 @@
             for item in items:
                 if "slow" in item.keywords:
                     item.add_marker(skip_slow)  # 添加 skip 标签以跳过该测试用例
-
-    import pytest
     
+    ```
+=== "testcase.py"
+
+    ```python
     @pytest.mark.slow
     def test_long_running():
         pass
+
     ```
 
 === "pytest.ini"

@@ -12,17 +12,19 @@ nav:
       - 字典和集合: python/structure/dict&set.md
       - 可变/不可变类型: python/structure/mutable&immutable.md
       - 二叉树: python/structure/binary_tree.md
-    - pytest:
+    - pytest笔记:
       - 测试夹具: python/pytest/fixture.md
       - pytest.main参数: python/pytest/pytest.main.md
       - allure参数: python/pytest/allure.md
       - pytest.ini: python/pytest/pytest.ini.md
       - 自定义标签: python/pytest/custom_tag.md
+    - unittest笔记: python/unittest/unittest_notes.md
     - pydocx笔记: python/pydocx/pydocx_notes.md
     - pyjson笔记: python/pyjson/pyjson_notes.md
     - 其他:
       - Python路径迁移: python/other/mv_py_path.md
       - mkdocs使用记录: python/other/mkdocs_notes.md
+      - fiddler: python/fiddler_notes.md
 - 数据库:
     - Oracle:
       - sqlldr导入大量数据: sql/oracle/sqlldr_import.md
@@ -35,6 +37,7 @@ nav:
     - Docker for Windows: docker/windows_docker.md
     - 构建MySQL镜像: docker/build_mysql.md
     - 构建Oracle镜像: docker/build_oracle.md
+    - 构建Jenkins镜像: docker/build_jenkins.md
 - 其他:
     - Nginx笔记: other/nginx_notes.md
 
