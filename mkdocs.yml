@@ -36,7 +36,7 @@ nav:
     - Docker for Windows: docker/windows_docker.md
     - 构建MySQL镜像: docker/build_mysql.md
     - 构建Oracle镜像: docker/build_oracle.md
-    - 构建Jenkins镜像: docker/build_jenkins.md
+    # - 构建Jenkins镜像: docker/build_jenkins.md
 - 其他:
     - Nginx笔记: other/nginx_notes.md
     - fiddler: fiddler_notes.md
