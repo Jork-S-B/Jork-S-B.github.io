@@ -12,7 +12,8 @@ nav:
       - 字典和集合: python/structure/dict&set.md
       - 可变/不可变类型: python/structure/mutable&immutable.md
       - 二叉树: python/structure/binary_tree.md
-    - pytest笔记:
+    - 正则表达式: python/regex/re.md
+    - pytest:
       - 测试夹具: python/pytest/fixture.md
       - pytest.main参数: python/pytest/pytest.main.md
       - allure参数: python/pytest/allure.md
@@ -32,14 +33,17 @@ nav:
       - 收集表统计信息: sql/oracle/gather_table_stats.md
       - 其他笔记: sql/oracle/other_notes.md
     - Redis笔记: sql/redis_notes.md
+- Shell:
+    - regex.sh: shell/regex/re.md
+- 测试工具:
+    - Fiddler: utils/fiddler_notes.md
 - Docker:
     - Docker for Windows: docker/windows_docker.md
     - 构建MySQL镜像: docker/build_mysql.md
     - 构建Oracle镜像: docker/build_oracle.md
-    # - 构建Jenkins镜像: docker/build_jenkins.md
+    #  - 构建Jenkins镜像: docker/build_jenkins.md
 - 其他:
     - Nginx笔记: other/nginx_notes.md
-    - fiddler: fiddler_notes.md
 
 # 搜索栏右侧git链接
 repo_url: https://github.com/Jork-S-B/Jork-S-B.github.io/tree/main
@@ -104,7 +108,7 @@ plugins:
     # 中文搜索插件，需要pip install jieba
     - search:
         # 正则表达式，\s 匹配任何空白字符，包括空格、制表符、换行符等；\u200b 不可视的特殊占位符，文本渲染时用到，此处实测对搜索结果挺大
-        separator: '[\s\u200b\-,:!=\[\]()"/]+|(?!\b)(?=[A-Z][a-z])|\.(?!\d)|&[lg]t;'
+        separator: '[\s+\u200b\-,:!=\[\]()"/]+|(?!\b)(?=[A-Z][a-z])|\.(?!\d)|&[lg]t;'
         lang:
           - en
           - zh
