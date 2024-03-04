@@ -1623,7 +1623,7 @@
 </tr>
 </tbody>
 </table>
-<div class="tabbed-set tabbed-alternate" data-tabs="1:5"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><input id="__tabbed_1_3" name="__tabbed_1" type="radio" /><input id="__tabbed_1_4" name="__tabbed_1" type="radio" /><input id="__tabbed_1_5" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">re去掉html标签</label><label for="__tabbed_1_2">re.findall()</label><label for="__tabbed_1_3">re.spilt()</label><label for="__tabbed_1_4">非捕获分组</label><label for="__tabbed_1_5">匹配年月</label></div>
+<div class="tabbed-set tabbed-alternate" data-tabs="1:5"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><input id="__tabbed_1_3" name="__tabbed_1" type="radio" /><input id="__tabbed_1_4" name="__tabbed_1" type="radio" /><input id="__tabbed_1_5" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">re去掉html标签</label><label for="__tabbed_1_2">re.findall()</label><label for="__tabbed_1_3">非捕获分组</label><label for="__tabbed_1_4">re.spilt()</label><label for="__tabbed_1_5">匹配年月</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
 <div class="highlight"><pre><span></span><code><span class="n">html</span> <span class="o">=</span> <span class="s1">&#39;&lt;p&gt;Hello, &lt;em&gt;world!&lt;/em&gt;&lt;/p&gt;&#39;</span>
@@ -1644,13 +1644,6 @@
 <span class="c1"># re.findall()根据regex匹配，将匹配的值存储为列表</span>
 <span class="n">data</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="n">regex</span><span class="p">,</span> <span class="n">text</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>  <span class="c1"># 输出[&#39;xx1&#39;, &#39;xx2&#39;, &#39;xx3&#39;]</span>
-</code></pre></div>
-</div>
-<div class="tabbed-block">
-<div class="highlight"><pre><span></span><code><span class="n">test_str</span> <span class="o">=</span> <span class="s1">&#39;sheep dog pig </span><span class="se">\n</span><span class="s1"> bird </span><span class="se">\t</span><span class="s1"> cock&#39;</span>
-<span class="c1"># \s+ 匹配一个或多个空白字符（包括空格、换行符、制表符等）</span>
-<span class="n">split_result</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;\s+&#39;</span><span class="p">,</span> <span class="n">test_str</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">split_result</span><span class="p">)</span>  <span class="c1"># [&#39;sheep&#39;, &#39;dog&#39;, &#39;pig&#39;, &#39;bird&#39;, &#39;cock&#39;]</span>
 </code></pre></div>
 </div>
 <div class="tabbed-block">
@@ -1681,6 +1674,13 @@
 
 <span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
     <span class="nb">print</span><span class="p">(</span><span class="nb">repr</span><span class="p">(</span><span class="n">zh_en_merge</span><span class="p">(</span><span class="s1">&#39;&lt;b&gt;</span><span class="si">{description}</span><span class="s1">&lt;/b&gt;</span><span class="se">\n</span><span class="s1">日期:</span><span class="si">{1}</span><span class="se">\n</span><span class="s1">时间:</span><span class="si">{2}</span><span class="s1">&#39;</span><span class="p">,</span> <span class="s1">&#39;&lt;b&gt;</span><span class="si">{description}</span><span class="s1">&lt;/b&gt;</span><span class="se">\n</span><span class="s1">Date:</span><span class="si">{1}</span><span class="se">\n</span><span class="s1">Time:</span><span class="si">{2}</span><span class="s1">&#39;</span><span class="p">)))</span>
+</code></pre></div>
+</div>
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code><span class="n">test_str</span> <span class="o">=</span> <span class="s1">&#39;sheep dog pig </span><span class="se">\n</span><span class="s1"> bird </span><span class="se">\t</span><span class="s1"> cock&#39;</span>
+<span class="c1"># \s+ 匹配一个或多个空白字符（包括空格、换行符、制表符等）</span>
+<span class="n">split_result</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;\s+&#39;</span><span class="p">,</span> <span class="n">test_str</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">split_result</span><span class="p">)</span>  <span class="c1"># [&#39;sheep&#39;, &#39;dog&#39;, &#39;pig&#39;, &#39;bird&#39;, &#39;cock&#39;]</span>
 </code></pre></div>
 </div>
 <div class="tabbed-block">
@@ -1721,7 +1721,7 @@ matchObj.group(n)返回第n个匹配的子串,n从1开始计数。
     <span class="md-icon" title="最后更新">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1-2.1-2M12.5 7v5.2l4 2.4-1 1L11 13V7h1.5M11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2v1.8Z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime">2024-03-03 22:48:52</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime">2024-03-04 21:57:46</span>
   </span>
 
     
