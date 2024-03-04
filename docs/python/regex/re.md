@@ -37,16 +37,6 @@
 
     ```
 
-=== "re.spilt()"
-    
-    ```python
-    test_str = 'sheep dog pig \n bird \t cock'
-    # \s+ 匹配一个或多个空白字符（包括空格、换行符、制表符等）
-    split_result = re.split(r'\s+', test_str)
-    print(split_result)  # ['sheep', 'dog', 'pig', 'bird', 'cock']
-
-    ```
-
 === "非捕获分组"
 
     ```python
@@ -77,6 +67,16 @@
     
     if __name__ == '__main__':
         print(repr(zh_en_merge('<b>{description}</b>\n日期:{1}\n时间:{2}', '<b>{description}</b>\nDate:{1}\nTime:{2}')))
+
+    ```
+
+=== "re.spilt()"
+    
+    ```python
+    test_str = 'sheep dog pig \n bird \t cock'
+    # \s+ 匹配一个或多个空白字符（包括空格、换行符、制表符等）
+    split_result = re.split(r'\s+', test_str)
+    print(split_result)  # ['sheep', 'dog', 'pig', 'bird', 'cock']
 
     ```
 

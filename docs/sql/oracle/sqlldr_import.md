@@ -43,26 +43,29 @@ sqlldr userid=${target_dbstr} control=./${table}.ctl log=./${table}.log bad=./${
 
 上述脚本需要手动填入目标表的字段至field变量，有多个表要导入时就比较麻烦。可以用sqlplus来生成ctl文件，然后用sqlldr导入。
 
-=== "make_ctl.sh"
+=== "ldr.sh"
 
     ```sh
     #!/bin/bash
     if [ $# = 0 ] ; then
-    echo "使用方法：sh make_ctl.sh 表名"
+    echo "使用方法：sh ldr.sh 表名"
     exit;
     fi
-    testdb="user/pw@ip:port/db"
+    target_dbstr="user/pw@ip:port/db"
+    table=$1
     
     # make_ctl.sql参数说明
     # 参数1=目标表名
     # 参数2=truncate|append等装载方式
     # 参数3=字段分隔符
-    sqlplus ${testdb} @./make_ctl.sql $1 append "|"
+    sqlplus ${target_dbstr} @./make_ctl.sql ${table} append "|"
     
     # APPEND 追加
     # INSERT 默认值，如果原先的表有数据，sqlloader会停止
     # REPLACE 如果原先的表有数据，原先的数据会全部删除
     # TRUNCATE 和replace的相同，会用truncate语句删除现存数据
+    
+    sqlldr userid=${target_dbstr} control=./${table}.ctl log=./${table}.log bad=./${table}.bad
     ```
 
 === "make_ctl.sql"
@@ -70,19 +73,20 @@ sqlldr userid=${target_dbstr} control=./${table}.ctl log=./${table}.log bad=./${
     ```sql
     set echo off                                     
     set heading off                                  
-    set verify off                                   
+    set verify off
+    set feedback off
+    set show off
     set trim off                                     
     set pages 0                                      
     set concat on                                    
     set lines 300                                    
     set trimspool on                                 
-    set trimout on     
+    set trimout on
 
     spool &1..ctl                                    
     select 'LOAD DATA'||chr (10)||             
-    --       'INFILE '''||lower (table_name)||'.dat '''||
-           '&2 into table '||table_name||chr (10)||     
-    --       'Append into table '||table_name||chr (10)||     
+           'INFILE '''||lower (table_name)||'.txt'''||chr (10)||
+           '&2 into table '||table_name||chr (10)||
            'FIELDS TERMINATED BY "&3"'|| chr (10)||
            'TRAILING NULLCOLS'||chr (10)||'('        
     from   user_tables                                
@@ -108,6 +112,7 @@ sqlldr userid=${target_dbstr} control=./${table}.ctl log=./${table}.log bad=./${
     select ')'                                       
     from sys.dual;
     spool off 
+    quit
     ```
 
 ---
