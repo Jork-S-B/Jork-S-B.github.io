@@ -31,11 +31,7 @@ sqlldr userid=${target_dbstr} control=./${table}.ctl log=./${table}.log bad=./${
 ```
 !!! note "补充：使用sqluldr2导出查询结果"
 
-    \# field="|" 代表字段分隔符为"|"
-
-    \# record="\n" 代表记录分隔符为换行符，也是该参数的默认值
-
-    `./sqluldr2 user="user/pw" query="select * from table" head=no field="|" record="\n" file="./tablename.txt" charset=ZHS16GBK`
+    `./sqluldr2 user="user/pw" query="select * from table" head=no field="|" file="./tablename.txt" charset=ZHS16GBK`
 
 ---
 
@@ -103,7 +99,7 @@ sqlldr userid=${target_dbstr} control=./${table}.ctl log=./${table}.log bad=./${
                                column_name||'=BLANKS)',
                                'DECIMAL EXTERNAL NULLIF ('||
                                column_name||'=BLANKS)')),
-                   'DATE',     'DATE "YYYY-MM-DD"  NULLIF ('||column_name||'=BLANKS)',
+                   'DATE',     'DATE "YYYY-MM-DD HH24:MI:SS"  NULLIF ('||column_name||'=BLANKS)',
                    null)
     from   
     (select * from user_tab_columns
