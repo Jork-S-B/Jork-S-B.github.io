@@ -26,7 +26,7 @@ https请求抓包，需要在`Tools`->`Options...`->`HTTPS`选项卡，勾选`Ca
 
 !!!note "补充"
 
-	若需设置延迅时间，右键点击规则-＞`Set Latency`设置时间（单位为毫秒），并勾选`enable latency`。
+	若需设置延迅时间，右键点击规则->`Set Latency`设置时间（单位为毫秒），并勾选`enable latency`。
 
 ### 🚁 构造请求
 
@@ -43,13 +43,27 @@ https请求抓包，需要在`Tools`->`Options...`->`HTTPS`选项卡，勾选`Ca
 
 1.`Tools`->`Options...`->`Connections`选项卡，设置端口号，勾选`Allow remote computers to connect`选项。
 
-2.设置代理认证：
+2.设置代理认证：待补充
 
-3.手机连接同网段的WiFi后，设置代理，把机器IP及端口填入对应项。若设置了代理认证则还需填写用户名、密码。
+3.手机连接同区域网的WiFi后，设置代理，把机器IP及端口填入对应项。若设置了代理认证则还需填写用户名、密码。
+
+!!!note "补充"
+
+    Fiddler首次勾选`Allow remote computers to connect`后可能会无网络连接，实测重启软件后即可。
 
 ### 🚁 模拟弱网
 
+1.`Rules`->`Performance`->`Simulate Modem Speeds`，开启调制解调器。
 
+2.`Rules`->`Customize Rules`，搜索关键字`m_SimulateModem`，如下图。
+
+![img.png](image/m_SimulateModem.png)
+
+默认配置为：每发送1KB延迟300ms；没接受1KB延迟150ms。可见Fiddler模拟弱网本质是设置延迟时间。
+
+!!!note "补充"
+
+    自定义规则时记得将`m_SimulateModem`的值修改为true，否则不会生效。
 
 参考资料：[Fiddler详解](https://www.cnblogs.com/cty136/p/11479142.html)
 
