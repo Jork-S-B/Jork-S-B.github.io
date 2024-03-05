@@ -59,13 +59,13 @@ https请求抓包，需要在`Tools`->`Options...`->`HTTPS`选项卡，勾选`Ca
 
 ![img.png](image/m_SimulateModem.png)
 
-默认配置为：每发送1KB延迟300ms；没接受1KB延迟150ms。可见Fiddler模拟弱网本质是设置延迟时间。
+默认配置为：每发送1KB延迟300ms；每接收1KB延迟150ms。可见Fiddler模拟弱网本质是设置延迟时间。
 
 !!!note "补充"
 
     自定义规则时记得将`m_SimulateModem`的值修改为true，否则不会生效。
 
-#### 📌 弱网测试策略：
+#### 🔧 弱网测试策略：
 
 1. 正常网络时功能检查
 2. 弱网时时功能检查，包括UI、交互、提示、数据
