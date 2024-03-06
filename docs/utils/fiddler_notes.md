@@ -43,9 +43,22 @@ https请求抓包，需要在`Tools`->`Options...`->`HTTPS`选项卡，勾选`Ca
 
 1.`Tools`->`Options...`->`Connections`选项卡，设置端口号，勾选`Allow remote computers to connect`选项。
 
-2.设置代理认证：待补充
+2.设置代理认证：`FiddlerScript`选项卡，在`OnBeforeRequest`方法中增加`Proxy-Authorization`，如：
+
+```
+static function OnBeforeRequest (oSession: Session) {
+    oSession.oRequest ["Proxy-Authorization"] = "Basic d2htOjEyMzQ1Ng==";
+    // 原方法的内容这里省略
+    }
+```
+
+其中`Basic`的后半部分是将"用户名：密码"进行base64加密生成的，可以通过自带的`TextWizard`工具生成。
+
+![img.png](image/TextWizard.png)
 
 3.手机连接同区域网的WiFi后，设置代理，把机器IP及端口填入对应项。若设置了代理认证则还需填写用户名、密码。
+
+此外，同域的计算机也可设置代理，将浏览器请求通过Fiddler代理后转发出去。
 
 !!!note "补充"
 
@@ -55,7 +68,7 @@ https请求抓包，需要在`Tools`->`Options...`->`HTTPS`选项卡，勾选`Ca
 
 1.`Rules`->`Performance`->`Simulate Modem Speeds`，开启调制解调器。
 
-2.`Rules`->`Customize Rules`，搜索关键字`m_SimulateModem`，如下图。
+2.`Rules`->`Customize Rules`或者`FiddlerScript`选项卡，搜索关键字`m_SimulateModem`，如下图。
 
 ![img.png](image/m_SimulateModem.png)
 
