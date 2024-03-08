@@ -13,10 +13,10 @@
       
       
       
-        <link rel="prev" href="../../shell/regex/re/">
+        <link rel="prev" href="../../shell/timestamp/">
       
       
-        <link rel="next" href="../../docker/windows_docker/">
+        <link rel="next" href="../charles_notes/">
       
       
       <link rel="icon" href="../../assets/images/favicon.png">
@@ -303,7 +303,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="../../shell/regex/re/" class="md-tabs__link">
+        <a href="../../shell/regex/" class="md-tabs__link">
           
   
   Shell
@@ -1218,11 +1218,32 @@
   
   
     <li class="md-nav__item">
-      <a href="../../shell/regex/re/" class="md-nav__link">
+      <a href="../../shell/regex/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
     regex.sh
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../shell/timestamp/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    检查命令耗时
   </span>
   
 
@@ -1398,6 +1419,27 @@
   
 </nav>
       
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../charles_notes/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Charles
+  </span>
+  
+
+      </a>
     </li>
   
 
@@ -1709,7 +1751,11 @@
 <p>转发的内容可设置为其他http请求、url或者本地文件等。</p>
 <div class="admonition note">
 <p class="admonition-title">补充</p>
-<p>若需设置延迅时间，右键点击规则-&gt;<code>Set Latency</code>设置时间（单位为毫秒），并勾选<code>enable latency</code>。</p>
+<p>若需设置延迅时间，右键规则-&gt;<code>Set Latency</code>设置时间（单位为毫秒），并勾选<code>enable latency</code>。</p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">补充</p>
+<p>全局转发：<code>Tools</code>-&gt;<code>HOSTS...</code>中设置转发的域名。</p>
 </div>
 <h3 id="_3">🚁 构造请求</h3>
 <p>针对一些长流程进行接口测试时，可通过<code>Composer</code>，构造请求报文进行调试，待调通后再进行集成测试，提高效率。</p>
@@ -1729,7 +1775,7 @@
 </code></pre></div>
 <p>其中<code>Basic</code>的后半部分是将"用户名：密码"进行base64加密生成的，可以通过自带的<code>TextWizard</code>工具生成。</p>
 <p><a class="glightbox" href="../image/TextWizard.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="img.png" src="../image/TextWizard.png" /></a></p>
-<p>3.手机连接同区域网的WiFi后，设置代理，把机器IP及端口填入对应项。若设置了代理认证则还需填写用户名、密码。</p>
+<p>3.手机连接同区域网的WiFi后，手动配置代理，把机器IP及端口填入对应项。若设置了代理认证则还需填写用户名、密码。</p>
 <p>此外，同域的计算机也可设置代理，将浏览器请求通过Fiddler代理后转发出去。</p>
 <div class="admonition note">
 <p class="admonition-title">补充</p>
@@ -1773,7 +1819,7 @@
     <span class="md-icon" title="最后更新">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1-2.1-2M12.5 7v5.2l4 2.4-1 1L11 13V7h1.5M11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2v1.8Z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime">2024-03-06 22:50:13</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime">2024-03-08 20:59:23</span>
   </span>
 
     
@@ -1809,7 +1855,7 @@
       <nav class="md-footer__inner md-grid" aria-label="页脚" >
         
           
-          <a href="../../shell/regex/re/" class="md-footer__link md-footer__link--prev" aria-label="上一页: regex.sh">
+          <a href="../../shell/timestamp/" class="md-footer__link md-footer__link--prev" aria-label="上一页: 检查命令耗时">
             <div class="md-footer__button md-icon">
               
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
@@ -1819,20 +1865,20 @@
                 上一页
               </span>
               <div class="md-ellipsis">
-                regex.sh
+                检查命令耗时
               </div>
             </div>
           </a>
         
         
           
-          <a href="../../docker/windows_docker/" class="md-footer__link md-footer__link--next" aria-label="下一页: Docker for Windows">
+          <a href="../charles_notes/" class="md-footer__link md-footer__link--next" aria-label="下一页: Charles">
             <div class="md-footer__title">
               <span class="md-footer__direction">
                 下一页
               </span>
               <div class="md-ellipsis">
-                Docker for Windows
+                Charles
               </div>
             </div>
             <div class="md-footer__button md-icon">
