@@ -26,7 +26,11 @@ https请求抓包，需要在`Tools`->`Options...`->`HTTPS`选项卡，勾选`Ca
 
 !!!note "补充"
 
-	若需设置延迅时间，右键点击规则->`Set Latency`设置时间（单位为毫秒），并勾选`enable latency`。
+	若需设置延迅时间，右键规则->`Set Latency`设置时间（单位为毫秒），并勾选`enable latency`。
+
+!!!note "补充"
+
+	全局转发：`Tools`->`HOSTS...`中设置转发的域名。
 
 ### 🚁 构造请求
 
@@ -56,7 +60,7 @@ static function OnBeforeRequest (oSession: Session) {
 
 ![img.png](image/TextWizard.png)
 
-3.手机连接同区域网的WiFi后，设置代理，把机器IP及端口填入对应项。若设置了代理认证则还需填写用户名、密码。
+3.手机连接同区域网的WiFi后，手动配置代理，把机器IP及端口填入对应项。若设置了代理认证则还需填写用户名、密码。
 
 此外，同域的计算机也可设置代理，将浏览器请求通过Fiddler代理后转发出去。
 

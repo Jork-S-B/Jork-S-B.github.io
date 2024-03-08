@@ -34,9 +34,11 @@ nav:
       - 其他笔记: sql/oracle/other_notes.md
     - Redis笔记: sql/redis_notes.md
 - Shell:
-    - regex.sh: shell/regex/re.md
+    - regex.sh: shell/regex.md
+    - 检查命令耗时: shell/timestamp.md
 - 测试工具:
     - Fiddler: utils/fiddler_notes.md
+    - Charles: utils/charles_notes.md
 - Docker:
     - Docker for Windows: docker/windows_docker.md
     - 构建MySQL镜像: docker/build_mysql.md
