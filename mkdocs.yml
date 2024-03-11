@@ -15,8 +15,7 @@ nav:
     - 正则表达式: python/regex/re.md
     - pytest:
       - 测试夹具: python/pytest/fixture.md
-      - pytest.main参数: python/pytest/pytest.main.md
-      - allure参数: python/pytest/allure.md
+      - pytest.main: python/pytest/pytest.main.md
       - pytest.ini: python/pytest/pytest.ini.md
       - 自定义标签: python/pytest/custom_tag.md
     - unittest笔记: python/unittest/unittest_notes.md

@@ -6,7 +6,7 @@ pytest运行，用例调用jaydebeapi库时，日志出现`Windows fatal excepti
 
 [具体原因分析](https://www.cnblogs.com/melonHJY/p/14500744.html)
 
-解决方法：在`pytest.ini`中配置`addopts = -p no:faulthandler`。
+解决方法：在`pytest.ini`中配置`addopts = -p no:faulthandler`，`addopts`也可配置其他默认运行参数。
 
 ### 🚁 设置告警过滤
 
