@@ -1011,7 +1011,7 @@
             
   
   <span class="md-ellipsis">
-    其他
+    OJ
   </span>
   
 
@@ -1020,6 +1020,73 @@
         
         <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_7_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_2_7">
+            <span class="md-nav__icon md-icon"></span>
+            OJ
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../oj/dp/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    动态规划
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_8" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_8" id="__nav_2_8_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    其他
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_8_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_8">
             <span class="md-nav__icon md-icon"></span>
             其他
           </label>
@@ -1837,23 +1904,45 @@
 <td style="text-align: left;">返回列表的最后一个元素</td>
 </tr>
 <tr>
+<td style="text-align: center;"><code>list1.sort()</code></td>
+<td style="text-align: left;">无返回值，直接在列表进行冒泡排序</td>
+</tr>
+<tr>
 <td style="text-align: center;"><code>list1.remove('5')</code></td>
 <td style="text-align: left;">删除列表中<strong><em>第一个</em></strong>'5'，无返回值；找不到该值时报ValueError</td>
 </tr>
 <tr>
 <td style="text-align: center;"><code>list1.pop(0)</code></td>
-<td style="text-align: left;">根据索引删除列表项</td>
-</tr>
-<tr>
-<td style="text-align: center;"><code>list1.sort()</code></td>
-<td style="text-align: left;">无返回值，直接在列表进行冒泡排序</td>
-</tr>
-<tr>
-<td style="text-align: center;"><code>members = [0] * 10000</code></td>
-<td style="text-align: left;">建定长的列表</td>
+<td style="text-align: left;">根据索引删除列表项，但要注意会改变后续项的索引</td>
 </tr>
 </tbody>
 </table>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">List</span>
+
+<span class="k">class</span> <span class="nc">Solution</span><span class="p">:</span>
+
+    <span class="nd">@staticmethod</span>
+    <span class="c1"># 删除nums无序列表中所有的val值</span>
+    <span class="k">def</span> <span class="nf">removeElement</span><span class="p">(</span><span class="n">nums</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">int</span><span class="p">],</span> <span class="n">val</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+        <span class="c1"># 27. 移除元素，返回移除后数组的新长度</span>
+        <span class="k">while</span> <span class="n">val</span> <span class="ow">in</span> <span class="n">nums</span><span class="p">:</span>
+            <span class="n">nums</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="n">val</span><span class="p">)</span>
+        <span class="n">length</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">nums</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;</span><span class="si">{len}</span><span class="s1">, nums=</span><span class="si">{nums}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="nb">len</span><span class="o">=</span><span class="n">length</span><span class="p">,</span> <span class="n">nums</span><span class="o">=</span><span class="n">nums</span><span class="p">))</span>
+        <span class="k">return</span> <span class="n">length</span>
+
+    <span class="nd">@staticmethod</span>
+    <span class="c1"># 删除nums非严格递增列表中重复的元素</span>
+    <span class="k">def</span> <span class="nf">removeDuplicates</span><span class="p">(</span><span class="n">nums</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">int</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+        <span class="c1"># 26. 删除有序数组中的重复项</span>
+        <span class="c1"># nums = list(set(nums))  # 通过转为集合去重，但leetcode用不了该方法</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">nums</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">):</span>  <span class="c1"># 遍历pop()需要倒序进行，正序pop()会改变原索引</span>
+            <span class="k">if</span> <span class="n">nums</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">==</span> <span class="n">nums</span><span class="p">[</span><span class="n">i</span> <span class="o">-</span> <span class="mi">1</span><span class="p">]:</span>
+                <span class="n">nums</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+        <span class="n">length</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">nums</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;</span><span class="si">{len}</span><span class="s1">, nums=</span><span class="si">{nums}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="nb">len</span><span class="o">=</span><span class="n">length</span><span class="p">,</span> <span class="n">nums</span><span class="o">=</span><span class="n">nums</span><span class="p">))</span>
+        <span class="k">return</span> <span class="n">length</span>
+</code></pre></div>
 <h3 id="_3">🚁 列表遍历方式</h3>
 <div class="tabbed-set tabbed-alternate" data-tabs="1:3"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><input id="__tabbed_1_3" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">直接遍历</label><label for="__tabbed_1_2">按索引遍历</label><label for="__tabbed_1_3">按下标遍历</label></div>
 <div class="tabbed-content">
@@ -2037,7 +2126,7 @@
     <span class="md-icon" title="最后更新">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1-2.1-2M12.5 7v5.2l4 2.4-1 1L11 13V7h1.5M11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2v1.8Z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime">2024-03-11 20:12:55</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime">2024-03-11 22:18:42</span>
   </span>
 
     
