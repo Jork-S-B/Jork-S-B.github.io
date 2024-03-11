@@ -721,28 +721,7 @@
         
   
   <span class="md-ellipsis">
-    pytest.main参数
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../allure/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    allure参数
+    pytest.main
   </span>
   
 
@@ -1569,8 +1548,8 @@
 
   <h1>自定义标签</h1>
 
-<p>自定义标签<code>@pytest.mark.slow</code>，用于标记运行时间较长的测试用例。</p>
-<p>运行测试时，除非明确指定，否则默认跳过这些慢速用例。</p>
+<p>定义标签<code>@pytest.mark.slow</code>，用于标记运行时间较长的测试用例。</p>
+<p>使在运行测试用例时，除非明确指定，否则默认跳过这些慢速用例。</p>
 <div class="tabbed-set tabbed-alternate" data-tabs="1:3"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><input id="__tabbed_1_3" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">conftest.py</label><label for="__tabbed_1_2">testcase.py</label><label for="__tabbed_1_3">pytest.ini</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
@@ -1599,8 +1578,7 @@
 </div>
 </div>
 <p>现在运行pytest时，默认情况下所有带有<code>@pytest.mark.slow</code>标签的用例都会被跳过。</p>
-<p>若要运行这些慢速用例，则通过参数<code>--runslow</code>来指定：</p>
-<p><code>pytest --runslow</code></p>
+<p>若要运行这些慢速用例，则通过参数<code>--runslow</code>来指定，即<code>pytest --runslow</code>。</p>
 <hr />
 
 
@@ -1622,7 +1600,7 @@
     <span class="md-icon" title="最后更新">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1-2.1-2M12.5 7v5.2l4 2.4-1 1L11 13V7h1.5M11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2v1.8Z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime">2024-02-28 23:17:07</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime">2024-03-11 20:12:55</span>
   </span>
 
     

@@ -16,7 +16,7 @@
         <link rel="prev" href="../fixture/">
       
       
-        <link rel="next" href="../allure/">
+        <link rel="next" href="../pytest.ini/">
       
       
       <link rel="icon" href="../../../assets/images/favicon.png">
@@ -24,7 +24,7 @@
     
     
       
-        <title>pytest.main参数 - whm</title>
+        <title>pytest.main - whm</title>
       
     
     
@@ -116,7 +116,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              pytest.main参数
+              pytest.main
             
           </span>
         </div>
@@ -728,33 +728,12 @@
         
   
   <span class="md-ellipsis">
-    pytest.main参数
+    pytest.main
   </span>
   
 
       </a>
       
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../allure/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    allure参数
-  </span>
-  
-
-      </a>
     </li>
   
 
@@ -1567,35 +1546,51 @@
   
 
 
-  <h1>pytest.main参数</h1>
+  <h1>pytest.main</h1>
 
 <div class="highlight"><pre><span></span><code><span class="sd">&#39;&#39;&#39;</span>
 <span class="sd">-s 输出打印信息到控制台，关闭捕捉</span>
 <span class="sd">-v 显示具体的用例执行的详细信息</span>
 <span class="sd">-q 简化输出信息</span>
 <span class="sd">--reruns=1 失败用例重跑，次数为1</span>
-<span class="sd">--alluredir=file_dir 指定报告的数据源文件目录路径</span>
+<span class="sd">--alluredir=file_dir 指定报告的数据源文件目录路径，需要安装allure-pytest</span>
 <span class="sd">&#39;&#39;&#39;</span>
 
 <span class="c1"># 方式1，运行全部用例</span>
-<span class="n">run_info</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;-v&#39;</span><span class="p">,</span> <span class="s1">&#39;-s&#39;</span><span class="p">,</span> <span class="s1">&#39;-q&#39;</span><span class="p">,</span> <span class="s1">&#39;--reruns&#39;</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="s1">&#39;--alluredir&#39;</span><span class="p">,</span> <span class="n">file_dir</span><span class="p">]</span>
+<span class="n">run_info</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;-v&#39;</span><span class="p">,</span> <span class="s1">&#39;-s&#39;</span><span class="p">,</span> <span class="s1">&#39;-q&#39;</span><span class="p">,</span> <span class="s1">&#39;--reruns&#39;</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="s1">&#39;--alluredir&#39;</span><span class="p">,</span> <span class="n">data_dir</span><span class="p">]</span>
 <span class="c1"># 方式2，运行上次失败的用例</span>
-<span class="n">run_info</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;--lf&#39;</span><span class="p">,</span> <span class="s1">&#39;-s&#39;</span><span class="p">,</span> <span class="s1">&#39;-q&#39;</span><span class="p">,</span> <span class="s1">&#39;--reruns&#39;</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="s1">&#39;--alluredir&#39;</span><span class="p">,</span> <span class="n">file_dir</span><span class="p">]</span>
+<span class="n">run_info</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;--lf&#39;</span><span class="p">,</span> <span class="s1">&#39;-s&#39;</span><span class="p">,</span> <span class="s1">&#39;-q&#39;</span><span class="p">,</span> <span class="s1">&#39;--reruns&#39;</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="s1">&#39;--alluredir&#39;</span><span class="p">,</span> <span class="n">data_dir</span><span class="p">]</span>
 
 <span class="c1"># 方式3，运行指定模块</span>
-<span class="n">run_info</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;-vs&#39;</span><span class="p">,</span> <span class="s1">&#39;testCompare.py&#39;</span><span class="p">,</span> <span class="s1">&#39;--alluredir&#39;</span><span class="p">,</span> <span class="n">file_dir</span><span class="p">]</span>
+<span class="n">run_info</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;-vs&#39;</span><span class="p">,</span> <span class="s1">&#39;testCompare.py&#39;</span><span class="p">,</span> <span class="s1">&#39;--alluredir&#39;</span><span class="p">,</span> <span class="n">data_dir</span><span class="p">]</span>
 <span class="c1"># 方式4，运行指定目录</span>
-<span class="n">run_info</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;-vs&#39;</span><span class="p">,</span> <span class="s1">&#39;./testcase&#39;</span><span class="p">,</span> <span class="s1">&#39;--alluredir&#39;</span><span class="p">,</span> <span class="n">file_dir</span><span class="p">]</span>
+<span class="n">run_info</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;-vs&#39;</span><span class="p">,</span> <span class="s1">&#39;./testcase&#39;</span><span class="p">,</span> <span class="s1">&#39;--alluredir&#39;</span><span class="p">,</span> <span class="n">data_dir</span><span class="p">]</span>
 <span class="c1"># 方式5，运行指定方法</span>
-<span class="n">run_info</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;-vs&#39;</span><span class="p">,</span> <span class="s1">&#39;./testcase/testCompare.py::TestMyCompare::test_01_regex&#39;</span><span class="p">,</span> <span class="s1">&#39;--alluredir&#39;</span><span class="p">,</span> <span class="n">file_dir</span><span class="p">]</span>
+<span class="n">run_info</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;-vs&#39;</span><span class="p">,</span> <span class="s1">&#39;./testcase/testCompare.py::TestMyCompare::test_01_regex&#39;</span><span class="p">,</span> <span class="s1">&#39;--alluredir&#39;</span><span class="p">,</span> <span class="n">data_dir</span><span class="p">]</span>
 
 <span class="c1"># -m 通过标记来执行</span>
-<span class="c1"># 方式6，运行带指定标签的用例，搭配`@pytest.mark.标签名`使用</span>
-<span class="n">run_info</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;-m&#39;</span><span class="p">,</span> <span class="s1">&#39;smoke or level0&#39;</span><span class="p">,</span> <span class="s1">&#39;-s&#39;</span><span class="p">,</span> <span class="s1">&#39;-q&#39;</span><span class="p">,</span> <span class="s1">&#39;--alluredir&#39;</span><span class="p">,</span> <span class="n">file_dir</span><span class="p">]</span>
+<span class="c1"># 方式6，运行带指定标签的用例，搭配`@pytest.mark.标签名`，并且在pytest.ini注册标签以启用</span>
+<span class="n">run_info</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;-m&#39;</span><span class="p">,</span> <span class="s1">&#39;smoke or level0&#39;</span><span class="p">,</span> <span class="s1">&#39;-s&#39;</span><span class="p">,</span> <span class="s1">&#39;-q&#39;</span><span class="p">,</span> <span class="s1">&#39;--alluredir&#39;</span><span class="p">,</span> <span class="n">data_dir</span><span class="p">]</span>
 <span class="c1"># &#39;-m&#39;, &#39;smoke not level0&#39;，表示带smoke但非level0标签</span>
 
 <span class="n">pytest</span><span class="o">.</span><span class="n">main</span><span class="p">(</span><span class="n">run_info</span><span class="p">)</span>
+
+<span class="c1"># 生成allure报告的数据源文件，json格式；--clean是每次清空</span>
+<span class="c1"># 格式：allure generate {数据源文件目录} -o {报告的目录}</span>
+<span class="n">os</span><span class="o">.</span><span class="n">system</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;allure generate </span><span class="si">{</span><span class="n">data_dir</span><span class="si">}</span><span class="s1"> -o </span><span class="si">{</span><span class="n">report_dir</span><span class="si">}</span><span class="s1"> --clean&#39;</span><span class="p">)</span>
+<span class="c1"># 本地运行</span>
+<span class="n">os</span><span class="o">.</span><span class="n">system</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;allure open -h </span><span class="si">{</span><span class="n">ip</span><span class="si">}</span><span class="s1"> -p </span><span class="si">{</span><span class="n">port</span><span class="si">}</span><span class="s1"> </span><span class="si">{</span><span class="n">report_dir</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
 </code></pre></div>
+<div class="admonition note">
+<p class="admonition-title">补充</p>
+<ul>
+<li>放测试用例的目录应当为Python Package，而非Directory。</li>
+<li>pytest搜索规则/用例命名规则：
+1.文件名如<code>test_*.py</code>或<code>*_test.py</code>，注意有下划线。
+2.文件中的类以Test开头。
+3.文件中的方法名以test_开头。</li>
+</ul>
+</div>
 <p><a href="https://www.cnblogs.com/lfr0123/p/15907200.html">参考的这一篇博客</a></p>
 <hr />
 
@@ -1618,7 +1613,7 @@
     <span class="md-icon" title="最后更新">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1-2.1-2M12.5 7v5.2l4 2.4-1 1L11 13V7h1.5M11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2v1.8Z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime">2024-02-20 21:08:26</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime">2024-03-11 20:12:55</span>
   </span>
 
     
@@ -1671,13 +1666,13 @@
         
         
           
-          <a href="../allure/" class="md-footer__link md-footer__link--next" aria-label="下一页: allure参数">
+          <a href="../pytest.ini/" class="md-footer__link md-footer__link--next" aria-label="下一页: pytest.ini">
             <div class="md-footer__title">
               <span class="md-footer__direction">
                 下一页
               </span>
               <div class="md-ellipsis">
-                allure参数
+                pytest.ini
               </div>
             </div>
             <div class="md-footer__button md-icon">
