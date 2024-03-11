@@ -21,6 +21,8 @@ nav:
     - unittest笔记: python/unittest/unittest_notes.md
     - pydocx笔记: python/pydocx/pydocx_notes.md
     - pyjson笔记: python/pyjson/pyjson_notes.md
+    - OJ:
+        - 动态规划: python/oj/dp.md
     - 其他:
       - Python路径迁移: python/other/mv_py_path.md
       - mkdocs使用记录: python/other/mkdocs_notes.md

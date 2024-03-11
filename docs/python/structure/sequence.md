@@ -18,10 +18,38 @@
 |           方法            | 补充说明                                     |
 |:-----------------------:|:-----------------------------------------|
 |       `list1[-1]`       | 返回列表的最后一个元素                              |
-|   `list1.remove('5')`   | 删除列表中***第一个***'5'，无返回值；找不到该值时报ValueError |
-|     `list1.pop(0)`      | 根据索引删除列表项                                |
 |     `list1.sort()`      | 无返回值，直接在列表进行冒泡排序                         |
-| `members = [0] * 10000` | 建定长的列表                                   |
+|   `list1.remove('5')`   | 删除列表中***第一个***'5'，无返回值；找不到该值时报ValueError |
+|     `list1.pop(0)`      | 根据索引删除列表项，但要注意会改变后续项的索引                  |
+
+```python
+from typing import List
+
+class Solution:
+    
+    @staticmethod
+    # 删除nums无序列表中所有的val值
+    def removeElement(nums: List[int], val: int) -> int:
+        # 27. 移除元素，返回移除后数组的新长度
+        while val in nums:
+            nums.remove(val)
+        length = len(nums)
+        print('{len}, nums={nums}'.format(len=length, nums=nums))
+        return length
+
+    @staticmethod
+    # 删除nums非严格递增列表中重复的元素
+    def removeDuplicates(nums: List[int]) -> int:
+        # 26. 删除有序数组中的重复项
+        # nums = list(set(nums))  # 通过转为集合去重，但leetcode用不了该方法
+        for i in range(len(nums) - 1, 0, -1):  # 遍历pop()需要倒序进行，正序pop()会改变原索引
+            if nums[i] == nums[i - 1]:
+                nums.pop(i)
+        length = len(nums)
+        print('{len}, nums={nums}'.format(len=length, nums=nums))
+        return length
+
+```
 
 ### 🚁 列表遍历方式
 
