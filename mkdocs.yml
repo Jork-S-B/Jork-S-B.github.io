@@ -18,6 +18,8 @@ nav:
       - pytest.main: python/pytest/pytest.main.md
       - pytest.ini: python/pytest/pytest.ini.md
       - 自定义标签: python/pytest/custom_tag.md
+    - airtest:
+        - 连接MuMu模拟器: python/airtest/mumu_sim.md
     - unittest笔记: python/unittest/unittest_notes.md
     - pydocx笔记: python/pydocx/pydocx_notes.md
     - pyjson笔记: python/pyjson/pyjson_notes.md
