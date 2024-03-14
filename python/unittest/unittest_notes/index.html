@@ -16,7 +16,7 @@
         <link rel="prev" href="../../airtest/mumu_sim/">
       
       
-        <link rel="next" href="../../pydocx/pydocx_notes/">
+        <link rel="next" href="../../selenium/selenium_notes/">
       
       
       <link rel="icon" href="../../../assets/images/favicon.png">
@@ -902,7 +902,7 @@
         <li class="md-nav__item">
   <a href="#_1" class="md-nav__link">
     <span class="md-ellipsis">
-      🚁 自定义测试套件
+      📌 自定义测试套件
     </span>
   </a>
   
@@ -911,7 +911,7 @@
         <li class="md-nav__item">
   <a href="#_2" class="md-nav__link">
     <span class="md-ellipsis">
-      🚁 断言
+      📌 断言
     </span>
   </a>
   
@@ -920,7 +920,7 @@
         <li class="md-nav__item">
   <a href="#unittestmain" class="md-nav__link">
     <span class="md-ellipsis">
-      🚁 unittest.main()
+      📌 unittest.main()
     </span>
   </a>
   
@@ -930,6 +930,27 @@
   
 </nav>
       
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../selenium/selenium_notes/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    selenium笔记
+  </span>
+  
+
+      </a>
     </li>
   
 
@@ -994,10 +1015,10 @@
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_8" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_9" >
         
           
-          <label class="md-nav__link" for="__nav_2_8" id="__nav_2_8_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_2_9" id="__nav_2_9_label" tabindex="0">
             
   
   <span class="md-ellipsis">
@@ -1008,8 +1029,8 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_8_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_2_8">
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_9_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_9">
             <span class="md-nav__icon md-icon"></span>
             OJ
           </label>
@@ -1061,10 +1082,10 @@
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_9" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_10" >
         
           
-          <label class="md-nav__link" for="__nav_2_9" id="__nav_2_9_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_2_10" id="__nav_2_10_label" tabindex="0">
             
   
   <span class="md-ellipsis">
@@ -1075,8 +1096,8 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_9_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_2_9">
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_10_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_10">
             <span class="md-nav__icon md-icon"></span>
             其他
           </label>
@@ -1731,7 +1752,7 @@
         <li class="md-nav__item">
   <a href="#_1" class="md-nav__link">
     <span class="md-ellipsis">
-      🚁 自定义测试套件
+      📌 自定义测试套件
     </span>
   </a>
   
@@ -1740,7 +1761,7 @@
         <li class="md-nav__item">
   <a href="#_2" class="md-nav__link">
     <span class="md-ellipsis">
-      🚁 断言
+      📌 断言
     </span>
   </a>
   
@@ -1749,7 +1770,7 @@
         <li class="md-nav__item">
   <a href="#unittestmain" class="md-nav__link">
     <span class="md-ellipsis">
-      🚁 unittest.main()
+      📌 unittest.main()
     </span>
   </a>
   
@@ -1775,27 +1796,26 @@
 
   <h1>unittest笔记</h1>
 
-<h3 id="_1">🚁 自定义测试套件</h3>
-<div class="highlight"><pre><span></span><code><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">suite.addTest(case)  # 单个用例加载到套件</span>
-<span class="sd">suite.addTest(loader.loadTestsFromTestCase(TestCaseDemo))  # 用例类加载到套件</span>
-<span class="sd">suite.addTest(loader.loadTestsFromModule(testcase))  # 用例模块(.py)加载到套件</span>
-<span class="sd">suite.addTest(loader.discover(case_path, pattern=&#39;testcase*.py&#39;))  # 指定路径加载，默认加载该路径下所有test开头的用例</span>
-<span class="sd">&quot;&quot;&quot;</span>
+<h2 id="_1">📌 自定义测试套件</h2>
+<div class="highlight"><pre><span></span><code><span class="n">suite</span><span class="o">.</span><span class="n">addTest</span><span class="p">(</span><span class="n">case</span><span class="p">)</span>  <span class="c1"># 单个用例加载到套件</span>
+<span class="n">suite</span><span class="o">.</span><span class="n">addTest</span><span class="p">(</span><span class="n">loader</span><span class="o">.</span><span class="n">loadTestsFromTestCase</span><span class="p">(</span><span class="n">TestCaseDemo</span><span class="p">))</span>  <span class="c1"># 用例类加载到套件</span>
+<span class="n">suite</span><span class="o">.</span><span class="n">addTest</span><span class="p">(</span><span class="n">loader</span><span class="o">.</span><span class="n">loadTestsFromModule</span><span class="p">(</span><span class="n">testcase</span><span class="p">))</span>  <span class="c1"># 用例模块(.py)加载到套件</span>
+<span class="n">suite</span><span class="o">.</span><span class="n">addTest</span><span class="p">(</span><span class="n">loader</span><span class="o">.</span><span class="n">discover</span><span class="p">(</span><span class="n">case_path</span><span class="p">,</span> <span class="n">pattern</span><span class="o">=</span><span class="s1">&#39;testcase*.py&#39;</span><span class="p">))</span>  <span class="c1"># 指定路径加载，默认加载该路径下所有test开头的用例</span>
 </code></pre></div>
-<h3 id="_2">🚁 断言</h3>
+<h2 id="_2">📌 断言</h2>
 <p><code>assertEqual</code>  # 比较的是两个对象的内容</p>
 <p><code>assertIs</code>  # 比较的是两个对象的指向地址</p>
 <p><code>assertTrue</code>  # 断言是否为True</p>
-<h3 id="unittestmain">🚁 unittest.main()</h3>
+<h2 id="unittestmain">📌 unittest.main()</h2>
 <p><code>unittest.main(verbosity=2)</code></p>
 <p><code>verbosity</code>参数表示输出的详细程度：</p>
 <p>0-不输出；</p>
 <p>1-输出每个用例执行结果；</p>
 <p>2-输出每个用例执行结果、详细的错误信息及执行时间等</p>
-<p>参考资料：<a href="https://docs.python.org/zh-cn/3/library/unittest.html">unittest-单元测试框架</a></p>
-<p>https://www.cnblogs.com/daxiong2014/p/10449184.html</p>
 <hr />
+<p>参考资料：</p>
+<p><a href="https://docs.python.org/zh-cn/3/library/unittest.html">unittest-单元测试框架</a></p>
+<p><a href="https://www.cnblogs.com/daxiong2014/p/10449184.html">unittest最详细的解说</a></p>
 
 
 
@@ -1816,7 +1836,7 @@
     <span class="md-icon" title="最后更新">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1-2.1-2M12.5 7v5.2l4 2.4-1 1L11 13V7h1.5M11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2v1.8Z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime">2024-02-28 23:17:07</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime">2024-03-14 21:06:55</span>
   </span>
 
     
@@ -1869,13 +1889,13 @@
         
         
           
-          <a href="../../pydocx/pydocx_notes/" class="md-footer__link md-footer__link--next" aria-label="下一页: pydocx笔记">
+          <a href="../../selenium/selenium_notes/" class="md-footer__link md-footer__link--next" aria-label="下一页: selenium笔记">
             <div class="md-footer__title">
               <span class="md-footer__direction">
                 下一页
               </span>
               <div class="md-ellipsis">
-                pydocx笔记
+                selenium笔记
               </div>
             </div>
             <div class="md-footer__button md-icon">
