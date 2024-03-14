@@ -21,6 +21,7 @@ nav:
     - airtest:
         - 连接MuMu模拟器: python/airtest/mumu_sim.md
     - unittest笔记: python/unittest/unittest_notes.md
+    - selenium笔记: python/selenium/selenium_notes.md
     - pydocx笔记: python/pydocx/pydocx_notes.md
     - pyjson笔记: python/pyjson/pyjson_notes.md
     - OJ:
