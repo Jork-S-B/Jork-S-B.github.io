@@ -33,6 +33,7 @@ nav:
 - 数据库:
     - Oracle:
       - sqlldr导入大量数据: sql/oracle/sqlldr_import.md
+      - 分区&同义词&序列: sql/oracle/some.md
       - 查询锁表&解锁: sql/oracle/lock&unlock.md
       - 存储过程: sql/oracle/procedure.md
       - 收集表统计信息: sql/oracle/gather_table_stats.md
