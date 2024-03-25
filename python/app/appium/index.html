@@ -13,18 +13,18 @@
       
       
       
-        <link rel="prev" href="../../pytest/custom_tag/">
+        <link rel="prev" href="../mumu_sim/">
       
       
         <link rel="next" href="../../unittest/unittest_notes/">
       
       
       <link rel="icon" href="../../../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.5.3, mkdocs-material-9.5.13">
+      <meta name="generator" content="mkdocs-1.5.3, mkdocs-material-9.5.15">
     
     
       
-        <title>连接MuMu模拟器 - whm</title>
+        <title>appium - whm</title>
       
     
     
@@ -121,7 +121,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              连接MuMu模拟器
+              appium
             
           </span>
         </div>
@@ -810,7 +810,7 @@
             
   
   <span class="md-ellipsis">
-    airtest
+    app自动化
   </span>
   
 
@@ -820,9 +820,30 @@
         <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_4_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_2_4">
             <span class="md-nav__icon md-icon"></span>
-            airtest
+            app自动化
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../mumu_sim/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    airtest
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
             
               
                 
@@ -842,7 +863,7 @@
           
   
   <span class="md-ellipsis">
-    连接MuMu模拟器
+    appium
   </span>
   
 
@@ -853,7 +874,7 @@
         
   
   <span class="md-ellipsis">
-    连接MuMu模拟器
+    appium
   </span>
   
 
@@ -882,16 +903,16 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#adb" class="md-nav__link">
+  <a href="#_2" class="md-nav__link">
     <span class="md-ellipsis">
-      📌 adb常用命令
+      📌 元素定位
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#_2" class="md-nav__link">
+  <a href="#_3" class="md-nav__link">
     <span class="md-ellipsis">
       📌 快速上手
     </span>
@@ -1761,16 +1782,16 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#adb" class="md-nav__link">
+  <a href="#_2" class="md-nav__link">
     <span class="md-ellipsis">
-      📌 adb常用命令
+      📌 元素定位
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#_2" class="md-nav__link">
+  <a href="#_3" class="md-nav__link">
     <span class="md-ellipsis">
       📌 快速上手
     </span>
@@ -1796,161 +1817,124 @@
   
 
 
-  <h1>连接MuMu模拟器</h1>
+  <h1>appium</h1>
 
 <h2 id="_1">📌 准备工作</h2>
 <ol>
-<li>安装adb工具，配置环境变量。</li>
-<li>模拟器设置中，关于手机-&gt;版本号，多次点击后开启开发者选项；真机还需在开发者选项中打开"USB调试"选项。</li>
-<li>命令行输入<code>adb devices</code>，列出设备信息。<code>127.0.0.1:xxxx</code>就是模拟器对应的序列号信息。<br />
-   或者<code>adb -s 127.0.0.1:xxxx get-serialno</code>查询序列号。</li>
+<li>安装Appium Server并运行</li>
+<li>安装JDK，设置环境变量</li>
+<li>安装Android SDK，设置环境变量</li>
+<li>连接Android设备，确保"USB调试"已开启</li>
+<li><code>pip install appium-python-client==3.2.1</code>，最新版(4.0.0)<code>import TouchAction</code>报错找不到模块。</li>
+<li>
+<p>找到待测应用的包名及activity：</p>
+<p>执行<code>adb shell dumpsys activity recents | findstr "intent={"</code>，打印信息如：
+  <div class="highlight"><pre><span></span><code>intent={act=android.intent.action.MAIN cat=[android.intent.category.LAUNCHER] flg=0x10200000 cmp=com.netease.cloudmusic/.activity.IconChangeDefaultAlias}
+intent={act=android.intent.action.MAIN cat=[android.intent.category.HOME] flg=0x10000100 cmp=com.mumu.launcher/.Launcher}
+intent={act=android.intent.action.MAIN cat=[android.intent.category.LAUNCHER] flg=0x10200000 cmp=com.android.settings/.Settings}
+</code></pre></div>
+  其中首行的<code>cmp=com.netease.cloudmusic/.activity.IconChangeDefaultAlias</code>，</p>
+<p><code>com.netease.cloudmusic</code>代表包名，</p>
+<p><code>IconChangeDefaultAlias</code>代表activity。</p>
+</li>
 </ol>
-<div class="admonition note">
-<p class="admonition-title">补充</p>
-<p>模拟器的adb调试端口可在右上角-&gt;问题诊断中找到。</p>
-<p><a class="glightbox" href="../img/adb_port.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="img.png" src="../img/adb_port.png" /></a></p>
-</div>
-<h2 id="adb">📌 adb常用命令</h2>
-<table>
-<thead>
-<tr>
-<th style="text-align: center;">命令</th>
-<th style="text-align: left;">补充说明</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align: center;"><code>adb connect ip:port</code></td>
-<td style="text-align: left;">连接到远程设备</td>
-</tr>
-<tr>
-<td style="text-align: center;"><code>adb -s ip:port install a.apk</code></td>
-<td style="text-align: left;">指定设备安装apk</td>
-</tr>
-<tr>
-<td style="text-align: center;"><code>adb shell ps</code></td>
-<td style="text-align: left;">查后台进程</td>
-</tr>
-<tr>
-<td style="text-align: center;"><code>adb shell dumpsys cpuinfo</code></td>
-<td style="text-align: left;">查看cpu信息</td>
-</tr>
-<tr>
-<td style="text-align: center;"><code>adb shell dumpsys meminfo</code></td>
-<td style="text-align: left;">查看内存信息</td>
-</tr>
-<tr>
-<td style="text-align: center;"><code>adb shell pm list package</code></td>
-<td style="text-align: left;">查看所有包名，参数-3仅展示第三方包</td>
-</tr>
-<tr>
-<td style="text-align: center;"><code>adb shell monkey -p package -v 500 &gt; 1.log</code></td>
-<td style="text-align: left;">向程序发送500个伪随机事件，并记录日志</td>
-</tr>
-<tr>
-<td style="text-align: center;"><code>adb logcat</code></td>
-<td style="text-align: left;">查看日志，参数-v time加上时间戳，搭配grep使用</td>
-</tr>
-</tbody>
-</table>
-<h2 id="_2">📌 快速上手</h2>
-<div class="tabbed-set tabbed-alternate" data-tabs="1:2"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">started.py</label><label for="__tabbed_1_2">运行预览</label></div>
+<h2 id="_2">📌 元素定位</h2>
+<p>两种方式：</p>
+<ol>
+<li>运行Android SDK目录下<code>./tools/bin/uiautomatorviewer.bat</code></li>
+<li>运行Appium Server的<code>Inspector Session</code>，但需设置连接参数，如下图。</li>
+</ol>
+<p><a class="glightbox" href="../img/capability_set.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="img.png" src="../img/capability_set.png" /></a></p>
+<h2 id="_3">📌 快速上手</h2>
+<div class="tabbed-set tabbed-alternate" data-tabs="1:1"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">startup.py</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
-<div class="highlight"><pre><span></span><code><span class="c1"># -*- encoding=utf8 -*-</span>
-<span class="n">__author__</span> <span class="o">=</span> <span class="s2">&quot;whm&quot;</span>
-<span class="n">__desc__</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;</span>
-<span class="s2">1.录制运行视频</span>
-<span class="s2">2.进入网易云音乐-基础功能模式</span>
-<span class="s2">3.搜索找到歌曲：Night City</span>
-<span class="s2">4.获取查询结果`Night City`以上的歌名及作者专辑信息</span>
-<span class="s2">5.执行完成后生成报告</span>
-<span class="s2">&quot;&quot;&quot;</span>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">os</span>
 
-<span class="kn">from</span> <span class="nn">airtest.core.api</span> <span class="kn">import</span> <span class="o">*</span>
-<span class="kn">from</span> <span class="nn">airtest.report.report</span> <span class="kn">import</span> <span class="o">*</span>
-<span class="kn">from</span> <span class="nn">poco.drivers.android.uiautomation</span> <span class="kn">import</span> <span class="n">AndroidUiautomationPoco</span>
-<span class="kn">from</span> <span class="nn">airtest.core.android.recorder</span> <span class="kn">import</span> <span class="o">*</span>
-<span class="kn">from</span> <span class="nn">airtest.core.android.adb</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="kn">from</span> <span class="nn">appium.webdriver.common.touch_action</span> <span class="kn">import</span> <span class="n">TouchAction</span>
+<span class="kn">from</span> <span class="nn">appium</span> <span class="kn">import</span> <span class="n">webdriver</span>
+<span class="kn">from</span> <span class="nn">selenium.common</span> <span class="kn">import</span> <span class="n">NoSuchElementException</span><span class="p">,</span> <span class="n">TimeoutException</span>
+<span class="kn">from</span> <span class="nn">selenium.webdriver.common.by</span> <span class="kn">import</span> <span class="n">By</span>
+<span class="kn">from</span> <span class="nn">appium.webdriver.extensions.android.nativekey</span> <span class="kn">import</span> <span class="n">AndroidKey</span>
+<span class="kn">from</span> <span class="nn">appium.options.android</span> <span class="kn">import</span> <span class="n">UiAutomator2Options</span>
+<span class="kn">from</span> <span class="nn">selenium.webdriver.support.wait</span> <span class="kn">import</span> <span class="n">WebDriverWait</span>
 
-<span class="c1"># 脚本初始化</span>
-<span class="c1"># auto_setup(__file__, devices=[&quot;android://127.0.0.1:5037/127.0.0.1:16384&quot;], logdir=r&quot;./log/20230313&quot;)</span>
-<span class="n">auto_setup</span><span class="p">(</span><span class="vm">__file__</span><span class="p">,</span> <span class="n">devices</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;android://127.0.0.1:5037/127.0.0.1:16384&quot;</span><span class="p">],</span> <span class="n">logdir</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">desired_caps</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;platformName&#39;</span><span class="p">:</span> <span class="s1">&#39;Android&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;platformVersion&#39;</span><span class="p">:</span> <span class="s1">&#39;12&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;deviceName&#39;</span><span class="p">:</span> <span class="s1">&#39;whm&#39;</span><span class="p">,</span>  <span class="c1"># 设备名，安卓手机可以随意填写</span>
+    <span class="s1">&#39;appPackage&#39;</span><span class="p">:</span> <span class="s1">&#39;com.netease.cloudmusic&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;appActivity&#39;</span><span class="p">:</span> <span class="s1">&#39;.activity.IconChangeDefaultAlias&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;unicodeKeyboard&#39;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>  <span class="c1"># 输入非英文的字符</span>
+    <span class="s1">&#39;resetKeyboard&#39;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>  <span class="c1"># 执行完程序恢复原来输入法</span>
+    <span class="s1">&#39;noReset&#39;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span>  <span class="c1"># False表示重置App</span>
+    <span class="s1">&#39;newCommandTimeout&#39;</span><span class="p">:</span> <span class="mi">6000</span><span class="p">,</span>
+    <span class="s1">&#39;automationName&#39;</span><span class="p">:</span> <span class="s1">&#39;UiAutomator2&#39;</span>
+    <span class="c1"># &#39;app&#39;: r&#39;d:\apk\bili.apk&#39;,</span>
+<span class="p">}</span>
 
+<span class="c1"># 连接Appium Server并初始化</span>
+<span class="n">driver</span> <span class="o">=</span> <span class="n">webdriver</span><span class="o">.</span><span class="n">Remote</span><span class="p">(</span><span class="s1">&#39;http://localhost:4723/wd/hub&#39;</span><span class="p">,</span> <span class="n">options</span><span class="o">=</span><span class="n">UiAutomator2Options</span><span class="p">()</span><span class="o">.</span><span class="n">load_capabilities</span><span class="p">(</span><span class="n">desired_caps</span><span class="p">))</span>
 
-<span class="k">def</span> <span class="nf">enter_music</span><span class="p">():</span>
-    <span class="c1"># 连续点俩次不同意，进入基础功能模式</span>
-    <span class="n">poco</span><span class="p">(</span><span class="s2">&quot;com.netease.cloudmusic:id/disagree&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">click</span><span class="p">()</span>
-    <span class="n">assert_not_exists</span><span class="p">(</span><span class="n">Template</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;tpl1710332326022.png&quot;</span><span class="p">,</span> <span class="n">record_pos</span><span class="o">=</span><span class="p">(</span><span class="o">-</span><span class="mf">0.001</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.84</span><span class="p">),</span> <span class="n">resolution</span><span class="o">=</span><span class="p">(</span><span class="mi">900</span><span class="p">,</span> <span class="mi">1600</span><span class="p">)),</span>
-                      <span class="s2">&quot;首次不同意&quot;</span><span class="p">)</span>
-    <span class="n">poco</span><span class="p">(</span><span class="s2">&quot;com.netease.cloudmusic:id/disagree&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">wait_for_appearance</span><span class="p">(</span><span class="n">timeout</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
-    <span class="n">poco</span><span class="p">(</span><span class="s2">&quot;com.netease.cloudmusic:id/disagree&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">click</span><span class="p">()</span>
+<span class="c1"># driver.implicitly_wait(10)</span>
 
+<span class="c1"># 点击两次不同意，进入“基本功能模式”</span>
+<span class="n">ele</span> <span class="o">=</span> <span class="n">WebDriverWait</span><span class="p">(</span><span class="n">driver</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span><span class="o">.</span><span class="n">until</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="o">.</span><span class="n">find_element</span><span class="p">(</span><span class="n">By</span><span class="o">.</span><span class="n">ID</span><span class="p">,</span> <span class="n">value</span><span class="o">=</span><span class="s1">&#39;disagree&#39;</span><span class="p">),</span> <span class="n">message</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;找不到元素&#39;</span><span class="p">)</span>
+<span class="n">ele</span><span class="o">.</span><span class="n">click</span><span class="p">()</span>
+<span class="n">ele</span> <span class="o">=</span> <span class="n">WebDriverWait</span><span class="p">(</span><span class="n">driver</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span><span class="o">.</span><span class="n">until</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="o">.</span><span class="n">find_element</span><span class="p">(</span><span class="n">by</span><span class="o">=</span><span class="s1">&#39;id&#39;</span><span class="p">,</span> <span class="n">value</span><span class="o">=</span><span class="s1">&#39;disagree&#39;</span><span class="p">),</span> <span class="n">message</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;找不到元素&#39;</span><span class="p">)</span>
+<span class="n">ele</span><span class="o">.</span><span class="n">click</span><span class="p">()</span>
 
-<span class="k">def</span> <span class="nf">find_music</span><span class="p">():</span>
-    <span class="n">poco</span><span class="p">(</span><span class="s2">&quot;android.widget.EditText&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">wait_for_appearance</span><span class="p">(</span><span class="n">timeout</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
-    <span class="n">poco</span><span class="p">(</span><span class="s2">&quot;android.widget.EditText&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">click</span><span class="p">()</span>
-    <span class="n">assert_exists</span><span class="p">(</span><span class="n">Template</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;tpl1710333729352.png&quot;</span><span class="p">,</span> <span class="n">record_pos</span><span class="o">=</span><span class="p">(</span><span class="o">-</span><span class="mf">0.236</span><span class="p">,</span> <span class="mf">0.743</span><span class="p">),</span> <span class="n">resolution</span><span class="o">=</span><span class="p">(</span><span class="mi">900</span><span class="p">,</span> <span class="mi">1600</span><span class="p">)),</span>
-                  <span class="s2">&quot;提示进入完整功能模式&quot;</span><span class="p">)</span>
-    <span class="n">text</span><span class="p">(</span><span class="s2">&quot;Cyberpunk 2077&quot;</span><span class="p">)</span>
+<span class="c1"># 点击“搜索栏”，输入“Cyberpunk 2077”</span>
+<span class="n">ele</span> <span class="o">=</span> <span class="n">WebDriverWait</span><span class="p">(</span><span class="n">driver</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span><span class="o">.</span><span class="n">until</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="o">.</span><span class="n">find_element</span><span class="p">(</span><span class="n">by</span><span class="o">=</span><span class="s1">&#39;class name&#39;</span><span class="p">,</span> <span class="n">value</span><span class="o">=</span><span class="s1">&#39;android.widget.EditText&#39;</span><span class="p">),</span>
+                                      <span class="n">message</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;找不到元素&#39;</span><span class="p">)</span>
+<span class="n">ele</span><span class="o">.</span><span class="n">click</span><span class="p">()</span>
+<span class="n">ele</span><span class="o">.</span><span class="n">send_keys</span><span class="p">(</span><span class="s1">&#39;Cyberpunk 2077&#39;</span><span class="p">)</span>
+<span class="n">driver</span><span class="o">.</span><span class="n">press_keycode</span><span class="p">(</span><span class="n">AndroidKey</span><span class="o">.</span><span class="n">ENTER</span><span class="p">)</span>
 
-    <span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
-        <span class="k">if</span> <span class="ow">not</span> <span class="n">exists</span><span class="p">(</span><span class="n">Template</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;tpl1710333482687.png&quot;</span><span class="p">,</span> <span class="n">record_pos</span><span class="o">=</span><span class="p">(</span><span class="o">-</span><span class="mf">0.343</span><span class="p">,</span> <span class="mf">0.05</span><span class="p">),</span> <span class="n">resolution</span><span class="o">=</span><span class="p">(</span><span class="mi">900</span><span class="p">,</span> <span class="mi">1600</span><span class="p">))):</span>
-            <span class="n">poco</span><span class="p">(</span><span class="s2">&quot;__next&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">swipe</span><span class="p">([</span><span class="mf">0.0</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.6123</span><span class="p">])</span>  <span class="c1"># 屏幕下滑</span>
-        <span class="k">else</span><span class="p">:</span>
-            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;已找到目标歌曲：Night City&quot;</span><span class="p">)</span>
-            <span class="c1"># poco(text=&quot;Night City&quot;).click()</span>
-            <span class="k">break</span>
+<span class="c1"># 上滑直至找到歌曲：Night City</span>
+<span class="n">screen_size</span> <span class="o">=</span> <span class="n">driver</span><span class="o">.</span><span class="n">get_window_size</span><span class="p">()</span>
+<span class="n">width</span> <span class="o">=</span> <span class="n">screen_size</span><span class="p">[</span><span class="s1">&#39;width&#39;</span><span class="p">]</span>
+<span class="n">height</span> <span class="o">=</span> <span class="n">screen_size</span><span class="p">[</span><span class="s1">&#39;height&#39;</span><span class="p">]</span>
 
+<span class="c1"># 使用相对坐标</span>
+<span class="n">x1</span> <span class="o">=</span> <span class="n">width</span> <span class="o">*</span> <span class="mf">0.5</span>
+<span class="n">y1</span> <span class="o">=</span> <span class="n">height</span> <span class="o">*</span> <span class="mf">0.2</span>
+<span class="c1"># x2 = width * 0.5</span>
+<span class="n">y2</span> <span class="o">=</span> <span class="n">height</span> <span class="o">*</span> <span class="mf">0.7</span>
 
-<span class="k">def</span> <span class="nf">Crawling_music</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">:</span>
-    <span class="n">song</span> <span class="o">=</span> <span class="p">{}</span>
-    <span class="n">songs_list</span> <span class="o">=</span> <span class="n">poco</span><span class="p">(</span><span class="s2">&quot;android.widget.LinearLayout&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">offspring</span><span class="p">(</span><span class="s2">&quot;com.netease.cloudmusic:id/main&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">child</span><span class="p">(</span>
-        <span class="s2">&quot;android.webkit.WebView&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">offspring</span><span class="p">(</span><span class="s2">&quot;__next&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">offspring</span><span class="p">(</span><span class="s2">&quot;st-homepage-search&quot;</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">child</span><span class="p">(</span>
-        <span class="s2">&quot;android.view.View&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">child</span><span class="p">(</span><span class="s2">&quot;android.view.View&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">child</span><span class="p">(</span><span class="s2">&quot;android.view.View&quot;</span><span class="p">)</span>
+<span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">ele</span> <span class="o">=</span> <span class="n">WebDriverWait</span><span class="p">(</span><span class="n">driver</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">until</span><span class="p">(</span>
+            <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="o">.</span><span class="n">find_element</span><span class="p">(</span><span class="n">By</span><span class="o">.</span><span class="n">XPATH</span><span class="p">,</span> <span class="s1">&#39;//android.view.View[@text=&quot;Night City&quot;]&#39;</span><span class="p">))</span>
+        <span class="c1"># ele.click()</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;已找到目标歌曲：Night City&quot;</span><span class="p">)</span>
+        <span class="k">break</span>
+    <span class="k">except</span> <span class="p">(</span><span class="n">NoSuchElementException</span><span class="p">,</span> <span class="n">TimeoutException</span><span class="p">):</span>
+        <span class="c1"># 两种滑动方式都可</span>
+        <span class="c1"># driver.swipe(x1, y2, x1, y1, 300)</span>
+        <span class="n">TouchAction</span><span class="p">(</span><span class="n">driver</span><span class="p">)</span><span class="o">.</span><span class="n">long_press</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">x1</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="n">y2</span><span class="p">)</span><span class="o">.</span><span class="n">move_to</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">x1</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="n">y1</span><span class="p">)</span><span class="o">.</span><span class="n">release</span><span class="p">()</span><span class="o">.</span><span class="n">perform</span><span class="p">()</span>
 
-    <span class="k">for</span> <span class="n">songs</span> <span class="ow">in</span> <span class="n">songs_list</span><span class="p">:</span>
-        <span class="n">song_name</span> <span class="o">=</span> <span class="n">songs</span><span class="o">.</span><span class="n">child</span><span class="p">(</span><span class="s2">&quot;android.view.View&quot;</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">child</span><span class="p">(</span><span class="s2">&quot;android.view.View&quot;</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">get_text</span><span class="p">()</span>
-        <span class="n">author_and_album</span> <span class="o">=</span> <span class="n">songs</span><span class="o">.</span><span class="n">child</span><span class="p">(</span><span class="s2">&quot;android.view.View&quot;</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">child</span><span class="p">(</span><span class="s2">&quot;android.view.View&quot;</span><span class="p">)[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">child</span><span class="p">(</span>
-            <span class="s2">&quot;android.view.View&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">get_text</span><span class="p">()</span>
-        <span class="n">song</span><span class="p">[</span><span class="n">song_name</span><span class="p">]</span> <span class="o">=</span> <span class="n">author_and_album</span>
-        <span class="nb">print</span><span class="p">(</span><span class="n">song_name</span><span class="p">,</span> <span class="s1">&#39;-&#39;</span><span class="p">,</span> <span class="n">author_and_album</span><span class="p">)</span>
-        <span class="k">if</span> <span class="n">song_name</span> <span class="o">==</span> <span class="s2">&quot;Night City&quot;</span><span class="p">:</span>
-            <span class="k">break</span>
-    <span class="k">return</span> <span class="n">song</span>
+<span class="c1"># 爬取查询结果`Night City`及以上的歌名及作者专辑信息</span>
+<span class="c1"># /..即parent父节点</span>
+<span class="n">search</span> <span class="o">=</span> <span class="n">driver</span><span class="o">.</span><span class="n">find_elements</span><span class="p">(</span><span class="n">By</span><span class="o">.</span><span class="n">XPATH</span><span class="p">,</span> <span class="n">value</span><span class="o">=</span><span class="s1">&#39;//android.view.View[@text=&quot;Night City&quot;]/../../../android.view.View&#39;</span><span class="p">)</span>
 
+<span class="k">for</span> <span class="n">ele</span> <span class="ow">in</span> <span class="n">search</span><span class="p">:</span>
+    <span class="c1"># 这一层是歌名</span>
+    <span class="n">song_name</span> <span class="o">=</span> <span class="n">ele</span><span class="o">.</span><span class="n">find_element</span><span class="p">(</span><span class="n">By</span><span class="o">.</span><span class="n">XPATH</span><span class="p">,</span> <span class="n">value</span><span class="o">=</span><span class="s1">&#39;//android.view.View/android.view.View/android.view.View&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">text</span>
+    <span class="c1"># 这一层是作者专辑信息</span>
+    <span class="n">info</span> <span class="o">=</span> <span class="n">ele</span><span class="o">.</span><span class="n">find_element</span><span class="p">(</span><span class="n">By</span><span class="o">.</span><span class="n">XPATH</span><span class="p">,</span>
+                            <span class="n">value</span><span class="o">=</span><span class="s1">&#39;//android.view.View/android.view.View/android.view.View/android.view.View&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">text</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;歌名：&quot;</span><span class="p">,</span> <span class="n">song_name</span><span class="p">,</span> <span class="s2">&quot;作者专辑信息：&quot;</span><span class="p">,</span> <span class="n">info</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">song_name</span> <span class="o">==</span> <span class="s1">&#39;Night City&#39;</span><span class="p">:</span>
+        <span class="k">break</span>
 
-<span class="k">try</span><span class="p">:</span>
-    <span class="c1"># 开启录屏</span>
-    <span class="n">adb</span> <span class="o">=</span> <span class="n">ADB</span><span class="p">(</span><span class="n">serialno</span><span class="o">=</span><span class="s2">&quot;127.0.0.1:16384&quot;</span><span class="p">)</span>
-    <span class="n">recorder</span> <span class="o">=</span> <span class="n">Recorder</span><span class="p">(</span><span class="n">adb</span><span class="p">)</span>
-    <span class="n">recorder</span><span class="o">.</span><span class="n">start_recording</span><span class="p">()</span>
+<span class="c1"># 截取屏幕快照并保存至当前脚本所在目录</span>
+<span class="n">screenshot_file_name</span> <span class="o">=</span> <span class="s2">&quot;screenshot.png&quot;</span>
+<span class="n">screenshot_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">abspath</span><span class="p">(</span><span class="vm">__file__</span><span class="p">)),</span> <span class="n">screenshot_file_name</span><span class="p">)</span>
+<span class="n">driver</span><span class="o">.</span><span class="n">get_screenshot_as_file</span><span class="p">(</span><span class="n">screenshot_path</span><span class="p">)</span>
 
-    <span class="c1"># 重启应用，保证初始化状态一致</span>
-    <span class="n">clear_app</span><span class="p">(</span><span class="s2">&quot;com.netease.cloudmusic&quot;</span><span class="p">)</span>
-    <span class="n">start_app</span><span class="p">(</span><span class="s2">&quot;com.netease.cloudmusic&quot;</span><span class="p">)</span>
-
-    <span class="c1"># 初始化poco</span>
-    <span class="n">poco</span> <span class="o">=</span> <span class="n">AndroidUiautomationPoco</span><span class="p">(</span><span class="n">use_airtest_input</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">screenshot_each_action</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
-
-    <span class="c1"># 执行用例</span>
-    <span class="n">enter_music</span><span class="p">()</span>
-    <span class="n">find_music</span><span class="p">()</span>
-    <span class="n">Crawling_music</span><span class="p">()</span>
-
-    <span class="n">export_dir</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">abspath</span><span class="p">(</span><span class="vm">__file__</span><span class="p">)),</span> <span class="s2">&quot;export&quot;</span><span class="p">)</span>
-    <span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">export_dir</span><span class="p">):</span>
-        <span class="n">os</span><span class="o">.</span><span class="n">mkdir</span><span class="p">(</span><span class="n">export_dir</span><span class="p">)</span>
-    <span class="c1"># 结束录屏</span>
-    <span class="n">recorder</span><span class="o">.</span><span class="n">stop_recording</span><span class="p">(</span><span class="n">output</span><span class="o">=</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">export_dir</span><span class="p">,</span> <span class="s1">&#39;cloudmusic.mp4&#39;</span><span class="p">))</span>
-<span class="k">finally</span><span class="p">:</span>
-    <span class="c1"># simple_report(__file__,logpath=r&quot;D:\test\pro01_log&quot;,output=r&quot;D:\test\pro01_log\log.html&quot;)  # 仅支持本地预览报告</span>
-    <span class="n">rp</span> <span class="o">=</span> <span class="n">LogToHtml</span><span class="p">(</span><span class="vm">__file__</span><span class="p">,</span> <span class="n">export_dir</span><span class="o">=</span><span class="n">export_dir</span><span class="p">,</span> <span class="n">lang</span><span class="o">=</span><span class="s1">&#39;zh&#39;</span><span class="p">,</span> <span class="n">plugins</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;poco.utils.airtest.report&quot;</span><span class="p">])</span>
-    <span class="n">rp</span><span class="o">.</span><span class="n">report</span><span class="p">(</span><span class="n">output_file</span><span class="o">=</span><span class="sa">r</span><span class="s2">&quot;test01.html&quot;</span><span class="p">)</span>
+<span class="n">driver</span><span class="o">.</span><span class="n">quit</span><span class="p">()</span>
 </code></pre></div>
-</div>
-<div class="tabbed-block">
-<video src="../img/cloudmusic.mp4" controls style="width:50%;height:50%;">
 </div>
 </div>
 </div>
@@ -1974,7 +1958,7 @@
     <span class="md-icon" title="最后更新">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1-2.1-2M12.5 7v5.2l4 2.4-1 1L11 13V7h1.5M11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2v1.8Z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime">2024-03-13 22:42:55</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime">2024-03-25 20:57:16</span>
   </span>
 
     
@@ -2010,7 +1994,7 @@
       <nav class="md-footer__inner md-grid" aria-label="页脚" >
         
           
-          <a href="../../pytest/custom_tag/" class="md-footer__link md-footer__link--prev" aria-label="上一页: 自定义标签">
+          <a href="../mumu_sim/" class="md-footer__link md-footer__link--prev" aria-label="上一页: airtest">
             <div class="md-footer__button md-icon">
               
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
@@ -2020,7 +2004,7 @@
                 上一页
               </span>
               <div class="md-ellipsis">
-                自定义标签
+                airtest
               </div>
             </div>
           </a>
@@ -2070,7 +2054,7 @@
     <script id="__config" type="application/json">{"base": "../../..", "features": ["navigation.footer", "navigation.top", "navigation.tabs", "navigation.instant", "content.code.copy"], "search": "../../../assets/javascripts/workers/search.b8dbb3d2.min.js", "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}}</script>
     
     
-      <script src="../../../assets/javascripts/bundle.c8d2eff1.min.js"></script>
+      <script src="../../../assets/javascripts/bundle.bd41221c.min.js"></script>
       
     
   <script>document$.subscribe(() => {const lightbox = GLightbox({"touchNavigation": true, "loop": false, "zoomable": true, "draggable": true, "openEffect": "zoom", "closeEffect": "zoom", "slideEffect": "slide"});})</script></body>
