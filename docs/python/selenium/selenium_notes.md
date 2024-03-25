@@ -17,7 +17,7 @@ WebDriverWait(driver, timeout, poll_frequency=poll_frequency, ignored_exceptions
 # ignored_exceptions：超时后的抛出的异常信息，默认抛出NoSuchElementExeception异常
 
 # WebDriverWait与until()或until_not()搭配使用
-WebDriverWait(driver, 10).until(lambda x: x.find_element(by='xpath', value=value), message=f'找不到value元素')
+WebDriverWait(driver, 10).until(lambda x: x.find_element(by='xpath', value=value), message=f'找不到元素')
 ```
 
 ## 📌 WebDriver

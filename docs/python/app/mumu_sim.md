@@ -7,7 +7,7 @@
 
 !!! note "补充"
 
-    模拟器的adb调试端口可在右上角->问题诊断中找到。
+    MuMu模拟器的adb调试端口可在右上角->问题诊断中找到。若`adb devices`未打印设备列表，可以先`adb connect 127.0.0.1:16384`
 
     ![img.png](img/adb_port.png)
 
