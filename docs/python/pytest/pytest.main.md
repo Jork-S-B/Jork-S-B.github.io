@@ -6,8 +6,13 @@
 -q 简化输出信息
 --reruns=1 失败用例重跑，次数为1
 --alluredir=file_dir 指定报告的数据源文件目录路径，需要安装allure-pytest
+--clean-alluredir 清掉allure报告中的用例执行记录
 '''
 
+today = datetime.datetime.now().strftime('%Y%m%d')
+data_dir = os.path.join(REPORT_PATH, today, 'data')
+report_dir = os.path.join(REPORT_PATH, today, 'report')
+    
 # 方式1，运行全部用例
 run_info = ['-v', '-s', '-q', '--reruns', 1, '--alluredir', data_dir]
 # 方式2，运行上次失败的用例
@@ -43,6 +48,11 @@ os.system(f'allure open -h {ip} -p {port} {report_dir}')
     2.文件中的类以Test开头。
     3.文件中的方法名以test_开头。
 
-[参考的这一篇博客](https://www.cnblogs.com/lfr0123/p/15907200.html)
-
 ---
+
+参考资料：
+
+[pytest-标记用例](https://www.cnblogs.com/lfr0123/p/15907200.html)
+
+[pytest+allure详解](https://www.cnblogs.com/Neeo/articles/11832655.html#allure)
+
