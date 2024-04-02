@@ -30,6 +30,7 @@ nav:
     - 其他:
       - Python路径迁移: python/other/mv_py_path.md
       - mkdocs使用记录: python/other/mkdocs_notes.md
+      - 爬虫入门笔记: python/other/scrapy_notes.md
 - 数据库:
     - Oracle:
       - sqlldr导入大量数据: sql/oracle/sqlldr_import.md
@@ -45,6 +46,9 @@ nav:
 - 测试工具:
     - Fiddler: utils/fiddler_notes.md
     - Charles: utils/charles_notes.md
+    - Postman: utils/postman_notes.md
+- Scala:
+    - 学习笔记1: scala/first.md
 - Docker:
     - Docker for Windows: docker/windows_docker.md
     - 构建MySQL镜像: docker/build_mysql.md
