@@ -16,11 +16,11 @@
         <link rel="prev" href="../pytest.main/">
       
       
-        <link rel="next" href="../custom_tag/">
+        <link rel="next" href="../../app/mumu_sim/">
       
       
       <link rel="icon" href="../../../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.5.3, mkdocs-material-9.5.15">
+      <meta name="generator" content="mkdocs-1.5.3, mkdocs-material-9.5.17">
     
     
       
@@ -28,7 +28,7 @@
       
     
     
-      <link rel="stylesheet" href="../../../assets/stylesheets/main.7e359304.min.css">
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.bcfcd587.min.css">
       
         
         <link rel="stylesheet" href="../../../assets/stylesheets/palette.06af60db.min.css">
@@ -329,6 +329,24 @@
           
   
   测试工具
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../scala/day01/" class="md-tabs__link">
+          
+  
+  Scala
 
         </a>
       </li>
@@ -811,6 +829,15 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      🚁 自定义标签
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -827,7 +854,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../custom_tag/" class="md-nav__link">
+      <a href="../custom_tag.md" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1159,6 +1186,27 @@
   
   <span class="md-ellipsis">
     mkdocs使用记录
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../other/scrapy_notes/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    爬虫入门笔记
   </span>
   
 
@@ -1588,6 +1636,27 @@
 
               
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../utils/postman_notes/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Postman
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
@@ -1619,7 +1688,7 @@
             
   
   <span class="md-ellipsis">
-    Docker
+    Scala
   </span>
   
 
@@ -1628,6 +1697,72 @@
         
         <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            Scala
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../scala/day01/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Day01
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" >
+        
+          
+          <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Docker
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7">
             <span class="md-nav__icon md-icon"></span>
             Docker
           </label>
@@ -1720,10 +1855,10 @@
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8" >
         
           
-          <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_8" id="__nav_8_label" tabindex="0">
             
   
   <span class="md-ellipsis">
@@ -1734,8 +1869,8 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_7">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_8_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_8">
             <span class="md-nav__icon md-icon"></span>
             其他
           </label>
@@ -1820,6 +1955,15 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      🚁 自定义标签
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -1849,15 +1993,48 @@
 <div class="highlight"><pre><span></span><code><span class="k">[pytest]</span>
 <span class="na">filterwarnings</span><span class="w"> </span><span class="o">=</span>
 <span class="w">    </span><span class="na">error</span>
-<span class="w">    </span><span class="na">ignore</span><span class="o">:</span><span class="s">UserWarning</span><span class="w">  </span><span class="c1"># 除UserWarning，其他的告警升级为error</span>
+<span class="w">    </span><span class="na">ignore</span><span class="o">:</span><span class="s">:UserWarning</span><span class="w">  </span><span class="c1"># 除UserWarning，其他的告警升级为error</span>
 </code></pre></div>
 <h3 id="_2">🚁 指定日志格式</h3>
 <div class="highlight"><pre><span></span><code><span class="k">[pytest]</span>
-<span class="c1"># 指定日志格式为：日期 日志级别 日志内容</span>
-<span class="c1"># -8s代表长度为8个字符，不足时以空格补全 </span>
+<span class="c1">; 指定日志格式为：日期 日志级别 日志内容</span>
+<span class="c1">; -8s代表长度为8个字符，不足时以空格补全 </span>
 <span class="na">log_format</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">%(asctime)s %(levelname)-8s %(message)s</span>
 <span class="na">log_date_format</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">%Y-%m-%d %H:%M:%S</span>
 </code></pre></div>
+<h3 id="_3">🚁 自定义标签</h3>
+<p>定义标签<code>@pytest.mark.slow</code>，用于标记运行时间较长的测试用例。</p>
+<p>搭配<code>python -m not slow</code>使用，只需在pytest.ini注册标签即可。</p>
+<p>若要使其在运行测试用例时，除非明确指定，否则默认跳过这些慢速用例，则还需使用钩子方法。</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="1:3"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><input id="__tabbed_1_3" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">conftest.py</label><label for="__tabbed_1_2">testcase.py</label><label for="__tabbed_1_3">pytest.ini</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">pytest_collection_modifyitems</span><span class="p">(</span><span class="n">items</span><span class="p">):</span>
+    <span class="n">config</span> <span class="o">=</span> <span class="n">items</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">session</span><span class="o">.</span><span class="n">config</span>  <span class="c1"># 获取pytest配置对象</span>
+
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">config</span><span class="o">.</span><span class="n">getoption</span><span class="p">(</span><span class="s2">&quot;--runslow&quot;</span><span class="p">):</span>  <span class="c1"># 检查命令行选项中是否包含了 --runslow</span>
+        <span class="n">skip_slow</span> <span class="o">=</span> <span class="n">pytest</span><span class="o">.</span><span class="n">mark</span><span class="o">.</span><span class="n">skip</span><span class="p">(</span><span class="n">reason</span><span class="o">=</span><span class="s2">&quot;need --runslow option to run&quot;</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">items</span><span class="p">:</span>
+            <span class="k">if</span> <span class="s2">&quot;slow&quot;</span> <span class="ow">in</span> <span class="n">item</span><span class="o">.</span><span class="n">keywords</span><span class="p">:</span>
+                <span class="n">item</span><span class="o">.</span><span class="n">add_marker</span><span class="p">(</span><span class="n">skip_slow</span><span class="p">)</span>  <span class="c1"># 添加 skip 标签以跳过该测试用例</span>
+</code></pre></div>
+</div>
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code><span class="nd">@pytest</span><span class="o">.</span><span class="n">mark</span><span class="o">.</span><span class="n">slow</span>
+<span class="k">def</span> <span class="nf">test_long_running</span><span class="p">():</span>
+    <span class="k">pass</span>
+</code></pre></div>
+</div>
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code><span class="k">[pytest]</span>
+<span class="na">markers</span><span class="w"> </span><span class="o">=</span>
+<span class="w">    </span><span class="na">slow</span><span class="o">:</span><span class="w"> </span><span class="s">运行时间较长的测试用例</span>
+</code></pre></div>
+</div>
+</div>
+</div>
+<p>现在运行pytest时，默认情况下所有带有<code>@pytest.mark.slow</code>标签的用例都会被跳过。</p>
+<p>若要运行这些慢速用例，则通过参数<code>--runslow</code>来指定，即<code>pytest --runslow</code>。</p>
 <hr />
 
 
@@ -1879,7 +2056,7 @@
     <span class="md-icon" title="最后更新">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1-2.1-2M12.5 7v5.2l4 2.4-1 1L11 13V7h1.5M11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2v1.8Z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime">2024-03-11 20:12:55</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime">2024-03-30 09:56:22</span>
   </span>
 
     
@@ -1932,13 +2109,13 @@
         
         
           
-          <a href="../custom_tag/" class="md-footer__link md-footer__link--next" aria-label="下一页: 自定义标签">
+          <a href="../../app/mumu_sim/" class="md-footer__link md-footer__link--next" aria-label="下一页: airtest">
             <div class="md-footer__title">
               <span class="md-footer__direction">
                 下一页
               </span>
               <div class="md-ellipsis">
-                自定义标签
+                airtest
               </div>
             </div>
             <div class="md-footer__button md-icon">
@@ -1975,7 +2152,7 @@
     <script id="__config" type="application/json">{"base": "../../..", "features": ["navigation.footer", "navigation.top", "navigation.tabs", "navigation.instant", "content.code.copy"], "search": "../../../assets/javascripts/workers/search.b8dbb3d2.min.js", "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}}</script>
     
     
-      <script src="../../../assets/javascripts/bundle.bd41221c.min.js"></script>
+      <script src="../../../assets/javascripts/bundle.1e8ae164.min.js"></script>
       
     
   <script>document$.subscribe(() => {const lightbox = GLightbox({"touchNavigation": true, "loop": false, "zoomable": true, "draggable": true, "openEffect": "zoom", "closeEffect": "zoom", "slideEffect": "slide"});})</script></body>
