@@ -55,7 +55,8 @@
 === "StudentScala.scala"
 
     ```scala
-    class StudentScala(name: String, age: Int) {
+    class StudentScala(name: String, var age: Int) {
+      // 构造方法的变量如果未声明为类的可变字段（var），则被默认为不可变字段（val）
       def printInfo(): Unit = {
         println(name + " " + age + " " + StudentScala.school)
       }
