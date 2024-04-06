@@ -1617,6 +1617,24 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      📌 断言
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      📌 参数化
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -1683,6 +1701,27 @@
   
   <span class="md-ellipsis">
     Day01
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../scala/day02/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Day02
   </span>
   
 
@@ -1906,6 +1945,24 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      📌 断言
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      📌 参数化
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -1930,12 +1987,38 @@
 <ol>
 <li><code>Environment</code>Tab页中创建环境，并切换至对应环境</li>
 <li><code>Tests</code>Tab页中声明变量</li>
-<li>接口以<code>{{token}}</code>的方式作为参数值</li>
+<li>请求体中，以<code>{{token}}</code>的格式，引用全局变量作为参数值</li>
 </ol>
 <div class="highlight"><pre><span></span><code><span class="c1">// 2. `Tests`Tab页中声明变量</span>
 <span class="kd">var</span><span class="w"> </span><span class="nx">jsonData</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">pm</span><span class="p">.</span><span class="nx">response</span><span class="p">.</span><span class="nx">json</span><span class="p">()</span>
 <span class="nx">pm</span><span class="p">.</span><span class="nx">environment</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="s2">&quot;token&quot;</span><span class="p">,</span><span class="nx">jsonData</span><span class="p">.</span><span class="nx">token</span><span class="p">)</span>
 </code></pre></div>
+<h2 id="_2">📌 断言</h2>
+<p><code>Tests</code>Tab页中加入断言语句，或者点击右侧<code>Snippets</code>代码片段，快速添加断言。</p>
+<div class="highlight"><pre><span></span><code><span class="c1">// 断言：响应状态码</span>
+<span class="nx">pm</span><span class="p">.</span><span class="nx">test</span><span class="p">(</span><span class="s2">&quot;Status code is 200&quot;</span><span class="p">,</span><span class="w"> </span><span class="kd">function</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">pm</span><span class="p">.</span><span class="nx">response</span><span class="p">.</span><span class="nx">to</span><span class="p">.</span><span class="nx">have</span><span class="p">.</span><span class="nx">status</span><span class="p">(</span><span class="mf">200</span><span class="p">);</span>
+<span class="p">});</span>
+
+<span class="c1">// 断言：返回数据中包含的内容</span>
+<span class="nx">pm</span><span class="p">.</span><span class="nx">test</span><span class="p">(</span><span class="s2">&quot;Body matches string&quot;</span><span class="p">,</span><span class="w"> </span><span class="kd">function</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">pm</span><span class="p">.</span><span class="nx">expect</span><span class="p">(</span><span class="nx">pm</span><span class="p">.</span><span class="nx">response</span><span class="p">.</span><span class="nx">text</span><span class="p">()).</span><span class="nx">to</span><span class="p">.</span><span class="nx">include</span><span class="p">(</span><span class="s2">&quot;success&quot;</span><span class="p">);</span>
+<span class="p">});</span>
+
+<span class="c1">// 断言：返回的JSON内容检查</span>
+<span class="nx">pm</span><span class="p">.</span><span class="nx">test</span><span class="p">(</span><span class="s2">&quot;Your test name&quot;</span><span class="p">,</span><span class="w"> </span><span class="kd">function</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">var</span><span class="w"> </span><span class="nx">jsonData</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">pm</span><span class="p">.</span><span class="nx">response</span><span class="p">.</span><span class="nx">json</span><span class="p">();</span>
+<span class="w">    </span><span class="nx">pm</span><span class="p">.</span><span class="nx">expect</span><span class="p">(</span><span class="nx">jsonData</span><span class="p">.</span><span class="nx">msg</span><span class="p">).</span><span class="nx">to</span><span class="p">.</span><span class="nx">eql</span><span class="p">(</span><span class="s2">&quot;success&quot;</span><span class="p">);</span>
+<span class="p">});</span>
+</code></pre></div>
+<h2 id="_3">📌 参数化</h2>
+<ol>
+<li>准备测试数据文件，将需要参数化的数据，以<code>[{用例1,用例2,...}]</code>的格式，保存为JSON文件。</li>
+<li>请求体中，以<code>{{username}}</code>的格式，引用文件中的变量作为参数值。</li>
+<li>断言语句/代码中，以<code>data.参数名</code>的格式，引用文件中的变量作为参数值。data是Postman内置对象，无需声明。</li>
+<li>选择数据文件，批量运行。</li>
+</ol>
+<hr />
 
 
 
@@ -1956,7 +2039,7 @@
     <span class="md-icon" title="最后更新">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1-2.1-2M12.5 7v5.2l4 2.4-1 1L11 13V7h1.5M11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2v1.8Z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime">2024-04-03 23:26:28</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime">2024-04-04 12:53:40</span>
   </span>
 
     
