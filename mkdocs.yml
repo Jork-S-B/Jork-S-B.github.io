@@ -49,6 +49,7 @@ nav:
     - Postman: utils/postman_notes.md
 - Scala:
     - Day01: scala/day01.md
+    - Day02: scala/day02.md
 - Docker:
     - Docker for Windows: docker/windows_docker.md
     - 构建MySQL镜像: docker/build_mysql.md
