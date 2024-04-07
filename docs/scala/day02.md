@@ -90,9 +90,9 @@
 ## 📌 数据类型
 
 * Scala中所有数据都是对象，都是Any的子类。
-* 分为两大类，数值类型AnyVal和引用类型AnyRef。
-* 隐式转换时按精度递增转换：Byte Short Int Long Float Double AnyVal
-* Byte Short Char三者需要进行计算需要先转换为Int类型
+* 分为两大类，数值类型`AnyVal`和引用类型`AnyRef`。
+* 隐式转换时按精度递增转换：`Byte` `Short` `Int` `Long` `Float` `Double`
+* `Byte` `Short` `Char`三者需要进行计算需要先转换为Int类型
 
 ![img.png](img/datatype.png)
 
