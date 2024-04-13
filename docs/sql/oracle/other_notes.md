@@ -60,6 +60,9 @@ ORDER BY CREATEDATE DESC NULLS LAST
 
 `DBMS_OUTPUT.PUT_LINE('');`
 
+### 🚁 并集
+
+`UNION`和`UNION ALL`，前者会进行去重，后者不去重，效率更高。
 
 ### 🚁 生成数字或字符串
 
