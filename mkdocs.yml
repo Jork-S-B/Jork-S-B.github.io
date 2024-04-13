@@ -51,6 +51,7 @@ nav:
     - Day01: scala/day01.md
     - Day02: scala/day02.md
     - Day03: scala/day03.md
+    - Day04: scala/day04.md
 - Docker:
     - Docker for Windows: docker/windows_docker.md
     - 构建MySQL镜像: docker/build_mysql.md
