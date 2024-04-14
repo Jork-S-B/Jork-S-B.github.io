@@ -13,17 +13,43 @@
 
 ## 📌 adb常用命令
 
-|                      命令                      | 补充说明                         |
-|:--------------------------------------------:|:-----------------------------|
-|            `adb connect ip:port`             | 连接到远程设备                      |
-|        `adb -s ip:port install a.apk`        | 指定设备安装apk                    |
-|                `adb shell ps`                | 查后台进程                        |
-|         `adb shell dumpsys cpuinfo`          | 查看cpu信息                      |
-|         `adb shell dumpsys meminfo`          | 查看内存信息                       |
-|         `adb shell pm list package`          | 查看所有包名，参数-3仅展示第三方包           |
-| `adb shell monkey -p package -v 500 > 1.log` | 向程序发送500个伪随机事件，并记录日志         |
-|                 `adb logcat`                 | 查看日志，参数-v time加上时间戳，搭配grep使用 |
+|                      命令                      | 补充说明                 |
+|:--------------------------------------------:|:---------------------|
+|            `adb connect ip:port`             | 连接到远程设备              |
+|        `adb -s ip:port install a.apk`        | 指定设备安装apk            |
+|                `adb shell ps`                | 查后台进程                |
+|         `adb shell dumpsys cpuinfo`          | 查看cpu信息              |
+|         `adb shell dumpsys meminfo`          | 查看内存信息               |
+|         `adb shell pm list package`          | 查看所有包名，参数-3仅展示第三方包   |
+| `adb shell monkey -p package -v 500 > 1.log` | 向程序发送500个伪随机事件，并记录日志 |
+|      `adb logcat -v time > logcat.log`       | 查看日志，参数-v time加上时间戳  |
 
+!!! note "参考资料"
+
+      1.[monkey参数详解](https://www.jianshu.com/p/c2aca7019ddf)
+      
+      2.[monkey使用场景](https://www.cnblogs.com/TFBOYS0806/p/13578005.html)
+
+### 🚁 logcat缓冲区
+
+默认256K，写满时会删除较旧的日志。搭配`-b Main`指定缓冲区。
+
+* Radio：输出系统通信的日志
+* System：输出系统组件的日志
+* Events：输出事件（按键事件、触摸事件等）日志
+* Main：输出主程序（Java的main方法）日志，不属于上述三层
+
+### 🚁 app异常类型
+
+原生安卓系统ANR、崩溃日志等在`/data/system/dropbox`、`/data/anr/trace.txt`等目录可找到（进入data目录需要root权限），但不同手机厂商加定制化系统时可能缺少这层目录。
+
+* ANR无响应，需要先排查是否CPU占用过高
+* Crash崩溃
+* 应用闪退
+
+!!! note "补充"
+
+      如需从设备取文件，执行`adb pull`即可；同理`adb push`则是推送文件。
 
 ## 📌 快速上手
 
@@ -124,6 +150,5 @@
       ```
 
 === "运行预览"
-   
-      
+
       <video src="../img/cloudmusic.mp4" controls style="width:50%;height:50%;">
