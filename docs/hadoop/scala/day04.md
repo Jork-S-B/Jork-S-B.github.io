@@ -11,7 +11,7 @@ Scala融合了面向对象编程及函数式编程。
 ## 📌 至简原则
 
 * __如果函数体只有一行代码，可省略花括号__
-* __如果返回值类型能推断出来，那么:和返回值类型可省略__
+* __如果返回值类型能推断出来，那么返回值类型可省略为`=>`__
 * __如果参数按顺序只使用一次，可直接使用下划线代替__
 * __如果参数列表中只有一个参数，小括号可省略__
 * 如果没有参数列表，函数声明可以省略小括号，而调用时必须省略小括号
@@ -43,4 +43,89 @@ Scala融合了面向对象编程及函数式编程。
       }
     }
 
+    ```
+
+## 📌 高阶函数
+
+高阶函数的使用包括：
+
+* 函数作为值进行传递
+* 函数作为参数进行传递
+* 函数作为返回值进行传递
+
+=== "Learn02_HighOrderFunc.scala"
+
+    ```scala
+    object Learn02_HighOrderFunc {
+      def main(args: Array[String]): Unit = {
+        def func(n: Int) = n + 1
+    
+        // 1. 函数作为值进行传递
+        val f1 = func _
+        // 等价于
+        val f2: Int => Int = func
+    
+        println(f1) // 此时打印func函数的引用
+        println(f1(1))
+    
+    
+        // 2. 函数作为参数进行传递
+        def calc(function: (Int, Int) => Int, i: Int, i1: Int) = {
+          function(i, i1)
+        }
+    
+        //println(calc((a, b) => a + b, 1, 2))
+        println(calc(_ + _, 1, 2)) // 上一行的匿名函数进行简化
+    
+        // 3. 函数作为返回值进行传递
+        def func1(): Int => (String => Boolean) = {
+          def func2(n1: Int): String => Boolean = { // 好处是可以使用外部函数的变量，这种情况称之为闭包
+            def func3(n2: String): Boolean = {
+              if (n1.toString == n2 && n2 != "") true else false
+            }
+            func3
+          }
+          func2
+        }
+    
+        println(func1()(1)("1"))
+        println(func1()(1)("2"))
+    
+        // 使用匿名函数简化func1函数体
+        def simpify_func1(): Int => (String => Boolean) = {
+          // 1.使用匿名函数，先省略掉方法名
+          // 2.单行代码可省略返回值、花括号
+          // 3.函数返回类型可推导，省略为`=>`
+          // 4.参数列表已定义了嵌套函数的返回类型，所以匿名函数的参数类型可省略
+          n1 => n2 => if (n1.toString == n2 && n2 != "") true else false
+        }
+    
+        println(simpify_func1()(1)("1"))
+        println(simpify_func1()(1)("2"))
+    
+        // 使用柯里化简化func1函数体
+        def currying_func1()(n1: Int)(n2: String): Boolean = {
+          if (n1.toString == n2 && n2 != "") true else false
+        }
+    
+        println(currying_func1()(1)("1"))
+        println(currying_func1()(1)("2"))
+     
+      }
+    }
+    ```
+
+
+=== "函数作为传参的练习"
+
+    ```scala
+    // 对数组进行处理，处理过程以函数作为传参，并处理后的结果作为返回值（有点像策略模式？）
+    def arrOperation(arr: Array[Int], function: Int => Int): Array[AnyVal] = {
+      for (i <- arr) yield function(i)
+    }
+
+    val arr: Array[Int] = Array(1, 2, 3, 4, 5)
+    // Array是引用类型，不能直接打印
+    println(arrOperation(arr, _ * 2).mkString(","))
+    println(arrOperation(arr, (i: Int) => if (i % 2 == 0) i else 0).mkString(",")) // todo，如果要把0的从数组中删除，应该怎么处理？
     ```

@@ -5,6 +5,8 @@ Scala运算符的本质也是对象的方法：
 * 当调用对象的方法时，`.`可以省略。
 * 当方法没有参数时，`()`可以省略。
 
+如`2.toString()`可省略为`2 toString`。
+
 === "Learn01_Operator.scala"
 
     ```scala
@@ -35,7 +37,8 @@ Scala运算符的本质也是对象的方法：
 ## 📌 条件分支
 
 * Scala没有`Switch`，而是使用模式匹配`match-case`来处理。
-* Scala的分支语句可以带返回值。
+* Scala的分支语句可以带返回值，以分支语句内最后一行作为返回值。
+* Scala提供了类似三元运算符的写法，如：`if (str > 0) str else "非正数"`。
 
 === "Learn02_Condition.scala"
 
@@ -69,11 +72,18 @@ Scala运算符的本质也是对象的方法：
 
 ## 📌 For循环
 
+循环的三种方式：for、while、do-while，使用后两者时需要外部变量，推荐用for循环。
+
+### 🚁 范围遍历
+
+* 包含边界的范围遍历：`for (i <- 1 to 3)`。
+* 不包含边界的范围遍历：`for (i <- 1 until 3)`。
+* 设置步长为3：`for (i <- 1 to 3 by 3)`。
+* 设置倒序遍历：`for (i <- 1 to 3 reverse)`。
+
 === "Learn03_Cycle.scala"
 
     ```scala
-    import scala.util.control.Breaks
-    
     object Learn03_Cycle {
       def main(args: Array[String]): Unit = {
         // 1.for循环，范围遍历，包含边界[1, 3]，并设置步长为3
@@ -85,12 +95,7 @@ Scala运算符的本质也是对象的方法：
         for (i <- 1 until 3 reverse ) {
           println(i) // 2, 1
         }
-    
-        // 3.Scala没有continue语句，以循环守卫代替，类似在循环中加条件判断
-        for (i <- 1 to 10 if i % 10 == 0) {
-          println(i)
-        }
-    
+
         // 4.小数的循环遍历
         import scala.math.BigDecimal.RoundingMode
     
@@ -100,6 +105,33 @@ Scala运算符的本质也是对象的方法：
     
         for (i <- start to end by step) {
           println(i.setScale(1, RoundingMode.HALF_UP)) // 四舍五入，保留1位小数
+        }
+    
+        // 7.for循环遍历集合，执行操作后返回新的集合
+        val list1 = List(8, 9)
+        val list2 = for (i <- list1) yield i - 2
+        println(list2)
+    
+      }
+    }
+    ```
+
+### 🚁 跳出循环
+
+* Scala没有`break`，通过Breaks类的break方法，捕捉、抛出异常的方式来终止循环。
+* Scala没有`continue`，以循环守卫代替，类似在循环中加条件判断：`for (i <- 1 to 10 if i % 10 == 0)`。
+* 在循环中需要引入变量或者嵌套循环，也类似循环守卫的方式，直接在循环中加入对应的语句即可。
+
+=== "Learn03_Cycle.scala"
+
+    ```scala
+    import scala.util.control.Breaks
+    
+    object Learn03_Cycle {
+      def main(args: Array[String]): Unit = {
+        // 3.Scala没有continue，以循环守卫代替，类似在循环中加条件判断
+        for (i <- 1 to 10 if i % 10 == 0) {
+          println(i)
         }
     
         // 5.嵌套循环
@@ -113,13 +145,8 @@ Scala运算符的本质也是对象的方法：
           // val j = 4-i
           println(j)
         }
-    
-        // 7.for循环遍历集合，执行操作后返回新的集合
-        val list1 = List(8, 9)
-        val list2 = for (i <- list1) yield i - 2
-        println(list2)
-    
-        // 8.Scala没有break语句，通过抛出异常的方式来终止循环
+
+        // 8.Scala没有break，通过抛出异常的方式来终止循环
         // Breaks类的break方法，实现异常的抛出和捕捉
         Breaks.breakable {
           for (i <- 1 to 10) {

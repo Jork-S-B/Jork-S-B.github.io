@@ -61,6 +61,7 @@ Hadoop：开源的分布式存储及计算机框架。
 ### 🚁 Spark
 
 * 通过分布式内存计算和DAG执行引擎提升数据处理能力，相比Hadoop MapReduce性能高10至100倍。
+* 基于内存计算，可能会随之产生内存资源不足的问题。
 * 提供多种语言开发接口，如Scala、Java、Python等。并且提供几十种高度抽象算子，可以很方便构建分布式的数据处理应用。
 * 结合SQL、Streaming、MLlib、GraphX等形成数据处理栈，提供一站式数据处理能力。
 * 完美契合Hadoop生态，Spark可以运行在Standalone、Yarn、Mesos、Kubernetes等集群上，能够接入HDFS、HBase等多种数据源，支持Hadoop MapReduce程序平滑转接。

@@ -2,7 +2,7 @@
 
 * 基于JVM，和Java完全兼容，可以调用Java代码。
 * 兼具函数式编程和面向对象两大特性。
-* 适合大数据处理，支持集合类型数据处理，Spark的底层也是用Scala编写。
+* 适合大数据处理，支持集合类型数据处理，Spark的底层也是使用Scala。
 
 ### 🚁 Sample
 === "HelloWorld.scala"
