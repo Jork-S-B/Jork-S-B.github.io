@@ -12,6 +12,7 @@ nav:
       - 字典和集合: python/structure/dict&set.md
       - 可变/不可变类型: python/structure/mutable&immutable.md
       - 二叉树: python/structure/binary_tree.md
+    - 闭包&装饰器&柯里化: python/closure.md
     - 正则表达式: python/regex/re.md
     - pytest:
       - 测试夹具: python/pytest/fixture.md
