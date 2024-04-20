@@ -1,4 +1,4 @@
-# 其他笔记
+
 
 ### 🚁 NUMBER类型
 
@@ -60,10 +60,6 @@ ORDER BY CREATEDATE DESC NULLS LAST
 
 `DBMS_OUTPUT.PUT_LINE('');`
 
-### 🚁 并集
-
-`UNION`和`UNION ALL`，前者会进行去重，后者不去重，效率更高。
-
 ### 🚁 生成数字或字符串
 
 ```sql
@@ -76,6 +72,7 @@ DBMS_RANDOM.STRING('U', 10)
 
 
 ### 🚁 闪回机制
+
 ```sql
 --以DELETE FROM删除的数据可通过TIMESTAMP方式找回
 SELECT * FROM TABLE_NAME AS OF TIMESTAMP TO_TIMESTAMP('2023-03-30 10:26:11', 'YYYY-MM-DD HH24:MI:SS') 
@@ -160,5 +157,16 @@ SELECT * FROM TABLE_NAME AS OF TIMESTAMP TO_TIMESTAMP('2023-03-30 10:26:11', 'YY
         {'RN1': 1, 'STUDENT_ID': 1, 'SUBJECT': 'math', 'SCORE': 90.5, 'RN2': 1, 'ID': 1, 'NAME': 'whm1'}
         {'RN1': 2, 'STUDENT_ID': 2, 'SUBJECT': 'math', 'SCORE': 92.0, 'RN2': 2, 'ID': 2, 'NAME': 'whm2'}
         ```
+
+### 🚁 并集
+
+`UNION`和`UNION ALL`，前者会进行去重，后者不去重，效率更高。
+
+### 🚁 并行执行
+
+* `/*+parallel(t,n)*/`，t表示表名或别名，n代表进程数量，一般为CPU数量-1。
+* 多表操作且t未指定时，可能会导致无法准确理解并行意图，容易引起数据库异常。
+
+`SELECT /*+parallel(t,8)*/ DISTICT t.id, t.name FROM TABLE T WHERE CONDITION;`
 
 ---

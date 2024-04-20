@@ -13,23 +13,23 @@ nav:
       - 可变/不可变类型: python/structure/mutable&immutable.md
       - 二叉树: python/structure/binary_tree.md
     - 闭包&装饰器&柯里化: python/closure.md
-    - 正则表达式: python/regex/re.md
-    - pytest:
-      - 测试夹具: python/pytest/fixture.md
-      - pytest.main: python/pytest/pytest.main.md
-      - pytest.ini: python/pytest/pytest.ini.md
-    - app自动化:
-        - airtest: python/app/mumu_sim.md
-        - appium: python/app/appium.md
-    - unittest笔记: python/unittest/unittest_notes.md
-    - selenium笔记: python/selenium/selenium_notes.md
-    - pydocx笔记: python/pydocx/pydocx_notes.md
-    - pyjson笔记: python/pyjson/pyjson_notes.md
-    - OJ:
-        - 动态规划: python/oj/dp.md
+    - 自动化:
+      - pytest:
+        - 测试夹具: python/pytest/fixture.md
+        - pytest.main: python/pytest/pytest.main.md
+        - pytest.ini: python/pytest/pytest.ini.md
+      - unittest笔记: python/unittest/unittest_notes.md
+      - selenium笔记: python/selenium/selenium_notes.md
+      - app自动化:
+          - airtest: python/app/mumu_sim.md
+          - appium: python/app/appium.md
     - 其他:
       - Python路径迁移: python/other/mv_py_path.md
       - mkdocs使用记录: python/other/mkdocs_notes.md
+      - 正则表达式: python/regex/re.md
+      - pyjson笔记: python/pyjson/pyjson_notes.md
+      - pydocx笔记: python/pydocx/pydocx_notes.md
+      - 动态规划: python/oj/dp.md
       - 爬虫入门笔记: python/other/scrapy_notes.md
 - 数据库:
     - Oracle:
@@ -38,8 +38,8 @@ nav:
       - 查询锁表&解锁: sql/oracle/lock&unlock.md
       - 存储过程: sql/oracle/procedure.md
       - 收集表统计信息: sql/oracle/gather_table_stats.md
-      - 其他笔记: sql/oracle/other_notes.md
-    - Redis笔记: sql/redis_notes.md
+      - 备忘: sql/oracle/other_notes.md
+    - Redis: sql/redis_notes.md
 - Shell:
     - regex.sh: shell/regex.md
     - 检查命令耗时: shell/timestamp.md
