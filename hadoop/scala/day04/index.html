@@ -1819,7 +1819,16 @@
         <li class="md-nav__item">
   <a href="#_3" class="md-nav__link">
     <span class="md-ellipsis">
-      📌 高阶函数
+      📌 高阶函数的使用
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      📌 递归
     </span>
   </a>
   
@@ -2068,7 +2077,16 @@
         <li class="md-nav__item">
   <a href="#_3" class="md-nav__link">
     <span class="md-ellipsis">
-      📌 高阶函数
+      📌 高阶函数的使用
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      📌 递归
     </span>
   </a>
   
@@ -2116,9 +2134,6 @@
 <li>如果有<code>return</code>，则必须指定返回值类型</li>
 <li>如果不关心名称，只关心逻辑处理，那么函数名<code>def</code>可以省略，即匿名函数lambda表达式</li>
 </ul>
-<div class="tabbed-set tabbed-alternate" data-tabs="1:1"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">Learn01_FuncSimpify.scala</label></div>
-<div class="tabbed-content">
-<div class="tabbed-block">
 <div class="highlight"><pre><span></span><code><span class="k">object</span><span class="w"> </span><span class="nc">Learn01_FuncSimpify</span><span class="w"> </span><span class="p">{</span>
 <span class="w">  </span><span class="k">def</span><span class="w"> </span><span class="nf">main</span><span class="p">(</span><span class="n">args</span><span class="p">:</span><span class="w"> </span><span class="nc">Array</span><span class="p">[</span><span class="nc">String</span><span class="p">]):</span><span class="w"> </span><span class="nc">Unit</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
 <span class="w">    </span><span class="c1">// 参数默认值，一般放在参数列表后面</span>
@@ -2139,17 +2154,13 @@
 <span class="w">  </span><span class="p">}</span>
 <span class="p">}</span>
 </code></pre></div>
-</div>
-</div>
-</div>
-<h2 id="_3">📌 高阶函数</h2>
-<p>高阶函数的使用包括：</p>
+<h2 id="_3">📌 高阶函数的使用</h2>
 <ul>
 <li>函数作为值进行传递</li>
 <li>函数作为参数进行传递</li>
 <li>函数作为返回值进行传递</li>
 </ul>
-<div class="tabbed-set tabbed-alternate" data-tabs="2:2"><input checked="checked" id="__tabbed_2_1" name="__tabbed_2" type="radio" /><input id="__tabbed_2_2" name="__tabbed_2" type="radio" /><div class="tabbed-labels"><label for="__tabbed_2_1">Learn02_HighOrderFunc.scala</label><label for="__tabbed_2_2">函数作为传参的练习</label></div>
+<div class="tabbed-set tabbed-alternate" data-tabs="1:2"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">HighOrderFunc</label><label for="__tabbed_1_2">函数作为传参的练习</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
 <div class="highlight"><pre><span></span><code><span class="k">object</span><span class="w"> </span><span class="nc">Learn02_HighOrderFunc</span><span class="w"> </span><span class="p">{</span>
@@ -2225,6 +2236,41 @@
 </div>
 </div>
 </div>
+<div class="admonition note">
+<p class="admonition-title">补充</p>
+<ul>
+<li>在函数式编程中，尽量少用多参数函数。</li>
+<li>通过函数柯里化，将接受多个参数的函数，转换成一系列接收一个参数的函数。</li>
+<li>函数调用时使用了外部函数的变量，这种情况称之为闭包；柯里化的底层一定是闭包。</li>
+</ul>
+</div>
+<h2 id="_4">📌 递归</h2>
+<ul>
+<li>要有跳出条件</li>
+<li>递归层级越多，可能会损耗更多栈空间资源</li>
+<li>支持<code>@tailrec</code>尾递归：在最后一行调用自身而不进行额外计算，及时释放栈空间</li>
+</ul>
+<div class="highlight"><pre><span></span><code><span class="k">object</span><span class="w"> </span><span class="nc">Learn03_Tailrec</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="k">def</span><span class="w"> </span><span class="nf">main</span><span class="p">(</span><span class="n">args</span><span class="p">:</span><span class="w"> </span><span class="nc">Array</span><span class="p">[</span><span class="nc">String</span><span class="p">]):</span><span class="w"> </span><span class="nc">Unit</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="cm">/* 递归</span>
+<span class="cm">    * 要有跳出条件</span>
+<span class="cm">    * 递归层级越多，可能会损耗更多栈空间资源</span>
+<span class="cm">    * 支持@tailrec尾递归：在最后一行调用自身而不进行额外计算，及时释放栈空间</span>
+<span class="cm">    */</span>
+<span class="w">    </span><span class="c1">// 尾递归实现阶乘</span>
+<span class="w">    </span><span class="k">def</span><span class="w"> </span><span class="nf">factorial</span><span class="p">(</span><span class="n">n</span><span class="p">:</span><span class="w"> </span><span class="nc">Int</span><span class="p">):</span><span class="w"> </span><span class="nc">Int</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nd">@tailrec</span>
+<span class="w">      </span><span class="k">def</span><span class="w"> </span><span class="nf">fact</span><span class="p">(</span><span class="n">n</span><span class="p">:</span><span class="w"> </span><span class="nc">Int</span><span class="p">,</span><span class="w"> </span><span class="n">acc</span><span class="p">:</span><span class="w"> </span><span class="nc">Int</span><span class="p">):</span><span class="w"> </span><span class="nc">Int</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">n</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="n">acc</span>
+<span class="w">        </span><span class="n">fact</span><span class="p">(</span><span class="n">n</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="n">n</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">acc</span><span class="p">)</span>
+<span class="w">      </span><span class="p">}</span>
+<span class="w">      </span><span class="n">fact</span><span class="p">(</span><span class="n">n</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">    </span><span class="n">println</span><span class="p">(</span><span class="n">factorial</span><span class="p">(</span><span class="mi">5</span><span class="p">))</span>
+<span class="w">    </span><span class="n">println</span><span class="p">(</span><span class="n">factorial</span><span class="p">(</span><span class="mi">1</span><span class="p">))</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
 
 
 
@@ -2245,7 +2291,7 @@
     <span class="md-icon" title="最后更新">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1-2.1-2M12.5 7v5.2l4 2.4-1 1L11 13V7h1.5M11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2v1.8Z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime">2024-04-17 16:38:04</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime">2024-04-20 10:36:45</span>
   </span>
 
     
