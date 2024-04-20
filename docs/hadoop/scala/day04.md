@@ -20,30 +20,28 @@ Scala融合了面向对象编程及函数式编程。
 * 如果有`return`，则必须指定返回值类型
 * 如果不关心名称，只关心逻辑处理，那么函数名`def`可以省略，即匿名函数lambda表达式
 
-=== "Learn01_FuncSimpify.scala"
-
-    ```scala
-    object Learn01_FuncSimpify {
-      def main(args: Array[String]): Unit = {
-        // 参数默认值，一般放在参数列表后面
-        // 可变参数，一般放在参数列表最后面
-        // 两者不能混用
-        def func1(str1: String = "", str2: String) {
-          println("str1:" + str1)
-          println("str2:" + str2)
-        }
-    
-        def func2(str_collection: String*): Seq[String] = str_collection
-    
-        func1(str2 = "whm")
-        val seq = func2("1", "2") // WrappedArray(1, 2)
-
-        // 使用匿名函数：reduceByKey((x + y) => { x + y }) // reduceByKey()，Spark的方法，实现分组+聚合
-        // 根据至简原则可简化为：reduceByKey(_ + _)
-      }
+```scala
+object Learn01_FuncSimpify {
+  def main(args: Array[String]): Unit = {
+    // 参数默认值，一般放在参数列表后面
+    // 可变参数，一般放在参数列表最后面
+    // 两者不能混用
+    def func1(str1: String = "", str2: String) {
+      println("str1:" + str1)
+      println("str2:" + str2)
     }
 
-    ```
+    def func2(str_collection: String*): Seq[String] = str_collection
+
+    func1(str2 = "whm")
+    val seq = func2("1", "2") // WrappedArray(1, 2)
+
+    // 使用匿名函数：reduceByKey((x + y) => { x + y }) // reduceByKey()，Spark的方法，实现分组+聚合
+    // 根据至简原则可简化为：reduceByKey(_ + _)
+  }
+}
+
+```
 
 ## 📌 高阶函数的使用
 
@@ -51,7 +49,7 @@ Scala融合了面向对象编程及函数式编程。
 * 函数作为参数进行传递
 * 函数作为返回值进行传递
 
-=== "Learn02_HighOrderFunc.scala"
+=== "HighOrderFunc"
 
     ```scala
     object Learn02_HighOrderFunc {
@@ -140,27 +138,26 @@ Scala融合了面向对象编程及函数式编程。
 * 递归层级越多，可能会损耗更多栈空间资源
 * 支持`@tailrec`尾递归：在最后一行调用自身而不进行额外计算，及时释放栈空间
 
-=== "Learn03_Tailrec.scala"
-    
-    ```scala
-    object Learn03_Tailrec {
-      def main(args: Array[String]): Unit = {
-        /* 递归
-        * 要有跳出条件
-        * 递归层级越多，可能会损耗更多栈空间资源
-        * 支持@tailrec尾递归：在最后一行调用自身而不进行额外计算，及时释放栈空间
-        */
-        // 尾递归实现阶乘
-        def factorial(n: Int): Int = {
-          @tailrec
-          def fact(n: Int, acc: Int): Int = {
-            if (n <= 1) return acc
-            fact(n - 1, n * acc)
-          }
-          fact(n, 1)
-        }
-        println(factorial(5))
-        println(factorial(1))
+
+```scala
+object Learn03_Tailrec {
+  def main(args: Array[String]): Unit = {
+    /* 递归
+    * 要有跳出条件
+    * 递归层级越多，可能会损耗更多栈空间资源
+    * 支持@tailrec尾递归：在最后一行调用自身而不进行额外计算，及时释放栈空间
+    */
+    // 尾递归实现阶乘
+    def factorial(n: Int): Int = {
+      @tailrec
+      def fact(n: Int, acc: Int): Int = {
+        if (n <= 1) return acc
+        fact(n - 1, n * acc)
       }
+      fact(n, 1)
     }
-    ```
+    println(factorial(5))
+    println(factorial(1))
+  }
+}
+```

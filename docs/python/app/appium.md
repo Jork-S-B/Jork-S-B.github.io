@@ -30,93 +30,92 @@
 
 ## 📌 快速上手
 
-=== "startup.py"
       
-      ```python
-      import os
-      
-      from appium.webdriver.common.touch_action import TouchAction
-      from appium import webdriver
-      from selenium.common import NoSuchElementException, TimeoutException
-      from selenium.webdriver.common.by import By
-      from appium.webdriver.extensions.android.nativekey import AndroidKey
-      from appium.options.android import UiAutomator2Options
-      from selenium.webdriver.support.wait import WebDriverWait
-      
-      desired_caps = {
-          'platformName': 'Android',
-          'platformVersion': '12',
-          'deviceName': 'whm',  # 设备名，安卓手机可以随意填写
-          'appPackage': 'com.netease.cloudmusic',
-          'appActivity': '.activity.IconChangeDefaultAlias',
-          'unicodeKeyboard': True,  # 输入非英文的字符
-          'resetKeyboard': True,  # 执行完程序恢复原来输入法
-          'noReset': False,  # False表示重置App
-          'newCommandTimeout': 6000,
-          'automationName': 'UiAutomator2'
-          # 'app': r'd:\apk\bili.apk',
-      }
-      
-      # 连接Appium Server并初始化
-      driver = webdriver.Remote('http://localhost:4723/wd/hub', options=UiAutomator2Options().load_capabilities(desired_caps))
-      
-      # driver.implicitly_wait(10)
-      
-      # 点击两次不同意，进入“基本功能模式”
-      ele = WebDriverWait(driver, 10).until(lambda x: x.find_element(By.ID, value='disagree'), message=f'找不到元素')
-      ele.click()
-      ele = WebDriverWait(driver, 10).until(lambda x: x.find_element(by='id', value='disagree'), message=f'找不到元素')
-      ele.click()
-      
-      # 点击“搜索栏”，输入“Cyberpunk 2077”
-      ele = WebDriverWait(driver, 10).until(lambda x: x.find_element(by='class name', value='android.widget.EditText'),
-                                            message=f'找不到元素')
-      ele.click()
-      ele.send_keys('Cyberpunk 2077')
-      driver.press_keycode(AndroidKey.ENTER)
-      
-      # 上滑直至找到歌曲：Night City
-      screen_size = driver.get_window_size()
-      width = screen_size['width']
-      height = screen_size['height']
-      
-      # 使用相对坐标
-      x1 = width * 0.5
-      y1 = height * 0.2
-      # x2 = width * 0.5
-      y2 = height * 0.7
-      
-      while True:
-          try:
-              ele = WebDriverWait(driver, 1).until(
-                  lambda x: x.find_element(By.XPATH, '//android.view.View[@text="Night City"]'))
-              # ele.click()
-              print("已找到目标歌曲：Night City")
-              break
-          except (NoSuchElementException, TimeoutException):
-              # 两种滑动方式都可
-              # driver.swipe(x1, y2, x1, y1, 300)
-              TouchAction(driver).long_press(x=x1, y=y2).move_to(x=x1, y=y1).release().perform()
-      
-      # 爬取查询结果`Night City`及以上的歌名及作者专辑信息
-      # /..即parent父节点
-      search = driver.find_elements(By.XPATH, value='//android.view.View[@text="Night City"]/../../../android.view.View')
-      
-      for ele in search:
-          # 这一层是歌名
-          song_name = ele.find_element(By.XPATH, value='//android.view.View/android.view.View/android.view.View').text
-          # 这一层是作者专辑信息
-          info = ele.find_element(By.XPATH,
-                                  value='//android.view.View/android.view.View/android.view.View/android.view.View').text
-          print("歌名：", song_name, "作者专辑信息：", info)
-          if song_name == 'Night City':
-              break
-      
-      # 截取屏幕快照并保存至当前脚本所在目录
-      screenshot_file_name = "screenshot.png"
-      screenshot_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), screenshot_file_name)
-      driver.get_screenshot_as_file(screenshot_path)
-      
-      driver.quit()
-      
-      ```
+```python
+import os
+
+from appium.webdriver.common.touch_action import TouchAction
+from appium import webdriver
+from selenium.common import NoSuchElementException, TimeoutException
+from selenium.webdriver.common.by import By
+from appium.webdriver.extensions.android.nativekey import AndroidKey
+from appium.options.android import UiAutomator2Options
+from selenium.webdriver.support.wait import WebDriverWait
+
+desired_caps = {
+    'platformName': 'Android',
+    'platformVersion': '12',
+    'deviceName': 'whm',  # 设备名，安卓手机可以随意填写
+    'appPackage': 'com.netease.cloudmusic',
+    'appActivity': '.activity.IconChangeDefaultAlias',
+    'unicodeKeyboard': True,  # 输入非英文的字符
+    'resetKeyboard': True,  # 执行完程序恢复原来输入法
+    'noReset': False,  # False表示重置App
+    'newCommandTimeout': 6000,
+    'automationName': 'UiAutomator2'
+    # 'app': r'd:\apk\bili.apk',
+}
+
+# 连接Appium Server并初始化
+driver = webdriver.Remote('http://localhost:4723/wd/hub', options=UiAutomator2Options().load_capabilities(desired_caps))
+
+# driver.implicitly_wait(10)
+
+# 点击两次不同意，进入“基本功能模式”
+ele = WebDriverWait(driver, 10).until(lambda x: x.find_element(By.ID, value='disagree'), message=f'找不到元素')
+ele.click()
+ele = WebDriverWait(driver, 10).until(lambda x: x.find_element(by='id', value='disagree'), message=f'找不到元素')
+ele.click()
+
+# 点击“搜索栏”，输入“Cyberpunk 2077”
+ele = WebDriverWait(driver, 10).until(lambda x: x.find_element(by='class name', value='android.widget.EditText'),
+                                      message=f'找不到元素')
+ele.click()
+ele.send_keys('Cyberpunk 2077')
+driver.press_keycode(AndroidKey.ENTER)
+
+# 上滑直至找到歌曲：Night City
+screen_size = driver.get_window_size()
+width = screen_size['width']
+height = screen_size['height']
+
+# 使用相对坐标
+x1 = width * 0.5
+y1 = height * 0.2
+# x2 = width * 0.5
+y2 = height * 0.7
+
+while True:
+    try:
+        ele = WebDriverWait(driver, 1).until(
+            lambda x: x.find_element(By.XPATH, '//android.view.View[@text="Night City"]'))
+        # ele.click()
+        print("已找到目标歌曲：Night City")
+        break
+    except (NoSuchElementException, TimeoutException):
+        # 两种滑动方式都可
+        # driver.swipe(x1, y2, x1, y1, 300)
+        TouchAction(driver).long_press(x=x1, y=y2).move_to(x=x1, y=y1).release().perform()
+
+# 爬取查询结果`Night City`及以上的歌名及作者专辑信息
+# /..即parent父节点
+search = driver.find_elements(By.XPATH, value='//android.view.View[@text="Night City"]/../../../android.view.View')
+
+for ele in search:
+    # 这一层是歌名
+    song_name = ele.find_element(By.XPATH, value='//android.view.View/android.view.View/android.view.View').text
+    # 这一层是作者专辑信息
+    info = ele.find_element(By.XPATH,
+                            value='//android.view.View/android.view.View/android.view.View/android.view.View').text
+    print("歌名：", song_name, "作者专辑信息：", info)
+    if song_name == 'Night City':
+        break
+
+# 截取屏幕快照并保存至当前脚本所在目录
+screenshot_file_name = "screenshot.png"
+screenshot_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), screenshot_file_name)
+driver.get_screenshot_as_file(screenshot_path)
+
+driver.quit()
+
+```

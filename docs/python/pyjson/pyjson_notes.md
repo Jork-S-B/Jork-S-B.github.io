@@ -10,6 +10,7 @@
 JSON标准：包含键值对、数组等，并且所有的字符串必须用***双引号***包围
 
 `json.dumps(dict1)`跟`str(dict1)`打印效果类似，但后者转换的字符串中是以单引号包围。
+
 `json.loads(str1)`跟`eval(str1)`打印效果类似，但后者不安全不高效（该方法会执行字符串中有效的代码或表达式）。
 
 ```python
@@ -39,4 +40,19 @@ print(eval(repr(d.get('regex_str'))))  # eval()执行转义，输出：物品   
 
 ```
 
+!!! note "补充"
+    
+    * `eval()`可用于执行字符串中的有效代码或表达式，但处理不受信任输入的情况应避免使用。
+    * 与之相比，`ast.literal_eval()`只能处理基本数据类型的字面量，因此无法执行任何潜在有害的操作。当输入包含非预期的数据，抛ValueError异常。
+
+    
+    ```python
+    import ast
+    s = "[1, 2, {'key': 'value'}, 'hello']"
+    
+    # 使用 literal_eval 解析字符串
+    data = ast.literal_eval(s)
+
+    print(data)  # 输出：[1, 2, {'key': 'value'}, 'hello']
+    ```
 ---
