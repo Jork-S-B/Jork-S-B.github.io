@@ -303,3 +303,68 @@ thread.join()
     `WSGI`即Web服务网关接口，规定Python Web服务器与应用程序如何交互，确保了跨服务器和框架的兼容性。
     
     而`Werkzeug`是一个基于`WSGI`的工具包，为开发者提供了构建高效、灵活且符合标准Web应用所需的全套工具和组件。
+
+
+## 📌 拓展
+
+通过jinja2+模板+数据，生成html文件，并保存到本地。
+
+=== "generate_html.py"
+    
+    ```python
+    posts_data = [
+        {"id": 1, "title": "Post 1", "author_id": 1},
+        {"id": 2, "title": "Post 2", "author_id": 2},
+        {"id": 3, "title": "Post 3", "author_id": 3},
+    ]
+    
+    authors_data = [
+        {"id": 1, "name": "Author 1", "bio": "Author 1 biography"},
+        {"id": 2, "name": "Author 2", "bio": "Author 2 biography"},
+        {"id": 3, "name": "Author 3", "bio": "Author 3 biography"},
+    ]
+    
+    from jinja2 import Environment, FileSystemLoader
+    
+    # 加载模板
+    template_dir = './'
+    env = Environment(loader=FileSystemLoader(template_dir))
+    template = env.get_template('template.html')
+    
+    # 合并字典，渲染后保存
+    merged_data = {
+        'posts': posts_data,
+        'authors': authors_data
+    }
+    
+    rendered_html = template.render(**merged_data)
+    with open('output.html', 'w') as f:
+        f.write(rendered_html)
+    
+    ```
+
+=== "template.html"
+    
+    ```html
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Multiple Data Dictionaries Example</title>
+    </head>
+    <body>
+        <h1>Articles</h1>
+        <ul>
+            {% for post in posts if post.author_id != 3 %}
+                <li>
+                    <h2>{{ post.title }}</h2>
+                    <p>By {{ authors[post.author_id-1].name }}</p>
+                    <p>{{ authors[post.author_id-1].bio | truncate(10) }}</p>
+                </li>
+            {% endfor %}
+        </ul>
+    </body>
+    </html>
+    
+    ```
