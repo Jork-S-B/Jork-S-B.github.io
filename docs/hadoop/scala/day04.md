@@ -45,9 +45,7 @@ Scala融合了面向对象编程及函数式编程。
 
     ```
 
-## 📌 高阶函数
-
-高阶函数的使用包括：
+## 📌 高阶函数的使用
 
 * 函数作为值进行传递
 * 函数作为参数进行传递
@@ -128,4 +126,41 @@ Scala融合了面向对象编程及函数式编程。
     // Array是引用类型，不能直接打印
     println(arrOperation(arr, _ * 2).mkString(","))
     println(arrOperation(arr, (i: Int) => if (i % 2 == 0) i else 0).mkString(",")) // todo，如果要把0的从数组中删除，应该怎么处理？
+    ```
+
+!!! note "补充"
+
+    * 在函数式编程中，尽量少用多参数函数。
+    * 通过函数柯里化，将接受多个参数的函数，转换成一系列接收一个参数的函数。
+    * 函数调用时使用了外部函数的变量，这种情况称之为闭包；柯里化的底层一定是闭包。
+
+## 📌 递归
+
+* 要有跳出条件
+* 递归层级越多，可能会损耗更多栈空间资源
+* 支持`@tailrec`尾递归：在最后一行调用自身而不进行额外计算，及时释放栈空间
+
+=== "Learn03_Tailrec.scala"
+    
+    ```scala
+    object Learn03_Tailrec {
+      def main(args: Array[String]): Unit = {
+        /* 递归
+        * 要有跳出条件
+        * 递归层级越多，可能会损耗更多栈空间资源
+        * 支持@tailrec尾递归：在最后一行调用自身而不进行额外计算，及时释放栈空间
+        */
+        // 尾递归实现阶乘
+        def factorial(n: Int): Int = {
+          @tailrec
+          def fact(n: Int, acc: Int): Int = {
+            if (n <= 1) return acc
+            fact(n - 1, n * acc)
+          }
+          fact(n, 1)
+        }
+        println(factorial(5))
+        println(factorial(1))
+      }
+    }
     ```
