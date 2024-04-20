@@ -23,6 +23,7 @@ nav:
       - app自动化:
           - airtest: python/app/mumu_sim.md
           - appium: python/app/appium.md
+    - Flask: python/web/flask.md
     - 其他:
       - Python路径迁移: python/other/mv_py_path.md
       - mkdocs使用记录: python/other/mkdocs_notes.md

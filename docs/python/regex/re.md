@@ -92,12 +92,10 @@
 
 !!! note "补充"
 
-    `re.match(str,str2)`，匹配以str开头的字符串，失败返回None，成功返回match对象，需搭配group使用。
+    * `re.match(str,str2)`，匹配以str开头的字符串，失败返回None，成功返回match对象，需搭配group使用。
 
-    `re.search()`，在整个字符串匹配，失败返回None，成功返回match对象，需搭配group使用。
+    * `re.search()`，在整个字符串匹配，失败返回None，成功返回match对象，需搭配group使用。
 
-    `matchObj.group(n)`，返回第n个匹配的子串，n从1开始计数。
-
-    如果没有分组，则`matchObj.group()`/`matchObj.group(0)`返回整个匹配的子串。
+    `matchObj.group(n)`，返回第n个匹配的子串，n从1开始计数。若没有分组，则返回整个匹配的子串。
     
 
