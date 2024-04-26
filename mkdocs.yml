@@ -6,11 +6,12 @@ site_description: myblog
 nav:
 - Home: index.md
 - Python:
-    - 数据结构:
+    - 数据类型:
       - 数值型: python/structure/number.md
       - 序列: python/structure/sequence.md
       - 字典和集合: python/structure/dict&set.md
       - 可变/不可变类型: python/structure/mutable&immutable.md
+    - 数据结构:
       - 二叉树: python/structure/binary_tree.md
     - 闭包&装饰器&柯里化: python/closure.md
     - 多线程: python/thread.md
@@ -133,11 +134,10 @@ plugins:
           - zh
     # 显示文件最后修改时间插件，需要先pip install mkdocs-git-revision-date-localized-plugin
     # 参考资料：https://timvink.github.io/mkdocs-git-revision-date-localized-plugin/options/
-    # 调试时注释掉
-#    - git-revision-date-localized:
-#        timezone: Asia/Shanghai
-#        type: iso_datetime
-#        # fallback_to_build_date: true  # mkdocs build的日期
-#        enable_creation_date: false
-#        exclude:  # 以下文件/目录排除
-#          - index.md
+    - git-revision-date-localized:
+        timezone: Asia/Shanghai
+        type: iso_datetime
+        # fallback_to_build_date: true  # mkdocs build的日期
+        enable_creation_date: false
+        exclude:  # 以下文件/目录排除
+          - index.md
