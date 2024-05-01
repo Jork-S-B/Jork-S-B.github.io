@@ -1,5 +1,3 @@
-# Fiddler笔记
-
 ### 🚁 断点调试
 
 Fiddler可以在请求发送至服务端前打断点，或者在服务端发响应结果时打断点(请求前，响应后)。
@@ -76,7 +74,7 @@ static function OnBeforeRequest (oSession: Session) {
 
 ![img.png](image/m_SimulateModem.png)
 
-默认配置为：每发送1KB延迟300ms；每接收1KB延迟150ms。可见Fiddler模拟弱网本质是设置延迟时间。
+默认配置为：每发送1KB延迟300ms；每接收1KB延迟150ms。可见Fiddler模拟弱网本质是设置延迟时间，相对的charles则是限制带宽的方式。
 
 !!!note "补充"
 

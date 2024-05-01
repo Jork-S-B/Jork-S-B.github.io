@@ -24,11 +24,12 @@
 | `adb shell monkey -p package -v 500 > 1.log` | 向程序发送500个伪随机事件，并记录日志 |
 |      `adb logcat -v time > logcat.log`       | 查看日志，参数-v time加上时间戳  |
 
-!!! note "参考资料"
 
-      1.[monkey参数详解](https://www.jianshu.com/p/c2aca7019ddf)
-      
-      2.[monkey使用场景](https://www.cnblogs.com/TFBOYS0806/p/13578005.html)
+参考资料：
+
+1.[monkey参数详解](https://www.jianshu.com/p/c2aca7019ddf)
+
+2.[monkey使用场景](https://www.cnblogs.com/TFBOYS0806/p/13578005.html)
 
 ### 🚁 logcat缓冲区
 
