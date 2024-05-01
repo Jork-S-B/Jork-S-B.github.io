@@ -13,8 +13,6 @@
       
       
       
-        <link rel="prev" href="../../docker/build_oracle/">
-      
       
       
       <link rel="icon" href="../../assets/images/favicon.png">
@@ -22,7 +20,7 @@
     
     
       
-        <title>Nginx笔记 - whm</title>
+        <title>APP测试 - whm</title>
       
     
     
@@ -85,7 +83,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#nginx" class="md-skip">
+        <a href="#app" class="md-skip">
           跳转至
         </a>
       
@@ -119,7 +117,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Nginx笔记
+              APP测试
             
           </span>
         </div>
@@ -369,13 +367,11 @@
         
   
   
-    
-  
   
     
     
-      <li class="md-tabs__item md-tabs__item--active">
-        <a href="./" class="md-tabs__link">
+      <li class="md-tabs__item">
+        <a href="../../other/nginx_notes/" class="md-tabs__link">
           
   
   其他
@@ -1998,28 +1994,23 @@
       
   
   
-    
   
   
-  
     
     
     
       
-        
-        
-      
       
     
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8" checked>
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8" >
         
           
-          <label class="md-nav__link" for="__nav_8" id="__nav_8_label" tabindex="">
+          <label class="md-nav__link" for="__nav_8" id="__nav_8_label" tabindex="0">
             
   
   <span class="md-ellipsis">
@@ -2030,7 +2021,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_8_label" aria-expanded="true">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_8_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_8">
             <span class="md-nav__icon md-icon"></span>
             其他
@@ -2041,28 +2032,10 @@
                 
   
   
-    
   
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          
-  
-  <span class="md-ellipsis">
-    Nginx笔记
-  </span>
-  
-
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../../other/nginx_notes/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -2071,42 +2044,6 @@
   
 
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="目录">
-  
-  
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      目录
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#nginx" class="md-nav__link">
-    <span class="md-ellipsis">
-      Nginx常用指令
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#html" class="md-nav__link">
-    <span class="md-ellipsis">
-      部署html网页
-    </span>
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -2136,6 +2073,8 @@
   
   
   
+    
+  
   
     <label class="md-nav__title" for="__toc">
       <span class="md-nav__icon md-icon"></span>
@@ -2144,20 +2083,146 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#nginx" class="md-nav__link">
+  <a href="#_1" class="md-nav__link">
     <span class="md-ellipsis">
-      Nginx常用指令
+      📌 关于环境
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#html" class="md-nav__link">
+  <a href="#app_1" class="md-nav__link">
     <span class="md-ellipsis">
-      部署html网页
+      📌 APP测试要点
     </span>
   </a>
+  
+    <nav class="md-nav" aria-label="📌 APP测试要点">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      🚁 兼容性测试
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      🚁 安装/卸载/升级测试
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      🚁 交叉事件测试
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#push" class="md-nav__link">
+    <span class="md-ellipsis">
+      🚁 PUSH测试
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      🚁 性能测试
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      🚁 稳定性测试
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#app_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      📌 app异常类型
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="📌 app异常类型">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#anr" class="md-nav__link">
+    <span class="md-ellipsis">
+      ANR
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#crash" class="md-nav__link">
+    <span class="md-ellipsis">
+      Crash
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      闪退
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#adb" class="md-nav__link">
+    <span class="md-ellipsis">
+      📌 adb常用命令
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="📌 adb常用命令">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#logcat" class="md-nav__link">
+    <span class="md-ellipsis">
+      🚁 logcat缓冲区
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -2179,80 +2244,210 @@
   
 
 
-  <h1>Nginx笔记</h1>
-
+<h1 id="app">APP测试</h1>
+<h2 id="_1">📌 关于环境</h2>
+<p>灰度环境/版本：少量机器发版，不能影响用户使用。</p>
+<p>内测时分发平台：二维码下载、蒲公英、fir.im</p>
+<p>上线时发布平台：</p>
 <ul>
-<li>高性能、开源的Web服务器，也可以用作反向代理服务器、负载均衡器和HTTP缓存。</li>
-<li>支持多种协议，包括HTTP、HTTPS、SMTP、POP3和IMAP等，并且可以通过模块化的结构来扩展其功能。</li>
-<li>优点：占用资源少、稳定性高、并发能力强等。</li>
-<li>用途，广泛应用于互联网领域。特别是高并发、大流量的网站和应用程序。</li>
+<li>安卓：豌豆荚、应用宝、360手机助手、品牌商城。</li>
+<li>IOS：AppStore、iTools</li>
 </ul>
-<h2 id="nginx">Nginx常用指令</h2>
+<p>上线：app发给平台方审核后，将获取到的平台号打包至app，再进行冒烟测试，最后正式提交发布。</p>
+<h2 id="app_1">📌 APP测试要点</h2>
+<ul>
+<li>功能测试</li>
+<li>兼容性测试</li>
+<li>安装/卸载/升级测试</li>
+<li>交叉事件测试</li>
+<li>PUSH测试</li>
+<li>性能测试</li>
+<li>用户体验测试</li>
+<li>稳定性测试</li>
+</ul>
+<h3 id="_2">🚁 兼容性测试</h3>
+<p>概括：兼容不同操作系统版本、不同厂商</p>
+<p>#todo，版本上载兼容性的测试策略</p>
+<ol>
+<li>手机型号<ul>
+<li>主流机型：三星、小米、OPPO、华为</li>
+<li>用户机型排名：移动设备份额统计、<code>https://screensiz.es/</code></li>
+</ul>
+</li>
+<li>安卓：4.4以上（5.1、6.0、7.0）；ios：9.x以上</li>
+<li>屏幕尺寸（5.5、4.7）、分辨率（<code>1080*1920</code>、<code>720*1280</code>）</li>
+<li>网络网速</li>
+<li>应用兼容性<ul>
+<li>与手机硬件兼容：手机按键、音量调节等</li>
+<li>与外部设备硬件兼容：耳机、蓝牙等</li>
+<li>与操作系统软件兼容：定位、字体设置等</li>
+<li>与其他APP兼容：主要是播放器</li>
+</ul>
+</li>
+<li>第三方云测平台</li>
+</ol>
+<h3 id="_3">🚁 安装/卸载/升级测试</h3>
+<p>属于新功能时专项测试</p>
+<ul>
+<li>
+<p>安装测试点</p>
+<ol>
+<li>
+<p>正常场景：</p>
+<ol>
+<li>在不同的操作系统版本安装</li>
+<li>从不同安装渠道安装</li>
+<li>不同的安装路径（手机/SD卡）</li>
+<li>下载时断点续传</li>
+</ol>
+</li>
+<li>
+<p>异常场景：</p>
+<ol>
+<li>安装时异常（关机、断网等），恢复后继续安装</li>
+<li>安装时存储空间不足</li>
+<li>安装时手动取消后再次安装</li>
+<li>APP正在运行时安装</li>
+<li>低版本覆盖高版本</li>
+<li>卸载后安装</li>
+</ol>
+</li>
+</ol>
+</li>
+</ul>
+<hr />
+<ul>
+<li>
+<p>卸载测试点</p>
+<ol>
+<li>正常卸载（APP手动卸载、工具卸载）</li>
+<li>运行时卸载</li>
+<li>取消卸载，回滚文件</li>
+<li>卸载异常中断</li>
+<li>卸载后残留数据、用户文件</li>
+</ol>
+</li>
+</ul>
+<hr />
+<ul>
+<li>
+<p>升级测试：升级后需要冒烟测试</p>
+<ol>
+<li>临近版本升级</li>
+<li>跨版本升级</li>
+<li>不同渠道升级</li>
+<li>升级提醒（无大改动可不提醒、新功能提示升级、重大bug或数据结构改动需强制升级）</li>
+<li>应用升级在非WIFI环境时提醒</li>
+</ol>
+</li>
+</ul>
+<h3 id="_4">🚁 交叉事件测试</h3>
+<p>又称冲突测试、干扰测试，如app运行时接听电话、收发短信、应用推送、连接蓝牙、接收文件弹窗、屏幕旋转、切换网络环境、相机计算机等自带应用、电量告警等。</p>
+<h3 id="push">🚁 PUSH测试</h3>
+<p>即消息通知，分为如下两种方式：</p>
+<ul>
+<li>pull需要客户端不断监测服务器变化</li>
+<li>push主动推送/被动推送-触发事件</li>
+</ul>
+<p>测试点：</p>
+<ol>
+<li>是否根据对应业务规则推送</li>
+<li>是否根据指定用户、角色推送</li>
+<li>是否与手机通知设置一致（不允许通知、显示位置等）</li>
+<li>app在使用时、后台运行时、离线时，push消息能否正常提示</li>
+</ol>
+<h3 id="_5">🚁 性能测试</h3>
+<ul>
+<li>服务器端，参考<a href="../test_performance/">JMeter性能测试</a></li>
+<li>APP性能测试常见指标包括：CPU、内存、流量测试/弱网测试、电量测试、流畅度测试、启动速度（不同软件切换）</li>
+</ul>
+<h3 id="_6">🚁 稳定性测试</h3>
+<p>长时间运行时进行稳定性测试，主要通过<code>monkey</code>命令，在测试后期进行。</p>
+<p>🙋 测试版的app，会让开发将跳转到其他应用的功能屏蔽掉再测。</p>
+<p>#todo，ios的稳定性测试</p>
+<p>📋 步骤：</p>
+<ol>
+<li><code>adb shell monkey -p package -v 100000 -s 100 &gt; E:\share\monkey.log</code>，向程序发送十万个伪随机事件，并记录日志。</li>
+<li>查看日志检查运行失败的次数，失败时需分析异常类型。</li>
+<li>回归测试时，使用同样的命令执行，确保seed值一致。</li>
+</ol>
+<hr />
+<p>参考资料：</p>
+<p>1.<a href="https://www.jianshu.com/p/c2aca7019ddf">monkey参数详解</a></p>
+<p>2.<a href="https://www.cnblogs.com/TFBOYS0806/p/13578005.html">monkey使用场景</a></p>
+<h2 id="app_2">📌 app异常类型</h2>
+<ul>
+<li>ANR-弹窗提示无响应</li>
+<li>Crash-弹窗提示崩溃</li>
+<li>应用闪退</li>
+</ul>
+<div class="admonition note">
+<p class="admonition-title">补充</p>
+<p>原生安卓系统ANR、Crash日志等在<code>/data/system/dropbox</code>、<code>/data/anr/trace.txt</code>等目录可找到（进入data目录需要root权限），但不同手机厂商加定制化系统时可能缺少这层目录。</p>
+</div>
+<h3 id="anr">ANR</h3>
+<ul>
+<li>日志关键字：<code>anr in</code></li>
+<li>原因分析：1.线程阻塞；2.内存不足；3.CPU满负荷（现在手机性能越来越高，基本不会出现）</li>
+</ul>
+<h3 id="crash">Crash</h3>
+<ul>
+<li>日志关键字：<code>null point</code></li>
+<li>原因分析：1.空指针；2.数组越界；3.内存不足；4.CPU满负荷（现在手机性能越来越高，基本不会出现）</li>
+</ul>
+<h3 id="_7">闪退</h3>
+<p>通过查看locat日志进行排查</p>
+<h2 id="adb">📌 adb常用命令</h2>
 <table>
 <thead>
 <tr>
-<th style="text-align: center;">指令</th>
-<th style="text-align: left;">说明</th>
+<th style="text-align: center;">命令</th>
+<th style="text-align: left;">补充说明</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td style="text-align: center;">start nginx</td>
-<td style="text-align: left;">启动服务</td>
+<td style="text-align: center;"><code>adb connect ip:port</code></td>
+<td style="text-align: left;">连接到远程设备</td>
 </tr>
 <tr>
-<td style="text-align: center;">nginx -s reopen</td>
-<td style="text-align: left;">重启服务</td>
+<td style="text-align: center;"><code>adb -s ip:port install a.apk</code></td>
+<td style="text-align: left;">指定设备安装apk</td>
 </tr>
 <tr>
-<td style="text-align: center;">nginx -s reload</td>
-<td style="text-align: left;">重新加载配置并重启服务</td>
+<td style="text-align: center;"><code>adb shell ps</code></td>
+<td style="text-align: left;">查后台进程</td>
 </tr>
 <tr>
-<td style="text-align: center;">nginx -s stop</td>
-<td style="text-align: left;">强制停止服务</td>
+<td style="text-align: center;"><code>adb shell dumpsys cpuinfo</code></td>
+<td style="text-align: left;">查看cpu信息</td>
 </tr>
 <tr>
-<td style="text-align: center;">nginx -s quit</td>
-<td style="text-align: left;">处理完所有请求后退出服务</td>
+<td style="text-align: center;"><code>adb shell dumpsys meminfo</code></td>
+<td style="text-align: left;">查看内存信息</td>
 </tr>
 <tr>
-<td style="text-align: center;">nginx -V</td>
-<td style="text-align: left;">打印版本信息</td>
+<td style="text-align: center;"><code>adb shell pm list package</code></td>
+<td style="text-align: left;">查看所有包名，参数-3仅展示第三方包</td>
+</tr>
+<tr>
+<td style="text-align: center;"><code>adb logcat -v time *:E &gt; logcat.log</code></td>
+<td style="text-align: left;">查看日志，参数<code>-v time</code>指加上时间戳；<code>*:E</code>指获取error级别日志</td>
 </tr>
 </tbody>
 </table>
-<h2 id="html">部署html网页</h2>
-<p>设置配置文件，启动服务，修改前记得备份。</p>
-<div class="tabbed-set tabbed-alternate" data-tabs="1:1"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">nginx.conf</label></div>
-<div class="tabbed-content">
-<div class="tabbed-block">
-<div class="highlight"><pre><span></span><code># 以上的内容省略 
-# 虚拟主机配置
-server {
-    listen       {自定端口号};
-    server_name  {本机ip};
-
-    location / {
-        root   {静态网页路径};
-        index  index.html;
-
-        ＃ 仅允许指定ip访问
-        allow {某个ip地址};
-        deny all;
-    }
-
-    error_page 500 502 503 504 /50x.html;
-    location = /50x.html. {
-        root html;
-    }
-    # todo,location、upstream（负载均衡）
-}
-</code></pre></div>
+<div class="admonition note">
+<p class="admonition-title">补充</p>
+<p>如需从设备取文件，执行<code>adb pull</code>即可；同理<code>adb push</code>则是推送文件。</p>
 </div>
-</div>
-</div>
-<hr />
+<h3 id="logcat">🚁 logcat缓冲区</h3>
+<p>默认256K，写满时会删除较旧的日志。搭配<code>-b Main</code>指定缓冲区。</p>
+<ul>
+<li>Radio：输出系统通信的日志</li>
+<li>System：输出系统组件的日志</li>
+<li>Events：输出事件（按键事件、触摸事件等）日志</li>
+<li>Main：输出主程序（Java的main方法）日志，不属于上述三层</li>
+</ul>
 
 
 
@@ -2273,7 +2468,7 @@ server {
     <span class="md-icon" title="最后更新">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1-2.1-2M12.5 7v5.2l4 2.4-1 1L11 13V7h1.5M11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2v1.8Z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime">2024-02-22 22:59:04</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime">2024-05-01 12:51:44</span>
   </span>
 
     
@@ -2304,28 +2499,6 @@ server {
       
         <footer class="md-footer">
   
-    
-      
-      <nav class="md-footer__inner md-grid" aria-label="页脚" >
-        
-          
-          <a href="../../docker/build_oracle/" class="md-footer__link md-footer__link--prev" aria-label="上一页: 构建Oracle镜像">
-            <div class="md-footer__button md-icon">
-              
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
-            </div>
-            <div class="md-footer__title">
-              <span class="md-footer__direction">
-                上一页
-              </span>
-              <div class="md-ellipsis">
-                构建Oracle镜像
-              </div>
-            </div>
-          </a>
-        
-        
-      </nav>
     
   
   <div class="md-footer-meta md-typeset">
