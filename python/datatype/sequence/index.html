@@ -13,10 +13,10 @@
       
       
       
-        <link rel="prev" href="../mutable%26immutable/">
+        <link rel="prev" href="../number/">
       
       
-        <link rel="next" href="../../closure/">
+        <link rel="next" href="../dict%26set/">
       
       
       <link rel="icon" href="../../../assets/images/favicon.png">
@@ -24,7 +24,7 @@
     
     
       
-        <title>二叉树 - whm</title>
+        <title>序列 - whm</title>
       
     
     
@@ -86,6 +86,11 @@
     <label class="md-overlay" for="__drawer"></label>
     <div data-md-component="skip">
       
+        
+        <a href="#list" class="md-skip">
+          跳转至
+        </a>
+      
     </div>
     <div data-md-component="announce">
       
@@ -116,7 +121,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              二叉树
+              序列
             
           </span>
         </div>
@@ -499,6 +504,8 @@
                 
   
   
+    
+  
   
   
     
@@ -508,11 +515,11 @@
       
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_1" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_1" checked>
         
           
           <label class="md-nav__link" for="__nav_2_1" id="__nav_2_1_label" tabindex="0">
@@ -526,7 +533,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_1_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_1_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_2_1">
             <span class="md-nav__icon md-icon"></span>
             数据类型
@@ -558,10 +565,28 @@
                 
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="../sequence/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    序列
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         
   
   <span class="md-ellipsis">
@@ -570,6 +595,126 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#list" class="md-nav__link">
+    <span class="md-ellipsis">
+      📌 列表list
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="📌 列表list">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      🚁 列表扩充方式
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      🚁 列表常用方法
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      🚁 列表遍历方式
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#tuple" class="md-nav__link">
+    <span class="md-ellipsis">
+      📌 元组tuple
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#str" class="md-nav__link">
+    <span class="md-ellipsis">
+      📌 字符串str
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="📌 字符串str">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      🚁 字符串拼接的方式
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      🚁 字符串比较
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      🚁 字符串常用方法
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      📌 切片
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -629,39 +774,58 @@
                 
   
   
-    
   
   
-  
-    
-    
-    
-      
-      
-    
-    
-    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
-      
+    <li class="md-nav__item">
+      <a href="../../structure/structure/" class="md-nav__link">
         
-        
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_2" checked>
-        
-          
-          <label class="md-nav__link" for="__nav_2_2" id="__nav_2_2_label" tabindex="0">
-            
   
   <span class="md-ellipsis">
     数据结构
   </span>
   
 
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_3" id="__nav_2_3_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    算法
+  </span>
+  
+
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_2_label" aria-expanded="true">
-          <label class="md-nav__title" for="__nav_2_2">
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_3">
             <span class="md-nav__icon md-icon"></span>
-            数据结构
+            算法
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
             
@@ -669,26 +833,39 @@
                 
   
   
-    
   
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../../oj/sort/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    二叉树
+    排序
   </span>
   
 
       </a>
-      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../oj/dp/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    动态规划
+  </span>
+  
+
+      </a>
     </li>
   
 
@@ -761,10 +938,10 @@
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_5" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_6" >
         
           
-          <label class="md-nav__link" for="__nav_2_5" id="__nav_2_5_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_2_6" id="__nav_2_6_label" tabindex="0">
             
   
   <span class="md-ellipsis">
@@ -775,8 +952,8 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_5_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_2_5">
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_6">
             <span class="md-nav__icon md-icon"></span>
             自动化
           </label>
@@ -799,10 +976,10 @@
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_5_1" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_6_1" >
         
           
-          <label class="md-nav__link" for="__nav_2_5_1" id="__nav_2_5_1_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_2_6_1" id="__nav_2_6_1_label" tabindex="0">
             
   
   <span class="md-ellipsis">
@@ -813,8 +990,8 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_2_5_1_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_2_5_1">
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_2_6_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_6_1">
             <span class="md-nav__icon md-icon"></span>
             pytest
           </label>
@@ -950,10 +1127,10 @@
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_5_4" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_6_4" >
         
           
-          <label class="md-nav__link" for="__nav_2_5_4" id="__nav_2_5_4_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_2_6_4" id="__nav_2_6_4_label" tabindex="0">
             
   
   <span class="md-ellipsis">
@@ -964,8 +1141,8 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_2_5_4_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_2_5_4">
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_2_6_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_6_4">
             <span class="md-nav__icon md-icon"></span>
             app自动化
           </label>
@@ -1067,10 +1244,10 @@
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_7" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_8" >
         
           
-          <label class="md-nav__link" for="__nav_2_7" id="__nav_2_7_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_2_8" id="__nav_2_8_label" tabindex="0">
             
   
   <span class="md-ellipsis">
@@ -1081,8 +1258,8 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_7_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_2_7">
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_8_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_8">
             <span class="md-nav__icon md-icon"></span>
             其他
           </label>
@@ -1205,27 +1382,6 @@
   
   <span class="md-ellipsis">
     excel
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../oj/dp/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    动态规划
   </span>
   
 
@@ -2092,6 +2248,116 @@
   
   
   
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#list" class="md-nav__link">
+    <span class="md-ellipsis">
+      📌 列表list
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="📌 列表list">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      🚁 列表扩充方式
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      🚁 列表常用方法
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      🚁 列表遍历方式
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#tuple" class="md-nav__link">
+    <span class="md-ellipsis">
+      📌 元组tuple
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#str" class="md-nav__link">
+    <span class="md-ellipsis">
+      📌 字符串str
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="📌 字符串str">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      🚁 字符串拼接的方式
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      🚁 字符串比较
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      🚁 字符串常用方法
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      📌 切片
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
 </nav>
                   </div>
                 </div>
@@ -2108,14 +2374,255 @@
   
 
 
-  <h1>二叉树</h1>
+  <h1>序列</h1>
 
+<p>序列：具备先后顺序，可以包含重复元素，通过序号访问。</p>
+<h2 id="list">📌 列表list</h2>
+<p>可变序列，创建后可修改内部元素。在内存管理上，“修改”操作直接作用于原有的内存空间，无需分配新的内存。</p>
+<h3 id="_1">🚁 列表扩充方式</h3>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">方式</th>
+<th style="text-align: left;">补充说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;"><code>list1.append('999')</code></td>
+<td style="text-align: left;">尾部追加</td>
+</tr>
+<tr>
+<td style="text-align: center;"><code>list1.extend(['666','0'])</code></td>
+<td style="text-align: left;">列表拼接</td>
+</tr>
+<tr>
+<td style="text-align: center;">+或者+=</td>
+<td style="text-align: left;">类似extend</td>
+</tr>
+<tr>
+<td style="text-align: center;"><code>insert(0,'666')</code></td>
+<td style="text-align: left;">在索引位置插入列表项</td>
+</tr>
+</tbody>
+</table>
+<h3 id="_2">🚁 列表常用方法</h3>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">方法</th>
+<th style="text-align: left;">补充说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;"><code>list1[-1]</code></td>
+<td style="text-align: left;">返回列表的最后一个元素</td>
+</tr>
+<tr>
+<td style="text-align: center;"><code>list1.sort()</code></td>
+<td style="text-align: left;">无返回值，直接在列表进行冒泡排序</td>
+</tr>
+<tr>
+<td style="text-align: center;"><code>list1.remove('5')</code></td>
+<td style="text-align: left;">删除列表中<strong><em>第一个</em></strong>'5'，无返回值；找不到该值时报ValueError</td>
+</tr>
+<tr>
+<td style="text-align: center;"><code>list1.pop(0)</code></td>
+<td style="text-align: left;">根据索引删除列表项，但要注意会改变后续项的索引</td>
+</tr>
+</tbody>
+</table>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">List</span>
+
+
+<span class="k">class</span> <span class="nc">Solution</span><span class="p">:</span>
+
+    <span class="nd">@staticmethod</span>
+    <span class="c1"># 删除nums无序列表中所有的val值</span>
+    <span class="k">def</span> <span class="nf">removeElement</span><span class="p">(</span><span class="n">nums</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">int</span><span class="p">],</span> <span class="n">val</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+        <span class="c1"># 27. 移除元素，返回移除后数组的新长度</span>
+        <span class="k">while</span> <span class="n">val</span> <span class="ow">in</span> <span class="n">nums</span><span class="p">:</span>
+            <span class="n">nums</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="n">val</span><span class="p">)</span>
+        <span class="n">length</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">nums</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;</span><span class="si">{len}</span><span class="s1">, nums=</span><span class="si">{nums}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="nb">len</span><span class="o">=</span><span class="n">length</span><span class="p">,</span> <span class="n">nums</span><span class="o">=</span><span class="n">nums</span><span class="p">))</span>
+        <span class="k">return</span> <span class="n">length</span>
+
+    <span class="nd">@staticmethod</span>
+    <span class="c1"># 删除nums非严格递增列表中重复的元素</span>
+    <span class="k">def</span> <span class="nf">removeDuplicates</span><span class="p">(</span><span class="n">nums</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">int</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+        <span class="c1"># 26. 删除有序数组中的重复项</span>
+        <span class="c1"># nums = list(set(nums))  # 通过转为集合去重，但leetcode用不了该方法</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">nums</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">):</span>  <span class="c1"># 遍历pop()需要倒序进行，正序pop()会改变原索引</span>
+            <span class="k">if</span> <span class="n">nums</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">==</span> <span class="n">nums</span><span class="p">[</span><span class="n">i</span> <span class="o">-</span> <span class="mi">1</span><span class="p">]:</span>
+                <span class="n">nums</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+        <span class="n">length</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">nums</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;</span><span class="si">{len}</span><span class="s1">, nums=</span><span class="si">{nums}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="nb">len</span><span class="o">=</span><span class="n">length</span><span class="p">,</span> <span class="n">nums</span><span class="o">=</span><span class="n">nums</span><span class="p">))</span>
+        <span class="k">return</span> <span class="n">length</span>
+</code></pre></div>
+<h3 id="_3">🚁 列表遍历方式</h3>
+<div class="tabbed-set tabbed-alternate" data-tabs="1:3"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><input id="__tabbed_1_3" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">直接遍历</label><label for="__tabbed_1_2">按索引遍历</label><label for="__tabbed_1_3">按下标遍历</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code><span class="c1"># 直接遍历，实际时按`索引 + 1`遍历</span>
+<span class="n">list1</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">24</span><span class="p">,</span> <span class="mi">34</span><span class="p">]</span>
+<span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">list1</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">item</span><span class="p">)</span>
+</code></pre></div>
+</div>
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code><span class="n">list1</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">24</span><span class="p">,</span> <span class="mi">34</span><span class="p">]</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">list1</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>  <span class="c1"># 输出：(0, 1)，即(索引，值)</span>
+<span class="c1"># 或者</span>
+<span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">x</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">list1</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">x</span><span class="p">)</span>  <span class="c1"># 输出：0 1</span>
+</code></pre></div>
+</div>
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code><span class="c1"># 按下标遍历，不规范不推荐</span>
+<span class="n">list1</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">24</span><span class="p">,</span> <span class="mi">34</span><span class="p">]</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">list1</span><span class="p">)):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">list1</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+</code></pre></div>
+</div>
+</div>
+</div>
+<h2 id="tuple">📌 元组tuple</h2>
+<p>不可变序列，创建后不能修改内部元素。在内存管理上，“修改”实际上是创建了一个新的对象，并将引用指向新对象，而原对象保持不变。</p>
 <ul>
-<li>第一层节点小于第二层节点，依此类推。</li>
-<li>树左边的节点小于右边的节点，依此类推。</li>
-<li>前序：根左右；中序：左根右；后序：左右根。</li>
-<li>二叉树的第k层的节点数最多为：2的(k-1)次方。</li>
+<li>需要删除元素时，可利用切片的方式拆分，用连接操作符+指向新元祖。</li>
+<li>只有1个元素时需要逗号如<code>('xx',)</code></li>
 </ul>
+<div class="highlight"><pre><span></span><code><span class="n">tup</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span>
+<span class="c1"># 使用切片和连接操作符来创建一个新的元组</span>
+<span class="n">new_tup</span> <span class="o">=</span> <span class="n">tup</span><span class="p">[:</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="n">tup</span><span class="p">[</span><span class="mi">2</span><span class="p">:]</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">new_tup</span><span class="p">)</span>  <span class="c1"># 输出：(1, 3, 4)</span>
+</code></pre></div>
+<h2 id="str">📌 字符串str</h2>
+<p>特殊的序列，不可变。</p>
+<h3 id="_4">🚁 字符串拼接的方式</h3>
+<p>大量字符串合并，且性能敏感时：</p>
+<ul>
+<li>
+<p>追求时间，优先选择list.append + str.join(Iterable)的方式</p>
+</li>
+<li>
+<p>追求内存使用少，优先考虑+,+=</p>
+</li>
+</ul>
+<p>少量字符串合并或性能不敏感的场景以可读性优先。</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">方式</th>
+<th style="text-align: left;">补充说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;"><code>'Hello {text}'.format(text='World')</code></td>
+<td style="text-align: left;">当有'不受信任的外部数据'传入时禁用</td>
+</tr>
+<tr>
+<td style="text-align: center;"><code>f'Hello {局部变量名}'</code></td>
+<td style="text-align: left;">与format类似，可读性较高</td>
+</tr>
+<tr>
+<td style="text-align: center;">+或者+=</td>
+<td style="text-align: left;">通过加号拼接，追求内存使用少时优先考虑</td>
+</tr>
+<tr>
+<td style="text-align: center;"><code>'&amp;'.join(str)</code></td>
+<td style="text-align: left;">在str各字符间插入'&amp;'符号，也是将列表转为字符串的方式之一</td>
+</tr>
+<tr>
+<td style="text-align: center;"><code>print('%10s' % str)</code></td>
+<td style="text-align: left;">类似C语言的%方式，%10s格式化左对齐，10个字符，不足时空格补全</td>
+</tr>
+<tr>
+<td style="text-align: center;"><code>from string import Template</code></td>
+<td style="text-align: left;">面向对象的模板拼接</td>
+</tr>
+</tbody>
+</table>
+<div class="highlight"><pre><span></span><code><span class="c1"># &#39;,&#39;.join()的传参非str类型时抛TypeError</span>
+<span class="k">try</span><span class="p">:</span>
+    <span class="n">list2</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">]</span>
+    <span class="n">str2</span> <span class="o">=</span> <span class="s1">&#39;,&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">list2</span><span class="p">)</span>
+<span class="k">except</span> <span class="ne">TypeError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">e</span><span class="p">)</span>  <span class="c1"># 输出：sequence item 0: expected str instance, int found</span>
+    <span class="n">str2</span> <span class="o">=</span> <span class="s1">&#39;,&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="nb">str</span><span class="p">,</span> <span class="n">list2</span><span class="p">))</span>  <span class="c1"># 先将list2的每个元素应用str()函数</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;pass&#39;</span><span class="p">)</span>
+<span class="k">finally</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">str2</span><span class="p">)</span>  <span class="c1"># 输出：1,2,3</span>
+</code></pre></div>
+<h3 id="_5">🚁 字符串比较</h3>
+<p>Python字符串比较大小的原则是从左到右依次比较字符串中字符的Unicode值，如果遇到相同字符，继续比较下一个字符。</p>
+<p>所以直接比较可能出现"3.11.0" &lt; "3.6.0"的情况，如下示例：</p>
+<div class="highlight"><pre><span></span><code><span class="n">version</span> <span class="o">=</span> <span class="s1">&#39;3.8.0&#39;</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">version</span> <span class="o">&lt;</span> <span class="s2">&quot;3.6.0&quot;</span><span class="p">)</span>  <span class="c1"># 输出：False</span>
+<span class="n">version</span> <span class="o">=</span> <span class="s1">&#39;3.11.0&#39;</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">version</span> <span class="o">&lt;</span> <span class="s2">&quot;3.6.0&quot;</span><span class="p">)</span>  <span class="c1"># 输出：True</span>
+
+<span class="kn">from</span> <span class="nn">packaging</span> <span class="kn">import</span> <span class="n">version</span>  <span class="c1"># 使用第三方库比较版本号</span>
+
+<span class="n">ver</span> <span class="o">=</span> <span class="s1">&#39;3.11.0&#39;</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">version</span><span class="o">.</span><span class="n">parse</span><span class="p">(</span><span class="n">ver</span><span class="p">)</span> <span class="o">&lt;</span> <span class="n">version</span><span class="o">.</span><span class="n">parse</span><span class="p">(</span><span class="s2">&quot;3.6.0&quot;</span><span class="p">))</span>
+</code></pre></div>
+<h3 id="_6">🚁 字符串常用方法</h3>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">方法</th>
+<th style="text-align: left;">说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;"><code>str1.strip()</code></td>
+<td style="text-align: left;">去除首尾空格</td>
+</tr>
+<tr>
+<td style="text-align: center;"><code>str1.split()</code></td>
+<td style="text-align: left;">输入内容作为分隔符，返回列表；默认分隔符为空格</td>
+</tr>
+<tr>
+<td style="text-align: center;"><code>str1.replace()</code></td>
+<td style="text-align: left;">字符串替换，此处是中文括号替换成英文符号</td>
+</tr>
+<tr>
+<td style="text-align: center;"><code>str1.upper()</code></td>
+<td style="text-align: left;">返回大写字符串，转小写的是str1.lower()</td>
+</tr>
+</tbody>
+</table>
+<h2 id="_7">📌 切片</h2>
+<p>完整的切片表达式为<code>[start:end:step]</code>，其中<code>start</code>和<code>end</code>都是可选的，默认值为<code>0</code>和<code>len(obj)</code>，<code>step</code>默认值为<code>1</code>。</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">表达式</th>
+<th style="text-align: left;">说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;"><code>str[i: j]</code></td>
+<td style="text-align: left;">返回字符串str第i到j个元素的子序列（不包含第j个元素），当切片超过长度时结果为空</td>
+</tr>
+<tr>
+<td style="text-align: center;"><code>str[:-1]</code></td>
+<td style="text-align: left;">返回索引0至索引-1，相当于去掉最后一位</td>
+</tr>
+<tr>
+<td style="text-align: center;"><code>str[::-1]</code></td>
+<td style="text-align: left;">返回倒序的str</td>
+</tr>
+</tbody>
+</table>
+<hr />
 
 
 
@@ -2136,7 +2643,7 @@
     <span class="md-icon" title="最后更新">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1-2.1-2M12.5 7v5.2l4 2.4-1 1L11 13V7h1.5M11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2v1.8Z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime">2024-02-24 19:56:59</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime">2024-05-01 18:00:44</span>
   </span>
 
     
@@ -2172,7 +2679,7 @@
       <nav class="md-footer__inner md-grid" aria-label="页脚" >
         
           
-          <a href="../mutable%26immutable/" class="md-footer__link md-footer__link--prev" aria-label="上一页: 可变/不可变类型">
+          <a href="../number/" class="md-footer__link md-footer__link--prev" aria-label="上一页: 数值型">
             <div class="md-footer__button md-icon">
               
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
@@ -2182,20 +2689,20 @@
                 上一页
               </span>
               <div class="md-ellipsis">
-                可变/不可变类型
+                数值型
               </div>
             </div>
           </a>
         
         
           
-          <a href="../../closure/" class="md-footer__link md-footer__link--next" aria-label="下一页: 闭包&amp;装饰器&amp;柯里化">
+          <a href="../dict%26set/" class="md-footer__link md-footer__link--next" aria-label="下一页: 字典和集合">
             <div class="md-footer__title">
               <span class="md-footer__direction">
                 下一页
               </span>
               <div class="md-ellipsis">
-                闭包&装饰器&柯里化
+                字典和集合
               </div>
             </div>
             <div class="md-footer__button md-icon">
