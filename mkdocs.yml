@@ -7,12 +7,14 @@ nav:
 - Home: index.md
 - Python:
     - 数据类型:
-      - 数值型: python/structure/number.md
-      - 序列: python/structure/sequence.md
-      - 字典和集合: python/structure/dict&set.md
-      - 可变/不可变类型: python/structure/mutable&immutable.md
-    - 数据结构:
-      - 二叉树: python/structure/binary_tree.md
+      - 数值型: python/datatype/number.md
+      - 序列: python/datatype/sequence.md
+      - 字典和集合: python/datatype/dict&set.md
+      - 可变/不可变类型: python/datatype/mutable&immutable.md
+    - 数据结构: python/structure/structure.md
+    - 算法:
+      - 排序: python/oj/sort.md
+      - 动态规划: python/oj/dp.md
     - 闭包&装饰器&柯里化: python/closure.md
     - 多线程: python/thread.md
     - 自动化:
@@ -33,7 +35,6 @@ nav:
       - json: python/pyjson/pyjson_notes.md
       - docx: python/pydocx/pydocx_notes.md
       - excel: python/pyexcel/pyexcel_notes.md
-      - 动态规划: python/oj/dp.md
       - 爬虫入门笔记: python/other/scrapy_notes.md
 - 数据库:
     - Oracle:
