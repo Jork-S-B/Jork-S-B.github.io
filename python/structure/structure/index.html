@@ -20,7 +20,7 @@
       
       
       <link rel="icon" href="../../../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.6.0, mkdocs-material-9.5.20">
+      <meta name="generator" content="mkdocs-1.6.0, mkdocs-material-9.5.21">
     
     
       
@@ -691,6 +691,15 @@
   <a href="#_2" class="md-nav__link">
     <span class="md-ellipsis">
       📌 堆
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      📌 链表
     </span>
   </a>
   
@@ -2186,6 +2195,15 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      📌 链表
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -2222,6 +2240,7 @@
 <li>树左边的节点小于右边的节点，依此类推。</li>
 <li>前序遍历：根左右；中序遍历：左根右；后序遍历：左右根。</li>
 <li>二叉树的第k层的节点数最多为：2的(k-1)次方。</li>
+<li>有一个完全二叉树的叶子节点个数为1234个，那么它最多有(1234 + 1233 = 2467)个节点。</li>
 </ul>
 <h2 id="_2">📌 堆</h2>
 <p>🎗 特性</p>
@@ -2238,6 +2257,27 @@
 <ul>
 <li>插入元素：通常需要比较新元素与父节点的值，并通过交换元素来保持堆的性质。</li>
 <li>删除元素：从堆中删除元素（通常是根节点），并用最后一个元素替换根节点，然后重新调整堆以保持其性质。</li>
+</ul>
+<h2 id="_3">📌 链表</h2>
+<p>由一系列节点（Node）组成，每个节点包含两个部分：数据部分和指向下一个节点的指针部分。</p>
+<p>链表的结构允许在内存中非连续的位置存储数据，并通过指针将这些位置连接起来。</p>
+<p>🎗 优点</p>
+<ul>
+<li>
+<p>动态分配内存：链表不需要预先分配固定大小的内存空间，可以根据需要动态地添加或删除节点。</p>
+</li>
+<li>
+<p>插入和删除操作高效：在链表中插入或删除节点通常只需要修改相关节点的指针，而不需要移动大量数据。</p>
+</li>
+</ul>
+<p>🎗 缺点</p>
+<ul>
+<li>
+<p>访问元素慢：与数组相比，链表中的元素没有固定的索引，访问特定位置的元素通常需要从头节点开始遍历链表。</p>
+</li>
+<li>
+<p>需要额外的空间存储指针：链表中的每个节点都需要额外的空间来存储指向下一个节点的指针。</p>
+</li>
 </ul>
 
 
@@ -2259,7 +2299,7 @@
     <span class="md-icon" title="最后更新">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1-2.1-2M12.5 7v5.2l4 2.4-1 1L11 13V7h1.5M11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2v1.8Z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime">2024-05-01 18:00:44</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime">2024-05-01 18:20:53</span>
   </span>
 
     
@@ -2355,8 +2395,10 @@
     <script id="__config" type="application/json">{"base": "../../..", "features": ["navigation.footer", "navigation.top", "navigation.tabs", "navigation.instant", "content.code.copy"], "search": "../../../assets/javascripts/workers/search.b8dbb3d2.min.js", "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}}</script>
     
     
-      <script src="../../../assets/javascripts/bundle.dd8806f2.min.js"></script>
+      <script src="../../../assets/javascripts/bundle.a7c05c9e.min.js"></script>
       
     
-  <script>document$.subscribe(() => {const lightbox = GLightbox({"touchNavigation": true, "loop": false, "zoomable": true, "draggable": true, "openEffect": "zoom", "closeEffect": "zoom", "slideEffect": "slide"});})</script></body>
+  <script id="init-glightbox">const lightbox = GLightbox({"touchNavigation": true, "loop": false, "zoomable": true, "draggable": true, "openEffect": "zoom", "closeEffect": "zoom", "slideEffect": "slide"});
+document$.subscribe(() => { lightbox.reload() });
+</script></body>
 </html>

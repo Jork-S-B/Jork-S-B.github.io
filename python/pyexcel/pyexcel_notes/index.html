@@ -20,7 +20,7 @@
       
       
       <link rel="icon" href="../../../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.6.0, mkdocs-material-9.5.20">
+      <meta name="generator" content="mkdocs-1.6.0, mkdocs-material-9.5.21">
     
     
       
@@ -1287,6 +1287,30 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="📌 openpyxl==3.0.10">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      🚁 插入超链接
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#excel" class="md-nav__link">
+    <span class="md-ellipsis">
+      🚁 设置样式、遍历方式、excel公式
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
     </ul>
@@ -2168,6 +2192,30 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="📌 openpyxl==3.0.10">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      🚁 插入超链接
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#excel" class="md-nav__link">
+    <span class="md-ellipsis">
+      🚁 设置样式、遍历方式、excel公式
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
     </ul>
@@ -2196,8 +2244,87 @@
 <li>读取带筛选的excel文件报错：<code>Value must be either numerical or a string containing a wildcard</code>；降级为<code>openpyxl==3.0.10</code>即可。</li>
 <li>保存excel文件，打开报错问题：<code>发现“xx.xlsx”中的部分内容有问题。是否让我们尽量尝试恢复？...</code>；降级为<code>openpyxl==3.0.10</code>即可。</li>
 </ul>
+<h3 id="_1">🚁 插入超链接</h3>
+<div class="tabbed-set tabbed-alternate" data-tabs="1:1"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">hyperlink_learn.py</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">openpyxl</span> <span class="kn">import</span> <span class="n">Workbook</span>
+<span class="kn">from</span> <span class="nn">openpyxl.styles</span> <span class="kn">import</span> <span class="n">Font</span>
+<span class="kn">from</span> <span class="nn">openpyxl.worksheet.hyperlink</span> <span class="kn">import</span> <span class="n">Hyperlink</span>
+
+<span class="n">wb</span> <span class="o">=</span> <span class="n">Workbook</span><span class="p">()</span>
+<span class="n">ws</span> <span class="o">=</span> <span class="n">wb</span><span class="o">.</span><span class="n">active</span>
+
+<span class="c1"># 在A1插入超链接</span>
+<span class="n">cell</span> <span class="o">=</span> <span class="n">ws</span><span class="o">.</span><span class="n">cell</span><span class="p">(</span><span class="n">row</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">column</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">cell</span><span class="o">.</span><span class="n">value</span> <span class="o">=</span> <span class="s1">&#39;Click here&#39;</span>
+<span class="n">cell</span><span class="o">.</span><span class="n">font</span> <span class="o">=</span> <span class="n">Font</span><span class="p">(</span><span class="n">color</span><span class="o">=</span><span class="s1">&#39;0000FF&#39;</span><span class="p">,</span> <span class="n">underline</span><span class="o">=</span><span class="s1">&#39;single&#39;</span><span class="p">)</span>
+<span class="c1"># cell.coordinate，用于表示单元格位置的属性，返回字符串如&#39;A1&#39;</span>
+<span class="n">cell</span><span class="o">.</span><span class="n">hyperlink</span> <span class="o">=</span> <span class="n">Hyperlink</span><span class="p">(</span><span class="n">ref</span><span class="o">=</span><span class="n">cell</span><span class="o">.</span><span class="n">coordinate</span><span class="p">,</span> <span class="n">target</span><span class="o">=</span><span class="s1">&#39;https://www.python.org/&#39;</span><span class="p">)</span>
+
+<span class="n">wb</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="s1">&#39;hyperlink.xlsx&#39;</span><span class="p">)</span>
+</code></pre></div>
+</div>
+</div>
+</div>
+<h3 id="excel">🚁 设置样式、遍历方式、excel公式</h3>
+<div class="tabbed-set tabbed-alternate" data-tabs="2:2"><input checked="checked" id="__tabbed_2_1" name="__tabbed_2" type="radio" /><input id="__tabbed_2_2" name="__tabbed_2" type="radio" /><div class="tabbed-labels"><label for="__tabbed_2_1">openpyxl_learn.py</label><label for="__tabbed_2_2">openpyxl_learn.xlsx</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">openpyxl</span> <span class="kn">import</span> <span class="n">load_workbook</span>
+<span class="kn">from</span> <span class="nn">openpyxl.styles</span> <span class="kn">import</span> <span class="n">Font</span><span class="p">,</span> <span class="n">Alignment</span><span class="p">,</span> <span class="n">Border</span><span class="p">,</span> <span class="n">Side</span>
+
+<span class="n">wb</span> <span class="o">=</span> <span class="n">load_workbook</span><span class="p">(</span><span class="s1">&#39;openpyxl_learn.xlsx&#39;</span><span class="p">)</span>
+<span class="n">sheet</span> <span class="o">=</span> <span class="n">wb</span><span class="p">[</span><span class="s1">&#39;Sheet&#39;</span><span class="p">]</span>
+
+<span class="n">sheet</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="s1">&#39;A&#39;</span><span class="p">,</span> <span class="s1">&#39;B&#39;</span><span class="p">,</span> <span class="s1">&#39;C&#39;</span><span class="p">))</span>
+
+<span class="c1"># 字体</span>
+<span class="n">font</span> <span class="o">=</span> <span class="n">Font</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;等线&#39;</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">italic</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;FF0000&#39;</span><span class="p">,</span> <span class="n">bold</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="c1"># 对齐方式</span>
+<span class="n">alignment</span> <span class="o">=</span> <span class="n">Alignment</span><span class="p">(</span><span class="n">horizontal</span><span class="o">=</span><span class="s1">&#39;center&#39;</span><span class="p">,</span> <span class="n">vertical</span><span class="o">=</span><span class="s1">&#39;center&#39;</span><span class="p">,</span><span class="n">wrap_text</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="c1"># 边框</span>
+<span class="n">border</span> <span class="o">=</span> <span class="n">Border</span><span class="p">(</span><span class="n">left</span><span class="o">=</span><span class="n">Side</span><span class="p">(</span><span class="n">style</span><span class="o">=</span><span class="s1">&#39;thin&#39;</span><span class="p">),</span> <span class="n">right</span><span class="o">=</span><span class="n">Side</span><span class="p">(</span><span class="n">style</span><span class="o">=</span><span class="s1">&#39;thin&#39;</span><span class="p">),</span> <span class="n">top</span><span class="o">=</span><span class="n">Side</span><span class="p">(</span><span class="n">style</span><span class="o">=</span><span class="s1">&#39;thin&#39;</span><span class="p">),</span> <span class="n">bottom</span><span class="o">=</span><span class="n">Side</span><span class="p">(</span><span class="n">style</span><span class="o">=</span><span class="s1">&#39;thin&#39;</span><span class="p">))</span>
+
+<span class="c1"># 切片方式访问</span>
+<span class="k">for</span> <span class="n">row_idx</span><span class="p">,</span> <span class="n">row</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">sheet</span><span class="p">[</span><span class="s1">&#39;A1:C5&#39;</span><span class="p">],</span> <span class="n">start</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
+    <span class="n">sheet</span><span class="o">.</span><span class="n">row_dimensions</span><span class="p">[</span><span class="n">row_idx</span><span class="p">]</span><span class="o">.</span><span class="n">height</span> <span class="o">=</span> <span class="mi">50</span>  <span class="c1"># 设置行高</span>
+    <span class="k">for</span> <span class="n">cell</span> <span class="ow">in</span> <span class="n">row</span><span class="p">:</span>
+        <span class="n">cell</span><span class="o">.</span><span class="n">font</span> <span class="o">=</span> <span class="n">font</span>
+        <span class="n">cell</span><span class="o">.</span><span class="n">alignment</span> <span class="o">=</span> <span class="n">alignment</span>
+        <span class="n">cell</span><span class="o">.</span><span class="n">border</span> <span class="o">=</span> <span class="n">border</span>
+        <span class="c1"># print(cell.value)</span>
+
+<span class="c1"># 获取sheet中某一行，返回一个元组</span>
+<span class="k">for</span> <span class="n">cell</span> <span class="ow">in</span> <span class="n">sheet</span><span class="o">.</span><span class="n">iter_rows</span><span class="p">(</span><span class="n">min_row</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">max_row</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">values_only</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+    <span class="n">row_th</span> <span class="o">=</span> <span class="n">cell</span>
+
+<span class="c1"># 访问单个单元格</span>
+<span class="n">_</span> <span class="o">=</span> <span class="n">sheet</span><span class="o">.</span><span class="n">cell</span><span class="p">(</span><span class="n">row</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">column</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">value</span>
+<span class="c1"># 修改单元格的值</span>
+<span class="n">_</span> <span class="o">=</span> <span class="n">sheet</span><span class="o">.</span><span class="n">cell</span><span class="p">(</span><span class="n">row</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">column</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">value</span><span class="o">=</span><span class="s1">&#39;修改&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">value</span>
+
+<span class="n">sheet</span> <span class="o">=</span> <span class="n">wb</span><span class="p">[</span><span class="s1">&#39;Sheet1&#39;</span><span class="p">]</span>  
+<span class="c1"># Sheet1_A1单元格的内容为excel公式“=SUM(Sheet!B:B)”</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">sheet</span><span class="o">.</span><span class="n">cell</span><span class="p">(</span><span class="n">row</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">column</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">value</span><span class="p">)</span>  <span class="c1"># 打印&quot;=SUM(Sheet!B:B)&quot;</span>
+
+<span class="c1"># load_workbook()设置data_only=True，才会读取excel公式的计算结果</span>
+
+<span class="n">wb</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="s1">&#39;openpyxl_learn_bak.xlsx&#39;</span><span class="p">)</span>
+</code></pre></div>
+</div>
+<div class="tabbed-block">
+<p><a href="../file/openpyxl_learn.xlsx">openpyxl_learn.xlsx</a></p>
+</div>
+</div>
+</div>
 <hr />
-<p>参考资料：<a href="https://zhuanlan.zhihu.com/p/353669230">Python操作Excel库总结</a></p>
+<p>参考资料：</p>
+<ol>
+<li><a href="https://zhuanlan.zhihu.com/p/353669230">Python操作Excel库总结</a></li>
+<li><a href="https://www.cnblogs.com/programmer-tlh/p/10461353.html">openpyxl模块常用方法</a></li>
+<li><a href="https://zhuanlan.zhihu.com/p/154206853">openpyxl模块使用样式</a></li>
+</ol>
 
 
 
@@ -2218,7 +2345,7 @@
     <span class="md-icon" title="最后更新">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1-2.1-2M12.5 7v5.2l4 2.4-1 1L11 13V7h1.5M11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2v1.8Z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime">2024-04-27 13:32:50</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime">2024-05-10 20:41:54</span>
   </span>
 
     
@@ -2314,8 +2441,10 @@
     <script id="__config" type="application/json">{"base": "../../..", "features": ["navigation.footer", "navigation.top", "navigation.tabs", "navigation.instant", "content.code.copy"], "search": "../../../assets/javascripts/workers/search.b8dbb3d2.min.js", "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}}</script>
     
     
-      <script src="../../../assets/javascripts/bundle.dd8806f2.min.js"></script>
+      <script src="../../../assets/javascripts/bundle.a7c05c9e.min.js"></script>
       
     
-  <script>document$.subscribe(() => {const lightbox = GLightbox({"touchNavigation": true, "loop": false, "zoomable": true, "draggable": true, "openEffect": "zoom", "closeEffect": "zoom", "slideEffect": "slide"});})</script></body>
+  <script id="init-glightbox">const lightbox = GLightbox({"touchNavigation": true, "loop": false, "zoomable": true, "draggable": true, "openEffect": "zoom", "closeEffect": "zoom", "slideEffect": "slide"});
+document$.subscribe(() => { lightbox.reload() });
+</script></body>
 </html>
