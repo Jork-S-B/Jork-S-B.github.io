@@ -61,6 +61,7 @@ nav:
       - Day04: hadoop/scala/day04.md
 - Docker:
     - Docker for Windows: docker/windows_docker.md
+    - Docker for Arch Linux: docker/archlinux_docker.md
     - 构建MySQL镜像: docker/build_mysql.md
     - 构建Oracle镜像: docker/build_oracle.md
     #  - 构建Jenkins镜像: docker/build_jenkins.md
