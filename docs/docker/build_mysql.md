@@ -32,7 +32,7 @@
     INSERT INTO users (name, email) VALUES ('Jane Doe', 'jane@example.com');
     ```
 
-=== "my.conf"
+=== "my.cnf"
 
     ```
     [mysqld]
@@ -47,7 +47,7 @@
 
 !!! note "补充"
     
-    -f  # 可以指定Dockerfile文件路径
+    -f：可以指定Dockerfile文件路径
 
 ### 🚁 运行容器并检查状态
 
@@ -57,9 +57,9 @@
 
 !!! note "补充"
 
-    -d  # 守护态运行容器，实现容器的持久化运行，即使终端关闭或主机重启，容器仍然会自动启动并继续提供服务。
+    -d：守护态运行容器，实现容器的持久化运行，即使终端关闭或主机重启，容器仍然会自动启动并继续提供服务。
 
-    -v  # ${pwd}代表当前目录，即把当前目录挂载到容器的 /var/lib/mysql 目录。
+    -v：${pwd}代表当前目录（要求空目录），即把当前目录挂载到容器的`/var/lib/mysql`目录。
 
     -v直接输入windows的路径会报错，如：
 
