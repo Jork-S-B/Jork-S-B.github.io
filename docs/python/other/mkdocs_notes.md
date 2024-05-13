@@ -10,7 +10,7 @@ mkdocs：基于Python的文档生成工具，用于快速、简单的生成网�
 | `mkdocs serve -a ip:port` | 在本地运行，预览生成的html；默认8000端口    |
 |      `mkdocs build`       | md转html文件，生成的文件在./site目录下   |
 
-!!! tip
+!!! note "补充"
 
     需要先cd至存放mkdocs.yml的目录
 

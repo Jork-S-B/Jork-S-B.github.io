@@ -40,7 +40,7 @@ WebDriverWait(driver, 10).until(lambda x: x.find_element(by='xpath', value=value
 |  `button[not(@disabled)]`   | 匹配不包含disable属性的按钮 |
 |  `contains(.,"{text}")`   | 匹配包含text文本的任意标签 |
 
-!!! tip "小技巧"
+!!! tip
 
     浏览器F12->Console调试，输入`setTimeout(function(){debugger},1000)`，表示过1秒后进入调试模式，在排查元素定位、元素覆盖时有用。
 
