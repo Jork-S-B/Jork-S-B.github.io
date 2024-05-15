@@ -46,6 +46,7 @@ nav:
       - 备忘: sql/oracle/other_notes.md
     - Redis: sql/redis_notes.md
 - Shell:
+    - 复习: shell/review.md
     - regex.sh: shell/regex.md
     - 检查命令耗时: shell/timestamp.md
 - 测试工具:
