@@ -50,6 +50,10 @@ SELECT TO_CHAR(ADD_MONTHS(SYSDATE, -1), 'YYYYMM') FROM DUAL;
 SELECT TO_CHAR(ADD_MONTH(TO_DATE('202401','YYYYMM'),-1),'YYYYMM') FROM DUAL;
 ```
 
+!!! note "补充"
+
+    `TO_NUMBER(STR)`等价于`CAST(STR AS NUMBER)`，转为number类型。
+
 ### 🚁 时间倒序排序
 ```sql
 --时间倒序排序，最新的靠前，空的靠后
