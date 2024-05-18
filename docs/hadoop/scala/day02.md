@@ -82,6 +82,32 @@ object Learn03_IO {
 }
 ```
 
+## 📌 Java IO
+
+```java
+public class JavaIOReview {
+    // 字节流与字符流，两者不能混用（无法确定多少个字节等于一个字符），或者先提前做转换。
+    // InputStream字节流-适用于处理二进制数据，如图片、音频、视频或任何非文本文件。
+    // Reader字符流-专门用于处理文本数据，通常需要指定字符编码，如 "UTF-8"。
+    public static void main(String[] args) throws IOException {
+        // FileInputStream-文件字节流，每读取一个字节直接打印
+        // 加多一层缓冲BufferedInputStream，先读取到缓冲，超过阈值再打印，批处理以提高效率
+        InputStream in = new BufferedInputStream(new FileInputStream(path));
+        int i = -1;
+        while ((i = in.read()) != -1) {
+            System.out.print((char) i);
+        }
+        // 通过装饰者模式，核心功能不变的同时，扩展更丰富的功能。
+        Reader in2 = new BufferedReader(new InputStreamReader(new FileInputStream(path), "UTF-8"));
+        String s = null;
+        while ((s = ((BufferedReader) in2).readLine()) != null) {
+            System.out.println(s);
+        }
+
+    }
+}
+```
+
 ## 📌 数据类型
 
 * Scala中所有数据都是对象，都是Any的子类。
