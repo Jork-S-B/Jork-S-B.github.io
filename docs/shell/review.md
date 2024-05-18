@@ -19,7 +19,6 @@
 |  `:set number`  | 显示行号                     |
 | `:%s/xxx/whm/g` | 查找xxx并替换为whm，与`sed -i`类似 |
 
-
 !!! note "补充"
 
     s-switch，表示替换；g-global，表示整个文档；`/`-分隔符，可以改用其他符号如`#`。
@@ -38,3 +37,22 @@
 1. 文件所有者可读可写可执行；
 2. 与文件所有者同属一个用户组的其他用户可读可执行；
 3. 其它用户组可读可执行。
+
+## 📌 加解压
+
+|              命令              | 说明                               |
+|:----------------------------:|:---------------------------------|
+|      `gzip -8 xxx.txt`       | gzip方式压缩，压缩级别为8                  |
+|       `gzip -d xx.gz`        | 	gz解压                            |
+|  `tar -zcvf xx.tar.gz ./*`   | 当前路径下的文件压缩至xx.tar.gz             |
+|    `tar -zxvf xx.tar.gz`     | tar解压                            |
+|     `zip -r xx.zip ./*`      | 当前路径下的文件压缩至xx.zip                |
+|   `unzip -o -j ${jarname}`   | 解压jar包，-o overrize，-d解压时创建一个新的目录 |
+| `jar xvf ${jarname} xxx.txt` | 仅解压jar包的xxx.txt                  |
+
+
+## 📌 软链接
+
+`ln -s /home/whm ./whm`	
+
+/home/whm是实际地址，./whm相当于快捷方式。
