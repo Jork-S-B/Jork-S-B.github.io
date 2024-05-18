@@ -86,3 +86,4 @@
 1. [Python操作Excel库总结](https://zhuanlan.zhihu.com/p/353669230)
 2. [openpyxl模块常用方法](https://www.cnblogs.com/programmer-tlh/p/10461353.html)
 3. [openpyxl模块使用样式](https://zhuanlan.zhihu.com/p/154206853)
+4. [xlwings+PIL将sheet复制保存为图片](https://www.cnblogs.com/cgmcoding/p/16517494.html)
