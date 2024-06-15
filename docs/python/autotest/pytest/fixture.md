@@ -163,7 +163,7 @@ pytest参数化的方式包括：
 
 实际上各文件编码、IDE的输出编码、pytest.ini编码设置都是utf-8，且调试时也能正常解析汉字，不影响运行结果。
 
-![parametrize_debug](./img/Snipaste_2024-02-25_13-08-27.jpg)
+![parametrize_debug](img/Snipaste_2024-02-25_13-08-27.jpg)
 
 [解决方案](https://dandelioncloud.cn/article/details/1596087866059079681)可参考这一篇，使用pytest钩子函数，在测试项收集完成阶段处理编码问题。
 

@@ -19,14 +19,15 @@ nav:
     - 多线程: python/thread.md
     - 自动化:
       - pytest:
-        - 测试夹具: python/pytest/fixture.md
-        - pytest.main: python/pytest/pytest.main.md
-        - pytest.ini: python/pytest/pytest.ini.md
-      - unittest笔记: python/unittest/unittest_notes.md
-      - selenium笔记: python/selenium/selenium_notes.md
+        - 测试夹具: python/autotest/pytest/fixture.md
+        - pytest.main: python/autotest/pytest/pytest.main.md
+        - pytest.ini: python/autotest/pytest/pytest.ini.md
+      - unittest笔记: python/autotest/unittest/unittest_notes.md
+      - selenium笔记: python/autotest/selenium/selenium_notes.md
       - app自动化:
-          - airtest: python/app/mumu_sim.md
-          - appium: python/app/appium.md
+          - airtest: python/autotest/app/mumu_sim.md
+          - appium: python/autotest/app/appium.md
+      - mitmproxy: python/autotest/mitmproxy.md
     - Flask: python/web/flask.md
     - 其他:
       - Python路径迁移: python/other/mv_py_path.md
