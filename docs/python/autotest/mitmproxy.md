@@ -2,4 +2,4 @@
 
 参考资料：[mitmproxy的使用以及遇到的问题](https://blog.csdn.net/feiyu68/article/details/119665869)
 
-代码示例可参考：[使用mitmproxy+jinja2，捕获请求并生成对应的接口测试用例](https://gitee.com/Jork-S-B/basic-auto-test/blob/dbb18ae8c1c31ba7269307ea1090ad3f6b70bc76/Commons/my_proxy/api_proxy.py)
+代码示例可参考：[使用mitmproxy+jinja2，捕获请求并生成对应的接口测试用例](https://gitee.com/Jork-S-B/basic-auto-test/blob/master/Commons/my_proxy/api_proxy.py)
