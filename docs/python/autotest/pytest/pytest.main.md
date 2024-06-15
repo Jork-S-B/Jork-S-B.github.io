@@ -14,9 +14,9 @@ data_dir = os.path.join(REPORT_PATH, today, 'data')
 report_dir = os.path.join(REPORT_PATH, today, 'report')
     
 # 方式1，运行全部用例
-run_info = ['-v', '-s', '-q', '--reruns', 1, '--alluredir', data_dir]
+run_info = ['-v', '-s', '-q', '--reruns=1', '--alluredir', data_dir]
 # 方式2，运行上次失败的用例
-run_info = ['--lf', '-s', '-q', '--reruns', 1, '--alluredir', data_dir]
+run_info = ['--lf', '-s', '-q', '--reruns=1', '--alluredir', data_dir]
 
 # 方式3，运行指定模块
 run_info = ['-vs', 'testCompare.py', '--alluredir', data_dir]
