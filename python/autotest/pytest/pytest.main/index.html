@@ -13,25 +13,25 @@
       
       
       
-        <link rel="prev" href="../../pytest/pytest.ini/">
+        <link rel="prev" href="../fixture/">
       
       
-        <link rel="next" href="../../selenium/selenium_notes/">
+        <link rel="next" href="../pytest.ini/">
       
       
-      <link rel="icon" href="../../../assets/images/favicon.png">
+      <link rel="icon" href="../../../../assets/images/favicon.png">
       <meta name="generator" content="mkdocs-1.6.0, mkdocs-material-9.5.26">
     
     
       
-        <title>unittest笔记 - whm</title>
+        <title>pytest.main - whm</title>
       
     
     
-      <link rel="stylesheet" href="../../../assets/stylesheets/main.6543a935.min.css">
+      <link rel="stylesheet" href="../../../../assets/stylesheets/main.6543a935.min.css">
       
         
-        <link rel="stylesheet" href="../../../assets/stylesheets/palette.06af60db.min.css">
+        <link rel="stylesheet" href="../../../../assets/stylesheets/palette.06af60db.min.css">
       
       
 
@@ -50,16 +50,16 @@
       
     
     
-      <link rel="stylesheet" href="../../../stylesheets/extra.css">
+      <link rel="stylesheet" href="../../../../stylesheets/extra.css">
     
-    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    <script>__md_scope=new URL("../../../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
 
     
     
     
-   <link href="../../../assets/stylesheets/glightbox.min.css" rel="stylesheet"/><style>
+   <link href="../../../../assets/stylesheets/glightbox.min.css" rel="stylesheet"/><style>
     html.glightbox-open { overflow: initial; height: 100%; }
     .gslide-title { margin-top: 0px; user-select: text; }
     .gslide-desc { color: #666; user-select: text; }
@@ -68,7 +68,7 @@
     .gdesc-inner { font-size: 0.75rem; }
     body[data-md-color-scheme="slate"] .gdesc-inner { background: var(--md-default-bg-color);}
     body[data-md-color-scheme="slate"] .gslide-title { color: var(--md-default-fg-color);}
-    body[data-md-color-scheme="slate"] .gslide-desc { color: var(--md-default-fg-color);}</style> <script src="../../../assets/javascripts/glightbox.min.js"></script></head>
+    body[data-md-color-scheme="slate"] .gslide-desc { color: var(--md-default-fg-color);}</style> <script src="../../../../assets/javascripts/glightbox.min.js"></script></head>
   
   
     
@@ -86,11 +86,6 @@
     <label class="md-overlay" for="__drawer"></label>
     <div data-md-component="skip">
       
-        
-        <a href="#_1" class="md-skip">
-          跳转至
-        </a>
-      
     </div>
     <div data-md-component="announce">
       
@@ -101,7 +96,7 @@
 
 <header class="md-header" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="页眉">
-    <a href="../../.." title="whm" class="md-header__button md-logo" aria-label="whm" data-md-component="logo">
+    <a href="../../../.." title="whm" class="md-header__button md-logo" aria-label="whm" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.5.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M256 512a256 256 0 1 0 0-512 256 256 0 1 0 0 512zm-91.9-186.5C182 346.2 212.6 368 256 368s74-21.8 91.9-42.5c5.8-6.7 15.9-7.4 22.6-1.6s7.4 15.9 1.6 22.6c-22.3 25.6-61 53.5-116.1 53.5s-93.8-27.9-116.1-53.5c-5.8-6.7-5.1-16.8 1.6-22.6s16.8-5.1 22.6 1.6zM144.4 208a32 32 0 1 1 64 0 32 32 0 1 1-64 0zm156.4 25.6c-5.3 7.1-15.3 8.5-22.4 3.2s-8.5-15.3-3.2-22.4c30.4-40.5 91.2-40.5 121.6 0 5.3 7.1 3.9 17.1-3.2 22.4s-17.1 3.9-22.4-3.2c-17.6-23.5-52.8-23.5-70.4 0z"/></svg>
@@ -121,7 +116,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              unittest笔记
+              pytest.main
             
           </span>
         </div>
@@ -228,7 +223,7 @@
   
   
     <li class="md-tabs__item">
-      <a href="../../.." class="md-tabs__link">
+      <a href="../../../.." class="md-tabs__link">
         
   
     
@@ -259,7 +254,7 @@
     
     
       <li class="md-tabs__item md-tabs__item--active">
-        <a href="../../datatype/number/" class="md-tabs__link">
+        <a href="../../../datatype/number/" class="md-tabs__link">
           
   
   Python
@@ -286,7 +281,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="../../../sql/oracle/sqlldr_import/" class="md-tabs__link">
+        <a href="../../../../sql/oracle/sqlldr_import/" class="md-tabs__link">
           
   
   数据库
@@ -307,7 +302,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="../../../shell/review/" class="md-tabs__link">
+        <a href="../../../../shell/review/" class="md-tabs__link">
           
   
   Shell
@@ -325,7 +320,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="../../../utils/fiddler_notes/" class="md-tabs__link">
+        <a href="../../../../utils/fiddler_notes/" class="md-tabs__link">
           
   
   测试工具
@@ -343,7 +338,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="../../../hadoop/ecosystem/" class="md-tabs__link">
+        <a href="../../../../hadoop/ecosystem/" class="md-tabs__link">
           
   
   Hadoop
@@ -361,7 +356,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="../../../docker/windows_docker/" class="md-tabs__link">
+        <a href="../../../../docker/windows_docker/" class="md-tabs__link">
           
   
   Docker
@@ -379,7 +374,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="../../../other/nginx_notes/" class="md-tabs__link">
+        <a href="../../../../other/nginx_notes/" class="md-tabs__link">
           
   
   其他
@@ -412,7 +407,7 @@
 
 <nav class="md-nav md-nav--primary md-nav--lifted" aria-label="导航栏" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="../../.." title="whm" class="md-nav__button md-logo" aria-label="whm" data-md-component="logo">
+    <a href="../../../.." title="whm" class="md-nav__button md-logo" aria-label="whm" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.5.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M256 512a256 256 0 1 0 0-512 256 256 0 1 0 0 512zm-91.9-186.5C182 346.2 212.6 368 256 368s74-21.8 91.9-42.5c5.8-6.7 15.9-7.4 22.6-1.6s7.4 15.9 1.6 22.6c-22.3 25.6-61 53.5-116.1 53.5s-93.8-27.9-116.1-53.5c-5.8-6.7-5.1-16.8 1.6-22.6s16.8-5.1 22.6 1.6zM144.4 208a32 32 0 1 1 64 0 32 32 0 1 1-64 0zm156.4 25.6c-5.3 7.1-15.3 8.5-22.4 3.2s-8.5-15.3-3.2-22.4c30.4-40.5 91.2-40.5 121.6 0 5.3 7.1 3.9 17.1-3.2 22.4s-17.1 3.9-22.4-3.2c-17.6-23.5-52.8-23.5-70.4 0z"/></svg>
@@ -442,7 +437,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../.." class="md-nav__link">
+      <a href="../../../.." class="md-nav__link">
         
   
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2A10 10 0 0 0 2 12a10 10 0 0 0 10 10 10 10 0 0 0 10-10A10 10 0 0 0 12 2M7 9.5C7 8.7 7.7 8 8.5 8s1.5.7 1.5 1.5S9.3 11 8.5 11 7 10.3 7 9.5m5 7.73c-1.75 0-3.29-.73-4.19-1.81L9.23 14c.45.72 1.52 1.23 2.77 1.23s2.32-.51 2.77-1.23l1.42 1.42c-.9 1.08-2.44 1.81-4.19 1.81M15.5 11c-.8 0-1.5-.7-1.5-1.5S14.7 8 15.5 8s1.5.7 1.5 1.5-.7 1.5-1.5 1.5Z"/></svg>
@@ -545,7 +540,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../datatype/number/" class="md-nav__link">
+      <a href="../../../datatype/number/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -566,7 +561,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../datatype/sequence/" class="md-nav__link">
+      <a href="../../../datatype/sequence/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -587,7 +582,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../datatype/dict%26set/" class="md-nav__link">
+      <a href="../../../datatype/dict%26set/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -608,7 +603,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../datatype/mutable%26immutable/" class="md-nav__link">
+      <a href="../../../datatype/mutable%26immutable/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -637,7 +632,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../structure/structure/" class="md-nav__link">
+      <a href="../../../structure/structure/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -696,7 +691,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../oj/sort/" class="md-nav__link">
+      <a href="../../../oj/sort/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -717,7 +712,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../oj/dp/" class="md-nav__link">
+      <a href="../../../oj/dp/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -746,7 +741,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../closure/" class="md-nav__link">
+      <a href="../../../closure/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -767,7 +762,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../thread/" class="md-nav__link">
+      <a href="../../../thread/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -825,6 +820,8 @@
                 
   
   
+    
+  
   
   
     
@@ -834,11 +831,11 @@
       
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_6_1" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_6_1" checked>
         
           
           <label class="md-nav__link" for="__nav_2_6_1" id="__nav_2_6_1_label" tabindex="0">
@@ -852,7 +849,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_2_6_1_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_2_6_1_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_2_6_1">
             <span class="md-nav__icon md-icon"></span>
             pytest
@@ -866,7 +863,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../pytest/fixture/" class="md-nav__link">
+      <a href="../fixture/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -884,10 +881,17 @@
                 
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="../../pytest/pytest.main/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         
   
   <span class="md-ellipsis">
@@ -896,6 +900,7 @@
   
 
       </a>
+      
     </li>
   
 
@@ -908,7 +913,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../pytest/pytest.ini/" class="md-nav__link">
+      <a href="../pytest.ini/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -934,28 +939,10 @@
                 
   
   
-    
   
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          
-  
-  <span class="md-ellipsis">
-    unittest笔记
-  </span>
-  
-
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../../unittest/unittest_notes/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -964,51 +951,6 @@
   
 
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="目录">
-  
-  
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      目录
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#_1" class="md-nav__link">
-    <span class="md-ellipsis">
-      📌 自定义测试套件
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#_2" class="md-nav__link">
-    <span class="md-ellipsis">
-      📌 断言
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#unittestmain" class="md-nav__link">
-    <span class="md-ellipsis">
-      📌 unittest.main()
-    </span>
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -1123,6 +1065,27 @@
 
               
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../mitmproxy/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    mitmproxy
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
@@ -1138,7 +1101,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../web/flask/" class="md-nav__link">
+      <a href="../../../web/flask/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1197,7 +1160,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../other/mv_py_path/" class="md-nav__link">
+      <a href="../../../other/mv_py_path/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1218,7 +1181,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../other/mkdocs_notes/" class="md-nav__link">
+      <a href="../../../other/mkdocs_notes/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1239,7 +1202,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../regex/re/" class="md-nav__link">
+      <a href="../../../regex/re/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1260,7 +1223,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../pyjson/pyjson_notes/" class="md-nav__link">
+      <a href="../../../pyjson/pyjson_notes/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1281,7 +1244,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../pydocx/pydocx_notes/" class="md-nav__link">
+      <a href="../../../pydocx/pydocx_notes/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1302,7 +1265,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../pyexcel/pyexcel_notes/" class="md-nav__link">
+      <a href="../../../pyexcel/pyexcel_notes/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1323,7 +1286,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../other/scrapy_notes/" class="md-nav__link">
+      <a href="../../../other/scrapy_notes/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1435,7 +1398,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../sql/oracle/sqlldr_import/" class="md-nav__link">
+      <a href="../../../../sql/oracle/sqlldr_import/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1456,7 +1419,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../sql/oracle/some/" class="md-nav__link">
+      <a href="../../../../sql/oracle/some/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1477,7 +1440,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../sql/oracle/lock%26unlock/" class="md-nav__link">
+      <a href="../../../../sql/oracle/lock%26unlock/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1498,7 +1461,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../sql/oracle/procedure/" class="md-nav__link">
+      <a href="../../../../sql/oracle/procedure/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1519,7 +1482,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../sql/oracle/gather_table_stats/" class="md-nav__link">
+      <a href="../../../../sql/oracle/gather_table_stats/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1540,7 +1503,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../sql/oracle/other_notes/" class="md-nav__link">
+      <a href="../../../../sql/oracle/other_notes/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1569,7 +1532,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../sql/mysql_notes/" class="md-nav__link">
+      <a href="../../../../sql/mysql_notes/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1590,7 +1553,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../sql/redis_notes/" class="md-nav__link">
+      <a href="../../../../sql/redis_notes/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1656,7 +1619,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../shell/review/" class="md-nav__link">
+      <a href="../../../../shell/review/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1677,7 +1640,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../shell/regex/" class="md-nav__link">
+      <a href="../../../../shell/regex/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1698,7 +1661,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../shell/timestamp/" class="md-nav__link">
+      <a href="../../../../shell/timestamp/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1764,7 +1727,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../utils/fiddler_notes/" class="md-nav__link">
+      <a href="../../../../utils/fiddler_notes/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1785,7 +1748,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../utils/charles_notes/" class="md-nav__link">
+      <a href="../../../../utils/charles_notes/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1806,7 +1769,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../utils/postman_notes/" class="md-nav__link">
+      <a href="../../../../utils/postman_notes/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1872,7 +1835,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../hadoop/ecosystem/" class="md-nav__link">
+      <a href="../../../../hadoop/ecosystem/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1931,7 +1894,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../hadoop/scala/day01/" class="md-nav__link">
+      <a href="../../../../hadoop/scala/day01/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1952,7 +1915,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../hadoop/scala/day02/" class="md-nav__link">
+      <a href="../../../../hadoop/scala/day02/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1973,7 +1936,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../hadoop/scala/day03/" class="md-nav__link">
+      <a href="../../../../hadoop/scala/day03/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1994,7 +1957,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../hadoop/scala/day04/" class="md-nav__link">
+      <a href="../../../../hadoop/scala/day04/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -2068,7 +2031,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../docker/windows_docker/" class="md-nav__link">
+      <a href="../../../../docker/windows_docker/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -2089,7 +2052,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../docker/archlinux_docker/" class="md-nav__link">
+      <a href="../../../../docker/archlinux_docker/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -2110,7 +2073,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../docker/build_mysql/" class="md-nav__link">
+      <a href="../../../../docker/build_mysql/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -2131,7 +2094,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../docker/build_oracle/" class="md-nav__link">
+      <a href="../../../../docker/build_oracle/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -2197,7 +2160,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../other/nginx_notes/" class="md-nav__link">
+      <a href="../../../../other/nginx_notes/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -2236,41 +2199,6 @@
   
   
   
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      目录
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#_1" class="md-nav__link">
-    <span class="md-ellipsis">
-      📌 自定义测试套件
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#_2" class="md-nav__link">
-    <span class="md-ellipsis">
-      📌 断言
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#unittestmain" class="md-nav__link">
-    <span class="md-ellipsis">
-      📌 unittest.main()
-    </span>
-  </a>
-  
-</li>
-      
-    </ul>
-  
 </nav>
                   </div>
                 </div>
@@ -2287,28 +2215,60 @@
   
 
 
-  <h1>unittest笔记</h1>
+  <h1>pytest.main</h1>
 
-<h2 id="_1">📌 自定义测试套件</h2>
-<div class="highlight"><pre><span></span><code><span class="n">suite</span><span class="o">.</span><span class="n">addTest</span><span class="p">(</span><span class="n">case</span><span class="p">)</span>  <span class="c1"># 单个用例加载到套件</span>
-<span class="n">suite</span><span class="o">.</span><span class="n">addTest</span><span class="p">(</span><span class="n">loader</span><span class="o">.</span><span class="n">loadTestsFromTestCase</span><span class="p">(</span><span class="n">TestCaseDemo</span><span class="p">))</span>  <span class="c1"># 用例类加载到套件</span>
-<span class="n">suite</span><span class="o">.</span><span class="n">addTest</span><span class="p">(</span><span class="n">loader</span><span class="o">.</span><span class="n">loadTestsFromModule</span><span class="p">(</span><span class="n">testcase</span><span class="p">))</span>  <span class="c1"># 用例模块(.py)加载到套件</span>
-<span class="n">suite</span><span class="o">.</span><span class="n">addTest</span><span class="p">(</span><span class="n">loader</span><span class="o">.</span><span class="n">discover</span><span class="p">(</span><span class="n">case_path</span><span class="p">,</span> <span class="n">pattern</span><span class="o">=</span><span class="s1">&#39;testcase*.py&#39;</span><span class="p">))</span>  <span class="c1"># 指定路径加载，默认加载该路径下所有test开头的用例</span>
+<div class="highlight"><pre><span></span><code><span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">-s 输出打印信息到控制台，关闭捕捉</span>
+<span class="sd">-v 显示具体的用例执行的详细信息</span>
+<span class="sd">-q 简化输出信息</span>
+<span class="sd">--reruns=1 失败用例重跑，次数为1</span>
+<span class="sd">--alluredir=file_dir 指定报告的数据源文件目录路径，需要安装allure-pytest</span>
+<span class="sd">--clean-alluredir 清掉allure报告中的用例执行记录</span>
+<span class="sd">&#39;&#39;&#39;</span>
+
+<span class="n">today</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span><span class="o">.</span><span class="n">now</span><span class="p">()</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s1">&#39;%Y%m</span><span class="si">%d</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="n">data_dir</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">REPORT_PATH</span><span class="p">,</span> <span class="n">today</span><span class="p">,</span> <span class="s1">&#39;data&#39;</span><span class="p">)</span>
+<span class="n">report_dir</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">REPORT_PATH</span><span class="p">,</span> <span class="n">today</span><span class="p">,</span> <span class="s1">&#39;report&#39;</span><span class="p">)</span>
+
+<span class="c1"># 方式1，运行全部用例</span>
+<span class="n">run_info</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;-v&#39;</span><span class="p">,</span> <span class="s1">&#39;-s&#39;</span><span class="p">,</span> <span class="s1">&#39;-q&#39;</span><span class="p">,</span> <span class="s1">&#39;--reruns&#39;</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="s1">&#39;--alluredir&#39;</span><span class="p">,</span> <span class="n">data_dir</span><span class="p">]</span>
+<span class="c1"># 方式2，运行上次失败的用例</span>
+<span class="n">run_info</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;--lf&#39;</span><span class="p">,</span> <span class="s1">&#39;-s&#39;</span><span class="p">,</span> <span class="s1">&#39;-q&#39;</span><span class="p">,</span> <span class="s1">&#39;--reruns&#39;</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="s1">&#39;--alluredir&#39;</span><span class="p">,</span> <span class="n">data_dir</span><span class="p">]</span>
+
+<span class="c1"># 方式3，运行指定模块</span>
+<span class="n">run_info</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;-vs&#39;</span><span class="p">,</span> <span class="s1">&#39;testCompare.py&#39;</span><span class="p">,</span> <span class="s1">&#39;--alluredir&#39;</span><span class="p">,</span> <span class="n">data_dir</span><span class="p">]</span>
+<span class="c1"># 方式4，运行指定目录</span>
+<span class="n">run_info</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;-vs&#39;</span><span class="p">,</span> <span class="s1">&#39;./testcase&#39;</span><span class="p">,</span> <span class="s1">&#39;--alluredir&#39;</span><span class="p">,</span> <span class="n">data_dir</span><span class="p">]</span>
+<span class="c1"># 方式5，运行指定方法</span>
+<span class="n">run_info</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;-vs&#39;</span><span class="p">,</span> <span class="s1">&#39;./testcase/testCompare.py::TestMyCompare::test_01_regex&#39;</span><span class="p">,</span> <span class="s1">&#39;--alluredir&#39;</span><span class="p">,</span> <span class="n">data_dir</span><span class="p">]</span>
+
+<span class="c1"># -m 通过标记来执行</span>
+<span class="c1"># 方式6，运行带指定标签的用例，搭配`@pytest.mark.标签名`，并且在pytest.ini注册标签以启用</span>
+<span class="n">run_info</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;-m&#39;</span><span class="p">,</span> <span class="s1">&#39;smoke or level0&#39;</span><span class="p">,</span> <span class="s1">&#39;-s&#39;</span><span class="p">,</span> <span class="s1">&#39;-q&#39;</span><span class="p">,</span> <span class="s1">&#39;--alluredir&#39;</span><span class="p">,</span> <span class="n">data_dir</span><span class="p">]</span>
+<span class="c1"># &#39;-m&#39;, &#39;smoke not level0&#39;，表示带smoke但非level0标签</span>
+
+<span class="n">pytest</span><span class="o">.</span><span class="n">main</span><span class="p">(</span><span class="n">run_info</span><span class="p">)</span>
+
+<span class="c1"># 生成allure报告的数据源文件，json格式；--clean是每次清空</span>
+<span class="c1"># 格式：allure generate {数据源文件目录} -o {报告的目录}</span>
+<span class="n">os</span><span class="o">.</span><span class="n">system</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;allure generate </span><span class="si">{</span><span class="n">data_dir</span><span class="si">}</span><span class="s1"> -o </span><span class="si">{</span><span class="n">report_dir</span><span class="si">}</span><span class="s1"> --clean&#39;</span><span class="p">)</span>
+<span class="c1"># 本地运行</span>
+<span class="n">os</span><span class="o">.</span><span class="n">system</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;allure open -h </span><span class="si">{</span><span class="n">ip</span><span class="si">}</span><span class="s1"> -p </span><span class="si">{</span><span class="n">port</span><span class="si">}</span><span class="s1"> </span><span class="si">{</span><span class="n">report_dir</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
 </code></pre></div>
-<h2 id="_2">📌 断言</h2>
-<p><code>assertEqual</code>  # 比较的是两个对象的内容</p>
-<p><code>assertIs</code>  # 比较的是两个对象的指向地址</p>
-<p><code>assertTrue</code>  # 断言是否为True</p>
-<h2 id="unittestmain">📌 unittest.main()</h2>
-<p><code>unittest.main(verbosity=2)</code></p>
-<p><code>verbosity</code>参数表示输出的详细程度：</p>
-<p>0-不输出；</p>
-<p>1-输出每个用例执行结果；</p>
-<p>2-输出每个用例执行结果、详细的错误信息及执行时间等</p>
+<div class="admonition note">
+<p class="admonition-title">补充</p>
+<ul>
+<li>放测试用例的目录应当为Python Package，而非Directory。</li>
+<li>pytest搜索规则/用例命名规则：
+1.文件名如<code>test_*.py</code>或<code>*_test.py</code>，注意有下划线。
+2.文件中的类以Test开头。
+3.文件中的方法名以test_开头。</li>
+</ul>
+</div>
 <hr />
 <p>参考资料：</p>
-<p><a href="https://docs.python.org/zh-cn/3/library/unittest.html">unittest-单元测试框架</a></p>
-<p><a href="https://www.cnblogs.com/daxiong2014/p/10449184.html">unittest最详细的解说</a></p>
+<p><a href="https://www.cnblogs.com/lfr0123/p/15907200.html">pytest-标记用例</a></p>
+<p><a href="https://www.cnblogs.com/Neeo/articles/11832655.html#allure">pytest+allure详解</a></p>
 
 
 
@@ -2329,7 +2289,7 @@
     <span class="md-icon" title="最后更新">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1-2.1-2M12.5 7v5.2l4 2.4-1 1L11 13V7h1.5M11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2v1.8Z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime">2024-03-14 21:06:55</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime">2024-06-15 14:54:32</span>
   </span>
 
     
@@ -2365,7 +2325,7 @@
       <nav class="md-footer__inner md-grid" aria-label="页脚" >
         
           
-          <a href="../../pytest/pytest.ini/" class="md-footer__link md-footer__link--prev" aria-label="上一页: pytest.ini">
+          <a href="../fixture/" class="md-footer__link md-footer__link--prev" aria-label="上一页: 测试夹具">
             <div class="md-footer__button md-icon">
               
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
@@ -2375,20 +2335,20 @@
                 上一页
               </span>
               <div class="md-ellipsis">
-                pytest.ini
+                测试夹具
               </div>
             </div>
           </a>
         
         
           
-          <a href="../../selenium/selenium_notes/" class="md-footer__link md-footer__link--next" aria-label="下一页: selenium笔记">
+          <a href="../pytest.ini/" class="md-footer__link md-footer__link--next" aria-label="下一页: pytest.ini">
             <div class="md-footer__title">
               <span class="md-footer__direction">
                 下一页
               </span>
               <div class="md-ellipsis">
-                selenium笔记
+                pytest.ini
               </div>
             </div>
             <div class="md-footer__button md-icon">
@@ -2422,10 +2382,10 @@
     </div>
     
     
-    <script id="__config" type="application/json">{"base": "../../..", "features": ["navigation.footer", "navigation.top", "navigation.tabs", "navigation.instant", "content.code.copy"], "search": "../../../assets/javascripts/workers/search.b8dbb3d2.min.js", "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}}</script>
+    <script id="__config" type="application/json">{"base": "../../../..", "features": ["navigation.footer", "navigation.top", "navigation.tabs", "navigation.instant", "content.code.copy"], "search": "../../../../assets/javascripts/workers/search.b8dbb3d2.min.js", "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}}</script>
     
     
-      <script src="../../../assets/javascripts/bundle.ad660dcc.min.js"></script>
+      <script src="../../../../assets/javascripts/bundle.ad660dcc.min.js"></script>
       
     
   <script id="init-glightbox">const lightbox = GLightbox({"touchNavigation": true, "loop": false, "zoomable": true, "draggable": true, "openEffect": "zoom", "closeEffect": "zoom", "slideEffect": "slide"});
