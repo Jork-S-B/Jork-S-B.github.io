@@ -55,6 +55,7 @@ nav:
     - Fiddler: utils/fiddler_notes.md
     - Charles: utils/charles_notes.md
     - Postman: utils/postman_notes.md
+    - JMeter: utils/jmeter_notes.md
 - Hadoop:
   - Hadoop生态: hadoop/ecosystem.md
   - Scala:
