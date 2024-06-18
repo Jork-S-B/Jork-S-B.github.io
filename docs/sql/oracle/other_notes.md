@@ -1,18 +1,8 @@
-
-
 ### 🚁 NUMBER类型
 
 Oracle的number类型，为节省空间会省略掉前面的0，如0.9会以.9展示。
 
 所以需要注意number类型和varchar类型转换后的数值是否正确。
-
-### 🚁 字段截取
-
-|                命令                 | 说明                     |
-|:---------------------------------:|:-----------------------|
-|  `SUBSTR(CREATEDATE_STR, 1, 6)`   | 截取CREATEDATE_STR的前6个字符 |
-| `SUBSTRING(CREATEDATE_STR, 1, 6)` | 同上，但是HiveSQL           |
-|         `TRUNC(sysdate)`          | 默认截取系统日期到日，即yyyy-mm-dd |
 
 ### 🚁 类似判定语句
 
@@ -32,18 +22,37 @@ Oracle的number类型，为节省空间会省略掉前面的0，如0.9会以.9�
     ```
 
 ### 🚁 加字段时非空及默认值
+
 ```sql
 ALTER TABLE TABLE_NAME ADD COLUMN VARCHAR2(32) DEFAULT '10001' NOT NULL; 
 ```
 
 ### 🚁 HAVING子查询
+
 ```sql
 --HAVING子查询，搭配分组函数使用
 SELECT NAME, GRADE, CLASS, COUNT(1) FROM STUDENT GROUP BY NAME, GRADE, CLASS 
     HAVING COUNT(1) > 1;
 ```
 
+### 🚁 字段截取
+
+|                命令                 | 说明                     |
+|:---------------------------------:|:-----------------------|
+|  `SUBSTR(CREATEDATE_STR, 1, 6)`   | 截取CREATEDATE_STR的前6个字符 |
+| `SUBSTRING(CREATEDATE_STR, 1, 6)` | 同上，但是HiveSQL           |
+|         `TRUNC(sysdate)`          | 默认截取系统日期到日，即yyyy-mm-dd |
+
+### 🚁 时间戳
+
+```sql
+--某个日期时间戳的两种方式
+SELECT TIMESTAMP '2024-06-13 10:23:11' FROM DUAL;
+SELECT to_DATE('2024-06-13 10:23:11', 'YYYY-MM-DD HH24:MI:SS') FROM DUAL;
+```
+
 ### 🚁 某个月份减1
+
 ```sql
 SELECT TO_CHAR(ADD_MONTHS(SYSDATE, -1), 'YYYYMM') FROM DUAL;
 
@@ -55,6 +64,7 @@ SELECT TO_CHAR(ADD_MONTH(TO_DATE('202401','YYYYMM'),-1),'YYYYMM') FROM DUAL;
     `TO_NUMBER(STR)`等价于`CAST(STR AS NUMBER)`，转为number类型。
 
 ### 🚁 时间倒序排序
+
 ```sql
 --时间倒序排序，最新的靠前，空的靠后
 ORDER BY CREATEDATE DESC NULLS LAST
@@ -74,7 +84,6 @@ ROUND(DBMS_RANDOMS.VALUE(0, 1.5), 4)
 DBMS_RANDOM.STRING('U', 10)
 ```
 
-
 ### 🚁 闪回机制
 
 ```sql
@@ -82,14 +91,14 @@ DBMS_RANDOM.STRING('U', 10)
 SELECT * FROM TABLE_NAME AS OF TIMESTAMP TO_TIMESTAMP('2023-03-30 10:26:11', 'YYYY-MM-DD HH24:MI:SS') 
     WHERE condition;
 ```
+
 !!! note "补充"
-    
+
     * `DELETE`操作属于DML，会触发锁；,`TRUNCATE`操作属于DDL，不会触发锁。
     * `DELETE`操作可以使用WHERE关键字，`TRUNCATE`操作不可以。
     * `DELETE`操作会触发触发器，`TRUNCATE`操作不会触发触发器。
     * `DELETE`操作会触发索引，`TRUNCATE`操作不会触发索引。
     * 清空数据量较大的表时可以使用`TRUNCATE`操作，效率较高，但不论哪种删除操作都需***先做好备份***。
-
 
 ### 🚁 全外连接和笛卡尔积
 

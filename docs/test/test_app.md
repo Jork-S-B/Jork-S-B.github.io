@@ -170,7 +170,9 @@
 
 !!! note "补充"
 
-      如需从设备取文件，执行`adb pull`即可；同理`adb push`则是推送文件。
+    如需从设备取文件，执行`adb pull`即可；同理`adb push`则是推送文件。
+
+    官方文档：[Android 调试桥 (adb)](https://developer.android.google.cn/tools/adb?hl=zh-cn)
 
 ### 🚁 logcat缓冲区
 
