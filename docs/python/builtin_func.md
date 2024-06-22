@@ -31,7 +31,7 @@ print(b)  # ['Alias', 'David', 'xx', '1']
 
 ## 📌 求和求积
 
-sum(iter, start=0)
+sum(iter, start=0)  
 可迭代对象中元素总和
 
 functools.reduce(func, iter, initial=None)  
@@ -91,7 +91,7 @@ except ValueError as e:
 
 ## 📌 getattr
 
-getattr(obj, func, defult=None)
+getattr(obj, func, defult=None)  
 从对象或实例中动态获取一个属性或者方法
 
 ```python
