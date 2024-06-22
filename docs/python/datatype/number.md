@@ -49,4 +49,7 @@ def round_format():
 # python中的%实际是取模运算符，负数运算时无法像正数一样得到取余结果
 print(-9 % 5)  # 输出1
 print(-9 % -5)  # 输出-4
+# divmod同时返回商和余数
+print(divmod(-9, 5))  # (-2, 1)
+print(divmod(-9, -5))  # (1, -4)
 ```

@@ -15,7 +15,7 @@ nav:
     - 算法:
       - 排序: python/oj/sort.md
       - 动态规划: python/oj/dp.md
-    - 闭包&装饰器&柯里化: python/closure.md
+    - 内置函数: python/builtin_func.md
     - 多线程: python/thread.md
     - 自动化:
       - pytest:
@@ -37,6 +37,7 @@ nav:
       - docx: python/pydocx/pydocx_notes.md
       - excel: python/pyexcel/pyexcel_notes.md
       - 爬虫入门笔记: python/other/scrapy_notes.md
+      - 闭包&装饰器&柯里化: python/closure.md
 - 数据库:
     - Oracle:
       - sqlldr导入大量数据: sql/oracle/sqlldr_import.md
