@@ -33,6 +33,7 @@ nav:
       - Python路径迁移: python/other/mv_py_path.md
       - mkdocs使用记录: python/other/mkdocs_notes.md
       - 正则表达式: python/regex/re.md
+      - 文件路径: python/other/pypath.md
       - json: python/pyjson/pyjson_notes.md
       - docx: python/pydocx/pydocx_notes.md
       - excel: python/pyexcel/pyexcel_notes.md
