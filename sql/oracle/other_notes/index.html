@@ -20,7 +20,7 @@
       
       
       <link rel="icon" href="../../../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.6.0, mkdocs-material-9.5.28">
+      <meta name="generator" content="mkdocs-1.6.0, mkdocs-material-9.5.29">
     
     
       
@@ -28,7 +28,7 @@
       
     
     
-      <link rel="stylesheet" href="../../../assets/stylesheets/main.6543a935.min.css">
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.76a95c52.min.css">
       
         
         <link rel="stylesheet" href="../../../assets/stylesheets/palette.06af60db.min.css">
@@ -1701,7 +1701,34 @@
         <li class="md-nav__item">
   <a href="#_10" class="md-nav__link">
     <span class="md-ellipsis">
+      🚁 小表驱动大表
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_11" class="md-nav__link">
+    <span class="md-ellipsis">
+      🚁 批量插入
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_12" class="md-nav__link">
+    <span class="md-ellipsis">
       🚁 并行执行
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#sql" class="md-nav__link">
+    <span class="md-ellipsis">
+      🚁 SQL优化
     </span>
   </a>
   
@@ -2545,7 +2572,34 @@
         <li class="md-nav__item">
   <a href="#_10" class="md-nav__link">
     <span class="md-ellipsis">
+      🚁 小表驱动大表
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_11" class="md-nav__link">
+    <span class="md-ellipsis">
+      🚁 批量插入
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_12" class="md-nav__link">
+    <span class="md-ellipsis">
       🚁 并行执行
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#sql" class="md-nav__link">
+    <span class="md-ellipsis">
+      🚁 SQL优化
     </span>
   </a>
   
@@ -2734,7 +2788,20 @@
 </details>
 <h3 id="_9">🚁 并集</h3>
 <p><code>UNION</code>和<code>UNION ALL</code>，前者会进行去重，后者不去重，效率更高。</p>
-<h3 id="_10">🚁 并行执行</h3>
+<h3 id="_10">🚁 小表驱动大表</h3>
+<pre><code>```sql
+--使用in关键字时，会优先查询in关键字里的子查询
+select from order
+where user_id in (select id from user where status=1);
+
+--如果order表是小表，此时用exists关键字效率更高
+select from order
+where exists (select 1 from user where order.user_id = user.id and status=1);
+```
+</code></pre>
+<h3 id="_11">🚁 批量插入</h3>
+<p>框架多次调insert语句会损耗性能，但使用批量插入时也要判断数量，一个批次数量控制在500至1000以内。</p>
+<h3 id="_12">🚁 并行执行</h3>
 <ul>
 <li><code>/*+parallel(t,n)*/</code>，t表示表名或别名，n代表进程数量，一般为CPU数量-1。</li>
 <li>多表操作且t未指定时，可能会导致无法准确理解并行意图，容易引起数据库异常。</li>
@@ -2744,6 +2811,12 @@
 <li>指定表关掉并行</li>
 </ul>
 <p><code>ALTER TABLE TABLENAME NOPARALLEL;</code></p>
+<h3 id="sql">🚁 SQL优化</h3>
+<ol>
+<li>排查SQL是否走索引，如索引字段使用了函数或者模糊查询</li>
+<li>SQL语句是否有优化空间，如in/exists关键字、多表关联查询或分组时先将数据查出来再操作</li>
+<li>接口调用时多表查询慢：先用预处理程序等方式跑完入库新表，再调简单的查询SQL</li>
+</ol>
 <hr />
 
 
@@ -2765,7 +2838,7 @@
     <span class="md-icon" title="最后更新">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1-2.1-2M12.5 7v5.2l4 2.4-1 1L11 13V7h1.5M11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2v1.8Z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime">2024-06-18 21:22:02</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime">2024-07-16 20:23:12</span>
   </span>
 
     
