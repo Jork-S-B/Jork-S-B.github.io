@@ -175,6 +175,22 @@ SELECT * FROM TABLE_NAME AS OF TIMESTAMP TO_TIMESTAMP('2023-03-30 10:26:11', 'YY
 
 `UNION`和`UNION ALL`，前者会进行去重，后者不去重，效率更高。
 
+### 🚁 小表驱动大表
+    
+    ```sql
+    --使用in关键字时，会优先查询in关键字里的子查询
+    select from order
+    where user_id in (select id from user where status=1);
+    
+    --如果order表是小表，此时用exists关键字效率更高
+    select from order
+    where exists (select 1 from user where order.user_id = user.id and status=1);
+    ```
+
+### 🚁 批量插入
+
+框架多次调insert语句会损耗性能，但使用批量插入时也要判断数量，一个批次数量控制在500至1000以内。
+
 ### 🚁 并行执行
 
 * `/*+parallel(t,n)*/`，t表示表名或别名，n代表进程数量，一般为CPU数量-1。
@@ -185,5 +201,11 @@ SELECT * FROM TABLE_NAME AS OF TIMESTAMP TO_TIMESTAMP('2023-03-30 10:26:11', 'YY
 * 指定表关掉并行
 
 `ALTER TABLE TABLENAME NOPARALLEL;`
+
+### 🚁 SQL优化
+
+1. 排查SQL是否走索引，如索引字段使用了函数或者模糊查询
+2. SQL语句是否有优化空间，如in/exists关键字、多表关联查询或分组时先将数据查出来再操作
+3. 接口调用时多表查询慢：先用预处理程序等方式跑完入库新表，再调简单的查询SQL
 
 ---
