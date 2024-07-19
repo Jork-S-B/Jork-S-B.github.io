@@ -28,7 +28,12 @@ nav:
           - airtest: python/autotest/app/mumu_sim.md
           - appium: python/autotest/app/appium.md
       - mitmproxy: python/autotest/mitmproxy.md
-    - Flask: python/web/flask.md
+    - Web:
+      - Flask: python/web/flask.md
+      - Django:
+        - ORM: python/web/django/django_orm.md
+        - DTL模版引擎: python/web/django/django_templates.md
+        - Cookie与Session: python/web/django/cookie&session.md
     - 其他:
       - Python路径迁移: python/other/mv_py_path.md
       - mkdocs使用记录: python/other/mkdocs_notes.md

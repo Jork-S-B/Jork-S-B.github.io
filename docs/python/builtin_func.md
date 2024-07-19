@@ -89,28 +89,94 @@ except ValueError as e:
 
 ```
 
+## 📌 执行代码块
+
+exec(source, globals=None, locals=None)  
+同时传入globals和locals参数时，优先取局部变量进行计算
+
+```python
+x = 10  # 全局变量
+expr = """
+z = 30
+numbers = [x, y, z]
+total = sum(numbers, start=10)
+print(total)
+"""
+
+if __name__ == '__main__':
+    y = 20
+    exec(expr)  # 70
+    # 传入变量
+    # exec(expr, {'y': 1})  # NameError: name 'x' is not defined
+    exec(expr, {'x': 1, 'y': 1})  # 42
+    exec(expr, {'x': 1, 'y': 1}, {'y': 2, 'z': 2})  # 43
+
+```
+
+## 📌 repr
+
+repr(obj)  
+保留转义或者特殊字符
+
+```python
+d = {'regex_str': '物品\t单价\t数量'}
+print(d.get('regex_str'))  # 直接print()会自动转义，输出：物品    单价  数量
+print(repr(d.get('regex_str')))  # repr()会保留转义或者特殊字符，输出：'物品\t单价\t数量'
+```
+
 ## 📌 getattr
 
 getattr(obj, func, defult=None)  
 从对象或实例中动态获取一个属性或者方法
 
+与之相对应的方法还有：setattr(obj, func, value), hasattr(obj, func), delattr(obj, func)
+
 ```python
 class Person:
     pass
-
 
 class PersonSubclass(Person):
     
     def introduce2(self):
         print("test")
 
-
 def re_func(funcname, obj=Person()):
     r = getattr(obj, funcname)()
     return r
 
-
 person_subclass = PersonSubclass()
 print(re_func("introduce2", person_subclass))  # 输出：test\nNone
 
+```
+
+!!! note "补充"
+    
+    程序在运行时检查、分析和修改自身的行为与结构，这种特性称作反射机制。上述getattr()、eval()等函数都是Python 反射机制的一部分。
+    
+    一般而言，反射操作会比直接调用慢，会存在额外的性能开销，
+
+## 📌 类型判断
+
+isinstance(obj, type)  
+判断obj是否为指定的对象类型，考虑继承关系
+
+type(obj)  
+返回obj的类型，不考虑继承关系
+
+issubclass(sub, sup)  
+判断sub是否为sup的子类
+
+```python
+class Practice:
+    """
+    __doc__是描述信息，当定义类、方法时，第一个语句（即本行）是字符串时，就会被自动赋值给__doc__属性。
+    """
+    tmp = 1
+
+print(Practice.__doc__)  # 打印Practice类的描述信息
+# 通过type方法动态创建子类
+PracticeInherit = type("PracticeInherit", (Practice, object), {__doc__: "This is a practice class"})
+print(PracticeInherit.tmp)
+print(isinstance(PracticeInherit(), Practice))  # True
+print(issubclass(PracticeInherit, Practice))  # True
 ```
