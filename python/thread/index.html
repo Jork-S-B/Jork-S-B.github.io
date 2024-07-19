@@ -1096,6 +1096,44 @@
   
   
   
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_7" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_7" id="__nav_2_7_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Web
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_7">
+            <span class="md-nav__icon md-icon"></span>
+            Web
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
     <li class="md-nav__item">
       <a href="../web/flask/" class="md-nav__link">
         
@@ -1106,6 +1144,123 @@
   
 
       </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_7_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_7_2" id="__nav_2_7_2_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Django
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_2_7_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_7_2">
+            <span class="md-nav__icon md-icon"></span>
+            Django
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../web/django/django_orm/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    ORM
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../web/django/django_templates/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    DTL模版引擎
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../web/django/cookie%26session/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Cookie与Session
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
     </li>
   
 
@@ -2285,12 +2440,19 @@
 <p>进程：操作系统执行的基本单元，由系统分配资源和调度。</p>
 </li>
 <li>
-<p>协程：微线程，只有一个线程执行，且子程序内部阻塞或者IO时，交出线程执行权给其他子程序。相比多线程，省去线程切换的开销，共享资源不需加锁，执行效率更高。</p>
+<p>协程：微线程，只有一个线程执行，当子程序内部阻塞或者I/O等待时，在多个方法间切换执行。相比多线程，省去线程切换的开销，共享资源不需加锁，执行效率更高。</p>
 </li>
 </ul>
 <p>2.Python的多线程，由于全局解释器锁GIL的存在，实际上同一时刻只有一个线程在进行，并非真正的并行，但它仍可以提高程序效率。</p>
-<p><strong>适合IO密集型任务，不适合计算密集型任务。</strong></p>
-<p>在多线程程序中，当一个线程阻塞时，其他线程可继续执行，以提高程序的并发性和响应性。此外还有多进程、异步编程等方式实现并行计算。</p>
+<p>在多线程程序中，当一个线程阻塞时，其他线程可继续执行，以提高程序的并发性和响应性。</p>
+<div class="admonition note">
+<p class="admonition-title">总结</p>
+<ul>
+<li>对于I/O密集型任务和高并发场景，建议使用协程。</li>
+<li>对于CPU密集型任务/计算密集型，建议使用进程。</li>
+<li>对于需要共享数据和简单的并行处理场景，可以使用线程，但需要注意Python的GIL对性能的影响。</li>
+</ul>
+</div>
 <p>3.并行与并发</p>
 <ul>
 <li>
@@ -2316,7 +2478,6 @@
 <p>乐观锁认为并发冲突的概率较小，因此在访问共享资源时不会立即加锁，先进行操作，然后在更新时检查资源是否被修改；若更新失败则重试。<br />
 实现方式如版本号机制、数据库中的CAS(Compare And Swap)操作和JAVA的Atomic类，先访问再取锁。<br />
 优点是可以提升高并发性能，但在并发冲突较多时需要多次重试，可能导致性能下降。</p>
-<p>7.start()启动一个新线程并执行run()方法，run()则是线程实际执行的方法，如直接调用run()，则相当于普通方法。</p>
 
 
 
@@ -2337,7 +2498,7 @@
     <span class="md-icon" title="最后更新">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1-2.1-2M12.5 7v5.2l4 2.4-1 1L11 13V7h1.5M11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2v1.8Z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime">2024-04-20 20:30:17</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime">2024-07-20 02:34:26</span>
   </span>
 
     

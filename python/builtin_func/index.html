@@ -833,9 +833,36 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      📌 执行代码块
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#repr" class="md-nav__link">
+    <span class="md-ellipsis">
+      📌 repr
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#getattr" class="md-nav__link">
     <span class="md-ellipsis">
       📌 getattr
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      📌 类型判断
     </span>
   </a>
   
@@ -1183,6 +1210,44 @@
   
   
   
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_7" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_7" id="__nav_2_7_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Web
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_7">
+            <span class="md-nav__icon md-icon"></span>
+            Web
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
     <li class="md-nav__item">
       <a href="../web/flask/" class="md-nav__link">
         
@@ -1193,6 +1258,123 @@
   
 
       </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_7_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_7_2" id="__nav_2_7_2_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Django
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_2_7_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_7_2">
+            <span class="md-nav__icon md-icon"></span>
+            Django
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../web/django/django_orm/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    ORM
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../web/django/django_templates/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    DTL模版引擎
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../web/django/cookie%26session/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Cookie与Session
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
     </li>
   
 
@@ -2397,9 +2579,36 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      📌 执行代码块
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#repr" class="md-nav__link">
+    <span class="md-ellipsis">
+      📌 repr
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#getattr" class="md-nav__link">
     <span class="md-ellipsis">
       📌 getattr
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      📌 类型判断
     </span>
   </a>
   
@@ -2487,26 +2696,75 @@
 <span class="k">except</span> <span class="ne">ValueError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
     <span class="nb">print</span><span class="p">(</span><span class="n">e</span><span class="p">)</span>  <span class="c1"># 非字面量表达式时抛异常</span>
 </code></pre></div>
+<h2 id="_5">📌 执行代码块</h2>
+<p>exec(source, globals=None, locals=None)<br />
+同时传入globals和locals参数时，优先取局部变量进行计算</p>
+<div class="highlight"><pre><span></span><code><span class="n">x</span> <span class="o">=</span> <span class="mi">10</span>  <span class="c1"># 全局变量</span>
+<span class="n">expr</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">z = 30</span>
+<span class="s2">numbers = [x, y, z]</span>
+<span class="s2">total = sum(numbers, start=10)</span>
+<span class="s2">print(total)</span>
+<span class="s2">&quot;&quot;&quot;</span>
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+    <span class="n">y</span> <span class="o">=</span> <span class="mi">20</span>
+    <span class="n">exec</span><span class="p">(</span><span class="n">expr</span><span class="p">)</span>  <span class="c1"># 70</span>
+    <span class="c1"># 传入变量</span>
+    <span class="c1"># exec(expr, {&#39;y&#39;: 1})  # NameError: name &#39;x&#39; is not defined</span>
+    <span class="n">exec</span><span class="p">(</span><span class="n">expr</span><span class="p">,</span> <span class="p">{</span><span class="s1">&#39;x&#39;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="s1">&#39;y&#39;</span><span class="p">:</span> <span class="mi">1</span><span class="p">})</span>  <span class="c1"># 42</span>
+    <span class="n">exec</span><span class="p">(</span><span class="n">expr</span><span class="p">,</span> <span class="p">{</span><span class="s1">&#39;x&#39;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="s1">&#39;y&#39;</span><span class="p">:</span> <span class="mi">1</span><span class="p">},</span> <span class="p">{</span><span class="s1">&#39;y&#39;</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span> <span class="s1">&#39;z&#39;</span><span class="p">:</span> <span class="mi">2</span><span class="p">})</span>  <span class="c1"># 43</span>
+</code></pre></div>
+<h2 id="repr">📌 repr</h2>
+<p>repr(obj)<br />
+保留转义或者特殊字符</p>
+<div class="highlight"><pre><span></span><code><span class="n">d</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;regex_str&#39;</span><span class="p">:</span> <span class="s1">&#39;物品</span><span class="se">\t</span><span class="s1">单价</span><span class="se">\t</span><span class="s1">数量&#39;</span><span class="p">}</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">d</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;regex_str&#39;</span><span class="p">))</span>  <span class="c1"># 直接print()会自动转义，输出：物品    单价  数量</span>
+<span class="nb">print</span><span class="p">(</span><span class="nb">repr</span><span class="p">(</span><span class="n">d</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;regex_str&#39;</span><span class="p">)))</span>  <span class="c1"># repr()会保留转义或者特殊字符，输出：&#39;物品\t单价\t数量&#39;</span>
+</code></pre></div>
 <h2 id="getattr">📌 getattr</h2>
 <p>getattr(obj, func, defult=None)<br />
 从对象或实例中动态获取一个属性或者方法</p>
+<p>与之相对应的方法还有：setattr(obj, func, value), hasattr(obj, func), delattr(obj, func)</p>
 <div class="highlight"><pre><span></span><code><span class="k">class</span> <span class="nc">Person</span><span class="p">:</span>
     <span class="k">pass</span>
-
 
 <span class="k">class</span> <span class="nc">PersonSubclass</span><span class="p">(</span><span class="n">Person</span><span class="p">):</span>
 
     <span class="k">def</span> <span class="nf">introduce2</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;test&quot;</span><span class="p">)</span>
 
-
 <span class="k">def</span> <span class="nf">re_func</span><span class="p">(</span><span class="n">funcname</span><span class="p">,</span> <span class="n">obj</span><span class="o">=</span><span class="n">Person</span><span class="p">()):</span>
     <span class="n">r</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="n">funcname</span><span class="p">)()</span>
     <span class="k">return</span> <span class="n">r</span>
 
-
 <span class="n">person_subclass</span> <span class="o">=</span> <span class="n">PersonSubclass</span><span class="p">()</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">re_func</span><span class="p">(</span><span class="s2">&quot;introduce2&quot;</span><span class="p">,</span> <span class="n">person_subclass</span><span class="p">))</span>  <span class="c1"># 输出：test\nNone</span>
+</code></pre></div>
+<div class="admonition note">
+<p class="admonition-title">补充</p>
+<p>程序在运行时检查、分析和修改自身的行为与结构，这种特性称作反射机制。上述getattr()、eval()等函数都是Python 反射机制的一部分。</p>
+<p>一般而言，反射操作会比直接调用慢，会存在额外的性能开销，</p>
+</div>
+<h2 id="_6">📌 类型判断</h2>
+<p>isinstance(obj, type)<br />
+判断obj是否为指定的对象类型，考虑继承关系</p>
+<p>type(obj)<br />
+返回obj的类型，不考虑继承关系</p>
+<p>issubclass(sub, sup)<br />
+判断sub是否为sup的子类</p>
+<div class="highlight"><pre><span></span><code><span class="k">class</span> <span class="nc">Practice</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    __doc__是描述信息，当定义类、方法时，第一个语句（即本行）是字符串时，就会被自动赋值给__doc__属性。</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">tmp</span> <span class="o">=</span> <span class="mi">1</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">Practice</span><span class="o">.</span><span class="vm">__doc__</span><span class="p">)</span>  <span class="c1"># 打印Practice类的描述信息</span>
+<span class="c1"># 通过type方法动态创建子类</span>
+<span class="n">PracticeInherit</span> <span class="o">=</span> <span class="nb">type</span><span class="p">(</span><span class="s2">&quot;PracticeInherit&quot;</span><span class="p">,</span> <span class="p">(</span><span class="n">Practice</span><span class="p">,</span> <span class="nb">object</span><span class="p">),</span> <span class="p">{</span><span class="vm">__doc__</span><span class="p">:</span> <span class="s2">&quot;This is a practice class&quot;</span><span class="p">})</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">PracticeInherit</span><span class="o">.</span><span class="n">tmp</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="nb">isinstance</span><span class="p">(</span><span class="n">PracticeInherit</span><span class="p">(),</span> <span class="n">Practice</span><span class="p">))</span>  <span class="c1"># True</span>
+<span class="nb">print</span><span class="p">(</span><span class="nb">issubclass</span><span class="p">(</span><span class="n">PracticeInherit</span><span class="p">,</span> <span class="n">Practice</span><span class="p">))</span>  <span class="c1"># True</span>
 </code></pre></div>
 
 
@@ -2528,7 +2786,7 @@
     <span class="md-icon" title="最后更新">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1-2.1-2M12.5 7v5.2l4 2.4-1 1L11 13V7h1.5M11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2v1.8Z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime">2024-06-22 15:36:17</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime">2024-07-20 02:34:26</span>
   </span>
 
     
