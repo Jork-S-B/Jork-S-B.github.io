@@ -126,7 +126,7 @@ print(repr(d.get('regex_str')))  # repr()会保留转义或者特殊字符，输
 
 ## 📌 getattr
 
-getattr(obj, func, defult=None)  
+getattr(obj, func/attribute, defult=None)  
 从对象或实例中动态获取一个属性或者方法
 
 与之相对应的方法还有：setattr(obj, func/attribute, value), hasattr(obj, func), delattr(obj, func)
