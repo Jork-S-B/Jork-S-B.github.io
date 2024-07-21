@@ -166,17 +166,19 @@ type(obj)
 issubclass(sub, sup)  
 判断sub是否为sup的子类
 
-```python
-class Practice:
-    """
-    __doc__是描述信息，当定义类、方法时，第一个语句（即本行）是字符串时，就会被自动赋值给__doc__属性。
-    """
-    tmp = 1
+=== "通过type方法动态创建子类"
 
-print(Practice.__doc__)  # 打印Practice类的描述信息
-# 通过type方法动态创建子类
-PracticeInherit = type("PracticeInherit", (Practice, object), {__doc__: "This is a practice class"})
-print(PracticeInherit.tmp)
-print(isinstance(PracticeInherit(), Practice))  # True
-print(issubclass(PracticeInherit, Practice))  # True
-```
+    ```python
+    class Practice:
+        """
+        __doc__是描述信息，当定义类、方法时，第一个语句（即本行）是字符串时，就会被自动赋值给__doc__属性。
+        """
+        tmp = 1
+    
+    print(Practice.__doc__)  # 打印Practice类的描述信息
+    # 通过type方法动态创建子类
+    PracticeInherit = type("PracticeInherit", (Practice, object), {__doc__: "This is a practice class"})
+    print(PracticeInherit.tmp)
+    print(isinstance(PracticeInherit(), Practice))  # True
+    print(issubclass(PracticeInherit, Practice))  # True
+    ```
