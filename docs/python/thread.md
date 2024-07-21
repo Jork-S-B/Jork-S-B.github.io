@@ -411,7 +411,7 @@ class Workshop:
 
     def __init__(self, queue):
         self.queue = queue  # 创建管道用于接收
-        self.lock = None
+        self.lock = None  # 在进程中不能先初始化线程锁
 
     def start(self):
         """要求使用三个线程来定义不同的组装车间"""
