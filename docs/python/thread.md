@@ -263,7 +263,7 @@ print(p.stdout.readlines())
     
     def receive(queue):
         for i in range(5):
-            print("receiver:", queue.get(True, 0.1))  # 阻塞最多0.1等待队列
+            print("receiver:", queue.get(True, 0.1))  # 阻塞最多0.1等待队列，无内容则抛queue.Empty异常
             time.sleep(0.1)
     
     
@@ -353,3 +353,122 @@ print(p.stdout.readlines())
 ### 🚁 进程池
 
 python进程池使用`concurrent.futures`模块中的`ProcessPoolExecutor`类来实现，类方法与线程池的类似。
+
+---
+
+## 📌 练习
+
+```python
+"""
+有三个组装车间，分别组A、B、C三款产品，每款产品都有四个零件a1，a2，a3，a4。
+零件生产商会与隔一秒生成三种产品的任一零件，并将零件发送至三个车间。
+车间收到零件后，先判断是否是自己产品的零件，是则进行组装（动态加载setattr）；不是则存入库房自行认领。
+组装完成后，输出至控制台。
+"""
+import multiprocessing
+import random
+import sys
+import threading
+import time
+
+"""定义三种产品类 每个产品都有1234四个零件 零件动态加载"""
+"""定义三个车间 用来组装产品"""
+"""定义零件生产商 用来发送零件"""
+"""要求使用两个进程来分别定义生产商和组装车间"""
+"""要求使用三个线程来定义不同的组装车间"""
+
+
+class Prod:
+    # 父类
+    pass
+
+
+class Producer:
+    """
+    生产商进程，生产零件
+    """
+    parts = ["a1", "a2", "a3", "a4", "b1", "b2", "b3", "b4", "c1", "c2", "c3", "c4"]
+
+    def __init__(self, queue):
+        self.queue = queue  # 创建管道用于进程通信
+
+    def make_part(self):
+        """
+        生产零件
+        :return:
+        """
+        while self.parts:
+            part = random.sample(self.parts, 1)[0]
+            print(f"Producer生产零件：{part}")
+            self.parts.remove(part)  # 不重复生产零件
+            self.queue.put(part)
+            time.sleep(1)  # 隔一秒生成
+        print("生产结束")
+
+
+class Workshop:
+    warehouse = []  # 库房
+
+    def __init__(self, queue):
+        self.queue = queue  # 创建管道用于接收
+        self.lock = None
+
+    def start(self):
+        """要求使用三个线程来定义不同的组装车间"""
+        self.lock = threading.RLock()
+        t1 = threading.Thread(target=self.assemble, args=("A",))
+        t2 = threading.Thread(target=self.assemble, args=("B",))
+        t3 = threading.Thread(target=self.assemble, args=("C",))
+        for t in [t1, t2, t3]:
+            t.start()
+        for t in [t1, t2, t3]:
+            t.join()
+
+    def assemble(self, name):
+        """
+        组装产品
+        :param name: 车间名，如A
+        :return:
+        """
+        # 根据传入参数动态生成子类
+        inherit = type(name, (Prod,), {__doc__: f"产品子类{name}"})
+        lpart = name.lower()
+        # 当零件未齐全时执行
+        while not all([hasattr(inherit, lpart + str(i)) for i in range(1, 5)]):
+            with self.lock:
+                try:
+                    # 从管道接收零件
+                    part = self.queue.get(True, 0.5)
+                    print(f"车间{name}收到零件：{part}")
+                except Exception:  # 未接收到零件时，从库房获取零件
+                    if self.warehouse:
+                        part = self.warehouse.pop()
+                        print(f"车间{name}从库房收到零件：{part}")
+                    else:
+                        continue
+
+                # 零件属于本车间时组装进类中
+                if part.startswith(lpart):
+                    print(f"{part}属于本车间产品，进行组装\n")
+                    setattr(inherit, part, True)
+                # 零件不属于本车间时存入库房
+                else:
+                    print(f"{part}不属于本车间产品，存入库房\n")
+                    self.warehouse.append(part)
+
+        # 停止循环时，即组装完成
+        print("产品{}组装完毕".format(name), file=sys.stderr)
+        # print([getattr(inherit, lpart + str(i)) for i in range(1, 5)])  # [True, True, True, True]
+
+
+if __name__ == '__main__':
+    queue = multiprocessing.Queue()
+    producer = multiprocessing.Process(target=Producer(queue).make_part, args=())
+    workshop = multiprocessing.Process(target=Workshop(queue).start, args=())
+
+    producer.start()
+    workshop.start()
+    producer.join()
+    workshop.join()
+
+```
