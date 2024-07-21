@@ -263,7 +263,7 @@ print(p.stdout.readlines())
     
     def receive(queue):
         for i in range(5):
-            print("receiver:", queue.get())
+            print("receiver:", queue.get(True, 0.1))  # 阻塞最多0.1等待队列
             time.sleep(0.1)
     
     
