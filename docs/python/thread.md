@@ -352,4 +352,4 @@ print(p.stdout.readlines())
 
 ### 🚁 进程池
 
-python进程池与线程池类似，使用`concurrent.futures`模块中的`ProcessPoolExecutor`类来实现。
+python进程池使用`concurrent.futures`模块中的`ProcessPoolExecutor`类来实现，类方法与线程池的类似。
