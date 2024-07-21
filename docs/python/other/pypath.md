@@ -30,6 +30,7 @@ absolute_path = Path(basic)
 
 # 使用Path对象的方法进行操作
 print(path.resolve())  # 打印绝对路径
+print(path.resolve().as_posix()) # 转为字符串，适用于跨平台路径
 print(path.resolve().parent)  # 打印父级路径
 print(path.exists())  # 检查路径是否存在
 print(list(path.glob('*.py')))  # 模糊查询当前目录所有.py文件
@@ -50,7 +51,3 @@ tmp4 = tmp3.with_suffix(".py")
 print(tmp4)
 
 ```
-
----
-
-代码示例：[file_operate_review.py](https://gitee.com/Jork-S-B/basic-auto-test/blob/master/Commons/dp_browser/file_operate_review.py)
