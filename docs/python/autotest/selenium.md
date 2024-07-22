@@ -1,8 +1,15 @@
 ## 📌 元素定位方式
 
-常用xpath，还有id、class_name、css_selector、链接文本(link_text)/链接子串文本(partial_link_text)、name、html标签(tag_name)
+* id: 标签的id属性
+* name: 标签的name属性
+* class_name: 标签的class属性
+* tag_name: html标签的类型
+* link_text: 超链接文本
+* partial_link_text: 超链接文本的模糊匹配
+* css_selector: 相对万金油的定位方法，定位语法麻烦
+* xpath: 有自己的独特语法，基于文件系统树状结构定位
 
-对应的方法名如：`find_element_by_xpath`或者`find_element(By.XPATH,xpath)`
+调用方法如：`find_element_by_xpath`或者`find_element(By.XPATH,xpath)`
 
 ## 📌 行为链
 
