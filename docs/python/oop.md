@@ -74,7 +74,7 @@ python中通过`@abstreactmethod`装饰器实现抽象方法
 
 当一个对象被当作函数调用时，即在对象后面加上括号()，便会寻找并调用该对象的`__call__`方法。
 
-在`uniitest`中，测试类`TestCase`即通过该方式调用run方法。
+在`unittest`中，测试类`TestCase`即通过该方式调用run方法。
 
 ### 🚁 __new__
 
