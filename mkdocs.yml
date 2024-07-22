@@ -15,14 +15,15 @@ nav:
     - 算法:
       - 排序: python/oj/sort.md
       - 动态规划: python/oj/dp.md
+    - 面向对象: python/oop.md
     - 内置函数: python/builtin_func.md
     - 多线程&多进程: python/thread.md
     - 自动化:
+      - unittest: python/autotest/unittest/unittest_notes.md
       - pytest:
         - 测试夹具: python/autotest/pytest/fixture.md
         - pytest.main: python/autotest/pytest/pytest.main.md
         - pytest.ini: python/autotest/pytest/pytest.ini.md
-      - unittest笔记: python/autotest/unittest/unittest_notes.md
       - selenium笔记: python/autotest/selenium/selenium_notes.md
       - app自动化:
           - airtest: python/autotest/app/mumu_sim.md
@@ -44,6 +45,8 @@ nav:
       - excel: python/pyexcel/pyexcel_notes.md
       - 爬虫入门笔记: python/other/scrapy_notes.md
       - 闭包&装饰器&柯里化: python/closure.md
+      - 编程规范: python/other/coding_standard.md
+
 - 数据库:
     - Oracle:
       - sqlldr导入大量数据: sql/oracle/sqlldr_import.md
