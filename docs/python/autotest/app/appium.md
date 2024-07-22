@@ -19,6 +19,13 @@
 
       `IconChangeDefaultAlias`代表activity。
 
+## 📌 运行原理
+
+1.appium需要客户端、服务端
+
+2.底层是uiautomator2(android)/webdriveragent(ios)  
+客户端通过http发送至appium服务端，再转发至uiautomator2/webdriveragent相应的驱动，驱动执行命令后返回结果至服务端。
+
 ## 📌 元素定位
 
 两种方式：
