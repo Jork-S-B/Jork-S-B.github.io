@@ -77,7 +77,7 @@ docker run -d -p 53306:3306 --name my-mysql -v ${pwd}:/var/lib/mysql my-mysql
 
 ### 🚁 连接数据库
 
-`mysql -p mydb`  
+mysql -p mydb  
 当容器正常运行，在容器内输入命令连数据库
 
 ## 📌 导出镜像
