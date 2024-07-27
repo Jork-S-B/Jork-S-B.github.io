@@ -101,7 +101,7 @@ docker login -u {username} -p {password} registry.cn-hangzhou.aliyuncs.com
 # 标记镜像
 docker tag my-mysql registry.cn-hangzhou.aliyuncs.com/{namespace}/my-mysql
 
-# 推送镜像
+# 推送镜像，不包含运行时产生的数据
 docker push registry.cn-hangzhou.aliyuncs.com/{namespace}/my-mysql
 
 # 拉取镜像，然后运行容器即可
