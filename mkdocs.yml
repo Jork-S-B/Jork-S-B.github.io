@@ -49,7 +49,9 @@ nav:
       - 爬虫入门笔记: python/other/scrapy_notes.md
       - 闭包&装饰器&柯里化: python/closure.md
       - 编程规范: python/other/coding_standard.md
-
+- Java:
+    - Spring Boot:
+      - 组件: java/springboot/basic.md
 - 数据库:
     - Oracle:
       - sqlldr导入大量数据: sql/oracle/sqlldr_import.md
