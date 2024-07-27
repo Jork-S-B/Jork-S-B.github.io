@@ -2798,7 +2798,7 @@ max_connections=100
 <div class="highlight"><pre><span></span><code>docker<span class="w"> </span>run<span class="w"> </span>-d<span class="w"> </span>-p<span class="w"> </span><span class="m">53306</span>:3306<span class="w"> </span>--name<span class="w"> </span>my-mysql<span class="w"> </span>-v<span class="w"> </span><span class="si">${</span><span class="nv">pwd</span><span class="si">}</span>:/var/lib/mysql<span class="w"> </span>my-mysql
 
 <span class="c1"># -d：守护态运行容器，实现容器的持久化运行，即使终端关闭或主机重启，容器仍然会自动启动并继续提供服务。</span>
-<span class="c1"># -v：直接输入windows的路径会报错，${pwd}代表当前目录（要求空目录），即把当前目录挂载到容器的`/var/lib/mysql`目录；或者使用数据卷容器进行挂载。</span>
+<span class="c1"># -v：直接输入windows的路径会报错，${pwd}代表当前目录（要求空目录），即把容器的`/var/lib/mysql`挂载到宿主机的当前目录下。或者使用数据卷容器进行挂载。-v未指定时，docker会自动创建匿名卷，但容器被删除时，数据也会删除。</span>
 </code></pre></div>
 <h3 id="_4">🚁 其他指令补充</h3>
 <table>
@@ -2840,17 +2840,14 @@ max_connections=100
 </tbody>
 </table>
 <h3 id="_5">🚁 连接数据库</h3>
-<p><code>mysql -p mydb</code><br />
+<p>mysql -p mydb<br />
 当容器正常运行，在容器内输入命令连数据库</p>
 <h2 id="_6">📌 导出镜像</h2>
 <div class="highlight"><pre><span></span><code><span class="c1"># 导出镜像为 tar 文件</span>
 docker<span class="w"> </span>save<span class="w"> </span>-o<span class="w"> </span>my-mysql.tar<span class="w"> </span>my-mysql
 
-<span class="c1"># 在其他机器上导入镜像</span>
+<span class="c1"># 在其他机器上导入镜像，然后运行容器即可</span>
 docker<span class="w"> </span>load<span class="w"> </span>-i<span class="w"> </span>my-mysql.tar
-
-<span class="c1"># 运行新镜像</span>
-docker<span class="w"> </span>run<span class="w"> </span>-d<span class="w"> </span>--name<span class="w"> </span><span class="o">{</span>自定名称<span class="o">}</span><span class="w"> </span>-p<span class="w"> </span><span class="m">3306</span>:3306<span class="w"> </span>my-mysql
 </code></pre></div>
 <h2 id="_7">📌 推送镜像</h2>
 <p>先建好阿里云容器镜像服务-个人实例，并配置命名空间。</p>
@@ -2860,8 +2857,11 @@ docker<span class="w"> </span>login<span class="w"> </span>-u<span class="w"> </
 <span class="c1"># 标记镜像</span>
 docker<span class="w"> </span>tag<span class="w"> </span>my-mysql<span class="w"> </span>registry.cn-hangzhou.aliyuncs.com/<span class="o">{</span>namespace<span class="o">}</span>/my-mysql
 
-<span class="c1"># 推送镜像</span>
+<span class="c1"># 推送镜像，不包含运行时产生的数据</span>
 docker<span class="w"> </span>push<span class="w"> </span>registry.cn-hangzhou.aliyuncs.com/<span class="o">{</span>namespace<span class="o">}</span>/my-mysql
+
+<span class="c1"># 拉取镜像，然后运行容器即可</span>
+docker<span class="w"> </span>pull<span class="w"> </span>registry.cn-hangzhou.aliyuncs.com/<span class="o">{</span>namespace<span class="o">}</span>/my-mysql:latest
 </code></pre></div>
 <hr />
 <p><a href="https://blog.csdn.net/Liu__sir__/article/details/130643737">参考的这一篇博客</a></p>
@@ -2885,7 +2885,7 @@ docker<span class="w"> </span>push<span class="w"> </span>registry.cn-hangzhou.a
     <span class="md-icon" title="最后更新">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1-2.1-2M12.5 7v5.2l4 2.4-1 1L11 13V7h1.5M11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2v1.8Z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime">2024-07-27 15:52:07</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime">2024-07-27 16:04:47</span>
   </span>
 
     
