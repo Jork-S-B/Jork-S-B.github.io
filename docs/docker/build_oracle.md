@@ -1,8 +1,4 @@
-#  
-
-### 🚁 构建19C镜像
-
-[参考的这一篇博客](https://blog.csdn.net/arcsin_/article/details/123707618)
+## 📌 构建19C镜像
 
 准备好Dockerfile，构建镜像并运行容器。19C镜像需要2G以上磁盘空间，pull和首次运行都需要一段时间。
 
@@ -38,7 +34,7 @@
     sqlplus / as sysdba
     ```
 
-### 🚁 在指定pdb中创建用户
+## 📌 在指定pdb中创建用户
 
 === "terminal"
     
@@ -75,7 +71,7 @@
     
     12c及更高版本，若要建公共用户，则用户名需要以C##开头+username命名。
 
-### 🚁 在宿主机使用oracledb连接
+## 📌 在宿主机使用oracledb连接
     
 === "dbutil.py"
 
@@ -111,3 +107,8 @@
 控制台打印：[(datetime.datetime(2024, 1, 15, 14, 7, 23),)]，没得问题。
 
 ---
+
+参考资料：
+
+[Docker安装Oracle19c史上最全步骤（图文并茂）](https://blog.csdn.net/arcsin_/article/details/123707618)
+
