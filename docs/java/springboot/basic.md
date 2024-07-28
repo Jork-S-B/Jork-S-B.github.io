@@ -53,6 +53,8 @@ public class ScheduleJob{
 
 实体类、DAO、xml映射
 
+DTO（Data Transfer Object）数据传输对象，用于在不同层级或不同系统间传输数据。可以避免直接暴露实体类的细节，用来过滤和转换数据。
+
 ## 📌 lombok
 
 定义Java类时通过注解，省去get/set方法编写。
@@ -64,8 +66,10 @@ import lombok.EqualsAndHashCode;
 
 // @EqualsAndHashCode(callSuper = true) // 继承多个类时使用，避免实例化子类可能出现误判
 @Data // 被装饰的类会自动生成get/set、toString()、equals()、hashCode()
+@NoArgsConstructor // 生成一个全参数构造器
+@AllArgsConstructor // 生成一个无参构造器
 public class Demo {
-//    @NonNull，使用该装饰器时会自动生成构造方法
+//    @NonNull，使用该装饰器时会自动生成该参数的构造方法
     private String id;
 
     private String name;
