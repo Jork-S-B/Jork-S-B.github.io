@@ -3039,6 +3039,7 @@
 </ul>
 <h2 id="mybatis">📌 mybatis框架</h2>
 <p>实体类、DAO、xml映射</p>
+<p>DTO（Data Transfer Object）数据传输对象，用于在不同层级或不同系统间传输数据。可以避免直接暴露实体类的细节，用来过滤和转换数据。</p>
 <h2 id="lombok">📌 lombok</h2>
 <p>定义Java类时通过注解，省去get/set方法编写。</p>
 <div class="highlight"><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">lombok.Data</span><span class="p">;</span>
@@ -3047,8 +3048,10 @@
 
 <span class="c1">// @EqualsAndHashCode(callSuper = true) // 继承多个类时使用，避免实例化子类可能出现误判</span>
 <span class="nd">@Data</span><span class="w"> </span><span class="c1">// 被装饰的类会自动生成get/set、toString()、equals()、hashCode()</span>
+<span class="nd">@NoArgsConstructor</span><span class="w"> </span><span class="c1">// 生成一个全参数构造器</span>
+<span class="nd">@AllArgsConstructor</span><span class="w"> </span><span class="c1">// 生成一个无参构造器</span>
 <span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">Demo</span><span class="w"> </span><span class="p">{</span>
-<span class="c1">//    @NonNull，使用该装饰器时会自动生成构造方法</span>
+<span class="c1">//    @NonNull，使用该装饰器时会自动生成该参数的构造方法</span>
 <span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="n">id</span><span class="p">;</span>
 
 <span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="n">name</span><span class="p">;</span>
@@ -3171,7 +3174,7 @@ public class PageDTO&lt;T&gt; {
     <span class="md-icon" title="最后更新">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1-2.1-2M12.5 7v5.2l4 2.4-1 1L11 13V7h1.5M11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2v1.8Z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime">2024-07-27 19:36:24</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime">2024-07-28 22:46:42</span>
   </span>
 
     
