@@ -28,8 +28,8 @@ nav:
       - app自动化:
           - airtest: python/autotest/app/mumu_sim.md
           - appium: python/autotest/app/appium.md
-          - uiautomator2: python/autotest/uiautomator2.md
-          - wda: python/autotest/webdriveragent.md
+          - uiautomator2: python/autotest/app/uiautomator2.md
+          - wda: python/autotest/app/webdriveragent.md
       - mitmproxy: python/autotest/mitmproxy.md
       - requests: python/autotest/requests.md
     - Web:
