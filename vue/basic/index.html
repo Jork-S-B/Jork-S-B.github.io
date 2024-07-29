@@ -13,25 +13,25 @@
       
       
       
-        <link rel="prev" href="../../../vue/basic/">
+        <link rel="prev" href="../../java/springboot/basic/">
       
       
-        <link rel="next" href="../some/">
+        <link rel="next" href="../../sql/oracle/sqlldr_import/">
       
       
-      <link rel="icon" href="../../../assets/images/favicon.png">
+      <link rel="icon" href="../../assets/images/favicon.png">
       <meta name="generator" content="mkdocs-1.6.0, mkdocs-material-9.5.30">
     
     
       
-        <title>sqlldr导入大量数据 - whm</title>
+        <title>基础 - whm</title>
       
     
     
-      <link rel="stylesheet" href="../../../assets/stylesheets/main.3cba04c6.min.css">
+      <link rel="stylesheet" href="../../assets/stylesheets/main.3cba04c6.min.css">
       
         
-        <link rel="stylesheet" href="../../../assets/stylesheets/palette.06af60db.min.css">
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.06af60db.min.css">
       
       
 
@@ -44,16 +44,16 @@
       
     
     
-      <link rel="stylesheet" href="../../../stylesheets/extra.css">
+      <link rel="stylesheet" href="../../stylesheets/extra.css">
     
-    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
 
     
     
     
-   <link href="../../../assets/stylesheets/glightbox.min.css" rel="stylesheet"/><style>
+   <link href="../../assets/stylesheets/glightbox.min.css" rel="stylesheet"/><style>
     html.glightbox-open { overflow: initial; height: 100%; }
     .gslide-title { margin-top: 0px; user-select: text; }
     .gslide-desc { color: #666; user-select: text; }
@@ -62,7 +62,7 @@
     .gdesc-inner { font-size: 0.75rem; }
     body[data-md-color-scheme="slate"] .gdesc-inner { background: var(--md-default-bg-color);}
     body[data-md-color-scheme="slate"] .gslide-title { color: var(--md-default-fg-color);}
-    body[data-md-color-scheme="slate"] .gslide-desc { color: var(--md-default-fg-color);}</style> <script src="../../../assets/javascripts/glightbox.min.js"></script></head>
+    body[data-md-color-scheme="slate"] .gslide-desc { color: var(--md-default-fg-color);}</style> <script src="../../assets/javascripts/glightbox.min.js"></script></head>
   
   
     
@@ -81,7 +81,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#sqlldr" class="md-skip">
+        <a href="#_1" class="md-skip">
           跳转至
         </a>
       
@@ -95,7 +95,7 @@
 
 <header class="md-header" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="页眉">
-    <a href="../../.." title="whm" class="md-header__button md-logo" aria-label="whm" data-md-component="logo">
+    <a href="../.." title="whm" class="md-header__button md-logo" aria-label="whm" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M256 512a256 256 0 1 0 0-512 256 256 0 1 0 0 512zm-91.9-186.5C182 346.2 212.6 368 256 368s74-21.8 91.9-42.5c5.8-6.7 15.9-7.4 22.6-1.6s7.4 15.9 1.6 22.6c-22.3 25.6-61 53.5-116.1 53.5s-93.8-27.9-116.1-53.5c-5.8-6.7-5.1-16.8 1.6-22.6s16.8-5.1 22.6 1.6zM144.4 208a32 32 0 1 1 64 0 32 32 0 1 1-64 0zm156.4 25.6c-5.3 7.1-15.3 8.5-22.4 3.2s-8.5-15.3-3.2-22.4c30.4-40.5 91.2-40.5 121.6 0 5.3 7.1 3.9 17.1-3.2 22.4s-17.1 3.9-22.4-3.2c-17.6-23.5-52.8-23.5-70.4 0z"/></svg>
@@ -115,7 +115,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              sqlldr导入大量数据
+              基础
             
           </span>
         </div>
@@ -222,7 +222,7 @@
   
   
     <li class="md-tabs__item">
-      <a href="../../.." class="md-tabs__link">
+      <a href="../.." class="md-tabs__link">
         
   
     
@@ -249,7 +249,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="../../../python/datatype/number/" class="md-tabs__link">
+        <a href="../../python/datatype/number/" class="md-tabs__link">
           
   
   Python
@@ -276,7 +276,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="../../../java/springboot/basic/" class="md-tabs__link">
+        <a href="../../java/springboot/basic/" class="md-tabs__link">
           
   
   Java
@@ -293,11 +293,13 @@
         
   
   
+    
+  
   
     
     
-      <li class="md-tabs__item">
-        <a href="../../../vue/basic/" class="md-tabs__link">
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="./" class="md-tabs__link">
           
   
   Vue
@@ -311,21 +313,17 @@
         
   
   
-    
-  
   
     
     
       
   
   
-    
-  
   
     
     
-      <li class="md-tabs__item md-tabs__item--active">
-        <a href="./" class="md-tabs__link">
+      <li class="md-tabs__item">
+        <a href="../../sql/oracle/sqlldr_import/" class="md-tabs__link">
           
   
   数据库
@@ -346,7 +344,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="../../../shell/review/" class="md-tabs__link">
+        <a href="../../shell/review/" class="md-tabs__link">
           
   
   Shell
@@ -364,7 +362,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="../../../utils/fiddler_notes/" class="md-tabs__link">
+        <a href="../../utils/fiddler_notes/" class="md-tabs__link">
           
   
   测试工具
@@ -382,7 +380,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="../../../hadoop/ecosystem/" class="md-tabs__link">
+        <a href="../../hadoop/ecosystem/" class="md-tabs__link">
           
   
   Hadoop
@@ -400,7 +398,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="../../../docker/windows_docker/" class="md-tabs__link">
+        <a href="../../docker/windows_docker/" class="md-tabs__link">
           
   
   Docker
@@ -418,7 +416,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="../../../other/nginx_notes/" class="md-tabs__link">
+        <a href="../../other/nginx_notes/" class="md-tabs__link">
           
   
   其他
@@ -451,7 +449,7 @@
 
 <nav class="md-nav md-nav--primary md-nav--lifted" aria-label="导航栏" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="../../.." title="whm" class="md-nav__button md-logo" aria-label="whm" data-md-component="logo">
+    <a href="../.." title="whm" class="md-nav__button md-logo" aria-label="whm" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M256 512a256 256 0 1 0 0-512 256 256 0 1 0 0 512zm-91.9-186.5C182 346.2 212.6 368 256 368s74-21.8 91.9-42.5c5.8-6.7 15.9-7.4 22.6-1.6s7.4 15.9 1.6 22.6c-22.3 25.6-61 53.5-116.1 53.5s-93.8-27.9-116.1-53.5c-5.8-6.7-5.1-16.8 1.6-22.6s16.8-5.1 22.6 1.6zM144.4 208a32 32 0 1 1 64 0 32 32 0 1 1-64 0zm156.4 25.6c-5.3 7.1-15.3 8.5-22.4 3.2s-8.5-15.3-3.2-22.4c30.4-40.5 91.2-40.5 121.6 0 5.3 7.1 3.9 17.1-3.2 22.4s-17.1 3.9-22.4-3.2c-17.6-23.5-52.8-23.5-70.4 0z"/></svg>
@@ -481,7 +479,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../.." class="md-nav__link">
+      <a href="../.." class="md-nav__link">
         
   
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2A10 10 0 0 0 2 12a10 10 0 0 0 10 10 10 10 0 0 0 10-10A10 10 0 0 0 12 2M7 9.5C7 8.7 7.7 8 8.5 8s1.5.7 1.5 1.5S9.3 11 8.5 11 7 10.3 7 9.5m5 7.73c-1.75 0-3.29-.73-4.19-1.81L9.23 14c.45.72 1.52 1.23 2.77 1.23s2.32-.51 2.77-1.23l1.42 1.42c-.9 1.08-2.44 1.81-4.19 1.81M15.5 11c-.8 0-1.5-.7-1.5-1.5S14.7 8 15.5 8s1.5.7 1.5 1.5-.7 1.5-1.5 1.5Z"/></svg>
@@ -579,7 +577,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../python/datatype/number/" class="md-nav__link">
+      <a href="../../python/datatype/number/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -600,7 +598,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../python/datatype/sequence/" class="md-nav__link">
+      <a href="../../python/datatype/sequence/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -621,7 +619,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../python/datatype/dict%26set/" class="md-nav__link">
+      <a href="../../python/datatype/dict%26set/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -642,7 +640,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../python/datatype/mutable%26immutable/" class="md-nav__link">
+      <a href="../../python/datatype/mutable%26immutable/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -671,7 +669,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../python/structure/structure/" class="md-nav__link">
+      <a href="../../python/structure/structure/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -730,7 +728,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../python/oj/sort/" class="md-nav__link">
+      <a href="../../python/oj/sort/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -751,7 +749,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../python/oj/dp/" class="md-nav__link">
+      <a href="../../python/oj/dp/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -780,7 +778,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../python/oop/" class="md-nav__link">
+      <a href="../../python/oop/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -801,7 +799,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../python/builtin_func/" class="md-nav__link">
+      <a href="../../python/builtin_func/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -822,7 +820,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../python/thread/" class="md-nav__link">
+      <a href="../../python/thread/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -881,7 +879,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../python/autotest/unittest/unittest_notes/" class="md-nav__link">
+      <a href="../../python/autotest/unittest/unittest_notes/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -940,7 +938,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../python/autotest/pytest/fixture/" class="md-nav__link">
+      <a href="../../python/autotest/pytest/fixture/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -961,7 +959,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../python/autotest/pytest/pytest.main/" class="md-nav__link">
+      <a href="../../python/autotest/pytest/pytest.main/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -982,7 +980,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../python/autotest/pytest/pytest.ini/" class="md-nav__link">
+      <a href="../../python/autotest/pytest/pytest.ini/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1011,7 +1009,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../python/autotest/selenium/" class="md-nav__link">
+      <a href="../../python/autotest/selenium/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1070,7 +1068,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../python/autotest/app/mumu_sim/" class="md-nav__link">
+      <a href="../../python/autotest/app/mumu_sim/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1091,7 +1089,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../python/autotest/app/appium/" class="md-nav__link">
+      <a href="../../python/autotest/app/appium/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1112,7 +1110,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../python/autotest/app/uiautomator2/" class="md-nav__link">
+      <a href="../../python/autotest/app/uiautomator2/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1133,7 +1131,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../python/autotest/app/webdriveragent/" class="md-nav__link">
+      <a href="../../python/autotest/app/webdriveragent/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1162,7 +1160,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../python/autotest/mitmproxy/" class="md-nav__link">
+      <a href="../../python/autotest/mitmproxy/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1183,7 +1181,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../python/autotest/requests/" class="md-nav__link">
+      <a href="../../python/autotest/requests/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1250,7 +1248,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../python/web/flask/" class="md-nav__link">
+      <a href="../../python/web/flask/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1309,7 +1307,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../python/web/django/django_orm/" class="md-nav__link">
+      <a href="../../python/web/django/django_orm/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1330,7 +1328,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../python/web/django/django_templates/" class="md-nav__link">
+      <a href="../../python/web/django/django_templates/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1351,7 +1349,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../python/web/django/cookie%26session/" class="md-nav__link">
+      <a href="../../python/web/django/cookie%26session/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1426,7 +1424,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../python/other/mv_py_path/" class="md-nav__link">
+      <a href="../../python/other/mv_py_path/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1447,7 +1445,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../python/other/mkdocs_notes/" class="md-nav__link">
+      <a href="../../python/other/mkdocs_notes/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1468,7 +1466,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../python/regex/re/" class="md-nav__link">
+      <a href="../../python/regex/re/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1489,7 +1487,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../python/other/pypath/" class="md-nav__link">
+      <a href="../../python/other/pypath/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1510,7 +1508,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../python/pyjson/pyjson_notes/" class="md-nav__link">
+      <a href="../../python/pyjson/pyjson_notes/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1531,7 +1529,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../python/pydocx/pydocx_notes/" class="md-nav__link">
+      <a href="../../python/pydocx/pydocx_notes/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1552,7 +1550,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../python/pyexcel/pyexcel_notes/" class="md-nav__link">
+      <a href="../../python/pyexcel/pyexcel_notes/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1573,7 +1571,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../python/other/scrapy_notes/" class="md-nav__link">
+      <a href="../../python/other/scrapy_notes/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1594,7 +1592,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../python/closure/" class="md-nav__link">
+      <a href="../../python/closure/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1615,7 +1613,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../python/other/coding_standard/" class="md-nav__link">
+      <a href="../../python/other/coding_standard/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1727,7 +1725,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../java/springboot/basic/" class="md-nav__link">
+      <a href="../../java/springboot/basic/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1744,72 +1742,6 @@
           </ul>
         </nav>
       
-    </li>
-  
-
-              
-            
-          </ul>
-        </nav>
-      
-    </li>
-  
-
-    
-      
-      
-  
-  
-  
-  
-    
-    
-    
-      
-      
-    
-    
-    <li class="md-nav__item md-nav__item--nested">
-      
-        
-        
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
-        
-          
-          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
-            
-  
-  <span class="md-ellipsis">
-    Vue
-  </span>
-  
-
-            <span class="md-nav__icon md-icon"></span>
-          </label>
-        
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_4">
-            <span class="md-nav__icon md-icon"></span>
-            Vue
-          </label>
-          <ul class="md-nav__list" data-md-scrollfix>
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../../vue/basic/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    基础
-  </span>
-  
-
-      </a>
     </li>
   
 
@@ -1844,64 +1776,24 @@
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" checked>
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" checked>
         
           
-          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="">
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="">
             
   
   <span class="md-ellipsis">
-    数据库
+    Vue
   </span>
   
 
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="true">
-          <label class="md-nav__title" for="__nav_5">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_4">
             <span class="md-nav__icon md-icon"></span>
-            数据库
-          </label>
-          <ul class="md-nav__list" data-md-scrollfix>
-            
-              
-                
-  
-  
-    
-  
-  
-  
-    
-    
-    
-      
-      
-    
-    
-    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
-      
-        
-        
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_1" checked>
-        
-          
-          <label class="md-nav__link" for="__nav_5_1" id="__nav_5_1_label" tabindex="0">
-            
-  
-  <span class="md-ellipsis">
-    Oracle
-  </span>
-  
-
-            <span class="md-nav__icon md-icon"></span>
-          </label>
-        
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_5_1_label" aria-expanded="true">
-          <label class="md-nav__title" for="__nav_5_1">
-            <span class="md-nav__icon md-icon"></span>
-            Oracle
+            Vue
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
             
@@ -1918,14 +1810,12 @@
       <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
       
       
-        
-      
       
         <label class="md-nav__link md-nav__link--active" for="__toc">
           
   
   <span class="md-ellipsis">
-    sqlldr导入大量数据
+    基础
   </span>
   
 
@@ -1936,7 +1826,7 @@
         
   
   <span class="md-ellipsis">
-    sqlldr导入大量数据
+    基础
   </span>
   
 
@@ -1948,8 +1838,6 @@
   
   
   
-    
-  
   
     <label class="md-nav__title" for="__toc">
       <span class="md-nav__icon md-icon"></span>
@@ -1960,18 +1848,93 @@
         <li class="md-nav__item">
   <a href="#_1" class="md-nav__link">
     <span class="md-ellipsis">
-      🚁 使用方法
+      📌 使用模版
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="📌 使用模版">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      🚁 生命周期
     </span>
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
-  <a href="#sqlplusctl" class="md-nav__link">
+        
+          <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
     <span class="md-ellipsis">
-      🚁 sqlplus生成ctl文件
+      🚁 常用方法
     </span>
   </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      📌 基础语法
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="📌 基础语法">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      🚁 插值
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      🚁 事件绑定
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      🚁 条件加载
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_8" class="md-nav__link">
+    <span class="md-ellipsis">
+      🚁 循环加载
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_9" class="md-nav__link">
+    <span class="md-ellipsis">
+      🚁 样式绑定
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -1984,6 +1947,89 @@
 
               
             
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    数据库
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            数据库
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_5_1" id="__nav_5_1_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Oracle
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_5_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5_1">
+            <span class="md-nav__icon md-icon"></span>
+            Oracle
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
               
                 
   
@@ -1991,7 +2037,28 @@
   
   
     <li class="md-nav__item">
-      <a href="../some/" class="md-nav__link">
+      <a href="../../sql/oracle/sqlldr_import/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    sqlldr导入大量数据
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sql/oracle/some/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -2012,7 +2079,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../lock%26unlock/" class="md-nav__link">
+      <a href="../../sql/oracle/lock%26unlock/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -2033,7 +2100,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../procedure/" class="md-nav__link">
+      <a href="../../sql/oracle/procedure/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -2054,7 +2121,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../gather_table_stats/" class="md-nav__link">
+      <a href="../../sql/oracle/gather_table_stats/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -2075,7 +2142,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../other_notes/" class="md-nav__link">
+      <a href="../../sql/oracle/other_notes/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -2104,7 +2171,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../mysql_notes/" class="md-nav__link">
+      <a href="../../sql/mysql_notes/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -2125,7 +2192,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../redis_notes/" class="md-nav__link">
+      <a href="../../sql/redis_notes/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -2191,7 +2258,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../shell/review/" class="md-nav__link">
+      <a href="../../shell/review/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -2212,7 +2279,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../shell/regex/" class="md-nav__link">
+      <a href="../../shell/regex/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -2233,7 +2300,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../shell/timestamp/" class="md-nav__link">
+      <a href="../../shell/timestamp/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -2299,7 +2366,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../utils/fiddler_notes/" class="md-nav__link">
+      <a href="../../utils/fiddler_notes/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -2320,7 +2387,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../utils/charles_notes/" class="md-nav__link">
+      <a href="../../utils/charles_notes/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -2341,7 +2408,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../utils/postman_notes/" class="md-nav__link">
+      <a href="../../utils/postman_notes/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -2362,7 +2429,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../utils/jmeter_notes/" class="md-nav__link">
+      <a href="../../utils/jmeter_notes/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -2428,7 +2495,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../hadoop/ecosystem/" class="md-nav__link">
+      <a href="../../hadoop/ecosystem/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -2487,7 +2554,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../hadoop/scala/day01/" class="md-nav__link">
+      <a href="../../hadoop/scala/day01/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -2508,7 +2575,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../hadoop/scala/day02/" class="md-nav__link">
+      <a href="../../hadoop/scala/day02/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -2529,7 +2596,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../hadoop/scala/day03/" class="md-nav__link">
+      <a href="../../hadoop/scala/day03/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -2550,7 +2617,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../hadoop/scala/day04/" class="md-nav__link">
+      <a href="../../hadoop/scala/day04/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -2624,7 +2691,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../docker/windows_docker/" class="md-nav__link">
+      <a href="../../docker/windows_docker/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -2645,7 +2712,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../docker/archlinux_docker/" class="md-nav__link">
+      <a href="../../docker/archlinux_docker/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -2666,7 +2733,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../docker/build_mysql/" class="md-nav__link">
+      <a href="../../docker/build_mysql/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -2687,7 +2754,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../docker/build_oracle/" class="md-nav__link">
+      <a href="../../docker/build_oracle/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -2753,7 +2820,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../other/nginx_notes/" class="md-nav__link">
+      <a href="../../other/nginx_notes/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -2774,7 +2841,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../other/git_notes/" class="md-nav__link">
+      <a href="../../other/git_notes/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -2812,8 +2879,6 @@
   
   
   
-    
-  
   
     <label class="md-nav__title" for="__toc">
       <span class="md-nav__icon md-icon"></span>
@@ -2824,18 +2889,93 @@
         <li class="md-nav__item">
   <a href="#_1" class="md-nav__link">
     <span class="md-ellipsis">
-      🚁 使用方法
+      📌 使用模版
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="📌 使用模版">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      🚁 生命周期
     </span>
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
-  <a href="#sqlplusctl" class="md-nav__link">
+        
+          <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
     <span class="md-ellipsis">
-      🚁 sqlplus生成ctl文件
+      🚁 常用方法
     </span>
   </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      📌 基础语法
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="📌 基础语法">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      🚁 插值
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      🚁 事件绑定
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      🚁 条件加载
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_8" class="md-nav__link">
+    <span class="md-ellipsis">
+      🚁 循环加载
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_9" class="md-nav__link">
+    <span class="md-ellipsis">
+      🚁 样式绑定
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -2857,112 +2997,299 @@
   
 
 
-<h1 id="sqlldr">sqlldr导入大量数据</h1>
-<p>sqlldr：SQL Loader的简写，是Oracle提供的一个工具，用于将数据从一个数据库导入另一个数据库。</p>
-<h3 id="_1">🚁 使用方法</h3>
-<div class="highlight"><pre><span></span><code><span class="ch">#!/bin/bash</span>
-<span class="c1"># 目标数据库连接串</span>
-<span class="nv">target_dbstr</span><span class="o">=</span><span class="s2">&quot;user/pw@ip:port&quot;</span>
-<span class="c1"># 待导入的数据文件，格式如：xxxx|xx|xxx|x</span>
-<span class="nv">file_name</span><span class="o">=</span>tablename.txt
-<span class="c1"># 目标表字段，日期的字段需要说明日期格式</span>
-<span class="nv">field</span><span class="o">=</span><span class="s2">&quot;column1, column2, createdate date &#39;yyyy-mm-dd hh24:mi:ss&#39;, memo&quot;</span>
+  <h1>基础</h1>
 
-<span class="c1"># 写入ctl文件</span>
-<span class="nv">table</span><span class="o">=</span>tablename
-cat<span class="w"> </span>&gt;<span class="w"> </span>./<span class="si">${</span><span class="nv">table</span><span class="si">}</span>.ctl<span class="w"> </span><span class="s">&lt;&lt; EOF</span>
-<span class="s">load data</span>
-<span class="s">infile &quot;${file_name}&quot;</span>
-<span class="s">append into table ${table}</span>
-<span class="s">fields terminated by &#39;|&#39;</span>
-<span class="s">TRAILING NULLCOLS</span>
-<span class="s">(</span>
-<span class="s">${field}</span>
-<span class="s">)</span>
-<span class="s">EOF</span>
-
-sqlldr<span class="w"> </span><span class="nv">userid</span><span class="o">=</span><span class="si">${</span><span class="nv">target_dbstr</span><span class="si">}</span><span class="w"> </span><span class="nv">control</span><span class="o">=</span>./<span class="si">${</span><span class="nv">table</span><span class="si">}</span>.ctl<span class="w"> </span><span class="nv">log</span><span class="o">=</span>./<span class="si">${</span><span class="nv">table</span><span class="si">}</span>.log<span class="w"> </span><span class="nv">bad</span><span class="o">=</span>./<span class="si">${</span><span class="nv">table</span><span class="si">}</span>.bad
+<ul>
+<li>mvvm，model-view-viewmodel。</li>
+<li>渐进式，只需用部分规则。</li>
+<li>双向数据绑定，vue.js会自动响应数据变化，对数据和视图进行修改。</li>
+<li>组件化，将父组件拆分多个子组件，子组件封装成类似于类的形式，传入方法和参数的定义即可，但尽量不要在子组件修改父组件的属性。</li>
+</ul>
+<p>依赖环境: node14、npm6</p>
+<p>更换镜像源: <code>npm config set registry https://registry.npmmirror.com</code></p>
+<p>全局安装vue-cli: <code>npm install --global vue-cli</code></p>
+<p>创建项目: <code>vue init webpack demo</code></p>
+<p>导入项目需安装依赖: <code>npm install</code></p>
+<p>启动: <code>npm run dev</code></p>
+<p>构建: <code>npm run build</code></p>
+<h2 id="_1">📌 使用模版</h2>
+<p>一般包括模板-template、样式-style、脚本-script</p>
+<h3 id="_2">🚁 生命周期</h3>
+<p>钩子函数:</p>
+<ul>
+<li>beforeCreate(创建前): data和methods中的数据初始化前。</li>
+<li><strong><em>created</em></strong>(创建后): data和methods中的数据初始化后。</li>
+<li>beforeMount(载入前): 模板已经在内存中编译完成，但是尚未挂载到页面中。</li>
+<li><strong><em>mounted</em></strong>(载入后): 挂载到页面，dom节点加载完成。</li>
+<li>beforeUpdate(更新前): 内存的数据加载/同步到页面前。</li>
+<li>Updated(更新后): 内存的数据加载/同步到页面前后。</li>
+<li>beforeDestroy(销毁前)</li>
+<li>destroyed(销毁后)</li>
+<li>activated(组件激活时): 组件实例被激活时使用，用于重复激活一个实例时。</li>
+<li>deactivated(组件未激活时)</li>
+<li>errorCaptured(错误调用): 当捕获一个来自后代组件的错误时调用。</li>
+</ul>
+<h3 id="_3">🚁 常用方法</h3>
+<ul>
+<li>name: 声明组件名称</li>
+<li>data: 声明变量/数据</li>
+<li>components: 注册/加载组件</li>
+<li>props: 定义组件的入参，该入参可以是函数</li>
+<li>methods: 声明js函数</li>
+<li>watch: 监听参数</li>
+<li>computed: 计算参数</li>
+</ul>
+<div class="highlight"><pre><span></span><code>&lt;script&gt;
+  // 引用其他模版定义的组件，搭配components使用
+  import example from &quot;@/views/example&quot;  // @代表src路径
+  // 导入组件
+  export default {
+    name: &#39;demo&#39;,
+    data() {
+      return {
+        text: &#39;hello world&#39;,
+        html: &#39;&lt;h1&gt;hello world&lt;/h1&gt;&#39;,
+        list: [],
+        isShow: true,
+        form: {},
+        arr: null,
+        date: 20002222222, // 时间戳
+      }
+    },
+    // 注册组件
+    components: {
+      example
+    },
+    // 定义组件的入参，类似python的init(id: str)
+    props: {
+      id: {
+        type: String,
+        default: &#39;1&#39;
+      },
+      // getUser: Function,
+    },
+    // 声明js函数
+    methods: {
+      submit(id, name) {
+        /* 
+          const a = 1; // 声明常量
+          let b = 2; // 声明局部变量，仅当前代码块有效
+          var c = 3; // 声明局部变量
+         */
+        this.$post(&#39;/api/xxx&#39;, this.form, res =&gt; {
+          console.log(res)
+        })
+      }
+    },
+    watch: {
+      id(newVal) {
+        console.log(newVal)
+      }
+    },
+    computed: {
+      dateStr() { // 时间戳转为日期格式，可缓存
+        return this.date.format(&#39;yyyy-MM-dd&#39;)
+      }
+    },
+    // 钩子函数
+    created() {
+      // 监听
+    },
+    beforeCreate() {
+      // this.$store.commit(&#39;set_token&#39;, localStorage.getItem(&#39;token&#39;));
+      // this.$store.commit(&#39;set_user&#39;, JSON.parse(localStorage.getItem(&#39;user&#39;)));
+    }
+  }
+&lt;/script&gt;
 </code></pre></div>
-<div class="admonition note">
-<p class="admonition-title">补充：使用sqluldr2导出查询结果</p>
-<p><code>./sqluldr2 user="user/pw" query="select * from table" head=no field="|" file="./tablename.txt" charset=ZHS16GBK</code></p>
-</div>
-<hr />
-<h3 id="sqlplusctl">🚁 sqlplus生成ctl文件</h3>
-<p>上述脚本需要手动填入目标表的字段至field变量，有多个表要导入时就比较麻烦。可以用sqlplus来生成ctl文件，然后用sqlldr导入。</p>
-<div class="tabbed-set tabbed-alternate" data-tabs="1:2"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">ldr.sh</label><label for="__tabbed_1_2">make_ctl.sql</label></div>
+<h2 id="_4">📌 基础语法</h2>
+<h3 id="_5">🚁 插值</h3>
+<ul>
+<li>{{text}}: 插入文本</li>
+<li>v-html: 插入文本，以html语法进行渲染，动态生成页面，如测试报告</li>
+<li>v-bind: 单向绑定，<code>v-bind</code>可省略为<code>:</code>符号</li>
+<li>v-model: 双向绑定，表单数据跟js里的数据会同步。</li>
+</ul>
+<div class="highlight"><pre><span></span><code>&lt;template&gt;
+  &lt;div&gt;
+    &lt;a href=&quot;#&quot;&gt;{{text}}&lt;/a&gt;
+    &lt;span v-html=&quot;text&quot;&gt;&lt;/span&gt;
+    &lt;!-- 这里的v-bind:value可省略为:value --&gt;
+    &lt;input class=&quot;user-account&quot; type=&quot;text&quot; v-bind:value=&quot;text&quot;/&gt;
+  &lt;/div&gt;
+&lt;/template&gt;
+</code></pre></div>
+<h3 id="_6">🚁 事件绑定</h3>
+<p>v-on: 绑定事件，可省略为<code>@</code>符号。</p>
+<p><code>this.$emit</code>，用于从子组件向父组件发送自定义事件。</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="1:2"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">mylogin.vue</label><label for="__tabbed_1_2">demo.vue</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
-<div class="highlight"><pre><span></span><code><span class="ch">#!/bin/bash</span>
-<span class="k">if</span><span class="w"> </span><span class="o">[</span><span class="w"> </span><span class="nv">$#</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="o">]</span><span class="w"> </span><span class="p">;</span><span class="w"> </span><span class="k">then</span>
-<span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;使用方法：sh ldr.sh 表名&quot;</span>
-exit<span class="p">;</span>
-<span class="k">fi</span>
-<span class="nv">target_dbstr</span><span class="o">=</span><span class="s2">&quot;user/pw@ip:port/db&quot;</span>
-<span class="nv">table</span><span class="o">=</span><span class="nv">$1</span>
-
-<span class="c1"># make_ctl.sql参数说明</span>
-<span class="c1"># 参数1=目标表名</span>
-<span class="c1"># 参数2=truncate|append等装载方式</span>
-<span class="c1"># 参数3=字段分隔符</span>
-sqlplus<span class="w"> </span><span class="si">${</span><span class="nv">target_dbstr</span><span class="si">}</span><span class="w"> </span>@./make_ctl.sql<span class="w"> </span><span class="si">${</span><span class="nv">table</span><span class="si">}</span><span class="w"> </span>append<span class="w"> </span><span class="s2">&quot;|&quot;</span>
-
-<span class="c1"># APPEND 追加</span>
-<span class="c1"># INSERT 默认值，如果原先的表有数据，sqlloader会停止</span>
-<span class="c1"># REPLACE 如果原先的表有数据，原先的数据会全部删除</span>
-<span class="c1"># TRUNCATE 和replace的相同，会用truncate语句删除现存数据</span>
-
-sqlldr<span class="w"> </span><span class="nv">userid</span><span class="o">=</span><span class="si">${</span><span class="nv">target_dbstr</span><span class="si">}</span><span class="w"> </span><span class="nv">control</span><span class="o">=</span>./<span class="si">${</span><span class="nv">table</span><span class="si">}</span>.ctl<span class="w"> </span><span class="nv">log</span><span class="o">=</span>./<span class="si">${</span><span class="nv">table</span><span class="si">}</span>.log<span class="w"> </span><span class="nv">bad</span><span class="o">=</span>./<span class="si">${</span><span class="nv">table</span><span class="si">}</span>.bad
+<div class="highlight"><pre><span></span><code>&lt;template&gt;
+  &lt;div&gt;
+    &lt;input type=&quot;text&quot; v-model=&quot;account1&quot;/&gt;
+    &lt;input type=&quot;password&quot; v-model=&quot;password1&quot;/&gt;
+    &lt;button v-on:click=&quot;submit&quot;&gt;提交&lt;/button&gt;
+  &lt;/div&gt;
+&lt;/template&gt;
+&lt;script&gt;
+export default {
+  name: &#39;login&#39;,
+  props: {
+    account: String,
+    password: String
+  },
+  data() {
+    return {
+      account1: this.account,
+      password1: this.password
+    }
+  },
+  methods: {
+    submit() {
+      // this.$emit，用于子组件向父组件发送自定义事件，这里是把账号和密码传回父组件打印在console
+      // 在子组件不能修改父组件的属性值
+      this.$emit(&quot;submit&quot;, {account: this.account1, password: this.password1})
+    }
+  }
+}
+&lt;/script&gt;
 </code></pre></div>
 </div>
 <div class="tabbed-block">
-<div class="highlight"><pre><span></span><code><span class="k">set</span><span class="w"> </span><span class="n">echo</span><span class="w"> </span><span class="k">off</span><span class="w">                                     </span>
-<span class="k">set</span><span class="w"> </span><span class="n">heading</span><span class="w"> </span><span class="k">off</span><span class="w">                                  </span>
-<span class="k">set</span><span class="w"> </span><span class="n">verify</span><span class="w"> </span><span class="k">off</span>
-<span class="k">set</span><span class="w"> </span><span class="n">feedback</span><span class="w"> </span><span class="k">off</span>
-<span class="k">set</span><span class="w"> </span><span class="k">show</span><span class="w"> </span><span class="k">off</span>
-<span class="k">set</span><span class="w"> </span><span class="k">trim</span><span class="w"> </span><span class="k">off</span><span class="w">                                     </span>
-<span class="k">set</span><span class="w"> </span><span class="n">pages</span><span class="w"> </span><span class="mi">0</span><span class="w">                                      </span>
-<span class="k">set</span><span class="w"> </span><span class="n">concat</span><span class="w"> </span><span class="k">on</span><span class="w">                                    </span>
-<span class="k">set</span><span class="w"> </span><span class="n">lines</span><span class="w"> </span><span class="mi">300</span><span class="w">                                    </span>
-<span class="k">set</span><span class="w"> </span><span class="n">trimspool</span><span class="w"> </span><span class="k">on</span><span class="w">                                 </span>
-<span class="k">set</span><span class="w"> </span><span class="n">trimout</span><span class="w"> </span><span class="k">on</span>
-
-<span class="n">spool</span><span class="w"> </span><span class="o">&amp;</span><span class="mi">1</span><span class="p">..</span><span class="n">ctl</span><span class="w">                                    </span>
-<span class="k">select</span><span class="w"> </span><span class="s1">&#39;LOAD DATA&#39;</span><span class="o">||</span><span class="n">chr</span><span class="w"> </span><span class="p">(</span><span class="mi">10</span><span class="p">)</span><span class="o">||</span><span class="w">             </span>
-<span class="w">       </span><span class="s1">&#39;INFILE &#39;&#39;&#39;</span><span class="o">||</span><span class="k">lower</span><span class="w"> </span><span class="p">(</span><span class="k">table_name</span><span class="p">)</span><span class="o">||</span><span class="s1">&#39;.txt&#39;&#39;&#39;</span><span class="o">||</span><span class="n">chr</span><span class="w"> </span><span class="p">(</span><span class="mi">10</span><span class="p">)</span><span class="o">||</span>
-<span class="w">       </span><span class="s1">&#39;&amp;2 into table &#39;</span><span class="o">||</span><span class="k">table_name</span><span class="o">||</span><span class="n">chr</span><span class="w"> </span><span class="p">(</span><span class="mi">10</span><span class="p">)</span><span class="o">||</span>
-<span class="w">       </span><span class="s1">&#39;FIELDS TERMINATED BY &quot;&amp;3&quot;&#39;</span><span class="o">||</span><span class="w"> </span><span class="n">chr</span><span class="w"> </span><span class="p">(</span><span class="mi">10</span><span class="p">)</span><span class="o">||</span>
-<span class="w">       </span><span class="s1">&#39;TRAILING NULLCOLS&#39;</span><span class="o">||</span><span class="n">chr</span><span class="w"> </span><span class="p">(</span><span class="mi">10</span><span class="p">)</span><span class="o">||</span><span class="s1">&#39;(&#39;</span><span class="w">        </span>
-<span class="k">from</span><span class="w">   </span><span class="n">user_tables</span><span class="w">                                </span>
-<span class="k">where</span><span class="w">  </span><span class="k">table_name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">upper</span><span class="w"> </span><span class="p">(</span><span class="s1">&#39;&amp;1&#39;</span><span class="p">);</span><span class="w">                </span>
-<span class="k">select</span><span class="w"> </span><span class="n">decode</span><span class="w"> </span><span class="p">(</span><span class="n">rownum</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;   &#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39; , &#39;</span><span class="p">)</span><span class="o">||</span>
-<span class="w">       </span><span class="n">rpad</span><span class="w"> </span><span class="p">(</span><span class="k">column_name</span><span class="p">,</span><span class="w"> </span><span class="mi">33</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39; &#39;</span><span class="p">)</span><span class="o">||</span>
-<span class="w">       </span><span class="n">decode</span><span class="w"> </span><span class="p">(</span><span class="n">data_type</span><span class="p">,</span>
-<span class="w">               </span><span class="s1">&#39;VARCHAR2&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;CHAR(&#39;</span><span class="o">||</span><span class="n">RTRIM</span><span class="p">(</span><span class="n">TO_CHAR</span><span class="p">(</span><span class="n">DATA_LENGTH</span><span class="o">+</span><span class="mi">4</span><span class="p">))</span><span class="w"> </span><span class="o">||</span><span class="s1">&#39;)  NULLIF (&#39;</span><span class="o">||</span><span class="k">column_name</span><span class="o">||</span><span class="s1">&#39;=BLANKS)&#39;</span><span class="o">||</span><span class="s1">&#39; &quot;trim(:&#39;</span><span class="o">||</span><span class="k">column_name</span><span class="o">||</span><span class="s1">&#39;)&quot;&#39;</span><span class="p">,</span>
-<span class="w">               </span><span class="s1">&#39;FLOAT&#39;</span><span class="p">,</span><span class="w">    </span><span class="s1">&#39;DECIMAL EXTERNAL NULLIF(&#39;</span><span class="o">||</span><span class="k">column_name</span><span class="o">||</span><span class="s1">&#39;=BLANKS)&#39;</span><span class="p">,</span>
-<span class="w">               </span><span class="s1">&#39;NUMBER&#39;</span><span class="p">,</span><span class="w">   </span><span class="n">decode</span><span class="w"> </span><span class="p">(</span><span class="n">data_precision</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span>
-<span class="w">                           </span><span class="s1">&#39;INTEGER EXTERNAL NULLIF (&#39;</span><span class="o">||</span><span class="k">column_name</span><span class="o">||</span>
-<span class="w">                           </span><span class="s1">&#39;=BLANKS)&#39;</span><span class="p">,</span><span class="w"> </span><span class="n">decode</span><span class="w"> </span><span class="p">(</span><span class="n">data_scale</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span>
-<span class="w">                           </span><span class="s1">&#39;INTEGER EXTERNAL NULLIF (&#39;</span><span class="o">||</span>
-<span class="w">                           </span><span class="k">column_name</span><span class="o">||</span><span class="s1">&#39;=BLANKS)&#39;</span><span class="p">,</span>
-<span class="w">                           </span><span class="s1">&#39;DECIMAL EXTERNAL NULLIF (&#39;</span><span class="o">||</span>
-<span class="w">                           </span><span class="k">column_name</span><span class="o">||</span><span class="s1">&#39;=BLANKS)&#39;</span><span class="p">)),</span>
-<span class="w">               </span><span class="s1">&#39;DATE&#39;</span><span class="p">,</span><span class="w">     </span><span class="s1">&#39;DATE &quot;YYYY-MM-DD HH24:MI:SS&quot;  NULLIF (&#39;</span><span class="o">||</span><span class="k">column_name</span><span class="o">||</span><span class="s1">&#39;=BLANKS)&#39;</span><span class="p">,</span>
-<span class="w">               </span><span class="k">null</span><span class="p">)</span>
-<span class="k">from</span><span class="w">   </span>
-<span class="p">(</span><span class="k">select</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">user_tab_columns</span>
-<span class="k">where</span><span class="w">  </span><span class="k">table_name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">upper</span><span class="w"> </span><span class="p">(</span><span class="s1">&#39;&amp;1&#39;</span><span class="p">)</span>
-<span class="k">order</span><span class="w">  </span><span class="k">by</span><span class="w"> </span><span class="n">column_id</span><span class="w"> </span><span class="p">)</span><span class="w"> </span><span class="n">t</span><span class="p">;</span><span class="w">                           </span>
-<span class="k">select</span><span class="w"> </span><span class="s1">&#39;)&#39;</span><span class="w">                                       </span>
-<span class="k">from</span><span class="w"> </span><span class="n">sys</span><span class="p">.</span><span class="n">dual</span><span class="p">;</span>
-<span class="n">spool</span><span class="w"> </span><span class="k">off</span><span class="w"> </span>
-<span class="n">quit</span>
+<div class="highlight"><pre><span></span><code>&lt;template&gt;
+  &lt;div&gt;
+    &lt;!-- @submit=&quot;submit($event)&quot;，绑定子组件的事件 --&gt;
+    &lt;login :account=&quot;form.account&quot; :password=&quot;form.password&quot; @submit=&quot;submit($event)&quot;/&gt;
+  &lt;/div&gt;
+&lt;/template&gt;
+&lt;script&gt;
+import login from &#39;./mylogin&#39;
+export default {
+  name: &#39;demo&#39;,
+  data() {
+    return {
+      form: {
+        account: &quot;123&quot;,
+        password: &quot;123&quot;
+      },
+    }
+  },
+  components: {
+    login
+  },
+  methods: {
+    submit(form) {
+      console.log(form)
+    }
+  },
+}
+&lt;/script&gt;
 </code></pre></div>
 </div>
 </div>
 </div>
-<hr />
+<h3 id="_7">🚁 条件加载</h3>
+<ul>
+<li>v-if: true时加载，false时销毁dom元素。另外相对的还有<code>v-else-if</code>、<code>v-else</code>。</li>
+<li>v-show: true时显示，false时隐藏。通过修改css样式<code>style="display: none;"</code>隐藏。</li>
+</ul>
+<div class="highlight"><pre><span></span><code>&lt;template&gt;
+  &lt;div&gt;
+    &lt;input v-if=&quot;isShow&quot; type=&quot;text&quot; v-model=&quot;account1&quot;/&gt;
+    &lt;input v-else type=&quot;text&quot; v-model=&quot;account2&quot;/&gt;
+    &lt;input v-show=&quot;isShow&quot; type=&quot;text&quot; v-model=&quot;account1&quot;/&gt;
+    &lt;button @click=&quot;submit&quot;&gt;点击&lt;/button&gt;
+  &lt;/div&gt;
+&lt;/template&gt;
+&lt;script&gt;
+  export default {
+    name: &#39;demo&#39;,
+    data() {
+      return {
+        account1: &quot;123&quot;,
+        account2: &quot;这里是else&quot;,
+        isShow: true,
+      }
+    },
+    methods: {
+      submit() {
+        this.isShow = !this.isShow;
+      }
+    }
+  }
+&lt;/script&gt;
+</code></pre></div>
+<h3 id="_8">🚁 循环加载</h3>
+<div class="highlight"><pre><span></span><code>&lt;template&gt;
+  &lt;div&gt;
+    &lt;ul&gt;
+      &lt;li v-for=&quot;item in loopList&quot; :key=&quot;item&quot;&gt;{{item}}&lt;/li&gt;
+      &lt;br/&gt;
+      &lt;li v-for=&quot;item in loopList2&quot; :key=&quot;item&quot;&gt;{{item.a}}&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/div&gt;
+&lt;/template&gt;
+&lt;script&gt;
+  export default {
+    name: &#39;demo&#39;,
+    data() {
+      return {
+        loopList: [&#39;xxxx&#39;, 1, 2, 3, 4],
+        loopList2: [{&quot;a&quot;: 1}, {&quot;a&quot;: 1}, {&quot;a&quot;: 1}],
+      }
+    },
+  }
+&lt;/script&gt;
+</code></pre></div>
+<h3 id="_9">🚁 样式绑定</h3>
+<ul>
+<li><code>:style="{属性名: var}"</code></li>
+<li><code>:style="[{属性名: var}]"</code></li>
+<li><code>:class="var"</code>: 将css名作为参数传入</li>
+<li><code>:class="{var: true}"</code>: 将css以对象的形式传入</li>
+<li><code>:class="[{var: true}, {css1: flag}]"</code>: 传入多个css对象的数组</li>
+</ul>
+<div class="highlight"><pre><span></span><code>&lt;template&gt;
+  &lt;div&gt;
+    &lt;input :class=&quot;cla&quot; v-if=&quot;isShow&quot; type=&quot;text&quot; v-model=&quot;account1&quot;/&gt;
+    &lt;input :style=&quot;{width: mywidth}&quot; v-show=&quot;isShow&quot; type=&quot;text&quot; v-model=&quot;account1&quot;/&gt;
+    &lt;button @click=&quot;changecss&quot;&gt;点击&lt;/button&gt;
+  &lt;/div&gt;
+&lt;/template&gt;
+&lt;script&gt;
+  export default {
+    name: &#39;login&#39;,
+    data() {
+      return {
+        account1: &quot;123&quot;,
+        isShow: true,
+        mywidth: &quot;100px&quot;,
+        cla: &quot;input1&quot;
+      }
+    },
+    methods: {
+      changecss() {
+        if (this.cla === &quot;input1&quot;) {
+          this.cla = &quot;input2&quot;
+        } else {
+          this.cla = &quot;input1&quot;
+        }
+      }
+    }
+  }
+&lt;/script&gt;
+&lt;style&gt;
+  .input1 {
+    width: 200px;
+    color: red
+  }
+
+  .input2 {
+    width: 50px;
+  }
+&lt;/style&gt;
+</code></pre></div>
 
 
 
@@ -2983,7 +3310,7 @@ sqlldr<span class="w"> </span><span class="nv">userid</span><span class="o">=</s
     <span class="md-icon" title="最后更新">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1-2.1-2M12.5 7v5.2l4 2.4-1 1L11 13V7h1.5M11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2v1.8Z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime">2024-03-05 20:33:03</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime">2024-07-29 23:05:46</span>
   </span>
 
     
@@ -3019,7 +3346,7 @@ sqlldr<span class="w"> </span><span class="nv">userid</span><span class="o">=</s
       <nav class="md-footer__inner md-grid" aria-label="页脚" >
         
           
-          <a href="../../../vue/basic/" class="md-footer__link md-footer__link--prev" aria-label="上一页: 基础">
+          <a href="../../java/springboot/basic/" class="md-footer__link md-footer__link--prev" aria-label="上一页: 组件">
             <div class="md-footer__button md-icon">
               
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
@@ -3029,20 +3356,20 @@ sqlldr<span class="w"> </span><span class="nv">userid</span><span class="o">=</s
                 上一页
               </span>
               <div class="md-ellipsis">
-                基础
+                组件
               </div>
             </div>
           </a>
         
         
           
-          <a href="../some/" class="md-footer__link md-footer__link--next" aria-label="下一页: 分区&amp;同义词&amp;序列">
+          <a href="../../sql/oracle/sqlldr_import/" class="md-footer__link md-footer__link--next" aria-label="下一页: sqlldr导入大量数据">
             <div class="md-footer__title">
               <span class="md-footer__direction">
                 下一页
               </span>
               <div class="md-ellipsis">
-                分区&同义词&序列
+                sqlldr导入大量数据
               </div>
             </div>
             <div class="md-footer__button md-icon">
@@ -3076,10 +3403,10 @@ sqlldr<span class="w"> </span><span class="nv">userid</span><span class="o">=</s
     </div>
     
     
-    <script id="__config" type="application/json">{"base": "../../..", "features": ["navigation.footer", "navigation.top", "navigation.tabs", "navigation.instant", "content.code.copy"], "search": "../../../assets/javascripts/workers/search.b8dbb3d2.min.js", "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}}</script>
+    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.footer", "navigation.top", "navigation.tabs", "navigation.instant", "content.code.copy"], "search": "../../assets/javascripts/workers/search.b8dbb3d2.min.js", "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}}</script>
     
     
-      <script src="../../../assets/javascripts/bundle.fe8b6f2b.min.js"></script>
+      <script src="../../assets/javascripts/bundle.fe8b6f2b.min.js"></script>
       
     
   <script id="init-glightbox">const lightbox = GLightbox({"touchNavigation": true, "loop": false, "zoomable": true, "draggable": true, "openEffect": "zoom", "closeEffect": "zoom", "slideEffect": "slide"});
