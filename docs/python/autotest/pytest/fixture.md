@@ -159,7 +159,7 @@ pytest参数化的方式包括：
 
 !!! note "补充"
 
-    # 测试用例重复执行多次
+    测试用例重复执行多次  
     @pytest.mark.parametrize("iteration", range(6))
 
 
