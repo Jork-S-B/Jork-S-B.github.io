@@ -52,6 +52,8 @@ nav:
 - Java:
     - Spring Boot:
       - 组件: java/springboot/basic.md
+- Vue:
+    - 基础: vue/basic.md
 - 数据库:
     - Oracle:
       - sqlldr导入大量数据: sql/oracle/sqlldr_import.md
