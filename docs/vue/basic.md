@@ -5,17 +5,14 @@
 
 依赖环境: node14、npm6
 
-更换镜像源: `npm config set registry https://registry.npmmirror.com`
-
-全局安装vue-cli: `npm install --global vue-cli`
-
-创建项目: `vue init webpack demo`
-
-导入项目需安装依赖: `npm install`
-
-启动: `npm run dev`
-
-构建: `npm run build`
+|                           命令                           | 说明          |
+|:------------------------------------------------------:|:------------|
+| npm config set registry https://registry.npmmirror.com | 更换镜像源       |
+|              npm install --global vue-cli              | 全局安装vue-cli |
+|                 vue init webpack demo                  | 创建项目        |
+|                      npm install                       | 导入项目需安装依赖   |
+|                      npm run dev                       | 启动          |
+|                     npm run build                      | 构建          |
 
 ## 📌 使用模版
 
@@ -23,31 +20,34 @@
 
 ### 🚁 生命周期
 
-钩子函数:
+|     钩子函数      | 说明                            |
+|:-------------:|:------------------------------|
+| beforeCreate  | 创建前，data和methods中的数据初始化前      |
+| ***created*** | 创建后，data和methods中的数据初始化后      |
+|  beforeMount  | 载入前，模板已经在内存中编译完成，但是尚未挂载到页面中。  |
+| ***mounted*** | 载入后，挂载到页面，dom节点加载完成。          |
+| beforeUpdate  | 更新前，内存的数据加载/同步到页面前。           |
+|    Updated    | 更新后，内存的数据加载/同步到页面前后。          |
+| beforeDestroy | 销毁前                           |
+|   destroyed   | 销毁后                           |
+|   activated   | 组件激活时，组件实例被激活时使用，用于重复激活一个实例时。 |
+|  deactivated  | 组件未激活时                        |
+| errorCaptured | 错误调用，当捕获一个来自后代组件的错误时调用。       |
 
-- beforeCreate(创建前): data和methods中的数据初始化前。
-- ***created***(创建后): data和methods中的数据初始化后。
-- beforeMount(载入前): 模板已经在内存中编译完成，但是尚未挂载到页面中。
-- ***mounted***(载入后): 挂载到页面，dom节点加载完成。
-- beforeUpdate(更新前): 内存的数据加载/同步到页面前。
-- Updated(更新后): 内存的数据加载/同步到页面前后。
-- beforeDestroy(销毁前)
-- destroyed(销毁后)
-- activated(组件激活时): 组件实例被激活时使用，用于重复激活一个实例时。
-- deactivated(组件未激活时)
-- errorCaptured(错误调用): 当捕获一个来自后代组件的错误时调用。
+### 🚁 脚本语法
 
-### 🚁 常用方法
-
-- name: 声明组件名称
-- data: 声明变量/数据
-- components: 注册/加载组件
-- props: 定义组件的入参，该入参可以是函数
-- methods: 声明js函数
-- watch: 监听参数
-- computed: 计算参数
+|     语法     | 说明               |
+|:----------:|:-----------------|
+|    name    | 声明组件名称           |
+|    data    | 声明变量/数据          |
+| components | 注册/加载组件          |
+|   props    | 定义组件的入参，该入参可以是函数 |
+|  methods   | 声明js函数           |
+|   watch    | 监听参数             |
+|  computed  | 对参数进行简单计算，结果可存缓存 |
 
 ```vue
+
 <script>
   // 引用其他模版定义的组件，搭配components使用
   import example from "@/views/example"  // @代表src路径
@@ -96,13 +96,12 @@
       }
     },
     computed: {
-      dateStr() { // 时间戳转为日期格式，可缓存
+      dateStr() { // 时间戳转为日期格式
         return this.date.format('yyyy-MM-dd')
       }
     },
     // 钩子函数
     created() {
-      // 监听
     },
     beforeCreate() {
       // this.$store.commit('set_token', localStorage.getItem('token'));
@@ -112,9 +111,9 @@
 </script>
 ```
 
-## 📌 基础语法
+### 🚁 模版语法
 
-### 🚁 插值
+#### 🔧 插值
 
 - {{text}}: 插入文本
 - v-html: 插入文本，以html语法进行渲染，动态生成页面，如测试报告
@@ -122,6 +121,7 @@
 - v-model: 双向绑定，表单数据跟js里的数据会同步。
 
 ```vue
+
 <template>
   <div>
     <a href="#">{{text}}</a>
@@ -132,13 +132,13 @@
 </template>
 ```
 
-### 🚁 事件绑定
+#### 🔧 事件绑定
 
 v-on: 绑定事件，可省略为`@`符号。
 
 `this.$emit`，用于从子组件向父组件发送自定义事件。
 
-=== "mylogin.vue"
+=== "@/views/mylogin.vue"
 
     ```vue
     <template>
@@ -172,7 +172,7 @@ v-on: 绑定事件，可省略为`@`符号。
     </script>
     ```
 
-=== "demo.vue"
+=== "@/views/demo.vue"
 
     ```vue
     <template>
@@ -205,12 +205,13 @@ v-on: 绑定事件，可省略为`@`符号。
     </script>
     ```
 
-### 🚁 条件加载
+#### 🔧 条件加载
 
 - v-if: true时加载，false时销毁dom元素。另外相对的还有`v-else-if`、`v-else`。
 - v-show: true时显示，false时隐藏。通过修改css样式`style="display: none;"`隐藏。
 
 ```vue
+
 <template>
   <div>
     <input v-if="isShow" type="text" v-model="account1"/>
@@ -238,9 +239,10 @@ v-on: 绑定事件，可省略为`@`符号。
 </script>
 ```
 
-### 🚁 循环加载
+#### 🔧 循环加载
 
 ```vue
+
 <template>
   <div>
     <ul>
@@ -263,7 +265,7 @@ v-on: 绑定事件，可省略为`@`符号。
 </script>
 ```
 
-### 🚁 样式绑定
+#### 🔧 样式绑定
 
 - `:style="{属性名: var}"`
 - `:style="[{属性名: var}]"`
@@ -272,6 +274,7 @@ v-on: 绑定事件，可省略为`@`符号。
 - `:class="[{var: true}, {css1: flag}]"`: 传入多个css对象的数组
 
 ```vue
+
 <template>
   <div>
     <input :class="cla" v-if="isShow" type="text" v-model="account1"/>
@@ -313,3 +316,80 @@ v-on: 绑定事件，可省略为`@`符号。
 </style>
 ```
 
+## 📌 状态管理
+
+vuex是一个专为vue应用程序开发的状态管理库，使组件间共享变量更容易。
+
+安装vuex: npm install vuex@3 --save
+
+### 🚁 vuex属性
+
+- state: 存储数据，调用方式如`this.$store.state.var`
+- mutations: 唯一可直接修改state数据的地方；通过commit调用，`this.$store.commit('mutations_func',val)`
+- actions: 异步操作，实际上内部方法也是调mutations；通过dispatch调用，`this.$store.dispatch('action_func',val)`
+- getters: 与computed类似，获取state数据进行简单计算，结果可存缓存，且原state的数据不变；通过getters调用，`this.$store.getters.var`
+- modules: 模块化管理，每个模块拥有自己的state、mutation、action、getter。另外当namespaced属性值为true，使用时须加上模块名如`this.$store.state.module_name.var`
+
+#### 🔧 局限性
+
+vuex数据在刷新或者新窗口时会丢失/重置。
+
+解决方案：使用`localstorage`或`sessionstorage`保存
+
+=== "@/vuex/store.js"
+
+    ```vue
+    import Vue from 'vue';
+    import Vuex from 'vuex';
+    
+    Vue.use(Vuex);
+    // 登录验证
+    export default new Vuex.Store({
+        state: {
+            user: null,
+        },
+        mutations: {
+            // 登录
+            set_user(state, user) {
+                state.user = user;
+            },
+            // 注销
+            del_user(state) {
+                state.user = null;
+                localStorage.removeItem("user");
+            },
+        },
+    })
+    ```
+
+=== "@/views/mylogin.vue"
+
+    ```vue
+    <template>
+      <div>
+        <input type="text" v-model="account1"/>
+        <button @click="submit">提交</button>
+        <button @click="login">登录</button>
+      </div>
+    </template>
+    <script>
+    export default {
+      name: 'login',
+      data() {
+        return {
+          account1: "123",
+        }
+      },
+      methods: {
+        submit() {
+          console.log(this.$store.state.user) // 首次提交用户为空
+        },
+        login(){
+          console.log("模拟用户登录，并存入localStorage")
+          this.$store.commit("set_user", "用户1")
+          localStorage.setItem("user", "用户1") // 相对的也有getItem("var_name")
+        }
+      }
+    }
+    </script>
+        ```
