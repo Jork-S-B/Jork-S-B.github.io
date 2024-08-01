@@ -327,8 +327,10 @@ vuex是一个专为vue应用程序开发的状态管理库，使组件间共享�
 - state: 存储数据，调用方式如`this.$store.state.var`
 - mutations: 唯一可直接修改state数据的地方；通过commit调用，`this.$store.commit('mutations_func',val)`
 - actions: 异步操作，实际上内部方法也是调mutations；通过dispatch调用，`this.$store.dispatch('action_func',val)`
-- getters: 与computed类似，获取state数据进行简单计算，结果可存缓存，且原state的数据不变；通过getters调用，`this.$store.getters.var`
-- modules: 模块化管理，每个模块拥有自己的state、mutation、action、getter。另外当namespaced属性值为true，使用时须加上模块名如`this.$store.state.module_name.var`
+- getters:
+  与computed类似，获取state数据进行简单计算，结果可存缓存，且原state的数据不变；通过getters调用，`this.$store.getters.var`
+- modules:
+  模块化管理，每个模块拥有自己的state、mutation、action、getter。另外当namespaced属性值为true，使用时须加上模块名如`this.$store.state.module_name.var`
 
 #### 🔧 局限性
 
@@ -358,6 +360,13 @@ vuex数据在刷新或者新窗口时会丢失/重置。
                 state.user = null;
                 localStorage.removeItem("user");
             },
+            set_token(state, token) {
+              state.token = token;
+            },
+            del_token(state) {
+              state.token = null;
+              localStorage.removeItem('token');
+            }
         },
     })
     ```
@@ -392,4 +401,232 @@ vuex数据在刷新或者新窗口时会丢失/重置。
       }
     }
     </script>
-        ```
+    ```
+
+## 📌 路由
+
+hash地址与组件间的对应关系
+
+安装vue-router: npm install vue-router@3 --save
+
+路由占位符: `<router-view>`
+
+### 🚁 路由传参
+
+- params传参，格式如`/user/info/:id`，通过`this.$route.params.id`进行调用
+- params传参(不显示)，格式如`params:{ id:XXXX }`
+- query传参，格式如`query: {id:XXXX}`，通过`this.$route.query.id`进行调用
+
+=== "@/router/index.js"
+
+    ```javascript
+    import Vue from 'vue'
+    import Router from 'vue-router'
+    // 该方式导入，会将所有组件都加载，导致响应慢
+    // import HelloWorld from '@/views/index'
+    // 懒加载，确切被用到时才进行加载
+    const index= () => import('@/views/index');
+    
+    // 挂载路由
+    Vue.use(Router)
+    
+    export default new Router({
+      routes: [
+        {
+          path: '/index/:id',
+          name: 'index',
+          component: index,
+          meta: {
+            requireAuth: true
+          },
+          children: []
+        },
+      ]
+    })
+    ```
+
+=== "@/views/mylogin.vue"
+
+    ```vue
+    <template>
+      <div>
+        <input :class="cla" type="text"/>
+        <button>点击</button>
+      </div>
+    </template>
+    <script>
+    
+    export default {
+      name: 'login',
+      data() {
+        return {
+          cla: "input1"
+        }
+      },
+      created() {
+        console.log(this.$route.params)
+        if (this.$route.params.id === "1") {
+          this.cla = "input1"
+        } else {
+          this.cla = "input2"
+        }
+      }
+    }
+    </script>
+    <style>
+    .input1 {
+      width: 200px;
+      color: red
+    }
+    
+    .input2 {
+      width: 50px;
+    }
+    </style>
+    ```
+
+### 🚁 路由加载
+
+- 通过push加载路由: `this.$router.push()`
+- 通过replace跳转，浏览器无法返回: `this.$router.replace()`
+- 通过router-link，类似超链接: `<router-link to="/index/page">page</router-link>`
+
+### 🚁 路由拦截
+
+router.beforeEach，对请求做拦截，如检查请求头合法。
+
+=== "@/main.js"
+
+    ```javascript
+    // 路由拦截器
+    router.beforeEach((to, from, next) => {
+      console.log(to)
+      if (to.matched.length !== 0) {
+        if (to.meta.requireAuth) {
+          // store.commit("set_token", "1111")
+          if (store.state.token !== null) { // 通过state.token判断当前用户是否登录
+            // todo，token失效时的判定逻辑
+            next();
+          } else {
+            console.log("用户未登录")
+            next({
+              path: '/',
+              query: {redirect: to.fullPath} // 原访问的完整url保存，登录成功后自动跳转
+            });
+          }
+        } else {
+          next();
+        }
+      } else {
+        next({
+          path: '/',
+          query: {redirect: to.fullPath}
+        })
+      }
+    })
+    ```
+
+## 📌 axios
+
+web用来发送接口请求与后端进行交互的框架，对响应做拦截：响应成功、响应失败、异常处理等。
+
+安装axios: npm install axios --save
+
+=== "@/utils/ajax.js"
+    
+    ```javascript
+    import axios from 'axios';
+    
+    axios.defaults.baseURL = process.env.BASE_API;
+    axios.defaults.timeout = 30000;
+    
+    function logout(store, router) {
+        store.commit('del_userInfo');
+        store.commit('del_token');
+        if (router.currentRoute.path !== '/login') {
+            router.push({path: '/login', query: {redirect: router.currentRoute.fullPath}});
+        }
+    }
+    
+    function then(success, response, result) {
+        if (!response.data) {
+            success(response);
+        } else if (response.data.status === 0) {
+            success(response.data);
+        } else {
+            if (response.data.data) {
+                console.log(response.data.data);
+            }
+        }
+        result.loading = false;
+        return true;
+    }
+    
+    function exception(error, result) {
+        result.loading = false;
+        window.console.error(error);
+        if (error.status && error.statusText) {
+            console.log({message: error.status + error.statusText, showClose: true});
+        } else {
+            console.log(error.message);
+        }
+    }
+    
+    export function get(url, success) {
+        let result = {loading: true};
+        let config = getTokenConfig(this.$store.state.token);
+        if (!success) {
+            return axios.get(url, config);
+        } else {
+            axios.get(url, config).then(response => {
+                let res = then(success, response, result);
+                if (res == false) {
+                    logout(this.$store, this.$router);
+                }
+            }).catch(error => {
+                exception(error, result, url);
+            });
+            return result;
+        }
+    }
+    
+    export function post(url, data, success) {
+        let result = {loading: true};
+        let config = getTokenConfig(this.$store.state.token);
+        if (!success) {
+            return axios.post(url, data, config);
+        } else {
+            axios.post(url, data, config).then(response => {
+                let res = then(success, response, result);
+                if (res == false) {
+                    logout(this.$store, this.$router);
+                }
+            }).catch(error => {
+                exception(error, result, url);
+            });
+            return result;
+        }
+    }
+    
+    export default {
+        install(Vue) {
+    
+            if (!axios) {
+                window.console.error('You have to install axios');
+                return;
+            }
+    
+            Vue.prototype.$get = get;
+    
+            Vue.prototype.$post = post;
+    
+            return axios;
+        }
+    };
+  
+    ```
+
+## 📌 请求跨域
+
+- 开发环境: config/index.js，修改`proxyTable`配置
+- 线上环境: 通过nginx转发
