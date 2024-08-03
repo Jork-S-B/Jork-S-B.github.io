@@ -8,9 +8,9 @@
 |                           命令                           | 说明          |
 |:------------------------------------------------------:|:------------|
 | npm config set registry https://registry.npmmirror.com | 更换镜像源       |
+|                      npm install                       | 导入项目需安装依赖   |
 |              npm install --global vue-cli              | 全局安装vue-cli |
 |                 vue init webpack demo                  | 创建项目        |
-|                      npm install                       | 导入项目需安装依赖   |
 |                      npm run dev                       | 启动          |
 |                     npm run build                      | 构建          |
 
@@ -320,7 +320,7 @@ v-on: 绑定事件，可省略为`@`符号。
 
 vuex是一个专为vue应用程序开发的状态管理库，使组件间共享变量更容易。
 
-安装vuex: npm install vuex@3 --save
+安装vuex: npm install vuex@3.6.2 --save
 
 ### 🚁 vuex属性
 
@@ -407,7 +407,7 @@ vuex数据在刷新或者新窗口时会丢失/重置。
 
 hash地址与组件间的对应关系
 
-安装vue-router: npm install vue-router@3 --save
+安装vue-router: npm install vue-router@3.0.1 --save
 
 路由占位符: `<router-view>`
 
@@ -530,7 +530,7 @@ router.beforeEach，对请求做拦截，如检查请求头合法。
 
 web用来发送接口请求与后端进行交互的框架，对响应做拦截：响应成功、响应失败、异常处理等。
 
-安装axios: npm install axios --save
+安装axios: npm install axios@1.3.5 --save
 
 === "@/utils/ajax.js"
     
@@ -630,3 +630,9 @@ web用来发送接口请求与后端进行交互的框架，对响应做拦截�
 
 - 开发环境: config/index.js，修改`proxyTable`配置
 - 线上环境: 通过nginx转发
+
+## 📌 elementUI
+
+由饿了么开源的一款前端组件库，适配vue框架，官网地址：https://element.eleme.io/
+
+安装elementUI: npm i element-ui -S
