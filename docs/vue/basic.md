@@ -636,3 +636,9 @@ web用来发送接口请求与后端进行交互的框架，对响应做拦截�
 由饿了么开源的一款前端组件库，适配vue框架，官网地址：https://element.eleme.io/
 
 安装elementUI: npm i element-ui -S
+
+---
+
+参考资料：
+
+1.[完整项目代码](https://gitee.com/Jork-S-B/vue-practice)
