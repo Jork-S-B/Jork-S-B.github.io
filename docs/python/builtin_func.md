@@ -69,7 +69,8 @@ eval()
 ast.literal_eval()  
 只能处理基本数据类型的字面量，因此无法执行任何潜在有害的操作。当输入包含非预期的数据，抛ValueError异常。
 
-总结：如果只是想安全地解析字符串形式的数据结构，应该使用`ast.literal_eval`；如果需要执行更复杂的Python代码，则应谨慎使用`eval`，并确保输入是可信的，以避免安全风险。
+总结：如果只是想安全地解析字符串形式的数据结构，应该使用`ast.literal_eval`
+；如果需要执行更复杂的Python代码，则应谨慎使用`eval`，并确保输入是可信的，以避免安全风险。
 
 ```python
 import ast
@@ -135,14 +136,17 @@ getattr(obj, func/attribute, defult=None)
 class Person:
     pass
 
+
 class PersonSubclass(Person):
-    
+
     def introduce2(self):
         print("test")
+
 
 def re_func(funcname, obj=Person()):
     r = getattr(obj, funcname)()
     return r
+
 
 person_subclass = PersonSubclass()
 print(re_func("introduce2", person_subclass))  # 输出：test\nNone
@@ -150,7 +154,7 @@ print(re_func("introduce2", person_subclass))  # 输出：test\nNone
 ```
 
 !!! note "补充"
-    
+
     程序在运行时检查、分析和修改自身的行为与结构，这种特性称作反射机制。上述getattr()、eval()等函数都是Python 反射机制的一部分。
     
     一般而言，反射操作会比直接调用慢，会存在额外的性能开销，
@@ -181,4 +185,14 @@ issubclass(sub, sup)
     print(PracticeInherit.tmp)
     print(isinstance(PracticeInherit(), Practice))  # True
     print(issubclass(PracticeInherit, Practice))  # True
+    ```
+
+=== "判断obj是否是一个类"
+
+    ```python
+    class MyClass:
+        pass
+    
+    print(isinstance(MyClass, type))  # 输出: True
+    print(isinstance(MyClass(), type))  # 输出: False
     ```

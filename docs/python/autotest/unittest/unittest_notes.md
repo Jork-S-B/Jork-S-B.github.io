@@ -10,13 +10,24 @@
 
 使用测试套件时，通过代码顺序控制用例加载顺序，而不是根据ASCII码顺序。
 
-=== "通过TestCase实例回调执行用例" 
+=== "通过TestCase回调方法执行用例" 
     
     ```python
+    # if __name__ == '__main__':
+    #     case = MyClass("test_xx_01")  # 假设MyClass继承自unittest.TestCase
+    #     result = MyResult()  # 假设MyResult继承自unittest.TestResult
+    #     case(result)
+
     if __name__ == '__main__':
         case = MyClass("test_xx_01")  # 假设MyClass继承自unittest.TestCase
+        case2 = MyClass("test_xx_02")
+        
+        suite = unittest.TestSuite()
+        suite.addTest(case)
+        suite.addTest(case2)
+        
         result = MyResult()  # 假设MyResult继承自unittest.TestResult
-        case(result)
+        suite(result)  # TestSuite回调方法（即__call__），实际是通过TestCase类的回调方法执行用例
     ```
 
 === "通过addTest加载测试用例"
