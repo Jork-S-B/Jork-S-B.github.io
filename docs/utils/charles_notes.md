@@ -9,8 +9,15 @@
 
     https请求抓包：
     
-    1. 安装证书：`Help`->`SSL Proxying`->`Install Charles Root Certificate`。
-    2. 开启SSL代理：`Proxy`->`SSL proxying Settings`，在`Include`中添加需要代理的域名及端口。
+    &nbsp;&nbsp;1.安装证书：`Help`->`SSL Proxying`->`Install Charles Root Certificate`。
+
+    &nbsp;&nbsp;2.开启SSL代理：`Proxy`->`SSL proxying Settings`，在`Include`中添加需要代理的域名及端口。
+
+    手机抓包/非本地浏览器:
+
+    &nbsp;&nbsp;3.设备连接同区域网的WiFi，配置代理，ip及端口可以通过以下选项查看：
+
+    &nbsp;&nbsp;`Help`->`SSL Proxying`->`Install Charles Root Certificate on a Mobile Device or Remote Browser`
 
 ### 🚁 请求转发
 
@@ -30,7 +37,6 @@
 
 1. `Proxy`->`Proxy Settings`->`Proxies`，设置端口号并勾选`Enable transparent HTTP proxying`。
 2. 手机连接同区域网的WiFi后，手动配置代理，把机器IP及端口填入对应项即可。
-
 
 ### 🚁 模拟弱网
 
