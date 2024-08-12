@@ -2357,6 +2357,27 @@
 
               
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../shell/k8s/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    k8s备忘
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
@@ -3091,9 +3112,11 @@
 <li>启动项目: <code>mvn spring-boot:run</code>或者idea启动: application.main()</li>
 </ul>
 <h2 id="mvc">📌 MVC架构模式</h2>
-<p>model: 数据模型，提供要展示的数据<br />
-- DAO，封装对是数据库的访问
-- Service，负责协调业务逻辑</p>
+<p>model: 数据模型，提供要展示的数据</p>
+<ul>
+<li>DAO，封装对是数据库的访问</li>
+<li>Service，负责协调业务逻辑</li>
+</ul>
 <p>view: 数据展示，即前端页面</p>
 <p>controller: 控制器，定义接口，负责接口的请求和响应</p>
 <h2 id="_1">📌 配置</h2>
@@ -3155,13 +3178,36 @@
 </code></pre></div>
 <h2 id="jwt">📌 jwt</h2>
 <p>json web token</p>
-<p>常见鉴权方式:
-- session: 存储于服务端，但分布式部署不适用
-- token: 生成token存储在redis
-- jwt: 格式为header.business.signature，由服务器生成，保存至客户端<br />
-header: 公用配置，如编码等<br />
-business: 业务信息，如存放用户名、过期时间等<br />
-signature: 加密模块，包括密钥secret；单点登录安全要求较高的，可以让密钥动态生成，每隔数分钟重新生成。</p>
+<p>常见鉴权方式:</p>
+<ul>
+<li>session: 存储于服务端，但分布式部署不适用</li>
+<li>token: 生成token存储在redis</li>
+<li>jwt: 格式为header.business.signature，由服务器生成，保存至客户端<br />
+  header: 公用配置，如编码等<br />
+  business: 业务信息，如存放用户名、过期时间等<br />
+  signature: 加密模块，包括密钥secret；单点登录安全要求较高的，可以让密钥动态生成，每隔数分钟重新生成。</li>
+</ul>
+<div class="highlight"><pre><span></span><code><span class="kd">public</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="nf">createToken</span><span class="p">(</span><span class="n">Demo</span><span class="w"> </span><span class="n">demo</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="c1">// 生成token</span>
+<span class="w">    </span><span class="n">Date</span><span class="w"> </span><span class="n">expireDate</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">Date</span><span class="p">(</span><span class="n">System</span><span class="p">.</span><span class="na">currentTimeMillis</span><span class="p">()</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">EXPIRATION</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mi">1000</span><span class="p">);</span><span class="w"> </span><span class="c1">//过期时间</span>
+<span class="w">    </span><span class="n">Map</span><span class="o">&lt;</span><span class="n">String</span><span class="p">,</span><span class="w"> </span><span class="n">Object</span><span class="o">&gt;</span><span class="w"> </span><span class="n">map</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">HashMap</span><span class="o">&lt;&gt;</span><span class="p">();</span>
+<span class="w">    </span><span class="c1">// header.business.signature</span>
+<span class="w">    </span><span class="c1">// header</span>
+<span class="w">    </span><span class="n">map</span><span class="p">.</span><span class="na">put</span><span class="p">(</span><span class="s">&quot;alg&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;HS256&quot;</span><span class="p">);</span>
+<span class="w">    </span><span class="n">map</span><span class="p">.</span><span class="na">put</span><span class="p">(</span><span class="s">&quot;typ&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;JWT&quot;</span><span class="p">);</span>
+<span class="w">    </span><span class="n">String</span><span class="w"> </span><span class="n">token</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">JWT</span><span class="p">.</span><span class="na">create</span><span class="p">()</span>
+<span class="w">            </span><span class="p">.</span><span class="na">withHeader</span><span class="p">(</span><span class="n">map</span><span class="p">)</span><span class="w"> </span><span class="c1">// 添加头部</span>
+<span class="w">            </span><span class="c1">//可以将基本信息放到claims中</span>
+<span class="w">            </span><span class="c1">// business</span>
+<span class="w">            </span><span class="p">.</span><span class="na">withClaim</span><span class="p">(</span><span class="s">&quot;id&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">demo</span><span class="p">.</span><span class="na">getId</span><span class="p">())</span>
+<span class="w">            </span><span class="p">.</span><span class="na">withClaim</span><span class="p">(</span><span class="s">&quot;name&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">demo</span><span class="p">.</span><span class="na">getName</span><span class="p">())</span>
+<span class="w">            </span><span class="p">.</span><span class="na">withExpiresAt</span><span class="p">(</span><span class="n">expireDate</span><span class="p">)</span><span class="w"> </span><span class="c1">// 超时设置,设置过期的日期</span>
+<span class="w">            </span><span class="p">.</span><span class="na">withIssuedAt</span><span class="p">(</span><span class="k">new</span><span class="w"> </span><span class="n">Date</span><span class="p">())</span><span class="w"> </span><span class="c1">// 签发时间</span>
+<span class="w">            </span><span class="c1">// signature</span>
+<span class="w">            </span><span class="p">.</span><span class="na">sign</span><span class="p">(</span><span class="n">Algorithm</span><span class="p">.</span><span class="na">HMAC256</span><span class="p">(</span><span class="n">SECRET</span><span class="p">));</span><span class="w"> </span><span class="c1">// SECRET加密</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">token</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div>
 <h2 id="pagehelper">📌 pagehelper</h2>
 <p>分页组件，在原SQL侵入limit等语句</p>
 <div class="tabbed-set tabbed-alternate" data-tabs="1:2"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">PageUtils.java</label><label for="__tabbed_1_2">PageDTO.java</label></div>
@@ -3260,7 +3306,7 @@ signature: 加密模块，包括密钥secret；单点登录安全要求较高的
     <span class="md-icon" title="最后更新">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1-2.1-2M12.5 7v5.2l4 2.4-1 1L11 13V7h1.5M11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2v1.8Z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime">2024-07-29 23:05:46</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime">2024-08-12 18:47:58</span>
   </span>
 
     
