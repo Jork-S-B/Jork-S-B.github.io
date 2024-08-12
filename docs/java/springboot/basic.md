@@ -12,7 +12,8 @@
 
 ## 📌 MVC架构模式
 
-model: 数据模型，提供要展示的数据  
+model: 数据模型，提供要展示的数据
+
 - DAO，封装对是数据库的访问
 - Service，负责协调业务逻辑
 
@@ -97,19 +98,43 @@ public static void main(String[] args) {
 json web token
 
 常见鉴权方式:
+
 - session: 存储于服务端，但分布式部署不适用
 - token: 生成token存储在redis
 - jwt: 格式为header.business.signature，由服务器生成，保存至客户端  
-header: 公用配置，如编码等  
-business: 业务信息，如存放用户名、过期时间等  
-signature: 加密模块，包括密钥secret；单点登录安全要求较高的，可以让密钥动态生成，每隔数分钟重新生成。
+  header: 公用配置，如编码等  
+  business: 业务信息，如存放用户名、过期时间等  
+  signature: 加密模块，包括密钥secret；单点登录安全要求较高的，可以让密钥动态生成，每隔数分钟重新生成。
+
+```JAVA
+public static String createToken(Demo demo) {
+    // 生成token
+    Date expireDate = new Date(System.currentTimeMillis() + EXPIRATION * 1000); //过期时间
+    Map<String, Object> map = new HashMap<>();
+    // header.business.signature
+    // header
+    map.put("alg", "HS256");
+    map.put("typ", "JWT");
+    String token = JWT.create()
+            .withHeader(map) // 添加头部
+            //可以将基本信息放到claims中
+            // business
+            .withClaim("id", demo.getId())
+            .withClaim("name", demo.getName())
+            .withExpiresAt(expireDate) // 超时设置,设置过期的日期
+            .withIssuedAt(new Date()) // 签发时间
+            // signature
+            .sign(Algorithm.HMAC256(SECRET)); // SECRET加密
+    return token;
+}
+```
 
 ## 📌 pagehelper
 
 分页组件，在原SQL侵入limit等语句
 
 === "PageUtils.java"
-    
+
     ```JAVA
     import com.github.pagehelper.Page;
     

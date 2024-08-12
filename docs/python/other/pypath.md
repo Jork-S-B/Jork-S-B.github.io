@@ -4,7 +4,8 @@ import os
 
 basic = os.path.abspath(__file__)  # 当前文件的绝对路径
 parent = os.path.dirname(basic)  # 当前文件的目录
-# target = os.getcwd()  # 上述两行组合起来，等价于os.getcwd()等价于pwd，当前文件的目录
+parent = os.path.dirname(__file__)  # 获取当前文件所在目录
+# target = os.getcwd()  # 获取工作目录，结果会随着调用位置而改变
 target = os.path.join(parent, "strategy")
 
 if not os.path.exists(target):
