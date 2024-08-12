@@ -68,6 +68,7 @@ nav:
     - 复习: shell/review.md
     - regex.sh: shell/regex.md
     - 检查命令耗时: shell/timestamp.md
+    - k8s备忘: shell/k8s.md
 - 测试工具:
     - Fiddler: utils/fiddler_notes.md
     - Charles: utils/charles_notes.md
