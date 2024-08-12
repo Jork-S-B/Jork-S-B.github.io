@@ -1,4 +1,4 @@
-## 常用方法
+## 📌 常用方法
 
 |       方法       | 说明                    |
 |:--------------:|:----------------------|
@@ -56,4 +56,36 @@ print(eval(repr(d.get('regex_str'))))  # eval()执行转义，输出：物品   
 
     print(data)  # 输出：[1, 2, {'key': 'value'}, 'hello']
     ```
+
+## 📌 JsonPath
+
+类似于XPath在XML中的作用
+
+```python
+from jsonpath_ng import parse,ext
+
+json_obj = {
+  "store": {
+    "book": [
+      { "category": "reference", "author": "Nigel Rees", "title": "Sayings of the Century", "price": 8.95 },
+      { "category": "fiction", "author": "Evelyn Waugh", "title": "Sword of Honour", "price": 12.99 }
+    ],
+    "bicycle": {
+      "color": "red",
+      "price": 19.95
+    }
+  }
+}
+
+path_expr = parse("$.store.book[*].author")
+authors = [match.value for match in path_expr.find(json_obj)]
+print(authors)  # 输出: ['Nigel Rees', 'Evelyn Waugh']
+
+# jsonpath_ng 库不支持使用 ? 来表示过滤条件
+# path_expr = parse("$.store.book[?(@.price > 10)].title")
+path_expr = ext.parse("$.store.book[?(@.price > 10)].title")
+titles = [match.value for match in path_expr.find(json_obj)]
+print(titles)  # Sword of Honour
+```
+
 ---
