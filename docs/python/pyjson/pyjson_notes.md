@@ -61,31 +61,75 @@ print(eval(repr(d.get('regex_str'))))  # eval()执行转义，输出：物品   
 
 类似于XPath在XML中的作用
 
-```python
-from jsonpath_ng import parse,ext
-
-json_obj = {
-  "store": {
-    "book": [
-      { "category": "reference", "author": "Nigel Rees", "title": "Sayings of the Century", "price": 8.95 },
-      { "category": "fiction", "author": "Evelyn Waugh", "title": "Sword of Honour", "price": 12.99 }
-    ],
-    "bicycle": {
-      "color": "red",
-      "price": 19.95
+=== 使用jsonpath_ng解析/修改节点
+    
+    ```python
+    from jsonpath_ng import parse, ext, jsonpath
+    
+    json_obj = {
+        "store": {
+            "book": [
+                {"category": "reference", "author": "Nigel Rees", "title": "Sayings of the Century", "price": 8.95},
+                {"category": "fiction", "author": "Evelyn Waugh", "title": "Sword of Honour", "price": 12.99}
+            ],
+            "bicycle": {
+                "color": "red",
+                "price": 19.95
+            }
+        }
     }
-  }
-}
+    
+    # 通过json表达式替换节点值
+    expr = parse("$.store.book[0].price")  # type: jsonpath.Child
+    expr.update(json_obj, 100)
+    
+    # jsonpath_ng.parse不支持使用 ? 来表示过滤条件
+    # path_expr = parse("$.store.book[?(@.price > 10)].title")
+    path_expr = ext.parse("$.store.book[?(@.price > 10)].title")  # type: jsonpath.Child
+    titles = [match.value for match in path_expr.find(json_obj)]
+    print(titles)  # ['Sayings of the Century', 'Sword of Honour']
+    
+    ```
 
-path_expr = parse("$.store.book[*].author")
-authors = [match.value for match in path_expr.find(json_obj)]
-print(authors)  # 输出: ['Nigel Rees', 'Evelyn Waugh']
+=== 使用jsonpath库解析节点
+    
+    ```python
+    import jsonpath
+    
+    json_obj = {
+        "store": {
+            "book": [
+                {"category": "reference", "author": "Nigel Rees", "title": "Sayings of the Century", "price": 8.95},
+                {"category": "fiction", "author": "Evelyn Waugh", "title": "Sword of Honour", "price": 12.99}
+            ],
+            "bicycle": {
+                "color": "red",
+                "price": 19.95
+            }
+        }
+    }
+    
+    def extract_by_jsonpath(api_data: dict, expression: str) -> list:
+        """
+        jsonpath形式的数据提取
+        :param api_data: 待提取的json数据
+        :param expression: 表达式
+        :return: list
+        """
+        value = jsonpath.jsonpath(api_data, expression)  # 默认返回的是列表
+        if value:
+            return value
+        else:
+            raise Exception('jsonpath表达式错误: {}'.format(expression))
+    
+    
+    if __name__ == '__main__':
+        print(extract_by_jsonpath(json_obj, "$.store.book[0].price"))
+    
+    ```
 
-# jsonpath_ng 库不支持使用 ? 来表示过滤条件
-# path_expr = parse("$.store.book[?(@.price > 10)].title")
-path_expr = ext.parse("$.store.book[?(@.price > 10)].title")
-titles = [match.value for match in path_expr.find(json_obj)]
-print(titles)  # Sword of Honour
-```
+!!! tip
+
+    # type: jsonpath.Child，通过该注释，指明该表达式的具体类型。这样在IDE中使用`ctrl+鼠标左键`时，可以直接跳转到对应定义，而不用再手动去找属于哪个类型。
 
 ---

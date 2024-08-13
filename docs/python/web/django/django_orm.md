@@ -60,7 +60,7 @@ state = models.IntegerField("状态", choices=[
 
 布尔类型，默认值为None。NullBooleanField则是可空类型。
 
-!!! "补充"
+!!! note "补充"
     
     创建或修改表模型，需要执行migrate同步到库表。
 
