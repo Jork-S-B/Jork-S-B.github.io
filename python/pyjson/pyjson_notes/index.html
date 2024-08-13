@@ -1576,6 +1576,15 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#type-jsonpathchildidectrl" class="md-nav__link">
+    <span class="md-ellipsis">
+      type: jsonpath.Child，通过该注释，指明该表达式的具体类型。这样在IDE中使用ctrl+鼠标左键时，可以直接跳转到对应定义，而不用再手动去找属于哪个类型。
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -2854,6 +2863,15 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#type-jsonpathchildidectrl" class="md-nav__link">
+    <span class="md-ellipsis">
+      type: jsonpath.Child，通过该注释，指明该表达式的具体类型。这样在IDE中使用ctrl+鼠标左键时，可以直接跳转到对应定义，而不用再手动去找属于哪个类型。
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -2871,8 +2889,6 @@
   
   
 
-
-  <h1>json</h1>
 
 <h2 id="_1">📌 常用方法</h2>
 <table>
@@ -2943,31 +2959,75 @@
 </div>
 <h2 id="jsonpath">📌 JsonPath</h2>
 <p>类似于XPath在XML中的作用</p>
-<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">jsonpath_ng</span> <span class="kn">import</span> <span class="n">parse</span><span class="p">,</span><span class="n">ext</span>
+<div class="tabbed-set tabbed-alternate" data-tabs="1:2"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">使用jsonpath_ng解析/修改节点</label><label for="__tabbed_1_2">使用jsonpath库解析节点</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">jsonpath_ng</span> <span class="kn">import</span> <span class="n">parse</span><span class="p">,</span> <span class="n">ext</span><span class="p">,</span> <span class="n">jsonpath</span>
 
 <span class="n">json_obj</span> <span class="o">=</span> <span class="p">{</span>
-  <span class="s2">&quot;store&quot;</span><span class="p">:</span> <span class="p">{</span>
-    <span class="s2">&quot;book&quot;</span><span class="p">:</span> <span class="p">[</span>
-      <span class="p">{</span> <span class="s2">&quot;category&quot;</span><span class="p">:</span> <span class="s2">&quot;reference&quot;</span><span class="p">,</span> <span class="s2">&quot;author&quot;</span><span class="p">:</span> <span class="s2">&quot;Nigel Rees&quot;</span><span class="p">,</span> <span class="s2">&quot;title&quot;</span><span class="p">:</span> <span class="s2">&quot;Sayings of the Century&quot;</span><span class="p">,</span> <span class="s2">&quot;price&quot;</span><span class="p">:</span> <span class="mf">8.95</span> <span class="p">},</span>
-      <span class="p">{</span> <span class="s2">&quot;category&quot;</span><span class="p">:</span> <span class="s2">&quot;fiction&quot;</span><span class="p">,</span> <span class="s2">&quot;author&quot;</span><span class="p">:</span> <span class="s2">&quot;Evelyn Waugh&quot;</span><span class="p">,</span> <span class="s2">&quot;title&quot;</span><span class="p">:</span> <span class="s2">&quot;Sword of Honour&quot;</span><span class="p">,</span> <span class="s2">&quot;price&quot;</span><span class="p">:</span> <span class="mf">12.99</span> <span class="p">}</span>
-    <span class="p">],</span>
-    <span class="s2">&quot;bicycle&quot;</span><span class="p">:</span> <span class="p">{</span>
-      <span class="s2">&quot;color&quot;</span><span class="p">:</span> <span class="s2">&quot;red&quot;</span><span class="p">,</span>
-      <span class="s2">&quot;price&quot;</span><span class="p">:</span> <span class="mf">19.95</span>
+    <span class="s2">&quot;store&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s2">&quot;book&quot;</span><span class="p">:</span> <span class="p">[</span>
+            <span class="p">{</span><span class="s2">&quot;category&quot;</span><span class="p">:</span> <span class="s2">&quot;reference&quot;</span><span class="p">,</span> <span class="s2">&quot;author&quot;</span><span class="p">:</span> <span class="s2">&quot;Nigel Rees&quot;</span><span class="p">,</span> <span class="s2">&quot;title&quot;</span><span class="p">:</span> <span class="s2">&quot;Sayings of the Century&quot;</span><span class="p">,</span> <span class="s2">&quot;price&quot;</span><span class="p">:</span> <span class="mf">8.95</span><span class="p">},</span>
+            <span class="p">{</span><span class="s2">&quot;category&quot;</span><span class="p">:</span> <span class="s2">&quot;fiction&quot;</span><span class="p">,</span> <span class="s2">&quot;author&quot;</span><span class="p">:</span> <span class="s2">&quot;Evelyn Waugh&quot;</span><span class="p">,</span> <span class="s2">&quot;title&quot;</span><span class="p">:</span> <span class="s2">&quot;Sword of Honour&quot;</span><span class="p">,</span> <span class="s2">&quot;price&quot;</span><span class="p">:</span> <span class="mf">12.99</span><span class="p">}</span>
+        <span class="p">],</span>
+        <span class="s2">&quot;bicycle&quot;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="s2">&quot;color&quot;</span><span class="p">:</span> <span class="s2">&quot;red&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;price&quot;</span><span class="p">:</span> <span class="mf">19.95</span>
+        <span class="p">}</span>
     <span class="p">}</span>
-  <span class="p">}</span>
 <span class="p">}</span>
 
-<span class="n">path_expr</span> <span class="o">=</span> <span class="n">parse</span><span class="p">(</span><span class="s2">&quot;$.store.book[*].author&quot;</span><span class="p">)</span>
-<span class="n">authors</span> <span class="o">=</span> <span class="p">[</span><span class="n">match</span><span class="o">.</span><span class="n">value</span> <span class="k">for</span> <span class="n">match</span> <span class="ow">in</span> <span class="n">path_expr</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="n">json_obj</span><span class="p">)]</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">authors</span><span class="p">)</span>  <span class="c1"># 输出: [&#39;Nigel Rees&#39;, &#39;Evelyn Waugh&#39;]</span>
+<span class="c1"># 通过json表达式替换节点值</span>
+<span class="n">expr</span> <span class="o">=</span> <span class="n">parse</span><span class="p">(</span><span class="s2">&quot;$.store.book[0].price&quot;</span><span class="p">)</span>  <span class="c1"># type: jsonpath.Child</span>
+<span class="n">expr</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">json_obj</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span>
 
-<span class="c1"># jsonpath_ng 库不支持使用 ? 来表示过滤条件</span>
+<span class="c1"># jsonpath_ng.parse不支持使用 ? 来表示过滤条件</span>
 <span class="c1"># path_expr = parse(&quot;$.store.book[?(@.price &gt; 10)].title&quot;)</span>
-<span class="n">path_expr</span> <span class="o">=</span> <span class="n">ext</span><span class="o">.</span><span class="n">parse</span><span class="p">(</span><span class="s2">&quot;$.store.book[?(@.price &gt; 10)].title&quot;</span><span class="p">)</span>
+<span class="n">path_expr</span> <span class="o">=</span> <span class="n">ext</span><span class="o">.</span><span class="n">parse</span><span class="p">(</span><span class="s2">&quot;$.store.book[?(@.price &gt; 10)].title&quot;</span><span class="p">)</span>  <span class="c1"># type: jsonpath.Child</span>
 <span class="n">titles</span> <span class="o">=</span> <span class="p">[</span><span class="n">match</span><span class="o">.</span><span class="n">value</span> <span class="k">for</span> <span class="n">match</span> <span class="ow">in</span> <span class="n">path_expr</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="n">json_obj</span><span class="p">)]</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">titles</span><span class="p">)</span>  <span class="c1"># Sword of Honour</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">titles</span><span class="p">)</span>  <span class="c1"># [&#39;Sayings of the Century&#39;, &#39;Sword of Honour&#39;]</span>
 </code></pre></div>
+</div>
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">jsonpath</span>
+
+<span class="n">json_obj</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s2">&quot;store&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s2">&quot;book&quot;</span><span class="p">:</span> <span class="p">[</span>
+            <span class="p">{</span><span class="s2">&quot;category&quot;</span><span class="p">:</span> <span class="s2">&quot;reference&quot;</span><span class="p">,</span> <span class="s2">&quot;author&quot;</span><span class="p">:</span> <span class="s2">&quot;Nigel Rees&quot;</span><span class="p">,</span> <span class="s2">&quot;title&quot;</span><span class="p">:</span> <span class="s2">&quot;Sayings of the Century&quot;</span><span class="p">,</span> <span class="s2">&quot;price&quot;</span><span class="p">:</span> <span class="mf">8.95</span><span class="p">},</span>
+            <span class="p">{</span><span class="s2">&quot;category&quot;</span><span class="p">:</span> <span class="s2">&quot;fiction&quot;</span><span class="p">,</span> <span class="s2">&quot;author&quot;</span><span class="p">:</span> <span class="s2">&quot;Evelyn Waugh&quot;</span><span class="p">,</span> <span class="s2">&quot;title&quot;</span><span class="p">:</span> <span class="s2">&quot;Sword of Honour&quot;</span><span class="p">,</span> <span class="s2">&quot;price&quot;</span><span class="p">:</span> <span class="mf">12.99</span><span class="p">}</span>
+        <span class="p">],</span>
+        <span class="s2">&quot;bicycle&quot;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="s2">&quot;color&quot;</span><span class="p">:</span> <span class="s2">&quot;red&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;price&quot;</span><span class="p">:</span> <span class="mf">19.95</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="k">def</span> <span class="nf">extract_by_jsonpath</span><span class="p">(</span><span class="n">api_data</span><span class="p">:</span> <span class="nb">dict</span><span class="p">,</span> <span class="n">expression</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    jsonpath形式的数据提取</span>
+<span class="sd">    :param api_data: 待提取的json数据</span>
+<span class="sd">    :param expression: 表达式</span>
+<span class="sd">    :return: list</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">value</span> <span class="o">=</span> <span class="n">jsonpath</span><span class="o">.</span><span class="n">jsonpath</span><span class="p">(</span><span class="n">api_data</span><span class="p">,</span> <span class="n">expression</span><span class="p">)</span>  <span class="c1"># 默认返回的是列表</span>
+    <span class="k">if</span> <span class="n">value</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">value</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="s1">&#39;jsonpath表达式错误: </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">expression</span><span class="p">))</span>
+
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">extract_by_jsonpath</span><span class="p">(</span><span class="n">json_obj</span><span class="p">,</span> <span class="s2">&quot;$.store.book[0].price&quot;</span><span class="p">))</span>
+</code></pre></div>
+</div>
+</div>
+</div>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<h1 id="type-jsonpathchildidectrl">type: jsonpath.Child，通过该注释，指明该表达式的具体类型。这样在IDE中使用<code>ctrl+鼠标左键</code>时，可以直接跳转到对应定义，而不用再手动去找属于哪个类型。</h1>
+</div>
 <hr />
 
 
@@ -2989,7 +3049,7 @@
     <span class="md-icon" title="最后更新">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1-2.1-2M12.5 7v5.2l4 2.4-1 1L11 13V7h1.5M11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2v1.8Z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime">2024-08-12 19:20:45</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime">2024-08-13 21:35:38</span>
   </span>
 
     

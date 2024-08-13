@@ -928,6 +928,39 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      📌 编程规范
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="📌 编程规范">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      🚁 类定义时方法的顺序建议
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_8" class="md-nav__link">
+    <span class="md-ellipsis">
+      🚁 具名函数
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -3020,6 +3053,39 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      📌 编程规范
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="📌 编程规范">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      🚁 类定义时方法的顺序建议
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_8" class="md-nav__link">
+    <span class="md-ellipsis">
+      🚁 具名函数
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -3121,6 +3187,75 @@
 但实际通过<code>instance._variable</code>的方式可以访问，但不会被<code>from module import *</code>导入。</p>
 <p>而双下划线开头的变量表示私有变量，目的是为了防止子类中同名变量或方法的冲突。<br />
 但实际通过<code>instance._ClassName__variable</code>的方式可以访问。</p>
+<h2 id="_6">📌 编程规范</h2>
+<h3 id="_7">🚁 类定义时方法的顺序建议</h3>
+<ol>
+<li>类变量</li>
+<li><code>__new__</code></li>
+<li><code>__init__</code></li>
+<li><code>__post_init__</code>，实例化后立即调用，可以用于执行任何必要的后处理或验证</li>
+<li>其他魔术方法，如<code>__len__</code>,<code>__bool__</code>等，具有固定返回类型的，重写时必须返回该类型</li>
+<li><code>@property</code>，类属性的封装，允许使用点语法访问，并可通过<code>@&lt;attribute&gt;.setter</code>、<code>@&lt;attribute&gt;.deleter</code>设置或删除属性</li>
+<li><code>@staticmethod</code>，静态方法，不需要访问实例也不需要访问类属性或方法时；可通过类名直接调方法，不推荐</li>
+<li><code>@classmethod</code>，类方法，不需要访问实例，但需要访问类属性或方法时；可通过类名直接调方法，不推荐</li>
+<li>普通方法</li>
+<li>保护或私有方法</li>
+</ol>
+<h3 id="_8">🚁 具名函数</h3>
+<p>当函数参数数量较多（一般指多于5个），且参数间有一定相关性时，建议通过类/<code>namedtuple</code>(具名元组类)/<code>@dataclass</code>等具名形式进行封装。</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="1:2"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">使用namedtuple</label><label for="__tabbed_1_2">使用dataclass类</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">namedtuple</span>
+
+<span class="c1"># 定义一个具名元组类</span>
+<span class="n">Person</span> <span class="o">=</span> <span class="n">namedtuple</span><span class="p">(</span><span class="s1">&#39;Person&#39;</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;name&#39;</span><span class="p">,</span> <span class="s1">&#39;age&#39;</span><span class="p">,</span> <span class="s1">&#39;email&#39;</span><span class="p">])</span>
+
+<span class="n">person1</span> <span class="o">=</span> <span class="n">Person</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;Alice&quot;</span><span class="p">,</span> <span class="n">age</span><span class="o">=</span><span class="mi">30</span><span class="p">,</span> <span class="n">email</span><span class="o">=</span><span class="s2">&quot;alice@example.com&quot;</span><span class="p">)</span>
+<span class="c1"># person1.age = 14  # 报错：AttributeError: can&#39;t set attribute</span>
+<span class="n">person2</span> <span class="o">=</span> <span class="n">Person</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;Bob&quot;</span><span class="p">,</span> <span class="n">age</span><span class="o">=</span><span class="mi">25</span><span class="p">,</span> <span class="n">email</span><span class="o">=</span><span class="s2">&quot;bob@example.com&quot;</span><span class="p">)</span>
+
+<span class="c1"># 访问具名元组的属性</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">person1</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>  <span class="c1"># 输出: Alice</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">person2</span><span class="o">.</span><span class="n">age</span><span class="p">)</span>   <span class="c1"># 输出: 25</span>
+
+<span class="c1"># 输出整个具名元组</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">person1</span><span class="p">)</span>  <span class="c1"># 输出: Person(name=&#39;Alice&#39;, age=30, email=&#39;alice@example.com&#39;)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">person2</span><span class="p">)</span>  <span class="c1"># 输出: Person(name=&#39;Bob&#39;, age=25, email=&#39;bob@example.com&#39;)</span>
+</code></pre></div>
+</div>
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">dataclasses</span> <span class="kn">import</span> <span class="n">dataclass</span>
+
+<span class="nd">@dataclass</span>
+<span class="c1"># 默认生成的类是可变的（除非装饰器传参frozen=True）</span>
+<span class="k">class</span> <span class="nc">Person</span><span class="p">:</span>
+    <span class="n">name</span><span class="p">:</span> <span class="nb">str</span>
+    <span class="n">age</span><span class="p">:</span> <span class="nb">int</span>
+    <span class="n">email</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;example@example.com&quot;</span>  <span class="c1"># 可选参数，默认值为 example@example.com</span>
+
+
+<span class="c1"># dataclass自动为类生成了 __init__ 方法</span>
+<span class="n">person1</span> <span class="o">=</span> <span class="n">Person</span><span class="p">(</span><span class="s2">&quot;Alice&quot;</span><span class="p">,</span> <span class="mi">30</span><span class="p">)</span>
+<span class="n">person1</span><span class="o">.</span><span class="n">age</span> <span class="o">=</span> <span class="mi">19</span>
+<span class="n">person2</span> <span class="o">=</span> <span class="n">Person</span><span class="p">(</span><span class="s2">&quot;Bob&quot;</span><span class="p">,</span> <span class="mi">25</span><span class="p">,</span> <span class="s2">&quot;bob@example.com&quot;</span><span class="p">)</span>
+
+<span class="c1"># dataclass自动为类生成了 __repr__ 方法</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">person1</span><span class="p">)</span>  <span class="c1"># 输出: Person(name=&#39;Alice&#39;, age=19, email=&#39;example@example.com&#39;)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">person2</span><span class="p">)</span>  <span class="c1"># 输出: Person(name=&#39;Bob&#39;, age=25, email=&#39;bob@example.com&#39;)</span>
+
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">什么时候不宜使用：</span>
+<span class="sd">1. 需要继承时</span>
+<span class="sd">2. 复杂的业务逻辑</span>
+<span class="sd">3. 性能敏感</span>
+<span class="sd">4. 高度定制化</span>
+<span class="sd">&quot;&quot;&quot;</span>
+</code></pre></div>
+</div>
+</div>
+</div>
+<hr />
 
 
 
@@ -3141,7 +3276,7 @@
     <span class="md-icon" title="最后更新">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1-2.1-2M12.5 7v5.2l4 2.4-1 1L11 13V7h1.5M11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2v1.8Z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime">2024-07-22 20:01:41</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime">2024-08-13 21:35:38</span>
   </span>
 
     
