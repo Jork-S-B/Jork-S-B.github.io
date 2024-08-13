@@ -116,3 +116,75 @@ Python中，以单下划线开头的变量作为保护变量，表明不希望�
 但实际通过`instance._ClassName__variable`的方式可以访问。
 
 
+## 📌 编程规范
+
+### 🚁 类定义时方法的顺序建议
+
+1. 类变量
+2. `__new__`
+3. `__init__`
+4. `__post_init__`，实例化后立即调用，可以用于执行任何必要的后处理或验证
+5. 其他魔术方法，如`__len__`,`__bool__`等，具有固定返回类型的，重写时必须返回该类型
+6. `@property`，类属性的封装，允许使用点语法访问，并可通过`@<attribute>.setter`、`@<attribute>.deleter`设置或删除属性
+7. `@staticmethod`，静态方法，不需要访问实例也不需要访问类属性或方法时；可通过类名直接调方法，不推荐
+8. `@classmethod`，类方法，不需要访问实例，但需要访问类属性或方法时；可通过类名直接调方法，不推荐
+9. 普通方法
+10. 保护或私有方法
+
+### 🚁 具名函数
+
+当函数参数数量较多（一般指多于5个），且参数间有一定相关性时，建议通过类/`namedtuple`(具名元组类)/`@dataclass`等具名形式进行封装。
+
+=== 使用namedtuple
+
+    ```python
+    from collections import namedtuple
+    
+    # 定义一个具名元组类
+    Person = namedtuple('Person', ['name', 'age', 'email'])
+    
+    person1 = Person(name="Alice", age=30, email="alice@example.com")
+    # person1.age = 14  # 报错：AttributeError: can't set attribute
+    person2 = Person(name="Bob", age=25, email="bob@example.com")
+    
+    # 访问具名元组的属性
+    print(person1.name)  # 输出: Alice
+    print(person2.age)   # 输出: 25
+    
+    # 输出整个具名元组
+    print(person1)  # 输出: Person(name='Alice', age=30, email='alice@example.com')
+    print(person2)  # 输出: Person(name='Bob', age=25, email='bob@example.com')
+    ```
+
+=== 使用dataclass类
+
+    ```python
+    from dataclasses import dataclass
+    
+    @dataclass
+    # 默认生成的类是可变的（除非装饰器传参frozen=True）
+    class Person:
+        name: str
+        age: int
+        email: str = "example@example.com"  # 可选参数，默认值为 example@example.com
+    
+    
+    # dataclass自动为类生成了 __init__ 方法
+    person1 = Person("Alice", 30)
+    person1.age = 19
+    person2 = Person("Bob", 25, "bob@example.com")
+    
+    # dataclass自动为类生成了 __repr__ 方法
+    print(person1)  # 输出: Person(name='Alice', age=19, email='example@example.com')
+    print(person2)  # 输出: Person(name='Bob', age=25, email='bob@example.com')
+
+    """
+    什么时候不宜使用：
+    1. 需要继承时
+    2. 复杂的业务逻辑
+    3. 性能敏感
+    4. 高度定制化
+    """
+    ```
+
+--- 
