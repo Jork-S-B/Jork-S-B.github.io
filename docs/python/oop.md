@@ -135,7 +135,7 @@ Python中，以单下划线开头的变量作为保护变量，表明不希望�
 
 当函数参数数量较多（一般指多于5个），且参数间有一定相关性时，建议通过类/`namedtuple`(具名元组类)/`@dataclass`等具名形式进行封装。
 
-=== 使用namedtuple
+=== "使用namedtuple"
 
     ```python
     from collections import namedtuple
@@ -156,7 +156,7 @@ Python中，以单下划线开头的变量作为保护变量，表明不希望�
     print(person2)  # 输出: Person(name='Bob', age=25, email='bob@example.com')
     ```
 
-=== 使用dataclass类
+=== "使用dataclass类"
 
     ```python
     from dataclasses import dataclass
