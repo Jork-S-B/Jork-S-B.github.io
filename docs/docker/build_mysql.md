@@ -44,9 +44,8 @@
 
 准备好以上文件后，在Windows PowerShell中执行build指令，构建MySQL镜像。
 
-- -f：指定Dockerfile文件路径
-
 ```shell
+# -f：指定Dockerfile文件路径
 docker build -t my-mysql .
 ```
 
@@ -56,10 +55,11 @@ docker build -t my-mysql .
 
 首次运行容器会进行初始化，记得关注日志。
 
-- -d：守护态运行容器，实现容器的持久化运行，即使终端关闭或主机重启，容器仍然会自动启动并继续提供服务。
-- -v：直接输入windows的路径会报错，${pwd}代表当前目录（要求空目录），即把容器的`/var/lib/mysql`挂载到宿主机的当前目录下。或者使用数据卷容器进行挂载。
 
 ```shell
+# -d：守护态运行容器，实现容器的持久化运行，即使终端关闭或主机重启，容器仍然会自动启动并继续提供服务。
+# -v：直接输入windows的路径会报错，${pwd}代表当前目录（要求空目录），即把容器的`/var/lib/mysql`挂载到宿主机的当前目录下
+    # 或者使用数据卷进行挂载，即-v {volume_name}:/var/lib/mysql
 docker run -d -p 53306:3306 --name my-mysql -v ${pwd}:/var/lib/mysql my-mysql
 ```
 

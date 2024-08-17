@@ -1,3 +1,6 @@
+todo
+
+```shell
 docker pull jenkins/jenkins
 
 
@@ -21,3 +24,5 @@ This may also be found at: /var/jenkins_home/secrets/initialAdminPassword
 访问localhost:8088/，然后输入上面这串密码，进入jenkins向导，安装插件
 
 进入容器，根据指引生成ssh公钥
+
+```

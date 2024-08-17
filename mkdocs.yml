@@ -4,167 +4,173 @@ site_author: whm
 site_description: myblog
 
 nav:
-- Home: index.md
-- Python:
-    - 数据类型:
-      - 数值型: python/datatype/number.md
-      - 序列: python/datatype/sequence.md
-      - 字典和集合: python/datatype/dict&set.md
-      - 可变/不可变类型: python/datatype/mutable&immutable.md
-    - 数据结构: python/structure/structure.md
-    - 算法:
-      - 排序: python/oj/sort.md
-      - 动态规划: python/oj/dp.md
-    - 面向对象: python/oop.md
-    - 内置函数: python/builtin_func.md
-    - 多线程&多进程: python/thread.md
-    - 自动化:
-      - unittest: python/autotest/unittest/unittest_notes.md
-      - pytest:
-        - 测试夹具: python/autotest/pytest/fixture.md
-        - pytest.main: python/autotest/pytest/pytest.main.md
-        - pytest.ini: python/autotest/pytest/pytest.ini.md
-      - selenium: python/autotest/selenium.md
-      - app自动化:
-          - airtest: python/autotest/app/mumu_sim.md
-          - appium: python/autotest/app/appium.md
-          - uiautomator2: python/autotest/app/uiautomator2.md
-          - wda: python/autotest/app/webdriveragent.md
-      - mitmproxy: python/autotest/mitmproxy.md
-      - requests: python/autotest/requests.md
-    - Web:
-      - Flask: python/web/flask.md
-      - Django:
-        - ORM: python/web/django/django_orm.md
-        - DTL模版引擎: python/web/django/django_templates.md
-        - Cookie与Session: python/web/django/cookie&session.md
-    - 其他:
-      - Python路径迁移: python/other/mv_py_path.md
-      - mkdocs使用记录: python/other/mkdocs_notes.md
-      - 正则表达式: python/regex/re.md
-      - 文件路径: python/other/pypath.md
-      - json: python/pyjson/pyjson_notes.md
-      - docx: python/pydocx/pydocx_notes.md
-      - excel: python/pyexcel/pyexcel_notes.md
-      - 爬虫入门笔记: python/other/scrapy_notes.md
-      - 闭包&装饰器&柯里化: python/closure.md
-      - 编程规范: python/other/coding_standard.md
-- Java:
-    - Spring Boot:
-      - 组件: java/springboot/basic.md
-- Vue:
-    - 基础: vue/basic.md
-- 数据库:
-    - Oracle:
-      - sqlldr导入大量数据: sql/oracle/sqlldr_import.md
-      - 分区&同义词&序列: sql/oracle/some.md
-      - 查询锁表&解锁: sql/oracle/lock&unlock.md
-      - 存储过程: sql/oracle/procedure.md
-      - 收集表统计信息: sql/oracle/gather_table_stats.md
-      - 备忘: sql/oracle/other_notes.md
-    - Mysql: sql/mysql_notes.md
-    - Redis: sql/redis_notes.md
-- Shell:
-    - 复习: shell/review.md
-    - regex.sh: shell/regex.md
-    - 检查命令耗时: shell/timestamp.md
-    - k8s备忘: shell/k8s.md
-- 测试工具:
-    - Fiddler: utils/fiddler_notes.md
-    - Charles: utils/charles_notes.md
-    - Postman: utils/postman_notes.md
-    - JMeter: utils/jmeter_notes.md
-- Hadoop:
-  - Hadoop生态: hadoop/ecosystem.md
-  - Scala:
-      - Day01: hadoop/scala/day01.md
-      - Day02: hadoop/scala/day02.md
-      - Day03: hadoop/scala/day03.md
-      - Day04: hadoop/scala/day04.md
-- Docker:
-    - Docker for Windows: docker/windows_docker.md
-    - Docker for Arch Linux: docker/archlinux_docker.md
-    - 构建MySQL镜像: docker/build_mysql.md
-    - 构建Oracle镜像: docker/build_oracle.md
-    #  - 构建Jenkins镜像: docker/build_jenkins.md
-- 其他:
-    - Nginx笔记: other/nginx_notes.md
-    - git: other/git_notes.md
+  - Home: index.md
+  - Python:
+      - 数据类型:
+          - 数值型: python/datatype/number.md
+          - 序列: python/datatype/sequence.md
+          - 字典和集合: python/datatype/dict&set.md
+          - 可变/不可变类型: python/datatype/mutable&immutable.md
+      - 数据结构: python/structure/structure.md
+      - 算法:
+          - 排序: python/oj/sort.md
+          - 动态规划: python/oj/dp.md
+      - 面向对象: python/oop.md
+      - 内置函数: python/builtin_func.md
+      - 多线程&多进程: python/thread.md
+      - 自动化:
+          - unittest: python/autotest/unittest/unittest_notes.md
+          - pytest:
+              - 测试夹具: python/autotest/pytest/fixture.md
+              - pytest.main: python/autotest/pytest/pytest.main.md
+              - pytest.ini: python/autotest/pytest/pytest.ini.md
+          - selenium: python/autotest/selenium.md
+          - app自动化:
+              - airtest: python/autotest/app/mumu_sim.md
+              - appium: python/autotest/app/appium.md
+              - uiautomator2: python/autotest/app/uiautomator2.md
+              - wda: python/autotest/app/webdriveragent.md
+          - mitmproxy: python/autotest/mitmproxy.md
+          - requests: python/autotest/requests.md
+      - Web:
+          - Flask: python/web/flask.md
+          - Django:
+              - ORM: python/web/django/django_orm.md
+              - DTL模版引擎: python/web/django/django_templates.md
+              - Cookie与Session: python/web/django/cookie&session.md
+      - 其他:
+          - Python路径迁移: python/other/mv_py_path.md
+          - mkdocs使用记录: python/other/mkdocs_notes.md
+          - 正则表达式: python/regex/re.md
+          - 文件路径: python/other/pypath.md
+          - json: python/pyjson/pyjson_notes.md
+          - docx: python/pydocx/pydocx_notes.md
+          - excel: python/pyexcel/pyexcel_notes.md
+          - 爬虫入门笔记: python/other/scrapy_notes.md
+          - 闭包&装饰器&柯里化: python/closure.md
+          - 编程规范: python/other/coding_standard.md
+  - Java:
+      - Spring Boot:
+          - 组件: java/springboot/basic.md
+  - Vue:
+      - 基础: vue/basic.md
+  - 数据库:
+      - Oracle:
+          - sqlldr导入大量数据: sql/oracle/sqlldr_import.md
+          - 分区&同义词&序列: sql/oracle/some.md
+          - 查询锁表&解锁: sql/oracle/lock&unlock.md
+          - 存储过程: sql/oracle/procedure.md
+          - 收集表统计信息: sql/oracle/gather_table_stats.md
+          - 备忘: sql/oracle/other_notes.md
+      - Mysql: sql/mysql_notes.md
+      - Redis: sql/redis_notes.md
+  - Shell:
+      - 复习: shell/review.md
+      - regex.sh: shell/regex.md
+      - 检查命令耗时: shell/timestamp.md
+      - k8s备忘: shell/k8s.md
+  - 测试:
+      - 测试类型:
+          - app测试: test/test_app.md
+          - 性能测试: test/test_performance.md
+          - 安全测试: test/test_security.md
+      - 测试工具:
+          - Fiddler: utils/fiddler_notes.md
+          - Charles: utils/charles_notes.md
+          - Postman: utils/postman_notes.md
+          - JMeter: utils/jmeter_notes.md
+  - Hadoop:
+      - Hadoop生态: hadoop/ecosystem.md
+      - Scala:
+          - Day01: hadoop/scala/day01.md
+          - Day02: hadoop/scala/day02.md
+          - Day03: hadoop/scala/day03.md
+          - Day04: hadoop/scala/day04.md
+  - Docker:
+      - Docker for Windows: docker/windows_docker.md
+      - Docker for Arch Linux: docker/archlinux_docker.md
+      - 构建MySQL镜像: docker/build_mysql.md
+      - 构建Oracle镜像: docker/build_oracle.md
+      - 构建Jenkins镜像: docker/build_jenkins.md
+  - 其他:
+      - Nginx笔记: other/nginx_notes.md
+      - git: other/git_notes.md
 
 # 搜索栏右侧git链接
 repo_url: https://github.com/Jork-S-B/Jork-S-B.github.io/tree/main
 repo_name: 'myblog'
 
 theme:
-    # favicon: logo.png  # 网站logo，默认从./docs/logo.png读取
-    icon:
-        logo: fontawesome/solid/face-smile-wink  # site_name左侧图标
-        repo: fontawesome/brands/git-alt  # git链接图标
-    font: false  # 使用默认字体，不使用google font
-    name: 'material'  # 设置mkdocs-material主题，需要先pip install mkdocs-material
-    language: zh
-    features:
-        - navigation.footer  # 设置上一页和下一页
-        - navigation.top  # 一键回顶部
-        - navigation.tabs  # 顶部显示导航顶层nav
-        - navigation.instant  # 点击内部链接时，不用全部刷新页面
-        # - navigation.path  # 展示当前文档路径
-        - content.code.copy  # 代码块复制按钮
-    palette:
-        # 切换样式方案及按钮
-        - media: "(prefers-color-scheme: light)"
-          scheme: default
-          primary: teal
-          toggle:
-            icon: material/lightbulb
-            name: 切换至深色模式
+  # favicon: logo.png  # 网站logo，默认从./docs/logo.png读取
+  icon:
+    logo: fontawesome/solid/face-smile-wink  # site_name左侧图标
+    repo: fontawesome/brands/git-alt  # git链接图标
+  font: false  # 使用默认字体，不使用google font
+  name: 'material'  # 设置mkdocs-material主题，需要先pip install mkdocs-material
+  language: zh
+  features:
+    - navigation.footer  # 设置上一页和下一页
+    - navigation.top  # 一键回顶部
+    - navigation.tabs  # 顶部显示导航顶层nav
+    - navigation.instant  # 点击内部链接时，不用全部刷新页面
+    # - navigation.path  # 展示当前文档路径
+    - content.code.copy  # 代码块复制按钮
+  palette:
+    # 切换样式方案及按钮
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
+      primary: teal
+      toggle:
+        icon: material/lightbulb
+        name: 切换至深色模式
 
-        - media: "(prefers-color-scheme: dark)"
-          scheme: slate
-          primary: black
-          toggle:
-            icon: material/lightbulb-outline
-            name: 切换至浅色模式
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      primary: black
+      toggle:
+        icon: material/lightbulb-outline
+        name: 切换至浅色模式
 
 extra_css:
   - stylesheets/extra.css  # 自定义css文件
 
 markdown_extensions:
-    # emoji等图标的扩展
-    - attr_list
-    - pymdownx.emoji:
-        emoji_index: !!python/name:material.extensions.emoji.twemoji
-        emoji_generator: !!python/name:material.extensions.emoji.to_svg
-    # 可切换tab页的代码块扩展
-    - pymdownx.superfences
-    - pymdownx.tabbed:
-        alternate_style: true
-    # 提示框扩展
-    - admonition
-    - pymdownx.details
-    - pymdownx.superfences
-    # 表格扩展
-    - tables
-    # 支持markdown任务列表的插件
-    - pymdownx.tasklist:
-        custom_checkbox: true
+  # emoji等图标的扩展
+  - attr_list
+  - pymdownx.emoji:
+      emoji_index: !!python/name:material.extensions.emoji.twemoji
+      emoji_generator: !!python/name:material.extensions.emoji.to_svg
+      # 可切换tab页的代码块扩展
+  - pymdownx.superfences
+  - pymdownx.tabbed:
+      alternate_style: true
+  # 提示框扩展
+  - admonition
+  - pymdownx.details
+  - pymdownx.superfences
+  # 表格扩展
+  - tables
+  # 支持markdown任务列表的插件
+  - pymdownx.tasklist:
+      custom_checkbox: true
 
 plugins:
-    # 图片放大插件，需要先pip install mkdocs-glightbox
-    - glightbox
-    # 中文搜索插件，需要pip install jieba
-    - search:
-        # 正则表达式，\s 匹配任何空白字符，包括空格、制表符、换行符等；\u200b 不可视的特殊占位符，文本渲染时用到，此处实测对搜索结果挺大
-        separator: '[\s+\u200b\-,:!=\[\]()"/]+|(?!\b)(?=[A-Z][a-z])|\.(?!\d)|&[lg]t;'
-        lang:
-          - en
-          - zh
-    # 显示文件最后修改时间插件，需要先pip install mkdocs-git-revision-date-localized-plugin
-    # 参考资料：https://timvink.github.io/mkdocs-git-revision-date-localized-plugin/options/
-    - git-revision-date-localized:
-        timezone: Asia/Shanghai
-        type: iso_datetime
-        # fallback_to_build_date: true  # mkdocs build的日期
-        enable_creation_date: false
-        exclude:  # 以下文件/目录排除
-          - index.md
+  # 图片放大插件，需要先pip install mkdocs-glightbox
+  - glightbox
+  # 中文搜索插件，需要pip install jieba
+  - search:
+      # 正则表达式，\s 匹配任何空白字符，包括空格、制表符、换行符等；\u200b 不可视的特殊占位符，文本渲染时用到，此处实测对搜索结果挺大
+      separator: '[\s+\u200b\-,:!=\[\]()"/]+|(?!\b)(?=[A-Z][a-z])|\.(?!\d)|&[lg]t;'
+      lang:
+        - en
+        - zh
+  # 显示文件最后修改时间插件，需要先pip install mkdocs-git-revision-date-localized-plugin
+  # 参考资料：https://timvink.github.io/mkdocs-git-revision-date-localized-plugin/options/
+  # 调试时注释掉
+  - git-revision-date-localized:
+      timezone: Asia/Shanghai
+      type: iso_datetime
+      # fallback_to_build_date: true  # mkdocs build的日期
+      enable_creation_date: false
+      exclude:  # 以下文件/目录排除
+        - index.md
