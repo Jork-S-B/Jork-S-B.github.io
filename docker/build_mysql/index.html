@@ -2729,16 +2729,49 @@
         <li class="md-nav__item">
   <a href="#_6" class="md-nav__link">
     <span class="md-ellipsis">
-      📌 导出镜像
+      📌 镜像复用
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="📌 镜像复用">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      🚁 导出镜像
     </span>
   </a>
   
 </li>
+        
+          <li class="md-nav__item">
+  <a href="#_8" class="md-nav__link">
+    <span class="md-ellipsis">
+      🚁 推送镜像
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_9" class="md-nav__link">
+    <span class="md-ellipsis">
+      🚁 拉取镜像
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
       
         <li class="md-nav__item">
-  <a href="#_7" class="md-nav__link">
+  <a href="#docker-pull-registrycn-hangzhoualiyuncscomnamespacemy-mysqllatest-docker-tag-registrycn-hangzhoualiyuncscomnamespacemy-mysqllatest-whm_mysql20240817" class="md-nav__link">
     <span class="md-ellipsis">
-      📌 推送镜像
+      # 拉取镜像，然后运行容器即可 docker pull registry.cn-hangzhou.aliyuncs.com/{namespace}/my-mysql:latest docker tag registry.cn-hangzhou.aliyuncs.com/{namespace}/my-mysql:latest whm_mysql:20240817
     </span>
   </a>
   
@@ -2955,16 +2988,49 @@
         <li class="md-nav__item">
   <a href="#_6" class="md-nav__link">
     <span class="md-ellipsis">
-      📌 导出镜像
+      📌 镜像复用
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="📌 镜像复用">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      🚁 导出镜像
     </span>
   </a>
   
 </li>
+        
+          <li class="md-nav__item">
+  <a href="#_8" class="md-nav__link">
+    <span class="md-ellipsis">
+      🚁 推送镜像
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_9" class="md-nav__link">
+    <span class="md-ellipsis">
+      🚁 拉取镜像
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
       
         <li class="md-nav__item">
-  <a href="#_7" class="md-nav__link">
+  <a href="#docker-pull-registrycn-hangzhoualiyuncscomnamespacemy-mysqllatest-docker-tag-registrycn-hangzhoualiyuncscomnamespacemy-mysqllatest-whm_mysql20240817" class="md-nav__link">
     <span class="md-ellipsis">
-      📌 推送镜像
+      # 拉取镜像，然后运行容器即可 docker pull registry.cn-hangzhou.aliyuncs.com/{namespace}/my-mysql:latest docker tag registry.cn-hangzhou.aliyuncs.com/{namespace}/my-mysql:latest whm_mysql:20240817
     </span>
   </a>
   
@@ -3001,7 +3067,7 @@ ENV LANG=C.UTF-8
 COPY my.cnf /etc/mysql/my.cnf
 COPY init.sql /docker-entrypoint-initdb.d/
 
-# 持久化数据卷
+# 持久化数据卷，-v未指定时，docker会自动创建匿名卷
 VOLUME /var/lib/mysql
 </code></pre></div>
 </div>
@@ -3039,10 +3105,11 @@ max_connections=100
 </blockquote>
 <h3 id="_3">🚁 运行容器并检查状态</h3>
 <p>首次运行容器会进行初始化，记得关注日志。</p>
+<ul>
+<li>-d：守护态运行容器，实现容器的持久化运行，即使终端关闭或主机重启，容器仍然会自动启动并继续提供服务。</li>
+<li>-v：直接输入windows的路径会报错，${pwd}代表当前目录（要求空目录），即把容器的<code>/var/lib/mysql</code>挂载到宿主机的当前目录下。或者使用数据卷容器进行挂载。</li>
+</ul>
 <div class="highlight"><pre><span></span><code>docker<span class="w"> </span>run<span class="w"> </span>-d<span class="w"> </span>-p<span class="w"> </span><span class="m">53306</span>:3306<span class="w"> </span>--name<span class="w"> </span>my-mysql<span class="w"> </span>-v<span class="w"> </span><span class="si">${</span><span class="nv">pwd</span><span class="si">}</span>:/var/lib/mysql<span class="w"> </span>my-mysql
-
-<span class="c1"># -d：守护态运行容器，实现容器的持久化运行，即使终端关闭或主机重启，容器仍然会自动启动并继续提供服务。</span>
-<span class="c1"># -v：直接输入windows的路径会报错，${pwd}代表当前目录（要求空目录），即把容器的`/var/lib/mysql`挂载到宿主机的当前目录下。或者使用数据卷容器进行挂载。-v未指定时，docker会自动创建匿名卷，但容器被删除时，数据也会删除。</span>
 </code></pre></div>
 <h3 id="_4">🚁 其他指令补充</h3>
 <table>
@@ -3078,22 +3145,31 @@ max_connections=100
 <td style="text-align: left;">日志尾部200行并持续刷新</td>
 </tr>
 <tr>
-<td style="text-align: left;"><code>docker create --name {自定名称} {image_name}</code></td>
-<td style="text-align: left;">创建数据卷容器</td>
+<td style="text-align: left;"><code>docker volume create {volume_name}</code></td>
+<td style="text-align: left;">创建数据卷</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>docker tag {image:version} {alias:ver}</code></td>
+<td style="text-align: left;">给镜像起别名，实际是复制一份</td>
 </tr>
 </tbody>
 </table>
 <h3 id="_5">🚁 连接数据库</h3>
 <p>mysql -p mydb<br />
 当容器正常运行，在容器内输入命令连数据库</p>
-<h2 id="_6">📌 导出镜像</h2>
+<h2 id="_6">📌 镜像复用</h2>
+<ul>
+<li>导出为tar文件，手动上传至服务器</li>
+<li>或者推送镜像到镜像仓库</li>
+</ul>
+<h3 id="_7">🚁 导出镜像</h3>
 <div class="highlight"><pre><span></span><code><span class="c1"># 导出镜像为 tar 文件</span>
 docker<span class="w"> </span>save<span class="w"> </span>-o<span class="w"> </span>my-mysql.tar<span class="w"> </span>my-mysql
 
 <span class="c1"># 在其他机器上导入镜像，然后运行容器即可</span>
 docker<span class="w"> </span>load<span class="w"> </span>-i<span class="w"> </span>my-mysql.tar
 </code></pre></div>
-<h2 id="_7">📌 推送镜像</h2>
+<h3 id="_8">🚁 推送镜像</h3>
 <p>先建好阿里云容器镜像服务-个人实例，并配置命名空间。</p>
 <div class="highlight"><pre><span></span><code><span class="c1"># 登录阿里云容器镜像仓库</span>
 docker<span class="w"> </span>login<span class="w"> </span>-u<span class="w"> </span><span class="o">{</span>username<span class="o">}</span><span class="w"> </span>-p<span class="w"> </span><span class="o">{</span>password<span class="o">}</span><span class="w"> </span>registry.cn-hangzhou.aliyuncs.com
@@ -3103,11 +3179,13 @@ docker<span class="w"> </span>tag<span class="w"> </span>my-mysql<span class="w"
 
 <span class="c1"># 推送镜像，不包含运行时产生的数据</span>
 docker<span class="w"> </span>push<span class="w"> </span>registry.cn-hangzhou.aliyuncs.com/<span class="o">{</span>namespace<span class="o">}</span>/my-mysql
-
-<span class="c1"># 拉取镜像，然后运行容器即可</span>
-docker<span class="w"> </span>pull<span class="w"> </span>registry.cn-hangzhou.aliyuncs.com/<span class="o">{</span>namespace<span class="o">}</span>/my-mysql:latest
 </code></pre></div>
-<hr />
+<h3 id="_9">🚁 拉取镜像</h3>
+<h2 id="docker-pull-registrycn-hangzhoualiyuncscomnamespacemy-mysqllatest-docker-tag-registrycn-hangzhoualiyuncscomnamespacemy-mysqllatest-whm_mysql20240817"><div class="highlight"><pre><span></span><code><span class="c1"># 拉取镜像，然后运行容器即可</span>
+docker<span class="w"> </span>pull<span class="w"> </span>registry.cn-hangzhou.aliyuncs.com/<span class="o">{</span>namespace<span class="o">}</span>/my-mysql:latest
+
+docker<span class="w"> </span>tag<span class="w"> </span>registry.cn-hangzhou.aliyuncs.com/<span class="o">{</span>namespace<span class="o">}</span>/my-mysql:latest<span class="w"> </span>whm_mysql:20240817
+</code></pre></div></h2>
 <p><a href="https://blog.csdn.net/Liu__sir__/article/details/130643737">参考的这一篇博客</a></p>
 
 
@@ -3129,7 +3207,7 @@ docker<span class="w"> </span>pull<span class="w"> </span>registry.cn-hangzhou.a
     <span class="md-icon" title="最后更新">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1-2.1-2M12.5 7v5.2l4 2.4-1 1L11 13V7h1.5M11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2v1.8Z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime">2024-07-27 16:04:47</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime">2024-08-17 11:33:07</span>
   </span>
 
     
