@@ -44,10 +44,10 @@
 
 准备好以上文件后，在Windows PowerShell中执行build指令，构建MySQL镜像。
 
+- -f：指定Dockerfile文件路径
+
 ```shell
 docker build -t my-mysql .
-
-# -f：指定Dockerfile文件路径
 ```
 
 > 202406：拉取镜像失败，许多国内镜像源也已失效。有效的镜像源可参考：https://www.cnblogs.com/ikuai/p/18233775
@@ -119,6 +119,7 @@ docker pull registry.cn-hangzhou.aliyuncs.com/{namespace}/my-mysql:latest
 
 docker tag registry.cn-hangzhou.aliyuncs.com/{namespace}/my-mysql:latest whm_mysql:20240817
 ```
+
 ---
 
 [参考的这一篇博客](https://blog.csdn.net/Liu__sir__/article/details/130643737)
