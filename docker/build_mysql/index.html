@@ -2768,15 +2768,6 @@
   
 </li>
       
-        <li class="md-nav__item">
-  <a href="#docker-pull-registrycn-hangzhoualiyuncscomnamespacemy-mysqllatest-docker-tag-registrycn-hangzhoualiyuncscomnamespacemy-mysqllatest-whm_mysql20240817" class="md-nav__link">
-    <span class="md-ellipsis">
-      # 拉取镜像，然后运行容器即可 docker pull registry.cn-hangzhou.aliyuncs.com/{namespace}/my-mysql:latest docker tag registry.cn-hangzhou.aliyuncs.com/{namespace}/my-mysql:latest whm_mysql:20240817
-    </span>
-  </a>
-  
-</li>
-      
     </ul>
   
 </nav>
@@ -3027,15 +3018,6 @@
   
 </li>
       
-        <li class="md-nav__item">
-  <a href="#docker-pull-registrycn-hangzhoualiyuncscomnamespacemy-mysqllatest-docker-tag-registrycn-hangzhoualiyuncscomnamespacemy-mysqllatest-whm_mysql20240817" class="md-nav__link">
-    <span class="md-ellipsis">
-      # 拉取镜像，然后运行容器即可 docker pull registry.cn-hangzhou.aliyuncs.com/{namespace}/my-mysql:latest docker tag registry.cn-hangzhou.aliyuncs.com/{namespace}/my-mysql:latest whm_mysql:20240817
-    </span>
-  </a>
-  
-</li>
-      
     </ul>
   
 </nav>
@@ -3096,9 +3078,10 @@ max_connections=100
 </div>
 <h3 id="_2">🚁 构建镜像</h3>
 <p>准备好以上文件后，在Windows PowerShell中执行build指令，构建MySQL镜像。</p>
+<ul>
+<li>-f：指定Dockerfile文件路径</li>
+</ul>
 <div class="highlight"><pre><span></span><code>docker<span class="w"> </span>build<span class="w"> </span>-t<span class="w"> </span>my-mysql<span class="w"> </span>.
-
-<span class="c1"># -f：指定Dockerfile文件路径</span>
 </code></pre></div>
 <blockquote>
 <p>202406：拉取镜像失败，许多国内镜像源也已失效。有效的镜像源可参考：https://www.cnblogs.com/ikuai/p/18233775</p>
@@ -3181,11 +3164,12 @@ docker<span class="w"> </span>tag<span class="w"> </span>my-mysql<span class="w"
 docker<span class="w"> </span>push<span class="w"> </span>registry.cn-hangzhou.aliyuncs.com/<span class="o">{</span>namespace<span class="o">}</span>/my-mysql
 </code></pre></div>
 <h3 id="_9">🚁 拉取镜像</h3>
-<h2 id="docker-pull-registrycn-hangzhoualiyuncscomnamespacemy-mysqllatest-docker-tag-registrycn-hangzhoualiyuncscomnamespacemy-mysqllatest-whm_mysql20240817"><div class="highlight"><pre><span></span><code><span class="c1"># 拉取镜像，然后运行容器即可</span>
+<div class="highlight"><pre><span></span><code><span class="c1"># 拉取镜像，然后运行容器即可</span>
 docker<span class="w"> </span>pull<span class="w"> </span>registry.cn-hangzhou.aliyuncs.com/<span class="o">{</span>namespace<span class="o">}</span>/my-mysql:latest
 
 docker<span class="w"> </span>tag<span class="w"> </span>registry.cn-hangzhou.aliyuncs.com/<span class="o">{</span>namespace<span class="o">}</span>/my-mysql:latest<span class="w"> </span>whm_mysql:20240817
-</code></pre></div></h2>
+</code></pre></div>
+<hr />
 <p><a href="https://blog.csdn.net/Liu__sir__/article/details/130643737">参考的这一篇博客</a></p>
 
 
@@ -3207,7 +3191,7 @@ docker<span class="w"> </span>tag<span class="w"> </span>registry.cn-hangzhou.al
     <span class="md-icon" title="最后更新">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1-2.1-2M12.5 7v5.2l4 2.4-1 1L11 13V7h1.5M11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2v1.8Z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime">2024-08-17 11:33:07</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime">2024-08-17 11:43:12</span>
   </span>
 
     
