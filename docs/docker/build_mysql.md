@@ -11,7 +11,7 @@
     COPY my.cnf /etc/mysql/my.cnf
     COPY init.sql /docker-entrypoint-initdb.d/
     
-    # 持久化数据卷
+    # 持久化数据卷，-v未指定时，docker会自动创建匿名卷
     VOLUME /var/lib/mysql
     ```
 
@@ -56,11 +56,11 @@ docker build -t my-mysql .
 
 首次运行容器会进行初始化，记得关注日志。
 
+- -d：守护态运行容器，实现容器的持久化运行，即使终端关闭或主机重启，容器仍然会自动启动并继续提供服务。
+- -v：直接输入windows的路径会报错，${pwd}代表当前目录（要求空目录），即把容器的`/var/lib/mysql`挂载到宿主机的当前目录下。或者使用数据卷容器进行挂载。
+
 ```shell
 docker run -d -p 53306:3306 --name my-mysql -v ${pwd}:/var/lib/mysql my-mysql
-
-# -d：守护态运行容器，实现容器的持久化运行，即使终端关闭或主机重启，容器仍然会自动启动并继续提供服务。
-# -v：直接输入windows的路径会报错，${pwd}代表当前目录（要求空目录），即把容器的`/var/lib/mysql`挂载到宿主机的当前目录下。或者使用数据卷容器进行挂载。-v未指定时，docker会自动创建匿名卷，但容器被删除时，数据也会删除。
 ```
 
 ### 🚁 其他指令补充
@@ -73,14 +73,20 @@ docker run -d -p 53306:3306 --name my-mysql -v ${pwd}:/var/lib/mysql my-mysql
 | `docker stop {container_id}`               | 停用容器               |
 | `docker restart {container_id}`            | 重启容器               |
 | `docker logs -f --tail=200 {container_id}` | 日志尾部200行并持续刷新      |
-| `docker create --name {自定名称} {image_name}` | 创建数据卷容器            |
+| `docker volume create {volume_name}`       | 创建数据卷              |
+| `docker tag {image:version} {alias:ver}`   | 给镜像起别名，实际是复制一份     |
 
 ### 🚁 连接数据库
 
 mysql -p mydb  
 当容器正常运行，在容器内输入命令连数据库
 
-## 📌 导出镜像
+## 📌 镜像复用
+
+- 导出为tar文件，手动上传至服务器
+- 或者推送镜像到镜像仓库
+
+### 🚁 导出镜像
 
 ```shell
 # 导出镜像为 tar 文件
@@ -90,7 +96,7 @@ docker save -o my-mysql.tar my-mysql
 docker load -i my-mysql.tar
 ```
 
-## 📌 推送镜像
+### 🚁 推送镜像
 
 先建好阿里云容器镜像服务-个人实例，并配置命名空间。
 
@@ -103,11 +109,16 @@ docker tag my-mysql registry.cn-hangzhou.aliyuncs.com/{namespace}/my-mysql
 
 # 推送镜像，不包含运行时产生的数据
 docker push registry.cn-hangzhou.aliyuncs.com/{namespace}/my-mysql
-
-# 拉取镜像，然后运行容器即可
-docker pull registry.cn-hangzhou.aliyuncs.com/{namespace}/my-mysql:latest
 ```
 
+### 🚁 拉取镜像
+
+```shell
+# 拉取镜像，然后运行容器即可
+docker pull registry.cn-hangzhou.aliyuncs.com/{namespace}/my-mysql:latest
+
+docker tag registry.cn-hangzhou.aliyuncs.com/{namespace}/my-mysql:latest whm_mysql:20240817
+```
 ---
 
 [参考的这一篇博客](https://blog.csdn.net/Liu__sir__/article/details/130643737)
