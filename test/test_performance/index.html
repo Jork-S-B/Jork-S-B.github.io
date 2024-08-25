@@ -20,7 +20,7 @@
       
       
       <link rel="icon" href="../../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.6.0, mkdocs-material-9.5.31">
+      <meta name="generator" content="mkdocs-1.6.0, mkdocs-material-9.5.33">
     
     
       
@@ -2378,11 +2378,11 @@
         <li class="md-nav__item">
   <a href="#jmeter" class="md-nav__link">
     <span class="md-ellipsis">
-      📌 JMeter的使用
+      📌 使用JMeter进行压力测试
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="📌 JMeter的使用">
+    <nav class="md-nav" aria-label="📌 使用JMeter进行压力测试">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -3102,11 +3102,11 @@
         <li class="md-nav__item">
   <a href="#jmeter" class="md-nav__link">
     <span class="md-ellipsis">
-      📌 JMeter的使用
+      📌 使用JMeter进行压力测试
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="📌 JMeter的使用">
+    <nav class="md-nav" aria-label="📌 使用JMeter进行压力测试">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -3214,16 +3214,17 @@
 <li>负载测试，在一定负载情况下的系统性能测试（不关注稳定性，也就是说不关注长时间运行，只是得到不同负载下相关性能指标即可）。</li>
 </ul>
 <hr />
-<h2 id="jmeter">📌 JMeter的使用</h2>
+<h2 id="jmeter">📌 使用JMeter进行压力测试</h2>
 <ol>
 <li>用户定义的变量，内容包括线程数8、ramp_up_time启动所有线程所需时间、循环次数、持续时间300s、启动延迟时间。</li>
-<li>登录请求线程组，搭配正则表达式提取器、BeanShell PostProcessor将token设置为全局变量。</li>
+<li>登录请求线程组，搭配正则表达式提取器、BeanShlell PostProcessor将token设置为全局变量。</li>
 <li>Http请求默认值，包括协议、ip、端口、编码。</li>
 <li>Http信息头管理器，包括报文类型、token等信息。</li>
 <li>被测请求线程组，包括事务控制器、csv数据文件（参数化）、请求、提取器、响应断言、断言结果、汇总报告。</li>
 <li>总体的结果树、报告、事务响应时间图</li>
 <li>生成html报告，平均响应时间200ms-1200ms</li>
 </ol>
+<p>步骤参考：<a href="../performance/202409.jmx">202409.jmx</a></p>
 <p>参考资料：<a href="https://blog.csdn.net/m0_47747596/article/details/131658904">JMeter压力测试完整流程</a></p>
 <h3 id="_2">🚁 后置处理器</h3>
 <ul>
@@ -3244,8 +3245,8 @@
 <p>吞吐量、响应时间和用户数量：刚开始吞吐量随着用户数量的增加逐渐变大，当达到一定程度时，逐渐平缓直到变成一条平线；而响应时间随着用户数量的增长逐渐变大。</p>
 <div class="admonition note">
 <p class="admonition-title">补充</p>
-<p>吞吐量-Throughput，指单位时间内系统能够完成的工作量。
-TPS-Transactions Per Second，指系统每秒钟能够处理的事务和交易的数量。</p>
+<p>吞吐量-Throughput，指单位时间内系统能够完成的工作量。</p>
+<p>TPS-Transactions Per Second，指系统每秒钟能够处理的事务和交易的数量。</p>
 </div>
 <h3 id="20240501">🚁 20240501</h3>
 <h4 id="_6">负载测试</h4>
@@ -3317,7 +3318,7 @@ TPS-Transactions Per Second，指系统每秒钟能够处理的事务和交易�
     <span class="md-icon" title="最后更新">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1-2.1-2M12.5 7v5.2l4 2.4-1 1L11 13V7h1.5M11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2v1.8Z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime">2024-05-01 11:14:35</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime">2024-08-25 10:03:47</span>
   </span>
 
     
@@ -3413,7 +3414,7 @@ TPS-Transactions Per Second，指系统每秒钟能够处理的事务和交易�
     <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.footer", "navigation.top", "navigation.tabs", "navigation.instant", "content.code.copy"], "search": "../../assets/javascripts/workers/search.b8dbb3d2.min.js", "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}}</script>
     
     
-      <script src="../../assets/javascripts/bundle.fe8b6f2b.min.js"></script>
+      <script src="../../assets/javascripts/bundle.af256bd8.min.js"></script>
       
     
   <script id="init-glightbox">const lightbox = GLightbox({"touchNavigation": true, "loop": false, "zoomable": true, "draggable": true, "openEffect": "zoom", "closeEffect": "zoom", "slideEffect": "slide"});
