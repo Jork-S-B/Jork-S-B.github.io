@@ -61,9 +61,11 @@
 解决方案:
 
 1. 打开JMeter目录的`bin/jmeter.properties`文件
-2. 搜索关键字: `#sampleresult.default.encoding=ISO-8859-1`
-3. 在该行下方新增: `sampleresult.default.encoding=UTF-8`
+2. 搜索关键字: `sampleresult.default.encoding`
+3. 去掉注释符，修改编码为UTF-8，即`sampleresult.default.encoding=UTF-8`
 4. 重启JMeter
+
+JMeter 5.6.1 之后的版本默认UTF-8编码，无需修改。
 
 其他解决方案参考: [解决Jmeter响应报文中文乱码的问题-3种解决办法](https://blog.csdn.net/u013302168/article/details/126366082﻿)
 
