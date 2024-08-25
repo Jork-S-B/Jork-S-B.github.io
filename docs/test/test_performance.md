@@ -6,15 +6,17 @@
 
 ---
 
-## 📌 JMeter的使用
+## 📌 使用JMeter进行压力测试
 
 1. 用户定义的变量，内容包括线程数8、ramp_up_time启动所有线程所需时间、循环次数、持续时间300s、启动延迟时间。
-2. 登录请求线程组，搭配正则表达式提取器、BeanShell PostProcessor将token设置为全局变量。
+2. 登录请求线程组，搭配正则表达式提取器、BeanShlell PostProcessor将token设置为全局变量。
 3. Http请求默认值，包括协议、ip、端口、编码。
 4. Http信息头管理器，包括报文类型、token等信息。
 5. 被测请求线程组，包括事务控制器、csv数据文件（参数化）、请求、提取器、响应断言、断言结果、汇总报告。
 6. 总体的结果树、报告、事务响应时间图
 7. 生成html报告，平均响应时间200ms-1200ms
+
+步骤参考：[202409.jmx](performance/202409.jmx)
 
 参考资料：[JMeter压力测试完整流程](https://blog.csdn.net/m0_47747596/article/details/131658904)
 
@@ -43,6 +45,7 @@
 !!! note "补充"
     
     吞吐量-Throughput，指单位时间内系统能够完成的工作量。
+
     TPS-Transactions Per Second，指系统每秒钟能够处理的事务和交易的数量。
 
 ### 🚁 20240501
