@@ -2561,6 +2561,24 @@
         <li class="md-nav__item">
   <a href="#_5" class="md-nav__link">
     <span class="md-ellipsis">
+      📌 使用自带函数
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#jar" class="md-nav__link">
+    <span class="md-ellipsis">
+      📌 调外部jar包方法
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    <span class="md-ellipsis">
       📌 报告分析
     </span>
   </a>
@@ -3087,6 +3105,24 @@
         <li class="md-nav__item">
   <a href="#_5" class="md-nav__link">
     <span class="md-ellipsis">
+      📌 使用自带函数
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#jar" class="md-nav__link">
+    <span class="md-ellipsis">
+      📌 调外部jar包方法
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    <span class="md-ellipsis">
       📌 报告分析
     </span>
   </a>
@@ -3183,7 +3219,49 @@
 </ol>
 <h2 id="_4">📌 使用代理服务器录制脚本</h2>
 <p>参考资料: <a href="https://blog.csdn.net/weixin_42614544/article/details/109514086">jmeter代理服务器录制脚本教程（入门篇）</a></p>
-<h2 id="_5">📌 报告分析</h2>
+<h2 id="_5">📌 使用自带函数</h2>
+<p>工具-&gt;函数助手对话框，找需要用的函数。</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="2:1"><input checked="checked" id="__tabbed_2_1" name="__tabbed_2" type="radio" /><div class="tabbed-labels"><label for="__tabbed_2_1">示例</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;id&quot;</span><span class="p">:</span><span class="s2">&quot;${__Random(100,105)}&quot;</span><span class="p">,</span><span class="w">  </span><span class="c1">// 从100至105的序列中随机取数</span>
+<span class="w">    </span><span class="nt">&quot;phone&quot;</span><span class="p">:</span><span class="s2">&quot;${__chooseRandom(1.0.1,1.0.2,1.0.3)}&quot;</span><span class="w">  </span><span class="c1">// 从该列表中随机取数</span>
+<span class="p">}</span>
+</code></pre></div>
+</div>
+</div>
+</div>
+<h2 id="jar">📌 调外部jar包方法</h2>
+<ol>
+<li>jar包需要放JMeter目录的<code>lib\ext</code>目录下</li>
+<li>jar包里调用的第三方jar包也要放到<code>lib</code>和<code>lib/ext</code>里</li>
+<li>记得重启JMeter，添加前置处理器: BeanShell PreProcessor，然后写脚本</li>
+</ol>
+<div class="tabbed-set tabbed-alternate" data-tabs="3:1"><input checked="checked" id="__tabbed_3_1" name="__tabbed_3" type="radio" /><div class="tabbed-labels"><label for="__tabbed_3_1">BeanShell PreProcessor</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">xx.Util</span><span class="p">;</span>
+
+<span class="n">String</span><span class="w"> </span><span class="n">sp</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;18&quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">Integer</span><span class="p">.</span><span class="na">toString</span><span class="p">(</span><span class="n">$</span><span class="p">{</span><span class="n">__Random</span><span class="p">(</span><span class="mo">000000000</span><span class="p">,</span><span class="mi">999999999</span><span class="p">,)});</span>
+<span class="n">log</span><span class="p">.</span><span class="na">info</span><span class="p">(</span><span class="s">&quot;==================phonenum is&quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">sp</span><span class="p">);</span>
+<span class="n">vars</span><span class="p">.</span><span class="na">put</span><span class="p">(</span><span class="s">&quot;phone&quot;</span><span class="p">,</span><span class="n">sp</span><span class="p">);</span>
+<span class="n">String</span><span class="w"> </span><span class="n">code</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Util</span><span class="p">.</span><span class="na">encrypt</span><span class="p">(</span><span class="n">sp</span><span class="p">);</span>
+
+<span class="c1">// 存入变量，在脚本文本中通过${phone}引用，不能跨线程</span>
+<span class="n">vars</span><span class="p">.</span><span class="na">put</span><span class="p">(</span><span class="s">&quot;phone&quot;</span><span class="p">,</span><span class="n">code</span><span class="p">);</span>
+
+<span class="c1">// 记录日志</span>
+<span class="n">log</span><span class="p">.</span><span class="na">info</span><span class="p">(</span><span class="s">&quot;==================phonenum is&quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">vars</span><span class="p">.</span><span class="na">get</span><span class="p">(</span><span class="s">&quot;phone&quot;</span><span class="p">));</span>
+
+<span class="c1">// props能跨线程，是hashtable对象</span>
+<span class="n">props</span><span class="p">.</span><span class="na">put</span><span class="p">(</span><span class="s">&quot;phone&quot;</span><span class="p">,</span><span class="n">code</span><span class="p">);</span><span class="w">  </span><span class="c1">// 在脚本文本中通过${__P(phone)}引用</span>
+</code></pre></div>
+</div>
+</div>
+</div>
+<p>参考资料: <a href="https://www.cnblogs.com/uncleyong/p/11475577.html">jmeter引用jar包的3种方式</a></p>
+<h2 id="_6">📌 报告分析</h2>
 <p>参考资料:</p>
 <p>https://blog.csdn.net/m0_61066945/article/details/136062323</p>
 <p>https://blog.csdn.net/qq_24394093/article/details/90732577</p>
@@ -3207,7 +3285,7 @@
     <span class="md-icon" title="最后更新">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1-2.1-2M12.5 7v5.2l4 2.4-1 1L11 13V7h1.5M11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2v1.8Z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime">2024-08-25 10:03:47</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime">2024-08-30 12:41:44</span>
   </span>
 
     
