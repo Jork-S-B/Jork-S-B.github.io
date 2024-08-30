@@ -76,6 +76,47 @@
 
 参考资料: [jmeter代理服务器录制脚本教程（入门篇）](https://blog.csdn.net/weixin_42614544/article/details/109514086)
 
+## 📌 使用自带函数
+
+工具->函数助手对话框，找需要用的函数。
+
+=== "示例"
+
+    ```json
+    {
+        "id":"${__Random(100,105)}",  // 从100至105的序列中随机取数
+        "phone":"${__chooseRandom(1.0.1,1.0.2,1.0.3)}"  // 从该列表中随机取数
+    }
+    ```
+
+## 📌 调外部jar包方法
+
+1. jar包需要放JMeter目录的`lib\ext`目录下
+2. jar包里调用的第三方jar包也要放到`lib`和`lib/ext`里
+3. 记得重启JMeter，添加前置处理器: BeanShell PreProcessor，然后写脚本
+
+=== "BeanShell PreProcessor"
+
+    ```java
+    import xx.Util;
+    
+    String sp = "18" + Integer.toString(${__Random(000000000,999999999,)});
+    log.info("==================phonenum is" + sp);
+    vars.put("phone",sp);
+    String code = Util.encrypt(sp);
+    
+    // 存入变量，在脚本文本中通过${phone}引用，不能跨线程
+    vars.put("phone",code);
+
+    // 记录日志
+    log.info("==================phonenum is" + vars.get("phone"));
+
+    // props能跨线程，是hashtable对象
+    props.put("phone",code);  // 在脚本文本中通过${__P(phone)}引用
+    ```
+
+参考资料: [jmeter引用jar包的3种方式](https://www.cnblogs.com/uncleyong/p/11475577.html)
+
 ## 📌 报告分析
 
 参考资料:
