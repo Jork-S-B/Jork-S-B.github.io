@@ -66,9 +66,9 @@ nav:
       - Redis: sql/redis_notes.md
   - Shell:
       - 复习: shell/review.md
-      - regex.sh: shell/regex.md
-      - 检查命令耗时: shell/timestamp.md
       - k8s备忘: shell/k8s.md
+      - timestamp: shell/timestamp.md
+      - regex.sh: shell/regex.md
   - 测试:
       - 测试类型:
           - app测试: test/test_app.md
