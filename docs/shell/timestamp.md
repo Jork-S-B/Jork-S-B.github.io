@@ -1,5 +1,5 @@
 年月日时分秒  
-`date +%Y%m%d%H%M%S`
+date +%Y%m%d%H%M%S
 
 ## 检查命令耗时
 

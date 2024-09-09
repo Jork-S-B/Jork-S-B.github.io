@@ -186,7 +186,6 @@ ls -lrt | grep -i "11月 9" | wc -l
 * `$var`跟`${var}`基本等价，但后者比较安全。
 * `if [ ! -d ./xxx ];then`，用于判断目录是否存在
 
-
 === "killCpu.sh"
 
     ```shell
@@ -235,6 +234,154 @@ ls -lrt | grep -i "11月 9" | wc -l
     # 或者
     echo ${str: -1} &> /dev/null 
     
+    ```
+
+=== "update.sh"
+
+    ```shell
+    #!/bin/bash
+    
+    password=pw
+    srcPath="编译后的文件路径"
+    
+    # 假如该文件路径为/xx/svr/update.sh
+    cd $(dirname $0)  # dirname指令返回上一级菜单绝对路径；$0则是本文件，即dirname update.sh，结果为/xx/svr
+    
+    # 拉取最新代码包
+    up_program(){
+        /usr/bin/expect <<-EOF
+        # spawn，在linux系统中创建新进程的过程，是linux进程管理的基础。
+        spawn scp username@xx.com:${srcPath}/$1.jar ./
+        set timeout 30
+        expect "Password"
+        set timeout 30
+        send ${password}
+        set timeout 30
+        send "exit\r"  # \r回车 \b退格
+        expect eof
+    EOF
+    }
+    
+    up_program $(basename $(pwd))  # basename只打印文件名，不包括后缀；$()是命令替换，即basename /xx/svr，结果为svr
+    
+    ```
+
+=== "sqlcheck.sh"
+
+    ```shell
+    #!/bin/bash
+    stty erase ^h	# 设置read命令时可使用退格删除字符
+    read -n 10 -p "please enter version:" branch_path	# -p打印文本提示，-n限制输入字符数为10
+    # branch_path=20240909
+
+    # 检查sql文件最后一行是否缺少分号
+    i=0
+    while read sqlfile
+    do
+        # 获取文件最后一行
+        nr_file=`awk '{if(!NF || /^#/){next}}1' "${sqlfile}"|grep -i -v -E "^set|^--|^\/\*"|sed '/^\r/d'|tail -1|sed 's/[[:space:]]*$//' `
+    
+        if [ "${nr_file:(-1)}" != ";" ];then
+        # "${nr_file:(-1)}"截取最后一位
+            error_result[i]="${sqlfile}"
+            let i++
+        fi
+    done <<< "$(find . -regex "${branch_path}" |xargs -i find {} -type f -name "*DML.sql")"
+    # 特殊语法，表示"Here String"，是将一个字符串作为标准输入传递给一个命令。在此是将find命令的输出作为字符串传递给一个while循环。以便对每个文件执行操作。
+    
+    OIDIFS=${IFS}
+    IES=$'\n'
+    if [ "${error_result[*]}" != "" ];then
+    echo "以下文件最后一行缺少分号，请补充" >> result.txt
+        for error_result in "${error_result[*]}"
+        do
+        echo "${error_result}" >> result.txt
+        done
+    fi
+    
+    ```
+
+=== "get_versioninfo.sh"
+
+    ```shell
+    #!/bin/bash
+    if[ $# = 0 ]; then
+        echo "please input jarname"
+        exit
+    else
+        keyword=$1
+    fi
+    namespace="namespace"
+    nodes=`kubectl get pod -n ${namespace} | grep -i "${keyword}" | awk '{print $1}'| sort`
+    
+    for node in ${nodes}
+    do
+    # 判断是否为war包
+    if [[ "${node}" == *war* ]] ; then
+        war_name=`echo ${node} | cut -d '-' -f 1`
+        echo "${node}:"
+        kubectl -n ${namespace} exec -it ${node} -- cat /${war_name}/versionInfo.txt
+    elif [[ "${node}" != *controller* ]] ; then
+      # sed 's/\\r//g'` 删掉回车符
+        jarpath=`kubectl exec -it ${node} -n ${namespace} -- find ./ -name "*.jar" | sed 's/\\r//g'`
+        for jarpath in ${jarpath}
+        do
+            jarname=`echo "${jarpath##*/}"| sed 's/\\r//g'`
+            echo "${node}:"
+            # 解压后打印版本信息
+            kubectl exec -it ${node} -n ${namespace} -- jar xvf ${jarname} VersionInfo.txt
+            kubectl exec -it ${node} -n ${namespace} -- cat VersionInfo.txt
+        done
+    fi
+    done
+    ```
+
+=== "get_versioninfo_csv.sh"
+
+    ```shell
+    #!/bin/bash
+    namespace="namespace"
+    nodes=`kubectl get pod -n ${namespace} | grep 'svr' |awk '{if(NR>1) print $1}'| sort`
+    warnode=`kubectl get pod -n ${namespace} | grep -v -E 'svr|controller' |awk '{if(NR>1) print $1}'| sort`
+    
+    # 先获取jar包的信息
+    alnode=''
+    echo "jarname","date","branch","md5" >VersionInfo.csv
+    for node in ${nodes}
+    do
+        if [[ "${node}" != *controller* ]] && [[ "${node}" != *war* ]] ;then
+          # 避免重复写入
+            if [ "${node%-*}" != "${alnode}" ];then
+                # 获取容器内iar包的路径
+                jarpath=`kubectl exec -it ${node} -n ${namespace} -- find ./ -name "* jar" | sed 's/\\r//g'`
+                jarname=`echo "${jarpath##*/}"| sed 's/\\r//g'`
+    
+          # 解压jar包获取各字段信息，并写入CSV
+                kubectl exec -it ${node} -n ${namespace} -- jar xvf ${jarname} VersionInfo.txt
+                Compiledate=`kubectl exec -it ${node} -n ${namespace} -- cat VersionInfo.txt | grep DATE | awk -F "DATE: " '{print $2}' | sed 's/\\r//g'`
+                BRANCH=`kubectl exec -it ${node} -n ${namespace} -- cat VersionInfo.txt | grep BRANCH | awk -F "BRANCH: " '{print $2}' | sed 's/\\r//g'`
+                MD5=`kubectl exec -it ${node} -n ${namespace} -- md5sum ${jarname} | awk '{print $1}' | sed 's/\\r//g'`
+    
+                echo "${jarname}","${Compiledate}","${BRANCH}","${MD5}" >>VersionInfo.csv
+                alnode="${node%-*}"
+            fi
+        fi
+    done
+    
+    # 在取war包的信息
+    alnode=''
+    for node in ${war_node}
+    do
+    if [ "${node%-*}" != "${alnode}" ];then
+        war_name=`echo ${node} | cut -d '-' -f 1`
+    
+        Compiledate=`kubectl -n ${namespace} exec -it ${node} -- cat /${war_name}/VersionInfo.txt | grep DATE | awk -F "DATE: " '{print $2}' | sed 's/\\r//g'`
+        BRANCH=`kubectl -n ${namespace} exec -it ${node} -- cat /${war_name}/VersionInfo.txt | grep BRANCH | awk -F "BRANCH: " '{print $2}' | sed 's/\\r//g'`
+    
+        echo "${war_name}","${Compiledate}","${BRANCH}" >>VersionInfo.csv
+        alnode="${node%-*}"
+    fi
+    done
     ```
 
 ---
