@@ -16,7 +16,7 @@
         <link rel="prev" href="../../sql/redis_notes/">
       
       
-        <link rel="next" href="../k8s/">
+        <link rel="next" href="../../other/git_notes/">
       
       
       <link rel="icon" href="../../assets/images/favicon.png">
@@ -425,7 +425,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="../../other/nginx_notes/" class="md-tabs__link">
+        <a href="../../other/high_performance/" class="md-tabs__link">
           
   
   其他
@@ -2396,6 +2396,27 @@
   
   
     <li class="md-nav__item">
+      <a href="../../other/git_notes/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    git
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../k8s/" class="md-nav__link">
         
   
@@ -3134,11 +3155,11 @@
   
   
     <li class="md-nav__item">
-      <a href="../../other/nginx_notes/" class="md-nav__link">
+      <a href="../../other/high_performance/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    Nginx笔记
+    高性能
   </span>
   
 
@@ -3155,11 +3176,11 @@
   
   
     <li class="md-nav__item">
-      <a href="../../other/git_notes/" class="md-nav__link">
+      <a href="../../other/nginx_notes/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    git
+    Nginx
   </span>
   
 
@@ -3530,13 +3551,31 @@ wc -l file</p>
 <p>显示行号，-ba表示空白行也加行号<br />
 nl -ba xxx.txt &gt; new.txt</p>
 <h3 id="_9">🚁 文件拼接</h3>
-<p>paste -d ',' xxx.txt new.txt  # 按列拼接，分隔符为','</p>
+<p>按列拼接，分隔符为','<br />
+paste -d ',' xxx.txt new.txt</p>
 <h3 id="_10">🚁 比较</h3>
-<ul>
-<li>cmp  # 比较两个文件内容是否相同</li>
-<li>diff  # 比较两个文件内容是否有差异</li>
-<li>comm  # 比较两个已排序文件的内容差异</li>
-</ul>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">命令</th>
+<th style="text-align: left;">说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;">cmp</td>
+<td style="text-align: left;">比较两个文件内容是否相同</td>
+</tr>
+<tr>
+<td style="text-align: center;">diff</td>
+<td style="text-align: left;">比较两个文件内容是否有差异</td>
+</tr>
+<tr>
+<td style="text-align: center;">comm</td>
+<td style="text-align: left;">比较两个已排序文件的内容差异</td>
+</tr>
+</tbody>
+</table>
 <h2 id="_11">📌 加解压</h2>
 <table>
 <thead>
@@ -3731,9 +3770,38 @@ ls -lrt | grep -i "11月 9" | wc -l</p>
 <h2 id="shell">📌 shell基础</h2>
 <ul>
 <li>$0-脚本名称；$1-第一个传参，$2-第二个传参；$#-脚本传参个数</li>
-<li>$pass 跟 ${pass} 基本等价，但后者比较安全。</li>
-<li>if [ ! -d ./xxx ];then # 判断是否目录是否存在</li>
+<li>$@-所有传参，空格分隔；$*-所有传参组成的字符串，空格分隔</li>
+<li><code>$var</code>跟<code>${var}</code>基本等价，但后者比较安全。</li>
+<li><code>if [ ! -d ./xxx ];then</code>，用于判断目录是否存在</li>
 </ul>
+<div class="tabbed-set tabbed-alternate" data-tabs="1:6"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><input id="__tabbed_1_3" name="__tabbed_1" type="radio" /><input id="__tabbed_1_4" name="__tabbed_1" type="radio" /><input id="__tabbed_1_5" name="__tabbed_1" type="radio" /><input id="__tabbed_1_6" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">killCpu.sh</label><label for="__tabbed_1_2">slice.sh</label><label for="__tabbed_1_3">update.sh</label><label for="__tabbed_1_4">sqlcheck.sh</label><label for="__tabbed_1_5">get_versioninfo.sh</label><label for="__tabbed_1_6">get_versioninfo_csv.sh</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code><span class="ch">#!/bin/bash</span>
+<span class="k">if</span><span class="w"> </span><span class="o">[</span><span class="w"> </span><span class="nv">$#</span><span class="w"> </span>!<span class="o">=</span><span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="o">]</span><span class="w"> </span><span class="p">;</span><span class="w"> </span><span class="k">then</span>
+<span class="w">  </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;USAGE: </span><span class="nv">$0</span><span class="s2"> &lt;CPUs&gt;&quot;</span>
+<span class="w">  </span><span class="nb">exit</span><span class="w"> </span><span class="m">1</span><span class="p">;</span>
+<span class="k">fi</span>
+<span class="k">for</span><span class="w"> </span>i<span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="sb">`</span>seq<span class="w"> </span><span class="nv">$1</span><span class="sb">`</span>
+<span class="k">do</span>
+<span class="w">  </span><span class="nb">echo</span><span class="w"> </span>-ne<span class="w"> </span><span class="s2">&quot; </span>
+<span class="s2">i=0; </span>
+<span class="s2">while true</span>
+<span class="s2">do</span>
+<span class="s2">i=i+1; </span>
+<span class="s2">done&quot;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>/bin/sh<span class="w"> </span><span class="p">&amp;</span>
+<span class="w">  </span>pid_array<span class="o">[</span><span class="nv">$i</span><span class="o">]=</span><span class="nv">$!</span><span class="w"> </span><span class="p">;</span>
+<span class="k">done</span>
+
+<span class="k">for</span><span class="w"> </span>i<span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="s2">&quot;</span><span class="si">${</span><span class="nv">pid_array</span><span class="p">[@]</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">;</span><span class="w"> </span><span class="k">do</span>
+<span class="w">  </span><span class="nb">echo</span><span class="w"> </span><span class="s1">&#39;kill &#39;</span><span class="w"> </span><span class="nv">$i</span><span class="w"> </span><span class="s1">&#39;;&#39;</span><span class="p">;</span>
+<span class="k">done</span>
+
+<span class="c1"># 运行：bash killCpu.sh {线程数}</span>
+<span class="c1"># 新增线程，通过死循环逐渐增加占用率到100%；运行会打印线程pid，kill -9 pid退出。</span>
+</code></pre></div>
+</div>
+<div class="tabbed-block">
 <div class="highlight"><pre><span></span><code><span class="c1"># 字符串切片</span>
 <span class="nv">str</span><span class="o">=</span>/home/123456.txt
 <span class="nb">echo</span><span class="w"> </span><span class="si">${</span><span class="nv">str</span><span class="p">: (-1)</span><span class="si">}</span><span class="w">  </span><span class="c1"># 打印字符串最后1位，这里必须带括号</span>
@@ -3752,6 +3820,148 @@ ls -lrt | grep -i "11月 9" | wc -l</p>
 <span class="c1"># 或者</span>
 <span class="nb">echo</span><span class="w"> </span><span class="si">${</span><span class="nv">str</span><span class="p">: -1</span><span class="si">}</span><span class="w"> </span><span class="p">&amp;</span>&gt;<span class="w"> </span>/dev/null<span class="w"> </span>
 </code></pre></div>
+</div>
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code><span class="ch">#!/bin/bash</span>
+
+<span class="nv">password</span><span class="o">=</span>pw
+<span class="nv">srcPath</span><span class="o">=</span><span class="s2">&quot;编译后的文件路径&quot;</span>
+
+<span class="c1"># 假如该文件路径为/xx/svr/update.sh</span>
+<span class="nb">cd</span><span class="w"> </span><span class="k">$(</span>dirname<span class="w"> </span><span class="nv">$0</span><span class="k">)</span><span class="w">  </span><span class="c1"># dirname指令返回上一级菜单绝对路径；$0则是本文件，即dirname update.sh，结果为/xx/svr</span>
+
+<span class="c1"># 拉取最新代码包</span>
+up_program<span class="o">(){</span>
+<span class="w">    </span>/usr/bin/expect<span class="w"> </span><span class="s">&lt;&lt;-EOF</span>
+<span class="s">    # spawn，在linux系统中创建新进程的过程，是linux进程管理的基础。</span>
+<span class="s">    spawn scp username@xx.com:${srcPath}/$1.jar ./</span>
+<span class="s">    set timeout 30</span>
+<span class="s">    expect &quot;Password&quot;</span>
+<span class="s">    set timeout 30</span>
+<span class="s">    send ${password}</span>
+<span class="s">    set timeout 30</span>
+<span class="s">    send &quot;exit\r&quot;  # \r回车 \b退格</span>
+<span class="s">    expect eof</span>
+<span class="s">EOF</span>
+<span class="o">}</span>
+
+up_program<span class="w"> </span><span class="k">$(</span>basename<span class="w"> </span><span class="k">$(</span><span class="nb">pwd</span><span class="k">))</span><span class="w">  </span><span class="c1"># basename只打印文件名，不包括后缀；$()是命令替换，即basename /xx/svr，结果为svr</span>
+</code></pre></div>
+</div>
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code><span class="ch">#!/bin/bash</span>
+stty<span class="w"> </span>erase<span class="w"> </span>^h<span class="w">   </span><span class="c1"># 设置read命令时可使用退格删除字符</span>
+<span class="nb">read</span><span class="w"> </span>-n<span class="w"> </span><span class="m">10</span><span class="w"> </span>-p<span class="w"> </span><span class="s2">&quot;please enter version:&quot;</span><span class="w"> </span>branch_path<span class="w">   </span><span class="c1"># -p打印文本提示，-n限制输入字符数为10</span>
+<span class="c1"># branch_path=20240909</span>
+
+<span class="c1"># 检查sql文件最后一行是否缺少分号</span>
+<span class="nv">i</span><span class="o">=</span><span class="m">0</span>
+<span class="k">while</span><span class="w"> </span><span class="nb">read</span><span class="w"> </span>sqlfile
+<span class="k">do</span>
+<span class="w">    </span><span class="c1"># 获取文件最后一行</span>
+<span class="w">    </span><span class="nv">nr_file</span><span class="o">=</span><span class="sb">`</span>awk<span class="w"> </span><span class="s1">&#39;{if(!NF || /^#/){next}}1&#39;</span><span class="w"> </span><span class="s2">&quot;</span><span class="si">${</span><span class="nv">sqlfile</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">|</span>grep<span class="w"> </span>-i<span class="w"> </span>-v<span class="w"> </span>-E<span class="w"> </span><span class="s2">&quot;^set|^--|^\/\*&quot;</span><span class="p">|</span>sed<span class="w"> </span><span class="s1">&#39;/^\r/d&#39;</span><span class="p">|</span>tail<span class="w"> </span>-1<span class="p">|</span>sed<span class="w"> </span><span class="s1">&#39;s/[[:space:]]*$//&#39;</span><span class="w"> </span><span class="sb">`</span>
+
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="o">[</span><span class="w"> </span><span class="s2">&quot;</span><span class="si">${</span><span class="nv">nr_file</span><span class="p">:(-1)</span><span class="si">}</span><span class="s2">&quot;</span><span class="w"> </span>!<span class="o">=</span><span class="w"> </span><span class="s2">&quot;;&quot;</span><span class="w"> </span><span class="o">]</span><span class="p">;</span><span class="k">then</span>
+<span class="w">    </span><span class="c1"># &quot;${nr_file:(-1)}&quot;截取最后一位</span>
+<span class="w">        </span>error_result<span class="o">[</span>i<span class="o">]=</span><span class="s2">&quot;</span><span class="si">${</span><span class="nv">sqlfile</span><span class="si">}</span><span class="s2">&quot;</span>
+<span class="w">        </span><span class="nb">let</span><span class="w"> </span>i++
+<span class="w">    </span><span class="k">fi</span>
+<span class="k">done</span><span class="w"> </span><span class="o">&lt;&lt;&lt;</span><span class="w"> </span><span class="s2">&quot;</span><span class="k">$(</span>find<span class="w"> </span>.<span class="w"> </span>-regex<span class="w"> </span><span class="s2">&quot;</span><span class="si">${</span><span class="nv">branch_path</span><span class="si">}</span><span class="s2">&quot;</span><span class="w"> </span><span class="p">|</span>xargs<span class="w"> </span>-i<span class="w"> </span>find<span class="w"> </span><span class="o">{}</span><span class="w"> </span>-type<span class="w"> </span>f<span class="w"> </span>-name<span class="w"> </span><span class="s2">&quot;*DML.sql&quot;</span><span class="k">)</span><span class="s2">&quot;</span>
+<span class="c1"># 特殊语法，表示&quot;Here String&quot;，是将一个字符串作为标准输入传递给一个命令。在此是将find命令的输出作为字符串传递给一个while循环。以便对每个文件执行操作。</span>
+
+<span class="nv">OIDIFS</span><span class="o">=</span><span class="si">${</span><span class="nv">IFS</span><span class="si">}</span>
+<span class="nv">IES</span><span class="o">=</span><span class="s1">$&#39;\n&#39;</span>
+<span class="k">if</span><span class="w"> </span><span class="o">[</span><span class="w"> </span><span class="s2">&quot;</span><span class="si">${</span><span class="nv">error_result</span><span class="p">[*]</span><span class="si">}</span><span class="s2">&quot;</span><span class="w"> </span>!<span class="o">=</span><span class="w"> </span><span class="s2">&quot;&quot;</span><span class="w"> </span><span class="o">]</span><span class="p">;</span><span class="k">then</span>
+<span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;以下文件最后一行缺少分号，请补充&quot;</span><span class="w"> </span>&gt;&gt;<span class="w"> </span>result.txt
+<span class="w">    </span><span class="k">for</span><span class="w"> </span>error_result<span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="s2">&quot;</span><span class="si">${</span><span class="nv">error_result</span><span class="p">[*]</span><span class="si">}</span><span class="s2">&quot;</span>
+<span class="w">    </span><span class="k">do</span>
+<span class="w">    </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;</span><span class="si">${</span><span class="nv">error_result</span><span class="si">}</span><span class="s2">&quot;</span><span class="w"> </span>&gt;&gt;<span class="w"> </span>result.txt
+<span class="w">    </span><span class="k">done</span>
+<span class="k">fi</span>
+</code></pre></div>
+</div>
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code><span class="ch">#!/bin/bash</span>
+<span class="k">if</span><span class="o">[</span><span class="w"> </span><span class="nv">$#</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="o">]</span><span class="p">;</span><span class="w"> </span><span class="k">then</span>
+<span class="w">    </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;please input jarname&quot;</span>
+<span class="w">    </span><span class="nb">exit</span>
+<span class="k">else</span>
+<span class="w">    </span><span class="nv">keyword</span><span class="o">=</span><span class="nv">$1</span>
+<span class="k">fi</span>
+<span class="nv">namespace</span><span class="o">=</span><span class="s2">&quot;namespace&quot;</span>
+<span class="nv">nodes</span><span class="o">=</span><span class="sb">`</span>kubectl<span class="w"> </span>get<span class="w"> </span>pod<span class="w"> </span>-n<span class="w"> </span><span class="si">${</span><span class="nv">namespace</span><span class="si">}</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>-i<span class="w"> </span><span class="s2">&quot;</span><span class="si">${</span><span class="nv">keyword</span><span class="si">}</span><span class="s2">&quot;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>awk<span class="w"> </span><span class="s1">&#39;{print $1}&#39;</span><span class="p">|</span><span class="w"> </span>sort<span class="sb">`</span>
+
+<span class="k">for</span><span class="w"> </span>node<span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="si">${</span><span class="nv">nodes</span><span class="si">}</span>
+<span class="k">do</span>
+<span class="c1"># 判断是否为war包</span>
+<span class="k">if</span><span class="w"> </span><span class="o">[[</span><span class="w"> </span><span class="s2">&quot;</span><span class="si">${</span><span class="nv">node</span><span class="si">}</span><span class="s2">&quot;</span><span class="w"> </span><span class="o">==</span><span class="w"> </span>*war*<span class="w"> </span><span class="o">]]</span><span class="w"> </span><span class="p">;</span><span class="w"> </span><span class="k">then</span>
+<span class="w">    </span><span class="nv">war_name</span><span class="o">=</span><span class="sb">`</span><span class="nb">echo</span><span class="w"> </span><span class="si">${</span><span class="nv">node</span><span class="si">}</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>cut<span class="w"> </span>-d<span class="w"> </span><span class="s1">&#39;-&#39;</span><span class="w"> </span>-f<span class="w"> </span><span class="m">1</span><span class="sb">`</span>
+<span class="w">    </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;</span><span class="si">${</span><span class="nv">node</span><span class="si">}</span><span class="s2">:&quot;</span>
+<span class="w">    </span>kubectl<span class="w"> </span>-n<span class="w"> </span><span class="si">${</span><span class="nv">namespace</span><span class="si">}</span><span class="w"> </span><span class="nb">exec</span><span class="w"> </span>-it<span class="w"> </span><span class="si">${</span><span class="nv">node</span><span class="si">}</span><span class="w"> </span>--<span class="w"> </span>cat<span class="w"> </span>/<span class="si">${</span><span class="nv">war_name</span><span class="si">}</span>/versionInfo.txt
+<span class="k">elif</span><span class="w"> </span><span class="o">[[</span><span class="w"> </span><span class="s2">&quot;</span><span class="si">${</span><span class="nv">node</span><span class="si">}</span><span class="s2">&quot;</span><span class="w"> </span>!<span class="o">=</span><span class="w"> </span>*controller*<span class="w"> </span><span class="o">]]</span><span class="w"> </span><span class="p">;</span><span class="w"> </span><span class="k">then</span>
+<span class="w">  </span><span class="c1"># sed &#39;s/\\r//g&#39;` 删掉回车符</span>
+<span class="w">    </span><span class="nv">jarpath</span><span class="o">=</span><span class="sb">`</span>kubectl<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>-it<span class="w"> </span><span class="si">${</span><span class="nv">node</span><span class="si">}</span><span class="w"> </span>-n<span class="w"> </span><span class="si">${</span><span class="nv">namespace</span><span class="si">}</span><span class="w"> </span>--<span class="w"> </span>find<span class="w"> </span>./<span class="w"> </span>-name<span class="w"> </span><span class="s2">&quot;*.jar&quot;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>sed<span class="w"> </span><span class="s1">&#39;s/\\r//g&#39;</span><span class="sb">`</span>
+<span class="w">    </span><span class="k">for</span><span class="w"> </span>jarpath<span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="si">${</span><span class="nv">jarpath</span><span class="si">}</span>
+<span class="w">    </span><span class="k">do</span>
+<span class="w">        </span><span class="nv">jarname</span><span class="o">=</span><span class="sb">`</span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;</span><span class="si">${</span><span class="nv">jarpath</span><span class="p">##*/</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">|</span><span class="w"> </span>sed<span class="w"> </span><span class="s1">&#39;s/\\r//g&#39;</span><span class="sb">`</span>
+<span class="w">        </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;</span><span class="si">${</span><span class="nv">node</span><span class="si">}</span><span class="s2">:&quot;</span>
+<span class="w">        </span><span class="c1"># 解压后打印版本信息</span>
+<span class="w">        </span>kubectl<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>-it<span class="w"> </span><span class="si">${</span><span class="nv">node</span><span class="si">}</span><span class="w"> </span>-n<span class="w"> </span><span class="si">${</span><span class="nv">namespace</span><span class="si">}</span><span class="w"> </span>--<span class="w"> </span>jar<span class="w"> </span>xvf<span class="w"> </span><span class="si">${</span><span class="nv">jarname</span><span class="si">}</span><span class="w"> </span>VersionInfo.txt
+<span class="w">        </span>kubectl<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>-it<span class="w"> </span><span class="si">${</span><span class="nv">node</span><span class="si">}</span><span class="w"> </span>-n<span class="w"> </span><span class="si">${</span><span class="nv">namespace</span><span class="si">}</span><span class="w"> </span>--<span class="w"> </span>cat<span class="w"> </span>VersionInfo.txt
+<span class="w">    </span><span class="k">done</span>
+<span class="k">fi</span>
+<span class="k">done</span>
+</code></pre></div>
+</div>
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code><span class="ch">#!/bin/bash</span>
+<span class="nv">namespace</span><span class="o">=</span><span class="s2">&quot;namespace&quot;</span>
+<span class="nv">nodes</span><span class="o">=</span><span class="sb">`</span>kubectl<span class="w"> </span>get<span class="w"> </span>pod<span class="w"> </span>-n<span class="w"> </span><span class="si">${</span><span class="nv">namespace</span><span class="si">}</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span><span class="s1">&#39;svr&#39;</span><span class="w"> </span><span class="p">|</span>awk<span class="w"> </span><span class="s1">&#39;{if(NR&gt;1) print $1}&#39;</span><span class="p">|</span><span class="w"> </span>sort<span class="sb">`</span>
+<span class="nv">warnode</span><span class="o">=</span><span class="sb">`</span>kubectl<span class="w"> </span>get<span class="w"> </span>pod<span class="w"> </span>-n<span class="w"> </span><span class="si">${</span><span class="nv">namespace</span><span class="si">}</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>-v<span class="w"> </span>-E<span class="w"> </span><span class="s1">&#39;svr|controller&#39;</span><span class="w"> </span><span class="p">|</span>awk<span class="w"> </span><span class="s1">&#39;{if(NR&gt;1) print $1}&#39;</span><span class="p">|</span><span class="w"> </span>sort<span class="sb">`</span>
+
+<span class="c1"># 先获取jar包的信息</span>
+<span class="nv">alnode</span><span class="o">=</span><span class="s1">&#39;&#39;</span>
+<span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;jarname&quot;</span>,<span class="s2">&quot;date&quot;</span>,<span class="s2">&quot;branch&quot;</span>,<span class="s2">&quot;md5&quot;</span><span class="w"> </span>&gt;VersionInfo.csv
+<span class="k">for</span><span class="w"> </span>node<span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="si">${</span><span class="nv">nodes</span><span class="si">}</span>
+<span class="k">do</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="o">[[</span><span class="w"> </span><span class="s2">&quot;</span><span class="si">${</span><span class="nv">node</span><span class="si">}</span><span class="s2">&quot;</span><span class="w"> </span>!<span class="o">=</span><span class="w"> </span>*controller*<span class="w"> </span><span class="o">]]</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="o">[[</span><span class="w"> </span><span class="s2">&quot;</span><span class="si">${</span><span class="nv">node</span><span class="si">}</span><span class="s2">&quot;</span><span class="w"> </span>!<span class="o">=</span><span class="w"> </span>*war*<span class="w"> </span><span class="o">]]</span><span class="w"> </span><span class="p">;</span><span class="k">then</span>
+<span class="w">      </span><span class="c1"># 避免重复写入</span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="o">[</span><span class="w"> </span><span class="s2">&quot;</span><span class="si">${</span><span class="nv">node</span><span class="p">%-*</span><span class="si">}</span><span class="s2">&quot;</span><span class="w"> </span>!<span class="o">=</span><span class="w"> </span><span class="s2">&quot;</span><span class="si">${</span><span class="nv">alnode</span><span class="si">}</span><span class="s2">&quot;</span><span class="w"> </span><span class="o">]</span><span class="p">;</span><span class="k">then</span>
+<span class="w">            </span><span class="c1"># 获取容器内iar包的路径</span>
+<span class="w">            </span><span class="nv">jarpath</span><span class="o">=</span><span class="sb">`</span>kubectl<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>-it<span class="w"> </span><span class="si">${</span><span class="nv">node</span><span class="si">}</span><span class="w"> </span>-n<span class="w"> </span><span class="si">${</span><span class="nv">namespace</span><span class="si">}</span><span class="w"> </span>--<span class="w"> </span>find<span class="w"> </span>./<span class="w"> </span>-name<span class="w"> </span><span class="s2">&quot;* jar&quot;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>sed<span class="w"> </span><span class="s1">&#39;s/\\r//g&#39;</span><span class="sb">`</span>
+<span class="w">            </span><span class="nv">jarname</span><span class="o">=</span><span class="sb">`</span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;</span><span class="si">${</span><span class="nv">jarpath</span><span class="p">##*/</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">|</span><span class="w"> </span>sed<span class="w"> </span><span class="s1">&#39;s/\\r//g&#39;</span><span class="sb">`</span>
+
+<span class="w">      </span><span class="c1"># 解压jar包获取各字段信息，并写入CSV</span>
+<span class="w">            </span>kubectl<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>-it<span class="w"> </span><span class="si">${</span><span class="nv">node</span><span class="si">}</span><span class="w"> </span>-n<span class="w"> </span><span class="si">${</span><span class="nv">namespace</span><span class="si">}</span><span class="w"> </span>--<span class="w"> </span>jar<span class="w"> </span>xvf<span class="w"> </span><span class="si">${</span><span class="nv">jarname</span><span class="si">}</span><span class="w"> </span>VersionInfo.txt
+<span class="w">            </span><span class="nv">Compiledate</span><span class="o">=</span><span class="sb">`</span>kubectl<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>-it<span class="w"> </span><span class="si">${</span><span class="nv">node</span><span class="si">}</span><span class="w"> </span>-n<span class="w"> </span><span class="si">${</span><span class="nv">namespace</span><span class="si">}</span><span class="w"> </span>--<span class="w"> </span>cat<span class="w"> </span>VersionInfo.txt<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>DATE<span class="w"> </span><span class="p">|</span><span class="w"> </span>awk<span class="w"> </span>-F<span class="w"> </span><span class="s2">&quot;DATE: &quot;</span><span class="w"> </span><span class="s1">&#39;{print $2}&#39;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>sed<span class="w"> </span><span class="s1">&#39;s/\\r//g&#39;</span><span class="sb">`</span>
+<span class="w">            </span><span class="nv">BRANCH</span><span class="o">=</span><span class="sb">`</span>kubectl<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>-it<span class="w"> </span><span class="si">${</span><span class="nv">node</span><span class="si">}</span><span class="w"> </span>-n<span class="w"> </span><span class="si">${</span><span class="nv">namespace</span><span class="si">}</span><span class="w"> </span>--<span class="w"> </span>cat<span class="w"> </span>VersionInfo.txt<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>BRANCH<span class="w"> </span><span class="p">|</span><span class="w"> </span>awk<span class="w"> </span>-F<span class="w"> </span><span class="s2">&quot;BRANCH: &quot;</span><span class="w"> </span><span class="s1">&#39;{print $2}&#39;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>sed<span class="w"> </span><span class="s1">&#39;s/\\r//g&#39;</span><span class="sb">`</span>
+<span class="w">            </span><span class="nv">MD5</span><span class="o">=</span><span class="sb">`</span>kubectl<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>-it<span class="w"> </span><span class="si">${</span><span class="nv">node</span><span class="si">}</span><span class="w"> </span>-n<span class="w"> </span><span class="si">${</span><span class="nv">namespace</span><span class="si">}</span><span class="w"> </span>--<span class="w"> </span>md5sum<span class="w"> </span><span class="si">${</span><span class="nv">jarname</span><span class="si">}</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>awk<span class="w"> </span><span class="s1">&#39;{print $1}&#39;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>sed<span class="w"> </span><span class="s1">&#39;s/\\r//g&#39;</span><span class="sb">`</span>
+
+<span class="w">            </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;</span><span class="si">${</span><span class="nv">jarname</span><span class="si">}</span><span class="s2">&quot;</span>,<span class="s2">&quot;</span><span class="si">${</span><span class="nv">Compiledate</span><span class="si">}</span><span class="s2">&quot;</span>,<span class="s2">&quot;</span><span class="si">${</span><span class="nv">BRANCH</span><span class="si">}</span><span class="s2">&quot;</span>,<span class="s2">&quot;</span><span class="si">${</span><span class="nv">MD5</span><span class="si">}</span><span class="s2">&quot;</span><span class="w"> </span>&gt;&gt;VersionInfo.csv
+<span class="w">            </span><span class="nv">alnode</span><span class="o">=</span><span class="s2">&quot;</span><span class="si">${</span><span class="nv">node</span><span class="p">%-*</span><span class="si">}</span><span class="s2">&quot;</span>
+<span class="w">        </span><span class="k">fi</span>
+<span class="w">    </span><span class="k">fi</span>
+<span class="k">done</span>
+
+<span class="c1"># 在取war包的信息</span>
+<span class="nv">alnode</span><span class="o">=</span><span class="s1">&#39;&#39;</span>
+<span class="k">for</span><span class="w"> </span>node<span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="si">${</span><span class="nv">war_node</span><span class="si">}</span>
+<span class="k">do</span>
+<span class="k">if</span><span class="w"> </span><span class="o">[</span><span class="w"> </span><span class="s2">&quot;</span><span class="si">${</span><span class="nv">node</span><span class="p">%-*</span><span class="si">}</span><span class="s2">&quot;</span><span class="w"> </span>!<span class="o">=</span><span class="w"> </span><span class="s2">&quot;</span><span class="si">${</span><span class="nv">alnode</span><span class="si">}</span><span class="s2">&quot;</span><span class="w"> </span><span class="o">]</span><span class="p">;</span><span class="k">then</span>
+<span class="w">    </span><span class="nv">war_name</span><span class="o">=</span><span class="sb">`</span><span class="nb">echo</span><span class="w"> </span><span class="si">${</span><span class="nv">node</span><span class="si">}</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>cut<span class="w"> </span>-d<span class="w"> </span><span class="s1">&#39;-&#39;</span><span class="w"> </span>-f<span class="w"> </span><span class="m">1</span><span class="sb">`</span>
+
+<span class="w">    </span><span class="nv">Compiledate</span><span class="o">=</span><span class="sb">`</span>kubectl<span class="w"> </span>-n<span class="w"> </span><span class="si">${</span><span class="nv">namespace</span><span class="si">}</span><span class="w"> </span><span class="nb">exec</span><span class="w"> </span>-it<span class="w"> </span><span class="si">${</span><span class="nv">node</span><span class="si">}</span><span class="w"> </span>--<span class="w"> </span>cat<span class="w"> </span>/<span class="si">${</span><span class="nv">war_name</span><span class="si">}</span>/VersionInfo.txt<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>DATE<span class="w"> </span><span class="p">|</span><span class="w"> </span>awk<span class="w"> </span>-F<span class="w"> </span><span class="s2">&quot;DATE: &quot;</span><span class="w"> </span><span class="s1">&#39;{print $2}&#39;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>sed<span class="w"> </span><span class="s1">&#39;s/\\r//g&#39;</span><span class="sb">`</span>
+<span class="w">    </span><span class="nv">BRANCH</span><span class="o">=</span><span class="sb">`</span>kubectl<span class="w"> </span>-n<span class="w"> </span><span class="si">${</span><span class="nv">namespace</span><span class="si">}</span><span class="w"> </span><span class="nb">exec</span><span class="w"> </span>-it<span class="w"> </span><span class="si">${</span><span class="nv">node</span><span class="si">}</span><span class="w"> </span>--<span class="w"> </span>cat<span class="w"> </span>/<span class="si">${</span><span class="nv">war_name</span><span class="si">}</span>/VersionInfo.txt<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>BRANCH<span class="w"> </span><span class="p">|</span><span class="w"> </span>awk<span class="w"> </span>-F<span class="w"> </span><span class="s2">&quot;BRANCH: &quot;</span><span class="w"> </span><span class="s1">&#39;{print $2}&#39;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>sed<span class="w"> </span><span class="s1">&#39;s/\\r//g&#39;</span><span class="sb">`</span>
+
+<span class="w">    </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;</span><span class="si">${</span><span class="nv">war_name</span><span class="si">}</span><span class="s2">&quot;</span>,<span class="s2">&quot;</span><span class="si">${</span><span class="nv">Compiledate</span><span class="si">}</span><span class="s2">&quot;</span>,<span class="s2">&quot;</span><span class="si">${</span><span class="nv">BRANCH</span><span class="si">}</span><span class="s2">&quot;</span><span class="w"> </span>&gt;&gt;VersionInfo.csv
+<span class="w">    </span><span class="nv">alnode</span><span class="o">=</span><span class="s2">&quot;</span><span class="si">${</span><span class="nv">node</span><span class="p">%-*</span><span class="si">}</span><span class="s2">&quot;</span>
+<span class="k">fi</span>
+<span class="k">done</span>
+</code></pre></div>
+</div>
+</div>
+</div>
+<hr />
 
 
 
@@ -3772,7 +3982,7 @@ ls -lrt | grep -i "11月 9" | wc -l</p>
     <span class="md-icon" title="最后更新">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime">2024-09-08 20:57:52</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime">2024-09-09 22:28:39</span>
   </span>
 
     
@@ -3825,13 +4035,13 @@ ls -lrt | grep -i "11月 9" | wc -l</p>
         
         
           
-          <a href="../k8s/" class="md-footer__link md-footer__link--next" aria-label="下一页: k8s备忘">
+          <a href="../../other/git_notes/" class="md-footer__link md-footer__link--next" aria-label="下一页: git">
             <div class="md-footer__title">
               <span class="md-footer__direction">
                 下一页
               </span>
               <div class="md-ellipsis">
-                k8s备忘
+                git
               </div>
             </div>
             <div class="md-footer__button md-icon">

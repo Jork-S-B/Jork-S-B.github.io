@@ -13,7 +13,7 @@
       
       
       
-        <link rel="prev" href="../review/">
+        <link rel="prev" href="../../other/git_notes/">
       
       
         <link rel="next" href="../timestamp/">
@@ -425,7 +425,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="../../other/nginx_notes/" class="md-tabs__link">
+        <a href="../../other/high_performance/" class="md-tabs__link">
           
   
   其他
@@ -2156,6 +2156,27 @@
                 
   
   
+  
+  
+    <li class="md-nav__item">
+      <a href="../../other/git_notes/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    git
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
     
   
   
@@ -3078,11 +3099,11 @@
   
   
     <li class="md-nav__item">
-      <a href="../../other/nginx_notes/" class="md-nav__link">
+      <a href="../../other/high_performance/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    Nginx笔记
+    高性能
   </span>
   
 
@@ -3099,11 +3120,11 @@
   
   
     <li class="md-nav__item">
-      <a href="../../other/git_notes/" class="md-nav__link">
+      <a href="../../other/nginx_notes/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    git
+    Nginx
   </span>
   
 
@@ -3372,9 +3393,7 @@ kubectl -n {namespace} get pod {podname} -o yaml | kubectl replace --force -f -<
 <p>进入容器后执行top，查看的是pod内部的cpu、内存使用情况，相比更详细，能看到进程级别的使用量。</p>
 <div class="tabbed-set tabbed-alternate" data-tabs="1:1"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">k8s_getCpu.sh</label></div>
 <div class="tabbed-content">
-<div class="tabbed-block"></div>
-</div>
-</div>
+<div class="tabbed-block">
 <div class="highlight"><pre><span></span><code><span class="c1"># $()和 ` `  # 在bash shell中，$() 与` ` (反引号) 都是用来做命令替换用</span>
 
 <span class="c1"># 打印pod的cpu占用率、内存使用率，$2/20&quot;%&quot;，即CPU使用量除以上限值2000，再乘100拼接百分比符号</span>
@@ -3393,6 +3412,9 @@ kubectl -n {namespace} get pod {podname} -o yaml | kubectl replace --force -f -<
 <span class="w">    </span>sleep<span class="w"> </span><span class="m">90</span><span class="p">;</span><span class="w">  </span><span class="c1"># K8S不能实时获取到容器CPU使用量，大约1分钟更新一次</span>
 <span class="k">done</span>
 </code></pre></div>
+</div>
+</div>
+</div>
 <p>参考资料：</p>
 <ol>
 <li><a href="https://blog.csdn.net/wxx_0124/article/details/95305625">shell中的if语句</a></li>
@@ -3419,7 +3441,7 @@ kubectl -n {namespace} get pod {podname} -o yaml | kubectl replace --force -f -<
     <span class="md-icon" title="最后更新">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime">2024-09-08 20:57:52</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime">2024-09-09 22:05:15</span>
   </span>
 
     
@@ -3455,7 +3477,7 @@ kubectl -n {namespace} get pod {podname} -o yaml | kubectl replace --force -f -<
       <nav class="md-footer__inner md-grid" aria-label="页脚" >
         
           
-          <a href="../review/" class="md-footer__link md-footer__link--prev" aria-label="上一页: 复习">
+          <a href="../../other/git_notes/" class="md-footer__link md-footer__link--prev" aria-label="上一页: git">
             <div class="md-footer__button md-icon">
               
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
@@ -3465,7 +3487,7 @@ kubectl -n {namespace} get pod {podname} -o yaml | kubectl replace --force -f -<
                 上一页
               </span>
               <div class="md-ellipsis">
-                复习
+                git
               </div>
             </div>
           </a>
