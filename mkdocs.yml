@@ -66,6 +66,7 @@ nav:
       - Redis: sql/redis_notes.md
   - Shell:
       - 复习: shell/review.md
+      - git: other/git_notes.md
       - k8s备忘: shell/k8s.md
       - timestamp: shell/timestamp.md
       - regex.sh: shell/regex.md
@@ -93,8 +94,8 @@ nav:
       - 构建Oracle镜像: docker/build_oracle.md
       - 构建Jenkins镜像: docker/build_jenkins.md
   - 其他:
-      - Nginx笔记: other/nginx_notes.md
-      - git: other/git_notes.md
+      - 高性能: other/high_performance.md
+      - Nginx: other/nginx_notes.md
 
 # 搜索栏右侧git链接
 repo_url: https://github.com/Jork-S-B/Jork-S-B.github.io/tree/main

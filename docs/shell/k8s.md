@@ -87,25 +87,25 @@ kubectl -n {namespace} top pod {podname}
 
 === "k8s_getCpu.sh"
 
-```shell
-# $()和 ` `  # 在bash shell中，$() 与` ` (反引号) 都是用来做命令替换用
-
-# 打印pod的cpu占用率、内存使用率，$2/20"%"，即CPU使用量除以上限值2000，再乘100拼接百分比符号
-# kubectl top pod -n {namespace} | grep -E '{service1}|{service2}' | awk '{print $1,$2,$2/20"%" , $3,$3/25"%"}'
-
-# 单行循环打印pod的cpu使用量，for语句后加分号而非冒号
-# for app in ${kubectl get deployments.apps -n {namespace}| grep -E '{service1}|{service2}' | awk '{print $1}'); do echo ${app}; kubectl -n {namespace} describle deployments.apps ${app}| grep -B 1 "cpu:"; echo "------------------------------------"; done
-
-n=1
-while(($n<1000))  # []/[[]] (())都是做判断，但后者可以直接使用大于小于而无需转义（还有数学运算）
-do
-	TIME=`date+%Y%m%d%H%M%S`  # 时间戳
-	echo "$TIME";
-	n=$((n+1));
-	kubectl top pod -n {namespace} | grep -E '{service1}|{service2}|CPU' | awk '{if(NR>1){printf "%-50s %-8s %-8s\n", $1, $2/20"%", $3/25"%"} else{printf "%-50s %-8s %-8s\n", $1, $2, $3}}'
-	sleep 90;  # K8S不能实时获取到容器CPU使用量，大约1分钟更新一次
-done
-```
+    ```shell
+    # $()和 ` `  # 在bash shell中，$() 与` ` (反引号) 都是用来做命令替换用
+    
+    # 打印pod的cpu占用率、内存使用率，$2/20"%"，即CPU使用量除以上限值2000，再乘100拼接百分比符号
+    # kubectl top pod -n {namespace} | grep -E '{service1}|{service2}' | awk '{print $1,$2,$2/20"%" , $3,$3/25"%"}'
+    
+    # 单行循环打印pod的cpu使用量，for语句后加分号而非冒号
+    # for app in ${kubectl get deployments.apps -n {namespace}| grep -E '{service1}|{service2}' | awk '{print $1}'); do echo ${app}; kubectl -n {namespace} describle deployments.apps ${app}| grep -B 1 "cpu:"; echo "------------------------------------"; done
+    
+    n=1
+    while(($n<1000))  # []/[[]] (())都是做判断，但后者可以直接使用大于小于而无需转义（还有数学运算）
+    do
+        TIME=`date+%Y%m%d%H%M%S`  # 时间戳
+        echo "$TIME";
+        n=$((n+1));
+        kubectl top pod -n {namespace} | grep -E '{service1}|{service2}|CPU' | awk '{if(NR>1){printf "%-50s %-8s %-8s\n", $1, $2/20"%", $3/25"%"} else{printf "%-50s %-8s %-8s\n", $1, $2, $3}}'
+        sleep 90;  # K8S不能实时获取到容器CPU使用量，大约1分钟更新一次
+    done
+    ```
 
 参考资料：
 
