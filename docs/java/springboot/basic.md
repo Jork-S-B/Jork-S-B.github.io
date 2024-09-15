@@ -52,6 +52,8 @@ public class ScheduleJob{
 
 ## 📌 mybatis框架
 
+调用关系: Controller -> Service -> DAO -> mapper
+
 实体类、DAO、xml映射
 
 DTO（Data Transfer Object）数据传输对象，是一种设计模式，用于在不同层级或不同系统间传输数据。可以避免直接暴露实体类的细节，用来过滤和转换数据。

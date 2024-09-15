@@ -130,6 +130,6 @@ print(eval(repr(d.get('regex_str'))))  # eval()执行转义，输出：物品   
 
 !!! tip
 
-    # type: jsonpath.Child，通过该注释，指明该表达式的具体类型。这样在IDE中使用`ctrl+鼠标左键`时，可以直接跳转到对应定义，而不用再手动去找属于哪个类型。
+    `# type: jsonpath.Child`，指明该表达式的具体类型。这样在IDE中使用`ctrl+鼠标左键`时，可以直接跳转到对应定义，而不用再手动去找属于哪个类型。
 
 ---

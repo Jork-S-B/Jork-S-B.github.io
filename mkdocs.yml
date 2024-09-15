@@ -93,6 +93,7 @@ nav:
       - 构建MySQL镜像: docker/build_mysql.md
       - 构建Oracle镜像: docker/build_oracle.md
       - 构建Jenkins镜像: docker/build_jenkins.md
+      - 构建RockyLinux镜像: docker/build_rockylinux.md
   - 其他:
       - 高性能: other/high_performance.md
       - Nginx: other/nginx_notes.md
