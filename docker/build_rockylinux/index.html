@@ -13,25 +13,25 @@
       
       
       
-        <link rel="prev" href="../day02/">
+        <link rel="prev" href="../build_jenkins/">
       
       
-        <link rel="next" href="../day04/">
+        <link rel="next" href="../../other/high_performance/">
       
       
-      <link rel="icon" href="../../../assets/images/favicon.png">
+      <link rel="icon" href="../../assets/images/favicon.png">
       <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.5.34">
     
     
       
-        <title>Day03 - whm</title>
+        <title>构建RockyLinux镜像 - whm</title>
       
     
     
-      <link rel="stylesheet" href="../../../assets/stylesheets/main.35f28582.min.css">
+      <link rel="stylesheet" href="../../assets/stylesheets/main.35f28582.min.css">
       
         
-        <link rel="stylesheet" href="../../../assets/stylesheets/palette.06af60db.min.css">
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.06af60db.min.css">
       
       
 
@@ -44,16 +44,16 @@
       
     
     
-      <link rel="stylesheet" href="../../../stylesheets/extra.css">
+      <link rel="stylesheet" href="../../stylesheets/extra.css">
     
-    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
 
     
     
     
-   <link href="../../../assets/stylesheets/glightbox.min.css" rel="stylesheet"/><style>
+   <link href="../../assets/stylesheets/glightbox.min.css" rel="stylesheet"/><style>
     html.glightbox-open { overflow: initial; height: 100%; }
     .gslide-title { margin-top: 0px; user-select: text; }
     .gslide-desc { color: #666; user-select: text; }
@@ -62,7 +62,7 @@
     .gdesc-inner { font-size: 0.75rem; }
     body[data-md-color-scheme="slate"] .gdesc-inner { background: var(--md-default-bg-color);}
     body[data-md-color-scheme="slate"] .gslide-title { color: var(--md-default-fg-color);}
-    body[data-md-color-scheme="slate"] .gslide-desc { color: var(--md-default-fg-color);}</style> <script src="../../../assets/javascripts/glightbox.min.js"></script></head>
+    body[data-md-color-scheme="slate"] .gslide-desc { color: var(--md-default-fg-color);}</style> <script src="../../assets/javascripts/glightbox.min.js"></script></head>
   
   
     
@@ -80,11 +80,6 @@
     <label class="md-overlay" for="__drawer"></label>
     <div data-md-component="skip">
       
-        
-        <a href="#_1" class="md-skip">
-          跳转至
-        </a>
-      
     </div>
     <div data-md-component="announce">
       
@@ -95,7 +90,7 @@
 
 <header class="md-header" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="页眉">
-    <a href="../../.." title="whm" class="md-header__button md-logo" aria-label="whm" data-md-component="logo">
+    <a href="../.." title="whm" class="md-header__button md-logo" aria-label="whm" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M256 512a256 256 0 1 0 0-512 256 256 0 1 0 0 512m-91.9-186.5C182 346.2 212.6 368 256 368s74-21.8 91.9-42.5c5.8-6.7 15.9-7.4 22.6-1.6s7.4 15.9 1.6 22.6c-22.3 25.6-61 53.5-116.1 53.5s-93.8-27.9-116.1-53.5c-5.8-6.7-5.1-16.8 1.6-22.6s16.8-5.1 22.6 1.6M144.4 208a32 32 0 1 1 64 0 32 32 0 1 1-64 0m156.4 25.6c-5.3 7.1-15.3 8.5-22.4 3.2s-8.5-15.3-3.2-22.4c30.4-40.5 91.2-40.5 121.6 0 5.3 7.1 3.9 17.1-3.2 22.4s-17.1 3.9-22.4-3.2c-17.6-23.5-52.8-23.5-70.4 0"/></svg>
@@ -115,7 +110,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Day03
+              构建RockyLinux镜像
             
           </span>
         </div>
@@ -222,7 +217,7 @@
   
   
     <li class="md-tabs__item">
-      <a href="../../.." class="md-tabs__link">
+      <a href="../.." class="md-tabs__link">
         
   
     
@@ -249,7 +244,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="../../../python/datatype/number/" class="md-tabs__link">
+        <a href="../../python/datatype/number/" class="md-tabs__link">
           
   
   Python
@@ -276,7 +271,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="../../../java/springboot/basic/" class="md-tabs__link">
+        <a href="../../java/springboot/basic/" class="md-tabs__link">
           
   
   Java
@@ -297,7 +292,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="../../../vue/basic/" class="md-tabs__link">
+        <a href="../../vue/basic/" class="md-tabs__link">
           
   
   Vue
@@ -321,7 +316,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="../../../sql/oracle/sqlldr_import/" class="md-tabs__link">
+        <a href="../../sql/oracle/sqlldr_import/" class="md-tabs__link">
           
   
   数据库
@@ -342,7 +337,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="../../../shell/review/" class="md-tabs__link">
+        <a href="../../shell/review/" class="md-tabs__link">
           
   
   Shell
@@ -366,7 +361,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="../../../test/test_app/" class="md-tabs__link">
+        <a href="../../test/test_app/" class="md-tabs__link">
           
   
   测试
@@ -383,13 +378,11 @@
         
   
   
-    
-  
   
     
     
-      <li class="md-tabs__item md-tabs__item--active">
-        <a href="../../ecosystem/" class="md-tabs__link">
+      <li class="md-tabs__item">
+        <a href="../../hadoop/ecosystem/" class="md-tabs__link">
           
   
   Hadoop
@@ -403,11 +396,13 @@
         
   
   
+    
+  
   
     
     
-      <li class="md-tabs__item">
-        <a href="../../../docker/windows_docker/" class="md-tabs__link">
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../windows_docker/" class="md-tabs__link">
           
   
   Docker
@@ -425,7 +420,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="../../../other/high_performance/" class="md-tabs__link">
+        <a href="../../other/high_performance/" class="md-tabs__link">
           
   
   其他
@@ -458,7 +453,7 @@
 
 <nav class="md-nav md-nav--primary md-nav--lifted" aria-label="导航栏" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="../../.." title="whm" class="md-nav__button md-logo" aria-label="whm" data-md-component="logo">
+    <a href="../.." title="whm" class="md-nav__button md-logo" aria-label="whm" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M256 512a256 256 0 1 0 0-512 256 256 0 1 0 0 512m-91.9-186.5C182 346.2 212.6 368 256 368s74-21.8 91.9-42.5c5.8-6.7 15.9-7.4 22.6-1.6s7.4 15.9 1.6 22.6c-22.3 25.6-61 53.5-116.1 53.5s-93.8-27.9-116.1-53.5c-5.8-6.7-5.1-16.8 1.6-22.6s16.8-5.1 22.6 1.6M144.4 208a32 32 0 1 1 64 0 32 32 0 1 1-64 0m156.4 25.6c-5.3 7.1-15.3 8.5-22.4 3.2s-8.5-15.3-3.2-22.4c30.4-40.5 91.2-40.5 121.6 0 5.3 7.1 3.9 17.1-3.2 22.4s-17.1 3.9-22.4-3.2c-17.6-23.5-52.8-23.5-70.4 0"/></svg>
@@ -488,7 +483,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../.." class="md-nav__link">
+      <a href="../.." class="md-nav__link">
         
   
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2A10 10 0 0 0 2 12a10 10 0 0 0 10 10 10 10 0 0 0 10-10A10 10 0 0 0 12 2M7 9.5C7 8.7 7.7 8 8.5 8s1.5.7 1.5 1.5S9.3 11 8.5 11 7 10.3 7 9.5m5 7.73c-1.75 0-3.29-.73-4.19-1.81L9.23 14c.45.72 1.52 1.23 2.77 1.23s2.32-.51 2.77-1.23l1.42 1.42c-.9 1.08-2.44 1.81-4.19 1.81M15.5 11c-.8 0-1.5-.7-1.5-1.5S14.7 8 15.5 8s1.5.7 1.5 1.5-.7 1.5-1.5 1.5"/></svg>
@@ -586,7 +581,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../python/datatype/number/" class="md-nav__link">
+      <a href="../../python/datatype/number/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -607,7 +602,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../python/datatype/sequence/" class="md-nav__link">
+      <a href="../../python/datatype/sequence/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -628,7 +623,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../python/datatype/dict%26set/" class="md-nav__link">
+      <a href="../../python/datatype/dict%26set/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -649,7 +644,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../python/datatype/mutable%26immutable/" class="md-nav__link">
+      <a href="../../python/datatype/mutable%26immutable/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -678,7 +673,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../python/structure/structure/" class="md-nav__link">
+      <a href="../../python/structure/structure/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -737,7 +732,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../python/oj/sort/" class="md-nav__link">
+      <a href="../../python/oj/sort/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -758,7 +753,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../python/oj/dp/" class="md-nav__link">
+      <a href="../../python/oj/dp/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -787,7 +782,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../python/oop/" class="md-nav__link">
+      <a href="../../python/oop/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -808,7 +803,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../python/builtin_func/" class="md-nav__link">
+      <a href="../../python/builtin_func/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -829,7 +824,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../python/thread/" class="md-nav__link">
+      <a href="../../python/thread/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -888,7 +883,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../python/autotest/unittest/unittest_notes/" class="md-nav__link">
+      <a href="../../python/autotest/unittest/unittest_notes/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -947,7 +942,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../python/autotest/pytest/fixture/" class="md-nav__link">
+      <a href="../../python/autotest/pytest/fixture/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -968,7 +963,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../python/autotest/pytest/pytest.main/" class="md-nav__link">
+      <a href="../../python/autotest/pytest/pytest.main/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -989,7 +984,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../python/autotest/pytest/pytest.ini/" class="md-nav__link">
+      <a href="../../python/autotest/pytest/pytest.ini/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1018,7 +1013,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../python/autotest/selenium/" class="md-nav__link">
+      <a href="../../python/autotest/selenium/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1077,7 +1072,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../python/autotest/app/mumu_sim/" class="md-nav__link">
+      <a href="../../python/autotest/app/mumu_sim/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1098,7 +1093,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../python/autotest/app/appium/" class="md-nav__link">
+      <a href="../../python/autotest/app/appium/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1119,7 +1114,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../python/autotest/app/uiautomator2/" class="md-nav__link">
+      <a href="../../python/autotest/app/uiautomator2/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1140,7 +1135,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../python/autotest/app/webdriveragent/" class="md-nav__link">
+      <a href="../../python/autotest/app/webdriveragent/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1169,7 +1164,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../python/autotest/mitmproxy/" class="md-nav__link">
+      <a href="../../python/autotest/mitmproxy/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1190,7 +1185,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../python/autotest/requests/" class="md-nav__link">
+      <a href="../../python/autotest/requests/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1257,7 +1252,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../python/web/flask/" class="md-nav__link">
+      <a href="../../python/web/flask/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1316,7 +1311,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../python/web/django/django_orm/" class="md-nav__link">
+      <a href="../../python/web/django/django_orm/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1337,7 +1332,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../python/web/django/django_templates/" class="md-nav__link">
+      <a href="../../python/web/django/django_templates/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1358,7 +1353,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../python/web/django/cookie%26session/" class="md-nav__link">
+      <a href="../../python/web/django/cookie%26session/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1433,7 +1428,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../python/other/mv_py_path/" class="md-nav__link">
+      <a href="../../python/other/mv_py_path/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1454,7 +1449,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../python/other/mkdocs_notes/" class="md-nav__link">
+      <a href="../../python/other/mkdocs_notes/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1475,7 +1470,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../python/regex/re/" class="md-nav__link">
+      <a href="../../python/regex/re/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1496,7 +1491,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../python/other/pypath/" class="md-nav__link">
+      <a href="../../python/other/pypath/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1517,7 +1512,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../python/pyjson/pyjson_notes/" class="md-nav__link">
+      <a href="../../python/pyjson/pyjson_notes/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1538,7 +1533,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../python/pydocx/pydocx_notes/" class="md-nav__link">
+      <a href="../../python/pydocx/pydocx_notes/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1559,7 +1554,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../python/pyexcel/pyexcel_notes/" class="md-nav__link">
+      <a href="../../python/pyexcel/pyexcel_notes/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1580,7 +1575,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../python/other/scrapy_notes/" class="md-nav__link">
+      <a href="../../python/other/scrapy_notes/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1601,7 +1596,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../python/closure/" class="md-nav__link">
+      <a href="../../python/closure/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1622,7 +1617,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../python/other/coding_standard/" class="md-nav__link">
+      <a href="../../python/other/coding_standard/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1734,7 +1729,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../java/springboot/basic/" class="md-nav__link">
+      <a href="../../java/springboot/basic/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1808,7 +1803,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../vue/basic/" class="md-nav__link">
+      <a href="../../vue/basic/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1912,7 +1907,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../sql/oracle/sqlldr_import/" class="md-nav__link">
+      <a href="../../sql/oracle/sqlldr_import/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1933,7 +1928,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../sql/oracle/some/" class="md-nav__link">
+      <a href="../../sql/oracle/some/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1954,7 +1949,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../sql/oracle/lock%26unlock/" class="md-nav__link">
+      <a href="../../sql/oracle/lock%26unlock/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1975,7 +1970,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../sql/oracle/procedure/" class="md-nav__link">
+      <a href="../../sql/oracle/procedure/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1996,7 +1991,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../sql/oracle/gather_table_stats/" class="md-nav__link">
+      <a href="../../sql/oracle/gather_table_stats/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -2017,7 +2012,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../sql/oracle/other_notes/" class="md-nav__link">
+      <a href="../../sql/oracle/other_notes/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -2046,7 +2041,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../sql/mysql_notes/" class="md-nav__link">
+      <a href="../../sql/mysql_notes/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -2067,7 +2062,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../sql/redis_notes/" class="md-nav__link">
+      <a href="../../sql/redis_notes/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -2133,7 +2128,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../shell/review/" class="md-nav__link">
+      <a href="../../shell/review/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -2154,7 +2149,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../other/git_notes/" class="md-nav__link">
+      <a href="../../other/git_notes/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -2175,7 +2170,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../shell/k8s/" class="md-nav__link">
+      <a href="../../shell/k8s/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -2196,7 +2191,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../shell/timestamp/" class="md-nav__link">
+      <a href="../../shell/timestamp/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -2217,7 +2212,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../shell/regex/" class="md-nav__link">
+      <a href="../../shell/regex/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -2321,7 +2316,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../test/test_app/" class="md-nav__link">
+      <a href="../../test/test_app/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -2342,7 +2337,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../test/test_performance/" class="md-nav__link">
+      <a href="../../test/test_performance/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -2363,7 +2358,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../test/test_security/" class="md-nav__link">
+      <a href="../../test/test_security/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -2430,7 +2425,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../utils/fiddler_notes/" class="md-nav__link">
+      <a href="../../utils/fiddler_notes/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -2451,7 +2446,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../utils/charles_notes/" class="md-nav__link">
+      <a href="../../utils/charles_notes/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -2472,7 +2467,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../utils/postman_notes/" class="md-nav__link">
+      <a href="../../utils/postman_notes/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -2493,11 +2488,207 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../utils/jmeter_notes/" class="md-nav__link">
+      <a href="../../utils/jmeter_notes/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
     JMeter
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8" >
+        
+          
+          <label class="md-nav__link" for="__nav_8" id="__nav_8_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Hadoop
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_8_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_8">
+            <span class="md-nav__icon md-icon"></span>
+            Hadoop
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../hadoop/ecosystem/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Hadoop生态
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_8_2" id="__nav_8_2_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Scala
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_8_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_8_2">
+            <span class="md-nav__icon md-icon"></span>
+            Scala
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../hadoop/scala/day01/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Day01
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../hadoop/scala/day02/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Day02
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../hadoop/scala/day03/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Day03
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../hadoop/scala/day04/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Day04
   </span>
   
 
@@ -2544,24 +2735,24 @@
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8" checked>
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_9" checked>
         
           
-          <label class="md-nav__link" for="__nav_8" id="__nav_8_label" tabindex="">
+          <label class="md-nav__link" for="__nav_9" id="__nav_9_label" tabindex="">
             
   
   <span class="md-ellipsis">
-    Hadoop
+    Docker
   </span>
   
 
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_8_label" aria-expanded="true">
-          <label class="md-nav__title" for="__nav_8">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_9_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_9">
             <span class="md-nav__icon md-icon"></span>
-            Hadoop
+            Docker
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
             
@@ -2572,72 +2763,11 @@
   
   
     <li class="md-nav__item">
-      <a href="../../ecosystem/" class="md-nav__link">
+      <a href="../windows_docker/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    Hadoop生态
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-    
-  
-  
-  
-    
-    
-    
-      
-      
-    
-    
-    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
-      
-        
-        
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8_2" checked>
-        
-          
-          <label class="md-nav__link" for="__nav_8_2" id="__nav_8_2_label" tabindex="0">
-            
-  
-  <span class="md-ellipsis">
-    Scala
-  </span>
-  
-
-            <span class="md-nav__icon md-icon"></span>
-          </label>
-        
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_8_2_label" aria-expanded="true">
-          <label class="md-nav__title" for="__nav_8_2">
-            <span class="md-nav__icon md-icon"></span>
-            Scala
-          </label>
-          <ul class="md-nav__list" data-md-scrollfix>
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../day01/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    Day01
+    Docker for Windows
   </span>
   
 
@@ -2654,11 +2784,74 @@
   
   
     <li class="md-nav__item">
-      <a href="../day02/" class="md-nav__link">
+      <a href="../archlinux_docker/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    Day02
+    Docker for Arch Linux
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../build_mysql/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    构建MySQL镜像
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../build_oracle/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    构建Oracle镜像
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../build_jenkins/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    构建Jenkins镜像
   </span>
   
 
@@ -2682,287 +2875,7 @@
       
       
       
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          
-  
-  <span class="md-ellipsis">
-    Day03
-  </span>
-  
-
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
       <a href="./" class="md-nav__link md-nav__link--active">
-        
-  
-  <span class="md-ellipsis">
-    Day03
-  </span>
-  
-
-      </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="目录">
-  
-  
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      目录
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#_1" class="md-nav__link">
-    <span class="md-ellipsis">
-      📌 运算符
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#_2" class="md-nav__link">
-    <span class="md-ellipsis">
-      📌 条件分支
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#for" class="md-nav__link">
-    <span class="md-ellipsis">
-      📌 For循环
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="📌 For循环">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#_3" class="md-nav__link">
-    <span class="md-ellipsis">
-      🚁 范围遍历
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#_4" class="md-nav__link">
-    <span class="md-ellipsis">
-      🚁 跳出循环
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../day04/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    Day04
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-          </ul>
-        </nav>
-      
-    </li>
-  
-
-              
-            
-          </ul>
-        </nav>
-      
-    </li>
-  
-
-    
-      
-      
-  
-  
-  
-  
-    
-    
-    
-      
-      
-    
-    
-    <li class="md-nav__item md-nav__item--nested">
-      
-        
-        
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_9" >
-        
-          
-          <label class="md-nav__link" for="__nav_9" id="__nav_9_label" tabindex="0">
-            
-  
-  <span class="md-ellipsis">
-    Docker
-  </span>
-  
-
-            <span class="md-nav__icon md-icon"></span>
-          </label>
-        
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_9_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_9">
-            <span class="md-nav__icon md-icon"></span>
-            Docker
-          </label>
-          <ul class="md-nav__list" data-md-scrollfix>
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../../docker/windows_docker/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    Docker for Windows
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../../docker/archlinux_docker/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    Docker for Arch Linux
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../../docker/build_mysql/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    构建MySQL镜像
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../../docker/build_oracle/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    构建Oracle镜像
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../../docker/build_jenkins/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    构建Jenkins镜像
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../../docker/build_rockylinux/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -2971,6 +2884,7 @@
   
 
       </a>
+      
     </li>
   
 
@@ -3028,7 +2942,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../other/high_performance/" class="md-nav__link">
+      <a href="../../other/high_performance/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -3049,7 +2963,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../other/nginx_notes/" class="md-nav__link">
+      <a href="../../other/nginx_notes/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -3088,65 +3002,6 @@
   
   
   
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      目录
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#_1" class="md-nav__link">
-    <span class="md-ellipsis">
-      📌 运算符
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#_2" class="md-nav__link">
-    <span class="md-ellipsis">
-      📌 条件分支
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#for" class="md-nav__link">
-    <span class="md-ellipsis">
-      📌 For循环
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="📌 For循环">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#_3" class="md-nav__link">
-    <span class="md-ellipsis">
-      🚁 范围遍历
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#_4" class="md-nav__link">
-    <span class="md-ellipsis">
-      🚁 跳出循环
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-    </ul>
-  
 </nav>
                   </div>
                 </div>
@@ -3163,148 +3018,79 @@
   
 
 
-  <h1>Day03</h1>
+  <h1>构建RockyLinux镜像</h1>
 
-<h2 id="_1">📌 运算符</h2>
-<p>Scala运算符的本质也是对象的方法：</p>
-<ul>
-<li>当调用对象的方法时，<code>.</code>可以省略。</li>
-<li>当方法没有参数时，<code>()</code>可以省略。</li>
-</ul>
-<p>如<code>2.toString()</code>可省略为<code>2 toString</code>。</p>
-<div class="highlight"><pre><span></span><code><span class="k">object</span><span class="w"> </span><span class="nc">Learn01_Operator</span><span class="w"> </span><span class="p">{</span>
-<span class="w">  </span><span class="k">def</span><span class="w"> </span><span class="nf">main</span><span class="p">(</span><span class="n">args</span><span class="p">:</span><span class="w"> </span><span class="nc">Array</span><span class="p">[</span><span class="nc">String</span><span class="p">]):</span><span class="w"> </span><span class="nc">Unit</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="n">println</span><span class="p">(</span><span class="mi">10</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="mi">3</span><span class="p">)</span><span class="w"> </span><span class="c1">// 输出3</span>
-<span class="w">    </span><span class="c1">// println((10.0 / 3).formatted(&quot;%2.2f&quot;)) // 输出3.33</span>
-<span class="w">    </span><span class="c1">// Scala 3.4.1：&quot;Use `formatString.format(value)` instead of `value.formatted(formatString)`&quot;</span>
-<span class="w">    </span><span class="n">println</span><span class="p">(</span><span class="s">&quot;%.2f&quot;</span><span class="p">.</span><span class="n">format</span><span class="p">(</span><span class="mf">10.0</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="mi">3</span><span class="p">))</span><span class="w"> </span><span class="c1">// 输出3.33</span>
-<span class="w">    </span><span class="n">println</span><span class="p">(</span><span class="o">-</span><span class="mi">5</span><span class="w"> </span><span class="o">%</span><span class="w"> </span><span class="mi">3</span><span class="p">)</span><span class="w"> </span><span class="c1">// 输出2</span>
+<div class="tabbed-set tabbed-alternate" data-tabs="1:3"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><input id="__tabbed_1_3" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">dockerfile</label><label for="__tabbed_1_2">运行</label><label for="__tabbed_1_3">检查与调试</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code># 使用 Rocky Linux 9.3 作为基础镜像
+FROM rockylinux:9.3
 
-<span class="w">    </span><span class="kd">val</span><span class="w"> </span><span class="n">s1</span><span class="p">:</span><span class="w"> </span><span class="nc">String</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;abc&quot;</span>
-<span class="w">    </span><span class="kd">val</span><span class="w"> </span><span class="n">s2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="nc">String</span><span class="p">(</span><span class="s">&quot;abc&quot;</span><span class="p">)</span>
-<span class="w">    </span><span class="n">println</span><span class="p">(</span><span class="n">s1</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">s2</span><span class="p">)</span><span class="w"> </span><span class="c1">// 打印true，比较内容</span>
-<span class="w">    </span><span class="n">println</span><span class="p">(</span><span class="n">s1</span><span class="p">.</span><span class="n">eq</span><span class="p">(</span><span class="n">s2</span><span class="p">))</span><span class="w"> </span><span class="c1">// 打印false，比较地址</span>
+# 维护者信息
+LABEL maintainer=&quot;whm@example.com&quot;
 
-<span class="w">    </span><span class="c1">// scala运算符本质也是对象的方法</span>
-<span class="w">    </span><span class="n">println</span><span class="p">(</span><span class="mf">1.1</span><span class="p">.</span><span class="o">+</span><span class="p">(</span><span class="mi">2</span><span class="p">))</span>
-<span class="w">    </span><span class="c1">// 1.当调用对象的方法时，.可以省略</span>
-<span class="w">    </span><span class="n">println</span><span class="p">(</span><span class="mf">1.1</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">2</span><span class="p">)</span>
-<span class="w">    </span><span class="c1">// 2.当方法没有参数时，()可以省略</span>
-<span class="w">    </span><span class="n">println</span><span class="p">((</span><span class="mf">1.1</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">2</span><span class="p">)</span><span class="w"> </span><span class="n">toInt</span><span class="p">)</span>
-<span class="w">  </span><span class="p">}</span>
-<span class="p">}</span>
+ENV LANG=zh_CN.GB2312
+ENV NLS_LANG=&quot;AMERICAN_AMERICA.ZHS16GBK&quot;
+
+# 更新包索引并安装 vim
+RUN dnf update -y &amp;&amp; \
+    dnf install -y vim
+
+# 安装 OpenSSH 服务器
+RUN dnf install -y openssh-server
+
+# 设置 SSH 服务开机启动
+RUN systemctl enable sshd
+
+# 生成 SSH 主机密钥
+RUN mkdir -p /etc/ssh &amp;&amp; \
+    ssh-keygen -A
+
+# 清理缓存以减小镜像大小
+RUN dnf clean all
+
+# 修改root密码
+RUN echo &quot;root:root&quot; | chpasswd
+
+# 创建新用户
+RUN useradd -m -s /bin/bash rich
+
+# 设置新用户密码
+RUN echo &quot;whm:whm&quot; | chpasswd
+
+# 将用户添加到 wheel 组
+RUN usermod -aG wheel whm
+
+# 允许 wheel 组用户使用 sudo
+RUN echo &quot;%wheel ALL=(ALL) NOPASSWD: ALL&quot; &gt; /etc/sudoers.d/wheel
+
+# 设置容器启动后的默认命令
+# CMD [&quot;/bin/bash&quot;]
+# 多个CMD命令只执行最后一个
+# 启动 SSH 服务
+CMD [&quot;/usr/sbin/sshd&quot;, &quot;-D&quot;]    
 </code></pre></div>
-<h2 id="_2">📌 条件分支</h2>
-<ul>
-<li>Scala没有<code>Switch</code>，而是使用模式匹配<code>match-case</code>来处理。</li>
-<li>Scala的分支语句可以带返回值，以分支语句内最后一行作为返回值。</li>
-<li>Scala提供了类似三元运算符的写法，如：<code>if (str &gt; 0) str else "非正数"</code>。</li>
-</ul>
-<div class="highlight"><pre><span></span><code><span class="k">import</span><span class="w"> </span><span class="nn">scala</span><span class="p">.</span><span class="nn">io</span><span class="p">.</span><span class="nc">StdIn</span>
+</div>
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code>docker<span class="w"> </span>build<span class="w"> </span>-t<span class="w"> </span>my-rockylinux<span class="w"> </span>.
 
-<span class="k">object</span><span class="w"> </span><span class="nc">Learn02_Condition</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="k">def</span><span class="w"> </span><span class="nf">main</span><span class="p">(</span><span class="n">args</span><span class="p">:</span><span class="w"> </span><span class="nc">Array</span><span class="p">[</span><span class="nc">String</span><span class="p">]):</span><span class="w"> </span><span class="nc">Unit</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="c1">// Scala的分支语句可以带返回值</span>
-<span class="w">    </span><span class="kd">val</span><span class="w"> </span><span class="n">str</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nc">StdIn</span><span class="p">.</span><span class="n">readLine</span><span class="p">().</span><span class="n">toInt</span>
-<span class="w">    </span><span class="kd">var</span><span class="w"> </span><span class="n">res</span><span class="p">:</span><span class="w"> </span><span class="nc">Any</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">str</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="c1">// 判定语句后只有一行代码时，花括号`{}`可以省略</span>
-<span class="w">      </span><span class="n">println</span><span class="p">(</span><span class="s">&quot;正数&quot;</span><span class="p">)</span>
-<span class="w">      </span><span class="n">str</span>
-<span class="w">    </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">str</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">      </span><span class="n">println</span><span class="p">(</span><span class="s">&quot;零&quot;</span><span class="p">)</span>
-<span class="w">      </span><span class="mi">0</span>
-<span class="w">    </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span>
-<span class="w">      </span><span class="n">println</span><span class="p">(</span><span class="s">&quot;负数&quot;</span><span class="p">)</span>
-<span class="w">      </span><span class="s">&quot;负数&quot;</span>
-<span class="w">    </span><span class="p">}</span>
-<span class="w">    </span><span class="n">println</span><span class="p">(</span><span class="n">res</span><span class="p">)</span>
-
-<span class="w">    </span><span class="c1">// 类似三元运算符的写法</span>
-<span class="w">    </span><span class="n">res</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">str</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="n">str</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="s">&quot;非正数&quot;</span>
-<span class="w">    </span><span class="n">println</span><span class="p">(</span><span class="n">res</span><span class="p">)</span>
-
-
-<span class="w">  </span><span class="p">}</span>
-<span class="p">}</span>
+<span class="c1"># docker run --rm  # 在容器停止后自动删除容器</span>
+<span class="c1"># -it：使容器以交互模式运行，并分配一个伪tty终端，允许在容器内部进行操作</span>
+docker<span class="w"> </span>run<span class="w"> </span>-it<span class="w"> </span>-p<span class="w"> </span><span class="m">5022</span>:22<span class="w"> </span>--name<span class="w"> </span>rockylinux.9.3<span class="w"> </span>my-rockylinux
 </code></pre></div>
-<h2 id="for">📌 For循环</h2>
-<p>循环的三种方式：for、while、do-while，使用后两者时需要外部变量，推荐用for循环。</p>
-<h3 id="_3">🚁 范围遍历</h3>
-<ul>
-<li>包含边界的范围遍历：<code>for (i &lt;- 1 to 3)</code>。</li>
-<li>不包含边界的范围遍历：<code>for (i &lt;- 1 until 3)</code>。</li>
-<li>设置步长为3：<code>for (i &lt;- 1 to 3 by 3)</code>。</li>
-<li>设置倒序遍历：<code>for (i &lt;- 1 to 3 reverse)</code>。</li>
-</ul>
-<div class="highlight"><pre><span></span><code><span class="k">object</span><span class="w"> </span><span class="nc">Learn03_Cycle</span><span class="w"> </span><span class="p">{</span>
-<span class="w">  </span><span class="k">def</span><span class="w"> </span><span class="nf">main</span><span class="p">(</span><span class="n">args</span><span class="p">:</span><span class="w"> </span><span class="nc">Array</span><span class="p">[</span><span class="nc">String</span><span class="p">]):</span><span class="w"> </span><span class="nc">Unit</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="c1">// 1.for循环，范围遍历，包含边界[1, 3]，并设置步长为3</span>
-<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="n">i</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="n">to</span><span class="w"> </span><span class="mi">3</span><span class="w"> </span><span class="n">by</span><span class="w"> </span><span class="mi">3</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">      </span><span class="n">println</span><span class="p">(</span><span class="n">i</span><span class="p">)</span><span class="w"> </span><span class="c1">// 1</span>
-<span class="w">    </span><span class="p">}</span>
+</div>
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code>ssh<span class="w"> </span>whm@localhost<span class="w"> </span>-p<span class="w"> </span><span class="m">5022</span>
 
-<span class="w">    </span><span class="c1">// 2.for循环，范围遍历，不包含边界[1, 3)，并设置倒序输出</span>
-<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="n">i</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="n">until</span><span class="w"> </span><span class="mi">3</span><span class="w"> </span><span class="n">reverse</span><span class="w"> </span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">      </span><span class="n">println</span><span class="p">(</span><span class="n">i</span><span class="p">)</span><span class="w"> </span><span class="c1">// 2, 1</span>
-<span class="w">    </span><span class="p">}</span>
-
-<span class="w">    </span><span class="c1">// 4.小数的循环遍历</span>
-<span class="w">    </span><span class="k">import</span><span class="w"> </span><span class="nn">scala</span><span class="p">.</span><span class="nn">math</span><span class="p">.</span><span class="nc">BigDecimal</span><span class="p">.</span><span class="nc">RoundingMode</span>
-
-<span class="w">    </span><span class="kd">val</span><span class="w"> </span><span class="n">start</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nc">BigDecimal</span><span class="p">(</span><span class="s">&quot;10.9&quot;</span><span class="p">)</span>
-<span class="w">    </span><span class="kd">val</span><span class="w"> </span><span class="n">end</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nc">BigDecimal</span><span class="p">(</span><span class="s">&quot;11.0&quot;</span><span class="p">)</span>
-<span class="w">    </span><span class="kd">val</span><span class="w"> </span><span class="n">step</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nc">BigDecimal</span><span class="p">(</span><span class="s">&quot;0.1&quot;</span><span class="p">)</span>
-
-<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="n">i</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">start</span><span class="w"> </span><span class="n">to</span><span class="w"> </span><span class="n">end</span><span class="w"> </span><span class="n">by</span><span class="w"> </span><span class="n">step</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">      </span><span class="n">println</span><span class="p">(</span><span class="n">i</span><span class="p">.</span><span class="n">setScale</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="nc">RoundingMode</span><span class="p">.</span><span class="nc">HALF_UP</span><span class="p">))</span><span class="w"> </span><span class="c1">// 四舍五入，保留1位小数</span>
-<span class="w">    </span><span class="p">}</span>
-
-<span class="w">    </span><span class="c1">// 7.for循环遍历集合，执行操作后返回新的集合</span>
-<span class="w">    </span><span class="kd">val</span><span class="w"> </span><span class="n">list1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nc">List</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span><span class="w"> </span><span class="mi">9</span><span class="p">)</span>
-<span class="w">    </span><span class="kd">val</span><span class="w"> </span><span class="n">list2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="n">i</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">list1</span><span class="p">)</span><span class="w"> </span><span class="k">yield</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">2</span>
-<span class="w">    </span><span class="n">println</span><span class="p">(</span><span class="n">list2</span><span class="p">)</span>
-
-<span class="w">  </span><span class="p">}</span>
-<span class="p">}</span>
+<span class="c1"># 查看系统版本信息</span>
+cat<span class="w"> </span>/etc/system-release
+<span class="c1"># 或者更详细的系统信息</span>
+cat<span class="w"> </span>/etc/os-release
 </code></pre></div>
-<h3 id="_4">🚁 跳出循环</h3>
-<ul>
-<li>Scala没有<code>break</code>，通过Breaks类的break方法，捕捉、抛出异常的方式来终止循环。</li>
-<li>Scala没有<code>continue</code>，以循环守卫代替，类似在循环中加条件判断：<code>for (i &lt;- 1 to 10 if i % 10 == 0)</code>。</li>
-<li>在循环中需要引入变量或者嵌套循环，也类似循环守卫的方式，直接在循环中加入对应的语句即可。</li>
-</ul>
-<div class="highlight"><pre><span></span><code><span class="k">import</span><span class="w"> </span><span class="nn">scala</span><span class="p">.</span><span class="nn">util</span><span class="p">.</span><span class="nn">control</span><span class="p">.</span><span class="nc">Breaks</span>
-
-<span class="k">object</span><span class="w"> </span><span class="nc">Learn03_Cycle</span><span class="w"> </span><span class="p">{</span>
-<span class="w">  </span><span class="k">def</span><span class="w"> </span><span class="nf">main</span><span class="p">(</span><span class="n">args</span><span class="p">:</span><span class="w"> </span><span class="nc">Array</span><span class="p">[</span><span class="nc">String</span><span class="p">]):</span><span class="w"> </span><span class="nc">Unit</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="c1">// 3.Scala没有continue，以循环守卫代替，类似在循环中加条件判断</span>
-<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="n">i</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="n">to</span><span class="w"> </span><span class="mi">10</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">%</span><span class="w"> </span><span class="mi">10</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">      </span><span class="n">println</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
-<span class="w">    </span><span class="p">}</span>
-
-<span class="w">    </span><span class="c1">// 5.嵌套循环</span>
-<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="n">i</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="n">to</span><span class="w"> </span><span class="mi">3</span><span class="p">;</span><span class="w"> </span><span class="n">j</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="n">to</span><span class="w"> </span><span class="n">i</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">      </span><span class="n">print</span><span class="p">(</span><span class="s">s&quot;</span><span class="si">$</span><span class="n">j</span><span class="s">*</span><span class="si">$</span><span class="n">i</span><span class="s">=</span><span class="si">${</span><span class="n">i</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">j</span><span class="si">}</span><span class="s">\t&quot;</span><span class="p">)</span>
-<span class="w">      </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">j</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">i</span><span class="p">)</span><span class="w"> </span><span class="n">println</span><span class="p">()</span>
-<span class="w">    </span><span class="p">}</span>
-
-<span class="w">    </span><span class="c1">// 6.循环中引入变量</span>
-<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="n">i</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="n">until</span><span class="w"> </span><span class="mi">3</span><span class="p">;</span><span class="w"> </span><span class="n">j</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">4</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">i</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">      </span><span class="c1">// val j = 4-i</span>
-<span class="w">      </span><span class="n">println</span><span class="p">(</span><span class="n">j</span><span class="p">)</span>
-<span class="w">    </span><span class="p">}</span>
-
-<span class="w">    </span><span class="c1">// 8.Scala没有break，通过抛出异常的方式来终止循环</span>
-<span class="w">    </span><span class="c1">// Breaks类的break方法，实现异常的抛出和捕捉</span>
-<span class="w">    </span><span class="nc">Breaks</span><span class="p">.</span><span class="n">breakable</span><span class="w"> </span><span class="p">{</span>
-<span class="w">      </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="n">i</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="n">to</span><span class="w"> </span><span class="mi">10</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">i</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">2</span><span class="p">)</span><span class="w"> </span><span class="nc">Breaks</span><span class="p">.</span><span class="n">break</span><span class="p">()</span>
-<span class="w">        </span><span class="n">println</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
-<span class="w">      </span><span class="p">}</span>
-<span class="w">    </span><span class="p">}</span>
-
-<span class="w">  </span><span class="p">}</span>
-<span class="p">}</span>
-</code></pre></div>
+</div>
+</div>
+</div>
+<p>20240910存在的问题：容器起来后，发现系统版本为<code>Rocky Linux release 9.4 (Blue Onyx)</code>，高了一个小版本。</p>
 
 
 
@@ -3325,7 +3111,7 @@
     <span class="md-icon" title="最后更新">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime">2024-04-20 10:36:45</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime">2024-09-15 09:55:18</span>
   </span>
 
     
@@ -3361,7 +3147,7 @@
       <nav class="md-footer__inner md-grid" aria-label="页脚" >
         
           
-          <a href="../day02/" class="md-footer__link md-footer__link--prev" aria-label="上一页: Day02">
+          <a href="../build_jenkins/" class="md-footer__link md-footer__link--prev" aria-label="上一页: 构建Jenkins镜像">
             <div class="md-footer__button md-icon">
               
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
@@ -3371,20 +3157,20 @@
                 上一页
               </span>
               <div class="md-ellipsis">
-                Day02
+                构建Jenkins镜像
               </div>
             </div>
           </a>
         
         
           
-          <a href="../day04/" class="md-footer__link md-footer__link--next" aria-label="下一页: Day04">
+          <a href="../../other/high_performance/" class="md-footer__link md-footer__link--next" aria-label="下一页: 高性能">
             <div class="md-footer__title">
               <span class="md-footer__direction">
                 下一页
               </span>
               <div class="md-ellipsis">
-                Day04
+                高性能
               </div>
             </div>
             <div class="md-footer__button md-icon">
@@ -3418,10 +3204,10 @@
     </div>
     
     
-    <script id="__config" type="application/json">{"base": "../../..", "features": ["navigation.footer", "navigation.top", "navigation.tabs", "navigation.instant", "content.code.copy"], "search": "../../../assets/javascripts/workers/search.07f07601.min.js", "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}}</script>
+    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.footer", "navigation.top", "navigation.tabs", "navigation.instant", "content.code.copy"], "search": "../../assets/javascripts/workers/search.07f07601.min.js", "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}}</script>
     
     
-      <script src="../../../assets/javascripts/bundle.56dfad97.min.js"></script>
+      <script src="../../assets/javascripts/bundle.56dfad97.min.js"></script>
       
     
   <script id="init-glightbox">const lightbox = GLightbox({"touchNavigation": true, "loop": false, "zoomable": true, "draggable": true, "openEffect": "zoom", "closeEffect": "zoom", "slideEffect": "slide"});
