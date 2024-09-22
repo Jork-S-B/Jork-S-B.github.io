@@ -97,6 +97,7 @@ nav:
   - 其他:
       - 高性能: other/high_performance.md
       - Nginx: other/nginx_notes.md
+      - ElasticSearch: other/elasticsearch.md
 
 # 搜索栏右侧git链接
 repo_url: https://github.com/Jork-S-B/Jork-S-B.github.io/tree/main
