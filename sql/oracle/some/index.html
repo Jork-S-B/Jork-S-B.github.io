@@ -20,7 +20,7 @@
       
       
       <link rel="icon" href="../../../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.5.36">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.5.38">
     
     
       
@@ -28,7 +28,7 @@
       
     
     
-      <link rel="stylesheet" href="../../../assets/stylesheets/main.06209087.min.css">
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.8c3ca2c6.min.css">
       
         
         <link rel="stylesheet" href="../../../assets/stylesheets/palette.06af60db.min.css">
@@ -1948,8 +1948,6 @@
       <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
       
       
-        
-      
       
         <label class="md-nav__link md-nav__link--active" for="__toc">
           
@@ -1978,8 +1976,6 @@
   
   
   
-    
-  
   
     <label class="md-nav__title" for="__toc">
       <span class="md-nav__icon md-icon"></span>
@@ -1988,11 +1984,26 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#_2" class="md-nav__link">
+  <a href="#_1" class="md-nav__link">
     <span class="md-ellipsis">
       📌 分区
     </span>
   </a>
+  
+    <nav class="md-nav" aria-label="📌 分区">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      🚁 清分区数据
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -2148,6 +2159,27 @@
   
   <span class="md-ellipsis">
     Redis
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../other/elasticsearch/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    ElasticSearch
   </span>
   
 
@@ -3031,11 +3063,11 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../other/nginx_notes/" class="md-nav__link">
+      <a href="../../../other/high_availability/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    Nginx
+    高可用
   </span>
   
 
@@ -3052,11 +3084,11 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../other/elasticsearch/" class="md-nav__link">
+      <a href="../../../other/nginx_notes/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    ElasticSearch
+    Nginx
   </span>
   
 
@@ -3090,8 +3122,6 @@
   
   
   
-    
-  
   
     <label class="md-nav__title" for="__toc">
       <span class="md-nav__icon md-icon"></span>
@@ -3100,11 +3130,26 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#_2" class="md-nav__link">
+  <a href="#_1" class="md-nav__link">
     <span class="md-ellipsis">
       📌 分区
     </span>
   </a>
+  
+    <nav class="md-nav" aria-label="📌 分区">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      🚁 清分区数据
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -3144,17 +3189,27 @@
   
 
 
-<h1 id="_1"></h1>
-<h2 id="_2">📌 分区</h2>
+  <h1>分区&同义词&序列</h1>
+
+<h2 id="_1">📌 分区</h2>
 <div class="highlight"><pre><span></span><code><span class="c1">--查询表分区格式</span>
 <span class="k">SELECT</span><span class="w"> </span><span class="n">PARTITION_NAME</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">USER_TAB_PARTITIONS</span><span class="w"> </span><span class="k">WHERE</span><span class="w"> </span><span class="k">TABLE_NAME</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;{}&#39;</span><span class="p">;</span>
 
 <span class="c1">--加分区, 用于分区的字段需要作为表主键</span>
-<span class="c1">--以年月为分区的表</span>
-<span class="k">ALTER</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="k">TABLE_NAME</span><span class="w"> </span><span class="k">ADD</span><span class="w"> </span><span class="n">PARTITION</span><span class="w"> </span><span class="n">P202311</span><span class="w"> </span><span class="k">VALUES</span><span class="w"> </span><span class="p">(</span><span class="mi">202311</span><span class="p">);</span>
+<span class="k">ALTER</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="k">TABLE_NAME</span><span class="w"> </span><span class="k">ADD</span><span class="w"> </span><span class="n">PARTITION</span><span class="w"> </span><span class="n">P202409</span><span class="w"> </span><span class="k">VALUES</span><span class="w"> </span><span class="p">(</span><span class="mi">202409</span><span class="p">);</span>
 
 <span class="c1">--多个字段组合分区的表</span>
-<span class="k">ALTER</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="k">TABLE_NAME</span><span class="w"> </span><span class="n">SPLIT</span><span class="w"> </span><span class="n">PARTITION</span><span class="w"> </span><span class="n">P_759_MAX</span><span class="w"> </span><span class="k">AT</span><span class="w"> </span><span class="p">(</span><span class="mi">759</span><span class="p">,</span><span class="w"> </span><span class="mi">202105</span><span class="p">)</span><span class="w"> </span><span class="k">INTO</span><span class="w"> </span><span class="p">(</span><span class="n">PARTITION</span><span class="w"> </span><span class="n">P_759_202104</span><span class="p">,</span><span class="w"> </span><span class="n">PARTITION</span><span class="w"> </span><span class="n">P_759_MAX</span><span class="p">)</span><span class="w"> </span><span class="k">UPDATE</span><span class="w"> </span><span class="k">GLOBAL</span><span class="w"> </span><span class="n">INDEXES</span><span class="p">;</span>
+<span class="k">ALTER</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="k">TABLE_NAME</span><span class="w"> </span><span class="n">SPLIT</span><span class="w"> </span><span class="n">PARTITION</span><span class="w"> </span><span class="n">P_0924_MAX</span><span class="w"> </span><span class="k">AT</span><span class="w"> </span><span class="p">(</span><span class="mi">0924</span><span class="p">,</span><span class="w"> </span><span class="mi">202409</span><span class="p">)</span><span class="w"> </span><span class="k">INTO</span><span class="w"> </span><span class="p">(</span><span class="n">PARTITION</span><span class="w"> </span><span class="n">P_0924_202408</span><span class="p">,</span><span class="w"> </span><span class="n">PARTITION</span><span class="w"> </span><span class="n">P_0924_MAX</span><span class="p">)</span><span class="w"> </span><span class="k">UPDATE</span><span class="w"> </span><span class="k">GLOBAL</span><span class="w"> </span><span class="n">INDEXES</span><span class="p">;</span>
+</code></pre></div>
+<h3 id="_2">🚁 清分区数据</h3>
+<div class="highlight"><pre><span></span><code><span class="c1">--hive无分区表的表</span>
+<span class="k">TRUNCATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="k">TABLE_NAME</span><span class="p">;</span>
+
+<span class="c1">--hive单个分区的表</span>
+<span class="k">ALTER</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="k">TABLE_NAME</span><span class="w"> </span><span class="k">DROP</span><span class="w"> </span><span class="k">IF</span><span class="w"> </span><span class="k">EXISTS</span><span class="w"> </span><span class="n">PARTITION</span><span class="w"> </span><span class="p">(</span><span class="k">month</span><span class="o">=</span><span class="s1">&#39;202409&#39;</span><span class="p">);</span>
+
+<span class="c1">--Oracle多个字段组合分区的表</span>
+<span class="k">ALTER</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="k">TABLE_NAME</span><span class="w"> </span><span class="k">TRUNCATE</span><span class="w"> </span><span class="n">PARTITION</span><span class="w"> </span><span class="n">P0924_202409</span><span class="w"> </span><span class="k">UPDATE</span><span class="w"> </span><span class="n">INDEXES</span><span class="p">;</span>
 </code></pre></div>
 <h2 id="_3">📌 同义词</h2>
 <div class="highlight"><pre><span></span><code><span class="c1">--查建同义词的语句</span>
@@ -3209,7 +3264,7 @@
     <span class="md-icon" title="最后更新">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime">2024-03-25 21:49:41</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime">2024-09-27 13:53:26</span>
   </span>
 
     
@@ -3305,7 +3360,7 @@
     <script id="__config" type="application/json">{"base": "../../..", "features": ["navigation.footer", "navigation.top", "navigation.tabs", "navigation.instant", "content.code.copy"], "search": "../../../assets/javascripts/workers/search.6ce7567c.min.js", "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}}</script>
     
     
-      <script src="../../../assets/javascripts/bundle.56dfad97.min.js"></script>
+      <script src="../../../assets/javascripts/bundle.d6f25eb3.min.js"></script>
       
     
   <script id="init-glightbox">const lightbox = GLightbox({"touchNavigation": true, "loop": false, "zoomable": true, "draggable": true, "openEffect": "zoom", "closeEffect": "zoom", "slideEffect": "slide"});
