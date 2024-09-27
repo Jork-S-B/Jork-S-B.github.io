@@ -31,7 +31,7 @@
     RUN echo "root:root" | chpasswd
     
     # 创建新用户
-    RUN useradd -m -s /bin/bash rich
+    RUN useradd -m -s /bin/bash whm
     
     # 设置新用户密码
     RUN echo "whm:whm" | chpasswd

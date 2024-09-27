@@ -177,3 +177,37 @@ GET: http://localhost:9200/index_name/_search
   "size": 0  // 不返回文档，只返回聚合结果
 }
 ```
+
+### 🚁 设置映射关系
+
+PUT: http://localhost:9200/index_name/_mapping
+
+```json
+{
+  "properties": {
+    "json_field1": {
+      "type": "text",  // 允许查询时分词效果
+      "index": "true"
+    },
+    "json_field2": {
+      "type": "keyword",  // 设置为关键字，不能分词；即必须完全匹配
+      "index": "true"
+    },
+    "json_field3": {
+      "type": "keyword",  // false-不能用该字段进行查询
+      "index": "false"
+    }
+  }
+}
+```
+
+## 📌 查看集群状态
+
+GET: http://localhost:port/_cluster/health
+
+
+## 📌 Kibana
+
+数据可视化、实时查询、系统监控、日志分析
+
+[KQL查询语法](https://www.cnblogs.com/hellosiyu/p/15689203.html)
