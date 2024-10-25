@@ -20,7 +20,7 @@
       
       
       <link rel="icon" href="../../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.5.41">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.5.42">
     
     
       
@@ -1844,6 +1844,27 @@
 
               
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../java/junit5/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    JUnit 5
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
@@ -2946,7 +2967,7 @@
         <li class="md-nav__item">
   <a href="#docker-for-windows" class="md-nav__link">
     <span class="md-ellipsis">
-      🚁 Docker for Windows
+      📌 Docker for Windows
     </span>
   </a>
   
@@ -2955,7 +2976,25 @@
         <li class="md-nav__item">
   <a href="#hyper-v" class="md-nav__link">
     <span class="md-ellipsis">
-      🚁 启用Hyper-V后运行容器提示端口不可用
+      📌 启用Hyper-V后运行容器提示端口不可用
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      📌 镜像源
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#windowsopenssh" class="md-nav__link">
+    <span class="md-ellipsis">
+      📌 Windows系统启用OpenSSH
     </span>
   </a>
   
@@ -3066,6 +3105,27 @@
   
   <span class="md-ellipsis">
     构建RockyLinux镜像
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../build_hbase/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    构建HBase镜像
   </span>
   
 
@@ -3261,7 +3321,7 @@
         <li class="md-nav__item">
   <a href="#docker-for-windows" class="md-nav__link">
     <span class="md-ellipsis">
-      🚁 Docker for Windows
+      📌 Docker for Windows
     </span>
   </a>
   
@@ -3270,7 +3330,25 @@
         <li class="md-nav__item">
   <a href="#hyper-v" class="md-nav__link">
     <span class="md-ellipsis">
-      🚁 启用Hyper-V后运行容器提示端口不可用
+      📌 启用Hyper-V后运行容器提示端口不可用
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      📌 镜像源
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#windowsopenssh" class="md-nav__link">
+    <span class="md-ellipsis">
+      📌 Windows系统启用OpenSSH
     </span>
   </a>
   
@@ -3295,7 +3373,7 @@
 
 
 <h1 id="_1"></h1>
-<h3 id="docker-for-windows">🚁 Docker for Windows</h3>
+<h2 id="docker-for-windows">📌 Docker for Windows</h2>
 <p>已知Docker依赖于linux内核环境，但总有大冤种（也就是我😓）想在Windows 10操作系统中部署。</p>
 <p>参考资料：<a href="https://www.runoob.com/docker/windows-docker-install.html">Window Docker安装教程</a></p>
 <p>安装教程第一步是安装并开启Hyper-V，但我并未执行这一步（根据提供的步骤查看也未启用Hyper-V），而是直接在官网下载了安装包，但安装时提示系统版本太低。</p>
@@ -3304,7 +3382,7 @@
 <p>2024/5/12: 电脑上还同时使用安卓模拟器时，请不要使用Hyper-V！否则会出现冲突，docker起不来。<br />
  2024/8/17: 新设备首次使用尽量下载最新版：实测Windows 11安装docker 4.1.1.0，容器初始化报错，换成4.3.2.0（20240817当前最新版）正常运行。</p>
 </blockquote>
-<h3 id="hyper-v">🚁 启用Hyper-V后运行容器提示端口不可用</h3>
+<h2 id="hyper-v">📌 启用Hyper-V后运行容器提示端口不可用</h2>
 <p>为了避免一些不必要的错误，后来还是启用了Hyper-V，此时再Docker run container时报错。</p>
 <blockquote>
 <p>Error: (HTTP code 500) server error - Ports are not available: listen tcp 0.0.0.0:xxxx: bind: An attempt was made to access a socket in a way forbidden by access permissions.</p>
@@ -3316,6 +3394,52 @@
 netsh int ipv6 set dynamic tcp start=49152 num=16384
 </code></pre></div>
 <p>参考资料：<a href="https://cloud.tencent.com/developer/article/2168217">错误原因分析</a></p>
+<h2 id="_2">📌 镜像源</h2>
+<p>2024/10/21 - 镜像源配置</p>
+<div class="highlight"><pre><span></span><code>{
+  &quot;builder&quot;: {
+    &quot;gc&quot;: {
+      &quot;defaultKeepStorage&quot;: &quot;20GB&quot;,
+      &quot;enabled&quot;: true
+    }
+  },
+  &quot;experimental&quot;: false,
+  &quot;registry-mirrors&quot;: [
+    &quot;https://docker.registry.cyou&quot;,
+    &quot;https://docker-cf.registry.cyou&quot;,
+    &quot;https://dockercf.jsdelivr.fyi&quot;,
+    &quot;https://docker.jsdelivr.fyi&quot;,
+    &quot;https://dockertest.jsdelivr.fyi&quot;,
+    &quot;https://mirror.aliyuncs.com&quot;,
+    &quot;https://dockerproxy.com&quot;,
+    &quot;https://mirror.baidubce.com&quot;,
+    &quot;https://docker.m.daocloud.io&quot;,
+    &quot;https://docker.nju.edu.cn&quot;,
+    &quot;https://docker.mirrors.sjtug.sjtu.edu.cn&quot;,
+    &quot;https://docker.mirrors.ustc.edu.cn&quot;,
+    &quot;https://mirror.iscas.ac.cn&quot;,
+    &quot;https://docker.rainbond.cc&quot;
+  ]
+}
+</code></pre></div>
+<h2 id="windowsopenssh">📌 Windows系统启用OpenSSH</h2>
+<p>由于Window Docker启的容器无法被其他机器直接远程连接，故需启用OpenSSH。</p>
+<p>1.安装OpenSSH服务器：系统 &gt; 可选功能 &gt; 添加可选功能 &gt; 搜索“OpenSSH服务器”</p>
+<p>2.配置与启动</p>
+<p>管理员身份运行PowerShell，执行命令：</p>
+<p>SSH服务自动启动</p>
+<div class="highlight"><pre><span></span><code>Set-Service -Name sshd -StartupType &#39;Automatic&#39;
+</code></pre></div>
+<p>启动服务</p>
+<div class="highlight"><pre><span></span><code>Start-Service sshd
+</code></pre></div>
+<p>检查SSH服务器是否侦听22端口</p>
+<div class="highlight"><pre><span></span><code>netstat -an | findstr /i &quot;:22&quot;
+</code></pre></div>
+<p>确保Windows Defender防火墙允许 TCP 22 端口的入站连接</p>
+<div class="highlight"><pre><span></span><code>Get-NetFirewallRule -Name *OpenSSH-Server* | select Name, DisplayName, Description, Enabled
+</code></pre></div>
+<p>参考资料：<a href="https://www.sysgeek.cn/openssh-windows/">Windows 上的 OpenSSH：安装、配置和使用指南</a></p>
 <hr />
 
 
@@ -3337,7 +3461,7 @@ netsh int ipv6 set dynamic tcp start=49152 num=16384
     <span class="md-icon" title="最后更新">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime">2024-08-17 11:52:18</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime">2024-10-25 14:59:00</span>
   </span>
 
     
