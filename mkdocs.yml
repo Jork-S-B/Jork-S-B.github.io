@@ -55,6 +55,7 @@ nav:
       - leetcode热题100:
           - 哈希: java/leetcode/hash.md
           - 双指针: java/leetcode/two_pointers.md
+      - JUnit 5: java/junit5.md
   - Vue:
       - 基础: vue/basic.md
   - 数据库:
@@ -99,6 +100,7 @@ nav:
       - 构建Oracle镜像: docker/build_oracle.md
       - 构建Jenkins镜像: docker/build_jenkins.md
       - 构建RockyLinux镜像: docker/build_rockylinux.md
+      - 构建HBase镜像: docker/build_hbase.md
   - 其他:
       - 高性能: other/high_performance.md
       - 高可用: other/high_availability.md
