@@ -25,7 +25,7 @@
     # 虚拟主机配置
     server {
         listen       {自定端口号};
-        server_name  {本机ip};
+        server_name  {本机ip/域名};
 
         location / {
             root   {静态网页路径};

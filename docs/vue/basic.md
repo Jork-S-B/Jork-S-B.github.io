@@ -12,7 +12,7 @@
 |              npm install --global vue-cli              | 全局安装vue-cli |
 |                 vue init webpack demo                  | 创建项目        |
 |                      npm run dev                       | 启动          |
-|                     npm run build                      | 构建          |
+|                     npm run build                      | 构建/打包       |
 
 ## 📌 使用模版
 
@@ -533,7 +533,7 @@ web用来发送接口请求与后端进行交互的框架，对响应做拦截�
 安装axios: npm install axios@1.3.5 --save
 
 === "@/utils/ajax.js"
-    
+
     ```javascript
     import axios from 'axios';
     
