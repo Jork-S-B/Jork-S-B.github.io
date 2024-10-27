@@ -989,17 +989,50 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#_9" class="md-nav__link">
+    <span class="md-ellipsis">
+      🚁 练习
+    </span>
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#_9" class="md-nav__link">
+  <a href="#_10" class="md-nav__link">
     <span class="md-ellipsis">
-      📌 练习
+      📌 异步编程
     </span>
   </a>
+  
+    <nav class="md-nav" aria-label="📌 异步编程">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#await" class="md-nav__link">
+    <span class="md-ellipsis">
+      🚁 await
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#task" class="md-nav__link">
+    <span class="md-ellipsis">
+      🚁 Task
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -3516,17 +3549,50 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#_9" class="md-nav__link">
+    <span class="md-ellipsis">
+      🚁 练习
+    </span>
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#_9" class="md-nav__link">
+  <a href="#_10" class="md-nav__link">
     <span class="md-ellipsis">
-      📌 练习
+      📌 异步编程
     </span>
   </a>
+  
+    <nav class="md-nav" aria-label="📌 异步编程">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#await" class="md-nav__link">
+    <span class="md-ellipsis">
+      🚁 await
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#task" class="md-nav__link">
+    <span class="md-ellipsis">
+      🚁 Task
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -3665,8 +3731,8 @@ Queue是一个线程安全的队列，可以用于线程间的数据传递和通
 <div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">threading</span>
 
 <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">Lock: 原始锁，可以由任意线程解锁，不能重复上锁</span>
-<span class="sd">RLock: 重入锁，只能由锁定线程解锁，可以重复上锁，但也要重复解锁</span>
+<span class="sd">Lock: 互斥锁，可以由任意线程解锁，不能重复上锁；重复上锁可能会导致死锁</span>
+<span class="sd">RLock: 重入锁，只能由锁定线程解锁，可以重复上锁，但也要重复解锁；适合递归调用的场景</span>
 <span class="sd">其他的还有Condition-条件锁，Event-事件锁，Semaphore-信号量锁等</span>
 <span class="sd">&quot;&quot;&quot;</span>
 <span class="c1"># 创建一个锁对象</span>
@@ -3721,6 +3787,7 @@ Queue是一个线程安全的队列，可以用于线程间的数据传递和通
 <li>循环等待：若干进程形成头尾相连的循环等待资源</li>
 </ul>
 <p>避免死锁：银行家算法，通过统计各进程对资源的最大需求，满足时进行分发（破坏条件-循环等待）。</p>
+<p>造成死锁时会导致资源被锁定、系统性能下降、进程停止运行等情况。</p>
 <h3 id="_6">🚁 线程池</h3>
 <p>Python中的线程池通常使用<code>concurrent.futures</code>模块中的<code>ThreadPoolExecutor</code>类来实现。<br />
 线程池可以有效地管理一定数量的线程，避免频繁创建和销毁线程的开销，同时限制并发线程的数量，防止资源耗尽。</p>
@@ -3896,8 +3963,7 @@ Queue是一个线程安全的队列，可以用于线程间的数据传递和通
 </div>
 <h3 id="_8">🚁 进程池</h3>
 <p>python进程池使用<code>concurrent.futures</code>模块中的<code>ProcessPoolExecutor</code>类来实现，类方法与线程池的类似。</p>
-<hr />
-<h2 id="_9">📌 练习</h2>
+<h3 id="_9">🚁 练习</h3>
 <div class="highlight"><pre><span></span><code><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">有三个组装车间，分别组A、B、C三款产品，每款产品都有四个零件a1，a2，a3，a4。</span>
 <span class="sd">零件生产商会与隔一秒生成三种产品的任一零件，并将零件发送至三个车间。</span>
@@ -4010,6 +4076,43 @@ Queue是一个线程安全的队列，可以用于线程间的数据传递和通
     <span class="n">producer</span><span class="o">.</span><span class="n">join</span><span class="p">()</span>
     <span class="n">workshop</span><span class="o">.</span><span class="n">join</span><span class="p">()</span>
 </code></pre></div>
+<h2 id="_10">📌 异步编程</h2>
+<p>协程函数，使用<code>asynic</code>定义的函数：<code>asynic def func</code>，在python3.5引入。</p>
+<p>协程对象，执行协程函数()时仅得到协程对象，内部代码不会执行。</p>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">asyncio</span>
+
+<span class="k">async</span> <span class="k">def</span> <span class="nf">func</span><span class="p">():</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;hello world&#39;</span><span class="p">)</span>
+
+<span class="c1"># 运行异步函数体的内容，需要将协程对象交给事件循环进行处理。</span>
+<span class="c1"># loop = asyncio.get_event_loop()</span>
+<span class="c1"># loop.run_until_complete(func())</span>
+<span class="n">asyncio</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">func</span><span class="p">())</span>  <span class="c1"># 与以上两行等价，但asyncio.run在python3.7以上才可用</span>
+</code></pre></div>
+<h3 id="await">🚁 await</h3>
+<p>await + 可等待的对象（包括协程对象、future对象、Task对象）</p>
+<p>挂起当前协程（任务），等待IO操作完成之后再继续执行。</p>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">asyncio</span>
+
+<span class="k">async</span> <span class="k">def</span> <span class="nf">others</span><span class="p">():</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;start&quot;</span><span class="p">)</span>
+    <span class="k">await</span> <span class="n">asyncio</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;end&quot;</span><span class="p">)</span>
+    <span class="k">return</span> <span class="s2">&quot;返回值&quot;</span>
+
+<span class="k">async</span> <span class="k">def</span> <span class="nf">func</span><span class="p">():</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;first&quot;</span><span class="p">)</span>
+    <span class="n">res1</span> <span class="o">=</span> <span class="k">await</span> <span class="n">others</span><span class="p">()</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;IO请求结束，结果res1为：&quot;</span><span class="p">,</span> <span class="n">res1</span><span class="p">)</span>
+
+    <span class="n">res2</span> <span class="o">=</span> <span class="k">await</span> <span class="n">others</span><span class="p">()</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;IO请求结束，结果res2为：&quot;</span><span class="p">,</span> <span class="n">res2</span><span class="p">)</span>
+
+<span class="n">asyncio</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">func</span><span class="p">())</span>
+</code></pre></div>
+<h3 id="task">🚁 Task</h3>
+<p>在事件循环中，将协程对象封装为Task对象，交给事件循环进行处理。</p>
+<p>asyncio.create_task(coro)  # python3.7引入</p>
 
 
 
@@ -4030,7 +4133,7 @@ Queue是一个线程安全的队列，可以用于线程间的数据传递和通
     <span class="md-icon" title="最后更新">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime">2024-07-21 19:20:23</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime">2024-10-27 23:01:00</span>
   </span>
 
     
