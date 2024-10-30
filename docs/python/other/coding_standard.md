@@ -33,8 +33,4 @@ Python在解析一个被引用的名字时遵循LEGB规则，即local、enclosin
 日志级别一般包括：  
 `step`-步骤、`debug`-调试信息、`info`-上下文、`warning`-警告、`error`-错误异常
 
-### 🚁 POM
-
-Page Object Model，将页面元素操作和测试用例分开，使得代码逻辑更加清晰，复用性、可维护性更高。
-
-自动化测试当中的三大设计技巧：PO设计思想，数据驱动及关键字驱动，POM，todo
+---
