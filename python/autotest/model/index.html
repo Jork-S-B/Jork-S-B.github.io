@@ -947,6 +947,15 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      📌 简单示例
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -3349,6 +3358,15 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      📌 简单示例
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -3370,7 +3388,7 @@
   <h1>设计</h1>
 
 <h2 id="pom">📌 POM</h2>
-<p>Page Object模式，在自动化测试中将页面元素与操作抽象为对象，通过该方式，让测试代码更清晰、可维护及可重用。</p>
+<p>Page Object Model，在自动化测试中将页面元素与操作抽象为对象，通过该方式，让测试代码更清晰、可维护及可重用。</p>
 <p>具体实现：</p>
 <ul>
 <li>页面类(Page Class)，每个页面（或页面的一部分）被抽象为一个类，包含页面元素和元素相关的操作方法。</li>
@@ -3378,7 +3396,84 @@
 <li>操作方法(Actions)，在页面类中，定义各种操作方法，模拟用户对页面元素的操作如点击、输入文本等。</li>
 </ul>
 <h2 id="_1">📌 关键字驱动</h2>
-<p>将测试步骤抽象为关键字，通过关键字构建测试用例，方便非技术人员参与用例设计。</p>
+<p>将测试步骤抽象为关键字，通过关键字构建测试用例，使设计用例时聚焦于业务逻辑，方便非技术人员参与用例设计。</p>
+<h2 id="_2">📌 简单示例</h2>
+<div class="tabbed-set tabbed-alternate" data-tabs="1:5"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><input id="__tabbed_1_3" name="__tabbed_1" type="radio" /><input id="__tabbed_1_4" name="__tabbed_1" type="radio" /><input id="__tabbed_1_5" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">pages/base_page.py</label><label for="__tabbed_1_2">pages/search_page.py</label><label for="__tabbed_1_3">keywords/search_keywords.py</label><label for="__tabbed_1_4">conftest.py</label><label for="__tabbed_1_5">tests/test_search.py</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">selenium.webdriver.common.by</span> <span class="kn">import</span> <span class="n">By</span>
+<span class="kn">from</span> <span class="nn">selenium.webdriver.support.ui</span> <span class="kn">import</span> <span class="n">WebDriverWait</span>
+<span class="kn">from</span> <span class="nn">selenium.webdriver.support</span> <span class="kn">import</span> <span class="n">expected_conditions</span> <span class="k">as</span> <span class="n">EC</span>
+
+<span class="k">class</span> <span class="nc">BasePage</span><span class="p">:</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">driver</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">driver</span> <span class="o">=</span> <span class="n">driver</span>
+
+    <span class="k">def</span> <span class="nf">find_element</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">by</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">WebDriverWait</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">driver</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span><span class="o">.</span><span class="n">until</span><span class="p">(</span>
+            <span class="n">EC</span><span class="o">.</span><span class="n">presence_of_element_located</span><span class="p">((</span><span class="n">by</span><span class="p">,</span> <span class="n">value</span><span class="p">))</span>
+        <span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">click</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">by</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
+        <span class="n">element</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">find_element</span><span class="p">(</span><span class="n">by</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span>
+        <span class="n">element</span><span class="o">.</span><span class="n">click</span><span class="p">()</span>
+
+    <span class="k">def</span> <span class="nf">send_keys</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">by</span><span class="p">,</span> <span class="n">value</span><span class="p">,</span> <span class="n">text</span><span class="p">):</span>
+        <span class="n">element</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">find_element</span><span class="p">(</span><span class="n">by</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span>
+        <span class="n">element</span><span class="o">.</span><span class="n">send_keys</span><span class="p">(</span><span class="n">text</span><span class="p">)</span>
+</code></pre></div>
+</div>
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">pages.base_page</span> <span class="kn">import</span> <span class="n">BasePage</span>
+
+<span class="k">class</span> <span class="nc">SearchPage</span><span class="p">(</span><span class="n">BasePage</span><span class="p">):</span>
+    <span class="n">SEARCH_INPUT</span> <span class="o">=</span> <span class="p">(</span><span class="n">By</span><span class="o">.</span><span class="n">NAME</span><span class="p">,</span> <span class="s1">&#39;q&#39;</span><span class="p">)</span>
+    <span class="n">SEARCH_BUTTON</span> <span class="o">=</span> <span class="p">(</span><span class="n">By</span><span class="o">.</span><span class="n">XPATH</span><span class="p">,</span> <span class="s1">&#39;//*[@id=&quot;search-form&quot;]/button&#39;</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">enter_search_query</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">query</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">send_keys</span><span class="p">(</span><span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">SEARCH_INPUT</span><span class="p">,</span> <span class="n">query</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">click_search_button</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">click</span><span class="p">(</span><span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">SEARCH_BUTTON</span><span class="p">)</span>
+</code></pre></div>
+</div>
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">pages.search_page</span> <span class="kn">import</span> <span class="n">SearchPage</span>
+
+<span class="k">class</span> <span class="nc">SearchKeywords</span><span class="p">:</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">driver</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">search_page</span> <span class="o">=</span> <span class="n">SearchPage</span><span class="p">(</span><span class="n">driver</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">perform_search</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">query</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">search_page</span><span class="o">.</span><span class="n">enter_search_query</span><span class="p">(</span><span class="n">query</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">search_page</span><span class="o">.</span><span class="n">click_search_button</span><span class="p">()</span>
+</code></pre></div>
+</div>
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">pytest</span>
+<span class="kn">from</span> <span class="nn">selenium</span> <span class="kn">import</span> <span class="n">webdriver</span>
+
+<span class="nd">@pytest</span><span class="o">.</span><span class="n">fixture</span><span class="p">(</span><span class="n">scope</span><span class="o">=</span><span class="s1">&#39;function&#39;</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">driver</span><span class="p">():</span>
+    <span class="n">driver</span> <span class="o">=</span> <span class="n">webdriver</span><span class="o">.</span><span class="n">Chrome</span><span class="p">()</span>
+    <span class="k">yield</span> <span class="n">driver</span>
+    <span class="n">driver</span><span class="o">.</span><span class="n">quit</span><span class="p">()</span>
+</code></pre></div>
+</div>
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">pytest</span>
+<span class="kn">from</span> <span class="nn">keywords.search_keywords</span> <span class="kn">import</span> <span class="n">SearchKeywords</span>
+
+<span class="k">def</span> <span class="nf">test_search</span><span class="p">(</span><span class="n">driver</span><span class="p">):</span>
+    <span class="n">search_keywords</span> <span class="o">=</span> <span class="n">SearchKeywords</span><span class="p">(</span><span class="n">driver</span><span class="p">)</span>
+    <span class="n">driver</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;https://www.example.com&#39;</span><span class="p">)</span>
+    <span class="n">search_keywords</span><span class="o">.</span><span class="n">perform_search</span><span class="p">(</span><span class="s1">&#39;pytest&#39;</span><span class="p">)</span>
+    <span class="k">assert</span> <span class="s1">&#39;pytest&#39;</span> <span class="ow">in</span> <span class="n">driver</span><span class="o">.</span><span class="n">title</span>
+</code></pre></div>
+</div>
+</div>
+</div>
+<hr />
 
 
 
@@ -3399,7 +3494,7 @@
     <span class="md-icon" title="最后更新">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime">2024-10-28 22:30:47</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime">2024-10-30 20:26:05</span>
   </span>
 
     
