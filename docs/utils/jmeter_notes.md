@@ -103,7 +103,7 @@ JMeter 5.6.1 之后的版本默认UTF-8编码，无需修改。
     import xx.Util;
     
     String sp = "18" + Integer.toString(${__Random(000000000,999999999,)});
-    log.info("==================phonenum is" + sp);
+    log.info("phonenum is" + sp);
     vars.put("phone",sp);
     String code = Util.encrypt(sp);
     
@@ -111,7 +111,7 @@ JMeter 5.6.1 之后的版本默认UTF-8编码，无需修改。
     vars.put("phone",code);
 
     // 记录日志
-    log.info("==================phonenum is" + vars.get("phone"));
+    log.info("phonenum is" + vars.get("phone"));
 
     // props能跨线程，是hashtable对象
     props.put("phone",code);  // 在脚本文本中通过${__P(phone)}引用
