@@ -85,6 +85,12 @@
         <boolProp name="ThreadGroup.same_user_on_next_iteration">true</boolProp>
       </ThreadGroup>
       <hashTree>
+        <SyncTimer guiclass="TestBeanGUI" testclass="SyncTimer" testname="同步定时器" enabled="false">
+          <stringProp name="TestPlan.comments">0，即等待至线程组设置的数量</stringProp>
+          <intProp name="groupSize">0</intProp>
+          <longProp name="timeoutInMs">0</longProp>
+        </SyncTimer>
+        <hashTree/>
         <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="HTTP请求" enabled="true">
           <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="用户定义的变量" enabled="true">
             <collectionProp name="Arguments.arguments"/>
@@ -126,11 +132,19 @@
             <stringProp name="variableNames">servnumber</stringProp>
           </CSVDataSet>
           <hashTree/>
-          <SyncTimer guiclass="TestBeanGUI" testclass="SyncTimer" testname="同步定时器" enabled="true">
-            <stringProp name="TestPlan.comments">0，即等待至线程组设置的数量</stringProp>
-            <intProp name="groupSize">0</intProp>
-            <longProp name="timeoutInMs">0</longProp>
-          </SyncTimer>
+          <BeanShellPreProcessor guiclass="TestBeanGUI" testclass="BeanShellPreProcessor" testname="BeanShell PreProcessor" enabled="false">
+            <boolProp name="resetInterpreter">false</boolProp>
+            <stringProp name="parameters"></stringProp>
+            <stringProp name="filename"></stringProp>
+            <stringProp name="script">import aesutil.AESUtil;
+
+String sp = &quot;18&quot; + Integer.toString(${__Random(000000000,999999999,)});
+log.info(&quot;==================phonenum is&quot; + sp);
+vars.put(&quot;phone&quot;,sp);
+String code = AESUtil.encrypt(sp);
+log.info(&quot;==================phonenum is&quot; + code);
+vars.put(&quot;phone&quot;,code);</stringProp>
+          </BeanShellPreProcessor>
           <hashTree/>
         </hashTree>
         <ResultCollector guiclass="ViewResultsFullVisualizer" testclass="ResultCollector" testname="查看结果树" enabled="true">
@@ -226,6 +240,12 @@
         </elementProp>
       </kg.apc.jmeter.threads.SteppingThreadGroup>
       <hashTree>
+        <SyncTimer guiclass="TestBeanGUI" testclass="SyncTimer" testname="同步定时器" enabled="false">
+          <stringProp name="TestPlan.comments">0，即等待至线程组设置的数量</stringProp>
+          <intProp name="groupSize">0</intProp>
+          <longProp name="timeoutInMs">0</longProp>
+        </SyncTimer>
+        <hashTree/>
         <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="HTTP请求" enabled="true">
           <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="用户定义的变量" enabled="true">
             <collectionProp name="Arguments.arguments"/>
@@ -267,11 +287,19 @@
             <stringProp name="variableNames">servnumber</stringProp>
           </CSVDataSet>
           <hashTree/>
-          <SyncTimer guiclass="TestBeanGUI" testclass="SyncTimer" testname="同步定时器" enabled="false">
-            <stringProp name="TestPlan.comments">0，即等待至线程组设置的数量</stringProp>
-            <intProp name="groupSize">0</intProp>
-            <longProp name="timeoutInMs">0</longProp>
-          </SyncTimer>
+          <BeanShellPreProcessor guiclass="TestBeanGUI" testclass="BeanShellPreProcessor" testname="BeanShell PreProcessor" enabled="false">
+            <boolProp name="resetInterpreter">false</boolProp>
+            <stringProp name="parameters"></stringProp>
+            <stringProp name="filename"></stringProp>
+            <stringProp name="script">import aesutil.AESUtil;
+
+String sp = &quot;18&quot; + Integer.toString(${__Random(000000000,999999999,)});
+log.info(&quot;==================phonenum is&quot; + sp);
+vars.put(&quot;phone&quot;,sp);
+String code = AESUtil.encrypt(sp);
+log.info(&quot;==================phonenum is&quot; + code);
+vars.put(&quot;phone&quot;,code);</stringProp>
+          </BeanShellPreProcessor>
           <hashTree/>
         </hashTree>
         <ResultCollector guiclass="ViewResultsFullVisualizer" testclass="ResultCollector" testname="查看结果树" enabled="true">
@@ -348,7 +376,7 @@
           <stringProp name="filename">D:\Program Files\apache-jmeter-5.5\bin\performance\2024.09_压测\202409.jtl</stringProp>
         </ResultCollector>
         <hashTree/>
-        <kg.apc.jmeter.vizualizers.CorrectedResultCollector guiclass="kg.apc.jmeter.vizualizers.ResponseTimesOverTimeGui" testclass="kg.apc.jmeter.vizualizers.CorrectedResultCollector" testname="jp@gc - Response Times Over Time" enabled="true">
+        <kg.apc.jmeter.vizualizers.CorrectedResultCollector guiclass="kg.apc.jmeter.vizualizers.ResponseTimesOverTimeGui" testclass="kg.apc.jmeter.vizualizers.CorrectedResultCollector" testname="jp@gc - Response Times Over Time" enabled="false">
           <boolProp name="ResultCollector.error_logging">false</boolProp>
           <objProp>
             <name>saveConfig</name>
@@ -393,7 +421,7 @@
           <boolProp name="exclude_checkbox_state">false</boolProp>
         </kg.apc.jmeter.vizualizers.CorrectedResultCollector>
         <hashTree/>
-        <kg.apc.jmeter.vizualizers.CorrectedResultCollector guiclass="kg.apc.jmeter.vizualizers.TransactionsPerSecondGui" testclass="kg.apc.jmeter.vizualizers.CorrectedResultCollector" testname="jp@gc - Transactions per Second" enabled="true">
+        <kg.apc.jmeter.vizualizers.CorrectedResultCollector guiclass="kg.apc.jmeter.vizualizers.TransactionsPerSecondGui" testclass="kg.apc.jmeter.vizualizers.CorrectedResultCollector" testname="jp@gc - Transactions per Second" enabled="false">
           <boolProp name="ResultCollector.error_logging">false</boolProp>
           <objProp>
             <name>saveConfig</name>
