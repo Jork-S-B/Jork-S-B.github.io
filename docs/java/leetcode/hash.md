@@ -1,6 +1,4 @@
-## 📌 1. 两数之和
-
-https://leetcode.cn/problems/two-sum/description/?envType=study-plan-v2&envId=top-100-liked
+## 📌 [1. 两数之和](https://leetcode.cn/problems/two-sum/description/?envType=study-plan-v2&envId=top-100-liked)
 
 判断遍历值是否小于`target`，小于时先记录数值及下标`i`
 

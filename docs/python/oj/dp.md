@@ -5,7 +5,7 @@ class Solution:
     
     @staticmethod
     def generate(numRows: int) -> List[List[int]]:
-        # 118. 杨辉三角
+        # 118. 杨辉三角_leetcode
         # 在「杨辉三角」中，每个数是它左上方和右上方的数的和。
         if numRows == 1:
             return [[1]]
