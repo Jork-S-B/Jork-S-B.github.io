@@ -1,11 +1,11 @@
-## 📌 动态关联
+## 📌 使用环境变量
 
 1. `Environment`Tab页中创建环境，并切换至对应环境
 2. `Tests`Tab页中声明变量
 3. 请求体中，以`{{token}}`的格式，引用全局变量作为参数值
 
 ```JavaScript
-// 2. `Tests`Tab页中声明变量
+// `Tests`Tab页中声明变量
 var jsonData = pm.response.json()
 pm.environment.set("token",jsonData.token)
 

@@ -56,6 +56,7 @@ nav:
       - leetcode热题100:
           - 哈希: java/leetcode/hash.md
           - 双指针: java/leetcode/two_pointers.md
+          - 普通数组: java/leetcode/array.md
       - JUnit 5: java/junit5.md
   - Vue:
       - 基础: vue/basic.md
@@ -86,6 +87,7 @@ nav:
           - Fiddler: utils/fiddler_notes.md
           - Charles: utils/charles_notes.md
           - Postman: utils/postman_notes.md
+          - Apifox: utils/apifox_notes.md
           - JMeter: utils/jmeter_notes.md
           - Arthas: utils/arthas.md
   - Hadoop:

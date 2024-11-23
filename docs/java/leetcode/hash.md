@@ -1,4 +1,3 @@
-
 ## 📌 1. 两数之和
 
 https://leetcode.cn/problems/two-sum/description/?envType=study-plan-v2&envId=top-100-liked
@@ -42,7 +41,7 @@ class Solution {
     public static void main(String[] args) {
         int[] nums = {2, 7, 11, 15};
         int target = 9;
-        System.out.println(Arrays.toString(twoSum(nums, target)));
+        System.out.println(Arrays.toString(twoSum2(nums, target)));  // 输出[0, 1]
     }
 }
 ```

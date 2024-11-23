@@ -8,6 +8,8 @@ thread 线程信息，-b参数查死锁
 
 jvm 类似jinfo，查看jvm信息
 
+trace 类名 方法名
+
 ---
 
 参考资料：
