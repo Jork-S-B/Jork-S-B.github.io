@@ -58,6 +58,7 @@ nav:
           - 双指针: java/leetcode/two_pointers.md
           - 普通数组: java/leetcode/array.md
           - 二分查找: java/leetcode/binary_search.md
+          - 栈: java/leetcode/stack.md
       - JUnit 5: java/junit5.md
   - Vue:
       - 基础: vue/basic.md
