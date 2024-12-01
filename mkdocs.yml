@@ -15,6 +15,7 @@ nav:
       - 算法:
           - 排序: python/oj/sort.md
           - 动态规划: python/oj/dp.md
+          - 滑动窗口: python/oj/window.md
       - 面向对象: python/oop.md
       - 内置函数: python/builtin_func.md
       - 多线程&多进程: python/thread.md
