@@ -51,5 +51,18 @@ WebDriverWait(driver, 10).until(lambda x: x.find_element(by='xpath', value=value
 
     浏览器F12->Console调试，输入`setTimeout(function(){debugger},1000)`，表示过1秒后进入调试模式，在排查元素定位、元素覆盖时有用。
 
+## 📌 chromedriver
 
-参考资料：[selenium + python 中文文档](https://python-selenium-zh.readthedocs.io/zh-cn/latest/)
+chromedriver和chrome浏览器大版本号保持一致即可。
+
+114及更早版本: https://chromedriver.storage.googleapis.com/index.html
+
+130以上版本: https://googlechromelabs.github.io/chrome-for-testing
+
+---
+
+参考资料:
+
+1.[selenium中文文档](https://python-selenium-zh.readthedocs.io/zh-cn/latest/)
+
+2.[谷歌浏览器驱动下载指路](https://blog.csdn.net/m0_54958293/article/details/134663146)
