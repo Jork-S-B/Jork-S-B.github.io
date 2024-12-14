@@ -90,6 +90,20 @@
     # [0]{0,1} 零出现0或1次
     ```
 
+=== "提取短信中的验证码"
+    
+    ```python
+    str = "【华为】您本次的验证码为：038640，请于30分钟内输入。如非本人操作，请忽略此信息。"
+    
+    import re
+    match = re.search(r'验证码.*?(\d+)', str)
+    if match:
+        verification_code = match.group(1)
+        print("提取到的验证码是:", verification_code)
+    else:
+        print("未找到验证码")
+    ```
+
 !!! note "补充"
 
     * `re.match(str,str2)`，匹配以str开头的字符串，失败返回None，成功返回match对象，需搭配group使用。
@@ -97,5 +111,9 @@
     * `re.search()`，在整个字符串匹配，失败返回None，成功返回match对象，需搭配group使用。
 
     `matchObj.group(n)`，返回第n个匹配的子串，n从1开始计数。若没有分组，则返回整个匹配的子串。
-    
 
+---
+
+参考资料:
+
+1.[快速获取验证码](https://cloud.tencent.com/developer/article/2308994)
