@@ -13,10 +13,10 @@
       
       
       
-        <link rel="prev" href="../oj/window/">
+        <link rel="prev" href="../thread/">
       
       
-        <link rel="next" href="../builtin_func/">
+        <link rel="next" href="../autotest/model/">
       
       
       <link rel="icon" href="../../assets/images/favicon.png">
@@ -24,7 +24,7 @@
     
     
       
-        <title>面向对象 - whm</title>
+        <title>异步编程 - whm</title>
       
     
     
@@ -81,7 +81,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#_1" class="md-skip">
+        <a href="#await" class="md-skip">
           跳转至
         </a>
       
@@ -115,7 +115,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              面向对象
+              异步编程
             
           </span>
         </div>
@@ -815,29 +815,10 @@
                 
   
   
-    
   
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          
-  
-  <span class="md-ellipsis">
-    面向对象
-    
-  </span>
-  
-
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../oop/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -847,159 +828,6 @@
   
 
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="目录">
-  
-  
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      目录
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#_1" class="md-nav__link">
-    <span class="md-ellipsis">
-      📌 多态
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#_2" class="md-nav__link">
-    <span class="md-ellipsis">
-      📌 继承
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="📌 继承">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#_3" class="md-nav__link">
-    <span class="md-ellipsis">
-      🚁 抽象类
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#_4" class="md-nav__link">
-    <span class="md-ellipsis">
-      📌 特殊成员方法/魔术方法
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="📌 特殊成员方法/魔术方法">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#call" class="md-nav__link">
-    <span class="md-ellipsis">
-      🚁 call
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#new" class="md-nav__link">
-    <span class="md-ellipsis">
-      🚁 new
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#str" class="md-nav__link">
-    <span class="md-ellipsis">
-      🚁 str
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#dict" class="md-nav__link">
-    <span class="md-ellipsis">
-      🚁 dict
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#doc" class="md-nav__link">
-    <span class="md-ellipsis">
-      🚁 doc
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#_5" class="md-nav__link">
-    <span class="md-ellipsis">
-      📌 变量
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#_6" class="md-nav__link">
-    <span class="md-ellipsis">
-      📌 编程规范
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="📌 编程规范">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#_7" class="md-nav__link">
-    <span class="md-ellipsis">
-      🚁 类定义时方法的顺序建议
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#_8" class="md-nav__link">
-    <span class="md-ellipsis">
-      🚁 具名函数
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -1053,10 +881,29 @@
                 
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="../async/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    异步编程
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         
   
   <span class="md-ellipsis">
@@ -1066,6 +913,69 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#await" class="md-nav__link">
+    <span class="md-ellipsis">
+      🚁 await
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#task" class="md-nav__link">
+    <span class="md-ellipsis">
+      🚁 Task对象
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#asynciofuture" class="md-nav__link">
+    <span class="md-ellipsis">
+      🚁 asyncio.Future对象
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#concurrentfuturesfuture" class="md-nav__link">
+    <span class="md-ellipsis">
+      🚁 concurrent.futures.Future对象
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#uvloop" class="md-nav__link">
+    <span class="md-ellipsis">
+      🚁 uvloop
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -3776,137 +3686,47 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#_1" class="md-nav__link">
+  <a href="#await" class="md-nav__link">
     <span class="md-ellipsis">
-      📌 多态
+      🚁 await
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#_2" class="md-nav__link">
+  <a href="#task" class="md-nav__link">
     <span class="md-ellipsis">
-      📌 继承
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="📌 继承">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#_3" class="md-nav__link">
-    <span class="md-ellipsis">
-      🚁 抽象类
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#_4" class="md-nav__link">
-    <span class="md-ellipsis">
-      📌 特殊成员方法/魔术方法
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="📌 特殊成员方法/魔术方法">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#call" class="md-nav__link">
-    <span class="md-ellipsis">
-      🚁 call
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#new" class="md-nav__link">
-    <span class="md-ellipsis">
-      🚁 new
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#str" class="md-nav__link">
-    <span class="md-ellipsis">
-      🚁 str
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#dict" class="md-nav__link">
-    <span class="md-ellipsis">
-      🚁 dict
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#doc" class="md-nav__link">
-    <span class="md-ellipsis">
-      🚁 doc
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#_5" class="md-nav__link">
-    <span class="md-ellipsis">
-      📌 变量
+      🚁 Task对象
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#_6" class="md-nav__link">
+  <a href="#asynciofuture" class="md-nav__link">
     <span class="md-ellipsis">
-      📌 编程规范
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="📌 编程规范">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#_7" class="md-nav__link">
-    <span class="md-ellipsis">
-      🚁 类定义时方法的顺序建议
+      🚁 asyncio.Future对象
     </span>
   </a>
   
 </li>
-        
-          <li class="md-nav__item">
-  <a href="#_8" class="md-nav__link">
+      
+        <li class="md-nav__item">
+  <a href="#concurrentfuturesfuture" class="md-nav__link">
     <span class="md-ellipsis">
-      🚁 具名函数
+      🚁 concurrent.futures.Future对象
     </span>
   </a>
   
 </li>
-        
-      </ul>
-    </nav>
+      
+        <li class="md-nav__item">
+  <a href="#uvloop" class="md-nav__link">
+    <span class="md-ellipsis">
+      🚁 uvloop
+    </span>
+  </a>
   
 </li>
       
@@ -3929,158 +3749,108 @@
   
 
 
-  <h1>面向对象</h1>
+  <h1>异步编程</h1>
 
-<p>面向对象：把公共数据封装到对象，类（文件、redis信息等）函数封装到一个类，将函数归类和划分。</p>
-<p>实例化：通过类创建一个对象的过程。</p>
-<h2 id="_1">📌 多态</h2>
-<p>多态指同一种接口可以有多种不同的实现方式。</p>
-<p>鸭子模型是一种动态类型检查的概念，是多态的一种常见实现方式。不限制传参类型，只要求这个对象有函数所期望的方法或属性。</p>
-<div class="highlight"><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">Duck</span><span class="p">:</span>
-    <span class="k">def</span><span class="w"> </span><span class="nf">quack</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Quack!&quot;</span><span class="p">)</span>
+<p>协程函数，使用<code>asynic</code>定义的函数：<code>asynic def func</code>，在python3.5引入。</p>
+<p>协程对象，执行协程函数()时仅得到协程对象，内部代码不会执行。</p>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">asyncio</span>
 
-<span class="k">class</span><span class="w"> </span><span class="nc">Turkey</span><span class="p">:</span>
-    <span class="k">def</span><span class="w"> </span><span class="nf">quack</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Gobble gobble!&quot;</span><span class="p">)</span>
+<span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">func</span><span class="p">():</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;hello world&#39;</span><span class="p">)</span>
 
-<span class="k">def</span><span class="w"> </span><span class="nf">make_quack</span><span class="p">(</span><span class="n">animal</span><span class="p">):</span>
-    <span class="n">animal</span><span class="o">.</span><span class="n">quack</span><span class="p">()</span>
-
-<span class="c1"># 创建对象</span>
-<span class="n">duck</span> <span class="o">=</span> <span class="n">Duck</span><span class="p">()</span>
-<span class="n">turkey</span> <span class="o">=</span> <span class="n">Turkey</span><span class="p">()</span>
-
-<span class="c1"># 调用函数</span>
-<span class="n">make_quack</span><span class="p">(</span><span class="n">duck</span><span class="p">)</span>  <span class="c1"># 输出 &quot;Quack!&quot;</span>
-<span class="n">make_quack</span><span class="p">(</span><span class="n">turkey</span><span class="p">)</span>  <span class="c1"># 输出 &quot;Gobble gobble!&quot;</span>
-
-<span class="k">class</span><span class="w"> </span><span class="nc">Dog</span><span class="p">:</span>
-    <span class="k">def</span><span class="w"> </span><span class="nf">bark</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Woof woof!&quot;</span><span class="p">)</span>
-
-<span class="n">dog</span> <span class="o">=</span> <span class="n">Dog</span><span class="p">()</span>
-<span class="n">make_quack</span><span class="p">(</span><span class="n">dog</span><span class="p">)</span>  <span class="c1"># 将会抛出 AttributeError: &#39;Dog&#39; object has no attribute &#39;quack&#39;</span>
+<span class="c1"># 运行异步函数体的内容，需要将协程对象交给事件循环进行处理。</span>
+<span class="c1"># loop = asyncio.get_event_loop()</span>
+<span class="c1"># loop.run_until_complete(func())</span>
+<span class="n">asyncio</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">func</span><span class="p">())</span>  <span class="c1"># 与以上两行等价，但asyncio.run在python3.7以上才可用</span>
 </code></pre></div>
-<h2 id="_2">📌 继承</h2>
-<p>子类继承父类的属性和方法，子类可以重写父类的方法。</p>
-<div class="highlight"><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">Base</span><span class="p">:</span>
-    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="k">pass</span>
+<h3 id="await">🚁 await</h3>
+<p>await + 可等待的对象（包括协程对象、asyncio.Future对象、Task对象）</p>
+<p>挂起当前协程（任务），等待IO操作完成之后再继续执行。</p>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">asyncio</span>
 
-    <span class="k">def</span><span class="w"> </span><span class="nf">func</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="c1"># 通过在父类抛NotImplementedError异常约束子类。</span>
-        <span class="c1"># 面向对象的约束：通过继承，在父类中的方法抛异常，实现对子类的控制。</span>
-        <span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">(</span><span class="s2">&quot;Subclass must implement this abstract method&quot;</span><span class="p">)</span>
+<span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">others</span><span class="p">():</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;start&quot;</span><span class="p">)</span>
+    <span class="k">await</span> <span class="n">asyncio</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;end&quot;</span><span class="p">)</span>
+    <span class="k">return</span> <span class="s2">&quot;返回值&quot;</span>
 
+<span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">func</span><span class="p">():</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;first&quot;</span><span class="p">)</span>
+    <span class="n">res1</span> <span class="o">=</span> <span class="k">await</span> <span class="n">others</span><span class="p">()</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;IO请求结束，结果res1为：&quot;</span><span class="p">,</span> <span class="n">res1</span><span class="p">)</span>
 
-<span class="k">class</span><span class="w"> </span><span class="nc">Foo</span><span class="p">(</span><span class="n">Base</span><span class="p">):</span>
-    <span class="c1"># self优先从子类中查找，子类优先于父类</span>
-    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>  <span class="c1"># 如果不显式调用，父类的构造方法不会被执行。</span>
+    <span class="n">res2</span> <span class="o">=</span> <span class="k">await</span> <span class="n">others</span><span class="p">()</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;IO请求结束，结果res2为：&quot;</span><span class="p">,</span> <span class="n">res2</span><span class="p">)</span>
+
+<span class="n">asyncio</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">func</span><span class="p">())</span>
 </code></pre></div>
-<h3 id="_3">🚁 抽象类</h3>
-<p>无法被实例化，用于设计者表达自己的设计意图，并且要求后续的开发者按照设计来泛化实现。</p>
-<p>继承抽象类的子类可实例化，必须实现抽象类中的抽象方法。</p>
-<p>python中通过<code>@abstreactmethod</code>装饰器实现抽象方法</p>
-<h2 id="_4">📌 特殊成员方法/魔术方法</h2>
-<p>子类应尽量避免在继承内置类型的同时重写其魔术方法。</p>
-<h3 id="call">🚁 <strong>call</strong></h3>
-<p>当一个对象被当作函数调用时，即在对象后面加上括号()，便会寻找并调用该对象的<code>__call__</code>方法。</p>
-<p>在<code>unittest</code>中，测试类<code>TestCase</code>即通过该方式调用run方法。</p>
-<h3 id="new">🚁 <strong>new</strong></h3>
-<p><code>__new__</code>方法在创建对象时调用，返回一个对象。</p>
-<div class="highlight"><pre><span></span><code><span class="c1"># 限制某个类只能创建一个实例（单例模式）</span>
-<span class="k">class</span><span class="w"> </span><span class="nc">Singleton</span><span class="p">:</span>
-    <span class="n">_instance</span> <span class="o">=</span> <span class="kc">None</span>
+<h3 id="task">🚁 Task对象</h3>
+<p>在事件循环中，将协程对象封装为Task对象，交给事件循环进行处理。</p>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">asyncio</span>
 
-    <span class="k">def</span><span class="w"> </span><span class="fm">__new__</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
-        <span class="k">if</span> <span class="ow">not</span> <span class="bp">cls</span><span class="o">.</span><span class="n">_instance</span><span class="p">:</span>
-            <span class="bp">cls</span><span class="o">.</span><span class="n">_instance</span> <span class="o">=</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__new__</span><span class="p">(</span><span class="bp">cls</span><span class="p">)</span>
-        <span class="k">return</span> <span class="bp">cls</span><span class="o">.</span><span class="n">_instance</span>
+<span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">func</span><span class="p">():</span>
+    <span class="nb">print</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+    <span class="k">await</span> <span class="n">asyncio</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+    <span class="k">return</span> <span class="s2">&quot;返回值&quot;</span>
+
+<span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">main</span><span class="p">():</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;main开始&quot;</span><span class="p">)</span>
+    <span class="n">task_list</span> <span class="o">=</span> <span class="p">[</span>
+        <span class="n">asyncio</span><span class="o">.</span><span class="n">create_task</span><span class="p">(</span><span class="n">func</span><span class="p">(),</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;n1&#39;</span><span class="p">),</span>
+        <span class="n">asyncio</span><span class="o">.</span><span class="n">create_task</span><span class="p">(</span><span class="n">func</span><span class="p">(),</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;n2&#39;</span><span class="p">)</span>  <span class="c1"># python3.7引入</span>
+    <span class="p">]</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;main结束&quot;</span><span class="p">)</span>
+    <span class="n">done</span><span class="p">,</span> <span class="n">pending</span> <span class="o">=</span> <span class="k">await</span> <span class="n">asyncio</span><span class="o">.</span><span class="n">wait</span><span class="p">(</span><span class="n">task_list</span><span class="p">,</span> <span class="n">timeout</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">done</span><span class="p">)</span>  <span class="c1"># Set</span>
+    <span class="k">for</span> <span class="n">task</span> <span class="ow">in</span> <span class="n">done</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">task</span><span class="o">.</span><span class="n">result</span><span class="p">())</span>
+
+<span class="n">asyncio</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">main</span><span class="p">())</span>
 </code></pre></div>
-<h3 id="str">🚁 <strong>str</strong></h3>
-<p><code>print(myclass())</code><br />
-调用<code>__str__</code>方法，返回对象的字符串表示形式。</p>
-<h3 id="dict">🚁 <strong>dict</strong></h3>
-<p><code>myclass().__dict__</code><br />
-对象的变量转为字典</p>
-<h3 id="doc">🚁 <strong>doc</strong></h3>
-<p>描述信息，当定义类、方法，第一个语句是字符串时，就会被自动赋值给<code>__doc__</code>属性。</p>
-<h2 id="_5">📌 变量</h2>
-<p>Python中，以单下划线开头的变量作为保护变量，表明不希望用户直接访属性的约定。<br />
-但实际通过<code>instance._variable</code>的方式可以访问，但不会被<code>from module import *</code>导入。</p>
-<p>而双下划线开头的变量表示私有变量，目的是为了防止子类中同名变量或方法的冲突。<br />
-但实际通过<code>instance._ClassName__variable</code>的方式可以访问。</p>
-<h2 id="_6">📌 编程规范</h2>
-<h3 id="_7">🚁 类定义时方法的顺序建议</h3>
-<ol>
-<li>类变量</li>
-<li><code>__new__</code></li>
-<li><code>__init__</code></li>
-<li><code>__post_init__</code>，实例化后立即调用，可以用于执行任何必要的后处理或验证</li>
-<li>其他魔术方法，如<code>__len__</code>,<code>__bool__</code>等，具有固定返回类型的，重写时必须返回该类型</li>
-<li><code>@property</code>，类属性的封装，允许使用点语法访问，并可通过<code>@&lt;attribute&gt;.setter</code>、<code>@&lt;attribute&gt;.deleter</code>设置或删除属性</li>
-<li><code>@staticmethod</code>，静态方法，不需要访问实例也不需要访问类属性或方法时；可通过类名直接调方法，不推荐</li>
-<li><code>@classmethod</code>，类方法，不需要访问实例，但需要访问类属性或方法时；可通过类名直接调方法，不推荐</li>
-<li>普通方法</li>
-<li>保护或私有方法</li>
-</ol>
-<h3 id="_8">🚁 具名函数</h3>
-<p>当函数参数数量较多（一般指多于5个），且参数间有一定相关性时，建议通过类/<code>namedtuple</code>(具名元组类)/<code>@dataclass</code>等具名形式进行封装。</p>
-<div class="tabbed-set tabbed-alternate" data-tabs="1:2"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">使用namedtuple</label><label for="__tabbed_1_2">使用dataclass类</label></div>
-<div class="tabbed-content">
-<div class="tabbed-block">
-<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">collections</span><span class="w"> </span><span class="kn">import</span> <span class="n">namedtuple</span>
+<h3 id="asynciofuture">🚁 asyncio.Future对象</h3>
+<p>等待异步结果，Task的基类，更底层，一般不会直接用。</p>
+<h3 id="concurrentfuturesfuture">🚁 concurrent.futures.Future对象</h3>
+<p>使用线程池、进程池实现异步操作时用到的对象，主要在异步与同步间转换时使用，如异步编程时，遇到不支持异步的第三方组件。</p>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">time</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">asyncio</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">concurrent.futures</span>
 
-<span class="c1"># 定义一个具名元组类</span>
-<span class="n">Person</span> <span class="o">=</span> <span class="n">namedtuple</span><span class="p">(</span><span class="s1">&#39;Person&#39;</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;name&#39;</span><span class="p">,</span> <span class="s1">&#39;age&#39;</span><span class="p">,</span> <span class="s1">&#39;email&#39;</span><span class="p">])</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">func1</span><span class="p">():</span>
+    <span class="c1"># 某个耗时操作</span>
+    <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+    <span class="k">return</span> <span class="s2">&quot;test&quot;</span>
 
-<span class="n">person1</span> <span class="o">=</span> <span class="n">Person</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;Alice&quot;</span><span class="p">,</span> <span class="n">age</span><span class="o">=</span><span class="mi">30</span><span class="p">,</span> <span class="n">email</span><span class="o">=</span><span class="s2">&quot;alice@example.com&quot;</span><span class="p">)</span>
-<span class="c1"># person1.age = 14  # 报错：AttributeError: can&#39;t set attribute</span>
-<span class="n">person2</span> <span class="o">=</span> <span class="n">Person</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;Bob&quot;</span><span class="p">,</span> <span class="n">age</span><span class="o">=</span><span class="mi">25</span><span class="p">,</span> <span class="n">email</span><span class="o">=</span><span class="s2">&quot;bob@example.com&quot;</span><span class="p">)</span>
+<span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">main</span><span class="p">():</span>
+    <span class="n">loop</span> <span class="o">=</span> <span class="n">asyncio</span><span class="o">.</span><span class="n">get_running_loop</span><span class="p">()</span>
+    <span class="c1"># 内部先调用ThreadPoolExecutor的submit方法去线程池（默认是线程池）中申请一个线程去执行func1函数，返回concurrent.futures.Future对象</span>
+    <span class="c1"># 再调用asyncio.wrap.future，将其包装为asyncio.Future对象</span>
+    <span class="n">fut</span> <span class="o">=</span> <span class="n">loop</span><span class="o">.</span><span class="n">run_in_executor</span><span class="p">(</span><span class="kc">None</span><span class="p">,</span> <span class="n">func1</span><span class="p">)</span>  <span class="c1"># 其他参数可传入func1的传参</span>
+    <span class="n">result</span> <span class="o">=</span> <span class="k">await</span> <span class="n">fut</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;default thread pool&#39;</span><span class="p">,</span> <span class="n">result</span><span class="p">)</span>
 
-<span class="c1"># 访问具名元组的属性</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">person1</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>  <span class="c1"># 输出: Alice</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">person2</span><span class="o">.</span><span class="n">age</span><span class="p">)</span>   <span class="c1"># 输出: 25</span>
+    <span class="c1"># 在线程池中使用</span>
+    <span class="k">with</span> <span class="n">concurrent</span><span class="o">.</span><span class="n">futures</span><span class="o">.</span><span class="n">ThreadPoolExecutor</span><span class="p">()</span> <span class="k">as</span> <span class="n">pool</span><span class="p">:</span>
+        <span class="n">result</span> <span class="o">=</span> <span class="k">await</span> <span class="n">loop</span><span class="o">.</span><span class="n">run_in_executor</span><span class="p">(</span><span class="n">pool</span><span class="p">,</span> <span class="n">func1</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;custom thread pool&#39;</span><span class="p">,</span> <span class="n">result</span><span class="p">)</span>
 
-<span class="c1"># 输出整个具名元组</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">person1</span><span class="p">)</span>  <span class="c1"># 输出: Person(name=&#39;Alice&#39;, age=30, email=&#39;alice@example.com&#39;)</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">person2</span><span class="p">)</span>  <span class="c1"># 输出: Person(name=&#39;Bob&#39;, age=25, email=&#39;bob@example.com&#39;)</span>
+    <span class="c1"># 在进程池中使用</span>
+    <span class="k">with</span> <span class="n">concurrent</span><span class="o">.</span><span class="n">futures</span><span class="o">.</span><span class="n">ProcessPoolExecutor</span><span class="p">()</span> <span class="k">as</span> <span class="n">pool</span><span class="p">:</span>
+        <span class="n">result</span> <span class="o">=</span> <span class="k">await</span> <span class="n">loop</span><span class="o">.</span><span class="n">run_in_executor</span><span class="p">(</span><span class="n">pool</span><span class="p">,</span> <span class="n">func1</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;custom process pool&#39;</span><span class="p">,</span> <span class="n">result</span><span class="p">)</span>
+
+<span class="n">asyncio</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">main</span><span class="p">())</span>
 </code></pre></div>
-</div>
-<div class="tabbed-block">
-<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">dataclasses</span><span class="w"> </span><span class="kn">import</span> <span class="n">dataclass</span>
+<h3 id="uvloop">🚁 uvloop</h3>
+<p>asyncio事件循环的替代方案，基于uvloop的asyncio的速度几乎接近了Go程序的速度。</p>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">asyncio</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">uvloop</span>
+<span class="n">asyncio</span><span class="o">.</span><span class="n">set_event_loop_policy</span><span class="p">(</span><span class="n">uvloop</span><span class="o">.</span><span class="n">EventLoopPolicy</span><span class="p">())</span>
 
-<span class="nd">@dataclass</span>
-<span class="c1"># 默认生成的类是可变的（除非装饰器传参frozen=True）</span>
-<span class="k">class</span><span class="w"> </span><span class="nc">Person</span><span class="p">:</span>
-    <span class="n">name</span><span class="p">:</span> <span class="nb">str</span>
-    <span class="n">age</span><span class="p">:</span> <span class="nb">int</span>
-    <span class="n">email</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;example@example.com&quot;</span>  <span class="c1"># 可选参数，默认值为 example@example.com</span>
+<span class="c1"># 编写异步代码，与之前步骤一致</span>
 
-
-<span class="c1"># dataclass自动为类生成了 __init__ 方法</span>
-<span class="n">person1</span> <span class="o">=</span> <span class="n">Person</span><span class="p">(</span><span class="s2">&quot;Alice&quot;</span><span class="p">,</span> <span class="mi">30</span><span class="p">)</span>
-<span class="n">person1</span><span class="o">.</span><span class="n">age</span> <span class="o">=</span> <span class="mi">19</span>
-<span class="n">person2</span> <span class="o">=</span> <span class="n">Person</span><span class="p">(</span><span class="s2">&quot;Bob&quot;</span><span class="p">,</span> <span class="mi">25</span><span class="p">,</span> <span class="s2">&quot;bob@example.com&quot;</span><span class="p">)</span>
-
-<span class="c1"># dataclass自动为类生成了 __repr__ 方法</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">person1</span><span class="p">)</span>  <span class="c1"># 输出: Person(name=&#39;Alice&#39;, age=19, email=&#39;example@example.com&#39;)</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">person2</span><span class="p">)</span>  <span class="c1"># 输出: Person(name=&#39;Bob&#39;, age=25, email=&#39;bob@example.com&#39;)</span>
-
-<span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">什么时候不宜使用：</span>
-<span class="sd">1. 需要继承时</span>
-<span class="sd">2. 复杂的业务逻辑</span>
-<span class="sd">3. 性能敏感</span>
-<span class="sd">4. 高度定制化</span>
-<span class="sd">&quot;&quot;&quot;</span>
+<span class="n">asyncio</span><span class="o">.</span><span class="n">run</span><span class="p">()</span>
 </code></pre></div>
-</div>
-</div>
-</div>
-<hr />
 
 
 
@@ -4101,7 +3871,7 @@
     <span class="md-icon" title="最后更新">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime">2024-08-13 21:35:38</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime">2025-01-31 17:21:15</span>
   </span>
 
     
@@ -4137,7 +3907,7 @@
       <nav class="md-footer__inner md-grid" aria-label="页脚" >
         
           
-          <a href="../oj/window/" class="md-footer__link md-footer__link--prev" aria-label="上一页: 滑动窗口">
+          <a href="../thread/" class="md-footer__link md-footer__link--prev" aria-label="上一页: 多线程&amp;多进程">
             <div class="md-footer__button md-icon">
               
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
@@ -4147,20 +3917,20 @@
                 上一页
               </span>
               <div class="md-ellipsis">
-                滑动窗口
+                多线程&多进程
               </div>
             </div>
           </a>
         
         
           
-          <a href="../builtin_func/" class="md-footer__link md-footer__link--next" aria-label="下一页: 内置函数">
+          <a href="../autotest/model/" class="md-footer__link md-footer__link--next" aria-label="下一页: 设计">
             <div class="md-footer__title">
               <span class="md-footer__direction">
                 下一页
               </span>
               <div class="md-ellipsis">
-                内置函数
+                设计
               </div>
             </div>
             <div class="md-footer__button md-icon">
