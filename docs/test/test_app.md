@@ -174,6 +174,22 @@
 
     官方文档：[Android 调试桥 (adb)](https://developer.android.google.cn/tools/adb?hl=zh-cn)
 
+!!! note "20241217"
+
+    `adb shell content query --uri content://sms/inbox --projection body --sort "date DESC" --limit 1`
+
+    --projection，列表；获取最新一条短信的内容，但vivo x200 Pro执行该命令提示：无desc、limit参数。
+    
+    `adb shell content query --uri content://sms/inbox --projection body --sort date`
+    
+    用该命令则可以获取到全部短信内容，再搭配`str.splitlines()`转列表提取最新一条短信内容。
+
+---
+
+参考资料：
+
+[快速获取验证码](https://cloud.tencent.com/developer/article/2308994)
+
 ### 🚁 logcat缓冲区
 
 默认256K，写满时会删除较旧的日志。搭配`-b Main`指定缓冲区。
@@ -183,3 +199,4 @@
 * Events：输出事件（按键事件、触摸事件等）日志
 * Main：输出主程序（Java的main方法）日志，不属于上述三层
 
+---

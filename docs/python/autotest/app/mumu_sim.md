@@ -40,7 +40,7 @@
       
       def enter_music():
           # 连续点俩次不同意，进入基础功能模式
-          poco("com.netease.cloudmusic:id/disagree").click()
+          poco("com.netease.cloudmusic:id/disagree").click()  // 通过poco辅助窗定位元素
           assert_not_exists(Template(r"tpl1710332326022.png", record_pos=(-0.001, -0.84), resolution=(900, 1600)),
                             "首次不同意")
           poco("com.netease.cloudmusic:id/disagree").wait_for_appearance(timeout=10)

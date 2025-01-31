@@ -83,6 +83,11 @@ mysql -p mydb
 
 - 导出为tar文件，手动上传至服务器
 - 或者推送镜像到镜像仓库
+- 使用`docker commit`命令保存为新的镜像
+
+---
+
+参考资料: [Docker commit命令](https://www.runoob.com/docker/docker-commit-command.html)
 
 ### 🚁 导出镜像
 

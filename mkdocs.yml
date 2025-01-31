@@ -19,6 +19,7 @@ nav:
       - 面向对象: python/oop.md
       - 内置函数: python/builtin_func.md
       - 多线程&多进程: python/thread.md
+      - 异步编程: python/async.md
       - 自动化:
           - 设计: python/autotest/model.md
           - unittest: python/autotest/unittest/unittest_notes.md
@@ -40,6 +41,8 @@ nav:
               - ORM: python/web/django/django_orm.md
               - DTL模版引擎: python/web/django/django_templates.md
               - Cookie与Session: python/web/django/cookie&session.md
+      - Pandas:
+          - Day1: python/pandas/day1.md
       - 其他:
           - Python路径迁移: python/other/mv_py_path.md
           - mkdocs使用记录: python/other/mkdocs_notes.md
