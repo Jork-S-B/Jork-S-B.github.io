@@ -43,9 +43,12 @@ os.system(f'allure open -h {ip} -p {port} {report_dir}')
 !!! note "补充"
 
     * 放测试用例的目录应当为Python Package，而非Directory。
-    * pytest搜索规则/用例命名规则：
+    * pytest搜索规则/用例命名规则: 
+
     1.文件名如`test_*.py`或`*_test.py`，注意有下划线。
+
     2.文件中的类以Test开头。
+
     3.文件中的方法名以test_开头。
 
 ---

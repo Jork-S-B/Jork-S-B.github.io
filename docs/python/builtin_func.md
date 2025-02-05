@@ -35,7 +35,7 @@ sum(iter, start=0)
 可迭代对象中元素总和
 
 functools.reduce(func, iter, initial=None)  
-可迭代对象进行分解计算
+可迭代对象进行分解计算，向量化运算，避免循环。
 
 ```python
 numbers = [1, 2, 3]
