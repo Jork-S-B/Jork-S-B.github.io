@@ -118,6 +118,7 @@ asyncio事件循环的替代方案，基于uvloop的asyncio的速度几乎接近
 ```python
 import asyncio
 import uvloop
+
 asyncio.set_event_loop_policy(uvloop.EventLoopPolicy())
 
 # 编写异步代码，与之前步骤一致
@@ -125,3 +126,37 @@ asyncio.set_event_loop_policy(uvloop.EventLoopPolicy())
 asyncio.run()
 ```
 
+### 🚁 通过信号量(semaphore)控制并发数量
+
+```python
+import asyncio
+import aiohttp
+from typing import List
+
+# 限制最大并发数为3
+semaphore = asyncio.Semaphore(3)
+
+async def fetch_data(url: str):
+    print(f"Fetching {url}")
+    async with semaphore:
+        # 模拟网络请求或其他耗时操作
+        await asyncio.sleep(1)
+        print(f"Fetched {url}")
+
+async def main(urls: List[str]):
+    async with aiohttp.ClientSession() as session:
+        tasks = [fetch_data(url) for url in urls]
+        await asyncio.gather(*tasks)
+
+if __name__ == "__main__":
+    urls = [
+        "http://example.com/1",
+        "http://example.com/2",
+        "http://example.com/3",
+        "http://example.com/4",
+        "http://example.com/5",
+        "http://example.com/6"
+    ]
+    asyncio.run(main(urls))
+
+```
