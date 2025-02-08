@@ -45,6 +45,7 @@ nav:
           - Day1: python/pandas/day01.md
           - Day2: python/pandas/day02.md
           - Day3: python/pandas/day03.md
+          - Day4: python/pandas/day04.md
       - 其他:
           - Python路径迁移: python/other/mv_py_path.md
           - mkdocs使用记录: python/other/mkdocs_notes.md
