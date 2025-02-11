@@ -93,3 +93,45 @@ df['Cumulative_Return'] = df['Return'].add(1).expanding().apply(np.prod) - 1
 
 print(df.tail())
 ```
+
+## 📌 时间序列处理
+
+### 🚁 pct_change
+
+用于计算数组相较于前一个元素的百分比变化。
+
+DataFrame.pct_change(self, periods=1, fill_method='pad', limit=None, freq=None, **kwargs)
+
+- periods: 默认为1，表示相对于前一个元素计算百分比变化。
+- fill_method: 默认为'pad'-使用前向填充缺失值；可选bfill-使用后向填充缺失值。
+
+### 🚁 resample
+
+用于对时间序列数据进行重采样，改变时间序列的频率，例如从日数据转换为月数据。
+
+DataFrame.resample(rule, axis=0, closed=None, label=None, convention='start', kind=None, loffset=None, base=0, on=None, level=None, origin='start_day', offset=None)
+
+- rule: 重采样的频率，包括'D'-天，'W'-周，'M'-月，'Y'-年。
+- axis: 指定沿着哪个轴进行重采样。默认为0，即沿着行方向。
+
+返回`DatetimeIndexResampler`或`PeriodIndexResampler`对象，可以进一步进行聚合操作。
+
+```python
+# 日线转周线（取每周最后一个交易日的收盘价）
+weekly_data = data['Close'].resample('W-FRI').last()
+```
+
+## 📌 数据清洗与对齐
+
+### 🚁 dropna
+
+用于删除包含缺失值（NaN）的行或列
+
+### 🚁 ffill
+
+用前一个非缺失值填充缺失值（NaN）
+
+DataFrame.ffill(axis=0, inplace=False, limit=None, downcast=None)
+
+- axis: 0-行，1-列
+- inplace: 默认为False，True表示直接在原记录修改。
