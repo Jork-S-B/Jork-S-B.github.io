@@ -135,3 +135,8 @@ DataFrame.ffill(axis=0, inplace=False, limit=None, downcast=None)
 
 - axis: 0-行，1-列
 - inplace: 默认为False，True表示直接在原记录修改。
+- limit: 指定最大连续填充的`NaN`值数量。
+
+### 🚁 merge
+
+将`DataFrame`按指定列进行链接，类似SQL中的join操作。
