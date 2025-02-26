@@ -122,8 +122,8 @@ nav:
       - Nginx: other/nginx_notes.md
       - 区块链: other/blockchain.md
       - 深度学习: other/deep_learning.md
-  - 韭菜:
-      - 记录: stock/record.md
+  - 韭菜记录:
+      - 202502: stock/record.md
 
 # 搜索栏右侧git链接
 repo_url: https://github.com/Jork-S-B/Jork-S-B.github.io/tree/main
