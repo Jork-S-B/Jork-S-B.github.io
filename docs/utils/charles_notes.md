@@ -2,7 +2,8 @@
 
 ### 🚁 断点调试
 
-1. 在捕获的请求列表中找到待测请求，右键选择`Breakpoint`，然后可在`Proxy`->`Breakpoints`中设置断点的类型，默认包括`Request`、`Response`。
+1. 在捕获的请求列表中找到待测请求，右键选择`Breakpoint`，然后可在`Proxy`->`Breakpoints`
+   中设置断点的类型，默认包括`Request`、`Response`。
 2. 待测请求右键选择`Repeat`重放请求，即可进入到断点位置。
 
 !!! note "补充"
@@ -42,5 +43,9 @@
 
 1. `Proxy`->`Thorttle Settings`中设置规则，工具提供了3G、4G等网络的预设。
 2. 设置完成后，单击工具类的小乌龟图标，即可快捷开关模拟弱网功能。
+
+### 🚁 使用抓MuMu模拟器的包
+
+[安装证书与抓包教程](https://mumu.163.com/mac/tutorials/certificates-and-packet-capture.html)
 
 ---
