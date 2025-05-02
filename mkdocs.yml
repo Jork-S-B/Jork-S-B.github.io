@@ -125,6 +125,7 @@ nav:
       - RAG: other/rag.md
   - 韭菜记录:
       - 202502: stock/record.md
+      - 交易策略: stock/strategy.md
 
 # 搜索栏右侧git链接
 repo_url: https://github.com/Jork-S-B/Jork-S-B.github.io/tree/main
