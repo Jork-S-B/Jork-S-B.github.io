@@ -1981,8 +1981,6 @@
       <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
       
       
-        
-      
       
         <label class="md-nav__link md-nav__link--active" for="__toc">
           
@@ -2015,8 +2013,6 @@
   
   
   
-    
-  
   
     <label class="md-nav__title" for="__toc">
       <span class="md-nav__icon md-icon"></span>
@@ -2025,7 +2021,7 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#_2" class="md-nav__link">
+  <a href="#_1" class="md-nav__link">
     <span class="md-ellipsis">
       📌 闭包
     </span>
@@ -2034,7 +2030,7 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#_3" class="md-nav__link">
+  <a href="#_2" class="md-nav__link">
     <span class="md-ellipsis">
       📌 装饰器
     </span>
@@ -2043,7 +2039,7 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#_4" class="md-nav__link">
+  <a href="#_3" class="md-nav__link">
     <span class="md-ellipsis">
       📌 柯里化
     </span>
@@ -4060,8 +4056,6 @@
   
   
   
-    
-  
   
     <label class="md-nav__title" for="__toc">
       <span class="md-nav__icon md-icon"></span>
@@ -4070,7 +4064,7 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#_2" class="md-nav__link">
+  <a href="#_1" class="md-nav__link">
     <span class="md-ellipsis">
       📌 闭包
     </span>
@@ -4079,7 +4073,7 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#_3" class="md-nav__link">
+  <a href="#_2" class="md-nav__link">
     <span class="md-ellipsis">
       📌 装饰器
     </span>
@@ -4088,7 +4082,7 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#_4" class="md-nav__link">
+  <a href="#_3" class="md-nav__link">
     <span class="md-ellipsis">
       📌 柯里化
     </span>
@@ -4115,8 +4109,9 @@
   
 
 
-<h1 id="_1"></h1>
-<h2 id="_2">📌 闭包</h2>
+  <h1>闭包&装饰器&柯里化</h1>
+
+<h2 id="_1">📌 闭包</h2>
 <p>闭包：允许内部函数访问其外部函数（父函数）的局部变量，即使外部函数已退出执行，只要内部函数还被引用，这些局部变量就会继续存在。</p>
 <div class="tabbed-set tabbed-alternate" data-tabs="1:3"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><input id="__tabbed_1_3" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">累加器闭包</label><label for="__tabbed_1_2">闭包陷阱示例</label><label for="__tabbed_1_3">解决闭包陷阱</label></div>
 <div class="tabbed-content">
@@ -4174,7 +4169,7 @@
 </div>
 </div>
 </div>
-<h2 id="_3">📌 装饰器</h2>
+<h2 id="_2">📌 装饰器</h2>
 <p>装饰器本质上是一种设计模式，利用闭包的特性来修改原函数的行为，而无需改动原代码。</p>
 <p>通过接收函数作为参数，对原函数包装后返回一个新的函数，这个返回的新函数就是一个闭包。</p>
 <div class="tabbed-set tabbed-alternate" data-tabs="2:2"><input checked="checked" id="__tabbed_2_1" name="__tabbed_2" type="radio" /><input id="__tabbed_2_2" name="__tabbed_2" type="radio" /><div class="tabbed-labels"><label for="__tabbed_2_1">装饰器示例</label><label for="__tabbed_2_2">类装饰器</label></div>
@@ -4252,7 +4247,7 @@
 </div>
 </div>
 </div>
-<h2 id="_4">📌 柯里化</h2>
+<h2 id="_3">📌 柯里化</h2>
 <p>柯里化：将接受多个参数的函数，转换成一系列接收一个参数的函数的技术，这些单参数函数最终累积所有参数并返回原函数的计算结果。</p>
 <p>🎬 一些适用场景：</p>
 <ul>
@@ -4320,7 +4315,7 @@
     <span class="md-icon" title="最后更新">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime" title="2024年5月1日 11:14:35">2024-05-01 11:14:35</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime" title="2025年5月5日 22:11:36">2025-05-05 22:11:36</span>
   </span>
 
     
