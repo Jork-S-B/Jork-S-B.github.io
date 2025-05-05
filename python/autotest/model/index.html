@@ -1086,6 +1086,24 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      📌 接口自动化测试的步骤
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ui" class="md-nav__link">
+    <span class="md-ellipsis">
+      📌 接口自动化与UI自动化
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -4090,6 +4108,24 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      📌 接口自动化测试的步骤
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ui" class="md-nav__link">
+    <span class="md-ellipsis">
+      📌 接口自动化与UI自动化
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -4112,7 +4148,7 @@
   <h1>设计</h1>
 
 <h2 id="pom">📌 POM</h2>
-<p>Page Object Model，在自动化测试中将页面元素与操作抽象为对象，通过该方式，让测试代码更清晰、可维护及可重用。</p>
+<p>Page Object Model，在自动化测试中，将页面元素（元素定位）、元素操作（例如点击/输入）、业务逻辑分离，实现“高内聚低耦合”，通过该方式，让测试代码更清晰、可维护及可重用。</p>
 <p>具体实现：</p>
 <ul>
 <li>页面类(Page Class)，每个页面（或页面的一部分）被抽象为一个类，包含页面元素和元素相关的操作方法。</li>
@@ -4197,6 +4233,25 @@
 </div>
 </div>
 </div>
+<h2 id="_3">📌 接口自动化测试的步骤</h2>
+<ol>
+<li>需求分析，确定接口文档，Swagger或者YAPI格式。</li>
+<li>框架搭建，工具集成（如Allure报告、Jenkins调度）。</li>
+<li>自动化用例设计，工具、分层设计（数据驱动与封装）、断言（包括状态码、响应数据、数据库验证等）。</li>
+<li>执行与监控，失败用例自动重试、执行结果通知（邮件、微信、钉钉等）。</li>
+<li>结果分析，缺陷跟踪至闭环、覆盖率统计。</li>
+</ol>
+<div class="admonition note">
+<p class="admonition-title">补充</p>
+<p>回归性接口自动化测试，则在第一步确定范围时，根据需求挑选如核心业务接口、高频使用接口。</p>
+</div>
+<h2 id="ui">📌 接口自动化与UI自动化</h2>
+<ul>
+<li>执行效率: 前者直接调接口，无需等渲染，效率高；后者需要等待页面渲染、元素定位，易受到网络、性能影响，效率低。</li>
+<li>测试关注点: 包括业务逻辑、数据一致性、状态流转，前者还包括接口规范；后者则需要关注页面元素、样式、交互等。</li>
+<li>维护成本: 接口改动后用例适配较快较简单，因此成本较低；UI改动后元素定位、流程逻辑可能都需要修改。</li>
+<li>应用场景: 前者-服务端回归测试、压测前期准备；后者-端到端用户场景验证、兼容性测试、完整交互流程。</li>
+</ul>
 <hr />
 
 
@@ -4218,7 +4273,7 @@
     <span class="md-icon" title="最后更新">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime" title="2024年10月30日 20:26:05">2024-10-30 20:26:05</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime" title="2025年5月3日 16:09:22">2025-05-03 16:09:22</span>
   </span>
 
     
