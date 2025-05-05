@@ -148,7 +148,7 @@ print(_)  # [ 1  0  3  4  0  6  7  8  9 10]
     import numpy as np
     
     arr = np.array([1, -2, 3, 4, -5, 6, 7, 8, 9, 10])
-    print("单条件:", arr[arr > 0])
+    print("单条件:", arr[arr > 0])  # [ 1  3  4  6  7  8  9 10]
     
     # 定义多个条件和对应的选择
     conditions = [arr < 3, arr > 7]
@@ -156,7 +156,7 @@ print(_)  # [ 1  0  3  4  0  6  7  8  9 10]
     
     # 遍历数组arr，小于3时取choices[0]，大于7时取choices[1]，其他情况保持不变
     arr_modified = np.select(conditions, choices, default=arr)
-    print("修改后的数组:", arr_modified)
+    print("修改后的数组:", arr_modified)  # [ 0  0  3  4  0  6  7 99 99 99]
     
     ```
 
