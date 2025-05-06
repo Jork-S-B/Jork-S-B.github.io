@@ -2907,20 +2907,35 @@
     </span>
   </a>
   
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#k8s" class="md-nav__link">
-    <span class="md-ellipsis">
-      📌 一些K8S命令
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="📌 一些K8S命令">
+    <nav class="md-nav" aria-label="📌 概念">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
   <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      🚁 调用服务
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#kubectl-k8s" class="md-nav__link">
+    <span class="md-ellipsis">
+      📌 kubectl-一些K8S命令
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="📌 kubectl-一些K8S命令">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
     <span class="md-ellipsis">
       🚁 查看命名空间
     </span>
@@ -2956,7 +2971,7 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#_5" class="md-nav__link">
+  <a href="#_6" class="md-nav__link">
     <span class="md-ellipsis">
       🚁 进入容器
     </span>
@@ -2965,7 +2980,7 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#_6" class="md-nav__link">
+  <a href="#_7" class="md-nav__link">
     <span class="md-ellipsis">
       🚁 查看容器控制台日志
     </span>
@@ -4213,20 +4228,35 @@
     </span>
   </a>
   
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#k8s" class="md-nav__link">
-    <span class="md-ellipsis">
-      📌 一些K8S命令
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="📌 一些K8S命令">
+    <nav class="md-nav" aria-label="📌 概念">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
   <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      🚁 调用服务
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#kubectl-k8s" class="md-nav__link">
+    <span class="md-ellipsis">
+      📌 kubectl-一些K8S命令
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="📌 kubectl-一些K8S命令">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
     <span class="md-ellipsis">
       🚁 查看命名空间
     </span>
@@ -4262,7 +4292,7 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#_5" class="md-nav__link">
+  <a href="#_6" class="md-nav__link">
     <span class="md-ellipsis">
       🚁 进入容器
     </span>
@@ -4271,7 +4301,7 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#_6" class="md-nav__link">
+  <a href="#_7" class="md-nav__link">
     <span class="md-ellipsis">
       🚁 查看容器控制台日志
     </span>
@@ -4370,14 +4400,27 @@
 <p>Docker：创建容器进程时，指定该进程所需启用的一组Namespace参数，后续容器运行时仅限定在命名空间指定的资源、文件、配置等。因此容器可以说是一种特殊的进程，避免了虚拟化的性能损耗。“敏捷”和“高性能”是容器相较于虚拟机最大的优势，但也有不足之处，最主要的是隔离不彻底。</p>
 </li>
 <li>
-<p>Kubernetes：可移植可拓展的开源平台，用于管理容器化的工作负载和服务，可促进声明式配置和自动化，使容器化应用简单高效。</p>
+<p>Kubernetes：可移植可拓展的开源平台，用于管理容器化的工作负载和服务。本质是应用服务和服务器的中间层，通过暴露一系列api能力，简化服务的部署流程，促进声明式配置和自动化，使容器化应用简单高效。</p>
 </li>
 </ul>
 <h2 id="_3">📌 概念</h2>
-<p>Node-节点，执行由Kubernetes API Server分配的任务，比如运行Pod，可以运行一个或多个Pod。</p>
-<p>Pod-舱，k8s的最小可部署对象，至少包含一个容器；可看作是一组紧密关联的<strong><em>容器</em></strong>集合，共享同一个<strong><em>网络命名空间</em></strong>和<strong><em>存储卷</em></strong>。</p>
-<h2 id="k8s">📌 一些K8S命令</h2>
-<h3 id="_4">🚁 查看命名空间</h3>
+<ul>
+<li>
+<p>Pod-舱，k8s的最小调度单元，至少包含一个容器；可看作是一组紧密关联的<strong><em>容器</em></strong>集合，共享同一个<strong><em>网络命名空间</em></strong>和<strong><em>存储卷</em></strong>。</p>
+</li>
+<li>
+<p>Node-工作节点，执行由Kubernetes API Server分配的任务（通过kubelet接收），比如运行一个或多个Pod。</p>
+</li>
+</ul>
+<p>可以是裸机服务器、虚拟机、容器等，负责实际运行各个应用服务，并共享节点的内存和cpu等计算资源。</p>
+<ul>
+<li>Control Plane-控制平面，k8s的核心组件，负责管理集群，包括Pod、Service、Deployment等。通过调用k8s提供的api接口，即可操作服务资源，资源分配由scheduler调度器完成。</li>
+</ul>
+<p>控制平面和节点的组合称为Cluster-集群，集群相互独立，为了将集群内部的服务暴露给外部用户使用，所以还需要ingress控制器。</p>
+<h3 id="_4">🚁 调用服务</h3>
+<p>外部请求先到达K8S集群的ingress控制器，然后请求会被转发到K8S某个node的kube proxy，再找到对应的pod，然后将请求转发给对应的服务；处理结果原路返回。</p>
+<h2 id="kubectl-k8s">📌 kubectl-一些K8S命令</h2>
+<h3 id="_5">🚁 查看命名空间</h3>
 <p>kubetcl get namespace</p>
 <h3 id="pod">🚁 查看当前命名空间下的pod</h3>
 <p>kubectl -n {namespace} get pods -o wide</p>
@@ -4385,10 +4428,10 @@
 <p>kubectl -n {namespace} describe pods {podId}</p>
 <h3 id="poddeployment">🚁 查看pod的deployment信息</h3>
 <p>kubectl -n {namespace} get deployments.apps -o yaml</p>
-<h3 id="_5">🚁 进入容器</h3>
+<h3 id="_6">🚁 进入容器</h3>
 <p>kubectl -n {namespace} exec -it {podId} sh</p>
 <p>kubectl -n {namespace} exec -it {podId} -- bash  # 俩横杠后接的实际是指令</p>
-<h3 id="_6">🚁 查看容器控制台日志</h3>
+<h3 id="_7">🚁 查看容器控制台日志</h3>
 <p>kubectl -n {namespace} logs -f --tail=200 {podId}</p>
 <h3 id="pod_1">🚁 删除/重启pod</h3>
 <p>重启pod<br />
@@ -4454,7 +4497,7 @@ kubectl -n {namespace} get pod {podname} -o yaml | kubectl replace --force -f -<
     <span class="md-icon" title="最后更新">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime" title="2024年9月9日 22:05:15">2024-09-09 22:05:15</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime" title="2025年5月6日 17:47:47">2025-05-06 17:47:47</span>
   </span>
 
     
