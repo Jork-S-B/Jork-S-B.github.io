@@ -22,4 +22,10 @@
 
 清除指定redis：`for i in $(seq 1001 1003)： do echo "flushab" | ./redis-cli -h ip -a password -p $i; done`
 
+## Redis集群方案
+
+* 哨兵模式，基于主从，哨兵-集群监控、消息通知、故障转移、配置中心，不保证数据零丟失，只能保证高可用。
+* Redis Cluster，数据分片存储在多个互为主从的多节点上，数据写入主节点，再同步到从节点，不保证强一致性。
+* Redis Sharding
+
 ---
