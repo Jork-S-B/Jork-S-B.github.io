@@ -65,7 +65,7 @@
 
 ## 📌 装饰器
 
-装饰器本质上是一种设计模式，利用闭包的特性来修改原函数的行为，而无需改动原代码。
+装饰器本质上是一种设计模式，利用闭包的特性（还有嵌套函数）来修改原函数的行为，而无需改动原代码。
 
 通过接收函数作为参数，对原函数包装后返回一个新的函数，这个返回的新函数就是一个闭包。
 
@@ -75,14 +75,14 @@
     import functools
     import tracemalloc
     
-    def my_decorator(func):
+    def my_decorator(func):  # 1.接收函数func
         # Python装饰器在实现的时候，被装饰后的函数其实已经是另外一个函数了（函数名等函数属性会发生改变）
         @functools.wraps(func)
         # 为了消除上述影响，functools包中提供了一个叫wraps的decorator来消除这样的副作用
-        def wrapper(*args, **kwargs):
-            print('Calling decorated function')
-            return func(*args, **kwargs)  # 这里调用被装饰的原函数
-        return wrapper  # 将wrapper函数作为返回值进行传递
+        def wrapper(*args, **kwargs):  # 2.定义内部函数，在该函数中对 func 的调用前后插入额外逻辑
+            print('这里调用装饰器my_decorator')
+            return func(*args, **kwargs)
+        return wrapper  # 3.将wrapper函数作为返回值进行传递
     
     
     # 带参数的装饰器
@@ -146,14 +146,13 @@
     
     ```
 
-
 ## 📌 柯里化
 
 柯里化：将接受多个参数的函数，转换成一系列接收一个参数的函数的技术，这些单参数函数最终累积所有参数并返回原函数的计算结果。
 
 🎬 一些适用场景：
 
-* 当函数在特定上下文中的参数固定，其他参数需要根据具体情况变化时。
+* 当函数在特定上下文中的参数固定，其他参数需要根据具体情况变化时。如`base_url`和`headers`固定，`url`和`params`不固定时。
 * 当需要对一组具有相似行为，但参数数量或类型不同的函数，进行统一处理时。
 * 函数组合、延迟计算
 * 类型安全与约束检查
