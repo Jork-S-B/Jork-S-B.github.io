@@ -4190,10 +4190,10 @@
 <li>GET: 受浏览器和服务器限制，URL长度通常不超过2048字符（约2KB），超出部分可能被截断。</li>
 <li>POST: 数据长度理论上无限制，但服务器可能根据配置限制请求体大小（如PHP默认8MB），适合传输大量数据或文件。</li>
 </ul>
-<p>3.安全性</p>
+<p>3.安全性与幂等</p>
 <ul>
-<li>GET: 数据通过URL暴露，可以被截获，数据不安全。</li>
-<li>POST: 参数隐藏在请求体中，安全性相对较高，但HTTP协议本身为明文传输，需结合HTTPS实现加密。</li>
+<li>GET: 数据通过URL暴露，可以被截获；具有幂等性，即多次执行相同的请求结果相同。</li>
+<li>POST: 参数隐藏在请求体中，安全性相对get方式较高，但HTTP协议本身为明文传输，需结合HTTPS实现加密。</li>
 </ul>
 <p>4.应用场景</p>
 <ul>
@@ -4220,7 +4220,7 @@
     <span class="md-icon" title="最后更新">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime" title="2025年5月3日 16:15:45">2025-05-03 16:15:45</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime" title="2025年5月12日 14:51:08">2025-05-12 14:51:08</span>
   </span>
 
     
