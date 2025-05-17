@@ -35,6 +35,8 @@ nav:
               - wda: python/autotest/app/webdriveragent.md
           - mitmproxy: python/autotest/mitmproxy.md
           - requests: python/autotest/requests.md
+          - Playwright:
+              - 001_basic: python/autotest/playwright/001_basic.md
       - Web:
           - Flask: python/web/flask.md
           - Django:
