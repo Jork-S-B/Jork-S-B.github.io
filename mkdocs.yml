@@ -37,6 +37,7 @@ nav:
           - requests: python/autotest/requests.md
           - Playwright:
               - 001_basic: python/autotest/playwright/001_basic.md
+              - 002_po: python/autotest/playwright/002_po.md
       - Web:
           - Flask: python/web/flask.md
           - Django:

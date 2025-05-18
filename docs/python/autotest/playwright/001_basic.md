@@ -1,4 +1,4 @@
-__## 📌 Playwright
+## 📌 Playwright
 
 为现代web应用程序提供可靠的端到端测试。
 
