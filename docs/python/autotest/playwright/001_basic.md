@@ -246,3 +246,34 @@ page.evaluate("window.scrollBy(0, 1000)")  # 当前滚动位置的基础上，�
     pyautogui.press("enter")
     
     ```
+
+### 🚁 frame
+
+```python
+# 指定frame名称，并输入文本，并不是像selenium直接切换
+page.frame("frame_name").fill("input[name='wd']", "playwright")
+
+# 或者指定frame的url
+page.frame(url="frame_url").fill("input[name='wd']", "playwright")
+
+# 或者通过frame的元素定位
+page.frame_locator('#iframe').locator("input[name='wd']").fill("playwright")
+
+```
+
+### 🚁 标签页/窗口
+
+```python
+pw = sync_playwright().start()
+driver = pw.chromium.launch(headless=False)
+context = driver.new_context()
+page = context.new_page()
+page.goto("https://www.baidu.com")
+page.locator("a").click()  # 假设这里点击超链接，打开新标签页
+page.wait_for_event("popup", timeout=5000)
+print(page.context.pages())
+
+# 切换至新标签页
+page1 = context.pages[-1]
+page1.locator("input[name='wd']").fill("playwright")
+```

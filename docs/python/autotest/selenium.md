@@ -44,12 +44,14 @@ WebDriverWait(driver, 10).until(lambda x: x.find_element(by='xpath', value=value
 | `following-sibling::div` | 取该节点的后一个兄弟节点            |
 | `preceding-sibling::div` | 取该节点的前一个兄弟节点            |
 |  `//i/*[name()="svg"]`   | 从根节点开始匹配，匹配所有i标签下的svg标签 |
-|  `button[not(@disabled)]`   | 匹配不包含disable属性的按钮 |
-|  `contains(.,"{text}")`   | 匹配包含text文本的任意标签 |
+| `button[not(@disabled)]` | 匹配不包含disable属性的按钮       |
+|  `contains(.,"{text}")`  | 匹配包含text文本的任意标签         |
 
 !!! tip
 
-    浏览器F12->Console调试，输入`setTimeout(function(){debugger},1000)`，表示过1秒后进入调试模式，在排查元素定位、元素覆盖时有用。
+    浏览器F12->Console调试，输入`setTimeout(function(){debugger;},1000)`，表示过1秒后进入调试模式，在排查元素定位、元素覆盖时有用。
+
+    2025/5/18: setTimeout(()=>{debugger;},1000)，同理，效果一样。
 
 ## 📌 chromedriver
 
