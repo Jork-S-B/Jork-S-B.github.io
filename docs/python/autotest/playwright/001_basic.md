@@ -1,4 +1,4 @@
-## 📌 Playwright
+__## 📌 Playwright
 
 为现代web应用程序提供可靠的端到端测试。
 
@@ -30,7 +30,8 @@ driver = pw.chromium.launch(headless=False)
 page = driver.new_page()
 page.goto("https://www.baidu.com")
 page.fill("input[name='wd']", "playwright")
-page.wait_for_timeout(2000)  # 暂停2秒
+page.wait_for_timeout(2000)  # 强制暂停2秒
+page.wait_for_selector("#username")  # 等待元素就绪
 
 ```
 
@@ -186,4 +187,62 @@ page.keyboard.press(key)
 
 鼠标滚轮: `page.mouse.wheel(0, 100)`
 
+### 🚁 弹窗操作
 
+监听弹窗，配合匿名函数对弹窗进行操作。
+
+page.on("dialog", lambda dialog: print(dialog.message()))
+
+=== "弹窗示例"
+
+    ```html
+    <button onclick="alert('hello world')">点击出现弹窗</button>
+    <button onclick="confirm('hello world')">点击出现确认弹窗</button>
+    <button onclick="prompt('hello world')">点击出现输入弹窗</button>
+    
+    ```
+
+=== "相关的自动化代码"
+
+    ```python
+    # 打印弹窗文本
+    page.on("dialog", lambda dialog: print(dialog.message()))
+    # 打印弹窗类型
+    page.on("dialog", lambda dialog: print(dialog.type))
+
+    # 点击弹窗的确定按钮
+    page.on("dialog", lambda dialog: dialog.accept())
+    # 点击弹窗的取消按钮
+    page.on("dialog", lambda dialog: dialog.dismiss())
+    # 在弹窗输入文本后确定
+    page.on("dialog", lambda dialog: dialog.accept("hello world"))
+
+    ```
+
+### 🚁 滚动条
+
+滚动条无法直接操作，通过执行js代码来实现。
+
+page.evaluate("window.scrollTo(0, 1000)")  # 将元素或窗口滚动到指定的绝对坐标位置
+
+page.evaluate("window.scrollBy(0, 1000)")  # 当前滚动位置的基础上，滚动指定的偏移量
+
+### 🚁 文件上传
+
+* 单文件上传如`<input type="file">`，使用`page.set_input_files(ele, file_path)`即可。
+
+* 单文件或多文件上传非input类型时，则需要通过第三方库。
+
+=== "文件上传-非input类型"
+
+    ```python
+    import pyautogui
+    import pyperclip
+    file_path = r'"./file1.jpg" "./file2.jpg"'
+    page.locator("xpath=//div[text()='上传文件']").click()
+    pyperclip.copy(file_path)  # 复制图片到剪贴板
+    pyperclip.paste()  # 获取剪贴板的内容
+    pyautogui.hotkey("ctrl", "v")
+    pyautogui.press("enter")
+    
+    ```
