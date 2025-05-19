@@ -104,6 +104,7 @@ nav:
           - Apifox: utils/apifox_notes.md
           - JMeter: utils/jmeter_notes.md
           - Arthas: utils/arthas.md
+          - Locust: utils/locust_notes.md
   - Hadoop:
       - Hadoop生态: hadoop/ecosystem.md
       - Scala:
