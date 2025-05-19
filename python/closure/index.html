@@ -3398,6 +3398,29 @@
 
               
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../utils/locust_notes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Locust
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
@@ -4093,8 +4116,9 @@
   <h1>闭包&装饰器&柯里化</h1>
 
 <h2 id="_1">📌 闭包</h2>
-<p>闭包：允许内部函数访问其外部函数（父函数）的局部变量，即使外部函数已退出执行，只要内部函数还被引用，这些局部变量就会继续存在。</p>
-<div class="tabbed-set tabbed-alternate" data-tabs="1:3"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><input id="__tabbed_1_3" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">累加器闭包</label><label for="__tabbed_1_2">闭包陷阱示例</label><label for="__tabbed_1_3">解决闭包陷阱</label></div>
+<p>Python中的一种独特机制，允许内部函数访问其外部函数（父函数）的局部变量，即使外部函数已退出执行，只要内部函数还被引用，这些局部变量就会继续存在。</p>
+<p>优势：避免了全局变量，使代码更模块化和更易维护。同时隐藏一些状态，使外部无法随意修改，增加数据封装性。</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="1:4"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><input id="__tabbed_1_3" name="__tabbed_1" type="radio" /><input id="__tabbed_1_4" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">累加器闭包</label><label for="__tabbed_1_2">闭包陷阱示例</label><label for="__tabbed_1_3">解决闭包陷阱</label><label for="__tabbed_1_4">延迟计算和记忆化技术</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
 <div class="highlight"><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">counter</span><span class="p">(</span><span class="n">start</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
@@ -4122,7 +4146,7 @@
 
     <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">5</span><span class="p">):</span>
         <span class="k">def</span><span class="w"> </span><span class="nf">multiplier</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
-            <span class="k">return</span> <span class="n">n</span> <span class="o">*</span> <span class="n">i</span>  <span class="c1"># 实际上所有闭包都共享同一个循环结束时的i值（此处为4）</span>
+            <span class="k">return</span> <span class="n">n</span> <span class="o">*</span> <span class="n">i</span>  <span class="c1"># 闭包中使用循环，实际上所有闭包都共享该循环结束时的i值（此处为4）</span>
 
         <span class="n">multipliers</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">multiplier</span><span class="p">)</span>
 
@@ -4148,25 +4172,49 @@
 <span class="nb">print</span><span class="p">(</span><span class="n">fixed_multipliers_list</span><span class="p">[</span><span class="mi">1</span><span class="p">](</span><span class="mi">3</span><span class="p">))</span>  <span class="c1"># 输出: 3</span>
 </code></pre></div>
 </div>
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">memorize</span><span class="p">(</span><span class="n">f</span><span class="p">):</span>
+    <span class="n">cache</span> <span class="o">=</span> <span class="p">{}</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">helper</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">args</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">cache</span><span class="p">:</span>
+            <span class="n">cache</span><span class="p">[</span><span class="n">args</span><span class="p">]</span> <span class="o">=</span> <span class="n">f</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">cache</span><span class="p">[</span><span class="n">args</span><span class="p">]</span>
+
+    <span class="k">return</span> <span class="n">helper</span>
+
+
+<span class="nd">@memorize</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">fib</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>  <span class="c1"># 假设这是一个耗时很长的运算</span>
+    <span class="k">if</span> <span class="n">n</span> <span class="o">&lt;</span> <span class="mi">2</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">n</span>
+    <span class="k">return</span> <span class="n">fib</span><span class="p">(</span><span class="n">n</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="o">+</span> <span class="n">fib</span><span class="p">(</span><span class="n">n</span> <span class="o">-</span> <span class="mi">2</span><span class="p">)</span>
+
+
+<span class="nb">print</span><span class="p">(</span><span class="n">fib</span><span class="p">(</span><span class="mi">100</span><span class="p">))</span>  <span class="c1"># 后续调用会从缓存中获取结果</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">fib</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span> <span class="o">+</span> <span class="n">fib</span><span class="p">(</span><span class="mi">100</span><span class="p">))</span>
+</code></pre></div>
+</div>
 </div>
 </div>
 <h2 id="_2">📌 装饰器</h2>
-<p>装饰器本质上是一种设计模式，利用闭包的特性来修改原函数的行为，而无需改动原代码。</p>
+<p>装饰器本质上是一种设计模式，利用闭包的特性（还有嵌套函数）来修改原函数的行为，而无需改动原代码。</p>
 <p>通过接收函数作为参数，对原函数包装后返回一个新的函数，这个返回的新函数就是一个闭包。</p>
+<p>可用于日志记录、性能测试、事务处理、缓存、权限校验等场景。</p>
 <div class="tabbed-set tabbed-alternate" data-tabs="2:2"><input checked="checked" id="__tabbed_2_1" name="__tabbed_2" type="radio" /><input id="__tabbed_2_2" name="__tabbed_2" type="radio" /><div class="tabbed-labels"><label for="__tabbed_2_1">装饰器示例</label><label for="__tabbed_2_2">类装饰器</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
 <div class="highlight"><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">functools</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">tracemalloc</span>
 
-<span class="k">def</span><span class="w"> </span><span class="nf">my_decorator</span><span class="p">(</span><span class="n">func</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">my_decorator</span><span class="p">(</span><span class="n">func</span><span class="p">):</span>  <span class="c1"># 1.接收函数func</span>
     <span class="c1"># Python装饰器在实现的时候，被装饰后的函数其实已经是另外一个函数了（函数名等函数属性会发生改变）</span>
     <span class="nd">@functools</span><span class="o">.</span><span class="n">wraps</span><span class="p">(</span><span class="n">func</span><span class="p">)</span>
     <span class="c1"># 为了消除上述影响，functools包中提供了一个叫wraps的decorator来消除这样的副作用</span>
-    <span class="k">def</span><span class="w"> </span><span class="nf">wrapper</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
-        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Calling decorated function&#39;</span><span class="p">)</span>
-        <span class="k">return</span> <span class="n">func</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>  <span class="c1"># 这里调用被装饰的原函数</span>
-    <span class="k">return</span> <span class="n">wrapper</span>  <span class="c1"># 将wrapper函数作为返回值进行传递</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">wrapper</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>  <span class="c1"># 2.定义内部函数，在该函数中对 func 的调用前后插入额外逻辑</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;这里调用装饰器my_decorator&#39;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">func</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">wrapper</span>  <span class="c1"># 3.将wrapper函数作为返回值进行传递</span>
 
 
 <span class="c1"># 带参数的装饰器</span>
@@ -4232,7 +4280,7 @@
 <p>柯里化：将接受多个参数的函数，转换成一系列接收一个参数的函数的技术，这些单参数函数最终累积所有参数并返回原函数的计算结果。</p>
 <p>🎬 一些适用场景：</p>
 <ul>
-<li>当函数在特定上下文中的参数固定，其他参数需要根据具体情况变化时。</li>
+<li>当函数在特定上下文中的参数固定，其他参数需要根据具体情况变化时。如<code>base_url</code>和<code>headers</code>固定，<code>url</code>和<code>params</code>不固定时。</li>
 <li>当需要对一组具有相似行为，但参数数量或类型不同的函数，进行统一处理时。</li>
 <li>函数组合、延迟计算</li>
 <li>类型安全与约束检查</li>
@@ -4296,7 +4344,7 @@
     <span class="md-icon" title="最后更新">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime" title="2025年5月5日 22:11:36">2025-05-05 22:11:36</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime" title="2025年5月19日 10:19:30">2025-05-19 10:19:30</span>
   </span>
 
     
