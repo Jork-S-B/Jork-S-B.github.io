@@ -125,7 +125,7 @@ print(d.get('regex_str'))  # 直接print()会自动转义，输出：物品    �
 print(repr(d.get('regex_str')))  # repr()会保留转义或者特殊字符，输出：'物品\t单价\t数量'
 ```
 
-## 📌 getattr
+## 📌 反射机制
 
 getattr(obj, func/attribute, defult=None)  
 从对象或实例中动态获取一个属性或者方法
@@ -155,7 +155,7 @@ print(re_func("introduce2", person_subclass))  # 输出：test\nNone
 
 !!! note "补充"
 
-    程序在运行时检查、分析和修改自身的行为与结构，这种特性称作反射机制。上述getattr()、eval()等函数都是Python 反射机制的一部分。
+    程序在运行时检查、分析和修改自身的行为与结构，这种特性称作反射机制。
     
     一般而言，反射操作会比直接调用慢，会存在额外的性能开销，
 
