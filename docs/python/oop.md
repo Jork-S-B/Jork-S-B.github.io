@@ -13,12 +13,15 @@ class Duck:
     def quack(self):
         print("Quack!")
 
+
 class Turkey:
     def quack(self):
         print("Gobble gobble!")
 
+
 def make_quack(animal):
     animal.quack()
+
 
 # 创建对象
 duck = Duck()
@@ -28,9 +31,11 @@ turkey = Turkey()
 make_quack(duck)  # 输出 "Quack!"
 make_quack(turkey)  # 输出 "Gobble gobble!"
 
+
 class Dog:
     def bark(self):
         print("Woof woof!")
+
 
 dog = Dog()
 make_quack(dog)  # 将会抛出 AttributeError: 'Dog' object has no attribute 'quack'
@@ -106,6 +111,46 @@ class Singleton:
 
 描述信息，当定义类、方法，第一个语句是字符串时，就会被自动赋值给`__doc__`属性。
 
+### 🚁 __class__
+
+`__class__`返回类本身
+
+`__class__.__name__`返回类名
+
+### 🚁 __getitem__
+
+`__getitem__`用于实现对象对索引或键的访问操作，该类的实例可以使用`obj[key]`的形式来访问数据。
+
+=== "传列表"
+
+    ```python
+    class MyList:
+        def __init__(self, items):
+            self.items = items
+    
+        def __getitem__(self, index):
+            return self.items[index]
+    
+    my_list = MyList([10, 20, 30, 40])
+    print(my_list[1])  # 输出: 20
+    print(my_list[1:3])  # 输出: [20, 30]
+
+    ```
+
+=== "传字典"
+
+    ```python
+    class Person:
+        def __init__(self):
+            self.info = {'name': '张三', 'age': 18}
+    
+        def __getitem__(self, key):
+            return self.info[key]
+    
+    tmp = Person()
+    print(tmp['name'])
+    print(tmp['age'])
+    ```
 
 ## 📌 变量
 
@@ -114,7 +159,6 @@ Python中，以单下划线开头的变量作为保护变量，表明不希望�
 
 而双下划线开头的变量表示私有变量，目的是为了防止子类中同名变量或方法的冲突。  
 但实际通过`instance._ClassName__variable`的方式可以访问。
-
 
 ## 📌 编程规范
 
