@@ -88,9 +88,17 @@ nav:
   - Shell:
       - 复习: shell/review.md
       - git: other/git_notes.md
-      - k8s备忘: shell/k8s.md
       - timestamp: shell/timestamp.md
       - regex.sh: shell/regex.md
+      - k8s: shell/k8s.md
+      - Docker:
+          - Docker for Windows: docker/windows_docker.md
+          - Docker for Arch Linux: docker/archlinux_docker.md
+          - 构建MySQL镜像: docker/build_mysql.md
+          - 构建Oracle镜像: docker/build_oracle.md
+          - 构建Jenkins镜像: docker/build_jenkins.md
+          - 构建RockyLinux镜像: docker/build_rockylinux.md
+          - 构建HBase镜像: docker/build_hbase.md
   - 测试:
       - 软件工程: test/software_engineering.md
       - 测试类型:
@@ -112,14 +120,6 @@ nav:
           - Day02: hadoop/scala/day02.md
           - Day03: hadoop/scala/day03.md
           - Day04: hadoop/scala/day04.md
-  - Docker:
-      - Docker for Windows: docker/windows_docker.md
-      - Docker for Arch Linux: docker/archlinux_docker.md
-      - 构建MySQL镜像: docker/build_mysql.md
-      - 构建Oracle镜像: docker/build_oracle.md
-      - 构建Jenkins镜像: docker/build_jenkins.md
-      - 构建RockyLinux镜像: docker/build_rockylinux.md
-      - 构建HBase镜像: docker/build_hbase.md
   - 其他:
       - 高性能: other/high_performance.md
       - 高可用: other/high_availability.md
@@ -204,5 +204,5 @@ plugins:
       type: iso_datetime
       # fallback_to_build_date: true  # mkdocs build的日期
       enable_creation_date: false
-      exclude:  # 以下文件/目录排除
+      exclude: # 以下文件/目录排除
         - index.md
