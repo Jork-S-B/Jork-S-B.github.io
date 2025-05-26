@@ -4425,32 +4425,62 @@
 <p>外部请求先到达K8S集群的ingress控制器，然后请求会被转发到K8S某个node的kube proxy，再找到对应的pod，然后将请求转发给对应的服务；处理结果原路返回。</p>
 <h2 id="kubectl-k8s">📌 kubectl-一些K8S命令</h2>
 <h3 id="_5">🚁 查看命名空间</h3>
+<details class="abstract">
+<summary>点击查看</summary>
 <p>kubetcl get namespace</p>
+</details>
 <h3 id="pod">🚁 查看当前命名空间下的pod</h3>
+<details class="abstract">
+<summary>点击查看</summary>
 <p>kubectl -n {namespace} get pods -o wide</p>
+</details>
 <h3 id="podcpu">🚁 查看pod信息(挂载目录、CPU和内存限制等)、重启原因等</h3>
+<details class="abstract">
+<summary>点击查看</summary>
 <p>kubectl -n {namespace} describe pods {podId}</p>
+</details>
 <h3 id="poddeployment">🚁 查看pod的deployment信息</h3>
+<details class="abstract">
+<summary>点击查看</summary>
 <p>kubectl -n {namespace} get deployments.apps -o yaml</p>
+</details>
 <h3 id="_6">🚁 进入容器</h3>
+<details class="abstract">
+<summary>点击查看</summary>
 <p>kubectl -n {namespace} exec -it {podId} sh</p>
 <p>kubectl -n {namespace} exec -it {podId} -- bash  # 俩横杠后接的实际是指令</p>
+</details>
 <h3 id="_7">🚁 查看容器控制台日志</h3>
+<details class="abstract">
+<summary>点击查看</summary>
 <p>kubectl -n {namespace} logs -f --tail=200 {podId}</p>
+</details>
 <h3 id="pod_1">🚁 删除/重启pod</h3>
+<details class="abstract">
+<summary>点击查看</summary>
 <p>重启pod<br />
 kubectl -n {namespace} delete pods {podId1} {podId2}</p>
 <p>创建新容器，待正常运行后再退出原容器<br />
 kubectl -n {namespace} rollout restart deployment {app}</p>
 <p>重新部署pod<br />
 kubectl -n {namespace} get pod {podname} -o yaml | kubectl replace --force -f -</p>
+</details>
 <h3 id="pod_2">🚁 调整pod副本数/扩容</h3>
+<details class="abstract">
+<summary>点击查看</summary>
 <p>kubectl -n {namespace} scale deployment {podId} --replicas=2</p>
+</details>
 <h3 id="cp">🚁 把容器内的文件cp到本地</h3>
+<details class="abstract">
+<summary>点击查看</summary>
 <p>kubectl cp {namespace}/{podId}:/tmp ./tmp</p>
+</details>
 <h3 id="pod_3">🚁 查看Pod的资源使用情况</h3>
+<details class="abstract">
+<summary>点击查看</summary>
 <p>kubectl -n {namespace} top pod {podname}</p>
 <p>进入容器后执行top，查看的是pod内部的cpu、内存使用情况，相比更详细，能看到进程级别的使用量。</p>
+</details>
 <div class="tabbed-set tabbed-alternate" data-tabs="1:1"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">k8s_getCpu.sh</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
@@ -4501,7 +4531,7 @@ kubectl -n {namespace} get pod {podname} -o yaml | kubectl replace --force -f -<
     <span class="md-icon" title="最后更新">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime" title="2025年5月6日 17:47:47">2025-05-06 17:47:47</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime" title="2025年5月26日 16:23:09 CST">2025-05-26 16:23:09</span>
   </span>
 
     
