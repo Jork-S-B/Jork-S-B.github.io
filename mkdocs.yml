@@ -124,6 +124,7 @@ nav:
       - 高性能: other/high_performance.md
       - 高可用: other/high_availability.md
       - Nginx: other/nginx_notes.md
+      - Tomcat: other/tomcat_notes.md
       - 区块链: other/blockchain.md
       - 深度学习: other/deep_learning.md
       - RAG: other/rag.md
