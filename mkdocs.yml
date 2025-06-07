@@ -103,16 +103,24 @@ nav:
       - 软件工程: test/software_engineering.md
       - 测试类型:
           - app测试: test/test_app.md
-          - 性能测试: test/test_performance.md
+          - 性能测试:
+              - 性能测试: test/test_performance.md
+              - 压测工具:
+                  - JMeter: utils/jmeter_notes.md
+                  - Locust: utils/locust_notes.md
+                  - Arthas: utils/arthas.md
+                  - 监控平台: utils/monitor.md
+              - 性能调优:
+                  - 高性能: other/high_performance.md
+                  - 高可用: other/high_availability.md
+                  - Nginx: other/nginx_notes.md
+                  - Tomcat: other/tomcat_notes.md
           - 安全测试: test/test_security.md
       - 测试工具:
           - Fiddler: utils/fiddler_notes.md
           - Charles: utils/charles_notes.md
           - Postman: utils/postman_notes.md
           - Apifox: utils/apifox_notes.md
-          - JMeter: utils/jmeter_notes.md
-          - Arthas: utils/arthas.md
-          - Locust: utils/locust_notes.md
   - Hadoop:
       - Hadoop生态: hadoop/ecosystem.md
       - Scala:
@@ -121,10 +129,6 @@ nav:
           - Day03: hadoop/scala/day03.md
           - Day04: hadoop/scala/day04.md
   - 其他:
-      - 高性能: other/high_performance.md
-      - 高可用: other/high_availability.md
-      - Nginx: other/nginx_notes.md
-      - Tomcat: other/tomcat_notes.md
       - 区块链: other/blockchain.md
       - 深度学习: other/deep_learning.md
       - RAG: other/rag.md
