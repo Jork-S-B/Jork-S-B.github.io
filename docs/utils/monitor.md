@@ -31,7 +31,7 @@ mkdir data
 2. vim prometheus.yml，配置文件中设置需要`exporter`对应的ip地址
 3. ./prometheus --config.file=prometheus.yml
 4. 进入prometheus的web页面，查看监控目标  
-http://192.168.80.170:9090/targets
+   http://192.168.80.170:9090/targets
 
 === "prometheus.yml"
 
@@ -65,3 +65,29 @@ Configuration -> Add data source -> url填Prometheus所在的服务器（如`htt
 2.导入模版
 
 若显示N/A，则需要进行校准时间。
+
+3.显示时间选择: 近30分钟，刷新频率： 5秒/次。
+
+!!! note "补充"
+
+    修改服务器配置重启时，Grafana展示可能会有延迟。
+
+### 🚁 监控服务器
+
+#### 🔧 系统平均负载
+
+系统平均负载: CPU在一段时间内的使用量
+
+一般来说，系统平均负载超过`CPU核数`数倍时，视为异常。
+
+### 🚁 监控mysql
+
+常关注的指标:
+
+Current QPS-每秒处理查询数
+
+Connections-连接数
+
+Slow Queries-慢查询数
+
+#### 🔧 

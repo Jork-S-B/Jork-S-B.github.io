@@ -8,7 +8,7 @@
 
 ```shell
 # 位于tomcat的bin目录: cd /usr/local/tomcat7-8083/bin
-# 设置堆内存，最大值不超过机器的70%
+# -Xms512m -Xmx1024m: 设置堆内存，最大值不超过机器的70%
 # HeapDumpPath: 堆存储文件，溢出的日志记录路径
 JAVA_OPTS="-Xms512m -Xmx1024m -XX:PermSize=128m -XX:MaxPermSize=256m -XX:+HeapDumpOnOutOfMemoryError -XX:HeapDumpPath=/tmp/tomcat/dump.hprof"
 
