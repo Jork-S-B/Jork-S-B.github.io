@@ -13,25 +13,25 @@
       
       
       
-        <link rel="prev" href="../dp/">
+        <link rel="prev" href="../arthas/">
       
       
-        <link rel="next" href="../../oop/">
+        <link rel="next" href="../../other/high_performance/">
       
       
-      <link rel="icon" href="../../../assets/images/favicon.png">
+      <link rel="icon" href="../../assets/images/favicon.png">
       <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.14">
     
     
       
-        <title>滑动窗口 - whm</title>
+        <title>监控平台 - whm</title>
       
     
     
-      <link rel="stylesheet" href="../../../assets/stylesheets/main.342714a4.min.css">
+      <link rel="stylesheet" href="../../assets/stylesheets/main.342714a4.min.css">
       
         
-        <link rel="stylesheet" href="../../../assets/stylesheets/palette.06af60db.min.css">
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.06af60db.min.css">
       
       
 
@@ -44,16 +44,16 @@
       
     
     
-      <link rel="stylesheet" href="../../../stylesheets/extra.css">
+      <link rel="stylesheet" href="../../stylesheets/extra.css">
     
-    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
 
     
     
     
-   <link href="../../../assets/stylesheets/glightbox.min.css" rel="stylesheet"/><style>
+   <link href="../../assets/stylesheets/glightbox.min.css" rel="stylesheet"/><style>
     html.glightbox-open { overflow: initial; height: 100%; }
     .gslide-title { margin-top: 0px; user-select: text; }
     .gslide-desc { color: #666; user-select: text; }
@@ -62,7 +62,7 @@
     .gdesc-inner { font-size: 0.75rem; }
     body[data-md-color-scheme="slate"] .gdesc-inner { background: var(--md-default-bg-color);}
     body[data-md-color-scheme="slate"] .gslide-title { color: var(--md-default-fg-color);}
-    body[data-md-color-scheme="slate"] .gslide-desc { color: var(--md-default-fg-color);}</style> <script src="../../../assets/javascripts/glightbox.min.js"></script></head>
+    body[data-md-color-scheme="slate"] .gslide-desc { color: var(--md-default-fg-color);}</style> <script src="../../assets/javascripts/glightbox.min.js"></script></head>
   
   
     
@@ -81,7 +81,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#3" class="md-skip">
+        <a href="#exporter" class="md-skip">
           跳转至
         </a>
       
@@ -95,7 +95,7 @@
 
 <header class="md-header" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="页眉">
-    <a href="../../.." title="whm" class="md-header__button md-logo" aria-label="whm" data-md-component="logo">
+    <a href="../.." title="whm" class="md-header__button md-logo" aria-label="whm" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M256 512a256 256 0 1 0 0-512 256 256 0 1 0 0 512m-91.9-186.5C182 346.2 212.6 368 256 368s74-21.8 91.9-42.5c5.8-6.7 15.9-7.4 22.6-1.6s7.4 15.9 1.6 22.6c-22.3 25.6-61 53.5-116.1 53.5s-93.8-27.9-116.1-53.5c-5.8-6.7-5.1-16.8 1.6-22.6s16.8-5.1 22.6 1.6M144.4 208a32 32 0 1 1 64 0 32 32 0 1 1-64 0m156.4 25.6c-5.3 7.1-15.3 8.5-22.4 3.2s-8.5-15.3-3.2-22.4c30.4-40.5 91.2-40.5 121.6 0 5.3 7.1 3.9 17.1-3.2 22.4s-17.1 3.9-22.4-3.2c-17.6-23.5-52.8-23.5-70.4 0"/></svg>
@@ -115,7 +115,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              滑动窗口
+              监控平台
             
           </span>
         </div>
@@ -226,7 +226,7 @@
   
   
     <li class="md-tabs__item">
-      <a href="../../.." class="md-tabs__link">
+      <a href="../.." class="md-tabs__link">
         
   
   
@@ -245,8 +245,6 @@
   
   
   
-    
-  
   
     
     
@@ -254,13 +252,11 @@
   
   
   
-    
-  
   
     
     
-      <li class="md-tabs__item md-tabs__item--active">
-        <a href="../../datatype/number/" class="md-tabs__link">
+      <li class="md-tabs__item">
+        <a href="../../python/datatype/number/" class="md-tabs__link">
           
   
   
@@ -290,7 +286,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="../../../java/springboot/basic/" class="md-tabs__link">
+        <a href="../../java/springboot/basic/" class="md-tabs__link">
           
   
   
@@ -313,7 +309,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="../../../vue/basic/" class="md-tabs__link">
+        <a href="../../vue/basic/" class="md-tabs__link">
           
   
   
@@ -340,7 +336,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="../../../sql/oracle/sqlldr_import/" class="md-tabs__link">
+        <a href="../../sql/oracle/sqlldr_import/" class="md-tabs__link">
           
   
   
@@ -363,7 +359,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="../../../shell/review/" class="md-tabs__link">
+        <a href="../../shell/review/" class="md-tabs__link">
           
   
   
@@ -379,11 +375,13 @@
   
   
   
+    
+  
   
     
     
-      <li class="md-tabs__item">
-        <a href="../../../test/software_engineering/" class="md-tabs__link">
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../../test/software_engineering/" class="md-tabs__link">
           
   
   
@@ -403,7 +401,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="../../../hadoop/ecosystem/" class="md-tabs__link">
+        <a href="../../hadoop/ecosystem/" class="md-tabs__link">
           
   
   
@@ -423,7 +421,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="../../../other/blockchain/" class="md-tabs__link">
+        <a href="../../other/blockchain/" class="md-tabs__link">
           
   
   
@@ -457,7 +455,7 @@
 
 <nav class="md-nav md-nav--primary md-nav--lifted" aria-label="导航栏" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="../../.." title="whm" class="md-nav__button md-logo" aria-label="whm" data-md-component="logo">
+    <a href="../.." title="whm" class="md-nav__button md-logo" aria-label="whm" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M256 512a256 256 0 1 0 0-512 256 256 0 1 0 0 512m-91.9-186.5C182 346.2 212.6 368 256 368s74-21.8 91.9-42.5c5.8-6.7 15.9-7.4 22.6-1.6s7.4 15.9 1.6 22.6c-22.3 25.6-61 53.5-116.1 53.5s-93.8-27.9-116.1-53.5c-5.8-6.7-5.1-16.8 1.6-22.6s16.8-5.1 22.6 1.6M144.4 208a32 32 0 1 1 64 0 32 32 0 1 1-64 0m156.4 25.6c-5.3 7.1-15.3 8.5-22.4 3.2s-8.5-15.3-3.2-22.4c30.4-40.5 91.2-40.5 121.6 0 5.3 7.1 3.9 17.1-3.2 22.4s-17.1 3.9-22.4-3.2c-17.6-23.5-52.8-23.5-70.4 0"/></svg>
@@ -487,7 +485,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../.." class="md-nav__link">
+      <a href="../.." class="md-nav__link">
         
   
   
@@ -508,29 +506,24 @@
       
   
   
-    
   
   
-  
     
     
     
     
       
-        
-        
-      
       
     
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
         
           
-          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="">
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
             
   
   
@@ -543,7 +536,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_2">
             <span class="md-nav__icon md-icon"></span>
             Python
@@ -598,7 +591,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../datatype/number/" class="md-nav__link">
+      <a href="../../python/datatype/number/" class="md-nav__link">
         
   
   
@@ -621,7 +614,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../datatype/sequence/" class="md-nav__link">
+      <a href="../../python/datatype/sequence/" class="md-nav__link">
         
   
   
@@ -644,7 +637,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../datatype/dict%26set/" class="md-nav__link">
+      <a href="../../python/datatype/dict%26set/" class="md-nav__link">
         
   
   
@@ -667,7 +660,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../datatype/mutable%26immutable/" class="md-nav__link">
+      <a href="../../python/datatype/mutable%26immutable/" class="md-nav__link">
         
   
   
@@ -698,7 +691,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../structure/structure/" class="md-nav__link">
+      <a href="../../python/structure/structure/" class="md-nav__link">
         
   
   
@@ -718,8 +711,6 @@
                 
   
   
-    
-  
   
   
     
@@ -730,11 +721,11 @@
       
     
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_3" checked>
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_3" >
         
           
           <label class="md-nav__link" for="__nav_2_3" id="__nav_2_3_label" tabindex="0">
@@ -750,7 +741,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_3_label" aria-expanded="true">
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_3_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_2_3">
             <span class="md-nav__icon md-icon"></span>
             算法
@@ -764,7 +755,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../sort/" class="md-nav__link">
+      <a href="../../python/oj/sort/" class="md-nav__link">
         
   
   
@@ -787,7 +778,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../dp/" class="md-nav__link">
+      <a href="../../python/oj/dp/" class="md-nav__link">
         
   
   
@@ -807,30 +798,10 @@
                 
   
   
-    
   
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          
-  
-  
-  <span class="md-ellipsis">
-    滑动窗口
-    
-  </span>
-  
-
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../../python/oj/window/" class="md-nav__link">
         
   
   
@@ -841,33 +812,6 @@
   
 
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="目录">
-  
-  
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      目录
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#3" class="md-nav__link">
-    <span class="md-ellipsis">
-      📌 3. 无重复字符的最长子串
-    </span>
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -888,7 +832,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../oop/" class="md-nav__link">
+      <a href="../../python/oop/" class="md-nav__link">
         
   
   
@@ -911,7 +855,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../builtin_func/" class="md-nav__link">
+      <a href="../../python/builtin_func/" class="md-nav__link">
         
   
   
@@ -934,7 +878,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../thread/" class="md-nav__link">
+      <a href="../../python/thread/" class="md-nav__link">
         
   
   
@@ -957,7 +901,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../async/" class="md-nav__link">
+      <a href="../../python/async/" class="md-nav__link">
         
   
   
@@ -1021,7 +965,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../autotest/model/" class="md-nav__link">
+      <a href="../../python/autotest/model/" class="md-nav__link">
         
   
   
@@ -1044,7 +988,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../autotest/unittest/unittest_notes/" class="md-nav__link">
+      <a href="../../python/autotest/unittest/unittest_notes/" class="md-nav__link">
         
   
   
@@ -1108,7 +1052,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../autotest/pytest/fixture/" class="md-nav__link">
+      <a href="../../python/autotest/pytest/fixture/" class="md-nav__link">
         
   
   
@@ -1131,7 +1075,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../autotest/pytest/pytest.main/" class="md-nav__link">
+      <a href="../../python/autotest/pytest/pytest.main/" class="md-nav__link">
         
   
   
@@ -1154,7 +1098,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../autotest/pytest/pytest.ini/" class="md-nav__link">
+      <a href="../../python/autotest/pytest/pytest.ini/" class="md-nav__link">
         
   
   
@@ -1185,7 +1129,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../autotest/selenium/" class="md-nav__link">
+      <a href="../../python/autotest/selenium/" class="md-nav__link">
         
   
   
@@ -1249,7 +1193,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../autotest/app/mumu_sim/" class="md-nav__link">
+      <a href="../../python/autotest/app/mumu_sim/" class="md-nav__link">
         
   
   
@@ -1272,7 +1216,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../autotest/app/appium/" class="md-nav__link">
+      <a href="../../python/autotest/app/appium/" class="md-nav__link">
         
   
   
@@ -1295,7 +1239,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../autotest/app/uiautomator2/" class="md-nav__link">
+      <a href="../../python/autotest/app/uiautomator2/" class="md-nav__link">
         
   
   
@@ -1318,7 +1262,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../autotest/app/webdriveragent/" class="md-nav__link">
+      <a href="../../python/autotest/app/webdriveragent/" class="md-nav__link">
         
   
   
@@ -1349,7 +1293,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../autotest/mitmproxy/" class="md-nav__link">
+      <a href="../../python/autotest/mitmproxy/" class="md-nav__link">
         
   
   
@@ -1372,7 +1316,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../autotest/requests/" class="md-nav__link">
+      <a href="../../python/autotest/requests/" class="md-nav__link">
         
   
   
@@ -1436,7 +1380,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../autotest/playwright/001_basic/" class="md-nav__link">
+      <a href="../../python/autotest/playwright/001_basic/" class="md-nav__link">
         
   
   
@@ -1459,7 +1403,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../autotest/playwright/002_po/" class="md-nav__link">
+      <a href="../../python/autotest/playwright/002_po/" class="md-nav__link">
         
   
   
@@ -1539,7 +1483,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../web/flask/" class="md-nav__link">
+      <a href="../../python/web/flask/" class="md-nav__link">
         
   
   
@@ -1603,7 +1547,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../web/django/django_orm/" class="md-nav__link">
+      <a href="../../python/web/django/django_orm/" class="md-nav__link">
         
   
   
@@ -1626,7 +1570,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../web/django/django_templates/" class="md-nav__link">
+      <a href="../../python/web/django/django_templates/" class="md-nav__link">
         
   
   
@@ -1649,7 +1593,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../web/django/cookie%26session/" class="md-nav__link">
+      <a href="../../python/web/django/cookie%26session/" class="md-nav__link">
         
   
   
@@ -1729,7 +1673,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../pandas/day01/" class="md-nav__link">
+      <a href="../../python/pandas/day01/" class="md-nav__link">
         
   
   
@@ -1752,7 +1696,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../pandas/day02/" class="md-nav__link">
+      <a href="../../python/pandas/day02/" class="md-nav__link">
         
   
   
@@ -1775,7 +1719,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../pandas/day03/" class="md-nav__link">
+      <a href="../../python/pandas/day03/" class="md-nav__link">
         
   
   
@@ -1798,7 +1742,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../pandas/day04/" class="md-nav__link">
+      <a href="../../python/pandas/day04/" class="md-nav__link">
         
   
   
@@ -1821,7 +1765,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../pandas/day05/" class="md-nav__link">
+      <a href="../../python/pandas/day05/" class="md-nav__link">
         
   
   
@@ -1893,7 +1837,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../other/mv_py_path/" class="md-nav__link">
+      <a href="../../python/other/mv_py_path/" class="md-nav__link">
         
   
   
@@ -1916,7 +1860,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../other/mkdocs_notes/" class="md-nav__link">
+      <a href="../../python/other/mkdocs_notes/" class="md-nav__link">
         
   
   
@@ -1939,7 +1883,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../regex/re/" class="md-nav__link">
+      <a href="../../python/regex/re/" class="md-nav__link">
         
   
   
@@ -1962,7 +1906,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../other/pypath/" class="md-nav__link">
+      <a href="../../python/other/pypath/" class="md-nav__link">
         
   
   
@@ -1985,7 +1929,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../pyjson/pyjson_notes/" class="md-nav__link">
+      <a href="../../python/pyjson/pyjson_notes/" class="md-nav__link">
         
   
   
@@ -2008,7 +1952,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../pydocx/pydocx_notes/" class="md-nav__link">
+      <a href="../../python/pydocx/pydocx_notes/" class="md-nav__link">
         
   
   
@@ -2031,7 +1975,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../pyexcel/pyexcel_notes/" class="md-nav__link">
+      <a href="../../python/pyexcel/pyexcel_notes/" class="md-nav__link">
         
   
   
@@ -2054,7 +1998,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../other/scrapy_notes/" class="md-nav__link">
+      <a href="../../python/other/scrapy_notes/" class="md-nav__link">
         
   
   
@@ -2077,7 +2021,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../closure/" class="md-nav__link">
+      <a href="../../python/closure/" class="md-nav__link">
         
   
   
@@ -2100,7 +2044,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../other/coding_standard/" class="md-nav__link">
+      <a href="../../python/other/coding_standard/" class="md-nav__link">
         
   
   
@@ -2220,7 +2164,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../java/springboot/basic/" class="md-nav__link">
+      <a href="../../java/springboot/basic/" class="md-nav__link">
         
   
   
@@ -2292,7 +2236,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../java/leetcode/hash/" class="md-nav__link">
+      <a href="../../java/leetcode/hash/" class="md-nav__link">
         
   
   
@@ -2315,7 +2259,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../java/leetcode/two_pointers/" class="md-nav__link">
+      <a href="../../java/leetcode/two_pointers/" class="md-nav__link">
         
   
   
@@ -2338,7 +2282,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../java/leetcode/array/" class="md-nav__link">
+      <a href="../../java/leetcode/array/" class="md-nav__link">
         
   
   
@@ -2361,7 +2305,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../java/leetcode/binary_search/" class="md-nav__link">
+      <a href="../../java/leetcode/binary_search/" class="md-nav__link">
         
   
   
@@ -2384,7 +2328,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../java/leetcode/stack/" class="md-nav__link">
+      <a href="../../java/leetcode/stack/" class="md-nav__link">
         
   
   
@@ -2415,7 +2359,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../java/junit5/" class="md-nav__link">
+      <a href="../../java/junit5/" class="md-nav__link">
         
   
   
@@ -2438,7 +2382,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../java/cucumber/" class="md-nav__link">
+      <a href="../../java/cucumber/" class="md-nav__link">
         
   
   
@@ -2509,7 +2453,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../vue/basic/" class="md-nav__link">
+      <a href="../../vue/basic/" class="md-nav__link">
         
   
   
@@ -2621,7 +2565,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../sql/oracle/sqlldr_import/" class="md-nav__link">
+      <a href="../../sql/oracle/sqlldr_import/" class="md-nav__link">
         
   
   
@@ -2644,7 +2588,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../sql/oracle/some/" class="md-nav__link">
+      <a href="../../sql/oracle/some/" class="md-nav__link">
         
   
   
@@ -2667,7 +2611,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../sql/oracle/lock%26unlock/" class="md-nav__link">
+      <a href="../../sql/oracle/lock%26unlock/" class="md-nav__link">
         
   
   
@@ -2690,7 +2634,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../sql/oracle/procedure/" class="md-nav__link">
+      <a href="../../sql/oracle/procedure/" class="md-nav__link">
         
   
   
@@ -2713,7 +2657,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../sql/oracle/gather_table_stats/" class="md-nav__link">
+      <a href="../../sql/oracle/gather_table_stats/" class="md-nav__link">
         
   
   
@@ -2736,7 +2680,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../sql/oracle/other_notes/" class="md-nav__link">
+      <a href="../../sql/oracle/other_notes/" class="md-nav__link">
         
   
   
@@ -2767,7 +2711,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../sql/mysql_notes/" class="md-nav__link">
+      <a href="../../sql/mysql_notes/" class="md-nav__link">
         
   
   
@@ -2790,7 +2734,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../sql/redis_notes/" class="md-nav__link">
+      <a href="../../sql/redis_notes/" class="md-nav__link">
         
   
   
@@ -2813,7 +2757,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../other/elasticsearch/" class="md-nav__link">
+      <a href="../../other/elasticsearch/" class="md-nav__link">
         
   
   
@@ -2884,7 +2828,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../shell/review/" class="md-nav__link">
+      <a href="../../shell/review/" class="md-nav__link">
         
   
   
@@ -2907,7 +2851,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../other/git_notes/" class="md-nav__link">
+      <a href="../../other/git_notes/" class="md-nav__link">
         
   
   
@@ -2930,7 +2874,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../shell/timestamp/" class="md-nav__link">
+      <a href="../../shell/timestamp/" class="md-nav__link">
         
   
   
@@ -2953,7 +2897,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../shell/regex/" class="md-nav__link">
+      <a href="../../shell/regex/" class="md-nav__link">
         
   
   
@@ -2976,7 +2920,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../shell/k8s/" class="md-nav__link">
+      <a href="../../shell/k8s/" class="md-nav__link">
         
   
   
@@ -3040,7 +2984,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../docker/windows_docker/" class="md-nav__link">
+      <a href="../../docker/windows_docker/" class="md-nav__link">
         
   
   
@@ -3063,7 +3007,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../docker/archlinux_docker/" class="md-nav__link">
+      <a href="../../docker/archlinux_docker/" class="md-nav__link">
         
   
   
@@ -3086,7 +3030,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../docker/build_mysql/" class="md-nav__link">
+      <a href="../../docker/build_mysql/" class="md-nav__link">
         
   
   
@@ -3109,7 +3053,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../docker/build_oracle/" class="md-nav__link">
+      <a href="../../docker/build_oracle/" class="md-nav__link">
         
   
   
@@ -3132,7 +3076,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../docker/build_jenkins/" class="md-nav__link">
+      <a href="../../docker/build_jenkins/" class="md-nav__link">
         
   
   
@@ -3155,7 +3099,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../docker/build_rockylinux/" class="md-nav__link">
+      <a href="../../docker/build_rockylinux/" class="md-nav__link">
         
   
   
@@ -3178,7 +3122,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../docker/build_hbase/" class="md-nav__link">
+      <a href="../../docker/build_hbase/" class="md-nav__link">
         
   
   
@@ -3213,24 +3157,29 @@
       
   
   
+    
   
   
+  
     
     
     
     
-      
-      
-    
-    
-    <li class="md-nav__item md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" >
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" checked>
         
           
-          <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="">
             
   
   
@@ -3243,7 +3192,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_7">
             <span class="md-nav__icon md-icon"></span>
             测试
@@ -3257,7 +3206,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../test/software_engineering/" class="md-nav__link">
+      <a href="../../test/software_engineering/" class="md-nav__link">
         
   
   
@@ -3277,6 +3226,8 @@
                 
   
   
+    
+  
   
   
     
@@ -3287,11 +3238,11 @@
       
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7_2" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7_2" checked>
         
           
           <label class="md-nav__link" for="__nav_7_2" id="__nav_7_2_label" tabindex="0">
@@ -3307,7 +3258,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_7_2_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_7_2_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_7_2">
             <span class="md-nav__icon md-icon"></span>
             测试类型
@@ -3321,7 +3272,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../test/test_app/" class="md-nav__link">
+      <a href="../../test/test_app/" class="md-nav__link">
         
   
   
@@ -3341,6 +3292,8 @@
                 
   
   
+    
+  
   
   
     
@@ -3351,11 +3304,11 @@
       
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7_2_2" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7_2_2" checked>
         
           
           <label class="md-nav__link" for="__nav_7_2_2" id="__nav_7_2_2_label" tabindex="0">
@@ -3371,7 +3324,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_7_2_2_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_7_2_2_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_7_2_2">
             <span class="md-nav__icon md-icon"></span>
             性能测试
@@ -3385,7 +3338,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../test/test_performance/" class="md-nav__link">
+      <a href="../../test/test_performance/" class="md-nav__link">
         
   
   
@@ -3405,6 +3358,8 @@
                 
   
   
+    
+  
   
   
     
@@ -3415,11 +3370,11 @@
       
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7_2_2_2" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7_2_2_2" checked>
         
           
           <label class="md-nav__link" for="__nav_7_2_2_2" id="__nav_7_2_2_2_label" tabindex="0">
@@ -3435,7 +3390,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="4" aria-labelledby="__nav_7_2_2_2_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="4" aria-labelledby="__nav_7_2_2_2_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_7_2_2_2">
             <span class="md-nav__icon md-icon"></span>
             压测工具
@@ -3449,7 +3404,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../utils/jmeter_notes/" class="md-nav__link">
+      <a href="../jmeter_notes/" class="md-nav__link">
         
   
   
@@ -3472,7 +3427,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../utils/locust_notes/" class="md-nav__link">
+      <a href="../locust_notes/" class="md-nav__link">
         
   
   
@@ -3495,7 +3450,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../utils/arthas/" class="md-nav__link">
+      <a href="../arthas/" class="md-nav__link">
         
   
   
@@ -3515,10 +3470,30 @@
                 
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="../../../utils/monitor/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    监控平台
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         
   
   
@@ -3529,6 +3504,120 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#exporter" class="md-nav__link">
+    <span class="md-ellipsis">
+      📌 exporter
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#prometheus" class="md-nav__link">
+    <span class="md-ellipsis">
+      📌 Prometheus
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="📌 Prometheus">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#prometheus_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      🚁 启动Prometheus
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#grafana" class="md-nav__link">
+    <span class="md-ellipsis">
+      📌 Grafana
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="📌 Grafana">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      🚁 监控服务器
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🚁 监控服务器">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      🔧 系统平均负载
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mysql" class="md-nav__link">
+    <span class="md-ellipsis">
+      🚁 监控mysql
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🚁 监控mysql">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#table-locks" class="md-nav__link">
+    <span class="md-ellipsis">
+      🔧 Table Locks
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -3590,7 +3679,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../other/high_performance/" class="md-nav__link">
+      <a href="../../other/high_performance/" class="md-nav__link">
         
   
   
@@ -3613,7 +3702,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../other/high_availability/" class="md-nav__link">
+      <a href="../../other/high_availability/" class="md-nav__link">
         
   
   
@@ -3636,7 +3725,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../other/nginx_notes/" class="md-nav__link">
+      <a href="../../other/nginx_notes/" class="md-nav__link">
         
   
   
@@ -3659,7 +3748,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../other/tomcat_notes/" class="md-nav__link">
+      <a href="../../other/tomcat_notes/" class="md-nav__link">
         
   
   
@@ -3698,7 +3787,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../test/test_security/" class="md-nav__link">
+      <a href="../../test/test_security/" class="md-nav__link">
         
   
   
@@ -3770,7 +3859,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../utils/fiddler_notes/" class="md-nav__link">
+      <a href="../fiddler_notes/" class="md-nav__link">
         
   
   
@@ -3793,7 +3882,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../utils/charles_notes/" class="md-nav__link">
+      <a href="../charles_notes/" class="md-nav__link">
         
   
   
@@ -3816,7 +3905,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../utils/postman_notes/" class="md-nav__link">
+      <a href="../postman_notes/" class="md-nav__link">
         
   
   
@@ -3839,7 +3928,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../utils/apifox_notes/" class="md-nav__link">
+      <a href="../apifox_notes/" class="md-nav__link">
         
   
   
@@ -3918,7 +4007,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../hadoop/ecosystem/" class="md-nav__link">
+      <a href="../../hadoop/ecosystem/" class="md-nav__link">
         
   
   
@@ -3982,7 +4071,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../hadoop/scala/day01/" class="md-nav__link">
+      <a href="../../hadoop/scala/day01/" class="md-nav__link">
         
   
   
@@ -4005,7 +4094,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../hadoop/scala/day02/" class="md-nav__link">
+      <a href="../../hadoop/scala/day02/" class="md-nav__link">
         
   
   
@@ -4028,7 +4117,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../hadoop/scala/day03/" class="md-nav__link">
+      <a href="../../hadoop/scala/day03/" class="md-nav__link">
         
   
   
@@ -4051,7 +4140,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../hadoop/scala/day04/" class="md-nav__link">
+      <a href="../../hadoop/scala/day04/" class="md-nav__link">
         
   
   
@@ -4130,7 +4219,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../other/blockchain/" class="md-nav__link">
+      <a href="../../other/blockchain/" class="md-nav__link">
         
   
   
@@ -4153,7 +4242,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../other/deep_learning/" class="md-nav__link">
+      <a href="../../other/deep_learning/" class="md-nav__link">
         
   
   
@@ -4176,7 +4265,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../other/rag/" class="md-nav__link">
+      <a href="../../other/rag/" class="md-nav__link">
         
   
   
@@ -4224,11 +4313,98 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#3" class="md-nav__link">
+  <a href="#exporter" class="md-nav__link">
     <span class="md-ellipsis">
-      📌 3. 无重复字符的最长子串
+      📌 exporter
     </span>
   </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#prometheus" class="md-nav__link">
+    <span class="md-ellipsis">
+      📌 Prometheus
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="📌 Prometheus">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#prometheus_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      🚁 启动Prometheus
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#grafana" class="md-nav__link">
+    <span class="md-ellipsis">
+      📌 Grafana
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="📌 Grafana">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      🚁 监控服务器
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🚁 监控服务器">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      🔧 系统平均负载
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mysql" class="md-nav__link">
+    <span class="md-ellipsis">
+      🚁 监控mysql
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🚁 监控mysql">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#table-locks" class="md-nav__link">
+    <span class="md-ellipsis">
+      🔧 Table Locks
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -4251,60 +4427,98 @@
   
 
 
-  <h1>滑动窗口</h1>
+  <h1>监控平台</h1>
 
-<h2 id="3">📌 <a href="https://leetcode.cn/problems/longest-substring-without-repeating-characters/description/?envType=study-plan-v2&amp;envId=top-100-liked">3. 无重复字符的最长子串</a></h2>
-<p>给定一个字符串s，请你找出其中不含有重复字符的最长子串的长度。</p>
-<div class="highlight"><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">Solution</span><span class="p">:</span>
-    <span class="nd">@staticmethod</span>
-    <span class="k">def</span><span class="w"> </span><span class="nf">lengthOfLongestSubstring</span><span class="p">(</span><span class="n">s</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
-        <span class="c1"># 执行超过时间限制</span>
-        <span class="n">s_len</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">s</span><span class="p">)</span>
-        <span class="n">max_len</span> <span class="o">=</span> <span class="mi">0</span>
-        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">s_len</span><span class="p">):</span>
-            <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">s_len</span> <span class="o">+</span> <span class="mi">1</span><span class="p">):</span>  <span class="c1"># 切片，左开右闭</span>
-                <span class="c1"># print(s[i:j])  # 打印所有子串，会有空字符串</span>
-                <span class="n">substr</span> <span class="o">=</span> <span class="n">s</span><span class="p">[</span><span class="n">i</span><span class="p">:</span><span class="n">j</span><span class="p">]</span>
-                <span class="n">substr_len</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">substr</span><span class="p">)</span>
-                <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="nb">set</span><span class="p">(</span><span class="n">substr</span><span class="p">))</span> <span class="o">==</span> <span class="n">substr_len</span> <span class="o">&amp;</span> <span class="n">substr_len</span> <span class="o">&gt;</span> <span class="n">max_len</span><span class="p">:</span>
-                    <span class="n">max_len</span> <span class="o">=</span> <span class="n">substr_len</span>
-        <span class="k">return</span> <span class="n">max_len</span>
+<p>流程: node_exporter(收集数据) -&gt; Prometheus(保存数据) -&gt; Grafana(展示数据)</p>
+<h2 id="exporter">📌 exporter</h2>
+<p>node_exporter，用于收集服务器性能指标，默认端口9100。</p>
+<p>mysql_exporter，用于收集连接数、慢查询、数据库表锁等，默认端口9104。</p>
+<p>常用的exporter下载:<br />
+https://www.cnblogs.com/momoyan/p/11520755.html</p>
+<h2 id="prometheus">📌 Prometheus</h2>
+<p>开源的监控报警系统与时序系统，默认端口9090。</p>
+<p>对时间精度要求高，若服务器时间与现实时间不同步，可能导致无法收集准确数据。</p>
+<div class="highlight"><pre><span></span><code>date<span class="w">  </span><span class="c1"># 查当前时间</span>
+sudo<span class="w"> </span>ntpdate<span class="w"> </span>ntp.aliyun.com<span class="w">  </span><span class="c1"># 校准ntp服务时间</span>
 
-    <span class="nd">@staticmethod</span>
-    <span class="k">def</span><span class="w"> </span><span class="nf">lengthOfLongestSubstring2</span><span class="p">(</span><span class="n">s</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
-        <span class="c1"># 通过滑动窗口的方式优化</span>
-        <span class="c1"># 滑动窗口：使用两个指针 left 和 right 来表示当前窗口的左右边界。</span>
-        <span class="n">max_len</span><span class="p">,</span> <span class="n">left</span><span class="p">,</span> <span class="n">right</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span>
-        <span class="n">tmp</span> <span class="o">=</span> <span class="p">[]</span>
-        <span class="k">while</span> <span class="p">(</span><span class="n">right</span> <span class="o">&lt;</span> <span class="nb">len</span><span class="p">(</span><span class="n">s</span><span class="p">)):</span>
-            <span class="c1"># right从0开始，出现重复时停止，此时left开始右移并删除字符，直至重复的字符位置</span>
-            <span class="k">if</span> <span class="n">s</span><span class="p">[</span><span class="n">right</span><span class="p">]</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">tmp</span><span class="p">:</span>
-                <span class="n">tmp</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">s</span><span class="p">[</span><span class="n">right</span><span class="p">])</span>
-                <span class="n">right</span> <span class="o">+=</span> <span class="mi">1</span>
-            <span class="k">else</span><span class="p">:</span> <span class="c1"># 逐次删字符，应该能再优化</span>
-                <span class="n">tmp</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="n">s</span><span class="p">[</span><span class="n">left</span><span class="p">])</span>
-                <span class="n">left</span> <span class="o">+=</span> <span class="mi">1</span>
-            <span class="n">max_len</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">tmp</span><span class="p">),</span> <span class="n">max_len</span><span class="p">)</span>
-        <span class="k">return</span> <span class="n">max_len</span>
-
-    <span class="nd">@staticmethod</span>
-    <span class="k">def</span><span class="w"> </span><span class="nf">lengthOfLongestSubstring3</span><span class="p">(</span><span class="n">s</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
-        <span class="n">max_len</span><span class="p">,</span> <span class="n">left</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span>
-        <span class="n">tmp</span> <span class="o">=</span> <span class="p">{}</span>  <span class="c1"># { char1: 0, char2: 2, ... }，存字符出现的索引</span>
-        <span class="k">for</span> <span class="n">right</span><span class="p">,</span> <span class="n">char</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">s</span><span class="p">):</span>
-            <span class="c1"># 当出现重复时，left=字符索引位置右移1个字符</span>
-            <span class="c1"># tmp[char] &gt;= left，确保left不会超过right</span>
-            <span class="k">if</span> <span class="n">char</span> <span class="ow">in</span> <span class="n">tmp</span> <span class="ow">and</span> <span class="n">tmp</span><span class="p">[</span><span class="n">char</span><span class="p">]</span> <span class="o">&gt;=</span> <span class="n">left</span><span class="p">:</span>
-                <span class="n">left</span> <span class="o">=</span> <span class="n">tmp</span><span class="p">[</span><span class="n">char</span><span class="p">]</span> <span class="o">+</span> <span class="mi">1</span>
-            <span class="n">tmp</span><span class="p">[</span><span class="n">char</span><span class="p">]</span> <span class="o">=</span> <span class="n">right</span>  <span class="c1"># 每次遍历都更新字符对应的索引</span>
-            <span class="n">max_len</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">max_len</span><span class="p">,</span> <span class="n">right</span> <span class="o">-</span> <span class="n">left</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
-        <span class="k">return</span> <span class="n">max_len</span>
-
-
-<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
-    <span class="n">s</span> <span class="o">=</span> <span class="s2">&quot;abba&quot;</span>
-    <span class="nb">print</span><span class="p">(</span><span class="n">Solution</span><span class="o">.</span><span class="n">lengthOfLongestSubstring3</span><span class="p">(</span><span class="n">s</span><span class="p">))</span>
+<span class="c1"># 若依然显示N/A，则执行以下命令清缓存</span>
+<span class="nb">cd</span><span class="w"> </span>/usr/local/prometheus/
+rm<span class="w"> </span>-rf<span class="w"> </span>data/
+mkdir<span class="w"> </span>data
 </code></pre></div>
+<h3 id="prometheus_1">🚁 启动Prometheus</h3>
+<ol>
+<li>cd /usr/local/prometheus</li>
+<li>vim prometheus.yml，配置文件中设置需要<code>exporter</code>对应的ip地址</li>
+<li>./prometheus --config.file=prometheus.yml</li>
+<li>进入prometheus的web页面，查看监控目标<br />
+   http://192.168.80.170:9090/targets</li>
+</ol>
+<div class="tabbed-set tabbed-alternate" data-tabs="1:1"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">prometheus.yml</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">job_name</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;prometheus&#39;</span>
+<span class="w">    </span><span class="nt">static_configs</span><span class="p">:</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">targets</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="w"> </span><span class="s">&#39;localhost:9090&#39;</span><span class="w"> </span><span class="p p-Indicator">]</span><span class="w">  </span><span class="c1"># 端口号9090</span>
+
+<span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">job_name</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;agent&#39;</span>
+<span class="w">    </span><span class="nt">static_configs</span><span class="p">:</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">targets</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="w"> </span><span class="s">&#39;192.168.80.170:9100&#39;</span><span class="p p-Indicator">,</span><span class="s">&#39;192.168.80.168:9100&#39;</span><span class="w"> </span><span class="p p-Indicator">]</span><span class="w">  </span><span class="c1"># node_exporter监控多服务器</span>
+
+<span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">job_name</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;mysql&#39;</span>
+<span class="w">    </span><span class="nt">static_configs</span><span class="p">:</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">targets</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="w"> </span><span class="s">&#39;192.168.80.170:9104&#39;</span><span class="p p-Indicator">,</span><span class="s">&#39;192.168.80.168:9104&#39;</span><span class="w"> </span><span class="p p-Indicator">]</span><span class="w">  </span><span class="c1"># mysql_exporter监控多服务器</span>
+</code></pre></div>
+</div>
+</div>
+</div>
+<h2 id="grafana">📌 Grafana</h2>
+<p>开源、可视化的监控工具，用于展示收集到的数据，默认端口3000。</p>
+<p>访问grafana服务:<br />
+http://192.168.80.170:3000/</p>
+<p>默认账号密码: admin/admin</p>
+<p>1.配置数据源</p>
+<p>Configuration -&gt; Add data source -&gt; url填Prometheus所在的服务器（如<code>http://192.168.80.170:9090</code>）</p>
+<p>2.导入模版</p>
+<p>若显示N/A，则需要进行校准时间。</p>
+<p>3.显示时间选择: 近30分钟，刷新频率： 5秒/次。</p>
+<div class="admonition note">
+<p class="admonition-title">补充</p>
+<p>修改服务器配置重启时，Grafana展示可能会有延迟。</p>
+</div>
+<h3 id="_1">🚁 监控服务器</h3>
+<h4 id="_2">🔧 系统平均负载</h4>
+<p>系统平均负载: CPU在一段时间内的使用量</p>
+<p>一般来说，系统平均负载超过<code>CPU核数</code>数倍时，视为异常。</p>
+<h3 id="mysql">🚁 监控mysql</h3>
+<p>常关注的指标:</p>
+<p>Current QPS-每秒处理查询数</p>
+<p>Connections-连接数</p>
+<p>Slow Queries-慢查询数，设置慢查询阈值如1秒</p>
+<p>Table Locks-表级锁，控制并发访问的机制，防止同时对一个表进行读写。</p>
+<h4 id="table-locks">🔧 Table Locks</h4>
+<p>包含以下指标: </p>
+<ul>
+<li>
+<p>Table_locks_immediate<br />
+表示一个线程请求表锁时，立即获得锁的次数。即：无需等待，直接加锁成功。</p>
+</li>
+<li>
+<p>Table_locks_waited<br />
+表示一个线程请求表锁时，需要等待其他线程释放锁的次数。即：发生锁竞争，出现阻塞。</p>
+</li>
+</ul>
+<p>理想状态下，Table_locks_immediate 应远大于 Table_locks_waited。</p>
+<p>若后者持续增长，说明存在较多锁竞争，可能影响并发性能。</p>
+<div class="admonition note">
+<p class="admonition-title">优化建议</p>
+<ul>
+<li>优先使用<code>InnoDB</code>存储引擎: 支持行级锁，大幅减少锁冲突。</li>
+<li>优化慢查询、添加合适索引。</li>
+<li>尽量避免长事务，及时提交事务以释放锁资源。</li>
+<li>设置报警规则，当<code>Table_locks_waited</code>突增时及时通知。</li>
+</ul>
+</div>
 
 
 
@@ -4325,7 +4539,7 @@
     <span class="md-icon" title="最后更新">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime" title="2024年12月1日 19:46:39 CST">2024-12-01 19:46:39</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime" title="2025年6月7日 23:57:48 CST">2025-06-07 23:57:48</span>
   </span>
 
     
@@ -4361,7 +4575,7 @@
       <nav class="md-footer__inner md-grid" aria-label="页脚" >
         
           
-          <a href="../dp/" class="md-footer__link md-footer__link--prev" aria-label="上一页: 动态规划">
+          <a href="../arthas/" class="md-footer__link md-footer__link--prev" aria-label="上一页: Arthas">
             <div class="md-footer__button md-icon">
               
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
@@ -4371,20 +4585,20 @@
                 上一页
               </span>
               <div class="md-ellipsis">
-                动态规划
+                Arthas
               </div>
             </div>
           </a>
         
         
           
-          <a href="../../oop/" class="md-footer__link md-footer__link--next" aria-label="下一页: 面向对象">
+          <a href="../../other/high_performance/" class="md-footer__link md-footer__link--next" aria-label="下一页: 高性能">
             <div class="md-footer__title">
               <span class="md-footer__direction">
                 下一页
               </span>
               <div class="md-ellipsis">
-                面向对象
+                高性能
               </div>
             </div>
             <div class="md-footer__button md-icon">
@@ -4420,10 +4634,10 @@
     
     
       
-      <script id="__config" type="application/json">{"base": "../../..", "features": ["navigation.footer", "navigation.top", "navigation.tabs", "navigation.instant", "content.code.copy"], "search": "../../../assets/javascripts/workers/search.d50fe291.min.js", "tags": null, "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}, "version": null}</script>
+      <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.footer", "navigation.top", "navigation.tabs", "navigation.instant", "content.code.copy"], "search": "../../assets/javascripts/workers/search.d50fe291.min.js", "tags": null, "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}, "version": null}</script>
     
     
-      <script src="../../../assets/javascripts/bundle.13a4f30d.min.js"></script>
+      <script src="../../assets/javascripts/bundle.13a4f30d.min.js"></script>
       
     
   <script id="init-glightbox">const lightbox = GLightbox({"touchNavigation": true, "loop": false, "zoomable": true, "draggable": true, "openEffect": "zoom", "closeEffect": "zoom", "slideEffect": "slide"});
