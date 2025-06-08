@@ -29,7 +29,7 @@ EOF
 sqlldr userid=${target_dbstr} control=./${table}.ctl log=./${table}.log bad=./${table}.bad
 
 ```
-!!! note "补充：使用sqluldr2导出查询结果"
+!!! note "使用sqluldr2导出查询结果"
 
     `./sqluldr2 user="user/pw" query="select * from table" head=no field="|" file="./tablename.txt" charset=ZHS16GBK`
 
