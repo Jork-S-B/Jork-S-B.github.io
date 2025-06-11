@@ -109,7 +109,10 @@ nav:
                   - JMeter: utils/jmeter_notes.md
                   - Locust: utils/locust_notes.md
                   - Arthas: utils/arthas.md
-                  - 监控平台: utils/monitor.md
+              - 监控工具:
+                  - 监控平台: utils/performance/monitor/platform.md
+                  - 监控服务器: utils/performance/monitor/server.md
+                  - 监控Mysql: utils/performance/monitor/mysql.md
               - 性能调优:
                   - 高性能: other/high_performance.md
                   - 高可用: other/high_availability.md
