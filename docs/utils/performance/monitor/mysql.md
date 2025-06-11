@@ -10,16 +10,16 @@ Connections-连接数
 
 #### 🔧 设置慢查询
 
-=== "/etc/my.cnf"
-
 改配置文件后重启服务: `systemctl restart mysqld`
 
-```shell
-log_output=table  # 将慢查询日志保存到表中
-slow_query_log=1  # 开启慢查询
-long_query_time=1  # 慢查询超时时间为1秒
-max_connections=512  # 最大连接数
-```
+=== "/etc/my.cnf"
+
+    ```shell
+    log_output=table  # 将慢查询日志保存到表中
+    slow_query_log=1  # 开启慢查询
+    long_query_time=1  # 慢查询超时时间为1秒
+    max_connections=512  # 最大连接数
+    ```
 
 ### 🚁 Table Locks
 
