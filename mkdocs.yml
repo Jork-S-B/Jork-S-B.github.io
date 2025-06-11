@@ -18,8 +18,13 @@ nav:
           - 滑动窗口: python/oj/window.md
       - 面向对象: python/oop.md
       - 内置函数: python/builtin_func.md
-      - 多线程&多进程: python/thread.md
-      - 异步编程: python/async.md
+      - 内置库:
+          - 正则表达式: python/builtin_lib/re.md
+          - 文件路径: python/builtin_lib/pypath.md
+          - json: python/builtin_lib/pyjson_notes.md
+          - 多线程&多进程: python/builtin_lib/thread.md
+          - 异步编程: python/builtin_lib/async.md
+      - 闭包&装饰器&柯里化: python/closure.md
       - 自动化:
           - 设计: python/autotest/model.md
           - unittest: python/autotest/unittest/unittest_notes.md
@@ -51,16 +56,13 @@ nav:
           - Day4: python/pandas/day04.md
           - Day5: python/pandas/day05.md
       - 其他:
-          - Python路径迁移: python/other/mv_py_path.md
+          - Python安装路径迁移: python/other/mv_py_path.md
           - mkdocs使用记录: python/other/mkdocs_notes.md
-          - 正则表达式: python/regex/re.md
-          - 文件路径: python/other/pypath.md
-          - json: python/pyjson/pyjson_notes.md
           - docx: python/pydocx/pydocx_notes.md
           - excel: python/pyexcel/pyexcel_notes.md
           - 爬虫入门笔记: python/other/scrapy_notes.md
-          - 闭包&装饰器&柯里化: python/closure.md
           - 编程规范: python/other/coding_standard.md
+          - 垃圾回收机制: python/other/garbage_collection.md
   - Java:
       - Spring Boot:
           - 组件: java/springboot/basic.md
