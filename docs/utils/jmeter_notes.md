@@ -131,13 +131,47 @@ JMeter 5.6.1 之后的版本默认UTF-8编码，无需修改。
 1. 下载插件: https://jmeter-plugins.org/downloads/old/
 2. 解压后把`lib`文件夹扔到JMeter目录，重启JMeter。之后便可使用阶梯加压线程组、响应时间折线图、TPS折线图等组件。
 
+### 🚁 mysql数据库压测
+
+1.查mysql版本号: `mysql --version`
+
+或者连上mysql后`select version();`
+
+2.配置端口（默认3306），重启服务`systemctl restart mysqld`
+
+
+=== "/etc/my.cnf"
+
+    ```text
+    [mysqld]
+    port=3306
+    ```
+
+=== "jdbc.properties"
+
+    ```text
+    mysqlbase.port=3309
+    ```
+
+3.脚本设计
+
+[下载插件](https://downloads.mysql.com/archives/c-j/)，解压后把jar放到jMmeter/lib/ext目录。
+
+JMeter中添加：
+
+* 取样器 -> `JDBC Request`，Query主要包括核心业务的SQL语句。
+* 配置元件 -> `JDBC Connection Configuration`，填写配置包括JDBC Driver class、Database URL(jdbc:mysql://ip:端口/库名)、用户名、密码、连接池(跟取样器的连接池变量名保持一致)。
+
+连接池的作用: 预先创建一定数量的、保持活跃的连接供请求复用，避免频繁地建立和关闭连接所带来的延迟。  
+这里用于模拟多线程高并发访问的场景。
+
 ## 📌 使用代理服务器录制脚本
 
 参考资料: [jmeter代理服务器录制脚本教程（入门篇）](https://blog.csdn.net/weixin_42614544/article/details/109514086)
 
 ## 📌 使用自带函数
 
-工具->函数助手对话框，找需要用的函数。
+工具 -> 函数助手对话框，找需要用的函数。
 
 === "示例"
 

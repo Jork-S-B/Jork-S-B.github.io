@@ -23,7 +23,7 @@ Y轴是慢查询数量，需要设置慢查询阈值（如1秒），默认10秒�
 
 #### 🔧 慢查询SQL分析
 
-1.找到慢查询SQL原语句"
+1.找到慢查询SQL原语句
 
 ```SQL
 SELECT START_TIME, USER_HOST, QUERY_TIME, LOCK_TIME, DB, SQL_TEXT
@@ -48,7 +48,7 @@ ORDER BY START_TIME DESC LIMIT 10;
 
     CONST > EQ_REF > REF > RANGE > INDEX > ALL
 
-    | type 类型  | 说明                                            |
+    | type类型  | 说明                                            |
     |----------|-----------------------------------------------|
     | `const`  | 主键或唯一索引查找，速度最快                                |
     | `eq_ref` | 多表连接时使用主键/唯一索引                                |
@@ -95,17 +95,12 @@ ORDER BY START_TIME DESC LIMIT 10;
 ### 🚁 相关变量
 
 ```sql
-#
-查看数据库中与慢查询相关的变量
+# 查看数据库中与慢查询相关的变量
 show variables like '%slow_query%';
 
-#
-查询数据库中的最大连接数
+# 查询数据库中的最大连接数
 show variables like '%max_connections%';
 
-#
-长查询的执行时间阈值
-，超过该时间的查询被记录为慢查询
+# 长查询的执行时间阈值，超过该时间的查询被记录为慢查询
 show variables like '%long_query%';
 ```
-

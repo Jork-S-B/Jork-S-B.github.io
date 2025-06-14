@@ -43,3 +43,15 @@ Tomcat的启停脚本:
               maxThreads="600" minSpareThreads="4"/>
     
     ```
+
+## 📌 内存溢出分析
+
+1.将`dump.hprof`下载导入到`Eslipse Memory Analyzer`。 
+
+2.主要看Overview -> Reports -> Leak Suspects -> details的堆栈信息
+
+参考资料: [内存泄露该怎么办-堆内存文件hprof分析](https://www.bilibili.com/video/BV11142167vj/?spm_id_from=333.337.search-card.all.click&vd_source=3609d4adbadc244cd438bd16fa816a8e)
+
+todo，据说idea的功能Profiler，也能分析hprof文件。
+
+[使用idea自带的内存泄漏分析工具](https://blog.csdn.net/weixin_43982359/article/details/132316552)
