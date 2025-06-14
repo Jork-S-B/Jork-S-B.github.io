@@ -4,6 +4,14 @@
 
 数据库配置: /usr/local/web/WebRoot/WEB-INF/classes/jdbc.properties
 
+`catalina.sh`完整配置: [catalina.sh](../catalina.sh)
+
+Tomcat的启停脚本:
+
+* tomcat/bin/startup.sh
+
+* tomcat/bin/shutdown.sh
+
 === "catalina.sh"
 
     ```shell
@@ -12,8 +20,12 @@
     # -XX:PermSize=128m -XX:MaxPermSize=256m: Java 8及以后版本中该参数无效。
     # HeapDumpPath: 堆存储文件，溢出的日志记录路径
     # -XX:NewRatio=1: 设置年轻代/老年代的比例，默认为1
-    JAVA_OPTS="-Xms512m -Xmx1024m -XX:PermSize=128m -XX:MaxPermSize=256m -XX:+HeapDumpOnOutOfMemoryError -XX:HeapDumpPath=/tmp/tomcat/dump.hprof -XX:NewRatio=1"
-    
+    export JRE_HOME=/usr/local/jdk
+    JAVA_OPTS='-Xms512m -Xmx1024m -XX:PermSize=128m -XX:MaxPermSize=256m -XX:+HeapDumpOnOutOfMemoryError -XX:HeapDumpPath=/tmp/tomcat/dump.hprof -XX:NewRatio=1
+        -Djava.rmi.server.hostname=ip
+        -Dcom.sun.management.jmxremote.port=10001
+        -Dcom.sun.management.jmxremote.ssl=false
+        -Dcom.sun.management.jmxremote.authenticate=false'
     ```
 
 === "server.xml"

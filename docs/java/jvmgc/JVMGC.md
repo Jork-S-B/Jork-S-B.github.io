@@ -60,16 +60,15 @@ JDK1.8及以前版本，bin目录自带VisualVM，否则需要自行安装。
 
 `JMX`，Java平台提供的一个管理和监控Java应用程序的标准。不支持查看GC，但是可以对堆内存、cpu、类、线程的监控。
 
-1.[catalina-jmx-remote.jar](JVM/Fcatalina-jmx-remote.jar)，Apache Tomcat服务器中用于支持远程JMX访问的扩展包。
+1.[catalina-jmx-remote.jar](../catalina-jmx-remote.jar)，Apache Tomcat服务器中用于支持远程JMX访问的扩展包。
 
 将该jar包放到`tomcat/lib`目录里即可。
 
-2.配置JMX后重启tomcat。
+2.配置JMX后重启tomcat，[点此跳转](/other/tomcat_notes/#__tabbed_1_1)查看完整配置。
 
 === "catalina.sh"
 
     ```shell
-    # 位于tomcat的bin目录: cd /usr/local/tomcat/bin
     -Djava.rmi.server.hostname=ip  # 指定用于JMX连接的服务器
     -Dcom.sun.management.jmxremote.port=10001
     -Dcom.sun.management.jmxremote.ssl=false  # 不启用JMX SSL安全连接
@@ -90,14 +89,15 @@ firewall-cmd --add-port=10001/tcp --permanent  # 白名单永久添加10001端�
 
 `jstatd`，独立的远程监控工具，用于监控和收集Java应用程序的运行时统计信息。
 
-1.`VisualVM`安装插件: [Visual GC](JVM/Fcom-sun-tools-visualvm-modules-visualgc.nbm)，下载后进行离线安装。
+1.`VisualVM`安装插件: [Visual GC](../com-sun-tools-visualvm-modules-visualgc.nbm)，下载后进行离线安装。
 
-2.[java.policy](JVM/java.policy)，放到`jdk/jre/lib/security`，用于配置访问权限。
+2.[java.policy](../java.policy)，放到`jdk/jre/lib/security`，用于配置访问权限。
 
 3.启动`jstatd`服务，端口为1003。
 
 ```shell
-./jstatd -J-Djava.security.policy=jstatd.all.policy -p 10003
+./jstatd -J-Djava.security.policy=jstatd.all.policy -p 10003  # bin目录启动jstatd
+ps -ef | grep jstatd | grep -v grep | awk '{print $2}' | xargs -i  kill -9  {}  # 补充：停止jstatd服务
 ```
 
 4.`VisualVM`在远程机上添加jstatd连接。
