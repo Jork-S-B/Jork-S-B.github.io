@@ -52,3 +52,7 @@ tmp4 = tmp3.with_suffix(".py")
 print(tmp4)
 
 ```
+
+## 📌 遍历目录及子目录
+
+os.walk(file_path)
