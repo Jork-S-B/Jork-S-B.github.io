@@ -95,13 +95,14 @@ nav:
       - regex.sh: shell/regex.md
       - k8s: shell/k8s.md
       - Docker:
-          - Docker for Windows: docker/windows_docker.md
-          - Docker for Arch Linux: docker/archlinux_docker.md
-          - 构建MySQL镜像: docker/build_mysql.md
-          - 构建Oracle镜像: docker/build_oracle.md
-          - 构建Jenkins镜像: docker/build_jenkins.md
-          - 构建RockyLinux镜像: docker/build_rockylinux.md
-          - 构建HBase镜像: docker/build_hbase.md
+          - Docker for Windows: shell/docker/windows_docker.md
+          - Docker for Arch Linux: shell/docker/archlinux_docker.md
+          - 构建MySQL镜像: shell/docker/build_mysql.md
+          - 构建Oracle镜像: shell/docker/build_oracle.md
+          - 构建Jenkins镜像: shell/docker/build_jenkins.md
+          - 构建RockyLinux镜像: shell/docker/build_rockylinux.md
+          - 构建HBase镜像: shell/docker/build_hbase.md
+          - docker-compose: shell/docker/compose.md
   - 测试:
       - 软件工程: test/software_engineering.md
       - 测试类型:
@@ -210,10 +211,10 @@ plugins:
   # 显示文件最后修改时间插件，需要先pip install mkdocs-git-revision-date-localized-plugin
   # 参考资料：https://timvink.github.io/mkdocs-git-revision-date-localized-plugin/options/
   # 调试时注释掉
-  - git-revision-date-localized:
-      timezone: Asia/Shanghai
-      type: iso_datetime
-      # fallback_to_build_date: true  # mkdocs build的日期
-      enable_creation_date: false
-      exclude: # 以下文件/目录排除
-        - index.md
+#  - git-revision-date-localized:
+#      timezone: Asia/Shanghai
+#      type: iso_datetime
+#      # fallback_to_build_date: true  # mkdocs build的日期
+#      enable_creation_date: false
+#      exclude: # 以下文件/目录排除
+#        - index.md

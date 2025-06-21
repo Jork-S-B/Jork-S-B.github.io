@@ -53,7 +53,6 @@ docker build -t my-mysql .
 
 首次运行容器会进行初始化，记得关注日志。
 
-
 ```shell
 # -d：守护态运行容器，实现容器的持久化运行，即使终端关闭或主机重启，容器仍然会自动启动并继续提供服务。
 # -v：直接输入windows的路径会报错，${pwd}代表当前目录（要求空目录），即把容器的`/var/lib/mysql`挂载到宿主机的当前目录下
@@ -63,16 +62,21 @@ docker run -d -p 53306:3306 --name my-mysql -v ${pwd}:/var/lib/mysql my-mysql
 
 ### 🚁 其他指令补充
 
-| 命令                                         | 说明                 |
-|:-------------------------------------------|:-------------------|
-| `docker ps`                                | 查看容器运行状态，找到对应的容器ID |
-| `docker exec -it {container_id} sh`        | 进入容器               |
-| `docker start {container_id}`              | 启动容器               |
-| `docker stop {container_id}`               | 停用容器               |
-| `docker restart {container_id}`            | 重启容器               |
-| `docker logs -f --tail=200 {container_id}` | 日志尾部200行并持续刷新      |
-| `docker volume create {volume_name}`       | 创建数据卷              |
-| `docker tag {image:version} {alias:ver}`   | 给镜像起别名，实际是复制一份     |
+| 命令                                         | 说明                    |
+|:-------------------------------------------|:----------------------|
+| `docker ps`                                | 查看容器运行状态，默认只打印正在运行的容器 |
+| `docker exec -it {container_id} sh`        | 进入容器                  |
+| `docker start {container_id}`              | 启动容器                  |
+| `docker stop {container_id}`               | 停用容器                  |
+| `docker restart {container_id}`            | 重启容器                  |
+| `docker logs -f --tail=200 {container_id}` | 日志尾部200行并持续刷新         |
+| `docker volume create {volume_name}`       | 创建数据卷                 |
+| `docker tag {imaged:version} {alias:ver}`  | 给镜像起别名，实际是复制一份        |
+| `docker inspect {container_id}`            | 查看容器信息，如挂载目录、端口映射信息等  |
+
+`docker ps -a -q`  
+-a: all，显示所有容器  
+-q: 静默模式，仅显示容器ID
 
 ### 🚁 连接数据库
 
@@ -121,6 +125,10 @@ docker push registry.cn-hangzhou.aliyuncs.com/{namespace}/my-mysql
 docker pull registry.cn-hangzhou.aliyuncs.com/{namespace}/my-mysql:latest
 
 docker tag registry.cn-hangzhou.aliyuncs.com/{namespace}/my-mysql:latest whm_mysql:20240817
+
+# 如果是公共仓库，则可以直接领取并运行
+ docker run -id -p 53306:3306 --name my-mysql -v /opt/mysql/data:/var/lib/mysql \
+        registry.cn-hangzhou.aliyuncs.com/wuhaomin/my-mysql:latest
 ```
 
 ---
