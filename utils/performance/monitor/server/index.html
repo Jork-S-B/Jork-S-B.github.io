@@ -13,7 +13,7 @@
       
       
       
-        <link rel="prev" href="../platform/">
+        <link rel="prev" href="../../../nmon/">
       
       
         <link rel="next" href="../mysql/">
@@ -3079,7 +3079,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../docker/windows_docker/" class="md-nav__link">
+      <a href="../../../../shell/docker/windows_docker/" class="md-nav__link">
         
   
   
@@ -3102,7 +3102,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../docker/archlinux_docker/" class="md-nav__link">
+      <a href="../../../../shell/docker/archlinux_docker/" class="md-nav__link">
         
   
   
@@ -3125,7 +3125,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../docker/build_mysql/" class="md-nav__link">
+      <a href="../../../../shell/docker/build_mysql/" class="md-nav__link">
         
   
   
@@ -3148,7 +3148,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../docker/build_oracle/" class="md-nav__link">
+      <a href="../../../../shell/docker/build_oracle/" class="md-nav__link">
         
   
   
@@ -3171,7 +3171,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../docker/build_jenkins/" class="md-nav__link">
+      <a href="../../../../shell/docker/build_jenkins/" class="md-nav__link">
         
   
   
@@ -3194,7 +3194,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../docker/build_rockylinux/" class="md-nav__link">
+      <a href="../../../../shell/docker/build_rockylinux/" class="md-nav__link">
         
   
   
@@ -3217,12 +3217,35 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../docker/build_hbase/" class="md-nav__link">
+      <a href="../../../../shell/docker/build_hbase/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     构建HBase镜像
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../shell/docker/compose.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    docker-compose
     
   </span>
   
@@ -3637,6 +3660,29 @@
                 
   
   
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../nmon/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    nmon
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
     
   
   
@@ -3696,9 +3742,28 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#_2" class="md-nav__link">
+  <a href="#cpu" class="md-nav__link">
     <span class="md-ellipsis">
-      🚁 系统平均负载
+      🚁 CPU/系统平均负载
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🚁 CPU/系统平均负载">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#top-" class="md-nav__link">
+    <span class="md-ellipsis">
+      🔧 top-实时监控系统性能
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pidstat-d" class="md-nav__link">
+    <span class="md-ellipsis">
+      🔧 pidstat -d
     </span>
   </a>
   
@@ -3706,6 +3771,68 @@
         
       </ul>
     </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      🚁 内存
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🚁 内存">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#swap" class="md-nav__link">
+    <span class="md-ellipsis">
+      🔧 swap
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      🚁 网络
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🚁 网络">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      🔧 性能测试如何考虑网络
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      📌 加压工具
+    </span>
+  </a>
   
 </li>
       
@@ -4441,9 +4568,28 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#_2" class="md-nav__link">
+  <a href="#cpu" class="md-nav__link">
     <span class="md-ellipsis">
-      🚁 系统平均负载
+      🚁 CPU/系统平均负载
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🚁 CPU/系统平均负载">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#top-" class="md-nav__link">
+    <span class="md-ellipsis">
+      🔧 top-实时监控系统性能
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pidstat-d" class="md-nav__link">
+    <span class="md-ellipsis">
+      🔧 pidstat -d
     </span>
   </a>
   
@@ -4451,6 +4597,68 @@
         
       </ul>
     </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      🚁 内存
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🚁 内存">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#swap" class="md-nav__link">
+    <span class="md-ellipsis">
+      🔧 swap
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      🚁 网络
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🚁 网络">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      🔧 性能测试如何考虑网络
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      📌 加压工具
+    </span>
+  </a>
   
 </li>
       
@@ -4476,9 +4684,88 @@
   <h1>监控服务器</h1>
 
 <h2 id="_1">📌 指标分析</h2>
-<h3 id="_2">🚁 系统平均负载</h3>
-<p>CPU在一段时间内的使用量</p>
+<h3 id="cpu">🚁 CPU/系统平均负载</h3>
+<p>系统平均负载，CPU在一段时间内的使用量。</p>
 <p>一般来说，系统平均负载超过<code>CPU核数</code>数倍时，视为异常。</p>
+<h4 id="top-">🔧 top-实时监控系统性能</h4>
+<ul>
+<li>top -u user  # -u指定用户启动的进程</li>
+<li>top -H -p pid  # -u -p不能一起用，-H启用线程模式，显示进程中各线程的详细信息。</li>
+</ul>
+<p>交互按键: </p>
+<ul>
+<li>数字键1，切换显示每个CPU核心的使用情况。</li>
+<li>P，按CPU使用率排序</li>
+<li>M，按内存使用量排序</li>
+<li>u -&gt; 输入用户名 -&gt; 回车，查看某个用户的进程</li>
+<li>k -&gt; 输入pid，杀进程</li>
+<li>R，反转当前排序。</li>
+<li>Z，切换颜色模式。</li>
+</ul>
+<p>每个CPU核心使用情况: </p>
+<ul>
+<li>us - user 用户使用量</li>
+<li>sy - system 系统使用量</li>
+<li>id - idle 空闲使用量</li>
+<li>wa - wait io等待使用量</li>
+</ul>
+<p>load average - 平均负载，有3个数值，分别代表1、5、15分钟内的平均负载。</p>
+<p>若数值递减，说明系统压力逐渐增大。若超值大于等于1，说明超负荷。</p>
+<h4 id="pidstat-d">🔧 pidstat -d</h4>
+<p>除了看cpu使用量，还需要看等待（非IO等待）；当超负荷运行时，等待/阻塞的进程就明显较多。</p>
+<p>pidstat看用户进程的CPU占用，其中<code>%wait</code>代表进程等待。</p>
+<p><strong>场景分析</strong>: </p>
+<ul>
+<li>当CPU使用率高，平均负载低（(使用+等待)/核数），说明当前进程正在使用占多数，等待的少，此时找cpu占用高的进程进行分析（如java应用、db、redis等）。</li>
+<li>当CPU使用率低，平均负载高，说明当前进程正在等待占多数。等待需要区分计算密集型、IO密集型。</li>
+<li>当两者都高，说明使用、等待的进程都多，也是找cpu占用高的进程进行分析。</li>
+</ul>
+<h3 id="_2">🚁 内存</h3>
+<p>free -h<br />
+查看内存使用情况</p>
+<h4 id="swap">🔧 swap</h4>
+<p>交互区，当机器内存不足时会使用，且性能会下降。一般都禁用swap区。</p>
+<p>vmstat 1 5<br />
+si - swap in，从swap区读到内存<br />
+so - swap out，从内存写到swap区</p>
+<h3 id="_3">🚁 网络</h3>
+<p>宽带: 如100兆，即100mbps或100m bit/s</p>
+<p>带宽: 上述宽带换算为带宽，即100Mbps / 8 = 12.5MB/s</p>
+<p>常用命令包括: </p>
+<ul>
+<li><code>lsof -n</code> 或者 <code>netstat -tpln</code>，查端口占用。</li>
+<li><code>telnet ip port</code> 或者 <code>ping</code>，测试网络能否调通。</li>
+<li><code>ifconfig</code>-查内网ip；curl cip.cc-查公网ip。</li>
+<li><code>iperf</code>，测试最大TCP、UDP带宽性能；需要服务端（iperf -s）和客户端（iperf -c ip -t 20）。</li>
+<li><code>tcping -t 10 ip 80</code>，看目标机器端口是否开放。</li>
+</ul>
+<h4 id="_4">🔧 性能测试如何考虑网络</h4>
+<ul>
+<li>公司内网/局域网</li>
+<li>服务器不在公司内部，在客户机器或者其他公司的局域网；通过跳板机/堡垒机压测</li>
+<li>项目部署在云服务器；测试机申请云服务器机器，保证在同个局域网下</li>
+</ul>
+<h2 id="_5">📌 加压工具</h2>
+<div class="tabbed-set tabbed-alternate" data-tabs="1:2"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">安装</label><label for="__tabbed_1_2">运行</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code><span class="c1"># 前俩是否必须待确认</span>
+<span class="c1">#sudo yum install -y epel-release</span>
+<span class="c1">#sudo yun install -y sysstat</span>
+<span class="c1"># 使用yum能自动安装依赖</span>
+sudo<span class="w"> </span>yum<span class="w"> </span>install<span class="w"> </span>-y<span class="w"> </span>stress
+</code></pre></div>
+</div>
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code><span class="c1"># 模拟8个进程加压</span>
+stress<span class="w"> </span>-c<span class="w"> </span><span class="m">8</span><span class="w"> </span>--timeout<span class="w"> </span><span class="m">600</span>
+
+<span class="c1"># 模拟IO压力，单个进程不断执行sync（内存映射到磁盘）</span>
+stress<span class="w"> </span>-i<span class="w"> </span><span class="m">1</span><span class="w"> </span>--timeout<span class="w"> </span><span class="m">600</span>
+</code></pre></div>
+</div>
+</div>
+</div>
 
 
 
@@ -4486,27 +4773,6 @@
 
 
 
-  
-    
-  
-  
-
-
-  <aside class="md-source-file">
-    
-      
-  <span class="md-source-file__fact">
-    <span class="md-icon" title="最后更新">
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
-    </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime" title="2025年6月11日 16:44:36 CST">2025-06-11 16:44:36</span>
-  </span>
-
-    
-    
-    
-    
-  </aside>
 
 
 
@@ -4535,7 +4801,7 @@
       <nav class="md-footer__inner md-grid" aria-label="页脚" >
         
           
-          <a href="../platform/" class="md-footer__link md-footer__link--prev" aria-label="上一页: 监控平台">
+          <a href="../../../nmon/" class="md-footer__link md-footer__link--prev" aria-label="上一页: nmon">
             <div class="md-footer__button md-icon">
               
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
@@ -4545,7 +4811,7 @@
                 上一页
               </span>
               <div class="md-ellipsis">
-                监控平台
+                nmon
               </div>
             </div>
           </a>

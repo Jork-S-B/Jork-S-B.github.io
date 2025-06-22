@@ -3002,15 +3002,6 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#top" class="md-nav__link">
-    <span class="md-ellipsis">
-      🚁 top
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
   <a href="#_4" class="md-nav__link">
     <span class="md-ellipsis">
       🚁 命令+管道服杀进程
@@ -3347,7 +3338,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../docker/windows_docker/" class="md-nav__link">
+      <a href="../docker/windows_docker/" class="md-nav__link">
         
   
   
@@ -3370,7 +3361,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../docker/archlinux_docker/" class="md-nav__link">
+      <a href="../docker/archlinux_docker/" class="md-nav__link">
         
   
   
@@ -3393,7 +3384,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../docker/build_mysql/" class="md-nav__link">
+      <a href="../docker/build_mysql/" class="md-nav__link">
         
   
   
@@ -3416,7 +3407,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../docker/build_oracle/" class="md-nav__link">
+      <a href="../docker/build_oracle/" class="md-nav__link">
         
   
   
@@ -3439,7 +3430,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../docker/build_jenkins/" class="md-nav__link">
+      <a href="../docker/build_jenkins/" class="md-nav__link">
         
   
   
@@ -3462,7 +3453,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../docker/build_rockylinux/" class="md-nav__link">
+      <a href="../docker/build_rockylinux/" class="md-nav__link">
         
   
   
@@ -3485,12 +3476,35 @@
   
   
     <li class="md-nav__item">
-      <a href="../../docker/build_hbase/" class="md-nav__link">
+      <a href="../docker/build_hbase/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     构建HBase镜像
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../docker/compose.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    docker-compose
     
   </span>
   
@@ -3880,6 +3894,29 @@
   
   <span class="md-ellipsis">
     监控平台
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../utils/nmon/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    nmon
     
   </span>
   
@@ -4654,15 +4691,6 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#top" class="md-nav__link">
-    <span class="md-ellipsis">
-      🚁 top
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
   <a href="#_4" class="md-nav__link">
     <span class="md-ellipsis">
       🚁 命令+管道服杀进程
@@ -4954,22 +4982,6 @@
 </tr>
 </tbody>
 </table>
-<h3 id="top">🚁 top</h3>
-<p>实时监控系统性能</p>
-<ul>
-<li>top -u user # -u指定用户启动的进程</li>
-<li>top -p pid # -u -p不能一起用</li>
-</ul>
-<p>交互按键:</p>
-<ul>
-<li>数字键1，切换显示每个CPU核心的适用情况。</li>
-<li>P，按CPU使用率排序</li>
-<li>M，按内存使用量排序</li>
-<li>u -&gt; 输入用户名 -&gt; 回车，查看某个用户的进程</li>
-<li>k -&gt; 输入pid，杀进程</li>
-<li>R，反转当前排序。</li>
-<li>Z，切换颜色模式。</li>
-</ul>
 <h3 id="_4">🚁 命令+管道服杀进程</h3>
 <p>ps -ef | grep {服务名} | grep -v grep | awk '{print $2}' | xargs -i  kill -9  {}</p>
 <h2 id="_5">📌 文件类型</h2>
@@ -5416,27 +5428,6 @@ stty<span class="w"> </span>erase<span class="w"> </span>^h<span class="w">   </
 
 
 
-  
-    
-  
-  
-
-
-  <aside class="md-source-file">
-    
-      
-  <span class="md-source-file__fact">
-    <span class="md-icon" title="最后更新">
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
-    </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime" title="2025年6月14日 15:28:30 CST">2025-06-14 15:28:30</span>
-  </span>
-
-    
-    
-    
-    
-  </aside>
 
 
 

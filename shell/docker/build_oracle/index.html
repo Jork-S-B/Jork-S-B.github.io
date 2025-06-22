@@ -13,25 +13,25 @@
       
       
       
-        <link rel="prev" href="../../shell/k8s/">
+        <link rel="prev" href="../build_mysql/">
       
       
-        <link rel="next" href="../archlinux_docker/">
+        <link rel="next" href="../build_jenkins/">
       
       
-      <link rel="icon" href="../../assets/images/favicon.png">
+      <link rel="icon" href="../../../assets/images/favicon.png">
       <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.14">
     
     
       
-        <title>Docker for Windows - whm</title>
+        <title>构建Oracle镜像 - whm</title>
       
     
     
-      <link rel="stylesheet" href="../../assets/stylesheets/main.342714a4.min.css">
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.342714a4.min.css">
       
         
-        <link rel="stylesheet" href="../../assets/stylesheets/palette.06af60db.min.css">
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.06af60db.min.css">
       
       
 
@@ -44,16 +44,16 @@
       
     
     
-      <link rel="stylesheet" href="../../stylesheets/extra.css">
+      <link rel="stylesheet" href="../../../stylesheets/extra.css">
     
-    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
 
     
     
     
-   <link href="../../assets/stylesheets/glightbox.min.css" rel="stylesheet"/><style>
+   <link href="../../../assets/stylesheets/glightbox.min.css" rel="stylesheet"/><style>
     html.glightbox-open { overflow: initial; height: 100%; }
     .gslide-title { margin-top: 0px; user-select: text; }
     .gslide-desc { color: #666; user-select: text; }
@@ -62,7 +62,7 @@
     .gdesc-inner { font-size: 0.75rem; }
     body[data-md-color-scheme="slate"] .gdesc-inner { background: var(--md-default-bg-color);}
     body[data-md-color-scheme="slate"] .gslide-title { color: var(--md-default-fg-color);}
-    body[data-md-color-scheme="slate"] .gslide-desc { color: var(--md-default-fg-color);}</style> <script src="../../assets/javascripts/glightbox.min.js"></script></head>
+    body[data-md-color-scheme="slate"] .gslide-desc { color: var(--md-default-fg-color);}</style> <script src="../../../assets/javascripts/glightbox.min.js"></script></head>
   
   
     
@@ -81,7 +81,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#_1" class="md-skip">
+        <a href="#19c" class="md-skip">
           跳转至
         </a>
       
@@ -95,7 +95,7 @@
 
 <header class="md-header" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="页眉">
-    <a href="../.." title="whm" class="md-header__button md-logo" aria-label="whm" data-md-component="logo">
+    <a href="../../.." title="whm" class="md-header__button md-logo" aria-label="whm" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M256 512a256 256 0 1 0 0-512 256 256 0 1 0 0 512m-91.9-186.5C182 346.2 212.6 368 256 368s74-21.8 91.9-42.5c5.8-6.7 15.9-7.4 22.6-1.6s7.4 15.9 1.6 22.6c-22.3 25.6-61 53.5-116.1 53.5s-93.8-27.9-116.1-53.5c-5.8-6.7-5.1-16.8 1.6-22.6s16.8-5.1 22.6 1.6M144.4 208a32 32 0 1 1 64 0 32 32 0 1 1-64 0m156.4 25.6c-5.3 7.1-15.3 8.5-22.4 3.2s-8.5-15.3-3.2-22.4c30.4-40.5 91.2-40.5 121.6 0 5.3 7.1 3.9 17.1-3.2 22.4s-17.1 3.9-22.4-3.2c-17.6-23.5-52.8-23.5-70.4 0"/></svg>
@@ -115,7 +115,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Docker for Windows
+              构建Oracle镜像
             
           </span>
         </div>
@@ -226,7 +226,7 @@
   
   
     <li class="md-tabs__item">
-      <a href="../.." class="md-tabs__link">
+      <a href="../../.." class="md-tabs__link">
         
   
   
@@ -256,7 +256,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="../../python/datatype/number/" class="md-tabs__link">
+        <a href="../../../python/datatype/number/" class="md-tabs__link">
           
   
   
@@ -286,7 +286,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="../../java/springboot/basic/" class="md-tabs__link">
+        <a href="../../../java/springboot/basic/" class="md-tabs__link">
           
   
   
@@ -309,7 +309,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="../../vue/basic/" class="md-tabs__link">
+        <a href="../../../vue/basic/" class="md-tabs__link">
           
   
   
@@ -336,7 +336,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="../../sql/oracle/sqlldr_import/" class="md-tabs__link">
+        <a href="../../../sql/oracle/sqlldr_import/" class="md-tabs__link">
           
   
   
@@ -361,7 +361,7 @@
     
     
       <li class="md-tabs__item md-tabs__item--active">
-        <a href="../../shell/review/" class="md-tabs__link">
+        <a href="../../review/" class="md-tabs__link">
           
   
   
@@ -381,7 +381,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="../../test/software_engineering/" class="md-tabs__link">
+        <a href="../../../test/software_engineering/" class="md-tabs__link">
           
   
   
@@ -401,7 +401,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="../../hadoop/ecosystem/" class="md-tabs__link">
+        <a href="../../../hadoop/ecosystem/" class="md-tabs__link">
           
   
   
@@ -421,7 +421,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="../../other/blockchain/" class="md-tabs__link">
+        <a href="../../../other/blockchain/" class="md-tabs__link">
           
   
   
@@ -455,7 +455,7 @@
 
 <nav class="md-nav md-nav--primary md-nav--lifted" aria-label="导航栏" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="../.." title="whm" class="md-nav__button md-logo" aria-label="whm" data-md-component="logo">
+    <a href="../../.." title="whm" class="md-nav__button md-logo" aria-label="whm" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M256 512a256 256 0 1 0 0-512 256 256 0 1 0 0 512m-91.9-186.5C182 346.2 212.6 368 256 368s74-21.8 91.9-42.5c5.8-6.7 15.9-7.4 22.6-1.6s7.4 15.9 1.6 22.6c-22.3 25.6-61 53.5-116.1 53.5s-93.8-27.9-116.1-53.5c-5.8-6.7-5.1-16.8 1.6-22.6s16.8-5.1 22.6 1.6M144.4 208a32 32 0 1 1 64 0 32 32 0 1 1-64 0m156.4 25.6c-5.3 7.1-15.3 8.5-22.4 3.2s-8.5-15.3-3.2-22.4c30.4-40.5 91.2-40.5 121.6 0 5.3 7.1 3.9 17.1-3.2 22.4s-17.1 3.9-22.4-3.2c-17.6-23.5-52.8-23.5-70.4 0"/></svg>
@@ -485,7 +485,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../.." class="md-nav__link">
+      <a href="../../.." class="md-nav__link">
         
   
   
@@ -591,7 +591,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../python/datatype/number/" class="md-nav__link">
+      <a href="../../../python/datatype/number/" class="md-nav__link">
         
   
   
@@ -614,7 +614,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../python/datatype/sequence/" class="md-nav__link">
+      <a href="../../../python/datatype/sequence/" class="md-nav__link">
         
   
   
@@ -637,7 +637,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../python/datatype/dict%26set/" class="md-nav__link">
+      <a href="../../../python/datatype/dict%26set/" class="md-nav__link">
         
   
   
@@ -660,7 +660,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../python/datatype/mutable%26immutable/" class="md-nav__link">
+      <a href="../../../python/datatype/mutable%26immutable/" class="md-nav__link">
         
   
   
@@ -691,7 +691,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../python/structure/structure/" class="md-nav__link">
+      <a href="../../../python/structure/structure/" class="md-nav__link">
         
   
   
@@ -755,7 +755,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../python/oj/sort/" class="md-nav__link">
+      <a href="../../../python/oj/sort/" class="md-nav__link">
         
   
   
@@ -778,7 +778,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../python/oj/dp/" class="md-nav__link">
+      <a href="../../../python/oj/dp/" class="md-nav__link">
         
   
   
@@ -801,7 +801,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../python/oj/window/" class="md-nav__link">
+      <a href="../../../python/oj/window/" class="md-nav__link">
         
   
   
@@ -832,7 +832,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../python/oop/" class="md-nav__link">
+      <a href="../../../python/oop/" class="md-nav__link">
         
   
   
@@ -855,7 +855,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../python/builtin_func/" class="md-nav__link">
+      <a href="../../../python/builtin_func/" class="md-nav__link">
         
   
   
@@ -919,7 +919,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../python/builtin_lib/re/" class="md-nav__link">
+      <a href="../../../python/builtin_lib/re/" class="md-nav__link">
         
   
   
@@ -942,7 +942,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../python/builtin_lib/pypath/" class="md-nav__link">
+      <a href="../../../python/builtin_lib/pypath/" class="md-nav__link">
         
   
   
@@ -965,7 +965,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../python/builtin_lib/pyjson_notes/" class="md-nav__link">
+      <a href="../../../python/builtin_lib/pyjson_notes/" class="md-nav__link">
         
   
   
@@ -988,7 +988,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../python/builtin_lib/thread/" class="md-nav__link">
+      <a href="../../../python/builtin_lib/thread/" class="md-nav__link">
         
   
   
@@ -1011,7 +1011,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../python/builtin_lib/async/" class="md-nav__link">
+      <a href="../../../python/builtin_lib/async/" class="md-nav__link">
         
   
   
@@ -1042,7 +1042,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../python/closure/" class="md-nav__link">
+      <a href="../../../python/closure/" class="md-nav__link">
         
   
   
@@ -1106,7 +1106,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../python/autotest/model/" class="md-nav__link">
+      <a href="../../../python/autotest/model/" class="md-nav__link">
         
   
   
@@ -1129,7 +1129,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../python/autotest/unittest/unittest_notes/" class="md-nav__link">
+      <a href="../../../python/autotest/unittest/unittest_notes/" class="md-nav__link">
         
   
   
@@ -1193,7 +1193,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../python/autotest/pytest/fixture/" class="md-nav__link">
+      <a href="../../../python/autotest/pytest/fixture/" class="md-nav__link">
         
   
   
@@ -1216,7 +1216,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../python/autotest/pytest/pytest.main/" class="md-nav__link">
+      <a href="../../../python/autotest/pytest/pytest.main/" class="md-nav__link">
         
   
   
@@ -1239,7 +1239,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../python/autotest/pytest/pytest.ini/" class="md-nav__link">
+      <a href="../../../python/autotest/pytest/pytest.ini/" class="md-nav__link">
         
   
   
@@ -1270,7 +1270,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../python/autotest/selenium/" class="md-nav__link">
+      <a href="../../../python/autotest/selenium/" class="md-nav__link">
         
   
   
@@ -1334,7 +1334,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../python/autotest/app/mumu_sim/" class="md-nav__link">
+      <a href="../../../python/autotest/app/mumu_sim/" class="md-nav__link">
         
   
   
@@ -1357,7 +1357,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../python/autotest/app/appium/" class="md-nav__link">
+      <a href="../../../python/autotest/app/appium/" class="md-nav__link">
         
   
   
@@ -1380,7 +1380,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../python/autotest/app/uiautomator2/" class="md-nav__link">
+      <a href="../../../python/autotest/app/uiautomator2/" class="md-nav__link">
         
   
   
@@ -1403,7 +1403,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../python/autotest/app/webdriveragent/" class="md-nav__link">
+      <a href="../../../python/autotest/app/webdriveragent/" class="md-nav__link">
         
   
   
@@ -1434,7 +1434,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../python/autotest/mitmproxy/" class="md-nav__link">
+      <a href="../../../python/autotest/mitmproxy/" class="md-nav__link">
         
   
   
@@ -1457,7 +1457,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../python/autotest/requests/" class="md-nav__link">
+      <a href="../../../python/autotest/requests/" class="md-nav__link">
         
   
   
@@ -1521,7 +1521,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../python/autotest/playwright/001_basic/" class="md-nav__link">
+      <a href="../../../python/autotest/playwright/001_basic/" class="md-nav__link">
         
   
   
@@ -1544,7 +1544,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../python/autotest/playwright/002_po/" class="md-nav__link">
+      <a href="../../../python/autotest/playwright/002_po/" class="md-nav__link">
         
   
   
@@ -1624,7 +1624,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../python/web/flask/" class="md-nav__link">
+      <a href="../../../python/web/flask/" class="md-nav__link">
         
   
   
@@ -1688,7 +1688,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../python/web/django/django_orm/" class="md-nav__link">
+      <a href="../../../python/web/django/django_orm/" class="md-nav__link">
         
   
   
@@ -1711,7 +1711,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../python/web/django/django_templates/" class="md-nav__link">
+      <a href="../../../python/web/django/django_templates/" class="md-nav__link">
         
   
   
@@ -1734,7 +1734,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../python/web/django/cookie%26session/" class="md-nav__link">
+      <a href="../../../python/web/django/cookie%26session/" class="md-nav__link">
         
   
   
@@ -1814,7 +1814,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../python/pandas/day01/" class="md-nav__link">
+      <a href="../../../python/pandas/day01/" class="md-nav__link">
         
   
   
@@ -1837,7 +1837,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../python/pandas/day02/" class="md-nav__link">
+      <a href="../../../python/pandas/day02/" class="md-nav__link">
         
   
   
@@ -1860,7 +1860,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../python/pandas/day03/" class="md-nav__link">
+      <a href="../../../python/pandas/day03/" class="md-nav__link">
         
   
   
@@ -1883,7 +1883,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../python/pandas/day04/" class="md-nav__link">
+      <a href="../../../python/pandas/day04/" class="md-nav__link">
         
   
   
@@ -1906,7 +1906,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../python/pandas/day05/" class="md-nav__link">
+      <a href="../../../python/pandas/day05/" class="md-nav__link">
         
   
   
@@ -1978,7 +1978,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../python/other/mv_py_path/" class="md-nav__link">
+      <a href="../../../python/other/mv_py_path/" class="md-nav__link">
         
   
   
@@ -2001,7 +2001,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../python/other/mkdocs_notes/" class="md-nav__link">
+      <a href="../../../python/other/mkdocs_notes/" class="md-nav__link">
         
   
   
@@ -2024,7 +2024,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../python/pydocx/pydocx_notes/" class="md-nav__link">
+      <a href="../../../python/pydocx/pydocx_notes/" class="md-nav__link">
         
   
   
@@ -2047,7 +2047,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../python/pyexcel/pyexcel_notes/" class="md-nav__link">
+      <a href="../../../python/pyexcel/pyexcel_notes/" class="md-nav__link">
         
   
   
@@ -2070,7 +2070,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../python/other/scrapy_notes/" class="md-nav__link">
+      <a href="../../../python/other/scrapy_notes/" class="md-nav__link">
         
   
   
@@ -2093,7 +2093,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../python/other/coding_standard/" class="md-nav__link">
+      <a href="../../../python/other/coding_standard/" class="md-nav__link">
         
   
   
@@ -2116,7 +2116,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../python/other/garbage_collection/" class="md-nav__link">
+      <a href="../../../python/other/garbage_collection/" class="md-nav__link">
         
   
   
@@ -2236,7 +2236,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../java/springboot/basic/" class="md-nav__link">
+      <a href="../../../java/springboot/basic/" class="md-nav__link">
         
   
   
@@ -2308,7 +2308,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../java/leetcode/hash/" class="md-nav__link">
+      <a href="../../../java/leetcode/hash/" class="md-nav__link">
         
   
   
@@ -2331,7 +2331,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../java/leetcode/two_pointers/" class="md-nav__link">
+      <a href="../../../java/leetcode/two_pointers/" class="md-nav__link">
         
   
   
@@ -2354,7 +2354,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../java/leetcode/array/" class="md-nav__link">
+      <a href="../../../java/leetcode/array/" class="md-nav__link">
         
   
   
@@ -2377,7 +2377,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../java/leetcode/binary_search/" class="md-nav__link">
+      <a href="../../../java/leetcode/binary_search/" class="md-nav__link">
         
   
   
@@ -2400,7 +2400,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../java/leetcode/stack/" class="md-nav__link">
+      <a href="../../../java/leetcode/stack/" class="md-nav__link">
         
   
   
@@ -2431,7 +2431,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../java/junit5/" class="md-nav__link">
+      <a href="../../../java/junit5/" class="md-nav__link">
         
   
   
@@ -2454,7 +2454,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../java/cucumber/" class="md-nav__link">
+      <a href="../../../java/cucumber/" class="md-nav__link">
         
   
   
@@ -2477,7 +2477,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../java/jvmgc/JVMGC/" class="md-nav__link">
+      <a href="../../../java/jvmgc/JVMGC/" class="md-nav__link">
         
   
   
@@ -2548,7 +2548,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../vue/basic/" class="md-nav__link">
+      <a href="../../../vue/basic/" class="md-nav__link">
         
   
   
@@ -2660,7 +2660,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../sql/oracle/sqlldr_import/" class="md-nav__link">
+      <a href="../../../sql/oracle/sqlldr_import/" class="md-nav__link">
         
   
   
@@ -2683,7 +2683,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../sql/oracle/some/" class="md-nav__link">
+      <a href="../../../sql/oracle/some/" class="md-nav__link">
         
   
   
@@ -2706,7 +2706,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../sql/oracle/lock%26unlock/" class="md-nav__link">
+      <a href="../../../sql/oracle/lock%26unlock/" class="md-nav__link">
         
   
   
@@ -2729,7 +2729,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../sql/oracle/procedure/" class="md-nav__link">
+      <a href="../../../sql/oracle/procedure/" class="md-nav__link">
         
   
   
@@ -2752,7 +2752,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../sql/oracle/gather_table_stats/" class="md-nav__link">
+      <a href="../../../sql/oracle/gather_table_stats/" class="md-nav__link">
         
   
   
@@ -2775,7 +2775,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../sql/oracle/other_notes/" class="md-nav__link">
+      <a href="../../../sql/oracle/other_notes/" class="md-nav__link">
         
   
   
@@ -2806,7 +2806,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../sql/mysql_notes/" class="md-nav__link">
+      <a href="../../../sql/mysql_notes/" class="md-nav__link">
         
   
   
@@ -2829,7 +2829,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../sql/redis_notes/" class="md-nav__link">
+      <a href="../../../sql/redis_notes/" class="md-nav__link">
         
   
   
@@ -2852,7 +2852,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../other/elasticsearch/" class="md-nav__link">
+      <a href="../../../other/elasticsearch/" class="md-nav__link">
         
   
   
@@ -2928,7 +2928,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../shell/review/" class="md-nav__link">
+      <a href="../../review/" class="md-nav__link">
         
   
   
@@ -2951,7 +2951,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../other/git_notes/" class="md-nav__link">
+      <a href="../../../other/git_notes/" class="md-nav__link">
         
   
   
@@ -2974,7 +2974,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../shell/timestamp/" class="md-nav__link">
+      <a href="../../timestamp/" class="md-nav__link">
         
   
   
@@ -2997,7 +2997,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../shell/regex/" class="md-nav__link">
+      <a href="../../regex/" class="md-nav__link">
         
   
   
@@ -3020,7 +3020,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../shell/k8s/" class="md-nav__link">
+      <a href="../../k8s/" class="md-nav__link">
         
   
   
@@ -3083,32 +3083,10 @@
                 
   
   
-    
   
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          
-  
-  
-  <span class="md-ellipsis">
-    Docker for Windows
-    
-  </span>
-  
-
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../windows_docker/" class="md-nav__link">
         
   
   
@@ -3119,62 +3097,6 @@
   
 
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="目录">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      目录
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#docker-for-windows" class="md-nav__link">
-    <span class="md-ellipsis">
-      📌 Docker for Windows
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#hyper-v" class="md-nav__link">
-    <span class="md-ellipsis">
-      📌 启用Hyper-V后运行容器提示端口不可用
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#_2" class="md-nav__link">
-    <span class="md-ellipsis">
-      📌 镜像源
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#windowsopenssh" class="md-nav__link">
-    <span class="md-ellipsis">
-      📌 Windows系统启用OpenSSH
-    </span>
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -3230,10 +3152,30 @@
                 
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="../build_oracle/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    构建Oracle镜像
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         
   
   
@@ -3244,6 +3186,51 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#19c" class="md-nav__link">
+    <span class="md-ellipsis">
+      📌 构建19C镜像
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#pdb" class="md-nav__link">
+    <span class="md-ellipsis">
+      📌 在指定pdb中创建用户
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#oracledb" class="md-nav__link">
+    <span class="md-ellipsis">
+      📌 在宿主机使用oracledb连接
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -3318,6 +3305,29 @@
 
               
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../compose.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    docker-compose
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
@@ -3381,7 +3391,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../test/software_engineering/" class="md-nav__link">
+      <a href="../../../test/software_engineering/" class="md-nav__link">
         
   
   
@@ -3445,7 +3455,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../test/test_app/" class="md-nav__link">
+      <a href="../../../test/test_app/" class="md-nav__link">
         
   
   
@@ -3509,7 +3519,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../test/test_performance/" class="md-nav__link">
+      <a href="../../../test/test_performance/" class="md-nav__link">
         
   
   
@@ -3573,7 +3583,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../utils/jmeter_notes/" class="md-nav__link">
+      <a href="../../../utils/jmeter_notes/" class="md-nav__link">
         
   
   
@@ -3596,7 +3606,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../utils/locust_notes/" class="md-nav__link">
+      <a href="../../../utils/locust_notes/" class="md-nav__link">
         
   
   
@@ -3619,7 +3629,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../utils/arthas/" class="md-nav__link">
+      <a href="../../../utils/arthas/" class="md-nav__link">
         
   
   
@@ -3691,7 +3701,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../utils/performance/monitor/platform/" class="md-nav__link">
+      <a href="../../../utils/performance/monitor/platform/" class="md-nav__link">
         
   
   
@@ -3714,7 +3724,30 @@
   
   
     <li class="md-nav__item">
-      <a href="../../utils/performance/monitor/server/" class="md-nav__link">
+      <a href="../../../utils/nmon/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    nmon
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../utils/performance/monitor/server/" class="md-nav__link">
         
   
   
@@ -3737,7 +3770,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../utils/performance/monitor/mysql/" class="md-nav__link">
+      <a href="../../../utils/performance/monitor/mysql/" class="md-nav__link">
         
   
   
@@ -3809,7 +3842,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../other/high_performance/" class="md-nav__link">
+      <a href="../../../other/high_performance/" class="md-nav__link">
         
   
   
@@ -3832,7 +3865,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../other/high_availability/" class="md-nav__link">
+      <a href="../../../other/high_availability/" class="md-nav__link">
         
   
   
@@ -3855,7 +3888,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../other/nginx_notes/" class="md-nav__link">
+      <a href="../../../other/nginx_notes/" class="md-nav__link">
         
   
   
@@ -3878,7 +3911,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../other/tomcat_notes/" class="md-nav__link">
+      <a href="../../../other/tomcat_notes/" class="md-nav__link">
         
   
   
@@ -3917,7 +3950,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../test/test_security/" class="md-nav__link">
+      <a href="../../../test/test_security/" class="md-nav__link">
         
   
   
@@ -3989,7 +4022,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../utils/fiddler_notes/" class="md-nav__link">
+      <a href="../../../utils/fiddler_notes/" class="md-nav__link">
         
   
   
@@ -4012,7 +4045,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../utils/charles_notes/" class="md-nav__link">
+      <a href="../../../utils/charles_notes/" class="md-nav__link">
         
   
   
@@ -4035,7 +4068,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../utils/postman_notes/" class="md-nav__link">
+      <a href="../../../utils/postman_notes/" class="md-nav__link">
         
   
   
@@ -4058,7 +4091,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../utils/apifox_notes/" class="md-nav__link">
+      <a href="../../../utils/apifox_notes/" class="md-nav__link">
         
   
   
@@ -4137,7 +4170,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../hadoop/ecosystem/" class="md-nav__link">
+      <a href="../../../hadoop/ecosystem/" class="md-nav__link">
         
   
   
@@ -4201,7 +4234,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../hadoop/scala/day01/" class="md-nav__link">
+      <a href="../../../hadoop/scala/day01/" class="md-nav__link">
         
   
   
@@ -4224,7 +4257,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../hadoop/scala/day02/" class="md-nav__link">
+      <a href="../../../hadoop/scala/day02/" class="md-nav__link">
         
   
   
@@ -4247,7 +4280,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../hadoop/scala/day03/" class="md-nav__link">
+      <a href="../../../hadoop/scala/day03/" class="md-nav__link">
         
   
   
@@ -4270,7 +4303,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../hadoop/scala/day04/" class="md-nav__link">
+      <a href="../../../hadoop/scala/day04/" class="md-nav__link">
         
   
   
@@ -4349,7 +4382,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../other/blockchain/" class="md-nav__link">
+      <a href="../../../other/blockchain/" class="md-nav__link">
         
   
   
@@ -4372,7 +4405,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../other/deep_learning/" class="md-nav__link">
+      <a href="../../../other/deep_learning/" class="md-nav__link">
         
   
   
@@ -4395,7 +4428,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../other/rag/" class="md-nav__link">
+      <a href="../../../other/rag/" class="md-nav__link">
         
   
   
@@ -4435,8 +4468,6 @@
   
   
   
-    
-  
   
     <label class="md-nav__title" for="__toc">
       <span class="md-nav__icon md-icon"></span>
@@ -4445,36 +4476,27 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#docker-for-windows" class="md-nav__link">
+  <a href="#19c" class="md-nav__link">
     <span class="md-ellipsis">
-      📌 Docker for Windows
+      📌 构建19C镜像
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#hyper-v" class="md-nav__link">
+  <a href="#pdb" class="md-nav__link">
     <span class="md-ellipsis">
-      📌 启用Hyper-V后运行容器提示端口不可用
+      📌 在指定pdb中创建用户
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#_2" class="md-nav__link">
+  <a href="#oracledb" class="md-nav__link">
     <span class="md-ellipsis">
-      📌 镜像源
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#windowsopenssh" class="md-nav__link">
-    <span class="md-ellipsis">
-      📌 Windows系统启用OpenSSH
+      📌 在宿主机使用oracledb连接
     </span>
   </a>
   
@@ -4499,75 +4521,113 @@
   
 
 
-<h1 id="_1"></h1>
-<h2 id="docker-for-windows">📌 Docker for Windows</h2>
-<p>已知Docker依赖于linux内核环境，但总有大冤种（也就是我😓）想在Windows 10操作系统中部署。</p>
-<p>参考资料：<a href="https://www.runoob.com/docker/windows-docker-install.html">Window Docker安装教程</a></p>
-<p>安装教程第一步是安装并开启Hyper-V，但我并未执行这一步（根据提供的步骤查看也未启用Hyper-V），而是直接在官网下载了安装包，但安装时提示系统版本太低。</p>
-<p>更新完操作系统后便安装成功，未发现Hyper-V或WSL 2等导致错误，docker指令在PowerShell中执行也正常，只能不排除潜在其他的问题。</p>
-<blockquote>
-<p>2024/5/12: 电脑上还同时使用安卓模拟器时，请不要使用Hyper-V！否则会出现冲突，docker起不来。<br />
- 2024/8/17: 新设备首次使用尽量下载最新版：实测Windows 11安装docker 4.1.1.0，容器初始化报错，换成4.3.2.0（20240817当前最新版）正常运行。</p>
-</blockquote>
-<h2 id="hyper-v">📌 启用Hyper-V后运行容器提示端口不可用</h2>
-<p>为了避免一些不必要的错误，后来还是启用了Hyper-V，此时再Docker run container时报错。</p>
-<blockquote>
-<p>Error: (HTTP code 500) server error - Ports are not available: listen tcp 0.0.0.0:xxxx: bind: An attempt was made to access a socket in a way forbidden by access permissions.</p>
-</blockquote>
-<p>解决方案：</p>
-<p>设置“TCP 动态端口范围”，以便 Hyper-V 只保留我们设置的范围内的端口。</p>
-<p>以管理员权限运行以下命令，将“TCP 动态端口范围”重置为 49152–65535，Docker便可使用该范围内的端口。</p>
-<div class="highlight"><pre><span></span><code>netsh int ipv4 set dynamic tcp start=49152 num=16384
-netsh int ipv6 set dynamic tcp start=49152 num=16384
+  <h1>构建Oracle镜像</h1>
+
+<h2 id="19c">📌 构建19C镜像</h2>
+<p>准备好Dockerfile，构建镜像并运行容器。19C镜像需要2G以上磁盘空间，pull和首次运行都需要一段时间。</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="1:3"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><input id="__tabbed_1_3" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">Dockerfile_Oracle</label><label for="__tabbed_1_2">执行命令</label><label for="__tabbed_1_3">terminal</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code>FROM registry.cn-hangzhou.aliyuncs.com/zhuyijun/oracle:19c
+# 数据库实例
+ENV ORACLE_SID=ORCLCDB
+# 多租户架构下的一个容器数据库
+ENV ORACLE_PDB=ORCLPDB1
+ENV ORACLE_PWD=123456
+ENV ORACLE_EDITION=standard
+ENV ORACLE_CHARACTERSET=AL32UTF8
+
+# 持久化数据卷
+VOLUME /opt/oracle/oradata
 </code></pre></div>
-<p>参考资料：<a href="https://cloud.tencent.com/developer/article/2168217">错误原因分析</a></p>
-<h2 id="_2">📌 镜像源</h2>
-<p>2024/10/21 - 镜像源配置</p>
-<div class="highlight"><pre><span></span><code>{
-  &quot;builder&quot;: {
-    &quot;gc&quot;: {
-      &quot;defaultKeepStorage&quot;: &quot;20GB&quot;,
-      &quot;enabled&quot;: true
-    }
-  },
-  &quot;experimental&quot;: false,
-  &quot;registry-mirrors&quot;: [
-    &quot;https://docker.registry.cyou&quot;,
-    &quot;https://docker-cf.registry.cyou&quot;,
-    &quot;https://dockercf.jsdelivr.fyi&quot;,
-    &quot;https://docker.jsdelivr.fyi&quot;,
-    &quot;https://dockertest.jsdelivr.fyi&quot;,
-    &quot;https://mirror.aliyuncs.com&quot;,
-    &quot;https://dockerproxy.com&quot;,
-    &quot;https://mirror.baidubce.com&quot;,
-    &quot;https://docker.m.daocloud.io&quot;,
-    &quot;https://docker.nju.edu.cn&quot;,
-    &quot;https://docker.mirrors.sjtug.sjtu.edu.cn&quot;,
-    &quot;https://docker.mirrors.ustc.edu.cn&quot;,
-    &quot;https://mirror.iscas.ac.cn&quot;,
-    &quot;https://docker.rainbond.cc&quot;
-  ]
-}
+</div>
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code>docker<span class="w"> </span>build<span class="w"> </span>-f<span class="w"> </span>Dockerfile_Oracle<span class="w"> </span>-t<span class="w"> </span>my-oracle<span class="w"> </span>.
+<span class="c1"># 注意当前路径</span>
+docker<span class="w"> </span>run<span class="w"> </span>-d<span class="w"> </span>-p<span class="w"> </span><span class="m">49524</span>:1521<span class="w"> </span>-p<span class="w"> </span><span class="m">55502</span>:5500<span class="w"> </span>--name<span class="w"> </span>my-19c<span class="w"> </span>-v<span class="w"> </span><span class="si">${</span><span class="nv">pwd</span><span class="si">}</span>:/opt/oracle/oradata<span class="w"> </span>my-oracle
 </code></pre></div>
-<h2 id="windowsopenssh">📌 Windows系统启用OpenSSH</h2>
-<p>由于Window Docker启的容器无法被其他机器直接远程连接，故需启用OpenSSH。</p>
-<p>1.安装OpenSSH服务器：系统 &gt; 可选功能 &gt; 添加可选功能 &gt; 搜索“OpenSSH服务器”</p>
-<p>2.配置与启动</p>
-<p>管理员身份运行PowerShell，执行命令：</p>
-<p>SSH服务自动启动</p>
-<div class="highlight"><pre><span></span><code>Set-Service -Name sshd -StartupType &#39;Automatic&#39;
+</div>
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code>--部署完成后用sqlplus检查服务是否正常运行
+--最高权限的<span class="w"> </span>SYS<span class="w"> </span>用户登录
+sqlplus<span class="w"> </span>/<span class="w"> </span>as<span class="w"> </span>sysdba
 </code></pre></div>
-<p>启动服务</p>
-<div class="highlight"><pre><span></span><code>Start-Service sshd
+</div>
+</div>
+</div>
+<h2 id="pdb">📌 在指定pdb中创建用户</h2>
+<div class="tabbed-set tabbed-alternate" data-tabs="2:2"><input checked="checked" id="__tabbed_2_1" name="__tabbed_2" type="radio" /><input id="__tabbed_2_2" name="__tabbed_2" type="radio" /><div class="tabbed-labels"><label for="__tabbed_2_1">terminal</label><label for="__tabbed_2_2">sqlplus</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code>--最高权限的<span class="w"> </span>SYS<span class="w"> </span>用户登录
+sqlplus<span class="w"> </span>/<span class="w"> </span>as<span class="w"> </span>sysdba
 </code></pre></div>
-<p>检查SSH服务器是否侦听22端口</p>
-<div class="highlight"><pre><span></span><code>netstat -an | findstr /i &quot;:22&quot;
+</div>
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code><span class="c1">--确保已连接到ORCLPDB1（Dockerfile配置的ORACLE_PDB）</span>
+<span class="k">ALTER</span><span class="w"> </span><span class="k">SESSION</span><span class="w"> </span><span class="k">SET</span><span class="w"> </span><span class="n">CONTAINER</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ORCLPDB1</span><span class="p">;</span>
+
+<span class="c1">--在ORCLPDB1中创建用户WHM</span>
+<span class="k">CREATE</span><span class="w"> </span><span class="k">USER</span><span class="w"> </span><span class="n">WHM</span><span class="w"> </span><span class="n">IDENTIFIED</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">WHM</span><span class="p">;</span>
+
+<span class="c1">--为用户分配默认表空间和临时表空间（假设users是默认表空间，temp是临时表空间）</span>
+<span class="k">ALTER</span><span class="w"> </span><span class="k">USER</span><span class="w"> </span><span class="n">WHM</span><span class="w"> </span><span class="k">DEFAULT</span><span class="w"> </span><span class="n">TABLESPACE</span><span class="w"> </span><span class="n">users</span><span class="w"> </span><span class="n">QUOTA</span><span class="w"> </span><span class="n">UNLIMITED</span><span class="w"> </span><span class="k">ON</span><span class="w"> </span><span class="n">users</span><span class="w"> </span><span class="n">CONTAINER</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">CURRENT</span><span class="p">;</span>
+<span class="k">ALTER</span><span class="w"> </span><span class="k">USER</span><span class="w"> </span><span class="n">WHM</span><span class="w"> </span><span class="k">TEMPORARY</span><span class="w"> </span><span class="n">TABLESPACE</span><span class="w"> </span><span class="n">temp</span><span class="w"> </span><span class="n">CONTAINER</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">CURRENT</span><span class="p">;</span>
+
+<span class="c1">--授权，授予用户在当前PDB中的权限</span>
+<span class="k">GRANT</span><span class="w"> </span><span class="k">create</span><span class="w"> </span><span class="k">user</span><span class="p">,</span><span class="w"> </span><span class="k">drop</span><span class="w"> </span><span class="k">user</span><span class="p">,</span><span class="w"> </span><span class="k">alter</span><span class="w"> </span><span class="k">user</span><span class="w"> </span><span class="k">TO</span><span class="w"> </span><span class="n">WHM</span><span class="w"> </span><span class="n">CONTAINER</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">CURRENT</span><span class="p">;</span>
+<span class="k">GRANT</span><span class="w"> </span><span class="k">create</span><span class="w"> </span><span class="k">any</span><span class="w"> </span><span class="k">view</span><span class="p">,</span><span class="w"> </span><span class="k">connect</span><span class="p">,</span><span class="w"> </span><span class="n">resource</span><span class="p">,</span><span class="w"> </span><span class="n">dba</span><span class="w"> </span><span class="k">TO</span><span class="w"> </span><span class="n">WHM</span><span class="w"> </span><span class="n">CONTAINER</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">CURRENT</span><span class="p">;</span>
+<span class="k">GRANT</span><span class="w"> </span><span class="k">create</span><span class="w"> </span><span class="k">session</span><span class="p">,</span><span class="w"> </span><span class="k">create</span><span class="w"> </span><span class="k">any</span><span class="w"> </span><span class="n">sequence</span><span class="w"> </span><span class="k">TO</span><span class="w"> </span><span class="n">WHM</span><span class="w"> </span><span class="n">CONTAINER</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">CURRENT</span><span class="p">;</span>
+
+<span class="k">COMMIT</span><span class="p">;</span>
+
+<span class="c1">--撤销授权则是</span>
+<span class="c1">--REVOKE SELECT, UPDATE, INSERT, DELETE ON TABLE_NAME FROM WHM;</span>
 </code></pre></div>
-<p>确保Windows Defender防火墙允许 TCP 22 端口的入站连接</p>
-<div class="highlight"><pre><span></span><code>Get-NetFirewallRule -Name *OpenSSH-Server* | select Name, DisplayName, Description, Enabled
+</div>
+</div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">补充</p>
+<p>12c及更高版本，若要建公共用户，则用户名需要以C##开头+username命名。</p>
+</div>
+<h2 id="oracledb">📌 在宿主机使用oracledb连接</h2>
+<div class="tabbed-set tabbed-alternate" data-tabs="3:1"><input checked="checked" id="__tabbed_3_1" name="__tabbed_3" type="radio" /><div class="tabbed-labels"><label for="__tabbed_3_1">dbutil.py</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">oracledb</span>
+
+
+<span class="k">class</span><span class="w"> </span><span class="nc">DBUtil</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">conn</span> <span class="o">=</span> <span class="n">oracledb</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;WHM/WHM@127.0.0.1:49524/ORCLPDB1&#39;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">cursor</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">conn</span><span class="o">.</span><span class="n">cursor</span><span class="p">()</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">select_data</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">sql</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">:</span>
+        <span class="c1"># SQL语句去掉分号，否则报错ORA-00911</span>
+        <span class="k">if</span> <span class="n">sql</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span><span class="o">.</span><span class="n">endswith</span><span class="p">(</span><span class="s1">&#39;;&#39;</span><span class="p">):</span>
+            <span class="n">sql</span> <span class="o">=</span> <span class="n">sql</span><span class="o">.</span><span class="n">strip</span><span class="p">()[:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+        <span class="n">rows</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="n">sql</span><span class="p">)</span><span class="o">.</span><span class="n">fetchall</span><span class="p">()</span>
+        <span class="k">return</span> <span class="n">rows</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">db_close</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">cursor</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">conn</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+    <span class="n">mydb</span> <span class="o">=</span> <span class="n">DBUtil</span><span class="p">()</span>
+    <span class="n">sql</span> <span class="o">=</span> <span class="s1">&#39;select sysdate from dual&#39;</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">mydb</span><span class="o">.</span><span class="n">select_data</span><span class="p">(</span><span class="n">sql</span><span class="p">))</span>
+    <span class="n">mydb</span><span class="o">.</span><span class="n">db_close</span><span class="p">()</span>
 </code></pre></div>
-<p>参考资料：<a href="https://www.sysgeek.cn/openssh-windows/">Windows 上的 OpenSSH：安装、配置和使用指南</a></p>
+</div>
+</div>
+</div>
+<p>控制台打印：[(datetime.datetime(2024, 1, 15, 14, 7, 23),)]，没得问题。</p>
 <hr />
+<p>参考资料：</p>
+<p><a href="https://blog.csdn.net/arcsin_/article/details/123707618">Docker安装Oracle19c史上最全步骤（图文并茂）</a></p>
 
 
 
@@ -4575,27 +4635,6 @@ netsh int ipv6 set dynamic tcp start=49152 num=16384
 
 
 
-  
-    
-  
-  
-
-
-  <aside class="md-source-file">
-    
-      
-  <span class="md-source-file__fact">
-    <span class="md-icon" title="最后更新">
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
-    </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime" title="2024年10月25日 14:59:00 CST">2024-10-25 14:59:00</span>
-  </span>
-
-    
-    
-    
-    
-  </aside>
 
 
 
@@ -4624,7 +4663,7 @@ netsh int ipv6 set dynamic tcp start=49152 num=16384
       <nav class="md-footer__inner md-grid" aria-label="页脚" >
         
           
-          <a href="../../shell/k8s/" class="md-footer__link md-footer__link--prev" aria-label="上一页: k8s">
+          <a href="../build_mysql/" class="md-footer__link md-footer__link--prev" aria-label="上一页: 构建MySQL镜像">
             <div class="md-footer__button md-icon">
               
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
@@ -4634,20 +4673,20 @@ netsh int ipv6 set dynamic tcp start=49152 num=16384
                 上一页
               </span>
               <div class="md-ellipsis">
-                k8s
+                构建MySQL镜像
               </div>
             </div>
           </a>
         
         
           
-          <a href="../archlinux_docker/" class="md-footer__link md-footer__link--next" aria-label="下一页: Docker for Arch Linux">
+          <a href="../build_jenkins/" class="md-footer__link md-footer__link--next" aria-label="下一页: 构建Jenkins镜像">
             <div class="md-footer__title">
               <span class="md-footer__direction">
                 下一页
               </span>
               <div class="md-ellipsis">
-                Docker for Arch Linux
+                构建Jenkins镜像
               </div>
             </div>
             <div class="md-footer__button md-icon">
@@ -4683,10 +4722,10 @@ netsh int ipv6 set dynamic tcp start=49152 num=16384
     
     
       
-      <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.footer", "navigation.top", "navigation.tabs", "navigation.instant", "content.code.copy"], "search": "../../assets/javascripts/workers/search.d50fe291.min.js", "tags": null, "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}, "version": null}</script>
+      <script id="__config" type="application/json">{"base": "../../..", "features": ["navigation.footer", "navigation.top", "navigation.tabs", "navigation.instant", "content.code.copy"], "search": "../../../assets/javascripts/workers/search.d50fe291.min.js", "tags": null, "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}, "version": null}</script>
     
     
-      <script src="../../assets/javascripts/bundle.13a4f30d.min.js"></script>
+      <script src="../../../assets/javascripts/bundle.13a4f30d.min.js"></script>
       
     
   <script id="init-glightbox">const lightbox = GLightbox({"touchNavigation": true, "loop": false, "zoomable": true, "draggable": true, "openEffect": "zoom", "closeEffect": "zoom", "slideEffect": "slide"});
