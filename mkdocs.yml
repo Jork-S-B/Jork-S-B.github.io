@@ -115,6 +115,7 @@ nav:
                   - Arthas: utils/arthas.md
               - 监控工具:
                   - 监控平台: utils/performance/monitor/platform.md
+                  - nmon: utils/nmon.md
                   - 监控服务器: utils/performance/monitor/server.md
                   - 监控Mysql: utils/performance/monitor/mysql.md
               - 性能调优:
