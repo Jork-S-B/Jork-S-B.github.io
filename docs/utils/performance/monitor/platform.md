@@ -130,6 +130,7 @@ CAdvisor，用于分析运行中容器的资源占用和性能指标，负责收
          registry.cn-hangzhou.aliyuncs.com/{namespace}/grafana
       
       # 创建并启动CAdvisor容器
+      # 如果使用Docker Desktop + WSL2，/var/lib/docker可能为空导致无数据
       docker run -id \
          --volume=/:/rootfs:ro \
          --volume=/var/run:/var/run:ro \
@@ -139,7 +140,69 @@ CAdvisor，用于分析运行中容器的资源占用和性能指标，负责收
          --publish=8081:8080 \
          --detach=true \
          --name=cadvisor \
-         registry.cn-hangzhou.aliyuncs.com/{namespace}/cadvison
+         registry.cn-hangzhou.aliyuncs.com/{namespace}/cadvisor
+      ```
+
+=== "docker-compose-monitor.yaml"
+      
+      ```yaml
+      version: '3.3'
+      
+      services:
+        node-exporter:
+          image: registry.cn-hangzhou.aliyuncs.com/{namespace}/node-exporter
+          container_name: node-exporter
+          ports:
+            - "9100:9100"
+          volumes:
+            - "/proc:/host/proc:ro"
+            - "/sys:/host/sys:ro"
+            - "/:/rootfs:ro"
+          restart: always
+      
+        mysql-exporter:
+          image: registry.cn-hangzhou.aliyuncs.com/{namespace}/mysqld-exporter
+          container_name: mysql-exporter
+          privileged: true
+          ports:
+            - "9104:9104"
+          environment:
+            DATA_SOURCE_NAME: "root:sq@(172.17.0.1:3306)/"
+          restart: always
+      
+        prometheus:
+          image: registry.cn-hangzhou.aliyuncs.com/{namespace}/prometheus
+          container_name: prometheus
+          ports:
+            - "9090:9090"
+          volumes:
+            - "./prometheus.yml:/etc/prometheus/prometheus.yml"
+            - "/etc/localtime:/etc/localtime:ro"
+          restart: always
+      
+        grafana:
+          image: registry.cn-hangzhou.aliyuncs.com/{namespace}/grafana
+          container_name: grafana
+          ports:
+            - "3000:3000"
+          volumes:
+            - "/opt/grafana/data:/var/lib/grafana"
+            - "/etc/localtime:/etc/localtime:ro"
+          restart: always
+      
+        cadvisor:
+          image: registry.cn-hangzhou.aliyuncs.com/{namespace}/cadvisor
+          container_name: cadvisor
+          ports:
+            - "8081:8080"
+          volumes:
+            - "/:/rootfs:ro"
+            - "/var/run:/var/run:ro"
+            - "/sys:/sys:ro"
+            - "/var/lib/docker/:/var/lib/docker:ro"
+            - "/dev/disk/:/dev/disk:ro"
+          restart: always
+      
       ```
 
 ## 📌 指标分析

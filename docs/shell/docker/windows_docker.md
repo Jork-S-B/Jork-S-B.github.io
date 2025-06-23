@@ -39,23 +39,60 @@ netsh int ipv6 set dynamic tcp start=49152 num=16384
 
 实测可用，但wsl2中无`docker0`默认网桥（172.17.0.1），网络隔离更强，需要使用`host.docker.internal`访问宿主机服务。
 
+!!! note "cmd-wsl命令"
+
+    wsl -l -v  # 查看所有wsl2系统版本及运行状态
+    
+    wsl --shutdown {system_name}  # 关闭wsl对应服务
+
+    wsl -d {system_name}  # 启动
+
 ## 📌 WSL2安装原生Docker
+
+如`CAdvisor`这种服务需要监控容器状态，上述方式部署时`/var/lib/docker`可能为空导致无数据，使用该方式贴近linux系统部署docker，规避掉非必要的疑难杂症。
+
+假设已经安装ubuntu内核并启用，按以下命令执行安装Docker。
+
+```shell
+# 更新系统
+sudo apt update && sudo apt upgrade -y
+
+# 安装依赖
+sudo apt install -y apt-transport-https ca-certificates curl gnupg-agent software-properties-common
+
+# 下载并添加 Docker 官方 GPG 密钥（使用阿里云镜像）
+curl -fsSL https://mirrors.aliyun.com/docker-ce/linux/ubuntu/gpg | sudo gpg --dearmor -o /usr/share/keyrings/docker-archive-keyring.gpg
+
+# 添加 Docker APT 源（阿里云镜像）
+echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/docker-archive-keyring.gpg] https://mirrors.aliyun.com/docker-ce/linux/ubuntu $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
+
+# 安装 Docker 引擎
+sudo apt update
+sudo apt install -y docker-ce docker-ce-cli containerd.io
+
+# 验证安装
+sudo docker run hello-world
+
+# 顺便安装docker-compose
+sudo apt install -y docker-compose-plugin
+
+# 验证docker-compose版本
+docker compose version
+
+# 加入开机自启
+sudo systemctl enable docker
+```
 
 ## 📌 Docker镜像源
 
-/etc/docker/daemon.json
+/etc/docker/daemon.json，创建文件并添加内容。
+
+完成后重启docker服务，sudo systemctl restart docker
 
 === "2025/06/23"
 
     ```json
     {
-      "builder": {
-        "gc": {
-          "defaultKeepStorage": "20GB",
-          "enabled": true
-        }
-      },
-      "experimental": false,
       "registry-mirrors": [
         "https://docker.m.daocloud.io",
         "https://dockerproxy.com",
@@ -69,13 +106,6 @@ netsh int ipv6 set dynamic tcp start=49152 num=16384
 
     ```json
     {
-      "builder": {
-        "gc": {
-          "defaultKeepStorage": "20GB",
-          "enabled": true
-        }
-      },
-      "experimental": false,
       "registry-mirrors": [
         "https://docker.registry.cyou",
         "https://docker-cf.registry.cyou",

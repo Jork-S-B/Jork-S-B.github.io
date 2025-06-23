@@ -154,8 +154,8 @@ docker run -id --name myapp \
 
     ```shell
     # 首次运行
-    docker-compose -f docker-compose-myapp.yaml up -d
+    docker compose -f docker-compose-myapp.yaml up -d
 
     # 仅启动
-    docker-compose -f docker-compose-myapp.yaml start
+    docker compose -f docker-compose-myapp.yaml start
     ```
