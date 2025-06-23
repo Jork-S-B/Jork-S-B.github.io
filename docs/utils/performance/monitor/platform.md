@@ -72,6 +72,76 @@ Configuration -> Add data source -> url填Prometheus所在的服务器（如`htt
 
     修改服务器配置重启时，Grafana展示可能会有延迟。
 
+    [Grafana模版下载](https://grafana.com/grafana/dashboards/)
+
+## 📌 Docker搭建监控平台
+
+CAdvisor，用于分析运行中容器的资源占用和性能指标，负责收集、聚合、处理和输出运行中容器的信息。
+
+=== "配置文件prometheus.yml"
+
+      ```yaml
+      global:
+        scrape_interval: 60s
+        evaluation_interval: 60s
+      scrape_configs:
+        - job_name: prometheus
+          static_configs:
+            - targets: [ '172.17.0.1:9090' ]
+              labels:
+                instance: prometheus
+        - job_name: linux
+          static_configs:
+            - targets: [ '172.17.0.1:9100' ]
+        - job_name: mysql
+          static_configs:
+            - targets: [ '172.17.0.1:9104' ]
+        - job_name: 'cadvisor'
+          static_configs:
+            - targets: [ '172.17.0.1:8081' ]
+      ```
+
+=== "docker run"
+      
+      ```shell
+      # 创建并启动node-exporter容器
+      docker run -id --name node-exporter -p 9100:9100 \
+         -v "/proc:/host/proc:ro" \
+         -v "/sys:/host/sys:ro" \
+         -v "/:/rootfs:ro" \
+         registry.cn-hangzhou.aliyuncs.com/{namespace}/node-exporter
+         
+      # 创建并启动mysqld-exporter容器
+      # 172.17.0.1，docker宿主机与容器的默认网桥
+      docker run -id --name mysql-exporter --privileged=true -p 9104:9104 \
+         -e DATA_SOURCE_NAME="root:whm@(172.17.0.1:3306)/" \
+         registry.cn-hangzhou.aliyuncs.com/{namespace}/mysqld-exporter
+         
+      # 创建并启动prometheus容器
+      docker run -id --name prometheus -p 9090:9090 \
+         -v ./prometheus.yml:/etc/prometheus/prometheus.yml \
+         -v /etc/localtime:/etc/localtime:ro \
+         registry.cn-hangzhou.aliyuncs.com/{namespace}/prometheus
+         
+      # 创建并启动grafana容器
+      docker run -id --name=grafana -p 3000:3000 \
+         -v /opt/grafana/data:/var/lib/grafana \
+         -v /etc/localtime:/etc/localtime:ro \
+         registry.cn-hangzhou.aliyuncs.com/{namespace}/grafana
+      
+      # 创建并启动CAdvisor容器
+      docker run -id \
+         --volume=/:/rootfs:ro \
+         --volume=/var/run:/var/run:ro \
+         --volume=/sys:/sys:ro \
+         --volume=/var/lib/docker/:/var/lib/docker:ro \
+         --volume=/dev/disk/:/dev/disk:ro \
+         --publish=8081:8080 \
+         --detach=true \
+         --name=cadvisor \
+         registry.cn-hangzhou.aliyuncs.com/{namespace}/cadvison
+      ```
+
 ## 📌 指标分析
 
 [监控服务器](./server.md)

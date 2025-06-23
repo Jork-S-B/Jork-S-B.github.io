@@ -62,7 +62,7 @@ registry.cn-hangzhou.aliyuncs.com/{namespace}/portainer:v1
 # 创建并运行mysql容器
 docker run -id --name mysql -p 3306:3306 \
    -v /opt/mysql/data:/var/lib/mysql \
-   -e MYSQL_ROOT_PASSWORD=sq \
+   -e MYSQL_ROOT_PASSWORD=whm \
    registry.cn-hangzhou.aliyuncs.com/{namespace}/db:v6 
    
 # 创建并运行rabbitmq容器
@@ -107,7 +107,7 @@ docker run -id --name myapp \
          ports:
            - "3306:3306"
          environment:
-           MYSQL_ROOT_PASSWORD: sq
+           MYSQL_ROOT_PASSWORD: whm
            
        rabbitmq:
          image: registry.cn-hangzhou.aliyuncs.com/{namespace}/rabbitmq

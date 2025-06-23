@@ -1,4 +1,4 @@
-## 📌 Docker for Windows
+## 📌 Docker Desktop
 
 已知Docker依赖于linux内核环境，但总有大冤种（也就是我😓）想在Windows 10操作系统中部署。
 
@@ -10,14 +10,8 @@
 
 >  2024/5/12: 电脑上还同时使用安卓模拟器时，请不要使用Hyper-V！否则会出现冲突，docker起不来。  
 >  2024/8/17: 新设备首次使用尽量下载最新版：实测Windows 11安装`docker desktop 4.1.1.0`，容器初始化报错，换成4.3.2.0（20240817当前最新版）正常运行。  
->  2025/6/23:  
->   1.安装docker desktop  
->   2.wsl安装ubuntu内核，参考资料: https://www.jianshu.com/p/f6ad57a9f16d  
->   3.完成后即可通过ubuntu子系统执行docker命令。  
->   4.迁移wsl ubuntu，参考资料: https://www.sysgeek.cn/move-wsl-distros-windows/
 
-
-## 📌 启用Hyper-V后运行容器提示端口不可用
+### 🚁 启用Hyper-V后运行容器提示端口不可用
 
 为了避免一些不必要的错误，后来还是启用了Hyper-V，此时再Docker run container时报错。
 >  Error: (HTTP code 500) server error - Ports are not available: listen tcp 0.0.0.0:xxxx: bind: An attempt was made to access a socket in a way forbidden by access permissions.
@@ -35,37 +29,74 @@ netsh int ipv6 set dynamic tcp start=49152 num=16384
 
 参考资料：[错误原因分析](https://cloud.tencent.com/developer/article/2168217)
 
-## 📌 镜像源
+## 📌 WSL2 + Docker Desktop
 
-2024/10/21 - 镜像源配置
+1. 安装docker desktop
+2. wsl2安装ubuntu内核并启用，参考资料: https://www.jianshu.com/p/f6ad57a9f16d
+3. 完成后即可通过子系统ubuntu执行docker命令（docker desktop需要保持运行）
 
-```
-{
-  "builder": {
-    "gc": {
-      "defaultKeepStorage": "20GB",
-      "enabled": true
+补充: 迁移wsl2 ubuntu，参考资料: https://www.sysgeek.cn/move-wsl-distros-windows/
+
+实测可用，但wsl2中无`docker0`默认网桥（172.17.0.1），网络隔离更强，需要使用`host.docker.internal`访问宿主机服务。
+
+## 📌 WSL2安装原生Docker
+
+## 📌 Docker镜像源
+
+/etc/docker/daemon.json
+
+=== "2025/06/23"
+
+    ```json
+    {
+      "builder": {
+        "gc": {
+          "defaultKeepStorage": "20GB",
+          "enabled": true
+        }
+      },
+      "experimental": false,
+      "registry-mirrors": [
+        "https://docker.m.daocloud.io",
+        "https://dockerproxy.com",
+        "https://docker.mirrors.ustc.edu.cn",
+        "https://docker.nju.edu.cn"
+      ]
     }
-  },
-  "experimental": false,
-  "registry-mirrors": [
-    "https://docker.registry.cyou",
-    "https://docker-cf.registry.cyou",
-    "https://dockercf.jsdelivr.fyi",
-    "https://docker.jsdelivr.fyi",
-    "https://dockertest.jsdelivr.fyi",
-    "https://mirror.aliyuncs.com",
-    "https://dockerproxy.com",
-    "https://mirror.baidubce.com",
-    "https://docker.m.daocloud.io",
-    "https://docker.nju.edu.cn",
-    "https://docker.mirrors.sjtug.sjtu.edu.cn",
-    "https://docker.mirrors.ustc.edu.cn",
-    "https://mirror.iscas.ac.cn",
-    "https://docker.rainbond.cc"
-  ]
-}
-```
+    ```
+
+=== "2024/10/21"
+
+    ```json
+    {
+      "builder": {
+        "gc": {
+          "defaultKeepStorage": "20GB",
+          "enabled": true
+        }
+      },
+      "experimental": false,
+      "registry-mirrors": [
+        "https://docker.registry.cyou",
+        "https://docker-cf.registry.cyou",
+        "https://dockercf.jsdelivr.fyi",
+        "https://docker.jsdelivr.fyi",
+        "https://dockertest.jsdelivr.fyi",
+        "https://mirror.aliyuncs.com",
+        "https://dockerproxy.com",
+        "https://mirror.baidubce.com",
+        "https://docker.m.daocloud.io",
+        "https://docker.nju.edu.cn",
+        "https://docker.mirrors.sjtug.sjtu.edu.cn",
+        "https://docker.mirrors.ustc.edu.cn",
+        "https://mirror.iscas.ac.cn",
+        "https://docker.rainbond.cc"
+      ]
+    }
+    ```
+
+
+
 
 ## 📌 Windows系统启用OpenSSH
 
