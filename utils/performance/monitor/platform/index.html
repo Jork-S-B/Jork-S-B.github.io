@@ -3240,7 +3240,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../shell/docker/compose.md" class="md-nav__link">
+      <a href="../../../../shell/docker/compose/" class="md-nav__link">
         
   
   
@@ -3722,6 +3722,15 @@
   <a href="#grafana" class="md-nav__link">
     <span class="md-ellipsis">
       📌 Grafana
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#docker" class="md-nav__link">
+    <span class="md-ellipsis">
+      📌 Docker搭建监控平台
     </span>
   </a>
   
@@ -4546,6 +4555,15 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#docker" class="md-nav__link">
+    <span class="md-ellipsis">
+      📌 Docker搭建监控平台
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#_1" class="md-nav__link">
     <span class="md-ellipsis">
       📌 指标分析
@@ -4631,6 +4649,133 @@ http://192.168.80.170:3000/</p>
 <div class="admonition note">
 <p class="admonition-title">补充</p>
 <p>修改服务器配置重启时，Grafana展示可能会有延迟。</p>
+<p><a href="https://grafana.com/grafana/dashboards/">Grafana模版下载</a></p>
+</div>
+<h2 id="docker">📌 Docker搭建监控平台</h2>
+<p>CAdvisor，用于分析运行中容器的资源占用和性能指标，负责收集、聚合、处理和输出运行中容器的信息。</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="2:3"><input checked="checked" id="__tabbed_2_1" name="__tabbed_2" type="radio" /><input id="__tabbed_2_2" name="__tabbed_2" type="radio" /><input id="__tabbed_2_3" name="__tabbed_2" type="radio" /><div class="tabbed-labels"><label for="__tabbed_2_1">配置文件prometheus.yml</label><label for="__tabbed_2_2">docker run</label><label for="__tabbed_2_3">docker-compose-monitor.yaml</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code><span class="nt">global</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">scrape_interval</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">60s</span>
+<span class="w">  </span><span class="nt">evaluation_interval</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">60s</span>
+<span class="nt">scrape_configs</span><span class="p">:</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">job_name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">prometheus</span>
+<span class="w">    </span><span class="nt">static_configs</span><span class="p">:</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">targets</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="w"> </span><span class="s">&#39;172.17.0.1:9090&#39;</span><span class="w"> </span><span class="p p-Indicator">]</span>
+<span class="w">        </span><span class="nt">labels</span><span class="p">:</span>
+<span class="w">          </span><span class="nt">instance</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">prometheus</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">job_name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">linux</span>
+<span class="w">    </span><span class="nt">static_configs</span><span class="p">:</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">targets</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="w"> </span><span class="s">&#39;172.17.0.1:9100&#39;</span><span class="w"> </span><span class="p p-Indicator">]</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">job_name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">mysql</span>
+<span class="w">    </span><span class="nt">static_configs</span><span class="p">:</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">targets</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="w"> </span><span class="s">&#39;172.17.0.1:9104&#39;</span><span class="w"> </span><span class="p p-Indicator">]</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">job_name</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;cadvisor&#39;</span>
+<span class="w">    </span><span class="nt">static_configs</span><span class="p">:</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">targets</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="w"> </span><span class="s">&#39;172.17.0.1:8081&#39;</span><span class="w"> </span><span class="p p-Indicator">]</span>
+</code></pre></div>
+</div>
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code><span class="c1"># 创建并启动node-exporter容器</span>
+docker<span class="w"> </span>run<span class="w"> </span>-id<span class="w"> </span>--name<span class="w"> </span>node-exporter<span class="w"> </span>-p<span class="w"> </span><span class="m">9100</span>:9100<span class="w"> </span><span class="se">\</span>
+<span class="w">   </span>-v<span class="w"> </span><span class="s2">&quot;/proc:/host/proc:ro&quot;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">   </span>-v<span class="w"> </span><span class="s2">&quot;/sys:/host/sys:ro&quot;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">   </span>-v<span class="w"> </span><span class="s2">&quot;/:/rootfs:ro&quot;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">   </span>registry.cn-hangzhou.aliyuncs.com/<span class="o">{</span>namespace<span class="o">}</span>/node-exporter
+
+<span class="c1"># 创建并启动mysqld-exporter容器</span>
+<span class="c1"># 172.17.0.1，docker宿主机与容器的默认网桥</span>
+docker<span class="w"> </span>run<span class="w"> </span>-id<span class="w"> </span>--name<span class="w"> </span>mysql-exporter<span class="w"> </span>--privileged<span class="o">=</span><span class="nb">true</span><span class="w"> </span>-p<span class="w"> </span><span class="m">9104</span>:9104<span class="w"> </span><span class="se">\</span>
+<span class="w">   </span>-e<span class="w"> </span><span class="nv">DATA_SOURCE_NAME</span><span class="o">=</span><span class="s2">&quot;root:whm@(172.17.0.1:3306)/&quot;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">   </span>registry.cn-hangzhou.aliyuncs.com/<span class="o">{</span>namespace<span class="o">}</span>/mysqld-exporter
+
+<span class="c1"># 创建并启动prometheus容器</span>
+docker<span class="w"> </span>run<span class="w"> </span>-id<span class="w"> </span>--name<span class="w"> </span>prometheus<span class="w"> </span>-p<span class="w"> </span><span class="m">9090</span>:9090<span class="w"> </span><span class="se">\</span>
+<span class="w">   </span>-v<span class="w"> </span>./prometheus.yml:/etc/prometheus/prometheus.yml<span class="w"> </span><span class="se">\</span>
+<span class="w">   </span>-v<span class="w"> </span>/etc/localtime:/etc/localtime:ro<span class="w"> </span><span class="se">\</span>
+<span class="w">   </span>registry.cn-hangzhou.aliyuncs.com/<span class="o">{</span>namespace<span class="o">}</span>/prometheus
+
+<span class="c1"># 创建并启动grafana容器</span>
+docker<span class="w"> </span>run<span class="w"> </span>-id<span class="w"> </span>--name<span class="o">=</span>grafana<span class="w"> </span>-p<span class="w"> </span><span class="m">3000</span>:3000<span class="w"> </span><span class="se">\</span>
+<span class="w">   </span>-v<span class="w"> </span>/opt/grafana/data:/var/lib/grafana<span class="w"> </span><span class="se">\</span>
+<span class="w">   </span>-v<span class="w"> </span>/etc/localtime:/etc/localtime:ro<span class="w"> </span><span class="se">\</span>
+<span class="w">   </span>registry.cn-hangzhou.aliyuncs.com/<span class="o">{</span>namespace<span class="o">}</span>/grafana
+
+<span class="c1"># 创建并启动CAdvisor容器</span>
+<span class="c1"># 如果使用Docker Desktop + WSL2，/var/lib/docker可能为空导致无数据</span>
+docker<span class="w"> </span>run<span class="w"> </span>-id<span class="w"> </span><span class="se">\</span>
+<span class="w">   </span>--volume<span class="o">=</span>/:/rootfs:ro<span class="w"> </span><span class="se">\</span>
+<span class="w">   </span>--volume<span class="o">=</span>/var/run:/var/run:ro<span class="w"> </span><span class="se">\</span>
+<span class="w">   </span>--volume<span class="o">=</span>/sys:/sys:ro<span class="w"> </span><span class="se">\</span>
+<span class="w">   </span>--volume<span class="o">=</span>/var/lib/docker/:/var/lib/docker:ro<span class="w"> </span><span class="se">\</span>
+<span class="w">   </span>--volume<span class="o">=</span>/dev/disk/:/dev/disk:ro<span class="w"> </span><span class="se">\</span>
+<span class="w">   </span>--publish<span class="o">=</span><span class="m">8081</span>:8080<span class="w"> </span><span class="se">\</span>
+<span class="w">   </span>--detach<span class="o">=</span><span class="nb">true</span><span class="w"> </span><span class="se">\</span>
+<span class="w">   </span>--name<span class="o">=</span>cadvisor<span class="w"> </span><span class="se">\</span>
+<span class="w">   </span>registry.cn-hangzhou.aliyuncs.com/<span class="o">{</span>namespace<span class="o">}</span>/cadvisor
+</code></pre></div>
+</div>
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code><span class="nt">version</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;3.3&#39;</span>
+
+<span class="nt">services</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">node-exporter</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">image</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">registry.cn-hangzhou.aliyuncs.com/{namespace}/node-exporter</span>
+<span class="w">    </span><span class="nt">container_name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">node-exporter</span>
+<span class="w">    </span><span class="nt">ports</span><span class="p">:</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="s">&quot;9100:9100&quot;</span>
+<span class="w">    </span><span class="nt">volumes</span><span class="p">:</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="s">&quot;/proc:/host/proc:ro&quot;</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="s">&quot;/sys:/host/sys:ro&quot;</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="s">&quot;/:/rootfs:ro&quot;</span>
+<span class="w">    </span><span class="nt">restart</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">always</span>
+
+<span class="w">  </span><span class="nt">mysql-exporter</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">image</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">registry.cn-hangzhou.aliyuncs.com/{namespace}/mysqld-exporter</span>
+<span class="w">    </span><span class="nt">container_name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">mysql-exporter</span>
+<span class="w">    </span><span class="nt">privileged</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+<span class="w">    </span><span class="nt">ports</span><span class="p">:</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="s">&quot;9104:9104&quot;</span>
+<span class="w">    </span><span class="nt">environment</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">DATA_SOURCE_NAME</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;root:sq@(172.17.0.1:3306)/&quot;</span>
+<span class="w">    </span><span class="nt">restart</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">always</span>
+
+<span class="w">  </span><span class="nt">prometheus</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">image</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">registry.cn-hangzhou.aliyuncs.com/{namespace}/prometheus</span>
+<span class="w">    </span><span class="nt">container_name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">prometheus</span>
+<span class="w">    </span><span class="nt">ports</span><span class="p">:</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="s">&quot;9090:9090&quot;</span>
+<span class="w">    </span><span class="nt">volumes</span><span class="p">:</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="s">&quot;./prometheus.yml:/etc/prometheus/prometheus.yml&quot;</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="s">&quot;/etc/localtime:/etc/localtime:ro&quot;</span>
+<span class="w">    </span><span class="nt">restart</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">always</span>
+
+<span class="w">  </span><span class="nt">grafana</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">image</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">registry.cn-hangzhou.aliyuncs.com/{namespace}/grafana</span>
+<span class="w">    </span><span class="nt">container_name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">grafana</span>
+<span class="w">    </span><span class="nt">ports</span><span class="p">:</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="s">&quot;3000:3000&quot;</span>
+<span class="w">    </span><span class="nt">volumes</span><span class="p">:</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="s">&quot;/opt/grafana/data:/var/lib/grafana&quot;</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="s">&quot;/etc/localtime:/etc/localtime:ro&quot;</span>
+<span class="w">    </span><span class="nt">restart</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">always</span>
+
+<span class="w">  </span><span class="nt">cadvisor</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">image</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">registry.cn-hangzhou.aliyuncs.com/{namespace}/cadvisor</span>
+<span class="w">    </span><span class="nt">container_name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">cadvisor</span>
+<span class="w">    </span><span class="nt">ports</span><span class="p">:</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="s">&quot;8081:8080&quot;</span>
+<span class="w">    </span><span class="nt">volumes</span><span class="p">:</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="s">&quot;/:/rootfs:ro&quot;</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="s">&quot;/var/run:/var/run:ro&quot;</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="s">&quot;/sys:/sys:ro&quot;</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="s">&quot;/var/lib/docker/:/var/lib/docker:ro&quot;</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="s">&quot;/dev/disk/:/dev/disk:ro&quot;</span>
+<span class="w">    </span><span class="nt">restart</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">always</span>
+</code></pre></div>
+</div>
+</div>
 </div>
 <h2 id="_1">📌 指标分析</h2>
 <p><a href="../server/">监控服务器</a></p>
@@ -4642,6 +4787,27 @@ http://192.168.80.170:3000/</p>
 
 
 
+  
+    
+  
+  
+
+
+  <aside class="md-source-file">
+    
+      
+  <span class="md-source-file__fact">
+    <span class="md-icon" title="最后更新">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
+    </span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime" title="2025年6月23日 20:56:56 CST">2025-06-23 20:56:56</span>
+  </span>
+
+    
+    
+    
+    
+  </aside>
 
 
 
