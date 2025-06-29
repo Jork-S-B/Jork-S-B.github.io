@@ -21,6 +21,8 @@ Y轴是慢查询数量，需要设置慢查询阈值（如1秒），默认10秒�
     max_connections = 512  # 最大连接数
     ```
 
+临时修改环境变量，则在mysql里执行: `set global max_connections=1000;`
+
 #### 🔧 慢查询SQL分析
 
 1.找到慢查询SQL原语句

@@ -2,6 +2,11 @@
 * 降低磁盘IO，内存存储。
 * 广泛用于缓存、消息队列、排行榜等场景。
 
+什么样的数据适合使用Redis
+
+* 鉴权后的token
+* 时效性、高频访问的数据
+
 ## Redis常用指令
 
 连接到远程Redis服务器：`./redis-cli -h ip -p port -a password`
