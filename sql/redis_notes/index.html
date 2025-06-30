@@ -2884,7 +2884,7 @@
         <li class="md-nav__item">
   <a href="#redis" class="md-nav__link">
     <span class="md-ellipsis">
-      Redis常用指令
+      📌 Redis常用指令
     </span>
   </a>
   
@@ -2893,9 +2893,42 @@
         <li class="md-nav__item">
   <a href="#redis_1" class="md-nav__link">
     <span class="md-ellipsis">
-      Redis集群方案
+      📌 Redis集群方案
     </span>
   </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      📌 性能指标
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="📌 性能指标">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      🚁 缓存击穿
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      🚁 缓存雪崩
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -4469,7 +4502,7 @@
         <li class="md-nav__item">
   <a href="#redis" class="md-nav__link">
     <span class="md-ellipsis">
-      Redis常用指令
+      📌 Redis常用指令
     </span>
   </a>
   
@@ -4478,9 +4511,42 @@
         <li class="md-nav__item">
   <a href="#redis_1" class="md-nav__link">
     <span class="md-ellipsis">
-      Redis集群方案
+      📌 Redis集群方案
     </span>
   </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      📌 性能指标
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="📌 性能指标">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      🚁 缓存击穿
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      🚁 缓存雪崩
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -4507,7 +4573,7 @@
 
 <ul>
 <li>非关系型数据库，作为关系型数据库的补充，使用键值对存储数据。</li>
-<li>降低磁盘IO，内存存储。</li>
+<li>降低磁盘IO，内存存储，支持持久化。</li>
 <li>广泛用于缓存、消息队列、排行榜等场景。</li>
 </ul>
 <p>什么样的数据适合使用Redis</p>
@@ -4515,69 +4581,66 @@
 <li>鉴权后的token</li>
 <li>时效性、高频访问的数据</li>
 </ul>
-<h2 id="redis">Redis常用指令</h2>
+<h2 id="redis">📌 Redis常用指令</h2>
 <p>连接到远程Redis服务器：<code>./redis-cli -h ip -p port -a password</code></p>
-<table>
-<thead>
-<tr>
-<th style="text-align: center;">指令</th>
-<th style="text-align: left;">说明</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align: center;">keys *</td>
-<td style="text-align: left;">查看所有的键</td>
-</tr>
-<tr>
-<td style="text-align: center;">dbsize</td>
-<td style="text-align: left;">键总数</td>
-</tr>
-<tr>
-<td style="text-align: center;">exists key</td>
-<td style="text-align: left;">检查键是否存在。存在：1，不存在：0</td>
-</tr>
-<tr>
-<td style="text-align: center;">del key</td>
-<td style="text-align: left;">删除键。删除成功：1，删除失败：0</td>
-</tr>
-<tr>
-<td style="text-align: center;">type key</td>
-<td style="text-align: left;">键的数据结构类型</td>
-</tr>
-<tr>
-<td style="text-align: center;">rename key newkey</td>
-<td style="text-align: left;">重命名键</td>
-</tr>
-<tr>
-<td style="text-align: center;">set key value</td>
-<td style="text-align: left;">设置值</td>
-</tr>
-<tr>
-<td style="text-align: center;">get key</td>
-<td style="text-align: left;">丨获取对应键的值</td>
-</tr>
-<tr>
-<td style="text-align: center;">flushdb</td>
-<td style="text-align: left;">清除当前数据库</td>
-</tr>
-<tr>
-<td style="text-align: center;">flushall</td>
-<td style="text-align: left;">清除所有数据库</td>
-</tr>
-<tr>
-<td style="text-align: center;">info memory</td>
-<td style="text-align: left;">查询内存使用情况</td>
-</tr>
-</tbody>
-</table>
+<p>|          指令           | 说明                 |
+|:---------------------:|:-------------------|t
+|        keys *         | 查看所有的键             |
+|        dbsize         | 键总数                |
+|      exists key       | 检查键是否存在。存在：1，不存在：0 |
+|        del key        | 删除键。删除成功：1，删除失败：0  |
+|       type key        | 键的数据结构类型           |
+|   rename key newkey   | 重命名键               |
+|     set key value     | 设置值                |
+|        get key        | 丨获取对应键的值           |
+|        flushdb        | 清除当前数据库            |
+|       flushall        | 清除所有数据库            |
+|      info memory      | 查询内存使用情况           |
+| CONFIG get maxclients | 查最大连接数             |</p>
 <p>清除指定redis：<code>for i in $(seq 1001 1003)： do echo "flushab" | ./redis-cli -h ip -a password -p $i; done</code></p>
-<h2 id="redis_1">Redis集群方案</h2>
+<h2 id="redis_1">📌 Redis集群方案</h2>
 <ul>
-<li>哨兵模式，基于主从，哨兵-集群监控、消息通知、故障转移、配置中心，不保证数据零丟失，只能保证高可用。</li>
+<li>Sentinel-哨兵模式，基于主从，哨兵-集群监控、消息通知、故障转移、配置中心，不保证数据零丟失，只能保证高可用。</li>
 <li>Redis Cluster，数据分片存储在多个互为主从的多节点上，数据写入主节点，再同步到从节点，不保证强一致性。</li>
 <li>Redis Sharding</li>
 </ul>
+<h2 id="_1">📌 性能指标</h2>
+<ul>
+<li>Latency - redis响应一个请求的时间</li>
+<li>instantaneous_ops_pers_sec - 每秒处理请求数</li>
+<li>hi rate(calculated) - 缓存命中率</li>
+</ul>
+<h3 id="_2">🚁 缓存击穿</h3>
+<p>指<strong>某个</strong>热点数据在缓存中过期的瞬间，大量并发请求直接穿透到数据库，可能导致数据库压力骤增甚至崩溃。</p>
+<p>常见原因: </p>
+<ol>
+<li>业务代码或数据有问题。</li>
+<li>恶意攻击、爬虫等造成大量空命中。</li>
+</ol>
+<p>解决方案: </p>
+<ol>
+<li>永不过期策略</li>
+<li>错峰过期</li>
+<li>逻辑过期时间：当数据过期时，异步更新数据而不阻塞请求。</li>
+<li>使用布隆过滤器快速判断数据是否存在，避免无效请求穿透到数据库。</li>
+<li>加互斥锁：当缓存失效时，只允许一个线程去加载数据，其他线程等待。</li>
+<li>缓存预热：在系统启动或低峰期预先加载热点数据到缓存。</li>
+</ol>
+<h3 id="_3">🚁 缓存雪崩</h3>
+<p>指在某个时间段内，<strong>大量</strong>的缓存同时失效或者Redis服务宕机后恢复，导致所有请求都直接访问数据库，从而引发数据库连接或性能瓶颈，甚至宕机。</p>
+<p>常见原因: </p>
+<ol>
+<li>集中过期：设置了相同的过期时间，导致大量缓存同时失效。</li>
+<li>Redis宕机：Redis服务异常或网络中断，导致所有缓存不可用。</li>
+<li>缓存层故障转移失败：如集群部署时节点宕机未及时恢复。</li>
+</ol>
+<p>解决方案: </p>
+<ol>
+<li>上述缓存击穿的解决方案</li>
+<li>熔断限流（服务降级），在访问数据库前加入熔断机制，当请求超过阈值时直接返回错误或默认值，防止数据库被压垮。</li>
+<li>缓存高可用架构（主从、集群）</li>
+<li>多级缓存架构（本地缓存+redis缓存）</li>
+</ol>
 <hr />
 
 
@@ -4599,7 +4662,7 @@
     <span class="md-icon" title="最后更新">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime" title="2025年6月29日 14:57:31 CST">2025-06-29 14:57:31</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime" title="2025年6月30日 14:55:06 CST">2025-06-30 14:55:06</span>
   </span>
 
     
