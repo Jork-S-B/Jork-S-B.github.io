@@ -42,7 +42,28 @@
 
 外部请求先到达K8S集群的ingress控制器，然后请求会被转发到K8S某个node的kube proxy，再找到对应的pod，然后将请求转发给对应的服务；处理结果原路返回。
 
+## 📌 Kubernetes的主要特性
+
+* 自动恢复：自动重启失败容器、替换异常节点。
+* 弹性伸缩：根据负载自动扩缩容。
+* 服务发现与负载均衡：自动分配`IP`和`DNS`名称。
+* 滚动更新与回滚：支持逐步更新和版本回退。
+
 ## 📌 kubectl-一些K8S命令
+
+### 🚁 部署服务
+
+```shell
+kubectl create -f xxx.yaml  # 部署服务
+kubectl apply -f xxx.yaml  # 部署或更新服务
+kubectl delete -f xxx.yaml  # 删除服务
+```
+
+### 🚁 使节点进入维护状态
+
+??? abstract "点击查看"
+
+    kubetcl cordon {node}
 
 ### 🚁 查看命名空间
 
@@ -60,7 +81,7 @@
 
 ??? abstract "点击查看"
 
-    kubectl -n {namespace} describe pods {podId}
+    kubectl -n {namespace} describe pod {podId}
 
 ### 🚁 查看pod的deployment信息
 

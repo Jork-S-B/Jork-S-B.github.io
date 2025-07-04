@@ -199,7 +199,11 @@ public class ScheduleJob {
 
 ### 🚁 网关
 
-多个微服务可能有多个域名、登录方式等，通过网关统一鉴权、请求分发、请求过滤、请求日志记录、流量控制等。
+多个微服务可能有多个域名、端口、登录方式等，通过网关统一鉴权、请求分发、请求过滤、请求日志记录、流量控制等。
+
+!!! tip "注册中心"
+  
+    第三方注册中心：阿里-Nacos、百度-Dubbo、Apache-ZooKeeper、Netflix-Eureka 等，用于微服务的注册与发现。
 
 ### 🚁 拦截器
 
@@ -213,11 +217,11 @@ public class ScheduleJob {
 
 运行时异常，则需定义异常类型处理`@ExceptionHandler`及对应的响应模版枚举值。
 
----
-
 ## 📌 工具类
 
 hutools: https://doc.hutool.cn/pages/index/
+
+---
 
 参考资料：
 
