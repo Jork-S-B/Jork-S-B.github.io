@@ -13,25 +13,25 @@
       
       
       
-        <link rel="prev" href="../regex/">
+        <link rel="prev" href="../basic/">
       
       
-        <link rel="next" href="../docker/windows_docker/">
+        <link rel="next" href="../../docker/windows_docker/">
       
       
-      <link rel="icon" href="../../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.14">
+      <link rel="icon" href="../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.15">
     
     
       
-        <title>k8s - whm</title>
+        <title>kind - whm</title>
       
     
     
-      <link rel="stylesheet" href="../../assets/stylesheets/main.342714a4.min.css">
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.342714a4.min.css">
       
         
-        <link rel="stylesheet" href="../../assets/stylesheets/palette.06af60db.min.css">
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.06af60db.min.css">
       
       
 
@@ -44,16 +44,16 @@
       
     
     
-      <link rel="stylesheet" href="../../stylesheets/extra.css">
+      <link rel="stylesheet" href="../../../stylesheets/extra.css">
     
-    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
 
     
     
     
-   <link href="../../assets/stylesheets/glightbox.min.css" rel="stylesheet"/><style>
+   <link href="../../../assets/stylesheets/glightbox.min.css" rel="stylesheet"/><style>
     html.glightbox-open { overflow: initial; height: 100%; }
     .gslide-title { margin-top: 0px; user-select: text; }
     .gslide-desc { color: #666; user-select: text; }
@@ -62,7 +62,7 @@
     .gdesc-inner { font-size: 0.75rem; }
     body[data-md-color-scheme="slate"] .gdesc-inner { background: var(--md-default-bg-color);}
     body[data-md-color-scheme="slate"] .gslide-title { color: var(--md-default-fg-color);}
-    body[data-md-color-scheme="slate"] .gslide-desc { color: var(--md-default-fg-color);}</style> <script src="../../assets/javascripts/glightbox.min.js"></script></head>
+    body[data-md-color-scheme="slate"] .gslide-desc { color: var(--md-default-fg-color);}</style> <script src="../../../assets/javascripts/glightbox.min.js"></script></head>
   
   
     
@@ -81,7 +81,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#k8s-kubernetes" class="md-skip">
+        <a href="#wsl-kind" class="md-skip">
           跳转至
         </a>
       
@@ -95,7 +95,7 @@
 
 <header class="md-header" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="页眉">
-    <a href="../.." title="whm" class="md-header__button md-logo" aria-label="whm" data-md-component="logo">
+    <a href="../../.." title="whm" class="md-header__button md-logo" aria-label="whm" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M256 512a256 256 0 1 0 0-512 256 256 0 1 0 0 512m-91.9-186.5C182 346.2 212.6 368 256 368s74-21.8 91.9-42.5c5.8-6.7 15.9-7.4 22.6-1.6s7.4 15.9 1.6 22.6c-22.3 25.6-61 53.5-116.1 53.5s-93.8-27.9-116.1-53.5c-5.8-6.7-5.1-16.8 1.6-22.6s16.8-5.1 22.6 1.6M144.4 208a32 32 0 1 1 64 0 32 32 0 1 1-64 0m156.4 25.6c-5.3 7.1-15.3 8.5-22.4 3.2s-8.5-15.3-3.2-22.4c30.4-40.5 91.2-40.5 121.6 0 5.3 7.1 3.9 17.1-3.2 22.4s-17.1 3.9-22.4-3.2c-17.6-23.5-52.8-23.5-70.4 0"/></svg>
@@ -115,7 +115,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              k8s
+              kind
             
           </span>
         </div>
@@ -226,7 +226,7 @@
   
   
     <li class="md-tabs__item">
-      <a href="../.." class="md-tabs__link">
+      <a href="../../.." class="md-tabs__link">
         
   
   
@@ -256,7 +256,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="../../python/datatype/number/" class="md-tabs__link">
+        <a href="../../../python/datatype/number/" class="md-tabs__link">
           
   
   
@@ -286,7 +286,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="../../java/springboot/basic/" class="md-tabs__link">
+        <a href="../../../java/springboot/basic/" class="md-tabs__link">
           
   
   
@@ -309,7 +309,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="../../vue/basic/" class="md-tabs__link">
+        <a href="../../../vue/basic/" class="md-tabs__link">
           
   
   
@@ -336,7 +336,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="../../sql/oracle/sqlldr_import/" class="md-tabs__link">
+        <a href="../../../sql/oracle/sqlldr_import/" class="md-tabs__link">
           
   
   
@@ -361,7 +361,7 @@
     
     
       <li class="md-tabs__item md-tabs__item--active">
-        <a href="../review/" class="md-tabs__link">
+        <a href="../../review/" class="md-tabs__link">
           
   
   
@@ -381,7 +381,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="../../test/software_engineering/" class="md-tabs__link">
+        <a href="../../../test/software_engineering/" class="md-tabs__link">
           
   
   
@@ -401,7 +401,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="../../hadoop/ecosystem/" class="md-tabs__link">
+        <a href="../../../hadoop/ecosystem/" class="md-tabs__link">
           
   
   
@@ -421,7 +421,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="../../other/blockchain/" class="md-tabs__link">
+        <a href="../../../other/blockchain/" class="md-tabs__link">
           
   
   
@@ -455,7 +455,7 @@
 
 <nav class="md-nav md-nav--primary md-nav--lifted" aria-label="导航栏" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="../.." title="whm" class="md-nav__button md-logo" aria-label="whm" data-md-component="logo">
+    <a href="../../.." title="whm" class="md-nav__button md-logo" aria-label="whm" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M256 512a256 256 0 1 0 0-512 256 256 0 1 0 0 512m-91.9-186.5C182 346.2 212.6 368 256 368s74-21.8 91.9-42.5c5.8-6.7 15.9-7.4 22.6-1.6s7.4 15.9 1.6 22.6c-22.3 25.6-61 53.5-116.1 53.5s-93.8-27.9-116.1-53.5c-5.8-6.7-5.1-16.8 1.6-22.6s16.8-5.1 22.6 1.6M144.4 208a32 32 0 1 1 64 0 32 32 0 1 1-64 0m156.4 25.6c-5.3 7.1-15.3 8.5-22.4 3.2s-8.5-15.3-3.2-22.4c30.4-40.5 91.2-40.5 121.6 0 5.3 7.1 3.9 17.1-3.2 22.4s-17.1 3.9-22.4-3.2c-17.6-23.5-52.8-23.5-70.4 0"/></svg>
@@ -485,7 +485,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../.." class="md-nav__link">
+      <a href="../../.." class="md-nav__link">
         
   
   
@@ -591,7 +591,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../python/datatype/number/" class="md-nav__link">
+      <a href="../../../python/datatype/number/" class="md-nav__link">
         
   
   
@@ -614,7 +614,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../python/datatype/sequence/" class="md-nav__link">
+      <a href="../../../python/datatype/sequence/" class="md-nav__link">
         
   
   
@@ -637,7 +637,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../python/datatype/dict%26set/" class="md-nav__link">
+      <a href="../../../python/datatype/dict%26set/" class="md-nav__link">
         
   
   
@@ -660,7 +660,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../python/datatype/mutable%26immutable/" class="md-nav__link">
+      <a href="../../../python/datatype/mutable%26immutable/" class="md-nav__link">
         
   
   
@@ -691,7 +691,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../python/structure/structure/" class="md-nav__link">
+      <a href="../../../python/structure/structure/" class="md-nav__link">
         
   
   
@@ -755,7 +755,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../python/oj/sort/" class="md-nav__link">
+      <a href="../../../python/oj/sort/" class="md-nav__link">
         
   
   
@@ -778,7 +778,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../python/oj/dp/" class="md-nav__link">
+      <a href="../../../python/oj/dp/" class="md-nav__link">
         
   
   
@@ -801,7 +801,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../python/oj/window/" class="md-nav__link">
+      <a href="../../../python/oj/window/" class="md-nav__link">
         
   
   
@@ -832,7 +832,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../python/oop/" class="md-nav__link">
+      <a href="../../../python/oop/" class="md-nav__link">
         
   
   
@@ -855,7 +855,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../python/builtin_func/" class="md-nav__link">
+      <a href="../../../python/builtin_func/" class="md-nav__link">
         
   
   
@@ -919,7 +919,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../python/builtin_lib/re/" class="md-nav__link">
+      <a href="../../../python/builtin_lib/re/" class="md-nav__link">
         
   
   
@@ -942,7 +942,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../python/builtin_lib/pypath/" class="md-nav__link">
+      <a href="../../../python/builtin_lib/pypath/" class="md-nav__link">
         
   
   
@@ -965,7 +965,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../python/builtin_lib/pyjson_notes/" class="md-nav__link">
+      <a href="../../../python/builtin_lib/pyjson_notes/" class="md-nav__link">
         
   
   
@@ -988,7 +988,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../python/builtin_lib/thread/" class="md-nav__link">
+      <a href="../../../python/builtin_lib/thread/" class="md-nav__link">
         
   
   
@@ -1011,7 +1011,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../python/builtin_lib/async/" class="md-nav__link">
+      <a href="../../../python/builtin_lib/async/" class="md-nav__link">
         
   
   
@@ -1042,7 +1042,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../python/closure/" class="md-nav__link">
+      <a href="../../../python/closure/" class="md-nav__link">
         
   
   
@@ -1106,7 +1106,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../python/autotest/model/" class="md-nav__link">
+      <a href="../../../python/autotest/model/" class="md-nav__link">
         
   
   
@@ -1129,7 +1129,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../python/autotest/unittest/unittest_notes/" class="md-nav__link">
+      <a href="../../../python/autotest/unittest/unittest_notes/" class="md-nav__link">
         
   
   
@@ -1193,7 +1193,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../python/autotest/pytest/fixture/" class="md-nav__link">
+      <a href="../../../python/autotest/pytest/fixture/" class="md-nav__link">
         
   
   
@@ -1216,7 +1216,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../python/autotest/pytest/pytest.main/" class="md-nav__link">
+      <a href="../../../python/autotest/pytest/pytest.main/" class="md-nav__link">
         
   
   
@@ -1239,7 +1239,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../python/autotest/pytest/pytest.ini/" class="md-nav__link">
+      <a href="../../../python/autotest/pytest/pytest.ini/" class="md-nav__link">
         
   
   
@@ -1270,7 +1270,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../python/autotest/selenium/" class="md-nav__link">
+      <a href="../../../python/autotest/selenium/" class="md-nav__link">
         
   
   
@@ -1334,7 +1334,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../python/autotest/app/mumu_sim/" class="md-nav__link">
+      <a href="../../../python/autotest/app/mumu_sim/" class="md-nav__link">
         
   
   
@@ -1357,7 +1357,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../python/autotest/app/appium/" class="md-nav__link">
+      <a href="../../../python/autotest/app/appium/" class="md-nav__link">
         
   
   
@@ -1380,7 +1380,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../python/autotest/app/uiautomator2/" class="md-nav__link">
+      <a href="../../../python/autotest/app/uiautomator2/" class="md-nav__link">
         
   
   
@@ -1403,7 +1403,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../python/autotest/app/webdriveragent/" class="md-nav__link">
+      <a href="../../../python/autotest/app/webdriveragent/" class="md-nav__link">
         
   
   
@@ -1434,7 +1434,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../python/autotest/mitmproxy/" class="md-nav__link">
+      <a href="../../../python/autotest/mitmproxy/" class="md-nav__link">
         
   
   
@@ -1457,7 +1457,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../python/autotest/requests/" class="md-nav__link">
+      <a href="../../../python/autotest/requests/" class="md-nav__link">
         
   
   
@@ -1521,7 +1521,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../python/autotest/playwright/001_basic/" class="md-nav__link">
+      <a href="../../../python/autotest/playwright/001_basic/" class="md-nav__link">
         
   
   
@@ -1544,7 +1544,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../python/autotest/playwright/002_po/" class="md-nav__link">
+      <a href="../../../python/autotest/playwright/002_po/" class="md-nav__link">
         
   
   
@@ -1624,7 +1624,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../python/web/flask/" class="md-nav__link">
+      <a href="../../../python/web/flask/" class="md-nav__link">
         
   
   
@@ -1688,7 +1688,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../python/web/django/django_orm/" class="md-nav__link">
+      <a href="../../../python/web/django/django_orm/" class="md-nav__link">
         
   
   
@@ -1711,7 +1711,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../python/web/django/django_templates/" class="md-nav__link">
+      <a href="../../../python/web/django/django_templates/" class="md-nav__link">
         
   
   
@@ -1734,7 +1734,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../python/web/django/cookie%26session/" class="md-nav__link">
+      <a href="../../../python/web/django/cookie%26session/" class="md-nav__link">
         
   
   
@@ -1814,7 +1814,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../python/pandas/day01/" class="md-nav__link">
+      <a href="../../../python/pandas/day01/" class="md-nav__link">
         
   
   
@@ -1837,7 +1837,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../python/pandas/day02/" class="md-nav__link">
+      <a href="../../../python/pandas/day02/" class="md-nav__link">
         
   
   
@@ -1860,7 +1860,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../python/pandas/day03/" class="md-nav__link">
+      <a href="../../../python/pandas/day03/" class="md-nav__link">
         
   
   
@@ -1883,7 +1883,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../python/pandas/day04/" class="md-nav__link">
+      <a href="../../../python/pandas/day04/" class="md-nav__link">
         
   
   
@@ -1906,7 +1906,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../python/pandas/day05/" class="md-nav__link">
+      <a href="../../../python/pandas/day05/" class="md-nav__link">
         
   
   
@@ -1978,7 +1978,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../python/other/mv_py_path/" class="md-nav__link">
+      <a href="../../../python/other/mv_py_path/" class="md-nav__link">
         
   
   
@@ -2001,7 +2001,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../python/other/mkdocs_notes/" class="md-nav__link">
+      <a href="../../../python/other/mkdocs_notes/" class="md-nav__link">
         
   
   
@@ -2024,7 +2024,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../python/pydocx/pydocx_notes/" class="md-nav__link">
+      <a href="../../../python/pydocx/pydocx_notes/" class="md-nav__link">
         
   
   
@@ -2047,7 +2047,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../python/pyexcel/pyexcel_notes/" class="md-nav__link">
+      <a href="../../../python/pyexcel/pyexcel_notes/" class="md-nav__link">
         
   
   
@@ -2070,7 +2070,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../python/other/scrapy_notes/" class="md-nav__link">
+      <a href="../../../python/other/scrapy_notes/" class="md-nav__link">
         
   
   
@@ -2093,7 +2093,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../python/other/coding_standard/" class="md-nav__link">
+      <a href="../../../python/other/coding_standard/" class="md-nav__link">
         
   
   
@@ -2116,7 +2116,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../python/other/garbage_collection/" class="md-nav__link">
+      <a href="../../../python/other/garbage_collection/" class="md-nav__link">
         
   
   
@@ -2236,7 +2236,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../java/springboot/basic/" class="md-nav__link">
+      <a href="../../../java/springboot/basic/" class="md-nav__link">
         
   
   
@@ -2308,7 +2308,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../java/leetcode/hash/" class="md-nav__link">
+      <a href="../../../java/leetcode/hash/" class="md-nav__link">
         
   
   
@@ -2331,7 +2331,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../java/leetcode/two_pointers/" class="md-nav__link">
+      <a href="../../../java/leetcode/two_pointers/" class="md-nav__link">
         
   
   
@@ -2354,7 +2354,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../java/leetcode/array/" class="md-nav__link">
+      <a href="../../../java/leetcode/array/" class="md-nav__link">
         
   
   
@@ -2377,7 +2377,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../java/leetcode/binary_search/" class="md-nav__link">
+      <a href="../../../java/leetcode/binary_search/" class="md-nav__link">
         
   
   
@@ -2400,7 +2400,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../java/leetcode/stack/" class="md-nav__link">
+      <a href="../../../java/leetcode/stack/" class="md-nav__link">
         
   
   
@@ -2431,7 +2431,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../java/junit5/" class="md-nav__link">
+      <a href="../../../java/junit5/" class="md-nav__link">
         
   
   
@@ -2454,7 +2454,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../java/cucumber/" class="md-nav__link">
+      <a href="../../../java/cucumber/" class="md-nav__link">
         
   
   
@@ -2477,7 +2477,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../java/jvmgc/JVMGC/" class="md-nav__link">
+      <a href="../../../java/jvmgc/JVMGC/" class="md-nav__link">
         
   
   
@@ -2548,7 +2548,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../vue/basic/" class="md-nav__link">
+      <a href="../../../vue/basic/" class="md-nav__link">
         
   
   
@@ -2660,7 +2660,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../sql/oracle/sqlldr_import/" class="md-nav__link">
+      <a href="../../../sql/oracle/sqlldr_import/" class="md-nav__link">
         
   
   
@@ -2683,7 +2683,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../sql/oracle/some/" class="md-nav__link">
+      <a href="../../../sql/oracle/some/" class="md-nav__link">
         
   
   
@@ -2706,7 +2706,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../sql/oracle/lock%26unlock/" class="md-nav__link">
+      <a href="../../../sql/oracle/lock%26unlock/" class="md-nav__link">
         
   
   
@@ -2729,7 +2729,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../sql/oracle/procedure/" class="md-nav__link">
+      <a href="../../../sql/oracle/procedure/" class="md-nav__link">
         
   
   
@@ -2752,7 +2752,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../sql/oracle/gather_table_stats/" class="md-nav__link">
+      <a href="../../../sql/oracle/gather_table_stats/" class="md-nav__link">
         
   
   
@@ -2775,7 +2775,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../sql/oracle/other_notes/" class="md-nav__link">
+      <a href="../../../sql/oracle/other_notes/" class="md-nav__link">
         
   
   
@@ -2806,7 +2806,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../sql/mysql_notes/" class="md-nav__link">
+      <a href="../../../sql/mysql_notes/" class="md-nav__link">
         
   
   
@@ -2829,7 +2829,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../sql/redis_notes/" class="md-nav__link">
+      <a href="../../../sql/redis_notes/" class="md-nav__link">
         
   
   
@@ -2852,7 +2852,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../other/elasticsearch/" class="md-nav__link">
+      <a href="../../../other/elasticsearch/" class="md-nav__link">
         
   
   
@@ -2928,7 +2928,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../review/" class="md-nav__link">
+      <a href="../../review/" class="md-nav__link">
         
   
   
@@ -2951,7 +2951,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../other/git_notes/" class="md-nav__link">
+      <a href="../../../other/git_notes/" class="md-nav__link">
         
   
   
@@ -2974,7 +2974,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../timestamp/" class="md-nav__link">
+      <a href="../../timestamp/" class="md-nav__link">
         
   
   
@@ -2997,12 +2997,78 @@
   
   
     <li class="md-nav__item">
-      <a href="../regex/" class="md-nav__link">
+      <a href="../../regex/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     regex.sh
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6_5" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_6_5" id="__nav_6_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    k8s
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_6_5_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_6_5">
+            <span class="md-nav__icon md-icon"></span>
+            k8s
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../basic/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    基础
     
   </span>
   
@@ -3034,7 +3100,7 @@
   
   
   <span class="md-ellipsis">
-    k8s
+    kind
     
   </span>
   
@@ -3047,7 +3113,7 @@
   
   
   <span class="md-ellipsis">
-    k8s
+    kind
     
   </span>
   
@@ -3070,164 +3136,25 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#_1" class="md-nav__link">
+  <a href="#1" class="md-nav__link">
     <span class="md-ellipsis">
-      📌 云原生
+      📌 1.安装相关应用
     </span>
   </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#_2" class="md-nav__link">
-    <span class="md-ellipsis">
-      📌 云计算服务
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#dockerk8s" class="md-nav__link">
-    <span class="md-ellipsis">
-      📌 虚拟机/Docker/K8S
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#_3" class="md-nav__link">
-    <span class="md-ellipsis">
-      📌 概念
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="📌 概念">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#_4" class="md-nav__link">
-    <span class="md-ellipsis">
-      🚁 调用服务
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#kubectl-k8s" class="md-nav__link">
-    <span class="md-ellipsis">
-      📌 kubectl-一些K8S命令
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="📌 kubectl-一些K8S命令">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#_5" class="md-nav__link">
-    <span class="md-ellipsis">
-      🚁 查看命名空间
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#pod" class="md-nav__link">
-    <span class="md-ellipsis">
-      🚁 查看当前命名空间下的pod
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#podcpu" class="md-nav__link">
-    <span class="md-ellipsis">
-      🚁 查看pod信息(挂载目录、CPU和内存限制等)、重启原因等
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#poddeployment" class="md-nav__link">
-    <span class="md-ellipsis">
-      🚁 查看pod的deployment信息
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#_6" class="md-nav__link">
-    <span class="md-ellipsis">
-      🚁 进入容器
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#_7" class="md-nav__link">
-    <span class="md-ellipsis">
-      🚁 查看容器控制台日志
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#pod_1" class="md-nav__link">
-    <span class="md-ellipsis">
-      🚁 删除/重启pod
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#pod_2" class="md-nav__link">
-    <span class="md-ellipsis">
-      🚁 调整pod副本数/扩容
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#cp" class="md-nav__link">
-    <span class="md-ellipsis">
-      🚁 把容器内的文件cp到本地
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#pod_3" class="md-nav__link">
-    <span class="md-ellipsis">
-      🚁 查看Pod的资源使用情况
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
   
 </li>
       
     </ul>
   
 </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
       
     </li>
   
@@ -3282,7 +3209,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../docker/windows_docker/" class="md-nav__link">
+      <a href="../../docker/windows_docker/" class="md-nav__link">
         
   
   
@@ -3305,7 +3232,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../docker/archlinux_docker/" class="md-nav__link">
+      <a href="../../docker/archlinux_docker/" class="md-nav__link">
         
   
   
@@ -3328,7 +3255,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../docker/build_mysql/" class="md-nav__link">
+      <a href="../../docker/build_mysql/" class="md-nav__link">
         
   
   
@@ -3351,7 +3278,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../docker/build_oracle/" class="md-nav__link">
+      <a href="../../docker/build_oracle/" class="md-nav__link">
         
   
   
@@ -3374,7 +3301,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../docker/build_jenkins/" class="md-nav__link">
+      <a href="../../docker/build_jenkins/" class="md-nav__link">
         
   
   
@@ -3397,7 +3324,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../docker/build_rockylinux/" class="md-nav__link">
+      <a href="../../docker/build_rockylinux/" class="md-nav__link">
         
   
   
@@ -3420,7 +3347,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../docker/build_hbase/" class="md-nav__link">
+      <a href="../../docker/build_hbase/" class="md-nav__link">
         
   
   
@@ -3443,7 +3370,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../docker/compose/" class="md-nav__link">
+      <a href="../../docker/compose/" class="md-nav__link">
         
   
   
@@ -3522,7 +3449,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../test/software_engineering/" class="md-nav__link">
+      <a href="../../../test/software_engineering/" class="md-nav__link">
         
   
   
@@ -3586,7 +3513,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../test/test_app/" class="md-nav__link">
+      <a href="../../../test/test_app/" class="md-nav__link">
         
   
   
@@ -3650,7 +3577,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../test/test_performance/" class="md-nav__link">
+      <a href="../../../test/test_performance/" class="md-nav__link">
         
   
   
@@ -3714,7 +3641,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../utils/jmeter_notes/" class="md-nav__link">
+      <a href="../../../utils/jmeter_notes/" class="md-nav__link">
         
   
   
@@ -3737,7 +3664,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../utils/locust_notes/" class="md-nav__link">
+      <a href="../../../utils/locust_notes/" class="md-nav__link">
         
   
   
@@ -3760,7 +3687,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../utils/arthas/" class="md-nav__link">
+      <a href="../../../utils/arthas/" class="md-nav__link">
         
   
   
@@ -3832,7 +3759,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../utils/performance/monitor/platform/" class="md-nav__link">
+      <a href="../../../utils/performance/monitor/platform/" class="md-nav__link">
         
   
   
@@ -3855,7 +3782,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../utils/nmon/" class="md-nav__link">
+      <a href="../../../utils/nmon/" class="md-nav__link">
         
   
   
@@ -3878,7 +3805,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../utils/performance/monitor/server/" class="md-nav__link">
+      <a href="../../../utils/performance/monitor/server/" class="md-nav__link">
         
   
   
@@ -3901,7 +3828,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../utils/performance/monitor/mysql/" class="md-nav__link">
+      <a href="../../../utils/performance/monitor/mysql/" class="md-nav__link">
         
   
   
@@ -3973,7 +3900,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../other/high_performance/" class="md-nav__link">
+      <a href="../../../other/high_performance/" class="md-nav__link">
         
   
   
@@ -3996,7 +3923,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../other/high_availability/" class="md-nav__link">
+      <a href="../../../other/high_availability/" class="md-nav__link">
         
   
   
@@ -4019,7 +3946,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../other/nginx_notes/" class="md-nav__link">
+      <a href="../../../other/nginx_notes/" class="md-nav__link">
         
   
   
@@ -4042,7 +3969,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../other/tomcat_notes/" class="md-nav__link">
+      <a href="../../../other/tomcat_notes/" class="md-nav__link">
         
   
   
@@ -4081,7 +4008,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../test/test_security/" class="md-nav__link">
+      <a href="../../../test/test_security/" class="md-nav__link">
         
   
   
@@ -4153,7 +4080,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../utils/fiddler_notes/" class="md-nav__link">
+      <a href="../../../utils/fiddler_notes/" class="md-nav__link">
         
   
   
@@ -4176,7 +4103,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../utils/charles_notes/" class="md-nav__link">
+      <a href="../../../utils/charles_notes/" class="md-nav__link">
         
   
   
@@ -4199,7 +4126,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../utils/postman_notes/" class="md-nav__link">
+      <a href="../../../utils/postman_notes/" class="md-nav__link">
         
   
   
@@ -4222,7 +4149,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../utils/apifox_notes/" class="md-nav__link">
+      <a href="../../../utils/apifox_notes/" class="md-nav__link">
         
   
   
@@ -4301,7 +4228,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../hadoop/ecosystem/" class="md-nav__link">
+      <a href="../../../hadoop/ecosystem/" class="md-nav__link">
         
   
   
@@ -4365,7 +4292,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../hadoop/scala/day01/" class="md-nav__link">
+      <a href="../../../hadoop/scala/day01/" class="md-nav__link">
         
   
   
@@ -4388,7 +4315,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../hadoop/scala/day02/" class="md-nav__link">
+      <a href="../../../hadoop/scala/day02/" class="md-nav__link">
         
   
   
@@ -4411,7 +4338,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../hadoop/scala/day03/" class="md-nav__link">
+      <a href="../../../hadoop/scala/day03/" class="md-nav__link">
         
   
   
@@ -4434,7 +4361,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../hadoop/scala/day04/" class="md-nav__link">
+      <a href="../../../hadoop/scala/day04/" class="md-nav__link">
         
   
   
@@ -4513,7 +4440,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../other/blockchain/" class="md-nav__link">
+      <a href="../../../other/blockchain/" class="md-nav__link">
         
   
   
@@ -4536,7 +4463,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../other/deep_learning/" class="md-nav__link">
+      <a href="../../../other/deep_learning/" class="md-nav__link">
         
   
   
@@ -4559,7 +4486,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../other/rag/" class="md-nav__link">
+      <a href="../../../other/rag/" class="md-nav__link">
         
   
   
@@ -4609,158 +4536,11 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#_1" class="md-nav__link">
+  <a href="#1" class="md-nav__link">
     <span class="md-ellipsis">
-      📌 云原生
+      📌 1.安装相关应用
     </span>
   </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#_2" class="md-nav__link">
-    <span class="md-ellipsis">
-      📌 云计算服务
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#dockerk8s" class="md-nav__link">
-    <span class="md-ellipsis">
-      📌 虚拟机/Docker/K8S
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#_3" class="md-nav__link">
-    <span class="md-ellipsis">
-      📌 概念
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="📌 概念">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#_4" class="md-nav__link">
-    <span class="md-ellipsis">
-      🚁 调用服务
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#kubectl-k8s" class="md-nav__link">
-    <span class="md-ellipsis">
-      📌 kubectl-一些K8S命令
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="📌 kubectl-一些K8S命令">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#_5" class="md-nav__link">
-    <span class="md-ellipsis">
-      🚁 查看命名空间
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#pod" class="md-nav__link">
-    <span class="md-ellipsis">
-      🚁 查看当前命名空间下的pod
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#podcpu" class="md-nav__link">
-    <span class="md-ellipsis">
-      🚁 查看pod信息(挂载目录、CPU和内存限制等)、重启原因等
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#poddeployment" class="md-nav__link">
-    <span class="md-ellipsis">
-      🚁 查看pod的deployment信息
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#_6" class="md-nav__link">
-    <span class="md-ellipsis">
-      🚁 进入容器
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#_7" class="md-nav__link">
-    <span class="md-ellipsis">
-      🚁 查看容器控制台日志
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#pod_1" class="md-nav__link">
-    <span class="md-ellipsis">
-      🚁 删除/重启pod
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#pod_2" class="md-nav__link">
-    <span class="md-ellipsis">
-      🚁 调整pod副本数/扩容
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#cp" class="md-nav__link">
-    <span class="md-ellipsis">
-      🚁 把容器内的文件cp到本地
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#pod_3" class="md-nav__link">
-    <span class="md-ellipsis">
-      🚁 查看Pod的资源使用情况
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
   
 </li>
       
@@ -4783,144 +4563,34 @@
   
 
 
-<h1 id="k8s-kubernetes">K8S-Kubernetes</h1>
-<h2 id="_1">📌 云原生</h2>
-<p>云原生是指一种构建和运行应用程序的方法论，它充分利用了云计算模型的优势，包括但不限于：</p>
-<ul>
-<li>容器化：使用容器（如Docker）来打包应用及其依赖项，使得应用可以在任何地方运行。</li>
-<li>微服务架构：将大型应用程序分解为小型、独立的服务，这些服务可以独立部署、扩展和维护。</li>
-<li>DevOps文化：强调开发和运维团队之间的紧密协作，以实现快速迭代和持续交付。</li>
-<li>持续集成/持续部署(CI/CD)：自动化测试和部署流程，确保代码更改可以快速可靠地发布。</li>
-<li>弹性伸缩：根据需求自动调整资源，确保应用始终具有足够的性能和可用性。</li>
-</ul>
-<h2 id="_2">📌 云计算服务</h2>
-<ul>
-<li>
-<p>Iaas（基础设施即服务）：云计算服务模型中最基础的一层，它提供了计算、存储、网络等基础设施资源作为服务。适合需要高度定制化环境的企业，或者非HTTP业务（如游戏客户端、数据分析）。</p>
-</li>
-<li>
-<p>PaaS（平台即服务）：一种云计算服务模型，它为开发者提供了一套完整的开发和部署环境，包括操作系统、数据库服务器、Web服务器和其他中间件，以及中件层服务如MySQL、Apache等。客户控制上层的应用程序部署与应用托管的环境。--面向程序员</p>
-</li>
-<li>
-<p>SaaS（软件即服务）：一种通过互联网提供软件应用的服务模型，服务商提供基于软件的解决方案，满足客户最终需求；案例如OA、Office 365、iCloud等应用，客户无需考虑专业技术知识。--面向产品经理甚至是用户</p>
-</li>
-</ul>
-<h2 id="dockerk8s">📌 虚拟机/Docker/K8S</h2>
-<ul>
-<li>
-<p>虚拟机：对宿主机操作系统的调用不可避免地需要经过拦截和处理，存在性能消耗，尤其对计算资源、网络和磁盘IO损耗非常大。</p>
-</li>
-<li>
-<p>Docker：创建容器进程时，指定该进程所需启用的一组Namespace参数，后续容器运行时仅限定在命名空间指定的资源、文件、配置等。因此容器可以说是一种特殊的进程，避免了虚拟化的性能损耗。“敏捷”和“高性能”是容器相较于虚拟机最大的优势，但也有不足之处，最主要的是隔离不彻底。</p>
-</li>
-<li>
-<p>Kubernetes：可移植可拓展的开源平台，用于管理容器化的工作负载和服务。本质是应用服务和服务器的中间层，通过暴露一系列api能力，简化服务的部署流程，促进声明式配置和自动化，使容器化应用简单高效。</p>
-</li>
-</ul>
-<h2 id="_3">📌 概念</h2>
-<ul>
-<li>
-<p>Pod-舱，k8s的最小调度单元，至少包含一个容器；可看作是一组紧密关联的<strong><em>容器</em></strong>集合，共享同一个<strong><em>网络命名空间</em></strong>和<strong><em>存储卷</em></strong>。</p>
-</li>
-<li>
-<p>Node-工作节点，执行由Kubernetes API Server分配的任务（通过kubelet接收），比如运行一个或多个Pod。</p>
-</li>
-</ul>
-<p>可以是裸机服务器、虚拟机、容器等，负责实际运行各个应用服务，并共享节点的内存和cpu等计算资源。</p>
-<ul>
-<li>Control Plane-控制平面，k8s的核心组件，负责管理集群，包括Pod、Service、Deployment等。通过调用k8s提供的api接口，即可操作服务资源，资源分配由scheduler调度器完成。</li>
-</ul>
-<p>控制平面和节点的组合称为Cluster-集群，集群相互独立，为了将集群内部的服务暴露给外部用户使用，所以还需要ingress控制器。</p>
-<h3 id="_4">🚁 调用服务</h3>
-<p>外部请求先到达K8S集群的ingress控制器，然后请求会被转发到K8S某个node的kube proxy，再找到对应的pod，然后将请求转发给对应的服务；处理结果原路返回。</p>
-<h2 id="kubectl-k8s">📌 kubectl-一些K8S命令</h2>
-<h3 id="_5">🚁 查看命名空间</h3>
-<details class="abstract">
-<summary>点击查看</summary>
-<p>kubetcl get namespace</p>
-</details>
-<h3 id="pod">🚁 查看当前命名空间下的pod</h3>
-<details class="abstract">
-<summary>点击查看</summary>
-<p>kubectl -n {namespace} get pods -o wide</p>
-</details>
-<h3 id="podcpu">🚁 查看pod信息(挂载目录、CPU和内存限制等)、重启原因等</h3>
-<details class="abstract">
-<summary>点击查看</summary>
-<p>kubectl -n {namespace} describe pods {podId}</p>
-</details>
-<h3 id="poddeployment">🚁 查看pod的deployment信息</h3>
-<details class="abstract">
-<summary>点击查看</summary>
-<p>kubectl -n {namespace} get deployments.apps -o yaml</p>
-</details>
-<h3 id="_6">🚁 进入容器</h3>
-<details class="abstract">
-<summary>点击查看</summary>
-<p>kubectl -n {namespace} exec -it {podId} sh</p>
-<p>kubectl -n {namespace} exec -it {podId} -- bash  # 俩横杠后接的实际是指令</p>
-</details>
-<h3 id="_7">🚁 查看容器控制台日志</h3>
-<details class="abstract">
-<summary>点击查看</summary>
-<p>kubectl -n {namespace} logs -f --tail=200 {podId}</p>
-</details>
-<h3 id="pod_1">🚁 删除/重启pod</h3>
-<details class="abstract">
-<summary>点击查看</summary>
-<p>重启pod<br />
-kubectl -n {namespace} delete pods {podId1} {podId2}</p>
-<p>创建新容器，待正常运行后再退出原容器<br />
-kubectl -n {namespace} rollout restart deployment {app}</p>
-<p>重新部署pod<br />
-kubectl -n {namespace} get pod {podname} -o yaml | kubectl replace --force -f -</p>
-</details>
-<h3 id="pod_2">🚁 调整pod副本数/扩容</h3>
-<details class="abstract">
-<summary>点击查看</summary>
-<p>kubectl -n {namespace} scale deployment {podId} --replicas=2</p>
-</details>
-<h3 id="cp">🚁 把容器内的文件cp到本地</h3>
-<details class="abstract">
-<summary>点击查看</summary>
-<p>kubectl cp {namespace}/{podId}:/tmp ./tmp</p>
-</details>
-<h3 id="pod_3">🚁 查看Pod的资源使用情况</h3>
-<details class="abstract">
-<summary>点击查看</summary>
-<p>kubectl -n {namespace} top pod {podname}</p>
-<p>进入容器后执行top，查看的是pod内部的cpu、内存使用情况，相比更详细，能看到进程级别的使用量。</p>
-</details>
-<div class="tabbed-set tabbed-alternate" data-tabs="1:1"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">k8s_getCpu.sh</label></div>
+<h1 id="wsl-kind">WSL + kind搭建集群</h1>
+<h2 id="1">📌 1.安装相关应用</h2>
+<p>安装<code>docker</code>、<code>kubernetes</code>、<code>kind</code></p>
+<p>docker安装参考: <a href="../../docker/windows_docker/#wsl2docker">WSL2安装原生Docker</a> </p>
+<div class="tabbed-set tabbed-alternate" data-tabs="1:2"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">安装kubernetes</label><label for="__tabbed_1_2">安装kind</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
-<div class="highlight"><pre><span></span><code><span class="c1"># $()和 ` `  # 在bash shell中，$() 与` ` (反引号) 都是用来做命令替换用</span>
+<div class="highlight"><pre><span></span><code>curl<span class="w"> </span>-LO<span class="w"> </span>https://storage.googleapis.com/kubernetes-release/release/<span class="k">$(</span>curl<span class="w"> </span>-s<span class="w"> </span>https://storage.googleapis.com/kubernetes-release/release/stable.txt<span class="k">)</span>/bin/linux/amd64/kubectl
+chmod<span class="w"> </span>+x<span class="w"> </span>./kubectl
+sudo<span class="w"> </span>mv<span class="w"> </span>./kubectl<span class="w"> </span>/usr/local/bin/kubectl
 
-<span class="c1"># 打印pod的cpu占用率、内存使用率，$2/20&quot;%&quot;，即CPU使用量除以上限值2000，再乘100拼接百分比符号</span>
-<span class="c1"># kubectl top pod -n {namespace} | grep -E &#39;{service1}|{service2}&#39; | awk &#39;{print $1,$2,$2/20&quot;%&quot; , $3,$3/25&quot;%&quot;}&#39;</span>
-
-<span class="c1"># 单行循环打印pod的cpu使用量，for语句后加分号而非冒号</span>
-<span class="c1"># for app in ${kubectl get deployments.apps -n {namespace}| grep -E &#39;{service1}|{service2}&#39; | awk &#39;{print $1}&#39;); do echo ${app}; kubectl -n {namespace} describle deployments.apps ${app}| grep -B 1 &quot;cpu:&quot;; echo &quot;------------------------------------&quot;; done</span>
-
-<span class="nv">n</span><span class="o">=</span><span class="m">1</span>
-<span class="k">while</span><span class="o">((</span><span class="nv">$n</span>&lt;<span class="m">1000</span><span class="o">))</span><span class="w">  </span><span class="c1"># []/[[]] (())都是做判断，但后者可以直接使用大于小于而无需转义（还有数学运算）</span>
-<span class="k">do</span>
-<span class="w">    </span><span class="nv">TIME</span><span class="o">=</span><span class="sb">`</span>date+%Y%m%d%H%M%S<span class="sb">`</span><span class="w">  </span><span class="c1"># 时间戳</span>
-<span class="w">    </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;</span><span class="nv">$TIME</span><span class="s2">&quot;</span><span class="p">;</span>
-<span class="w">    </span><span class="nv">n</span><span class="o">=</span><span class="k">$((</span><span class="nv">n</span><span class="o">+</span><span class="m">1</span><span class="k">))</span><span class="p">;</span>
-<span class="w">    </span>kubectl<span class="w"> </span>top<span class="w"> </span>pod<span class="w"> </span>-n<span class="w"> </span><span class="o">{</span>namespace<span class="o">}</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>-E<span class="w"> </span><span class="s1">&#39;{service1}|{service2}|CPU&#39;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>awk<span class="w"> </span><span class="s1">&#39;{if(NR&gt;1){printf &quot;%-50s %-8s %-8s\n&quot;, $1, $2/20&quot;%&quot;, $3/25&quot;%&quot;} else{printf &quot;%-50s %-8s %-8s\n&quot;, $1, $2, $3}}&#39;</span>
-<span class="w">    </span>sleep<span class="w"> </span><span class="m">90</span><span class="p">;</span><span class="w">  </span><span class="c1"># K8S不能实时获取到容器CPU使用量，大约1分钟更新一次</span>
-<span class="k">done</span>
+kubectl<span class="w"> </span>version<span class="w"> </span>--client
+</code></pre></div>
+</div>
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code>curl<span class="w"> </span>-Lo<span class="w"> </span>./kind<span class="w"> </span>https://github.com/kubernetes-sigs/kind/releases/download/v0.8.1/kind-<span class="k">$(</span>uname<span class="k">)</span>-amd64
+chmod<span class="w"> </span>+x<span class="w"> </span>./kind
+sudo<span class="w"> </span>mv<span class="w"> </span>./kind<span class="w"> </span>/usr/local/bin/kind
 </code></pre></div>
 </div>
 </div>
 </div>
+<hr />
 <p>参考资料：</p>
 <ol>
-<li><a href="https://blog.csdn.net/wxx_0124/article/details/95305625">shell中的if语句</a></li>
-<li><a href="https://zhuanlan.zhihu.com/p/82112596">shell中$[] $(())，[ ] (( )) [[ ]]作用与区别</a></li>
+<li><a href="https://juejin.cn/post/7073035395868393485">WSL2 Ubuntu+K8s+Docker开发环境部署</a></li>
+<li><a href="https://cloud.tencent.com/developer/article/1645054">在 Windows 下使用 WSL2 搭建 Kubernetes 集群</a></li>
 </ol>
-<hr />
 
 
 
@@ -4941,7 +4611,7 @@ kubectl -n {namespace} get pod {podname} -o yaml | kubectl replace --force -f -<
     <span class="md-icon" title="最后更新">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime" title="2025年5月26日 16:23:09 CST">2025-05-26 16:23:09</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime" title="2025年7月5日 23:00:45 CST">2025-07-05 23:00:45</span>
   </span>
 
     
@@ -4977,7 +4647,7 @@ kubectl -n {namespace} get pod {podname} -o yaml | kubectl replace --force -f -<
       <nav class="md-footer__inner md-grid" aria-label="页脚" >
         
           
-          <a href="../regex/" class="md-footer__link md-footer__link--prev" aria-label="上一页: regex.sh">
+          <a href="../basic/" class="md-footer__link md-footer__link--prev" aria-label="上一页: 基础">
             <div class="md-footer__button md-icon">
               
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
@@ -4987,14 +4657,14 @@ kubectl -n {namespace} get pod {podname} -o yaml | kubectl replace --force -f -<
                 上一页
               </span>
               <div class="md-ellipsis">
-                regex.sh
+                基础
               </div>
             </div>
           </a>
         
         
           
-          <a href="../docker/windows_docker/" class="md-footer__link md-footer__link--next" aria-label="下一页: Docker for Windows">
+          <a href="../../docker/windows_docker/" class="md-footer__link md-footer__link--next" aria-label="下一页: Docker for Windows">
             <div class="md-footer__title">
               <span class="md-footer__direction">
                 下一页
@@ -5036,10 +4706,10 @@ kubectl -n {namespace} get pod {podname} -o yaml | kubectl replace --force -f -<
     
     
       
-      <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.footer", "navigation.top", "navigation.tabs", "navigation.instant", "content.code.copy"], "search": "../../assets/javascripts/workers/search.d50fe291.min.js", "tags": null, "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}, "version": null}</script>
+      <script id="__config" type="application/json">{"base": "../../..", "features": ["navigation.footer", "navigation.top", "navigation.tabs", "navigation.instant", "content.code.copy"], "search": "../../../assets/javascripts/workers/search.d50fe291.min.js", "tags": null, "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}, "version": null}</script>
     
     
-      <script src="../../assets/javascripts/bundle.13a4f30d.min.js"></script>
+      <script src="../../../assets/javascripts/bundle.56ea9cef.min.js"></script>
       
     
   <script id="init-glightbox">const lightbox = GLightbox({"touchNavigation": true, "loop": false, "zoomable": true, "draggable": true, "openEffect": "zoom", "closeEffect": "zoom", "slideEffect": "slide"});
