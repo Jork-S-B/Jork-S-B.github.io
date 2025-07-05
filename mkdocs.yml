@@ -93,7 +93,9 @@ nav:
       - git: other/git_notes.md
       - timestamp: shell/timestamp.md
       - regex.sh: shell/regex.md
-      - k8s: shell/k8s.md
+      - k8s:
+          - 基础: shell/k8s/basic.md
+          - kind: shell/k8s/kind.md
       - Docker:
           - Docker for Windows: shell/docker/windows_docker.md
           - Docker for Arch Linux: shell/docker/archlinux_docker.md
