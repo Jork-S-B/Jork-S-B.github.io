@@ -18,7 +18,7 @@ Y轴是慢查询数量，需要设置慢查询阈值（如1秒），默认10秒�
     log_output = table  # 将慢查询日志保存到表中
     slow_query_log = 1  # 开启慢查询
     long_query_time = 1  # 慢查询超时时间为1秒
-    max_connections = 512  # 最大连接数
+    max_connections = 512  # 最大连接数，要求适中
     ```
 
 临时修改环境变量，则在mysql里执行: `set global max_connections=1000;`
@@ -94,6 +94,12 @@ ORDER BY START_TIME DESC LIMIT 10;
     * 尽量避免长事务，及时提交事务以释放锁资源。
     * 设置报警规则，当`Table_locks_waited`突增时及时通知。
 
+!!! note "死锁"
+
+    日志报错出现死锁时，让ai给SQL查出现死锁的表，并在压测时执行sql。
+
+    或者在mysql配置文件中启用死锁日志记录: innodb_print_all_deadlocks = ON
+
 ### 🚁 相关变量
 
 ```sql
@@ -102,6 +108,9 @@ show variables like '%slow_query%';
 
 # 查询数据库中的最大连接数
 show variables like '%max_connections%';
+
+# 查询数据库中的连接数历史峰值
+show variables like '%max_used_connections%';
 
 # 长查询的执行时间阈值，超过该时间的查询被记录为慢查询
 show variables like '%long_query%';

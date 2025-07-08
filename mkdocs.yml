@@ -95,6 +95,7 @@ nav:
       - regex.sh: shell/regex.md
       - k8s:
           - 基础: shell/k8s/basic.md
+          - 探针技术: shell/k8s/probe.md
           - kind: shell/k8s/kind.md
       - Docker:
           - Docker for Windows: shell/docker/windows_docker.md

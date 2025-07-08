@@ -34,9 +34,29 @@
 
 可以是裸机服务器、虚拟机、容器等，负责实际运行各个应用服务，并共享节点的内存和cpu等计算资源。
 
-* Control Plane-控制平面，k8s的核心组件，负责管理集群，包括Pod、Service、Deployment等。通过调用k8s提供的api接口，即可操作服务资源，资源分配由scheduler调度器完成。
+* Control Plane-控制平面(master)，k8s的核心组件，负责xian管理集群，包括Pod、Service、Deployment等。通过调用k8s提供的api接口，即可操作服务资源，资源分配由scheduler调度器完成。
 
-控制平面和节点的组合称为Cluster-集群，集群相互独立，为了将集群内部的服务暴露给外部用户使用，所以还需要ingress控制器。
+控制平面和节点的组合称为Cluster-集群，集群相互独立，为了将集群内部的服务暴露给外部用户使用，所以还需要`ingress`控制器。
+
+* Namespace-命名空间，提供逻辑隔离，将集群资源划分为多个虚拟分组（如开发环境、测试环境）。
+
+* Deployment-部署，管理`Pod`的生命周期（创建、更新、扩缩容），确保指定数量的`Pod`副本运行。必须部署在某个`Namespace`下。
+
+* Service-服务，为`Pod`提供稳定的网络访问端点（IP/DNS），实现负载均衡。通过标签选择器绑定`Deployment`管理的`Pod`。
+
+`Deployment`创建的`Pod`由`Service`暴露给外部或其他服务。
+
+!!! note "kind"
+
+    * Deployment: 扩缩容、滚动更新、回滚代码等
+    * Service: 定义pod访问方式，实现负载均衡
+    * DaemonSet: 每个工作节点都自动部署，适用于`exporter`
+    * ReplicationController: 维护指定数量的pod，适用于`mysql`
+    * StatefulSet: 有状态的副本集，有序创建、有序删除。适用于`nacos`
+
+!!! note "补充"
+
+    根据`Kubernetes`的默认配置，`NodePort`类型的服务对外暴露的端口范围是30000-32767。
 
 ### 🚁 调用服务
 
@@ -55,7 +75,7 @@
 
 ```shell
 kubectl create -f xxx.yaml  # 部署服务
-kubectl apply -f xxx.yaml  # 部署或更新服务
+kubectl apply -f xxx.yaml  # 部署或更新服务，即滚动更新
 kubectl delete -f xxx.yaml  # 删除服务
 ```
 

@@ -16,7 +16,7 @@ Tomcat的启停脚本:
 
     ```shell
     # 位于tomcat的bin目录: cd /usr/local/tomcat/bin
-    # -Xms512m -Xmx1024m: 设置堆内存，最大值不超过机器的70%
+    # -Xms512m -Xmx1024m: 设置堆内存，最大值不超过机器内存的70%
     # -XX:PermSize=128m -XX:MaxPermSize=256m: Java 8及以后版本中该参数无效。
     # HeapDumpPath: 堆存储文件，溢出的日志记录路径
     # -XX:NewRatio=1: 设置年轻代/老年代的比例，默认为1
