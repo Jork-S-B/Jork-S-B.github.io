@@ -80,6 +80,11 @@
     <label class="md-overlay" for="__drawer"></label>
     <div data-md-component="skip">
       
+        
+        <a href="#locust" class="md-skip">
+          跳转至
+        </a>
+      
     </div>
     <div data-md-component="announce">
       
@@ -3642,6 +3647,19 @@
       
       
       
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    Locust
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
       <a href="./" class="md-nav__link md-nav__link--active">
         
   
@@ -3653,6 +3671,32 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#locust" class="md-nav__link">
+    <span class="md-ellipsis">
+      📌 使用Locust压测
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
       
     </li>
   
@@ -4506,6 +4550,23 @@
   
   
   
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#locust" class="md-nav__link">
+    <span class="md-ellipsis">
+      📌 使用Locust压测
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
 </nav>
                   </div>
                 </div>
@@ -4528,6 +4589,138 @@
 <p>基于事件和异步操作，使用协程的方式模拟用户请求。</p>
 <p>当一个协程执行完成后会主动让出，让另一个协程开始执行，而线程切换是受系统控制，所以协程切换的代价远比线程切换的代价小的多。</p>
 <p>因此Locust可以达到更高数量级的并发。</p>
+<p>单台4核8G的服务器，Locust虚拟用户数可达到25000，是JMeter的5倍。</p>
+<h2 id="locust">📌 使用Locust压测</h2>
+<div class="tabbed-set tabbed-alternate" data-tabs="1:5"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><input id="__tabbed_1_3" name="__tabbed_1" type="radio" /><input id="__tabbed_1_4" name="__tabbed_1" type="radio" /><input id="__tabbed_1_5" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">demo.py</label><label for="__tabbed_1_2">simulation.py</label><label for="__tabbed_1_3">weight.py</label><label for="__tabbed_1_4">assert_res.py</label><label for="__tabbed_1_5">tag.py</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">locust</span><span class="w"> </span><span class="kn">import</span> <span class="n">HttpUser</span><span class="p">,</span> <span class="n">task</span>
+
+<span class="k">class</span><span class="w"> </span><span class="nc">VUser</span><span class="p">(</span><span class="n">HttpUser</span><span class="p">):</span>
+    <span class="n">host</span> <span class="o">=</span> <span class="s1">&#39;http://127.0.0.1:8080&#39;</span>
+
+    <span class="nd">@task</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">index</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="c1"># name相同时，结果树图表会合并显示为一条</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;/login&#39;</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;login&#39;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;/favicon.ico&#39;</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;index&#39;</span><span class="p">)</span>
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+    <span class="c1"># 运行后根据打印的url，设置用户数、每秒启动的用户数（Spawn rate）并执行。</span>
+    <span class="n">os</span><span class="o">.</span><span class="n">system</span><span class="p">(</span><span class="s1">&#39;locust -f demo.py --web-host &quot;127.0.0.1&quot;&#39;</span><span class="p">)</span>
+</code></pre></div>
+</div>
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">locust</span><span class="w"> </span><span class="kn">import</span> <span class="n">HttpUser</span><span class="p">,</span> <span class="n">task</span><span class="p">,</span> <span class="n">between</span><span class="p">,</span> <span class="n">constant_throughput</span>
+
+<span class="k">class</span><span class="w"> </span><span class="nc">VUser</span><span class="p">(</span><span class="n">HttpUser</span><span class="p">):</span>
+    <span class="n">host</span> <span class="o">=</span> <span class="s1">&#39;http://127.0.0.1:8080&#39;</span>
+    <span class="c1"># 每个用户请求之间等待0.5秒到10秒</span>
+    <span class="n">wait_time</span> <span class="o">=</span> <span class="n">between</span><span class="p">(</span><span class="mf">0.5</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
+    <span class="c1"># 每个用户每10秒执行一次任务（0.1次/秒），以测试系统在稳定流量下的表现，避免瞬间高并发冲击服务</span>
+    <span class="n">wait_time</span> <span class="o">=</span> <span class="n">constant_throughput</span><span class="p">(</span><span class="mf">0.1</span><span class="p">)</span>
+
+    <span class="c1"># @task(3)表示该任务的执行权重，以模拟用户行为的优先级和分布比例</span>
+    <span class="nd">@task</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">task1</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;/favicon.ico&#39;</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;index&#39;</span><span class="p">)</span>
+
+    <span class="nd">@task</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">task2</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">pass</span>
+
+    <span class="c1"># 虚拟用户启动前会调用该方法</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">on_start</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="s1">&#39;/loginReq&#39;</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;username&quot;</span><span class="p">:</span> <span class="s2">&quot;admin&quot;</span><span class="p">,</span> <span class="s2">&quot;password&quot;</span><span class="p">:</span> <span class="s2">&quot;admin&quot;</span><span class="p">})</span>
+        <span class="c1"># 将token存到变量</span>
+        <span class="k">pass</span>
+
+<span class="nd">@events</span><span class="o">.</span><span class="n">test_start</span><span class="o">.</span><span class="n">add_listener</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">on_test_start</span><span class="p">(</span><span class="n">environment</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;开始压测，当前时间为: </span><span class="si">{</span><span class="n">time</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s1">&#39;%H:%M:%S&#39;</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="nd">@events</span><span class="o">.</span><span class="n">test_stop</span><span class="o">.</span><span class="n">add_listener</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">on_test_stop</span><span class="p">(</span><span class="n">environment</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;压测结束，当前时间为: </span><span class="si">{</span><span class="n">time</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s1">&#39;%H:%M:%S&#39;</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="nd">@events</span><span class="o">.</span><span class="n">init</span><span class="o">.</span><span class="n">add_listener</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">on_locust_init</span><span class="p">(</span><span class="n">environment</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;当前环境为: </span><span class="si">{</span><span class="n">environment</span><span class="o">.</span><span class="n">environment_type</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+    <span class="n">os</span><span class="o">.</span><span class="n">system</span><span class="p">(</span><span class="s1">&#39;locust -f simulation.py -u 200 -r 20 -t 3m --web-host &quot;127.0.0.1&quot;&#39;</span><span class="p">)</span>
+</code></pre></div>
+</div>
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">locust</span><span class="w"> </span><span class="kn">import</span> <span class="n">HttpUser</span><span class="p">,</span> <span class="n">task</span>
+
+<span class="k">class</span><span class="w"> </span><span class="nc">VUser1</span><span class="p">(</span><span class="n">HttpUser</span><span class="p">):</span>
+    <span class="n">weight</span> <span class="o">=</span> <span class="mi">3</span>  <span class="c1"># 多个用例设置权重</span>
+    <span class="n">fixed_count</span> <span class="o">=</span> <span class="mi">1</span>  <span class="c1"># 固定用户数</span>
+
+    <span class="nd">@task</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">task</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">pass</span>
+
+ <span class="k">class</span><span class="w"> </span><span class="nc">VUser2</span><span class="p">(</span><span class="n">HttpUser</span><span class="p">):</span>
+    <span class="n">weight</span> <span class="o">=</span> <span class="mi">1</span>
+
+    <span class="nd">@task</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">task</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">pass</span>
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+    <span class="n">os</span><span class="o">.</span><span class="n">system</span><span class="p">(</span><span class="s1">&#39;locust -f weight.py -u 200 -r 20 -t 3m --web-host &quot;127.0.0.1&quot;&#39;</span><span class="p">)</span>
+</code></pre></div>
+</div>
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">locust</span><span class="w"> </span><span class="kn">import</span> <span class="n">HttpUser</span><span class="p">,</span> <span class="n">task</span>
+
+
+<span class="k">class</span><span class="w"> </span><span class="nc">VUser</span><span class="p">(</span><span class="n">HttpUser</span><span class="p">):</span>
+    <span class="n">host</span> <span class="o">=</span> <span class="s1">&#39;http://127.0.0.1:8080&#39;</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">task</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">with</span> <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="s1">&#39;/login&#39;</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;username&quot;</span><span class="p">:</span> <span class="s2">&quot;admin&quot;</span><span class="p">,</span> <span class="s2">&quot;password&quot;</span><span class="p">:</span> <span class="s2">&quot;admin&quot;</span><span class="p">},</span>
+                              <span class="n">catch_response</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span> <span class="k">as</span> <span class="n">response</span><span class="p">:</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="k">if</span> <span class="n">response</span><span class="o">.</span><span class="n">json</span><span class="p">()[</span><span class="s1">&#39;code&#39;</span><span class="p">]</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">:</span>
+                    <span class="n">response</span><span class="o">.</span><span class="n">failure</span><span class="p">(</span><span class="s1">&#39;登录失败&#39;</span><span class="p">)</span>
+            <span class="k">except</span> <span class="n">JSONDecodeError</span><span class="p">:</span>
+                <span class="n">response</span><span class="o">.</span><span class="n">failure</span><span class="p">(</span><span class="s1">&#39;返回数据格式错误&#39;</span><span class="p">)</span>
+            <span class="k">except</span> <span class="ne">KeyError</span><span class="p">:</span>
+                <span class="n">response</span><span class="o">.</span><span class="n">failure</span><span class="p">(</span><span class="s1">&#39;返回数据缺少字段&#39;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;/favicon.ico&#39;</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;index&#39;</span><span class="p">)</span>
+
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+    <span class="n">os</span><span class="o">.</span><span class="n">system</span><span class="p">(</span><span class="s1">&#39;locust -f assert_res.py -u 200 -r 20 -t 3m --web-host &quot;127.0.0.1&quot;&#39;</span><span class="p">)</span>
+</code></pre></div>
+</div>
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">locust</span><span class="w"> </span><span class="kn">import</span> <span class="n">HttpUser</span><span class="p">,</span> <span class="n">task</span><span class="p">,</span> <span class="n">tags</span>
+
+<span class="c1"># 与继承HttpUser相比，API相同但执行效率更高</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">VUser</span><span class="p">(</span><span class="n">FastHttpUser</span><span class="p">):</span>
+    <span class="n">host</span> <span class="o">=</span> <span class="s1">&#39;http://127.0.0.1:8080&#39;</span>
+
+    <span class="nd">@tags</span><span class="p">(</span><span class="s1">&#39;tag1&#39;</span><span class="p">,</span> <span class="s1">&#39;tag2&#39;</span><span class="p">)</span>
+    <span class="nd">@task</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">task1</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;/favicon.ico&#39;</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;index&#39;</span><span class="p">)</span>
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+    <span class="c1"># 筛选tag1、tag2，排除tag3的任务后执行</span>
+    <span class="n">os</span><span class="o">.</span><span class="n">system</span><span class="p">(</span><span class="s1">&#39;locust -f tag.py -u 200 -r 20 -t 3m --tags tag1 tag2 --exclude tag3 --web-host &quot;127.0.0.1&quot;&#39;</span><span class="p">)</span>
+</code></pre></div>
+</div>
+</div>
+</div>
 
 
 
@@ -4548,7 +4741,7 @@
     <span class="md-icon" title="最后更新">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime" title="2025年5月19日 10:19:30 CST">2025-05-19 10:19:30</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime" title="2025年7月10日 16:29:45 CST">2025-07-10 16:29:45</span>
   </span>
 
     

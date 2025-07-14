@@ -80,6 +80,11 @@
     <label class="md-overlay" for="__drawer"></label>
     <div data-md-component="skip">
       
+        
+        <a href="#jenkins" class="md-skip">
+          跳转至
+        </a>
+      
     </div>
     <div data-md-component="announce">
       
@@ -3275,6 +3280,19 @@
       
       
       
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    构建Jenkins镜像
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
       <a href="./" class="md-nav__link md-nav__link--active">
         
   
@@ -3286,6 +3304,50 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#jenkins" class="md-nav__link">
+    <span class="md-ellipsis">
+      📌 容器方式部署jenkins
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      📌 初始化
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      📌 节点模式
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
       
     </li>
   
@@ -4502,6 +4564,41 @@
   
   
   
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#jenkins" class="md-nav__link">
+    <span class="md-ellipsis">
+      📌 容器方式部署jenkins
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      📌 初始化
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      📌 节点模式
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
 </nav>
                   </div>
                 </div>
@@ -4521,31 +4618,37 @@
 
   <h1>构建Jenkins镜像</h1>
 
-<p>todo</p>
+<h2 id="jenkins">📌 容器方式部署jenkins</h2>
 <div class="highlight"><pre><span></span><code>docker<span class="w"> </span>pull<span class="w"> </span>jenkins/jenkins
 
-
 <span class="c1"># 创建挂载目录并授权</span>
-<span class="c1"># mkdir -p /var/jenkins_node</span>
-
-<span class="c1"># chmod 777 /var/jenkins_node</span>
-
-<span class="nb">cd</span><span class="w"> </span><span class="s1">&#39;F:\Program Files\Docker\share\my-jenkins&#39;</span>
+mkdir<span class="w"> </span>-p<span class="w"> </span>/var/jenkins_node
+chmod<span class="w"> </span><span class="m">777</span><span class="w"> </span>/var/jenkins_node
+<span class="c1"># 修改目录的所有者，以便于Jenkins容器能够操作该目录</span>
+chown<span class="w"> </span>-R<span class="w"> </span><span class="m">1000</span>:1000<span class="w"> </span>/var/jenkins_node
 
 <span class="c1"># 启动容器，映射主机端口及挂载目录</span>
-docker<span class="w"> </span>run<span class="w"> </span>-d<span class="w"> </span>--name<span class="w"> </span>my-jenkins<span class="w"> </span>-p<span class="w"> </span><span class="m">8088</span>:8080<span class="w"> </span>-p<span class="w"> </span><span class="m">50000</span>:50000<span class="w"> </span>-v<span class="w"> </span><span class="si">${</span><span class="nv">pwd</span><span class="si">}</span>:/var/jenkins_home<span class="w"> </span>jenkins/jenkins
-
-<span class="c1"># 看初始化密码</span>
-docker<span class="w"> </span>logs<span class="w"> </span>-f<span class="w"> </span>--tail<span class="o">=</span><span class="m">200</span><span class="w"> </span>my-jenkins
-
-0fde53a200744d17880f3fba15b3e2a5
-
-This<span class="w"> </span>may<span class="w"> </span>also<span class="w"> </span>be<span class="w"> </span>found<span class="w"> </span>at:<span class="w"> </span>/var/jenkins_home/secrets/initialAdminPassword
-
-访问localhost:8088/，然后输入上面这串密码，进入jenkins向导，安装插件
-
-进入容器，根据指引生成ssh公钥
+docker<span class="w"> </span>run<span class="w"> </span>-d<span class="w"> </span>--name<span class="w"> </span>my-jenkins<span class="w"> </span>-p<span class="w"> </span><span class="m">8088</span>:8080<span class="w"> </span>-p<span class="w"> </span><span class="m">50000</span>:50000<span class="w"> </span>-v<span class="w"> </span>/var/jenkins_node:/var/jenkins_home<span class="w"> </span>jenkins/jenkins
 </code></pre></div>
+<h2 id="_1">📌 初始化</h2>
+<p>1.初始化密码</p>
+<p>docker logs -f --tail=200 my-jenkins</p>
+<p>如：0fde53a200744d17880f3fba15b3e2a5</p>
+<p>This may also be found at: /var/jenkins_home/secrets/initialAdminPassword</p>
+<p>2.安装插件</p>
+<p>访问localhost:8088/，然后输入上面这串密码，进入jenkins向导，安装推荐插件</p>
+<p>大部分核心插件安装成功后重启容器。</p>
+<ul>
+<li>发送邮件通知，安装插件：<a href="../email-ext.hpi">email-ext.hpi</a>，需要先卸载jenkins自带的邮件插件</li>
+<li>展示性能测试报告（html），安装插件：<code>HTML Publisher</code></li>
+</ul>
+<p>jenkins里默认不展示css样式，需要在<code>系统管理-&gt;Script Console</code>运行命令:<br />
+System.setProperty("hudson.model.DirectoryBrowserSupport.CSP", "")</p>
+<p>3.在设置中修改时区为: <code>Asia/Shanghai</code></p>
+<h2 id="_2">📌 节点模式</h2>
+<p>创建节点，以远程执行机器上的脚本。</p>
+<p>节点创建后，根据提示命令下载并启动<code>agent.jar</code>。</p>
+<p>启动成功后，创建任务：指定节点、构建操作（需要执行的脚本）、构建后操作、定时/手动执行。</p>
 
 
 
@@ -4566,7 +4669,7 @@ This<span class="w"> </span>may<span class="w"> </span>also<span class="w"> </sp
     <span class="md-icon" title="最后更新">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime" title="2025年6月21日 14:51:17 CST">2025-06-21 14:51:17</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime" title="2025年7月10日 16:29:45 CST">2025-07-10 16:29:45</span>
   </span>
 
     
