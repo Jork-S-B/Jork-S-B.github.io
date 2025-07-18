@@ -80,6 +80,11 @@
     <label class="md-overlay" for="__drawer"></label>
     <div data-md-component="skip">
       
+        
+        <a href="#hbase" class="md-skip">
+          跳转至
+        </a>
+      
     </div>
     <div data-md-component="announce">
       
@@ -3118,6 +3123,29 @@
 
               
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../k8s/deploy/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    部署微服务
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
@@ -3321,6 +3349,19 @@
       
       
       
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    构建HBase镜像
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
       <a href="./" class="md-nav__link md-nav__link--active">
         
   
@@ -3332,6 +3373,65 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#hbase" class="md-nav__link">
+    <span class="md-ellipsis">
+      📌 hbase基础
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="📌 hbase基础">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      🚁 增删改查
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      🚁 查询效率优化方式
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      🚁 适用场景
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
       
     </li>
   
@@ -4502,6 +4602,56 @@
   
   
   
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#hbase" class="md-nav__link">
+    <span class="md-ellipsis">
+      📌 hbase基础
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="📌 hbase基础">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      🚁 增删改查
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      🚁 查询效率优化方式
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      🚁 适用场景
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
 </nav>
                   </div>
                 </div>
@@ -4556,12 +4706,78 @@
 </blockquote>
 <p>访问HBase WebUI</p>
 <p>http://127.0.0.1:16010/master-status</p>
-<p>访问HBase Shell</p>
-<div class="highlight"><pre><span></span><code>docker exec -it container_id bash
+<div class="highlight"><pre><span></span><code><span class="c1"># 访问HBase Shell</span>
+docker<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>-it<span class="w"> </span>container_id<span class="w"> </span>bash
+
+<span class="c1"># 进入容器后输入</span>
+hbase<span class="w"> </span>shell
 </code></pre></div>
-<p>进入容器后输入</p>
-<div class="highlight"><pre><span></span><code>hbase shell
+<h2 id="hbase">📌 hbase基础</h2>
+<p>非关系型（nosql）数据库</p>
+<p>1.表名-Table Name</p>
+<p>2.行键-RowKey</p>
+<ul>
+<li>hbase表每行数据的唯一标识符，类似关系型数据库中的主键。</li>
+<li>hbase按行键字典序排序存储，查询时只能基于<code>RowKey</code>或范围进行高效查询，对性能和查询效率至关重要。</li>
+<li>在插入数据时动态添加，无需提前定义。</li>
+</ul>
+<p>3.列族-ColumnFamily</p>
+<ul>
+<li>hbase表的物理存储单元，定义在建表时，不能随意更改。</li>
+<li>一个表可以有多个列族，每个列族下可以有多个列-Qualifier。</li>
+</ul>
+<div class="highlight"><pre><span></span><code><span class="c1"># 建表，表名users，列族info、address</span>
+create<span class="w"> </span><span class="s1">&#39;users&#39;</span>,<span class="w"> </span><span class="s1">&#39;info&#39;</span>,<span class="w"> </span><span class="s1">&#39;address&#39;</span>
 </code></pre></div>
+<p>4.列/列限定符-Qualifier</p>
+<ul>
+<li>列是列族下的具体字段，也称为列限定符（Column Qualifier）。</li>
+<li>在插入数据时动态添加，无需提前定义。</li>
+<li>列和列族一起构成完整的列名，即<code>列族:列名</code>。</li>
+</ul>
+<p>5.时间戳-Timestamp</p>
+<ul>
+<li>hbase默认每个单元格保存多个时间戳，不指定则使用当前时间。</li>
+<li>查询时可以指定获取特定版本的数据。</li>
+</ul>
+<p>6.单元格-Cell</p>
+<ul>
+<li>单元格是数据存储的最小单元，由行键、列族、列限定符和时间戳确定。</li>
+<li>每个单元格存储一个值。</li>
+</ul>
+<h3 id="_1">🚁 增删改查</h3>
+<div class="highlight"><pre><span></span><code><span class="c1"># 插入/更新数据，行键user123，列族info、address</span>
+put<span class="w"> </span><span class="s1">&#39;users&#39;</span>,<span class="w"> </span><span class="s1">&#39;user123&#39;</span>,<span class="w"> </span><span class="s1">&#39;info:name&#39;</span>,<span class="w"> </span><span class="s1">&#39;Alice&#39;</span>
+put<span class="w"> </span><span class="s1">&#39;users&#39;</span>,<span class="w"> </span><span class="s1">&#39;user123&#39;</span>,<span class="w"> </span><span class="s1">&#39;address:city&#39;</span>,<span class="w"> </span><span class="s1">&#39;Beijing&#39;</span>
+
+<span class="c1"># 查看所有表</span>
+list
+<span class="c1"># 查看表结构（列族、列限定符、时间戳等）</span>
+describe<span class="w"> </span><span class="s1">&#39;users&#39;</span>
+<span class="c1"># 扫描指定表，并指定扫描范围</span>
+scan<span class="w"> </span><span class="s1">&#39;users&#39;</span>,<span class="w"> </span><span class="o">{</span><span class="nv">STARTROW</span><span class="w"> </span><span class="o">=</span>&gt;<span class="w"> </span><span class="s1">&#39;user100&#39;</span>,<span class="w"> </span><span class="nv">STOPROW</span><span class="w"> </span><span class="o">=</span>&gt;<span class="w"> </span><span class="s1">&#39;user150&#39;</span><span class="o">}</span>
+<span class="c1"># 查询数据，查询指定RowKey的数据</span>
+get<span class="w"> </span><span class="s1">&#39;users&#39;</span>,<span class="w"> </span><span class="s1">&#39;user123&#39;</span>
+
+<span class="c1"># 删除数据，删除指定行键、列族、列限定符的数据</span>
+delete<span class="w"> </span><span class="s1">&#39;users&#39;</span>,<span class="w"> </span><span class="s1">&#39;user123&#39;</span>,<span class="w"> </span><span class="s1">&#39;info:name&#39;</span>
+<span class="c1"># 删除整行</span>
+delete<span class="w"> </span><span class="s1">&#39;users&#39;</span>,<span class="w"> </span><span class="s1">&#39;user123&#39;</span>
+</code></pre></div>
+<h3 id="_2">🚁 查询效率优化方式</h3>
+<ul>
+<li>设计良好RowKey，如固定长度填充、时间戳倒序（避免热点）、哈希前缀（均匀分布）等</li>
+<li>使用Scan时限制范围</li>
+<li>列族不宜过多，读取效率更高</li>
+<li>创建表时指定分区</li>
+<li>使用Elasticsearch等构建二级索引提升查询效率</li>
+</ul>
+<h3 id="_3">🚁 适用场景</h3>
+<ul>
+<li>大数据量、高并发写入</li>
+<li>高频写入、低频查询</li>
+<li>需要灵活的表结构定义（Schema），列式存储，支持动态字段</li>
+</ul>
 <hr />
 <p>参考资料：<a href="https://cloud.tencent.com/developer/article/1632053">HBase实践 | 使用 Docker 快速上手 HBase</a></p>
 
@@ -4584,7 +4800,7 @@
     <span class="md-icon" title="最后更新">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime" title="2025年6月21日 14:51:17 CST">2025-06-21 14:51:17</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime" title="2025年7月18日 18:48:20 CST">2025-07-18 18:48:20</span>
   </span>
 
     
