@@ -97,6 +97,7 @@ nav:
           - 基础: shell/k8s/basic.md
           - 探针技术: shell/k8s/probe.md
           - kind: shell/k8s/kind.md
+          - 部署微服务: shell/k8s/deploy.md
       - Docker:
           - Docker for Windows: shell/docker/windows_docker.md
           - Docker for Arch Linux: shell/docker/archlinux_docker.md
