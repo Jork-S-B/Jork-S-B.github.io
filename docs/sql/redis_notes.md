@@ -20,7 +20,7 @@
 |       type key        | 键的数据结构类型           |
 |   rename key newkey   | 重命名键               |
 |     set key value     | 设置值                |
-|        get key        | 丨获取对应键的值           |
+|        get key        | 获取对应键的值           |
 |        flushdb        | 清除当前数据库            |
 |       flushall        | 清除所有数据库            |
 |      info memory      | 查询内存使用情况           |
