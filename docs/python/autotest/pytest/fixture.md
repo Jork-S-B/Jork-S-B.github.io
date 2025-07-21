@@ -184,3 +184,15 @@ pytest参数化的方式包括：
 2.[pytest hooks函数](https://docs.pytest.org/en/latest/reference/reference.html#hooks)
 
 ---
+
+## 📌 面试题
+
+### 🚁 pytest相比unittest的优势有哪些？请举2个你在项目中实际用到的pytest特性，并说明其应用场景。
+
+* Fixture-夹具：用于管理测试前置/后置条件，相比`unittest`的setUp/tearDown更灵活，可以指定不同的作用域。  
+在实际项目中，我用`@pytest.fixture(scope="module")`封装“启动Chrome浏览器”、实例化数据库工具类的操作，模块内的所有用例共享同个实例，减少浏览器启动次数和数据库连接次数，提升了测试效率。
+
+* @pytest.mark.parametrize-参数化：用于测试用例参数化，批量执行相同逻辑的用例。  
+在接口自动化中，我用参数化读取excel/yaml的用例数据，生成多条测试用例，避免了写重复的代码。
+
+---

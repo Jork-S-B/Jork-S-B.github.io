@@ -40,7 +40,27 @@ Java 应用诊断利器，一款线上监控诊断产品，能在不修改应用
 
 ### 🚁 dashboard-仪表盘
 
-看线程cpu使用率、机器内存变化
+看线程cpu使用率、机器内存变化、GC频率。
+
+=== "GC部分"
+
+    ```shell
+    GC:
+    [PS Scavenge]  # Young GC
+     count: 5  # count值快速上升可能是频繁GC
+     time: 120ms  # 累计耗时
+    [PS MarkSweep]  # Full GC
+     count: 1
+     time: 80ms
+    ```
+
+判断GC是否频繁
+
+| 类型       | 判断标准              | 优化建议             |
+|:---------|:------------------|:-----------------|
+| Young GC | count快速增长，每秒>1次   | 增加 -Xmn，优化对象分配逻辑 |
+| Full GC  | 	count快速增长，每分钟>1次 | 增加 -Xmx，排查内存泄漏   |
+| 单次GC耗时长  | time较大，单次>100ms）  | 调整GC回收器          |
 
 ### 🚁 jvm-查看jvm信息
 
