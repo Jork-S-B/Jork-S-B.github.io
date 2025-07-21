@@ -1291,6 +1291,30 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      📌 面试题
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="📌 面试题">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#pytestunittest2pytest" class="md-nav__link">
+    <span class="md-ellipsis">
+      🚁 pytest相比unittest的优势有哪些？请举2个你在项目中实际用到的pytest特性，并说明其应用场景。
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -4654,6 +4678,30 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      📌 面试题
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="📌 面试题">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#pytestunittest2pytest" class="md-nav__link">
+    <span class="md-ellipsis">
+      🚁 pytest相比unittest的优势有哪些？请举2个你在项目中实际用到的pytest特性，并说明其应用场景。
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -4843,6 +4891,19 @@ TestZhEnMerge.py::TestZhEnMerge::test_zh_en_merge_with_parametrize[\u652f\u4ed8&
 <p>1.<a href="https://docs.pytest.org/en/latest/how-to/fixtures.html#how-to-fixtures">How to use fixtures</a></p>
 <p>2.<a href="https://docs.pytest.org/en/latest/reference/reference.html#hooks">pytest hooks函数</a></p>
 <hr />
+<h2 id="_2">📌 面试题</h2>
+<h3 id="pytestunittest2pytest">🚁 pytest相比unittest的优势有哪些？请举2个你在项目中实际用到的pytest特性，并说明其应用场景。</h3>
+<ul>
+<li>
+<p>Fixture-夹具：用于管理测试前置/后置条件，相比<code>unittest</code>的setUp/tearDown更灵活，可以指定不同的作用域。<br />
+在实际项目中，我用<code>@pytest.fixture(scope="module")</code>封装“启动Chrome浏览器”、实例化数据库工具类的操作，模块内的所有用例共享同个实例，减少浏览器启动次数和数据库连接次数，提升了测试效率。</p>
+</li>
+<li>
+<p>@pytest.mark.parametrize-参数化：用于测试用例参数化，批量执行相同逻辑的用例。<br />
+在接口自动化中，我用参数化读取excel/yaml的用例数据，生成多条测试用例，避免了写重复的代码。</p>
+</li>
+</ul>
+<hr />
 
 
 
@@ -4863,7 +4924,7 @@ TestZhEnMerge.py::TestZhEnMerge::test_zh_en_merge_with_parametrize[\u652f\u4ed8&
     <span class="md-icon" title="最后更新">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime" title="2024年7月29日 18:58:31 CST">2024-07-29 18:58:31</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime" title="2025年7月21日 14:01:06 CST">2025-07-21 14:01:06</span>
   </span>
 
     

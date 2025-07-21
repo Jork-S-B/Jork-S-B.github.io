@@ -2605,6 +2605,15 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      📌 调优方式
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#visualvm" class="md-nav__link">
     <span class="md-ellipsis">
       📌 VisualVM
@@ -4750,6 +4759,15 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      📌 调优方式
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#visualvm" class="md-nav__link">
     <span class="md-ellipsis">
       📌 VisualVM
@@ -4826,6 +4844,22 @@
 <p><strong>GC频次</strong>: collections / GC Time = 每几秒进行1次GC</p>
 <p>GC频次的大小，需要根据业务体量、数据级、服务器资源等来进行综合评估。</p>
 <p>频繁回收会导致应用程序表现不佳，可能内存不够导致，或代码中可能存在内存空间释放不合理的地方。</p>
+<h2 id="_6">📌 调优方式</h2>
+<p>1.堆内存结构调优-核心</p>
+<ul>
+<li>调整堆大小：-Xms（初始堆大小）、-Xmx（最大堆大小），避免频繁GC，导致性能波动。</li>
+<li>调整年轻代与老年代比例：对于短命对象多的应用（如Web服务），增大年轻代比例。</li>
+<li>控制对象晋升老年代的条件：对于频繁创建大对象的应用（如文件上传），设置<code>PretenureSizeThreshold</code>避免大对象占用年轻代空间，导致频繁Minor GC。</li>
+</ul>
+<p>2.收集器参数调优</p>
+<p>3.方法区/元空间（Metaspace）调优</p>
+<p>应用频繁加载类（如使用反射、动态代理），需增大元空间大小，避免<code>java.lang.OutOfMemoryError: Metaspace</code>。</p>
+<p>4.栈内存调优</p>
+<p>栈是每个线程的私有空间，用于存储局部变量、方法调用栈帧。栈大小决定了线程的最大调用深度（如递归深度）。</p>
+<ul>
+<li>对于递归较深的应用（如算法程序），需增大栈大小（如-Xss2m），避免<code>StackOverflowError</code>；</li>
+<li>对于线程数较多的应用（如Web服务器），需减小栈大小（如-Xss512k），避免总栈内存占用过大（总栈内存=线程数×<code>-Xss</code>）。</li>
+</ul>
 <h2 id="visualvm">📌 VisualVM</h2>
 <p>JDK1.8及以前版本，bin目录自带VisualVM，否则需要自行安装。</p>
 <p>下载地址: http://visualvm.github.io/download.html</p>
@@ -4888,7 +4922,7 @@ ps<span class="w"> </span>-ef<span class="w"> </span><span class="p">|</span><sp
     <span class="md-icon" title="最后更新">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime" title="2025年6月14日 15:52:31 CST">2025-06-14 15:52:31</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime" title="2025年7月21日 18:18:27 CST">2025-07-21 18:18:27</span>
   </span>
 
     

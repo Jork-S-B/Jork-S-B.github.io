@@ -3668,7 +3668,7 @@
           <li class="md-nav__item">
   <a href="#3" class="md-nav__link">
     <span class="md-ellipsis">
-      🚁 3.了解压测目的
+      🚁 3.搭建监控平台
     </span>
   </a>
   
@@ -3677,7 +3677,7 @@
           <li class="md-nav__item">
   <a href="#4" class="md-nav__link">
     <span class="md-ellipsis">
-      🚁 4.准备压测脚本
+      🚁 4.了解压测目的
     </span>
   </a>
   
@@ -3686,7 +3686,7 @@
           <li class="md-nav__item">
   <a href="#5" class="md-nav__link">
     <span class="md-ellipsis">
-      🚁 5.搭建监控平台
+      🚁 5.准备压测脚本
     </span>
   </a>
   
@@ -3768,9 +3768,36 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
+  <a href="#api" class="md-nav__link">
+    <span class="md-ellipsis">
+      🚁 API慢怎么分析
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#_5" class="md-nav__link">
     <span class="md-ellipsis">
-      🚁 接口响应慢怎么办
+      🚁 在执行性能测试时，您如何确定并发用户数和测试数据量
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      🚁 您在性能测试中遇到的最大的挑战是什么？您是如何解决的？
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#tps" class="md-nav__link">
+    <span class="md-ellipsis">
+      🚁 TPS波动怎么分析
     </span>
   </a>
   
@@ -4779,7 +4806,7 @@
           <li class="md-nav__item">
   <a href="#3" class="md-nav__link">
     <span class="md-ellipsis">
-      🚁 3.了解压测目的
+      🚁 3.搭建监控平台
     </span>
   </a>
   
@@ -4788,7 +4815,7 @@
           <li class="md-nav__item">
   <a href="#4" class="md-nav__link">
     <span class="md-ellipsis">
-      🚁 4.准备压测脚本
+      🚁 4.了解压测目的
     </span>
   </a>
   
@@ -4797,7 +4824,7 @@
           <li class="md-nav__item">
   <a href="#5" class="md-nav__link">
     <span class="md-ellipsis">
-      🚁 5.搭建监控平台
+      🚁 5.准备压测脚本
     </span>
   </a>
   
@@ -4879,9 +4906,36 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
+  <a href="#api" class="md-nav__link">
+    <span class="md-ellipsis">
+      🚁 API慢怎么分析
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#_5" class="md-nav__link">
     <span class="md-ellipsis">
-      🚁 接口响应慢怎么办
+      🚁 在执行性能测试时，您如何确定并发用户数和测试数据量
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      🚁 您在性能测试中遇到的最大的挑战是什么？您是如何解决的？
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#tps" class="md-nav__link">
+    <span class="md-ellipsis">
+      🚁 TPS波动怎么分析
     </span>
   </a>
   
@@ -4976,20 +5030,20 @@
 <p>JMeter堆内存配置默认为: </p>
 <div class="highlight"><pre><span></span><code><span class="s1">&#39;-Xms1g -Xmx1g -XX:MaxMetaspaceSize=256m&#39;</span>
 </code></pre></div>
-<h3 id="3">🚁 3.了解压测目的</h3>
+<h3 id="3">🚁 3.搭建监控平台</h3>
+<p>服务器资源、组件(db、mq、redis)通过Prometheus、Grafana监控，具体的进程监控通过命令行查看</p>
+<h3 id="4">🚁 4.了解压测目的</h3>
 <ul>
 <li>测试环境压测结果供生产环境做参考</li>
 <li>基准测试-版本迭代时，根据历史版本的压测结果作为基准，进行比较</li>
 <li>复现生产问题，分析问题现象</li>
 </ul>
-<h3 id="4">🚁 4.准备压测脚本</h3>
+<h3 id="5">🚁 5.准备压测脚本</h3>
 <p>业务流程 + 脚本设计</p>
 <p>初始并发数可以设置为：系统用户数 * 5% 或 20%</p>
-<h3 id="5">🚁 5.搭建监控平台</h3>
-<p>服务器资源、组件(db、mq、redis)通过Prometheus、Grafana监控，具体的进程监控通过命令行查看</p>
 <h3 id="6">🚁 6.场景设计</h3>
 <h4 id="1_1">🔧 1）性能测试需求</h4>
-<p>具有明确的指标，如行业常规水平、响应时间-不超过3秒、错误率-不超过0.2%、CPU、内存使用率小于80%等。</p>
+<p>具有明确的指标，如行业常规水平：响应时间-不超过3秒、错误率-不超过0.2%、CPU、内存使用率小于80%等。</p>
 <h4 id="2_1">🔧 2）业务场景分类</h4>
 <ul>
 <li>单业务</li>
@@ -5021,15 +5075,69 @@
 <li>性能测试结论汇总完整的性能测试报告</li>
 </ol>
 <h2 id="_4">📌 面试题</h2>
-<h3 id="_5">🚁 接口响应慢怎么办</h3>
+<h3 id="api">🚁 API慢怎么分析</h3>
+<p>核心：链路追踪，定位耗时最长的环节。</p>
+<p>针对环节深入分析：</p>
+<ul>
+<li>数据库查询慢：检查慢查询日志、SQL执行计划。</li>
+<li>第三方服务慢：对方无法优化的情况下，非强关联的接口通过异步方式进行优化。</li>
+<li>内部方法慢：用性能分析工具（如Arthas的trace命令）定位具体方法。</li>
+<li>缓存有效性：查看缓存命中率（如Redis的hit_rate），若命中率低（如&lt;50%），说明缓存失效或未命中，导致大量请求穿透到数据库。</li>
+</ul>
+<h3 id="_5">🚁 在执行性能测试时，您如何确定并发用户数和测试数据量</h3>
+<p>确定并发用户数</p>
+<ul>
+<li>业务场景分析：分析系统的<strong>历史数据</strong>或用户行为日志，考虑用户的使用习惯，了解高峰时段有多少用户同时访问。</li>
+<li>性能目标：根据<strong>业务需求设定系统的预期负载</strong>，逐步增加并发用户数，了解系统在不同负载下的表现。</li>
+<li>资源限制</li>
+</ul>
+<p>确定测试数据量</p>
+<ul>
+<li>生产环境数据规模及数据复杂性</li>
+<li>测试目标：如验证某个特定功能的性能则使用较小的数据集；验证系统在极端情况下的表现，则需要大规模数据集。</li>
+</ul>
+<h3 id="_6">🚁 您在性能测试中遇到的最大的挑战是什么？您是如何解决的？</h3>
+<p>最大的挑战：模拟真实用户行为和负载，以及在复杂的分布式系统中准确识别性能瓶颈。</p>
+<ul>
+<li>用户行为的复杂性：用户行为通常包括多种操作路径、思考时间、页面跳转、异步请求、缓存行为等。</li>
+<li>数据量与并发规模</li>
+<li>测试环境与实际环境差异：包括软硬件配置、缓存、CDN等。</li>
+</ul>
+<p>如何解决</p>
+<ul>
+<li>使用ELK等日志分析工具，收集真实用户访问路径、波段最大请求数。</li>
+<li>设计压测脚本时，模拟用户思考时间、文件上传、异步请求等行为，利用分布式测试节点模拟大规模并发用户。</li>
+<li>模拟真实数据：使用脱敏的生产数据的子集，或工具生成符合业务逻辑的数据。</li>
+<li>减少环境差异：硬件配置、网络拓扑、数据库性能等方面与生产环境保持一致。无法复现的在测试报告中标注环境差异，并进行归一化处理（如按比例放大响应时间）。</li>
+<li>全链路监控与分析，部署APM工具如skywalking，监控每个组件的性能表现（如JVM、数据库查询、缓存命中率）。</li>
+</ul>
+<div class="admonition note">
+<p class="admonition-title">APM工具的作用</p>
+<p>核心作用：让分布式系统的性能问题变得可观测</p>
+<ul>
+<li>分布式链路追踪：定位请求全流程的性能瓶颈</li>
+<li>服务性能监控：实时掌握系统健康状态</li>
+<li>服务依赖与拓扑可视化：梳理系统架构关系</li>
+<li>故障定位与根因分析：从现象到本质的快速排查</li>
+<li>容量规划与性能优化：避免过载与资源浪费</li>
+<li>用户体验管理：从端到端优化用户感受</li>
+</ul>
+</div>
+<h3 id="tps">🚁 TPS波动怎么分析</h3>
+<p>影响TPS波动的因素有：</p>
+<ul>
+<li>外部因素：网络波动（如延迟忽高忽低）、数据库锁竞争（如并发更新同一行数据）、第三方服务延迟（如支付接口响应时间波动）。</li>
+<li>内部因素：线程池配置不合理（如队列满导致拒绝请求）、GC频繁（GC期间无法处理请求）、缓存失效（如缓存过期后大量请求穿透到数据库）。</li>
+<li>负载不均衡</li>
+</ul>
+<p>分析步骤：</p>
 <ol>
-<li><strong>分析原因</strong>：复现问题，详细分析对应接口性能瓶颈，如排查是否存在上下游依赖、涉及静态资源使用CDN加快访问速度。</li>
-<li><strong>日志和监控分析</strong>：通过日志和监控工具如<code>Prometheus</code>、<code>Grafana</code>等，确认根因。</li>
-<li><strong>优化代码与算法</strong>：检查是否有可优化的算法或多余的计算。</li>
-<li><strong>数据库优化</strong>：检查是否有数据库性能瓶颈，如索引、SQL优化等。</li>
-<li><strong>缓存机制</strong>：针对不频繁变动的数据，采用缓存机制，减少数据库查询次数。</li>
-<li><strong>系统架构调整</strong>：根据需求适当引入异步处理、消息队列、多线程多进程提高处理速度。</li>
-<li><strong>硬件和网络</strong>：检查服务器硬件性能、网络带宽是否满足要求。</li>
+<li>监控工具查看TPS波动的时间点，是否与缓存失效时间（如每天0点缓存刷新）、定时任务重合。</li>
+<li>查看资源指标：同步查看CPU、内存、IO、网络的波动情况（如TPS下降时，数据库IO飙升）。</li>
+<li>数据库监控工具查看慢查询、锁等待情况。</li>
+<li>检查线程池是否存在队列满或拒绝次数多，可能线程池配置不足。</li>
+<li>链路追踪：用APM工具链路追踪，定位耗时最长的环节，检查是否有某个服务的响应时间突然变长（如第三方服务调用）。</li>
+<li>验证负载均衡：分布式系统中，查看各节点的TPS分布，若某节点TPS远高于其他节点，说明负载不均衡。</li>
 </ol>
 <hr />
 
@@ -5052,7 +5160,7 @@
     <span class="md-icon" title="最后更新">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime" title="2025年7月18日 15:42:59 CST">2025-07-18 15:42:59</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime" title="2025年7月21日 18:18:27 CST">2025-07-21 18:18:27</span>
   </span>
 
     
