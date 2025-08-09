@@ -199,4 +199,27 @@
 * Events：输出事件（按键事件、触摸事件等）日志
 * Main：输出主程序（Java的main方法）日志，不属于上述三层
 
+
+## 📌 设备仿真
+
+F12-设置-设备-添加自定义设备
+
+设备名自定义，并填写用户代理字符串，且左上角进行切换。
+
+=== "安卓"
+
+    ```text
+    Mozilla/5.0 (Linux; Android 8.0.0; SM-G955U Build/R16NW) 
+    AppleWebKit/537.36 (KHTML, like Gecko) 
+    Chrome/87.0.4280.141  Mobile/15E148 MCloudApp/10.4.3
+    ```
+
+=== "ios"
+
+    ```text
+    Mozilla/5.0 (iPhone; CPU iPhone OS 15_2_1 like Mac OS X) 
+    AppleWebKit/605.1.15 (KHTML, like Gecko) 
+    Mobile/15E148 MCloudApp/10.4.0
+    ```
+
 ---

@@ -41,7 +41,7 @@ ORDER BY START_TIME DESC LIMIT 10;
 
 关键字段说明：
 
-- type = ALL 表示进行全表扫描。
+- type = ALL 表示进行全表扫描。 
 - rows = 10000 表示扫描大约10000行数据。
 - Extra = Using where 表示使用WHERE过滤数据。
 - possible_keys = NULL 表示没有合适的索引可用。

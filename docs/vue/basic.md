@@ -158,7 +158,7 @@ v-on: 绑定事件，可省略为`@`符号。
       data() {
         return {
           account1: this.account,
-          password1: this.password
+          password1: this.password 
         }
       },
       methods: {
