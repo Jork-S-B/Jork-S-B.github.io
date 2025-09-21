@@ -122,6 +122,7 @@ nav:
                   - nmon: utils/nmon.md
                   - 监控服务器: utils/performance/monitor/server.md
                   - 监控Mysql: utils/performance/monitor/mysql.md
+                  - Skywalking: utils/performance/monitor/Skywalking.md
               - 性能调优:
                   - 高性能: other/high_performance.md
                   - 高可用: other/high_availability.md

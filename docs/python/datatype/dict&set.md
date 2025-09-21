@@ -54,4 +54,37 @@ for key, value in dict1.items():
 * 无序唯一，适用于重复内容去重
 * 交集&、并集|、差集-、补集^；补集：返回两个集合的非共同元素。
 
+## 📌 match-case
+
+Python 3.10引入的新特性，类似switch-case
+
+```python
+def process_data(data):
+    match data:
+        case 0:
+            return "Zero"
+        case x if x > 0:
+            return f"Positive number: {x}"
+        case x if x < 0:
+            return f"Negative number: {x}"
+        case str() if len(data) > 5:
+            return f"Long string: {data}"
+        case str():
+            return f"Short string: {data}"
+        case [x, y]:
+            return f"Two-element list: {x}, {y}"
+        case _:
+            return "Unknown data format"
+
+# 使用示例
+print(process_data(0))           # 输出: Zero
+print(process_data(10))          # 输出: Positive number: 10
+print(process_data(-5))          # 输出: Negative number: -5
+print(process_data("hello"))     # 输出: Short string: hello
+print(process_data("hello world"))  # 输出: Long string: hello world
+print(process_data([1, 2]))      # 输出: Two-element list: 1, 2
+
+```
+
 ---
+

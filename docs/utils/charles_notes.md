@@ -8,17 +8,19 @@
 
 !!! note "补充"
 
-    https请求抓包：
-    
-    &nbsp;&nbsp;1.安装证书：`Help`->`SSL Proxying`->`Install Charles Root Certificate`。
-
-    &nbsp;&nbsp;2.开启SSL代理：`Proxy`->`SSL proxying Settings`，在`Include`中添加需要代理的域名及端口。
-
-    手机抓包/非本地浏览器:
-
-    &nbsp;&nbsp;3.设备连接同区域网的WiFi，配置代理，ip及端口可以通过以下选项查看：
-
-    &nbsp;&nbsp;`Help`->`SSL Proxying`->`Install Charles Root Certificate on a Mobile Device or Remote Browser`
+      https请求抓包：
+      
+      1.安装证书：`Help`->`SSL Proxying`->`Install Charles Root Certificate`。
+      
+         windows:证书管理器导入到“受信任的根证书领发机构”
+      
+      2.开启SSL代理：`Proxy`->`SSL proxying Settings`，在`Include`中添加需要代理的域名及端口。
+      
+      手机抓包/非本地浏览器:
+      
+      3.设备连接同区域网的WiFi，配置代理，ip及端口可以通过以下选项查看：
+      
+      `Help`->`SSL Proxying`->`Install Charles Root Certificate on a Mobile Device or Remote Browser`
 
 ### 🚁 请求转发
 
