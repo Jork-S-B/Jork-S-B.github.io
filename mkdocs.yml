@@ -146,7 +146,10 @@ nav:
       - 深度学习: other/deep_learning.md
       - RAG: other/rag.md
   - ielts:
-      - spoken: ielts/spoken.md
+      - spoken:
+        - universal topic: ielts/spoken/universal.md
+        - topic:
+          - Daily Life and Modern Lifystyle: ielts/spoken/topic/dl&ml.md
       - vocabulory: ielts/vocabulory.md
 # 搜索栏右侧git链接
 repo_url: https://github.com/Jork-S-B/Jork-S-B.github.io/tree/main
