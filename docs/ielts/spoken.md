@@ -14,7 +14,7 @@
 * chatty, 健谈的
 * expressive, 善于表达的
 * extrovert, 外向的
-* a great story teller
+* a great storyteller
 * a great conversationalist
 * social butterfly, 八面玲珑
 * I'm truly believe if that were the case, we'd **come full circle**(完成一个转变或改革).
