@@ -1,5 +1,12 @@
 ## Synonym substitution 同义替换
 
+充足的，足够的
+
+* sufficient
+* enough
+* adequate
+* ample
+
 分发，分配
 
 | 词汇         | 适用场景          | 例句                                              |
@@ -30,3 +37,25 @@
 * veteran, 泛指所有退役军人
 * former soldier, 客观描述曾服役
 
+## phrase
+
+* fulfil a civic role, 履行公民职责
+
+## resemble phrase
+
+faculty, (大学的)系或院  
+facility, 设施，设备；才能；场所    
+facilitate, 帮助，促进
+
+contrast, 差异，对比  
+contact, 联系，联络
+
+trend, n.趋势；v.倾向  
+tend, v.倾向于
+
+## kinds of disciplines
+
+agriculture, n.农业  
+geography, n.地理
+
+symbolism, n.象征主义；记号

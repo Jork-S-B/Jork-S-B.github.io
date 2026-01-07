@@ -6,12 +6,11 @@
 * the person who encourge you to achieve the goal
 * the person who you gald to meet
 * the person who is a role model for young people
-d
+
 ### 🚁 related phrases
 
 * chatty, 健谈的
 * expressive, 善于表达的
-* extrovert, 外向的
 * a great storyteller
 * a great conversationalist
 * social butterfly, 八面玲珑
@@ -36,6 +35,20 @@ passionate in my career as he is.
 
 ### 🚁 related phrases
 
+* laid-back, 慢节奏
+* extrovert, 外向的
+
 ### 🚁 oral materials
 
+Lijiang tends to attract a lot of people because it's a famous tourist city. In fact, when you see the snow mountain in
+Lijiang, what you sense is enormous {todo, senceic}. 
+
+It is one of the most dynamic and relax cities in the world. There are new traveler visit the city, form all over the world,
+almost every day.
+{从句合理通顺的合并一下}
+It's quite more laid-back than big cities in China, like Guangzhou or Shanghai. For me, life seems to move slower in Lijiang
+that/spontaneously {todo，非常适合度假}
+
+One thing I love the most about Lijiang is 很多民谣歌手. They are very extrovert and friendly, very willing to 用音乐调节氛围
+among strangers. Last time when I was there, I had a great time.
 
