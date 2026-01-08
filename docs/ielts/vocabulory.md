@@ -1,5 +1,28 @@
 ## Synonym substitution 同义替换
 
+巨大的
+
+* immense 
+* enormous
+* tremendous
+
+养育，培养
+
+* foster
+* cultive
+
+青少年
+
+* teenager
+* adolescent, adj. n.
+* the youth
+
+同事
+
+* colleague
+* assoicate, n.同事；准学士；副手；联想 v.联想，联系 adj.福的；联合的
+* fellow
+
 充足的，足够的
 
 * sufficient
@@ -40,11 +63,12 @@
 ## phrase
 
 * fulfil a civic role, 履行公民职责
+* get accommodation, 安排或获取住宿
 
 ## resemble phrase
 
 faculty, (大学的)系或院  
-facility, 设施，设备；才能；场所    
+facility, 设施，设备；才能；场所  
 facilitate, 帮助，促进
 
 contrast, 差异，对比  
@@ -53,9 +77,20 @@ contact, 联系，联络
 trend, n.趋势；v.倾向  
 tend, v.倾向于
 
+simulate, vt.模仿  
+stimulate, v.激发
+
+machine, n.机器 v.机器加工  
+mechanism, n.机械装置；机械论
+
 ## kinds of disciplines
 
-agriculture, n.农业  
-geography, n.地理
+* agriculture, n.农业 (agriculturist/agriculturalist, 农学家)
+* geography, n.地理 (geographer, 地理学者)
+* meteorology, n.气象学 (meteorologist, 气象学家)
 
-symbolism, n.象征主义；记号
+## kinds of isms
+
+* symbolism, n.象征主义；记号 (symbolical, adj)
+* materialism, n.唯物主义 (materialistic, adj)
+* empiricism, n.经验主义 (empirical, adj)
