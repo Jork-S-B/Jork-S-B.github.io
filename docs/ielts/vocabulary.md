@@ -65,13 +65,23 @@
 * fulfil a civic role, 履行公民职责
 * get accommodation, 安排或获取住宿
 * be held at someone
-* At here we **hold material relation to** primary education, **as well as** special needs.
-* You'll need to **familiarise yourself** with both sites to **make the most of our resources**.
-* **In terms of** cost, this project is feasible.（从成本角度看，项目可行。）
-* A significant proportion of the lion's diet is **made up of** the livestock of these farmers-goats, chickens and so on-as much as a third, in fact.
 * make an effort to
 * lead to, 导致
 * a supply of, 一批，一定数量
+* At here we **hold material relation to** primary education, **as well as** special needs.
+* You'll need to **familiarise yourself** with both sites to **make the most of our resources**.
+* **In terms of** cost, this project is feasible.（从成本角度看，项目可行。）
+* A significant proportion of the lion's diet is **made up of** the livestock of these farmers - goats, chickens and so on - as much as a third, in fact.
+
+### 剑雅14-T2P1
+
+* take it up as a serious amateur, 作为一个认真的业余爱好者
+* the publication had limited circulation, 该出版物发行量有限
+* cater to this market, 迎合这个市场
+* he continued in this post until 1897, 他一直担任这个职位直到1897年
+* photographing extensively **along** the railway line **as far as** Victoria, 沿着铁路线广泛拍摄，一直到维多利亚
+
+travel by canoe (独木舟), 同义替换：take many trips in a canoe
 
 ## resemble phrase
 
