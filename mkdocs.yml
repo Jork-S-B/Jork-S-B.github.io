@@ -110,6 +110,7 @@ nav:
   - 测试:
       - 软件工程: test/software_engineering.md
       - 测试类型:
+          - 代码覆盖率: test/coverage.md
           - app测试: test/test_app.md
           - 性能测试:
               - 性能测试: test/test_performance.md
