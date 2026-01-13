@@ -25,7 +25,7 @@ I'm inspired by his dedication and commitment to music, which began a decade ago
 Shangri-La.
 
 He's kind, expressive and always willing to lend a helping hand. He's also knowledgeable and experienced,
-and I've learned a great deal from him about the world and life in general. Hopefully I can remain as diligent and
+and I've **learned a great deal** from him about the world and life in general. Hopefully I can remain as diligent and
 passionate in my career as he is.
 
 ## 📌 02.city/journey/photo

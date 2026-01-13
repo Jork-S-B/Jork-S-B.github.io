@@ -19,7 +19,7 @@ and saturdays. So I make sure that I stay home on sundays to rest and recharge b
 
 Describe something you do every day that you enjoy
 
-**You should say:
+**You should say:**
 
 What it is
 
@@ -27,7 +27,7 @@ When you do it
 
 Why you do it
 
-And Why you enjoy it**
+And Why you enjoy it
 
 ## Part 3
 

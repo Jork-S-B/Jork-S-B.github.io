@@ -149,8 +149,9 @@ nav:
       - spoken:
         - universal topic: ielts/spoken/universal.md
         - topic:
-          - Daily Life and Modern Lifystyle: ielts/spoken/topic/dl&ml.md
-      - vocabulory: ielts/vocabulory.md
+          - Daily Life and Modern Lifestyle: ielts/spoken/topic/dl&ml.md
+          - Education: ielts/spoken/topic/education.md
+      - vocabulary: ielts/vocabulary.md
 # 搜索栏右侧git链接
 repo_url: https://github.com/Jork-S-B/Jork-S-B.github.io/tree/main
 repo_name: 'myblog'

@@ -60,10 +60,18 @@
 * veteran, 泛指所有退役军人
 * former soldier, 客观描述曾服役
 
-## phrase
+## phrase & sentence
 
 * fulfil a civic role, 履行公民职责
 * get accommodation, 安排或获取住宿
+* be held at someone
+* At here we **hold material relation to** primary education, **as well as** special needs.
+* You'll need to **familiarise yourself** with both sites to **make the most of our resources**.
+* **In terms of** cost, this project is feasible.（从成本角度看，项目可行。）
+* A significant proportion of the lion's diet is **made up of** the livestock of these farmers-goats, chickens and so on-as much as a third, in fact.
+* make an effort to
+* lead to, 导致
+* a supply of, 一批，一定数量
 
 ## resemble phrase
 
@@ -88,6 +96,7 @@ mechanism, n.机械装置；机械论
 * agriculture, n.农业 (agriculturist/agriculturalist, 农学家)
 * geography, n.地理 (geographer, 地理学者)
 * meteorology, n.气象学 (meteorologist, 气象学家)
+* sociology, n.社会学 (sociologist, 社会学家)
 
 ## kinds of isms
 
