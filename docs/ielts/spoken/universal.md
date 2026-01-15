@@ -45,7 +45,7 @@ Lijiang, what you sense is enormous {todo, senceic}.
 
 It is one of the most dynamic and relax cities in the world. There are new traveler visit the city, form all over the world,
 almost every day.
-{从句合理通顺的合并一下}
+{使用从句，合理通顺的合并一下}
 It's quite more laid-back than big cities in China, like Guangzhou or Shanghai. For me, life seems to move slower in Lijiang
 that/spontaneously {todo，非常适合度假}
 

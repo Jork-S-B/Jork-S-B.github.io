@@ -22,7 +22,7 @@
 ## 📌 剑雅6听力-T4-2
 
 * to help things run smoothly, 为了使事情顺利进行
-* divide a year into seasons, 把一年分成季节
+* A year is **divided into** four seasons.
 * I'll run through the rest of today's programme, which you should have **in front of you**, so that you can **get a general idea of what else is** in store today.
 * regarding pay, 关于薪酬方面
 * go over a plan of the conference centre, 在会议中心检查计划
@@ -47,6 +47,9 @@
 * cater to this market, 迎合这个市场
 * he continued in this post until 1897, 他一直担任这个职位直到1897年
 * photographing extensively **along** the railway line **as far as** Victoria, 沿着铁路线广泛拍摄，一直到维多利亚
+
+### 🚁 同义替换
+
 * travel by canoe (独木舟), 同义替换：take many trips in a canoe
 
 ## 📌 剑雅6听力-T4-1
@@ -61,5 +64,33 @@
 * before soiutions could be proposed, 在提出解决方案之前
 * firewood, 木柴
 * grinding mill, 磨粉机；宝石切割机
-* arduous, 艰辛的
 * bold line, 粗线
+* handrail, 扶手
+* secondary road, 次要道路
+* phase 3, 阶段3；phrase - n.短语；v.以...措辞表达
+
+### 🚁 同义替换
+
+艰辛的
+
+* arduous
+* hard
+* struggling, 艰苦奋斗的
+
+居民
+
+* inhabitant/habitant；habitat - 栖息地
+* resident
+* dweller
+* liver
+
+家庭
+
+* household, n.家庭；adj.家庭的
+* family, n.家庭；adj.家庭的
+* domestic, n.家庭纠纷；家仆；国货；adj.家庭的；本国的；非野生的
+
+household expenditure, 家庭支出  
+domestic market, 国内市场  
+domestic violence, 家庭暴力
+
