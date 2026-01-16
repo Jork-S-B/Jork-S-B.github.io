@@ -61,19 +61,25 @@
 ## 📌 剑雅7-T2-P3
 
 * slippery, adj.容易打滑的；模糊的
-* before soiutions could be proposed, 在提出解决方案之前
+* Before soiutions could be proposed, the problems had to be understood. 
 * firewood, 木柴
 * grinding mill, 磨粉机；宝石切割机
+* mobile名词形式：mobility, 流动性
 * bold line, 粗线
-* handrail, 扶手
+* handrail, 扶手，栏杆
+* refinement and institutionalisation, 改进和制度化；_refine, v.提纯；改进_；_institution, 机构；制度_
 * secondary road, 次要道路
 * phase 3, 阶段3；phrase - n.短语；v.以...措辞表达
+* fluctuate, v.波动；使动摇；_fluctuate violently, 大涨大落_
+* plateau, n.高原；发展稳定期；托盘；v.发展趋于平稳/停滞
+
 
 ### 🚁 同义替换
 
 艰辛的
 
 * arduous
+* difficult
 * hard
 * struggling, 艰苦奋斗的
 
@@ -94,3 +100,31 @@ household expenditure, 家庭支出
 domestic market, 国内市场  
 domestic violence, 家庭暴力
 
+维护
+
+* maintenance
+* conservation
+* keep
+
+### 🚁 resemble phrase
+
+* integrate, v.合并；adj.整合的
+* integral, adj.完整的；n.积分
+
+* rural, 乡村的
+* crucial, 至关重要的
+
+* convention, 传统
+* convenience, 方便
+
+* conservation, 维护
+* conversation, 谈话
+
+* expend, 花费
+* expand, 扩张
+
+* district, 地区
+* restrict, 限制
+
+* initiative, n.倡议；主动性
+* initialize, vt.初始化

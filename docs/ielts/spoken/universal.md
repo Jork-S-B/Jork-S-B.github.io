@@ -35,7 +35,7 @@ passionate in my career as he is.
 
 ### 🚁 related phrases
 
-* world-renowned, 世界闻名的(比famous程度更强)
+* world-renowned, 世界闻名的，比famous程度更强
 * majestic, 雄伟的，壮丽的
 * dynamic yet relaxed, 充满活力而又悠闲的
 * far more, 远超过
