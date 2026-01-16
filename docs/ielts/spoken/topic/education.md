@@ -12,4 +12,4 @@ mew things is the best way, I think._
 
 _Lots of jobs do. Like designers—they need to **make new and cool stuff**. Teachers also need creativity to make classes fun 
 for students. And artists, of course — painters, writers, musicians, they all create **original work** every day. These jobs 
-can’t be done well without creativity_
+can’t be done well without creativity._

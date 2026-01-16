@@ -5,7 +5,7 @@
 1.What time do you usually wake up?
 
 _I usually wake up at 7:00 A.M on weekdays so that I can reach my workplace on time. However during the weekends
-I take my time and sleep in till 10:00 A.M to catch up on any lost sleep.
+I take my time and sleep in till 10:00 A.M to catch up on any lost sleep._
 
 2.Do you prefer mornings or evenings?
 
