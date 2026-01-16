@@ -150,10 +150,10 @@ nav:
       - spoken:
         - universal topic: ielts/spoken/universal.md
         - topic:
-          - Daily Life and Modern Lifestyle: ielts/spoken/topic/dl&ml.md
+          - Daily Life: ielts/spoken/topic/daily_life.md
           - Education: ielts/spoken/topic/education.md
       - vocabulary:
-          - Synonym substitution: ielts/vocabulary/synonymSubstitution.md
+          - Synonym substitution: ielts/vocabulary/synonym_substitution.md
           - phrase & sentence: ielts/vocabulary/phrase&sentence.md
           - notes: ielts/vocabulary/notes.md
 # 搜索栏右侧git链接
