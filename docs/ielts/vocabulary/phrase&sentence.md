@@ -72,6 +72,7 @@
 * phase 3, 阶段3；phrase - n.短语；v.以...措辞表达
 * fluctuate, v.波动；使动摇；_fluctuate violently, 大涨大落_
 * plateau, n.高原；发展稳定期；托盘；v.发展趋于平稳/停滞
+* be consistent with, 与...一致；consistent, adj.一贯的，坚持的；一致的
 
 
 ### 🚁 同义替换
@@ -106,25 +107,31 @@ domestic violence, 家庭暴力
 * conservation
 * keep
 
+妨碍
+
+* hinder
+* impede
+
 ### 🚁 resemble phrase
 
-* integrate, v.合并；adj.整合的
-* integral, adj.完整的；n.积分
+integrate, v.合并；adj.整合的  
+integral, adj.完整的；n.积分
 
-* rural, 乡村的
-* crucial, 至关重要的
+rural, 乡村的  
+crucial, 至关重要的
 
-* convention, 传统
-* convenience, 方便
+convention, 传统  
+convenience, 方便
 
-* conservation, 维护
-* conversation, 谈话
+conservation, 维护  
+conversation, 谈话  
+convection, n.（气体）对流；传送
 
-* expend, 花费
-* expand, 扩张
+expend, 花费  
+expand, 扩张
 
-* district, 地区
-* restrict, 限制
+district, 地区  
+restrict, 限制
 
-* initiative, n.倡议；主动性
-* initialize, vt.初始化
+initiative, n.倡议；主动性  
+initialize, vt.初始化
