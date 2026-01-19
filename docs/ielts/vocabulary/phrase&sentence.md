@@ -90,6 +90,7 @@
 * resident
 * dweller
 * liver
+* tenant, 房客，租户
 
 家庭
 
