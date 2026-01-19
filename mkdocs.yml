@@ -156,6 +156,9 @@ nav:
           - Synonym substitution: ielts/vocabulary/synonym_substitution.md
           - phrase & sentence: ielts/vocabulary/phrase&sentence.md
           - notes: ielts/vocabulary/notes.md
+      - reading:
+          - 经济学人:
+              - 租房还是买房: ielts/the_economist/rent_or_buy.md
 # 搜索栏右侧git链接
 repo_url: https://github.com/Jork-S-B/Jork-S-B.github.io/tree/main
 repo_name: 'myblog'
