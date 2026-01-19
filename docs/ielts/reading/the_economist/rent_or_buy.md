@@ -12,11 +12,14 @@ Much depends on long-term interest rates.
 
     抉择关键，取决于长期利率走势。
 
-“That our people should live in their own homes is a sentiment deep in the heart of our race and of American life,” said President Herbert Hoover, perhaps the most important advocate of mass homeownership in the country’s history, in 1931. “They never sing songs about a pile of rent receipts.”
+“That our people should live in their own homes is a sentiment deep in the heart of our race and of American life,” 
+said President Herbert Hoover, perhaps the most important advocate of mass homeownership in the country’s history, in 1931. 
+“They never sing songs about a pile of rent receipts.”
 
 ??? note "单句翻译"
 
-    “民众拥有自住房，是深植于美利坚民族与生活方式之中的情感，”1931年，时任总统赫伯特·胡佛（Herbert Hoover）如此感慨。作为美国历史上推动大众置业最力的倡导者之一，他直言不讳地说道：“没人会为那一叠叠租金收据谱写赞歌。”（这句话大家可以留言翻译的更接地气）
+    “民众拥有自住房，是深植于美利坚民族与生活方式之中的情感，”1931年，时任总统赫伯特·胡佛（Herbert Hoover）如此感慨。作为美国历史上推动大众置业最力的倡导者之一，
+    他直言不讳地说道：“没人会为那一叠叠租金收据谱写赞歌。”
 
 But a ballad about the rental market is overdue. When rich-world interest rates began to surge in 2022, renting became a better deal than buying. House prices have since stagnated or slumped in many places, and rates are falling. Even so, there is reason to think that the winning streak for renters will continue.
 
