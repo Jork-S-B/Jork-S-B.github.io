@@ -2,17 +2,7 @@ Finance & Economics | Buttonwood
 
 Is it better to rent or buy?
 
-??? note "翻译&笔记"
-
-    租房还是买房：孰优孰劣？
-
 Much depends on **long-term interest rates**.
-
-??? note "翻译&笔记"
-
-    抉择关键，取决于长期利率走势。
-
-    * long-term interest rates, 长期利率
 
 “That our people should live in their own homes is a _sentiment_ deep in the heart _of our race and **of** American life_,” 
 said President Herbert Hoover, perhaps the most important advocate of mass homeownership in the country's history, in 1931. 
@@ -27,13 +17,13 @@ said President Herbert Hoover, perhaps the most important advocate of mass homeo
     * a pile of receipts, 一堆收据
 
 But a _ballad_ about the rental market is overdue. When _rich-world_ interest rates began to _surge_ in 2022, renting became 
-a better deal than buying. House prices have since _stagnated_ or _slumped_ in many places, and rates are falling. Even so, 
+a better deal than buying. House prices have since _stagnated_ or _slumped_ in many places, and rates are falling. **Even so**, 
 there is reason to think that the **winning streak** for renters will continue.
 
 ??? note "翻译&笔记"
 
     然而，一首献给租房市场的“民谣”早已姗姗来迟。自2022年发达国家利率开始飙升以来，租房便显现出比买房更高的性价比。此后，全球多地房价陷入停滞甚至下挫，
-    即便近期利率有所回落，也有理由相信，租房者的“连胜势头”仍将延续。
+    尽管如此，扔有理由相信，租房者的“连胜势头”仍将延续。
     
     * ballad, n.歌谣
     * rich-world, 发达国家
@@ -60,7 +50,7 @@ In several of America's largest cities, **the gap runs into thousands of dollars
 
 This is not just an American phenomenon. According to CBRE, a global real-estate firm, there is no _precinct_ in Australia 
 where buying an apartment is cheaper than renting one. Rathbones, a British wealth-management firm, estimates that 
-rental yields — the income _landlords_ earn **relative to** a property's price — are around 5%, only slightly above 
+**rental yields** — the income _landlords_ earn _relative to_ a property's price — **are around 5%**, only slightly above 
 the 4.4% rate on five-year fixed _mortgages_. Given that landlords also face _steep_ maintenance and tax bills, this suggests 
 tenants are getting a good deal.
 
@@ -75,14 +65,13 @@ tenants are getting a good deal.
     * relative to, 与...相关
     * mortgage, n.按揭抵押，房屋贷款；v.抵押
     * steep, adj.（路、山等）陡峭的；（价格，需求）难以接受的，过高的；（增加或减少）急剧的，大幅度的；v. 浸泡（食物）；使沉湎；n. 悬崖，陡坡；用于浸泡的溶液
+    * steep rise, 急剧上升
 
 Renters often fear they are throwing money away by paying landlords, while buyers **build equity**. But property is not 
 the only investment available. Arthur Cox of the University of Northern Iowa finds that even during 1984–2013 — a period of 
-rising house prices and sharply falling mortgage rates — homeownership was not always the superior financial choice. 
+rising house prices and **sharply falling** mortgage rates — homeownership was not always the superior financial choice. 
 In three of the six U.S. **metropolitan areas** he studied, renting and investing **the would-be mortgage payments** in stocks 
 and **corporate bonds** yielded higher returns over time.
-
-
 
 ??? note "翻译&笔记"
 
@@ -156,6 +145,125 @@ Your columnist would suggest that they look worryingly sticky.
 
     笔者认为长期利率看起来恐怕不会有太大变化。
 
+**Concerns about** government debt and long-term inflationary pressures **are not going anywhere**.
+
+??? note "翻译&笔记"
+    
+    对政府债务和长期通胀压力的担忧不会消失。
+    
+    * Concerns about ... are not going anywhere. 对...的担忧不会消失
+
+**Moreover**, in recent years renter-friendly regulation has swept the West.
+
+??? note "翻译&笔记"
+
+    此外，近年来对租客友好的法规在西方迅速普及。
+    
+    * sweep, v.n.打扫，清除；席卷，迅速蔓延
+    * sweep the west, 迅速蔓延西方
+
+Britain's Renters' Rights Act makes it more difficult for landlords to **evict** residents, 
+and enables tenants to challenge rent increases via tribunals.
+
+??? note "翻译&笔记"
+
+    英国的《租户权利法》使房东更难驱逐租户，并允许租户通过裁决法庭对租金上涨提出异议。
+    
+    * evict, 驱逐
+    * challenge, 挑战，质疑
+
+Many American cities have frozen regulated rents, as Zohran Mamdani, New York's new mayor, intends to do in his city.
+
+??? note "翻译&笔记"
+
+    许多美国城市已经冻结了管制租金，纽约新市长佐赫兰·马姆达尼也打算在纽约采取同样的做法。（注：即规定房租的最高值。）
+    
+    * regulate, v.（用规则条例）控制，管理；调节；监管
+
+Such rules are terrible news for anyone considering making an investment in housing, 
+and they **tip the calculation further in favour of tenants**.
+
+??? note "翻译&笔记"
+
+    这些规定对任何考虑投资房产的人来说都是坏消息，而且进一步将天平倾向了租客一方。
+    
+    * in favour of someone, 有利于某人
+    * tip（倾斜） the balance further in favour of the former / the latter, 使天平进一步偏向前者/后者
+
+Buyers have reasons to own a home that _surmount_ cold financial logic.
+
+??? note "翻译&笔记"
+
+    买房者们有超越冰冷财务逻辑的购房理由。
+    
+    * surmount oneself, 超越自我
+
+Many feel the same emotional pull that _animated_ Hoover almost a century ago. Others want a secure and long _tenure_.
+
+??? note "翻译&笔记"
+
+    许多人也能感受到近一百年前让胡佛情绪激昂的那种情感。其他人则希望获得稳定且长期的住房保有权。
+
+    * animate, adj.活力的；v.使生动；使...制成动画
+    * anime, 动漫
+    * enemy, 敌人
+    * tenure, n.（土地的）居住权；（尤指大学教师的）终身职位；（尤指重要政治职务的）任期，任职；v.授予...终身职位（尤指教师、讲师职位）
+
+And in some markets, it is just a question of practicality: finding a large, single-family home to rent can be difficult.
+
+??? note "翻译&笔记"
+
+    而在某些市场，这纯粹是实用性的问题：要租到一栋独户大房子并不容易。
+
+    * practicality, n.实用性，可行性
+    * practical, adj.实际的，实用的
+    * practice, 练习
+
+But for the cool, unemotional resident **weighing up the pros and cons** of buying, there is a clear winner.
+
+??? note "翻译&笔记"
+
+    但是对于冷静、不动感情、权衡利弊的住户来说，更优选项显而易见。
+    
+    * weigh up, 审视，权衡
+    * pros and cons, 利弊，优点和缺点
+
+Without **a much steeper fall in** house prices, **a sudden decline in** long-term interest rates or 
+**a protracted surge in** rents, renting will remain the better option.
+
+??? note "翻译&笔记"
+
+    除非房价更大幅下跌、长期利率骤降，或租金长期飙升，否则租房仍将是更好的选择。
+    
+    * a much steeper fall in, ...的更大幅下跌
+    * a sudden decline in, ...的突然下降
+    * a protracted surge in, ...的长期飙升
+    * protracted, adj.拖延的；长期的；v.拖延；延展；绘制
+    * Renting will still be the better option. still be, 强调尽管有各种因素，但结论不变
+
 > [原文链接（有音频），但部分句式和音频对不上](https://mp.weixin.qq.com/s/9YqSibaf-k1Me6LDj9ExKQ)
 
+## 📌 关于趋势变化的表达
 
+When rich-world interest rates began to **surge** in 2022, renting became a better deal than buying. 
+
+House prices have since **stagnated** or **slumped** in many places, and rates are falling.
+
+Since then, however, the picture has flipped. 
+
+In several of America's largest cities, **the gap runs into thousands of dollars a month**.
+
+Rental yields are around 5%, only **slightly above** the 4.4% rate on five-year fixed mortgages.
+
+In Hong Kong, rental yields **have risen from below 2.5% (four years ago) to 3.5% today**.
+
+* steep rise, 急剧上升
+* sharply fall, 急剧下降
+* drop by a third, 下降了1/3
+* barely budge, 几乎不动
+* more than twice the rock-bottom levels reached in 20th century
+* more than twice the lows reached in 20th century
+* tip（倾斜） the balance further in favour of the former / the latter, 使天平进一步偏向前者/后者
+* a much steeper fall in, ...的更大幅下跌
+* a sudden decline in, ...的突然下降
+* a protracted surge in, ...的长期飙升
