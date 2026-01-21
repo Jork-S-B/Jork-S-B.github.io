@@ -182,13 +182,14 @@ Many American cities have frozen regulated rents, as Zohran Mamdani, New York's 
     
     * regulate, v.（用规则条例）控制，管理；调节；监管
 
-Such rules are terrible news for anyone considering making an investment in housing, 
+Such rules are terrible news for anyone considering **making an investment in** housing, 
 and they **tip the calculation further in favour of tenants**.
 
 ??? note "翻译&笔记"
 
     这些规定对任何考虑投资房产的人来说都是坏消息，而且进一步将天平倾向了租客一方。
     
+    * make an investment in housing, 投资房地产
     * in favour of someone, 有利于某人
     * tip（倾斜） the balance further in favour of the former / the latter, 使天平进一步偏向前者/后者
 
