@@ -68,18 +68,20 @@ tenants are getting a good deal.
     * steep rise, 急剧上升
 
 Renters often fear they are throwing money away by paying landlords, while buyers **build equity**. But property is not 
-the only investment available. Arthur Cox of the University of Northern Iowa finds that even during 1984–2013 — a period of 
-rising house prices and **sharply falling** mortgage rates — homeownership was not always the superior financial choice. 
-In three of the six U.S. **metropolitan areas** he studied, renting and investing **the would-be mortgage payments** in stocks 
-and **corporate bonds** yielded higher returns over time.
+the only investment available. Arthur Cox of the University of Northern Iowa finds that, even from 1984 to 2013, a period
+in which house **prices rose overall** and mortgage rates fell sharply, people were sometimes **better off** if they avoided 
+homeownership. In three of the six U.S. **metropolitan areas** he studied, renting and investing **the would-be mortgage payments** 
+in stocks and **corporate bonds** yielded higher returns over time.
 
 ??? note "翻译&笔记"
 
     租房者常担心付给房东的钱是“打水漂”，而购房则是在积累资产净值。然而，房产并非唯一的投资篮子。北爱荷华大学的亚瑟·考克斯（Arthur Cox）研究发现，
-    即便在1984至2013年——一个房价攀升、房贷利率大幅下行的置业黄金期——买房也未必总是最优的财务决策。在他研究的六个美国大都会区中，有三个地区的数据显示：
+    即便在1984至2013年这段房价整体上涨且抵押贷款利率大幅下降的时期，不买房有时反而能让人们的经济状况更富裕。在他研究的六个美国大都会区中，有三个地区的数据显示：
     若选择租房，并将原本计划用于还贷的差额资金投入股市或公司债，长期的复利回报反而更胜一筹。
 
     * build equity, 增加资产净值
+    * prices rose overall, 价格整体上涨
+    * better off, 经济状况更富裕
     * metropolitan areas, 大都市区；metropolitan, adj.大都市的；宗主国（有关）的；n.大主教；都会居民
     * metropolis, n.大城市
     * the would-be mortgage payments, 即将支付的抵押贷款
@@ -259,6 +261,7 @@ In Hong Kong, rental yields **have risen from below 2.5% (four years ago) to 3.5
 
 * steep rise, 急剧上升
 * sharply fall, 急剧下降
+* prices rose overall, 价格整体上涨
 * drop by a third, 下降了1/3
 * barely budge, 几乎不动
 * more than twice the rock-bottom levels reached in 20th century
