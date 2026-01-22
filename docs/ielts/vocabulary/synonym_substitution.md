@@ -1,3 +1,9 @@
+## 📌 企业
+
+* enterprise
+* firm
+* company
+
 ## 📌 流浪汉
 
 * homeless
