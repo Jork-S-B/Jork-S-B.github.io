@@ -119,7 +119,7 @@ remain near levels seen three years ago.
     * bond yields, 债券收益
 
 In America, 30-year mortgage rates remain above 6%, more than twice the rock-bottom levels reached in **the covid-19 pandemic**.
-Although buyers can find shorter-term mortgages, they **take on the risk** of a rebound in inflation and thus rates.
+Although buyers can find shorter-term mortgages, they **take on the risk of** a _rebound_ in inflation and thus rates.
 
 ??? note "翻译&笔记"
 
@@ -128,7 +128,13 @@ Although buyers can find shorter-term mortgages, they **take on the risk** of a 
     * more than twice the rock-bottom levels reached in 20th century
     * more than twice the lows reached in 20th century
     * the covid-19 pandemic, 新冠疫情期间
-    * take on the risk, 承担风险
+    * take on the risk of, 承担..的风险
+    * rebound, v.反弹；适得其反；重新装订（rebind的过去式和过去分词）n.反弹；复发；
+    
+    bound  
+    adj.必然的；受约束的；关系密切的；  
+    v.蹦跳着走；形成...的边界；限制，约束；急剧上升；（尤指圆形的物体）弹回，弹开；捆绑，凝结（bind的过去式和过去分词形式）；  
+    n.限制；蹦跳
 
 **Picking a likely victor** in the _ongoing_ battle between tenancy and ownership therefore 
 means **taking a view on** the future of long-term interest rates. 
