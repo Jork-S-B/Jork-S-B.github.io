@@ -121,12 +121,12 @@ integral, adj.完整的；n.积分
 rural, 乡村的  
 crucial, 至关重要的
 
+convection, n.（气体）对流；传送  
 convention, 传统  
 convenience, 方便
 
 conservation, 维护  
-conversation, 谈话  
-convection, n.（气体）对流；传送
+conversation, 谈话
 
 expend, 花费  
 expand, 扩张
@@ -136,3 +136,35 @@ restrict, 限制
 
 initiative, n.倡议；主动性  
 initialize, vt.初始化
+
+## 📌 剑雅4听力-T3
+
+stadium：n.体育场
+
+tent：canvas portable building，即帐篷
+
+coming semester：即将到来的新学期
+
+seminar：n.研讨会
+
+undergraduate：n.adj.本科生（的）  
+postgraduate：n.adj.研究生（的）
+
+business executives：企业高管  
+executive：adj.行政的；经营管理的；n.主管；执行委员会  
+同义替换：senior manager
+
+enthusiastic：adj.热情的  
+enthusiasm：n.热情，热忱
+
+### 🚁 resemble phrase
+
+business faculty：商学院  
+faculty：(大学的)系或院  
+facility：设施，设备；才能；场所  
+facilitate：帮助，促进
+
+thorough：adj.彻底的  
+through：穿过  
+thought：想法  
+though：尽管

@@ -161,6 +161,7 @@ nav:
           - topic:
               - Daily Life: ielts/spoken/topic/daily_life.md
               - Education: ielts/spoken/topic/education.md
+      - listening: ielts/listening.md
 # 搜索栏右侧git链接
 repo_url: https://github.com/Jork-S-B/Jork-S-B.github.io/tree/main
 repo_name: 'myblog'

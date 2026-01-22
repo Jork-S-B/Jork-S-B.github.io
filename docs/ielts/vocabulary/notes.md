@@ -29,10 +29,6 @@ protect, v.保护；投保
 tackle, v.应付，解决；n.抢断，渔具  
 fickle, adj.浮躁的，易变的
 
-faculty, (大学的)系或院  
-facility, 设施，设备；才能；场所  
-facilitate, 帮助，促进
-
 contrast, 差异，对比  
 contact, 联系，联络
 
