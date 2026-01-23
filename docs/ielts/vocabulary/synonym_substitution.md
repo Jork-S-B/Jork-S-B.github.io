@@ -41,6 +41,7 @@
 
 * foster
 * cultivate
+* nourish
 
 ## 📌 青少年
 

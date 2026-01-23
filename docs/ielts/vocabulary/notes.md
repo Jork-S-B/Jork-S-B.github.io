@@ -5,7 +5,8 @@ supply, v.供应；援助；替代；n.补给；临时替代者
 
 possess, v.拥有  
 process, n.步骤，过程；v.处理，加工  
-progress, n./v.进步
+progress, n./v.进步  
+procedure, n.程序；手续；步骤；存储过程
 
 mass, n.团，块；弥撒；adj.民众的，大量的；v.使聚集  
 mess, n.肮脏杂乱；军队食堂；v.弄脏；_mess up, 搞砸；弄乱_
