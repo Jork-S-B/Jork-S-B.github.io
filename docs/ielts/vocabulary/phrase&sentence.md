@@ -150,12 +150,29 @@ seminar：n.研讨会
 undergraduate：n.adj.本科生（的）  
 postgraduate：n.adj.研究生（的）
 
-business executives：企业高管  
-executive：adj.行政的；经营管理的；n.主管；执行委员会  
-同义替换：senior manager
-
 enthusiastic：adj.热情的  
 enthusiasm：n.热情，热忱
+
+adapt an existing energy-saving appliance：改造现有的节能（家用）设备
+
+revert to gas：回到气体状态
+
+disposed of：处理  
+the CO2 is disposed of with the waste.
+
+### 🚁 同义替换
+
+企业高管  
+senior manager  
+business executives  
+executive：adj.行政的；经营管理的；n.主管；执行委员会
+
+because  
+due to / for
+
+吸引人的  
+appealing：adj.吸引人的；恳求的；v.呼吁，恳求，上诉；引起兴趣（appeal的现在分词形式）
+attractive
 
 ### 🚁 resemble phrase
 
