@@ -162,7 +162,10 @@ nav:
           - topic:
               - Daily Life: ielts/spoken/topic/daily_life.md
               - Education: ielts/spoken/topic/education.md
-      - listening: ielts/listening.md
+      - listening:
+              - technique: ielts/listening/technique.md
+              - 剑桥雅思真题:
+                  - 剑雅10听力-T2-Section3: ielts/listening/authentic/C10-T2-Section3.md
 # 搜索栏右侧git链接
 repo_url: https://github.com/Jork-S-B/Jork-S-B.github.io/tree/main
 repo_name: 'myblog'

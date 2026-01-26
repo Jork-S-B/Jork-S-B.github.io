@@ -169,7 +169,7 @@ through：穿过
 thought：想法  
 though：尽管
 
-## 📌 剑雅10听力-T1
+## 📌 剑雅10听力-T1-Section3
 
 adapt an existing energy-saving appliance：改造现有的节能（家用）设备
 
@@ -187,7 +187,7 @@ due to / for
 appealing：adj.吸引人的；恳求的；v.呼吁，恳求，上诉；引起兴趣（appeal的现在分词形式）  
 attractive
 
-## 📌 剑雅10听力-T2
+## 📌 剑雅10听力-T2-Section2
  
 initiative：n.措施，倡议；主动性  
 initialize：vt.初始化
@@ -200,9 +200,3 @@ local newspaper
 
 statue：n.雕像  
 sculpture：n.雕像，雕塑；v.雕刻
-
-extreme environment  
-同义替换：harsh weather conditions
-
-formulate：v.制定，规划；阐述；用公式表示  
-formulate a new theory：提出新的理论
