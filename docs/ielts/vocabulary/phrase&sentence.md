@@ -134,9 +134,6 @@ expand, 扩张
 district, 地区  
 restrict, 限制
 
-initiative, n.倡议；主动性  
-initialize, vt.初始化
-
 ## 📌 剑雅4听力-T3
 
 stadium：n.体育场
@@ -153,26 +150,12 @@ postgraduate：n.adj.研究生（的）
 enthusiastic：adj.热情的  
 enthusiasm：n.热情，热忱
 
-adapt an existing energy-saving appliance：改造现有的节能（家用）设备
-
-revert to gas：回到气体状态
-
-disposed of：处理  
-the CO2 is disposed of with the waste.
-
 ### 🚁 同义替换
 
 企业高管  
 senior manager  
 business executives  
 executive：adj.行政的；经营管理的；n.主管；执行委员会
-
-because  
-due to / for
-
-吸引人的  
-appealing：adj.吸引人的；恳求的；v.呼吁，恳求，上诉；引起兴趣（appeal的现在分词形式）  
-attractive
 
 ### 🚁 resemble phrase
 
@@ -181,7 +164,45 @@ faculty：(大学的)系或院
 facility：设施，设备；才能；场所  
 facilitate：帮助，促进
 
-thorough：adj.彻底的  
+thorough：adj.彻底的，深入的  
 through：穿过  
 thought：想法  
 though：尽管
+
+## 📌 剑雅10听力-T1
+
+adapt an existing energy-saving appliance：改造现有的节能（家用）设备
+
+revert to gas：回到气体状态
+
+### 🚁 同义替换
+
+disposed of：处理  
+the CO2 is disposed of with the waste.
+
+because  
+due to / for
+
+吸引人的  
+appealing：adj.吸引人的；恳求的；v.呼吁，恳求，上诉；引起兴趣（appeal的现在分词形式）  
+attractive
+
+## 📌 剑雅10听力-T2
+ 
+initiative：n.措施，倡议；主动性  
+initialize：vt.初始化
+
+unusual  
+同义替换：unique、special、uncommon
+
+local newspaper  
+同义替换：quite a bite of discussion in the local press / paper
+
+statue：n.雕像  
+sculpture：n.雕像，雕塑；v.雕刻
+
+extreme environment  
+同义替换：harsh weather conditions
+
+formulate：v.制定，规划；阐述；用公式表示  
+formulate a new theory：提出新的理论
