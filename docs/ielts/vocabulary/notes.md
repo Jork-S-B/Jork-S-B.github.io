@@ -51,6 +51,8 @@ mechanism, n.机械装置；机械论
 * philosophy, n.哲学 (philosopher, 哲学家)
 * bibliography, n.参考文献 (philosopher, 目录学家)
 * hygiene, n.卫生学；_hygiene hypothesis, 卫生假说_
+* anthropology, n.人类学 (anthropologist, 人类学家)
+* linguistics, n.语言学 (linguist, 语言学家)
 
 ## 📌 kinds of isms
 

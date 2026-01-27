@@ -62,3 +62,22 @@ together or just hang out and chat._
 _If I had a day off tomorrow, I'd probably keep things simple. I'd like to **sleep in（睡懒觉）**, go out for a nice meal, 
 and maybe take a walk to clear my head. I wouldn't plan anything **too packed**. For me, a good day off is more about 
 relaxing and recharging than doing something special._
+
+## 📌 Morning time
+
+1.Do you like getting up early in the morning?
+
+_It depends. On weekdays, I don't really enjoy getting up early because I feel quite tired. 
+But if I don’t have much pressure, I actually like early mornings because they're quiet and peaceful._ 
+
+2.What do you usually do in the morning?
+
+_In the morning, I usually get ready for the day, have a simple breakfast, and check my phone **for** messages or news.
+After that, I head out to work or start my daily tasks._
+
+head out to：动身去某地
+
+3.What did you do in the morning when you were little? Why?
+
+_When I was little, my mornings were quite simple. I usually got up, had breakfast, and then went to school.
+Everything was arranged by my parents, so I didn't have to think too much._

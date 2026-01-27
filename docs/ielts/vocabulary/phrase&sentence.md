@@ -74,7 +74,6 @@
 * plateau, n.高原；发展稳定期；托盘；v.发展趋于平稳/停滞
 * be consistent with, 与...一致；consistent, adj.一贯的，坚持的；一致的
 
-
 ### 🚁 同义替换
 
 艰辛的
@@ -112,6 +111,10 @@ domestic violence, 家庭暴力
 
 * hinder
 * impede
+* obstacle：n.障碍物
+* obstacle to：形成阻碍
+* interfere with：妨碍，干扰  
+* interfere in：干涉，插手，介入  
 
 ### 🚁 resemble phrase
 
@@ -200,3 +203,9 @@ local newspaper
 
 statue：n.雕像  
 sculpture：n.雕像，雕塑；v.雕刻
+
+## 📌 20260127
+
+God helps those who help themselves.
+
+It is better to have your head on your neck and your foe on his knees than the other way around.
