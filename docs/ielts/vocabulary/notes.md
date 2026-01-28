@@ -44,6 +44,8 @@ mechanism, n.机械装置；机械论
 
 ## 📌 kinds of disciplines
 
+* anthropology, n.人类学 (anthropologist, 人类学家)
+* archaeology, n.考古学 (archaeologist, 考古学家)
 * agriculture, n.农业 (agriculturist/agriculturalist, 农学家)
 * geography, n.地理 (geographer, 地理学者)
 * meteorology, n.气象学 (meteorologist, 气象学家)
@@ -51,7 +53,6 @@ mechanism, n.机械装置；机械论
 * philosophy, n.哲学 (philosopher, 哲学家)
 * bibliography, n.参考文献 (philosopher, 目录学家)
 * hygiene, n.卫生学；_hygiene hypothesis, 卫生假说_
-* anthropology, n.人类学 (anthropologist, 人类学家)
 * linguistics, n.语言学 (linguist, 语言学家)
 
 ## 📌 kinds of isms
