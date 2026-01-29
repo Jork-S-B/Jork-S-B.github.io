@@ -204,8 +204,54 @@ local newspaper
 statue：n.雕像  
 sculpture：n.雕像，雕塑；v.雕刻
 
-## 📌 20260127
+## 📌 Kingdom Come Deliverance II  
 
-God helps those who help themselves.
+God helps those who help themselves.  
+主救自救者
 
-It is better to have your head on your neck and your foe on his knees than the other way around.
+### 🚁 扬·杰式卡
+
+It is better to have your head on your neck and your foe on his knees than the other way around.  
+宁可头颅尚在颈，仇敌跪伏于前，也强过处境对调。
+
+Don't let him talk ears off.  
+别让他唠叨个没完。
+
+### 🚁 与侯爵约布斯特的对话
+
+He got held up.  
+他被耽搁了。
+
+By the time we finally arrived at Trotsky, he'd already **long since** made a deal with Sigismund.  
+当我们最终到达特罗斯基时，他**很久以前**已与西吉斯蒙德达成了协议。
+
+Everything went to hell in the end, and we ended up in a dungeon, where we started.  
+最终一切都搞砸了，我们最终被关进了地牢，回到了起点。
+
+I've heard of him before, and of his **unconventional** ways of supporting our king.  
+我以前听过过他，以及他**非常规的**方式来支持我们的国王。
+
+It complicates the circumstances. We cross swords.  
+这让情况变得复杂了。我们交锋过。  
+Can only thank God we didn't kill each other.  
+只能感谢上帝我们没有杀死对方。
+
+He was always quite **pigheaded**.  
+他总是很**固执/愚蠢**。
+
+The hell did you get up to?  
+你到底在搞什么鬼？  
+Things went wrong right from the beginning.  
+事情从一开始就出了问题。
+
+That must have been a **peculiar** feeling for Lord Capon.  
+这对卡蓬勋爵来说一定是一种**奇特的**感觉。
+
+I didn't intend **in the least** to make such an **insinuation**.  
+我**一点也不**打算做这样的**暗讽**。
+
+But you have nothing to be ashamed of. I think it's stupid to expect anyone to hold their tongue under torture.  
+但你没什么好羞愧的。我觉得这很愚蠢，期望任何人在酷刑下保持沉默。
+
+I'm sure someone has him trapped.  
+我肯定有人把他困住了。
