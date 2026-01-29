@@ -255,3 +255,11 @@ But you have nothing to be ashamed of. I think it's stupid to expect anyone to h
 
 I'm sure someone has him trapped.  
 我肯定有人把他困住了。
+
+## 📌 20260129
+
+compensation for loss：关于损失的赔偿
+
+salary and bonus：工资和奖金
+
+benefits and perks：福利待遇
