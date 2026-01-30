@@ -94,12 +94,14 @@ using faxes; a ten-step process to confirm that the yellow, **waxy citrus fruit*
     即便是现在，自助结账机也有它们非常具体的烦人之处一买酒时要进行年龄验证，尽管你是记得如何使用传真机的老人；
     要经过十个步骤才能确认你放进篮子里的那颗黄色、**蜡质柑橘类水果**是柠檬。
 
-A cashier at an assisted lane can handle these **thorny** problems without having to think;
+A cashier at an assisted _lane_ can handle these _thorny_ problems without having to think;
 skilled ones can also scan items much faster than customers.
 
 ??? note "翻译&笔记"
 
     人工通道的收银员无需思考就能处理这些棘手问题，熟练的收银员扫描商品的速度也比顾客快得多。
+    
+    lane：乡间小路；线路；车道；泳道
 
     thorny：带刺的；棘手的
 
@@ -109,18 +111,193 @@ Why then are self-service machines a _fixture_ in most retailers?
 
     那么为什么自助服务机成为大多数零售商的*固定配置*呢？
 
-The big reason is economic: the ratio of staff to customers is much lower for self-checkout machines
+The big reason is economic: **the ratio of staff to customers** is much lower for self-checkout machines
 than it is on assisted lanes.
 
-主要原因是经济方面的：自助结账机与人工通道相比，员工与顾客的比例要低得多。
+??? note "翻译&笔记"
 
+    主要原因是经济方面的：自助结账机与人工通道相比，员工与顾客的比例要低得多。
 
+    The ratio of A to B has reached 3 to 7.
+    A与B的比例达到了3:7
 
+**The lure of** cost savings in a highly competitive industry gave supermarkets **a strong incentive to**
+stick with them even as customers **griped at doing something new**.
 
+??? note "翻译&笔记"
 
+    在竞争激烈的零售行业中，节约成本的诱惑让超市有强烈的动力坚持使用这些机器，即便顾客对尝试新事物有所抱怨。
+    
+    the lure of：...的诱惑/吸引力
+    
+    a strong incentive to：强烈的动力/动机
 
+    griped at doing something：对某事抱怨  
+    griped：v.抱怨；使难受  
+    gripped：vt.紧咬，紧握，抓住（`grip`的过去式与过去分词）
 
+Persisting with them _meant_ that shoppers became more used to self-checkout, and gave the technology a chance to improve.
+It will, however, be a long time before assisted lanes disappear entirely.
 
+??? note "翻译&笔记"
 
+    坚持使用自助结账意味着购物者逐渐适应了这种模式，同时也为技术改进提供了机会。
+    然而，人工通道完全消失仍需很长时间。
 
+    meant：`mean`的过去式和过去分词
 
+When **queues build up** and stores need to speed up transactions, human cashiers are better.
+
+??? note "翻译&笔记"
+
+    当队伍排起长龙，商店需要加快交易速度时，人工收银员更胜一筹。
+    
+    build up：逐渐发展；积累
+
+And customers' preferences vary greatly.
+Older folk still tend to like cashiers; younger ones are less keen.
+
+??? note "翻译&笔记"
+
+    而且顾客的偏好差异很大。
+    老年人往往仍偏爱人工收银，年轻人则不那么热衷。
+
+Chatty types might want a natter; introverts would prefer an acid bath.
+
+??? note "翻译&笔记"
+
+    话多的人可能想闲聊几句，内向的人宁愿跳进硫酸浴缸也不愿开口。
+
+Levino Perrucci of NCR-Voyix, an American company which develops self-checkout technology, 
+says that users fall into several categories.
+
+??? note "翻译&笔记"
+
+    开发自助结账技术的美国公司NCR-Voyix的莱维诺·佩鲁齐表示，用户分为几类。
+
+"Tech-enabled shoppers" will seek out the whizziest checkout, for example; "necessity shoppers" will pick the option that
+enables them to get in and out of the store as quickly as possible.
+
+??? note "翻译&笔记"
+
+    例如，“科技赋能型购物者”会寻找最炫酷先进的结账方式，而“刚需型购物者”则会选择能让他们最快进出商店的选项。
+
+Most supermarkets must cater to them all.
+
+??? note "翻译&笔记"
+
+    大多数超市必须迎合所有人的需求。
+
+Self-checkout machines are themselves designed to negotiate several trade-offs.
+
+??? note "翻译&笔记"
+
+    自助结账机本身就是为了平衡多种取舍而设计的。
+
+Employers want lower costs.
+
+??? note "翻译&笔记"
+
+    雇主希望降低成本。
+
+But they also need to provide a decent customer experience and control "shrink", the name that retailers give to 
+lost stock when shoppers-inadvertently or maliciously-fail to pay for things.
+
+??? note "翻译&笔记"
+
+    但是也需要提供良好的客户体验并控制“损耗”，这是零售商对顾客无意或恶意未付款而造成的库存损失的说法。
+
+These goals do not line up neatly.
+
+??? note "翻译&笔记"
+
+    这些目标并不完全一致。
+
+Employing fewer cashiers cuts costs,for example,but also opens the door to more shrink.
+
+??? note "翻译&笔记"
+
+    例如，减少收银员数量可以降低成本，但是也可能导致更多商品损耗。
+
+So lots of self-checkout machines have weight-sensitive surfaces where you have to place each scanned item before 
+proceeding to the next one; some retailers install exit gates that only open for people who have paid.
+
+??? note "翻译&笔记"
+
+    所以许多自助结账机配备了重量感应台面，顾客必须将每件扫描后的商品放在台面上才能继续扫描下一件，部分零售商还安装了出口闸机，
+    只有完成支付的顾客才能通过。
+
+Measures like these deter shoplifters, but at the cost of slowing down customers.
+
+??? note "翻译&笔记"
+
+    此类措施虽能震慑顺手牵羊的人，却以拖慢顾客购物速度为代价。
+
+These same trade-offs explain why checkout nirvana is so difficult to achieve.
+
+??? note "翻译&笔记"
+
+    同样的权衡解释了为什么结账的完美境界如此难以实现。
+
+In theory,Amazon Go, a sensor-packed store where customers can just walk out without going anywhere near a checkout,
+offers a perfect customer experience and a way to reduce shrink to nothing.
+
+??? note "翻译&笔记"
+
+    理论上，亚马逊无人超市配备了众多传感器，顾客无需靠近收银台即可直接离开，这种模式提供了完美的购物体验，同时还能将商品损耗降至零。
+
+In practice, industry observers say that it is extremely expensive to track every item in a shop digitally
+(and consumers are still required to learn strange new behaviour).
+
+??? note "翻译&笔记"
+
+    实际上，行业观察人士指出，对商店内每件商品进行数字化追踪的成本极其高昂（而且消费者仍需学习陌生的新的行为方式)。
+
+RFID tags do work beautifully for higher-margin products like clothes, but the sums don't add up in the
+cut-throat world of cheap groceries.
+
+??? note "翻译&笔记"
+
+    射频识别标签在服装等高利润产品上的确效果显著，但是在竞争激烈的平价杂货行业，这笔账并不划算。
+
+Real-world constraints mean that technologies often take small steps rather than great leaps.
+
+??? note "翻译&笔记"
+
+    现实世界的限制意味着技术发展往往只能小步前进，而非大步跨越。
+
+Self-checkout technology is no different.
+
+??? note "翻译&笔记"
+
+    自助结账技术也不例外。
+
+In the offices of NCR-Voyix in Atlanta, Mr Perrucci's team is working on machines with overhead cameras which 
+use AI to identify items without the need for scanning.
+
+??? note "翻译&笔记"
+
+    在亚特兰大NCR-Voyix办公室里，佩鲁奇的团队正在研发配备顶部摄像头的机器，这些机器利用人工智能识别商品，无需扫描。
+
+These machines can still get confused if items are piled on top of each other.
+
+??? note "翻译&笔记"
+
+    如果商品堆叠在一起，这些机器仍可能识别混乱。
+
+But they fit into existing consumer behaviour.
+
+??? note "翻译&笔记"
+
+    但是它们能融入现有消费者的行为。
+
+They should also be better at identifying that bloody lemon.
+
+??? note "翻译&笔记"
+
+    而且应该也更擅长识别那个烦人的柠檬。
+
+## 📌 关于趋势变化的表达
+
+And customers' preferences vary greatly.
+Older folk still tend to like cashiers; younger ones are less keen.
