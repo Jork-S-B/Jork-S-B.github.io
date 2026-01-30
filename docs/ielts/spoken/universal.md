@@ -9,7 +9,7 @@
 
 ### 🚁 related phrases
 
-* chatty, 健谈的
+* chatty, 健谈的，爱说话的
 * expressive, 善于表达的
 * a great storyteller
 * a great conversationalist

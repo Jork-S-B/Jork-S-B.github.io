@@ -223,7 +223,7 @@ the name that retailers give to lost _stock_ when shoppers - inadvertently or ma
     但也需要提供良好的客户体验并控制“损耗”，这是零售商对顾客无意或恶意未付款而造成的库存损失的说法。
     
     decent：adj.得体的；正派的  
-    descend：v.下降
+    descent：n.下降
 
     shrink：v.缩小；缩水；畏缩；损耗；n.畏缩  
     shrink from：回避，面对..畏缩  
