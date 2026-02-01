@@ -256,10 +256,25 @@ But you have nothing to be ashamed of. I think it's stupid to expect anyone to h
 I'm sure someone has him trapped.  
 我肯定有人把他困住了。
 
-## 📌 20260129
+## 📌 20260201
 
 compensation for loss：关于损失的赔偿
 
 salary and bonus：工资和奖金
 
 benefits and perks：福利待遇
+
+I'll give you that.这点我承认（表示承认部分内容）
+
+drifted apart：渐行渐远  
+drift：v.飘移；漂流
+
+that caught me off guard：这让我措手不及
+
+that really messed me up  
+mess up：搞砸了
+
+typo free：没有错别字；没有排版错误
+
+writing one from scratch：从头开始写一个  
+from scratch：从零开始；白手起家
