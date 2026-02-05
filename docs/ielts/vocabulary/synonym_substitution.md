@@ -52,7 +52,7 @@
 ## 📌 同事
 
 * colleague
-* associate, n.同事；准学士；副手；联想 v.联想，联系 adj.福的；联合的
+* associate, n.同事；准学士；副手；联想 v.联想，联系 adj.副的；联合的
 * fellow
 
 ## 📌 充足的，足够的

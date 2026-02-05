@@ -277,3 +277,16 @@ In Hong Kong, rental yields **have risen from below 2.5% (four years ago) to 3.5
 * a much steeper fall in, ...的更大幅下跌
 * a sudden decline in, ...的突然下降
 * a protracted surge in, ...的长期飙升
+
+## 📌 summary
+
+Is it better to rent or buy? The columnist argues from the outset that the answer largely hinges on long-term interest rates.
+
+First, the current situation is illustrated with specific economic data. For instance, the monthly cost of homeownership has risen,
+placing the rental market in a favourable position. Although renters have lost ground in some markets like Hong Kong — 
+where rates are tied to short-term interest rates — in most metropolises, renting and investing the would-be mortgage payments 
+in stocks and bonds has yielded higher returns over time.
+
+Moreover, renter-friendly regulations have swept the West, which will tip the balance further in favour of tenants.
+
+In conclusion, renting remains the better option for the cool-headed investor.
