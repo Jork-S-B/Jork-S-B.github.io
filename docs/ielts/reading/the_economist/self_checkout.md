@@ -353,3 +353,45 @@ Older folk still tend to like cashiers; younger ones **are less keen**.
 Users fall into several categories.
 
 These goals do not line up neatly.
+
+## 📌 summary
+
+??? note "原版"
+
+    The article mainly talking about self-checkout machine, which is kind of imperfect technology spread widely.
+
+    Before self-checkout came self-service, which allow customers get what they want instead of asking a clerk.
+
+    All of these two new technology are facing the problem that forcing people to adapt or change their behavior.
+    
+    Even so, self-serve machines are a fixture in most retailers.
+
+    The big reason is economic.
+
+    Employer want lower cost, but they need to provide a great, decent custom experience.
+    
+    It will be a long time before assisted lanes disappear entirely.
+
+    Meanwhile, it will give the technology a chance to improve.
+
+    More and more retailer may introduce advanced technology to negotiate several trade-offs.
+
+    They may fit into existing consumer behavior.
+
+    In a word, real world constrains means that technologies often takes more steps rather than great leaps.
+
+    句子太独立，需要衔接词、过渡词链接。  
+    应避免使用原文句子，尽量同义替换进行概括。
+
+The article discusses the widespread adoption of self-checkout machines, illustrating how imperfect technologies can spread. 
+It traces the evolution from early self-service models, like Piggly Wiggly, to modern self-checkout systems.
+
+Despite significant drawbacks — such as forcing behavioral change, causing customer irritation, and potentially increasing 
+shoplifting — these machines have become a fixture in retail. The primary driver is economic: they dramatically lower 
+the staff-to-customer ratio. However, their design involves key trade-offs between reducing costs, maintaining a decent 
+customer experience, and controlling inventory loss ("shrink").
+
+The article concludes that due to real-world constraints, technological progress in this field is incremental. 
+While advanced solutions like Amazon Go or AI-powered cameras represent improvements, they should fit into existing consumer behavior
+and remain cost-effective. Therefore, fully assisted lanes will persist for a long time, and change will happen through 
+small steps rather than great leaps.
