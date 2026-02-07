@@ -383,15 +383,15 @@ These goals do not line up neatly.
     句子太独立，需要衔接词、过渡词链接。  
     应避免使用原文句子，尽量同义替换进行概括。
 
-The article discusses the widespread adoption of self-checkout machines, illustrating how imperfect technologies can spread. 
-It traces the evolution from early self-service models, like Piggly Wiggly, to modern self-checkout systems.
+The article discusses **the widespread adoption of** self-checkout machines, illustrating how imperfect technologies can spread. 
+It **traces the evolution from** early self-service models, like Piggly Wiggly, to modern self-checkout systems.
 
-Despite significant drawbacks — such as forcing behavioral change, causing customer irritation, and potentially increasing 
-shoplifting — these machines have become a fixture in retail. The primary driver is economic: they dramatically lower 
+Despite significant _drawbacks_ — such as forcing behavioral change, causing customer irritation, and potentially increasing 
+shoplifting — these machines have become a fixture in retail. **The primary driver** is economic: they dramatically lower 
 the staff-to-customer ratio. However, their design involves key trade-offs between reducing costs, maintaining a decent 
 customer experience, and controlling inventory loss ("shrink").
 
-The article concludes that due to real-world constraints, technological progress in this field is incremental. 
+The article concludes that due to real-world constraints, technological progress in this field is incremental（递增的）. 
 While advanced solutions like Amazon Go or AI-powered cameras represent improvements, they should fit into existing consumer behavior
-and remain cost-effective. Therefore, fully assisted lanes will persist for a long time, and change will happen through 
+and remain cost-effective. Therefore, assisted lanes will persist for a long time, and change will happen through 
 small steps rather than great leaps.

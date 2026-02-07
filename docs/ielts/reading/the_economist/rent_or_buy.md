@@ -303,10 +303,10 @@ In Hong Kong, rental yields **have risen from below 2.5% (four years ago) to 3.5
     确保句子完整性，完整的主谓结构。  
     注意语法细节和术语准确性。
 
-Is it better to rent or buy? The columnist argues from the outset that the answer largely hinges on long-term interest rates.
+Is it better to rent or buy? The columnist **argues from the outset** that the answer largely hinges on long-term interest rates.
 
 First, the current situation is illustrated with specific economic data. For instance, the monthly cost of homeownership has risen,
-placing the rental market in a favourable position. Although renters have lost ground in some markets like Hong Kong — 
+**placing the rental market in a favourable position**. Although renters have lost ground in some markets like Hong Kong — 
 where rates are tied to short-term interest rates — in most metropolises, renting and investing the would-be mortgage payments 
 in stocks and bonds has yielded higher returns over time.
 
