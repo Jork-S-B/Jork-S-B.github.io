@@ -155,12 +155,13 @@ nav:
           - 经济学人:
               - 租房还是买房: ielts/reading/the_economist/rent_or_buy.md
               - 自助结账机寓言: ielts/reading/the_economist/self_checkout.md
+              - 人工智能对入门级工作的影响: ielts/reading/the_economist/ai_to_entry_level_job.md
           - 剑桥雅思真题:
               - 剑雅7-T4-P3: ielts/reading/authentic/C7-T4-P3.md
               - 剑雅11-T3-P3: ielts/reading/authentic/C11-T3-P3.md
               - 剑雅12-T2-P2: ielts/reading/authentic/C12-T2-P2.md
           - 时事:
-              - 中国禁止隐藏式车门把手: ielts/reading/current_affair/ban_hidden_door_handles.md
+              - 中国禁止隐藏式车门把手 全球首例: ielts/reading/current_affair/ban_hidden_door_handles.md
       - spoken:
           - universal topic: ielts/spoken/universal.md
           - topic:

@@ -54,6 +54,7 @@ mechanism, n.机械装置；机械论
 * bibliography, n.参考文献 (philosopher, 目录学家)
 * hygiene, n.卫生学；_hygiene hypothesis, 卫生假说_
 * linguistics, n.语言学 (linguist, 语言学家)
+* geometry, n.几何学 (geometrist, 几何学家)
 
 ## 📌 kinds of isms
 
