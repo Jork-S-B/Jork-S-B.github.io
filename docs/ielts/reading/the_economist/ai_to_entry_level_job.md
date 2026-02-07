@@ -134,6 +134,7 @@ In fact, managers have three very good reasons not to _slash_ entry-level jobs.
 
     事实上，管理者有不*削减*初级岗位的三个充分理由。
     
+    slash：v.（用利器）砍，劈；大幅削减；抨击；n.砍，劈；（长而窄的）伤口；斜杠  
     slash prices：大幅降价
 
 First, no one knows how AI is going to affect work **over the longer term**.
@@ -161,7 +162,7 @@ Third, although _attrition_ may seem like **the least disruptive way** to
     第三，虽然*自然减员*似乎是削减员工数量的**破坏性最小的方式**，但是这并非培养具备AI素养人才的最佳途径。
     （注：自然减员即员工退休或离职后不招人进行替补。)
     
-    attrition：n.摩损，削弱；自然减员
+    attrition：n.摩损，削弱；自然减员，人员流失
     
     破坏性的_同义替换  
     disruptive：引起混乱的  
@@ -216,33 +217,42 @@ higher-order things like talking to clients or negotiating.
     但是当AI开始承担大量乏味工作后，*实习生*就能将更多时间投入更高层级的事务，例如与客户沟通或参与谈判。
 
 Shoosmiths is considering expanding the _rotations_ that trainees _undertake_; 
-a few months in its innovation or legal-technology teams might well be good preparation for bigger changes ahead.
+a few months in its _innovation_ or legal-technology teams might well be good preparation **for bigger changes ahead**.
 
 ??? note "翻译&笔记"
 
-舒斯密斯律师事务所正考虑扩大实习生轮岗的工作范围，在创新或法律科技团队待几个月或许能为未来的更大变化做好充分准备。
+    舒斯密斯律师事务所正考虑扩大实习生轮岗的工作范围，在*创新*或法律科技团队待几个月或许能**为未来的更大变化**做好充分准备。
+    
+    expand the rotations that trainees undertake：扩大实习生轮岗的工作范围  
+    rotation：n.旋转；循环；轮岗  
+    undertake：v.承担；从事
 
-expand the rotations that trainees undertake：扩大实习生轮岗的工作范围  
-rotation：n.旋转；循环；轮岗  
-undertake：v.承担；从事
+Bosses are under pressure to turn AI _adoption_ into profits.
 
-Bosses are under pressure to turn AI adoption into profits.
-
-Many will be tempted to chop entry-level jobs in response.
+Many will be tempted to _chop_ entry-level jobs **in response**.
 
 The better option would be to rethink what junior workers do.
 
 ??? note "翻译&笔记"
 
-老板们正面临将AI应用转化为利润的压力。
+    老板们正面临将AI*应用*转化为利润的压力。
+    
+    许多人倾向于将*削减*入门级职位**作为应对之策**。
+    
+    更好的选择是重新思考初级员工的工作内容。
 
-许多人倾向于将削减入门级职位作为应对之策。
-
-更好的选择是重新思考初级员工的工作内容。
+    chop：v.剁，劈砍；大幅削减；强行废止；n.（羊或猪）排；剁，劈砍；（人或动物）嘴周围的地方；动物饲料  
+    pork chop：猪排  
+    pork chop bun：猪扒包  
+    lamb chop：羊排
 
 ## 📌 关于趋势变化的表达
 
 found evidence of big drops in employment
+
+大幅削减：slash、chop
+
+削减：cut back、reduce
 
 ## 📌 关于数据比较的表达
 
