@@ -59,7 +59,7 @@ What China bans, more countries may follow.
 
     The report illustrates that China is setting a regulation about forbid hidden door handles on new electric vehicles by 2027.
     
-    This design inspired by Tesla（碎片化的短语属于是）, is suspected that the car door meight not have been opened for escape due to 
+    This design inspired by Tesla（碎片化的短语说是）, is suspected that the car door meight not have been opened for escape due to 
     power failure in accidents.
     
     But there's no related rules for those millions of cars that have already used hidden door handles.
@@ -79,13 +79,13 @@ As the world's largest car market, China's _pioneering_ ban is likely to influen
 
 ??? note
 
-outline：n.v.轮廓，外形；梗概
-
-with full compliance required：要求完全遵从
-
-under scrutiny：受到审查，受到密切关注
-
-retroactively：adv.追溯地
-
-pioneering：adj.首创的，先驱的；v.做先锋；倡导；开路
-
+    outline：n.v.轮廓，外形；梗概
+    
+    with full compliance required：要求完全遵从
+    
+    under scrutiny：受到审查，受到密切关注
+    
+    retroactively：adv.追溯地
+    
+    pioneering：adj.首创的，先驱的；v.做先锋；倡导；开路
+    
