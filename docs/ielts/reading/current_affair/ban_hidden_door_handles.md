@@ -19,9 +19,9 @@ New car models **applying for Chinese approval** must **meet** these new door ha
     
     符合，遵守_同义替换  
     * meet：v.结识；会晤；相符，符合  
-    * in accord with：Salary will be in accord with qualifications, beginning at a minimum of $2,000 per month.
-    * conform to
-    * comply with
+    * in accord with：Salary will be in accord with qualifications, beginning at a minimum of $2,000 per month.  
+    * conform to  
+    * comply with  
 
 That means real mechanical door releases, inside, outside, with no power required.
 
@@ -76,6 +76,8 @@ where power fails, the doors may not open, potentially trapping occupants.
 
 However, the new rule does not apply _retroactively_ to the millions of cars already on the road with such handles. 
 As the world's largest car market, China's _pioneering_ ban is likely to influence regulations in other countries.
+
+??? note
 
 outline：n.v.轮廓，外形；梗概
 
