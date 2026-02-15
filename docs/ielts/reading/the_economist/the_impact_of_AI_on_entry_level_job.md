@@ -152,7 +152,7 @@ but not having **a pipeline of future talent** can be even riskier.
     
     未来人才储备_同义替换  
     a pipeline of future talent  
-    future talent reserve
+    future talent reserve，属于直译，不地道
 
 Third, although _attrition_ may seem like **the least disruptive way** to
 **cut back** on employees, it is not the best way to acquire an AI-literate workforce.
@@ -257,3 +257,55 @@ found evidence of big drops in employment
 ## 📌 关于数据比较的表达
 
 According to OpenAI, 18-to 29-year-olds are more than twice as likely to use ChatGPT at work as those over 50.
+
+## 📌 summary
+
+??? note "原版"
+
+    The article begins with company hierarchy, the first of it is classic pyramid - many people at the bottom, 
+    simultaneously narrow towards the top gradually.
+    
+    As AI shows up, some reckon entry-level job will cut back, which means the shape of organisation might transform into 
+    the obelisk or even the diamond.
+    
+    There is no conclusion right now. But for entrepreneurs, here's some reasons not to reduce entry-level job.
+    
+    First, we don't know how AI will affect work over long-term.
+    
+    Second, enterprise always under the risk of lacking future talent reserve.
+    
+    Third, it's not a good way to foster an ai-literate workforce.
+    
+    In conclusion, to company managements, perhaps the better option may be to rethink what junior worker do rather than 
+    unthinkingly slash them.
+    
+    1.the first of it 表达生硬且不准确  
+    2.simultaneously（同时）在此处逻辑不通  
+    3.shows up 过于口语化  
+    4.organisation 英式拼写  
+    5.under the risk of 搭配不自然，常用 run the risk of  
+    6.talent reserve 是直译，应使用原文短语：pipeline of future talent  
+    7.foster（培养）用词稍偏，原文强调“获取”(acquire)  
+    8.unthinkingly slash them，them 指代不明确
+
+The article begins by describing the classic pyramid-shaped corporate hierarchy, which is wide at the base with many 
+entry-level workers and narrows toward the top. It suggests that **the advent of** AI might lead to significant cuts in 
+these junior roles, potentially transforming the organizational shape into an obelisk or, more worryingly, 
+a diamond — narrow at both the top and bottom but wider in the middle.
+
+While current data on AI's impact **remains inconclusive**, the article outlines several reasons for entrepreneurs not to 
+slash entry-level jobs **hastily**:  
+1)the long-term effects of AI are still unknown;  
+2)companies risk **depleting** their pipeline of future talent;  
+3)eliminating junior positions is not an effective way to build an AI-literate workforce.
+
+In conclusion, for management, the better option is likely to rethink the roles of junior workers rather than to eliminate 
+their positions thoughtlessly.
+
+??? note
+
+    the advent of：...的出现/问世
+    
+    hastily：adv.匆忙地
+    
+    deplete：v.大量减少；耗尽
