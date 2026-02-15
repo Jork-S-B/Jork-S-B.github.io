@@ -516,3 +516,45 @@ It is a critical feature that allows learning to stick, allows us to **build exp
 Thank you so much for listening to me, and good luck with your AI journey.
 
 ## 📌 summary
+
+??? note "原版"
+    
+    The speech begins by describing the phenomenon that adolescents in the UK are using AI to avoid learning, 
+    rather than helping them to learn. .It suggests that the significant outcome need to go through productive struggle  
+    （that 引导的从句缺少谓语动词；significant outcome 表意模糊，原文强调的是“学习成果”或“真正的掌握”；）
+    
+    Then the speech outlines several features of how to learn and build expertise:
+    
+    1.Retrieval（检索） - The experiment illustrates that rapidly recalling material you have read once is more effective than 
+    reading it over and over again.
+    
+    2.Spacing（分段） - Rather than learn something all in one go, active recall and retrieval over time are essential processes.
+    
+    3.Generation（产出） - Do some practice and generate the answers by yourself. 
+    You may get them wrong initially but remain impressive memory trace and remember more in the end.
+    
+    4.Reflection（反思） - Asking yourself: What's the target? How to get the target and the gap to the target.
+    
+    In the end, the speech explain the relation between AI and human beings with giving some examples. 
+    In conclusion, AI should be used to complement, rather than replacing human thinking.
+
+The speech begins by describing the phenomenon **of** adolescents in the UK using AI to avoid learning, rather than 
+using it to help them learn. **It argues that** meaningful learning outcomes require a "productive struggle."
+
+The speaker then outlines four key techniques for effective learning and building expertise:
+
+1.Retrieval — Experiments show that rapidly recalling material after reading it once is more effective than reading it repeatedly.
+
+2.Spacing — Rather than cramming all at once, active recall spread over time strengthens memory.
+
+3.Generation — Attempting to generate answers yourself, even if initially wrong, creates a stronger memory trace.
+
+4.Reflection — Asking yourself: What is my goal? What are the gaps? What do I need to do next?
+
+Finally, the speech explains the relationship between AI and human cognition, using examples such as GPS and scientific breakthroughs. 
+It concludes that AI should be used to complement, not replace, human thinking.
+
+??? note
+    
+    It argues that：它认为  
+    It suggests that：它表明
