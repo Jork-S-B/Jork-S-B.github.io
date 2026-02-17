@@ -330,10 +330,10 @@ that goal, what do I need to do? Those students improve their outcomes.
 
 ??? note "翻译&笔记"
 
-第四是**反思**。当我们反思自己的学习，我们会获得来自三个方面的结构化反馈：
-
-我现在的学习情况如何？我的学习目标是什么，还有哪些差距？要实现目标，还需要做什么？
-这些学生都提高了他们的成绩。
+    第四是**反思**。当我们反思自己的学习，我们会获得来自三个方面的结构化反馈：
+    
+    我现在的学习情况如何？我的学习目标是什么，还有哪些差距？要实现目标，还需要做什么？
+    这些学生都提高了他们的成绩。
 
 Now you'll find that these four techniques have something in common. They are harder.
 They all involve a productive struggle.
