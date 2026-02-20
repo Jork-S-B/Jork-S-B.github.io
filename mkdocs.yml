@@ -88,6 +88,7 @@ nav:
       - Mysql: sql/mysql_notes.md
       - Redis: sql/redis_notes.md
       - ElasticSearch: other/elasticsearch.md
+      - PostgreSQL: sql/pg/readme.md
   - Shell:
       - 复习: shell/review.md
       - git: other/git_notes.md
