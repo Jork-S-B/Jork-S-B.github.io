@@ -20,7 +20,7 @@
       
       
       <link rel="icon" href="../../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.1">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.2">
     
     
       
@@ -3390,6 +3390,34 @@
 
               
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sql/pg/readme/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    PostgreSQL
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
@@ -5483,6 +5511,17 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        📌 多模态
+      
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -6680,6 +6719,17 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        📌 多模态
+      
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -6722,15 +6772,25 @@ token是单个数字，可能无法准确表达其原意，因此向量化为多
 <li>结合多种模型：包括LLM（大语言模型）、图像识别模型、OCR（光学字符识别）等，提取结构化数据。</li>
 <li>调用外部服务，请求缺失数据，保持上下文持久化。</li>
 </ol>
-<p>MCP-model context protocol，是智能体中，执行者和工具、脚本间调用的通信协议。</p>
+<p>MCP-model context protocol，是智能体中，执行者和工具、脚本（Skill）间调用的通信协议。</p>
 <p>Function Calling，将用户提示词中的自然语言标准化为某种统一的格式如json，还可以根据语义调用对应的外部工具。即在对话中返回一个结构化的函数调用请求。</p>
 <h2 id="skill">📌 Skill</h2>
+<p>定义：在智能体框架中，Skill通常定义 Agent 拥有的能力集合。</p>
 <p>1.提示词：ai的人设，系统提示词一般优先级高于用户提示词</p>
 <p>2.Command：提示词太长时，所以用md文件存放，通过Command调用对应的提示词。</p>
-<p>3.Metadata元数据：文本太多时，花费token多，按场景拆分+md开头写提示信息（即元数据）；功能类似索引。</p>
+<p>3.Metadata元数据：文本太多时，花费token多，按场景拆分+md开头写提示信息（即元数据）；功能类似索引，以减少token消耗。</p>
 <p>4.References：根据不同的用途，建立对应的路由进行按需调用，也称为渐进式披露。</p>
-<p>5.Skill：包括References+Scripts，调用不同的提示词及对应的脚本。</p>
+<p>5.Skill：包括References+Scripts，根据上下文，调用不同的提示词及对应的脚本（甚至让大模型自己写脚本），实现动态读取提示词。</p>
 <p>Skill的功能类似Workflow（常见工具：n8n）的逻辑编排，但不同的是Skills由大模型驱动，更加灵活。</p>
+<h2 id="_1">📌 多模态</h2>
+<p>指的是 AI 模型能够理解和处理多种不同类型（模态）的信息，并能在它们之间建立联系。</p>
+<p>常见的模态包括：</p>
+<ul>
+<li>文本（语言、文字）</li>
+<li>图像（照片、图表、绘画）</li>
+<li>音频（语音、音乐、环境音）</li>
+<li>视频（动态画面与声音的结合）</li>
+</ul>
 
 
 
@@ -6751,7 +6811,7 @@ token是单个数字，可能无法准确表达其原意，因此向量化为多
     <span class="md-icon" title="最后更新">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"></path></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime" title="2026年2月12日 13:41:32 CST">2026-02-12 13:41:32</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime" title="2026年2月19日 21:46:26 CST">2026-02-19 21:46:26</span>
   </span>
 
     
