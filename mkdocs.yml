@@ -147,6 +147,7 @@ nav:
       - 区块链: other/blockchain.md
       - 深度学习: other/deep_learning.md
       - ai的各种名词: other/ai.md
+      - CICD: other/cicd.md
   - ielts:
       - vocabulary:
           - Synonym substitution: ielts/vocabulary/synonym_substitution.md
