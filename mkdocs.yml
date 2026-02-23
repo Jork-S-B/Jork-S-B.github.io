@@ -89,6 +89,7 @@ nav:
       - Redis: sql/redis_notes.md
       - ElasticSearch: other/elasticsearch.md
       - PostgreSQL: sql/pg/readme.md
+      - 数仓和数据中台: sql/data.md
   - Shell:
       - 复习: shell/review.md
       - git: other/git_notes.md
