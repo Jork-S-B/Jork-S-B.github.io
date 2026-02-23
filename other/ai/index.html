@@ -3418,6 +3418,34 @@
 
               
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sql/data/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    数仓和数据中台
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
@@ -5515,10 +5543,38 @@
   <a href="#_1" class="md-nav__link">
     <span class="md-ellipsis">
       
-        📌 多模态
+        📌 其他
       
     </span>
   </a>
+  
+    <nav class="md-nav" aria-label="📌 其他">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🚁 多模态
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#llm_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🚁 llm参数
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -6751,10 +6807,38 @@
   <a href="#_1" class="md-nav__link">
     <span class="md-ellipsis">
       
-        📌 多模态
+        📌 其他
       
     </span>
   </a>
+  
+    <nav class="md-nav" aria-label="📌 其他">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🚁 多模态
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#llm_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🚁 llm参数
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -6810,7 +6894,8 @@ token是单个数字，可能无法准确表达其原意，因此向量化为多
 <p>4.References：根据不同的用途，建立对应的路由进行按需调用，也称为渐进式披露。</p>
 <p>5.Skill：包括References+Scripts，根据上下文，调用不同的提示词及对应的脚本（甚至让大模型自己写脚本），实现动态读取提示词。</p>
 <p>Skill的功能类似Workflow（常见工具：n8n）的逻辑编排，但不同的是Skills由大模型驱动，更加灵活。</p>
-<h2 id="_1">📌 多模态</h2>
+<h2 id="_1">📌 其他</h2>
+<h3 id="_2">🚁 多模态</h3>
 <p>指的是 AI 模型能够理解和处理多种不同类型（模态）的信息，并能在它们之间建立联系。</p>
 <p>常见的模态包括：</p>
 <ul>
@@ -6819,6 +6904,24 @@ token是单个数字，可能无法准确表达其原意，因此向量化为多
 <li>音频（语音、音乐、环境音）</li>
 <li>视频（动态画面与声音的结合）</li>
 </ul>
+<h3 id="llm_1">🚁 llm参数</h3>
+<p>Temperature</p>
+<ul>
+<li>低温，严谨保守可预测，适合事实性回答如代码、翻译、数学题等。温度为0时，输出结果几乎相同。</li>
+<li>高温，创意多样性，适合创意协作、头脑风暴。</li>
+</ul>
+<p>Top_p   </p>
+<ul>
+<li>低Top-p，模型只考虑概率最高、最集中的那极少一部分词汇，偏严谨保守。</li>
+<li>高Top-p，模型会考虑更多词汇，相当于把取值范围扩大。</li>
+</ul>
+<p>Top_k</p>
+<ul>
+<li>低Top-k，模型只从最高的10个词中选，回答很集中。</li>
+<li>高Top-k，模型从更多的词中选，多样性增加。</li>
+</ul>
+<p>参数与人设提示词的关系：前者相当于硬件参数，改变数学概率；后者相当于软件参数，引导知识调用和风格模仿。</p>
+<p>可以先给人设再搭配参数调整。</p>
 
 
 
@@ -6839,7 +6942,7 @@ token是单个数字，可能无法准确表达其原意，因此向量化为多
     <span class="md-icon" title="最后更新">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"></path></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime" title="2026年2月19日 21:46:26 CST">2026-02-19 21:46:26</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime" title="2026年2月23日 20:47:37 CST">2026-02-23 20:47:37</span>
   </span>
 
     
