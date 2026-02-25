@@ -63,6 +63,8 @@ nav:
           - 爬虫入门笔记: python/other/scrapy_notes.md
           - 编程规范: python/other/coding_standard.md
           - 垃圾回收机制: python/other/garbage_collection.md
+          - 环境变量: python/other/env.md
+          - 项目管理工具: python/other/uv.md
   - Java:
       - Spring Boot:
           - 组件: java/springboot/basic.md
