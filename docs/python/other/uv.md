@@ -84,6 +84,9 @@ poetry、pdm、uv，底层实际还是使用pip、venv，但提供了更加用�
 === "使用uv"
 
 ```shell
+# 初始化项目，创建基本的项目结构，包括 pyproject.toml 文件。
+uv init
+
 # 确保已经有初始化的pyproject.toml
 # 添加依赖如flask
 uv add flask

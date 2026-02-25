@@ -2,7 +2,7 @@
 
 为现代web应用程序提供可靠的端到端测试。
 
-端到端: 用于验证整个应用程序从开始到结束的流程是否符合预期。
+端到端（e2e）: 用于验证整个应用程序从开始到结束的流程是否符合预期。
 
 其核心目标是模拟真实用户的操作行为，确保各个组件、系统模块、外部依赖（如数据库、API、第三方服务等）协同工作正常。
 
@@ -18,22 +18,29 @@
 
 ## 📌 快速使用
 
-pip install playwright
+=== "终端"
+    
+    ```shell
+    pip install playwright
+    
+    playwright install # 安装自带浏览器和ffmpeg
+    
+    ```
 
-playwright install # 安装自带浏览器和ffmpeg
+=== "demo"
 
-```python
-from playwright.sync_api import sync_playwright
-
-pw = sync_playwright().start()
-driver = pw.chromium.launch(headless=False)
-page = driver.new_page()
-page.goto("https://www.baidu.com")
-page.fill("input[name='wd']", "playwright")
-page.wait_for_timeout(2000)  # 强制暂停2秒
-page.wait_for_selector("#username")  # 等待元素就绪
-
-```
+    ```python
+    from playwright.sync_api import sync_playwright
+    
+    pw = sync_playwright().start()
+    driver = pw.chromium.launch(headless=False)
+    page = driver.new_page()
+    page.goto("https://www.baidu.com")
+    page.fill("input[name='wd']", "playwright")
+    page.wait_for_timeout(2000)  # 强制暂停2秒
+    page.wait_for_selector("#username")  # 等待元素就绪
+    
+    ```
 
 ## 📌 元素定位与操作
 
