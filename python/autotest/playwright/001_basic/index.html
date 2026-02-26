@@ -20,7 +20,7 @@
       
       
       <link rel="icon" href="../../../../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.2">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.3">
     
     
       
@@ -2712,6 +2712,62 @@
     
   
     垃圾回收机制
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../other/env/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    环境变量
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../other/uv/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    项目管理工具
   
 
     
@@ -7038,7 +7094,7 @@
 
 <h2 id="playwright">📌 Playwright</h2>
 <p>为现代web应用程序提供可靠的端到端测试。</p>
-<p>端到端: 用于验证整个应用程序从开始到结束的流程是否符合预期。</p>
+<p>端到端（e2e）: 用于验证整个应用程序从开始到结束的流程是否符合预期。</p>
 <p>其核心目标是模拟真实用户的操作行为，确保各个组件、系统模块、外部依赖（如数据库、API、第三方服务等）协同工作正常。</p>
 <h3 id="selenium">🚁 对比Selenium</h3>
 <table>
@@ -7078,8 +7134,15 @@
 </tbody>
 </table>
 <h2 id="_1">📌 快速使用</h2>
-<p>pip install playwright</p>
-<p>playwright install # 安装自带浏览器和ffmpeg</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="1:2"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio"><input id="__tabbed_1_2" name="__tabbed_1" type="radio"><div class="tabbed-labels"><label for="__tabbed_1_1">终端</label><label for="__tabbed_1_2">demo</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code>pip<span class="w"> </span>install<span class="w"> </span>playwright
+
+playwright<span class="w"> </span>install<span class="w"> </span><span class="c1"># 安装自带浏览器和ffmpeg</span>
+</code></pre></div>
+</div>
+<div class="tabbed-block">
 <div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">playwright.sync_api</span><span class="w"> </span><span class="kn">import</span> <span class="n">sync_playwright</span>
 
 <span class="n">pw</span> <span class="o">=</span> <span class="n">sync_playwright</span><span class="p">()</span><span class="o">.</span><span class="n">start</span><span class="p">()</span>
@@ -7090,6 +7153,9 @@
 <span class="n">page</span><span class="o">.</span><span class="n">wait_for_timeout</span><span class="p">(</span><span class="mi">2000</span><span class="p">)</span>  <span class="c1"># 强制暂停2秒</span>
 <span class="n">page</span><span class="o">.</span><span class="n">wait_for_selector</span><span class="p">(</span><span class="s2">"#username"</span><span class="p">)</span>  <span class="c1"># 等待元素就绪</span>
 </code></pre></div>
+</div>
+</div>
+</div>
 <h2 id="_2">📌 元素定位与操作</h2>
 <ul>
 <li>id</li>
@@ -7100,7 +7166,7 @@
 </ul>
 <p>query_selector: 找单个元素</p>
 <p>query_selector_all: 找一组元素，返回列表</p>
-<div class="tabbed-set tabbed-alternate" data-tabs="1:2"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio"><input id="__tabbed_1_2" name="__tabbed_1" type="radio"><div class="tabbed-labels"><label for="__tabbed_1_1">示例</label><label for="__tabbed_1_2">css选择器</label></div>
+<div class="tabbed-set tabbed-alternate" data-tabs="2:2"><input checked="checked" id="__tabbed_2_1" name="__tabbed_2" type="radio"><input id="__tabbed_2_2" name="__tabbed_2" type="radio"><div class="tabbed-labels"><label for="__tabbed_2_1">示例</label><label for="__tabbed_2_2">css选择器</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
 <div class="highlight"><pre><span></span><code><span class="c1"># id选择器，找不到元素时报错：TimeoutError: Timeout 3000ms exceeded.</span>
@@ -7205,7 +7271,7 @@
 <h3 id="_8">🚁 弹窗操作</h3>
 <p>监听弹窗，配合匿名函数对弹窗进行操作。</p>
 <p>page.on("dialog", lambda dialog: print(dialog.message()))</p>
-<div class="tabbed-set tabbed-alternate" data-tabs="2:2"><input checked="checked" id="__tabbed_2_1" name="__tabbed_2" type="radio"><input id="__tabbed_2_2" name="__tabbed_2" type="radio"><div class="tabbed-labels"><label for="__tabbed_2_1">弹窗示例</label><label for="__tabbed_2_2">相关的自动化代码</label></div>
+<div class="tabbed-set tabbed-alternate" data-tabs="3:2"><input checked="checked" id="__tabbed_3_1" name="__tabbed_3" type="radio"><input id="__tabbed_3_2" name="__tabbed_3" type="radio"><div class="tabbed-labels"><label for="__tabbed_3_1">弹窗示例</label><label for="__tabbed_3_2">相关的自动化代码</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
 <div class="highlight"><pre><span></span><code><span class="p">&lt;</span><span class="nt">button</span> <span class="na">onclick</span><span class="o">=</span><span class="s">"alert('hello world')"</span><span class="p">&gt;</span>点击出现弹窗<span class="p">&lt;/</span><span class="nt">button</span><span class="p">&gt;</span>
@@ -7242,7 +7308,7 @@
 <p>单文件或多文件上传非input类型时，则需要通过第三方库。</p>
 </li>
 </ul>
-<div class="tabbed-set tabbed-alternate" data-tabs="3:1"><input checked="checked" id="__tabbed_3_1" name="__tabbed_3" type="radio"><div class="tabbed-labels"><label for="__tabbed_3_1">文件上传-非input类型</label></div>
+<div class="tabbed-set tabbed-alternate" data-tabs="4:1"><input checked="checked" id="__tabbed_4_1" name="__tabbed_4" type="radio"><div class="tabbed-labels"><label for="__tabbed_4_1">文件上传-非input类型</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
 <div class="highlight"><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">pyautogui</span>
@@ -7301,7 +7367,7 @@
     <span class="md-icon" title="最后更新">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"></path></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime" title="2025年5月18日 21:57:58 CST">2025-05-18 21:57:58</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime" title="2026年2月25日 22:53:33 CST">2026-02-25 22:53:33</span>
   </span>
 
     
