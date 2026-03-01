@@ -251,7 +251,7 @@ is your introduction in 20 words.
 
 ## 📌 summary
 
-??? note "原版"`
+??? note "原版"
 
     The speech begins by describing a fail interview of the speaker, which she thought her qualifications was the most important
     thing in self-introduction at that period. After the failure, she did some research about the secret of introducing oneself
