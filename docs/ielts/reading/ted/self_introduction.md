@@ -294,7 +294,7 @@ She then presents five ways to introduce oneself concisely:
 
 1.Benefit – The formula is: "I help [my target audience] achieve [a benefit they desire]."
 
-2.Without – "I help [my target audience] achieve [their goal] without [any loss, increased expense or additional cost]." 
+2.Without – "I help [my target audience] achieve [their goal] without [any loss or additional cost]." 
 (The word "without" highlights what makes you unique.)
 
 3.Passion – "I'm passionate about [something I value] to achieve [something my target audience values]."
