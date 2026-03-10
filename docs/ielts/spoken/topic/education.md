@@ -30,6 +30,8 @@ GPA：平均绩点，平均成绩
 
 I graduated from Guangzhou University of Software.
 
+---
+
 What degree have you received?
 
 I have received a Bachelor's degree.
@@ -39,6 +41,8 @@ What is your major?
 My major is Software Engineering.  
 I major in Software Engineering.
 
+---
+
 How do you think the education you've received will contribute to your work in this institution?
 
 I have already learned a lot in the classroom and I hope to be albe to make **practical use** of it in the company.
@@ -47,6 +51,8 @@ I am sure I can apply what I have learned to the work in your institute.
 
 specialization：n.专业  
 in line with：与...一致；符合...的计划
+
+---
 
 Did you get any honors or awards at college?
 
