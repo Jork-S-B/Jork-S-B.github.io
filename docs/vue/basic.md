@@ -647,3 +647,17 @@ iconfont找心仪的矢量图标并保存至本地，并在`main.js`中引入即
 参考资料：
 
 1.[完整项目代码](https://gitee.com/Jork-S-B/vue-practice)
+
+---
+
+## 📌 面试题
+
+### 🚁 vue模板的基本结构
+
+Vue的单文件组件是开发中最常见的模板组织形式，包括模板-template、样式-style、脚本-script
+
+模板-template：包括html脚本、插值表达式、事件绑定、样式绑定等
+
+样式-style：css样式
+
+脚本-script：组件导入、注册组件、声明js函数、生命周期钩子函数等

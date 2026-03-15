@@ -209,6 +209,6 @@ CAdvisor，用于分析运行中容器的资源占用和性能指标，负责收
 
 [监控服务器](./server.md)
 
-[监控Mysql](./platform.md)
+[监控Mysql](./mysql.md)
 
 ---

@@ -49,8 +49,7 @@ challenge. Your firm is a young organisation with many innovative ideas.
 
 Why do you think you are **qualified** for this position?
 
-I have excellent communication skills and I am familiar with the procedures for the last
-company I worked for.
+I have excellent communication skills and I am familiar with the procedures for the last company I worked for.
 
 Besides, I am a team player and have great interpersonal skills. I think my experience are **a good fit for this position**.
 
