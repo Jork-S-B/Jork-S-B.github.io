@@ -24,6 +24,7 @@ nav:
           - json: python/builtin_lib/pyjson_notes.md
           - 多线程&多进程: python/builtin_lib/thread.md
           - 异步编程: python/builtin_lib/async.md
+          - collections: python/builtin_lib/collections.md
       - 闭包&装饰器&柯里化: python/closure.md
       - 自动化:
           - 设计: python/autotest/model.md

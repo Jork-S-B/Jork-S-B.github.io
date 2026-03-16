@@ -261,7 +261,7 @@ https://blog.csdn.net/m0_61066945/article/details/136062323
 
 https://blog.csdn.net/qq_24394093/article/details/90732577
 
-* 验证最大并发用户数
+* 验证最大并发用户数，并发数 = TPS × 响应时间
 * 错误率-不超过0.2%
 * 响应时间-不超过3秒
 * GC频率不能过高，影响性能。理想情况下，几天或几周发生一次。
