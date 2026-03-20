@@ -73,9 +73,10 @@ docker run -d -p 53306:3306 --name my-mysql -v ${pwd}:/var/lib/mysql my-mysql
 | `docker volume create {volume_name}`       | 创建数据卷                 |
 | `docker tag {imaged:version} {alias:ver}`  | 给镜像起别名，实际是复制一份        |
 | `docker inspect {container_id}`            | 查看容器信息，如挂载目录、端口映射信息等  |
+| `docker port {container_id}`               | 查看容器端口映射信息            |
 
 `docker ps -a -q`  
--a: all，显示所有容器  
+-a: all，显示所有容器，包括端口映射信息  
 -q: 静默模式，仅显示容器ID
 
 ### 🚁 连接数据库
