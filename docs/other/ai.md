@@ -48,9 +48,13 @@ MCP-model context protocol，是智能体中，执行者和工具、脚本间调
 
 4.References：根据不同的用途，建立对应的路由进行按需调用，也称为渐进式披露。
 
-5.Skill：包括References+Scripts，根据上下文，调用不同的提示词及对应的脚本（甚至让大模型自己写脚本），实现动态读取提示词。
+5.Skill：包括References、Scripts等，根据上下文，调用不同的提示词及对应的脚本（甚至让大模型自己写脚本），实现动态读取提示词。
 
 Skill的功能类似Workflow（常见工具：n8n）的逻辑编排，但不同的是Skills由大模型驱动，更加灵活。
+
+!!! note "补充"
+
+    第5点：agent目录，当主Agent调用该Skill时，可能会根据agent中的配置启动一个专门处理该任务的子Agent，拥有独立的prompt、工具权限、模型参数等。
 
 ## 📌 其他
 

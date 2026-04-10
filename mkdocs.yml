@@ -183,6 +183,14 @@ nav:
               - technique: ielts/listening/technique.md
               - 剑桥雅思真题:
                   - 剑雅10听力-T2-Section3: ielts/listening/authentic/C10-T2-Section3.md
+  - per:
+      - 测开:
+          - QA: per/dev/notes.md
+      - 性能:
+          - QA: per/performance/notes.md
+      - ai:
+          - QA: per/ai/notes.md
+
 # 搜索栏右侧git链接
 repo_url: https://github.com/Jork-S-B/Jork-S-B.github.io/tree/main
 repo_name: 'myblog'
