@@ -9,6 +9,8 @@
 
 ## 📌 调用
 
+=== "在代码中调用"
+
 ```python
 # pip install python-dotenv
 
@@ -18,6 +20,13 @@ from dotenv import load_dotenv
 load_dotenv()  # 从根目录读取.env
 print(os.getenv('APP_ENV'))
 
+```
+
+=== "在yaml中使用.env变量"
+
+```yaml
+- DEEPSEEK_API_KEY=${DEEPSEEK_API_KEY:-your_deepseek_api_key}
+# 优先取同名变量DEEPSEEK_API_KEY的值，不存在则取冒号后的默认值
 ```
 
 ## 📌 添加至.gitignore
