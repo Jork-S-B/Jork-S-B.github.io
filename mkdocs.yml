@@ -56,6 +56,8 @@ nav:
           - Day3: python/pandas/day03.md
           - Day4: python/pandas/day04.md
           - Day5: python/pandas/day05.md
+      - kafka:
+          - confluent_kafka: python/kafka/confluent_kafka.md
       - 其他:
           - Python安装路径迁移: python/other/mv_py_path.md
           - mkdocs使用记录: python/other/mkdocs_notes.md

@@ -71,34 +71,37 @@ source .venv/bin/activate
 
 poetry、pdm、uv，底层实际还是使用pip、venv，但提供了更加用户友好的接口。
 
-=== "venv + pyproject.toml"
+=== "1.venv搭配pyproject.toml"
 
     ```shell
     python -m venv .venv
-    source .venv/bin/activate
+    # 针对shell
+    source .venv/Scripts/activate
+    # 针对powershell
+    .venv/Scripts/activate
     edit pyproject.toml
     pip install -e .
     
     ```
 
-=== "使用uv"
+=== "2.直接使用uv"
 
-```shell
-# 初始化项目，创建基本的项目结构，包括 pyproject.toml 文件。
-uv init
-
-# 确保已经有初始化的pyproject.toml
-# 添加依赖如flask
-uv add flask
-
-# 协作者同步依赖
-uv sync
-
-# 运行代码
-uv run main.py
-
-# 或者按以下步骤
-# 激活虚拟环境，用传统的python xx.py运行代码
-source .venv/bin/activate
-python main.py
-```
+    ```shell
+    # 初始化项目，创建基本的项目结构，包括 pyproject.toml 文件。
+    uv init
+    
+    # 确保已经有初始化的pyproject.toml
+    # 添加依赖如flask
+    uv add flask
+    
+    # 协作者同步依赖
+    uv sync
+    
+    # 运行代码
+    uv run main.py
+    
+    # 或者按以下步骤
+    # 激活虚拟环境，用传统的python xx.py运行代码
+    source .venv/bin/activate
+    python main.py
+    ```
