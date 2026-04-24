@@ -1,6 +1,33 @@
 ## 核心方法详解
 
-### 1. Producer.poll() - 生产者轮询，获取回调
+### 1. Producer.produce() - 发送消息
+
+produce() 是异步的，消息先入缓冲区后由后台发送。
+
+为了保证不丢失，程序退出前必须调用 flush()；如果需要实时处理每条结果的回调，需要定期调用 poll()。
+
+```python
+producer.produce(
+    topic, 
+    value=json.dumps(msg).encode("utf-8"), 
+    callback=delivery_report
+)
+```
+
+**完整参数：**
+```python
+producer.produce(
+    topic='my-topic',           # 主题名（必需）
+    value=b'message data',      # 消息值（字节）
+    key=b'message-key',         # 消息键（可选，用于分区）
+    partition=-1,               # 指定分区（-1=自动）
+    timestamp=None,             # 时间戳（None=当前时间）
+    headers=[('key', b'value')], # 消息头（可选）
+    callback=delivery_report    # 发送回调
+)
+```
+
+### 2. Producer.poll() - 生产者轮询，获取回调
 
 **作用：**
 - 处理已发送消息的确认和回调
@@ -39,7 +66,24 @@ producer.produce(topic, value=msg, callback=delivery_report)
 producer.poll(1.0)  # 阻塞等待确认
 ```
 
-### 2. Consumer.commit(msg) - 消费者提交偏移量
+### 3. Producer.flush() - 清空缓冲区，阻塞直至消息发送完成
+
+**作用：**
+- 阻塞直到所有缓冲消息发送完成
+- 确保程序退出前消息全部发送
+- 常用于优雅关闭
+
+```python
+# 优雅关闭
+try:
+    for msg in messages:
+        producer.produce(topic, value=msg)
+finally:
+    producer.flush()  # 确保所有消息发送完成
+    producer.close()  # 关闭连接
+```
+
+### 4. Consumer.commit(msg) - 消费者提交偏移量
 
 **作用：**
 - 提交已处理消息的偏移量
@@ -78,46 +122,6 @@ for msg in consumer:
         consumer.commit()  # 批量提交
 ```
 
-### 3. Producer.produce() - 发送消息
-
-```python
-producer.produce(
-    topic, 
-    value=json.dumps(msg).encode("utf-8"), 
-    callback=delivery_report
-)
-```
-
-**完整参数：**
-```python
-producer.produce(
-    topic='my-topic',           # 主题名（必需）
-    value=b'message data',      # 消息值（字节）
-    key=b'message-key',         # 消息键（可选，用于分区）
-    partition=-1,               # 指定分区（-1=自动）
-    timestamp=None,             # 时间戳（None=当前时间）
-    headers=[('key', b'value')], # 消息头（可选）
-    callback=delivery_report    # 发送回调
-)
-```
-
-### 4. Producer.flush() - 清空缓冲区，阻塞直至消息发送完成
-
-**作用：**
-- 阻塞直到所有缓冲消息发送完成
-- 确保程序退出前消息全部发送
-- 常用于优雅关闭
-
-```python
-# 优雅关闭
-try:
-    for msg in messages:
-        producer.produce(topic, value=msg)
-finally:
-    producer.flush()  # 确保所有消息发送完成
-    producer.close()  # 关闭连接
-```
-
 ### 5. Consumer.poll() - 消费消息
 
 ```python
@@ -142,7 +146,7 @@ else:
 
 ### 6. 其他常用方法
 
-#### Producer 方法
+#### Producer
 ```python
 # 获取生产者配置信息
 print(producer.list_topics())
@@ -154,7 +158,7 @@ producer.close()
 print(len(producer))  # 缓冲消息数
 ```
 
-#### Consumer 方法
+#### Consumer
 ```python
 # 订阅主题
 consumer.subscribe(['topic1', 'topic2'])
