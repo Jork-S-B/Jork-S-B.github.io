@@ -57,7 +57,12 @@ nav:
           - Day4: python/pandas/day04.md
           - Day5: python/pandas/day05.md
       - kafka:
+          - 一些概念: python/kafka/concept.md
+          - kafka-python: python/kafka/kafka-python.md
           - confluent_kafka: python/kafka/confluent_kafka.md
+      - redis:
+          - 特性: python/redis/note.md
+          - 常用方法: python/redis/function.md
       - 其他:
           - Python安装路径迁移: python/other/mv_py_path.md
           - mkdocs使用记录: python/other/mkdocs_notes.md
@@ -91,7 +96,6 @@ nav:
           - 收集表统计信息: sql/oracle/gather_table_stats.md
           - 备忘: sql/oracle/other_notes.md
       - Mysql: sql/mysql_notes.md
-      - Redis: sql/redis_notes.md
       - ElasticSearch: other/elasticsearch.md
       - PostgreSQL: sql/pg/readme.md
       - 数仓和数据中台: sql/data.md
