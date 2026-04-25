@@ -111,20 +111,15 @@ ORDER BY START_TIME DESC LIMIT 10;
 ### 🚁 相关变量
 
 ```sql
-#
-查看数据库中与慢查询相关的变量
+# 查看数据库中与慢查询相关的变量
 show variables like '%slow_query%';
 
-#
-查询数据库中的最大连接数
+# 查询数据库中的最大连接数
 show variables like '%max_connections%';
 
-#
-查询数据库中的连接数历史峰值
+# 查询数据库中的连接数历史峰值
 show variables like '%max_used_connections%';
 
-#
-长查询的执行时间阈值
-，超过该时间的查询被记录为慢查询
+# 长查询的执行时间阈值，超过该时间的查询被记录为慢查询
 show variables like '%long_query%';
 ```
