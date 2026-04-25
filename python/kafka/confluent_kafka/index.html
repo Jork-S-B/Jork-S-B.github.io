@@ -10,10 +10,10 @@
       
       
       
-        <link rel="prev" href="../../pandas/day05/">
+        <link rel="prev" href="../kafka-python/">
       
       
-        <link rel="next" href="../../other/mv_py_path/">
+        <link rel="next" href="../../redis/note/">
       
       
         
@@ -2380,6 +2380,62 @@
                 
   
   
+  
+  
+    <li class="md-nav__item">
+      <a href="../concept/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    一些概念
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../kafka-python/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    kafka-python
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
     
   
   
@@ -2451,10 +2507,10 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#1-producerpoll-" class="md-nav__link">
+  <a href="#1-producerproduce-" class="md-nav__link">
     <span class="md-ellipsis">
       
-        1. Producer.poll() - 生产者轮询
+        1. Producer.produce() - 发送消息
       
     </span>
   </a>
@@ -2462,10 +2518,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#2-consumercommitmsg-" class="md-nav__link">
+  <a href="#2-producerpoll-" class="md-nav__link">
     <span class="md-ellipsis">
       
-        2. Consumer.commit(msg) - 消费者提交偏移量
+        2. Producer.poll() - 生产者轮询，获取回调
       
     </span>
   </a>
@@ -2473,10 +2529,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#3-producerproduce-" class="md-nav__link">
+  <a href="#3-producerflush-" class="md-nav__link">
     <span class="md-ellipsis">
       
-        3. Producer.produce() - 发送消息
+        3. Producer.flush() - 清空缓冲区，阻塞直至消息发送完成
       
     </span>
   </a>
@@ -2484,10 +2540,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#4-producerflush-" class="md-nav__link">
+  <a href="#4-consumercommitmsg-" class="md-nav__link">
     <span class="md-ellipsis">
       
-        4. Producer.flush() - 清空缓冲区
+        4. Consumer.commit(msg) - 消费者提交偏移量
       
     </span>
   </a>
@@ -2521,7 +2577,7 @@
   <a href="#producer" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Producer 方法
+        Producer
       
     </span>
   </a>
@@ -2532,7 +2588,7 @@
   <a href="#consumer" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Consumer 方法
+        Consumer
       
     </span>
   </a>
@@ -2644,7 +2700,7 @@
   <span class="md-ellipsis">
     
   
-    其他
+    redis
   
 
     
@@ -2657,6 +2713,120 @@
         
         <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_12_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_2_12">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    redis
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix="">
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../redis/note/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    特性
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../redis/function/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    常用方法
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_13">
+        
+          
+          <label class="md-nav__link" for="__nav_2_13" id="__nav_2_13_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    其他
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_13_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_13">
             <span class="md-nav__icon md-icon"></span>
             
   
@@ -3734,34 +3904,6 @@
     
   
     Mysql
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../../sql/redis_notes/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Redis
   
 
     
@@ -7481,10 +7623,10 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#1-producerpoll-" class="md-nav__link">
+  <a href="#1-producerproduce-" class="md-nav__link">
     <span class="md-ellipsis">
       
-        1. Producer.poll() - 生产者轮询
+        1. Producer.produce() - 发送消息
       
     </span>
   </a>
@@ -7492,10 +7634,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#2-consumercommitmsg-" class="md-nav__link">
+  <a href="#2-producerpoll-" class="md-nav__link">
     <span class="md-ellipsis">
       
-        2. Consumer.commit(msg) - 消费者提交偏移量
+        2. Producer.poll() - 生产者轮询，获取回调
       
     </span>
   </a>
@@ -7503,10 +7645,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#3-producerproduce-" class="md-nav__link">
+  <a href="#3-producerflush-" class="md-nav__link">
     <span class="md-ellipsis">
       
-        3. Producer.produce() - 发送消息
+        3. Producer.flush() - 清空缓冲区，阻塞直至消息发送完成
       
     </span>
   </a>
@@ -7514,10 +7656,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#4-producerflush-" class="md-nav__link">
+  <a href="#4-consumercommitmsg-" class="md-nav__link">
     <span class="md-ellipsis">
       
-        4. Producer.flush() - 清空缓冲区
+        4. Consumer.commit(msg) - 消费者提交偏移量
       
     </span>
   </a>
@@ -7551,7 +7693,7 @@
   <a href="#producer" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Producer 方法
+        Producer
       
     </span>
   </a>
@@ -7562,7 +7704,7 @@
   <a href="#consumer" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Consumer 方法
+        Consumer
       
     </span>
   </a>
@@ -7652,7 +7794,27 @@
   <h1>confluent_kafka</h1>
 
 <h2 id="_1">核心方法详解</h2>
-<h3 id="1-producerpoll-">1. Producer.poll() - 生产者轮询</h3>
+<h3 id="1-producerproduce-">1. Producer.produce() - 发送消息</h3>
+<p>produce() 是异步的，消息先入缓冲区后由后台发送。</p>
+<p>为了保证不丢失，程序退出前必须调用 flush()；如果需要实时处理每条结果的回调，需要定期调用 poll()。</p>
+<div class="highlight"><pre><span></span><code><span class="n">producer</span><span class="o">.</span><span class="n">produce</span><span class="p">(</span>
+    <span class="n">topic</span><span class="p">,</span> 
+    <span class="n">value</span><span class="o">=</span><span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="s2">"utf-8"</span><span class="p">),</span> 
+    <span class="n">callback</span><span class="o">=</span><span class="n">delivery_report</span>
+<span class="p">)</span>
+</code></pre></div>
+<p><strong>完整参数：</strong>
+</p><div class="highlight"><pre><span></span><code><span class="n">producer</span><span class="o">.</span><span class="n">produce</span><span class="p">(</span>
+    <span class="n">topic</span><span class="o">=</span><span class="s1">'my-topic'</span><span class="p">,</span>           <span class="c1"># 主题名（必需）</span>
+    <span class="n">value</span><span class="o">=</span><span class="sa">b</span><span class="s1">'message data'</span><span class="p">,</span>      <span class="c1"># 消息值（字节）</span>
+    <span class="n">key</span><span class="o">=</span><span class="sa">b</span><span class="s1">'message-key'</span><span class="p">,</span>         <span class="c1"># 消息键（可选，用于分区）</span>
+    <span class="n">partition</span><span class="o">=-</span><span class="mi">1</span><span class="p">,</span>               <span class="c1"># 指定分区（-1=自动）</span>
+    <span class="n">timestamp</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>             <span class="c1"># 时间戳（None=当前时间）</span>
+    <span class="n">headers</span><span class="o">=</span><span class="p">[(</span><span class="s1">'key'</span><span class="p">,</span> <span class="sa">b</span><span class="s1">'value'</span><span class="p">)],</span> <span class="c1"># 消息头（可选）</span>
+    <span class="n">callback</span><span class="o">=</span><span class="n">delivery_report</span>    <span class="c1"># 发送回调</span>
+<span class="p">)</span>
+</code></pre></div><p></p>
+<h3 id="2-producerpoll-">2. Producer.poll() - 生产者轮询，获取回调</h3>
 <p><strong>作用：</strong>
 - 处理已发送消息的确认和回调
 - 触发 delivery_report 回调函数
@@ -7683,7 +7845,20 @@
 <span class="n">producer</span><span class="o">.</span><span class="n">produce</span><span class="p">(</span><span class="n">topic</span><span class="p">,</span> <span class="n">value</span><span class="o">=</span><span class="n">msg</span><span class="p">,</span> <span class="n">callback</span><span class="o">=</span><span class="n">delivery_report</span><span class="p">)</span>
 <span class="n">producer</span><span class="o">.</span><span class="n">poll</span><span class="p">(</span><span class="mf">1.0</span><span class="p">)</span>  <span class="c1"># 阻塞等待确认</span>
 </code></pre></div><p></p>
-<h3 id="2-consumercommitmsg-">2. Consumer.commit(msg) - 消费者提交偏移量</h3>
+<h3 id="3-producerflush-">3. Producer.flush() - 清空缓冲区，阻塞直至消息发送完成</h3>
+<p><strong>作用：</strong>
+- 阻塞直到所有缓冲消息发送完成
+- 确保程序退出前消息全部发送
+- 常用于优雅关闭</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># 优雅关闭</span>
+<span class="k">try</span><span class="p">:</span>
+    <span class="k">for</span> <span class="n">msg</span> <span class="ow">in</span> <span class="n">messages</span><span class="p">:</span>
+        <span class="n">producer</span><span class="o">.</span><span class="n">produce</span><span class="p">(</span><span class="n">topic</span><span class="p">,</span> <span class="n">value</span><span class="o">=</span><span class="n">msg</span><span class="p">)</span>
+<span class="k">finally</span><span class="p">:</span>
+    <span class="n">producer</span><span class="o">.</span><span class="n">flush</span><span class="p">()</span>  <span class="c1"># 确保所有消息发送完成</span>
+    <span class="n">producer</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>  <span class="c1"># 关闭连接</span>
+</code></pre></div>
+<h3 id="4-consumercommitmsg-">4. Consumer.commit(msg) - 消费者提交偏移量</h3>
 <p><strong>作用：</strong>
 - 提交已处理消息的偏移量
 - 确保消费者重启后从正确位置继续
@@ -7715,37 +7890,6 @@
     <span class="k">if</span> <span class="n">count</span> <span class="o">%</span> <span class="mi">100</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
         <span class="n">consumer</span><span class="o">.</span><span class="n">commit</span><span class="p">()</span>  <span class="c1"># 批量提交</span>
 </code></pre></div><p></p>
-<h3 id="3-producerproduce-">3. Producer.produce() - 发送消息</h3>
-<div class="highlight"><pre><span></span><code><span class="n">producer</span><span class="o">.</span><span class="n">produce</span><span class="p">(</span>
-    <span class="n">topic</span><span class="p">,</span> 
-    <span class="n">value</span><span class="o">=</span><span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="s2">"utf-8"</span><span class="p">),</span> 
-    <span class="n">callback</span><span class="o">=</span><span class="n">delivery_report</span>
-<span class="p">)</span>
-</code></pre></div>
-<p><strong>完整参数：</strong>
-</p><div class="highlight"><pre><span></span><code><span class="n">producer</span><span class="o">.</span><span class="n">produce</span><span class="p">(</span>
-    <span class="n">topic</span><span class="o">=</span><span class="s1">'my-topic'</span><span class="p">,</span>           <span class="c1"># 主题名（必需）</span>
-    <span class="n">value</span><span class="o">=</span><span class="sa">b</span><span class="s1">'message data'</span><span class="p">,</span>      <span class="c1"># 消息值（字节）</span>
-    <span class="n">key</span><span class="o">=</span><span class="sa">b</span><span class="s1">'message-key'</span><span class="p">,</span>         <span class="c1"># 消息键（可选，用于分区）</span>
-    <span class="n">partition</span><span class="o">=-</span><span class="mi">1</span><span class="p">,</span>               <span class="c1"># 指定分区（-1=自动）</span>
-    <span class="n">timestamp</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>             <span class="c1"># 时间戳（None=当前时间）</span>
-    <span class="n">headers</span><span class="o">=</span><span class="p">[(</span><span class="s1">'key'</span><span class="p">,</span> <span class="sa">b</span><span class="s1">'value'</span><span class="p">)],</span> <span class="c1"># 消息头（可选）</span>
-    <span class="n">callback</span><span class="o">=</span><span class="n">delivery_report</span>    <span class="c1"># 发送回调</span>
-<span class="p">)</span>
-</code></pre></div><p></p>
-<h3 id="4-producerflush-">4. Producer.flush() - 清空缓冲区</h3>
-<p><strong>作用：</strong>
-- 阻塞直到所有缓冲消息发送完成
-- 确保程序退出前消息全部发送
-- 常用于优雅关闭</p>
-<div class="highlight"><pre><span></span><code><span class="c1"># 优雅关闭</span>
-<span class="k">try</span><span class="p">:</span>
-    <span class="k">for</span> <span class="n">msg</span> <span class="ow">in</span> <span class="n">messages</span><span class="p">:</span>
-        <span class="n">producer</span><span class="o">.</span><span class="n">produce</span><span class="p">(</span><span class="n">topic</span><span class="p">,</span> <span class="n">value</span><span class="o">=</span><span class="n">msg</span><span class="p">)</span>
-<span class="k">finally</span><span class="p">:</span>
-    <span class="n">producer</span><span class="o">.</span><span class="n">flush</span><span class="p">()</span>  <span class="c1"># 确保所有消息发送完成</span>
-    <span class="n">producer</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>  <span class="c1"># 关闭连接</span>
-</code></pre></div>
 <h3 id="5-consumerpoll-">5. Consumer.poll() - 消费消息</h3>
 <div class="highlight"><pre><span></span><code><span class="c1"># 消费者核心方法</span>
 <span class="n">msg</span> <span class="o">=</span> <span class="n">consumer</span><span class="o">.</span><span class="n">poll</span><span class="p">(</span><span class="n">timeout</span><span class="o">=</span><span class="mf">1.0</span><span class="p">)</span>
@@ -7764,7 +7908,7 @@
     <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Received: </span><span class="si">{</span><span class="n">msg</span><span class="o">.</span><span class="n">value</span><span class="p">()</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
 </code></pre></div><p></p>
 <h3 id="6">6. 其他常用方法</h3>
-<h4 id="producer">Producer 方法</h4>
+<h4 id="producer">Producer</h4>
 <div class="highlight"><pre><span></span><code><span class="c1"># 获取生产者配置信息</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">producer</span><span class="o">.</span><span class="n">list_topics</span><span class="p">())</span>
 
@@ -7774,7 +7918,7 @@
 <span class="c1"># 获取内部队列长度</span>
 <span class="nb">print</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">producer</span><span class="p">))</span>  <span class="c1"># 缓冲消息数</span>
 </code></pre></div>
-<h4 id="consumer">Consumer 方法</h4>
+<h4 id="consumer">Consumer</h4>
 <div class="highlight"><pre><span></span><code><span class="c1"># 订阅主题</span>
 <span class="n">consumer</span><span class="o">.</span><span class="n">subscribe</span><span class="p">([</span><span class="s1">'topic1'</span><span class="p">,</span> <span class="s1">'topic2'</span><span class="p">])</span>
 
@@ -7912,7 +8056,7 @@
     <span class="md-icon" title="最后更新">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"></path></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime" title="2026年4月23日 14:58:49 CST">2026-04-23 14:58:49</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime" title="2026年4月24日 22:38:40 CST">2026-04-24 22:38:40</span>
   </span>
 
     
@@ -7948,7 +8092,7 @@
       <nav class="md-footer__inner md-grid" aria-label="页脚">
         
           
-          <a href="../../pandas/day05/" class="md-footer__link md-footer__link--prev" aria-label="上一页: Day5">
+          <a href="../kafka-python/" class="md-footer__link md-footer__link--prev" aria-label="上一页: kafka-python">
             <div class="md-footer__button md-icon">
               
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"></path></svg>
@@ -7958,20 +8102,20 @@
                 上一页
               </span>
               <div class="md-ellipsis">
-                Day5
+                kafka-python
               </div>
             </div>
           </a>
         
         
           
-          <a href="../../other/mv_py_path/" class="md-footer__link md-footer__link--next" aria-label="下一页: Python安装路径迁移">
+          <a href="../../redis/note/" class="md-footer__link md-footer__link--next" aria-label="下一页: 特性">
             <div class="md-footer__title">
               <span class="md-footer__direction">
                 下一页
               </span>
               <div class="md-ellipsis">
-                Python安装路径迁移
+                特性
               </div>
             </div>
             <div class="md-footer__button md-icon">
