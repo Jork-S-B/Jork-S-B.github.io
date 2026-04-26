@@ -476,21 +476,7 @@ A：
 3. **RedisInsight**：官方可视化工具
 4. **RedisShake**：数据迁移和同步测试
 
-### 监控指标
-
-```bash
-# 关键监控命令
-redis-cli INFO stats        # 统计信息
-redis-cli INFO memory       # 内存使用
-redis-cli INFO clients      # 客户端连接
-redis-cli INFO replication  # 主从状态
-
-# 慢查询日志
-redis-cli CONFIG SET slowlog-log-slower-than 10000  # 10ms
-redis-cli SLOWLOG GET 10
-```
-
-## 📌 常用命令
+### 常用命令
 
 连接到远程Redis服务器：`./redis-cli -h ip -p port -a password`
 
@@ -510,6 +496,21 @@ redis-cli SLOWLOG GET 10
 | CONFIG get maxclients | 查最大连接数             |
 
 清除指定redis：`for i in $(seq 1001 1003)： do echo "flushab" | ./redis-cli -h ip -a password -p $i; done`
+
+#### 监控指标
+
+```bash
+# 关键监控命令
+redis-cli INFO stats        # 统计信息
+redis-cli INFO memory       # 内存使用
+redis-cli INFO clients      # 客户端连接
+redis-cli INFO replication  # 主从状态
+
+# 设置慢查询阈值为 100ms
+redis-cli config set slowlog-log-slower-than 100000
+# 获取最近 10 条慢查询
+redis-cli slowlog get 10
+```
 
 ## 📌 性能指标
 
