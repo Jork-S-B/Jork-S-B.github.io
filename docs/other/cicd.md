@@ -32,3 +32,12 @@
 Helm执行脚本，驱动k8s从harbor拉取指定镜像、运行pod -> 自动化/人工验证 -> 部署完毕通知 -> 发布（应用对外可见） 
 
 
+## 📌 Q&A
+
+Q1: 平时在 CI/CD 方面有没有接触？
+
+先举个人实验，再举工作例子。
+
+A: 通过 GitHub Actions 搭建过一个文档站点的自动部署流水线（.github/workflows/gh-deploy.yml，工作流编排） – 代码 push 到 main 分支后，自动拉代码、安装 Python 依赖（mkdocs 等）、然后通过 mkdocs build 构建、mkdocs gh-deploy 发布到 GitHub Pages。
+
+在测试工作中把同样思路迁移到了测试流水线里：用 Jenkins pipeline 实现 PR 自动触发接口测试（pytest --alluredir=results；actions/upload-artifact 上传测试报告等）；添加质量门禁（成功率、覆盖率）；测试结果通过 Allure 报告归档，并自动通知。

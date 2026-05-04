@@ -3,3 +3,10 @@ mkdocs-material
 mkdocs-glightbox
 jieba
 mkdocs-git-revision-date-localized-plugin
+
+# RAG 依赖
+sentence-transformers>=2.2.0
+faiss-cpu>=1.7.4
+rank-bm25>=0.2.2
+pyyaml>=6.0
+numpy>=1.24.0

@@ -71,6 +71,21 @@ source .venv/bin/activate
 
 poetry、pdm、uv，底层实际还是使用pip、venv，但提供了更加用户友好的接口。
 
+### 核心命令对比
+
+| 操作 | pip 传统方式 | uv 正确方式 | 说明 |
+|------|-------------|------------|------|
+| 初始化项目 | 无 | `uv init` | 创建 pyproject.toml |
+| 创建虚拟环境 | 自动创建 | `python -m venv .venv` ||
+| 激活虚拟环境 | 自动激活 | `source .venv/bin/activate` ||
+| 添加依赖 | 手动编辑 requirements.txt | `uv add <package>` | 自动记录到 pyproject.toml |
+| 添加开发依赖 | 手动编辑 requirements-dev.txt | `uv add --dev <package>` | 自动记录到 dev 依赖 |
+| 同步依赖 | `pip install -r requirements.txt` | `uv sync` | 根据 pyproject.toml 安装 |
+| 运行代码 | `python main.py` | `uv run main.py` | 在虚拟环境中执行 |
+| 移除依赖 | 手动编辑 requirements.txt | `uv remove <package>` | 从项目中移除 |
+| 查看依赖树 | `pipdeptree` | `uv tree` | 显示依赖关系 |
+| 更新锁定 | 无 | `uv lock --upgrade` | 更新依赖版本 |
+
 === "1.venv搭配pyproject.toml"
 
     ```shell

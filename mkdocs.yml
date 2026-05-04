@@ -61,7 +61,7 @@ nav:
           - kafka-python: python/kafka/kafka-python.md
           - confluent_kafka: python/kafka/confluent_kafka.md
       - redis:
-          - 特性: python/redis/note.md
+          - 特性: python/redis/redis_note.md
           - 常用方法: python/redis/function.md
       - 其他:
           - Python安装路径迁移: python/other/mv_py_path.md
@@ -190,13 +190,6 @@ nav:
               - technique: ielts/listening/technique.md
               - 剑桥雅思真题:
                   - 剑雅10听力-T2-Section3: ielts/listening/authentic/C10-T2-Section3.md
-  - per:
-      - 测开:
-          - QA: per/dev/notes.md
-      - 性能:
-          - QA: per/performance/notes.md
-      - ai:
-          - QA: per/ai/notes.md
 
 # 搜索栏右侧git链接
 repo_url: https://github.com/Jork-S-B/Jork-S-B.github.io/tree/main
