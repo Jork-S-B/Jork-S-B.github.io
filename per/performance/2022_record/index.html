@@ -7266,44 +7266,64 @@
 <h3 id="cpu">计酬引擎 CPU 性能调优实战</h3>
 <p><strong>案例背景</strong>：在“广东移动渠道费用管理系统”的年度佣金回溯结算（Recalculation）任务中，系统需要对全省 500+ 核心渠道在过去一年的业务量进行重新计酬核算。</p>
 <h4 id="1-problem">1. 问题描述 (Problem)</h4>
-<p>在 K8s 集群中启动计酬批次任务后，负责结算的服务 Pod CPU 瞬间飙升至 100% 甚至触发 OOM 导致重启。
-*   <strong>现象</strong>：<code>kubectl top pods</code> 显示该节点 CPU 持续满载，内存占用逼近 Limit 线。
-*   <strong>性能数据</strong>：单次 500 个渠道的结算任务耗时超过 2 小时，远超业务要求的 15 分钟。</p>
+<p>在 K8s 集群中启动计酬批次任务后，负责结算的服务 Pod CPU 瞬间飙升至 100% 甚至触发 OOM 导致重启。</p>
+<ul>
+<li><strong>现象</strong>：<code>kubectl top pods</code> 显示该节点 CPU 持续满载，内存占用逼近 Limit 线。</li>
+<li><strong>性能数据</strong>：单次 500 个渠道的结算任务耗时超过 2 小时，远超业务要求的 15 分钟。</li>
+</ul>
 <h4 id="2-troubleshooting">2. 排查思路与工具 (Troubleshooting)</h4>
-<p><strong>第一步：全链路状态观察</strong>
-*   <strong>K8s 监控</strong>：通过 <code>kubectl logs -f [pod_name]</code> 观察到大量针对 Oracle 的重复 SQL 查询日志。
-*   <strong>应用诊断</strong>：使用 <strong>Arthas</strong> 工具挂载到容器进程。
-    *   执行 <code>thread -n 3</code> 发现 CPU 主要消耗在 <strong>Groovy 规则解析</strong>和 <strong>BigDecimal 高精度计算</strong>上。
-    *   执行 <code>monitor -c 5 [ClassName] [MethodName]</code> 统计结算主方法耗时，发现单次结算内部循环了上千次。</p>
-<p><strong>第二步：定位数据库 IO 瓶颈</strong>
-*   <strong>分析</strong>：计酬逻辑采用“滑动窗口”模式（如：计算当日佣金需要回溯前 30 天的业务达成率）。
-*   <strong>技术手段</strong>：在 AOP 切面中统计 <code>JdbcTemplate</code> 执行次数。
-*   <strong>排查结果</strong>：500 渠道 × 300 结算天数 = 150,000 次数据库 IO 交互。累计网络延迟和结果集封装耗时占总时长的 70%。</p>
-<p><strong>第三步：Redis 缓存失效根因定位</strong>
-*   <strong>分析</strong>：原本设计了 Redis 缓存渠道基础数据，但监控显示命中率为 0。
-*   <strong>根因定位</strong>：通过 Arthas 的 <code>watch</code> 命令观察缓存 Key 生成逻辑。
-    </p><div class="highlight"><pre><span></span><code><span class="c1">// 原始错误代码逻辑</span>
+<p><strong>第一步：全链路状态观察</strong></p>
+<ul>
+<li><strong>K8s 监控</strong>：通过 <code>kubectl logs -f [pod_name]</code> 观察到大量针对 Oracle 的重复 SQL 查询日志。</li>
+<li>
+<p><strong>应用诊断</strong>：使用 <strong>Arthas</strong> 工具挂载到容器进程。</p>
+<ul>
+<li>执行 <code>thread -n 3</code> 发现 CPU 主要消耗在 <strong>Groovy 规则解析</strong>和 <strong>BigDecimal 高精度计算</strong>上。</li>
+<li>执行 <code>monitor -c 5 [ClassName] [MethodName]</code> 统计结算主方法耗时，发现单次结算内部循环了上千次。</li>
+</ul>
+</li>
+</ul>
+<p><strong>第二步：定位数据库 IO 瓶颈</strong></p>
+<ul>
+<li><strong>分析</strong>：计酬逻辑采用“滑动窗口”模式（如：计算当日佣金需要回溯前 30 天的业务达成率）。</li>
+<li><strong>技术手段</strong>：在 AOP 切面中统计 <code>JdbcTemplate</code> 执行次数。</li>
+<li><strong>排查结果</strong>：500 渠道 × 300 结算天数 = 150,000 次数据库 IO 交互。累计网络延迟和结果集封装耗时占总时长的 70%。</li>
+</ul>
+<p><strong>第三步：Redis 缓存失效根因定位</strong></p>
+<ul>
+<li><strong>分析</strong>：原本设计了 Redis 缓存渠道基础数据，但监控显示命中率为 0。</li>
+<li>
+<p><strong>根因定位</strong>：通过 Arthas 的 <code>watch</code> 命令观察缓存 Key 生成逻辑。</p>
+<div class="highlight"><pre><span></span><code><span class="c1">// 原始错误代码逻辑</span>
 <span class="n">String</span><span class="w"> </span><span class="n">cacheKey</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">"channel:rule:"</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">channelId</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="s">":"</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">startDate</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="s">":"</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">endDate</span><span class="p">;</span>
 <span class="c1">// 现象：由于 startDate 和 endDate 随结算日期每天滑动，导致缓存 Key 永远无法复用。</span>
-</code></pre></div><p></p>
+</code></pre></div>
+</li>
+</ul>
 <h4 id="3-solution">3. 解决方案 (Solution)</h4>
-<p><strong>方案一：预加载机制 (Bulk Loading)</strong>
-*   <strong>思路</strong>：将“单渠道单日查询”改为“全量数据批量预加载”。
-*   <strong>实现</strong>：在结算开始前，一次性从 Oracle 批量读取 500 渠道全年的结算因子数据（Hadoop 预处理后的回流数据），存储在本地 <strong>Map 容器</strong>中作为临时快照，实现“零 IO”计算。</p>
-<p><strong>方案二：优化缓存 Key 设计与策略</strong>
-*   <strong>实现</strong>：修改 Redis 存储策略，不再以日期区间为 Key，而是以 <code>channelId</code> 为 Key 存储全量序列。
-*   <strong>代码改写（Java 示例）</strong>：
-    </p><div class="highlight"><pre><span></span><code><span class="c1">// 优化后：按渠道 ID 缓存全量 List，在内存中进行 Stream 切片</span>
+<p><strong>方案一：预加载机制 (Bulk Loading)</strong></p>
+<ul>
+<li><strong>思路</strong>：将“单渠道单日查询”改为“全量数据批量预加载”。</li>
+<li><strong>实现</strong>：在结算开始前，一次性从 Oracle 批量读取 500 渠道全年的结算因子数据（Hadoop 预处理后的回流数据），存储在本地 <strong>Map 容器</strong>中作为临时快照，实现“零 IO”计算。</li>
+</ul>
+<p><strong>方案二：优化缓存 Key 设计与策略</strong></p>
+<ul>
+<li><strong>实现</strong>：修改 Redis 存储策略，不再以日期区间为 Key，而是以 <code>channelId</code> 为 Key 存储全量序列。</li>
+<li><strong>代码改写（Java 示例）</strong>：
+    <div class="highlight"><pre><span></span><code><span class="c1">// 优化后：按渠道 ID 缓存全量 List，在内存中进行 Stream 切片</span>
 <span class="kd">public</span><span class="w"> </span><span class="n">List</span><span class="o">&lt;</span><span class="n">Metric</span><span class="o">&gt;</span><span class="w"> </span><span class="nf">getMetrics</span><span class="p">(</span><span class="n">String</span><span class="w"> </span><span class="n">channelId</span><span class="p">,</span><span class="w"> </span><span class="n">LocalDate</span><span class="w"> </span><span class="n">start</span><span class="p">,</span><span class="w"> </span><span class="n">LocalDate</span><span class="w"> </span><span class="n">end</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
 <span class="w">    </span><span class="n">List</span><span class="o">&lt;</span><span class="n">Metric</span><span class="o">&gt;</span><span class="w"> </span><span class="n">allData</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">localCache</span><span class="p">.</span><span class="na">get</span><span class="p">(</span><span class="n">channelId</span><span class="p">);</span><span class="w"> </span>
 <span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">allData</span><span class="p">.</span><span class="na">stream</span><span class="p">()</span>
 <span class="w">        </span><span class="p">.</span><span class="na">filter</span><span class="p">(</span><span class="n">m</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="o">!</span><span class="n">m</span><span class="p">.</span><span class="na">getDate</span><span class="p">().</span><span class="na">isBefore</span><span class="p">(</span><span class="n">start</span><span class="p">)</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="o">!</span><span class="n">m</span><span class="p">.</span><span class="na">getDate</span><span class="p">().</span><span class="na">isAfter</span><span class="p">(</span><span class="n">end</span><span class="p">))</span>
 <span class="w">        </span><span class="p">.</span><span class="na">collect</span><span class="p">(</span><span class="n">Collectors</span><span class="p">.</span><span class="na">toList</span><span class="p">());</span>
 <span class="p">}</span>
-</code></pre></div><p></p>
-<p><strong>方案三：Groovy 脚本编译优化</strong>
-*   <strong>思路</strong>：Groovy 脚本重复解析非常耗 CPU。
-*   <strong>实现</strong>：引入 <code>GroovyClassLoader</code> 对规则脚本进行<strong>编译预缓存</strong>，避免在循环内部重复调用 <code>new GroovyShell().parse()</code>。同时将 <code>BigDecimal</code> 的标度转换逻辑移出循环体。</p>
+</code></pre></div></li>
+</ul>
+<p><strong>方案三：Groovy 脚本编译优化</strong></p>
+<ul>
+<li><strong>思路</strong>：Groovy 脚本重复解析非常耗 CPU。</li>
+<li><strong>实现</strong>：引入 <code>GroovyClassLoader</code> 对规则脚本进行<strong>编译预缓存</strong>，避免在循环内部重复调用 <code>new GroovyShell().parse()</code>。同时将 <code>BigDecimal</code> 的标度转换逻辑移出循环体。</li>
+</ul>
 <h4 id="4-result">4. 验证效果 (Result)</h4>
 <p>通过模拟 500 个渠道结算任务进行压测，对比数据如下：</p>
 <table>
@@ -7348,9 +7368,11 @@
 <p><strong>你（话术）：</strong></p>
 <blockquote>
 <p>“在广东移动计酬项目中，我主导过一次计酬引擎 CPU 100% 的排查。当时业务场景是 500 多个渠道的年度佣金回溯核算，Pod CPU 持续满载，导致两小时都跑不完任务。</p>
-<p>我首先在 K8s 环境下利用 <strong>Arthas</strong> 对容器进程进行了动态诊断，发现两个核心瓶颈：
-1. <strong>缓存击穿</strong>：缓存 Key 包含了滑动的日期参数，导致 15 万次查询全部透传到 Oracle，数据库 IO 成了最大瓶颈。
-2. <strong>规则解析开销</strong>：我们在处理计酬规则时用了 Groovy 引擎，但在循环体中频繁解析脚本，导致 CPU 密集的计算开销。</p>
+<p>我首先在 K8s 环境下利用 <strong>Arthas</strong> 对容器进程进行了动态诊断，发现两个核心瓶颈：</p>
+<ol>
+<li><strong>缓存击穿</strong>：缓存 Key 包含了滑动的日期参数，导致 15 万次查询全部透传到 Oracle，数据库 IO 成了最大瓶颈。</li>
+<li><strong>规则解析开销</strong>：我们在处理计酬规则时用了 Groovy 引擎，但在循环体中频繁解析脚本，导致 CPU 密集的计算开销。</li>
+</ol>
 <p>我的方案是<strong>‘预加载 + 内存分片’</strong>。我重写了加载逻辑，在结算开始前通过 Spring Batch 模式一次性把所有结算因子读入内存缓存，并将 Groovy 脚本做预编译处理。</p>
 <p><strong>最后的效果是</strong>：数据库 IO 从 15 万次降到个位数，计算耗时从 2 小时缩短到了 3 分钟以内，CPU 占用也稳定在了 30% 左右。这个案例后来也被我们团队沉淀为‘复杂计算场景下的缓存设计规范’。”</p>
 </blockquote>
@@ -7463,7 +7485,7 @@
     <span class="md-icon" title="最后更新">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"></path></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime" title="2026年5月4日 22:28:18 CST">2026-05-04 22:28:18</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime" title="2026年5月5日 17:30:28 CST">2026-05-05 17:30:28</span>
   </span>
 
     
