@@ -262,6 +262,44 @@ LIMIT 10;
 EXPLAIN SELECT * FROM ad_rules WHERE ad_space_id = 123;
 ```
 
+**执行计划关键字段解读**：
+
+```text
++----+-------------+----------+------------+------+---------------+---------------+---------+-------+------+----------+-------+
+| id | select_type | table    | partitions | type | possible_keys | key           | key_len | ref   | rows | filtered | Extra |
++----+-------------+----------+------------+------+---------------+---------------+---------+-------+------+----------+-------+
+|  1 | SIMPLE      | ad_rules | NULL       | ref  | idx_space     | idx_space     | 4       | const |  156 |    100.0 | NULL  |
++----+-------------+----------+------------+------+---------------+---------------+---------+-------+------+----------+-------+
+
+关键字段说明：
+- type: 访问类型，从优到差：system > const > eq_ref > ref > range > index > ALL
+  ⚠️ ALL 表示全表扫描，需要优化
+- key: 实际使用的索引，NULL 表示未使用索引
+- rows: 预估扫描行数，值越大效率越低
+- Extra: 额外信息
+  - Using index: 覆盖索引，性能好
+  - Using filesort: 文件排序，需要优化
+  - Using temporary: 使用临时表，需要优化
+```
+
+??? tip "回表"
+
+    背景：InnoDB 使用 B+ 树索引：
+
+    - 聚簇索引（一般是主键索引）的叶子节点上直接存储了完整的一行数据。
+
+    - 二级索引（普通索引、唯一索引等）的叶子节点上只存储了索引列的值 + 主键的值。
+
+    所谓回表，就是当我们通过二级索引查找数据时，如果要查询的字段不在该二级索引的叶子节点中，那么数据库会先通过二级索引找到对应的主键值，再拿着主键值回到聚簇索引中，把整行数据读出来。这个“回到聚簇索引再查一次”的动作，就叫回表。
+
+    举例：
+
+    表 user，主键是 id，有一个普通索引 idx_name 在 name 列上。
+
+    执行 SELECT id, name, age FROM user WHERE name = '张三'。
+
+    因为 idx_name 只存了 name 和 id，不包含 age，所以 InnoDB 会先从 idx_name 找到匹配的 id，再根据 id 去主键索引里查出 age。这就是一次回表。
+
 **锁等待分析**：
 
 ```sql
@@ -279,6 +317,33 @@ INNER JOIN information_schema.innodb_trx r ON r.trx_id = w.requesting_trx_id;
 
 -- 查看InnoDB状态
 SHOW ENGINE INNODB STATUS\G
+```
+
+**锁等待分析要点**：
+
+```text
+INNODB STATUS 输出关键部分：
+=====================================
+TRANSACTIONS
+=====================================
+Trx id counter 1234567
+Purge done for trx's n:o < 1234560
+History list length 1024
+---TRANSACTION 1234566, ACTIVE 45 sec starting index read
+mysql tables in use 1, locked 1
+LOCK WAIT 2 lock struct(s), heap size 1136, 1 row lock(s)
+MySQL thread id 100, OS thread handle 12345, query id 67890 localhost root updating
+UPDATE ad_rules SET status = 1 WHERE id = 100
+------- TRX HAS BEEN WAITING 45 SEC FOR THIS LOCK TO BE GRANTED:
+RECORD LOCKS space id 58 page no 4 n bits 72 index PRIMARY of table `ad_db`.`ad_rules`
+---WAITING FOR LOCK: RECORD LOCKS space id 58 page no 4 n bits 72 index PRIMARY
+Record lock, heap no 2 PHYSICAL RECORD: n_fields 5; compact format; info bits 0
+
+分析步骤：
+1. 找到 LOCK WAIT 标记，确认存在锁等待
+2. 查看 WAITING FOR LOCK 部分，确认等待的锁类型和位置
+3. 通过 thread id 定位阻塞事务：SELECT * FROM information_schema.innodb_trx WHERE trx_mysql_thread_id = <thread_id>;
+4. 分析阻塞事务的 SQL 语句，决定是否 KILL 或优化
 ```
 
 ### 3.3 应用层日志检查
@@ -704,4 +769,3 @@ DegradeRule rule = new DegradeRule("riskControl")
 | **调用链**        | SkyWalking | 查看 Trace 详情                     |
 | **网络流量**       | iftop      | `iftop -i eth0`                 |
 | **端口状态**       | netstat    | `netstat -an \| grep TIME_WAIT` |
-
