@@ -2,6 +2,7 @@
 build_index.py - 索引构建脚本
 
 一键构建 RAG 索引，包括向量索引和 BM25 索引。
+支持增量更新，只处理变更的文档。
 """
 import sys
 import argparse
@@ -40,6 +41,11 @@ def main():
         action="store_true",
         help="强制重建索引"
     )
+    parser.add_argument(
+        "--incremental",
+        action="store_true",
+        help="增量更新索引（仅处理变更文档）"
+    )
     
     args = parser.parse_args()
     
@@ -72,10 +78,30 @@ def main():
         model_name=args.model,
         data_dir=args.data_dir
     )
-    rag.build_index(documents)
+    
+    docs_dir = Path(args.docs_dir)
+    
+    if args.force:
+        print("  - 模式: 强制全量重建")
+        rag.build_index(documents)
+    elif args.incremental:
+        print("  - 模式: 增量更新")
+        updated = rag.incremental_update(docs_dir, documents)
+        if not updated:
+            print("  ✓ 文档无变更，跳过索引更新")
+    else:
+        if rag.load_index():
+            print("  - 模式: 增量更新（检测到已有索引）")
+            updated = rag.incremental_update(docs_dir, documents)
+            if not updated:
+                print("  ✓ 文档无变更，跳过索引更新")
+        else:
+            print("  - 模式: 全量构建（无已有索引）")
+            rag.build_index(documents)
     
     print("\n[4/4] 保存索引文件...")
     rag.save_index()
+    rag.save_index_state(docs_dir, documents)
     
     index_stats = rag.get_stats()
     print(f"  ✓ 总分块数: {index_stats['total_chunks']}")
@@ -90,6 +116,7 @@ def main():
     print("  - faiss_index.bin  (向量索引)")
     print("  - bm25_index.pkl   (BM25 索引)")
     print("  - metadata.json    (元数据)")
+    print("  - index_state.json (索引状态)")
     print("\n使用以下命令测试查询:")
     print(f"  python scripts/query.py \"pytest fixture\"")
 

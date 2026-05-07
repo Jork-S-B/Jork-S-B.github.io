@@ -21,8 +21,30 @@ from sentence_transformers import SentenceTransformer
 
 from text_processor import ChineseTextProcessor
 
-logging.basicConfig(level=logging.INFO)
-logger = logging.getLogger(__name__)
+try:
+    from log_config import get_logger
+    logger = get_logger(__name__)
+except ImportError:
+    logging.basicConfig(level=logging.INFO)
+    logger = logging.getLogger(__name__)
+
+_MODEL_CACHE: Dict[str, SentenceTransformer] = {}
+
+
+def get_cached_model(model_name: str) -> SentenceTransformer:
+    """获取缓存的嵌入模型（模块级单例）"""
+    if model_name not in _MODEL_CACHE:
+        logger.info(f"加载嵌入模型: {model_name}")
+        _MODEL_CACHE[model_name] = SentenceTransformer(model_name)
+        logger.info("模型加载完成并已缓存")
+    return _MODEL_CACHE[model_name]
+
+
+def clear_model_cache() -> None:
+    """清空模型缓存"""
+    global _MODEL_CACHE
+    _MODEL_CACHE.clear()
+    logger.info("模型缓存已清空")
 
 
 class LightweightRAG:
@@ -46,11 +68,9 @@ class LightweightRAG:
         self.metadata = []
     
     def _load_model(self) -> None:
-        """延迟加载嵌入模型"""
+        """延迟加载嵌入模型（使用缓存）"""
         if self.model is None:
-            logger.info(f"加载嵌入模型: {self.model_name}")
-            self.model = SentenceTransformer(self.model_name)
-            logger.info("模型加载完成")
+            self.model = get_cached_model(self.model_name)
     
     def build_index(self, documents: List[Dict]) -> None:
         """构建混合索引（向量 + BM25）"""
@@ -415,6 +435,123 @@ class LightweightRAG:
             "categories": categories,
             "model_name": self.model_name
         }
+    
+    def get_document_mtimes(self, docs_dir: Path, documents: List[Dict]) -> Dict[str, float]:
+        """获取文档修改时间"""
+        mtimes = {}
+        for doc in documents:
+            doc_path = docs_dir / doc["path"]
+            if doc_path.exists():
+                mtimes[doc["path"]] = doc_path.stat().st_mtime
+        return mtimes
+    
+    def save_index_state(self, docs_dir: Path, documents: List[Dict]) -> None:
+        """保存索引状态（文档修改时间）"""
+        state = {
+            "document_mtimes": self.get_document_mtimes(docs_dir, documents),
+            "model_name": self.model_name,
+            "total_chunks": len(self.chunks)
+        }
+        
+        state_path = self.data_dir / "index_state.json"
+        with open(state_path, "w", encoding="utf-8") as f:
+            json.dump(state, f, ensure_ascii=False, indent=2)
+        
+        logger.info(f"索引状态已保存: {len(state['document_mtimes'])} 个文档")
+    
+    def load_index_state(self) -> Optional[Dict]:
+        """加载索引状态"""
+        state_path = self.data_dir / "index_state.json"
+        
+        if not state_path.exists():
+            return None
+        
+        try:
+            with open(state_path, "r", encoding="utf-8") as f:
+                return json.load(f)
+        except Exception as e:
+            logger.warning(f"加载索引状态失败: {e}")
+            return None
+    
+    def get_changed_documents(self, docs_dir: Path, documents: List[Dict]) -> Tuple[List[Dict], List[Dict]]:
+        """获取变更的文档（新增或修改）"""
+        state = self.load_index_state()
+        
+        if not state:
+            logger.info("无历史索引状态，需要全量构建")
+            return documents, []
+        
+        current_mtimes = self.get_document_mtimes(docs_dir, documents)
+        saved_mtimes = state.get("document_mtimes", {})
+        
+        changed_docs = []
+        unchanged_docs = []
+        
+        for doc in documents:
+            path = doc["path"]
+            current_mtime = current_mtimes.get(path)
+            saved_mtime = saved_mtimes.get(path)
+            
+            if current_mtime is None:
+                continue
+            
+            if saved_mtime is None or current_mtime > saved_mtime:
+                changed_docs.append(doc)
+            else:
+                unchanged_docs.append(doc)
+        
+        deleted_paths = set(saved_mtimes.keys()) - set(current_mtimes.keys())
+        
+        return changed_docs, unchanged_docs, list(deleted_paths)
+    
+    def incremental_update(self, docs_dir: Path, documents: List[Dict]) -> bool:
+        """增量更新索引"""
+        if not self.load_index():
+            logger.info("索引不存在，执行全量构建")
+            self.build_index(documents)
+            self.save_index_state(docs_dir, documents)
+            return True
+        
+        result = self.get_changed_documents(docs_dir, documents)
+        
+        if len(result) == 2:
+            changed_docs, unchanged_docs = result
+            deleted_paths = []
+        else:
+            changed_docs, unchanged_docs, deleted_paths = result
+        
+        if not changed_docs and not deleted_paths:
+            logger.info("文档无变更，跳过索引更新")
+            return False
+        
+        logger.info(f"检测到变更: {len(changed_docs)} 个新增/修改, {len(deleted_paths)} 个删除")
+        
+        if changed_docs:
+            self._load_model()
+            
+            new_chunks = self._split_by_markdown(changed_docs)
+            
+            if new_chunks:
+                texts = [chunk["content"] for chunk in new_chunks]
+                embeddings = self.model.encode(texts, show_progress_bar=True, convert_to_numpy=True)
+                
+                faiss.normalize_L2(embeddings)
+                self.vector_index.add(embeddings.astype('float32'))
+                
+                new_tokenized = [self.text_processor.tokenize_for_bm25(text) for text in texts]
+                
+                all_texts = [chunk["content"] for chunk in self.chunks] + texts
+                all_tokenized = [self.text_processor.tokenize_for_bm25(t) for t in all_texts]
+                self.bm25_index = BM25Okapi(all_tokenized)
+                
+                for chunk in new_chunks:
+                    self.chunks.append(chunk)
+                    self.metadata.append(chunk.get("metadata", {}))
+                
+                logger.info(f"增量更新完成: 新增 {len(new_chunks)} 个分块")
+        
+        self.save_index_state(docs_dir, documents)
+        return True
 
 
 if __name__ == "__main__":
