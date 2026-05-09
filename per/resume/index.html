@@ -7193,12 +7193,12 @@
 <h2 id="q_2">📌 Q：如何保障分布式事务一致性（跨微服务）？</h2>
 <p>在“支付-扣减-发货”这种分布式链路中，核心思路是“不仅测成功的路径，更要测失败后的补偿逻辑”。</p>
 <p>不追求强一致性（ACID），而是追求最终一致性（BASE）。</p>
-<ol>
-<li><strong>异常中断与补偿测试（核心）：</strong></li>
-<li><strong>场景：</strong> 支付成功了，但‘权益下发’服务挂了或超时了。</li>
-<li><strong>测试点：</strong> 验证系统是否具备<strong>自动重试</strong>机制。如果重试 N 次仍失败，是否进入了<strong>死信队列（DLQ）</strong>或生成了<strong>异常工单</strong>供人工介入。</li>
-<li><strong>操作：</strong> 在测试环境通过 Mock 掉权益接口返回 500 或超时，观察支付服务的补偿逻辑。</li>
-</ol>
+<p>1.异常中断与补偿测试（核心）：</p>
+<ul>
+<li>场景：支付成功了，但‘权益下发’服务挂了或超时了。</li>
+<li>测试点：验证系统是否具备<strong>自动重试</strong>机制。如果重试 N 次仍失败，是否进入了<strong>死信队列（DLQ）</strong>或生成了<strong>异常工单</strong>供人工介入。</li>
+<li>操作：在测试环境通过 Mock 掉权益接口返回 500 或超时，观察支付服务的补偿逻辑。</li>
+</ul>
 <details class="tip">
 <summary>死信队列（DLQ）</summary>
 <p>消息队列中用于存储无法被正常消费的消息，以便后续分析、重试或人工处理。</p>
@@ -7215,49 +7215,35 @@
 <li>保证数据不丢失：防止消息因消费失败而被永久丢弃。</li>
 </ul>
 </details>
-<ol>
-<li><strong>接口幂等性验证：</strong></li>
-<li><strong>场景：</strong> MQ 消息因为网络抖动可能会重发。</li>
-<li><strong>测试点：</strong> 权益下发服务如果收到两条同样的‘支付成功’消息，是否会发两次权益？</li>
-<li>
-<p><strong>方案：</strong> 使用 JMeter 并发发送相同 <code>order_id</code> 的请求，或者手动在数据库层面模拟重复 MQ 消息，校验数据库记录是否唯一。</p>
-</li>
-<li>
-<p><strong>状态机闭环校验：</strong></p>
-</li>
-<li><strong>方案：</strong> 编写自动化脚本实时扫描数据库，校验是否存在‘支付已成功’但‘权益状态’超过 5 分钟仍为‘未处理’的异常订单。这属于<strong>实时对账监控</strong>。”</li>
-</ol>
+<p>2.接口幂等性验证：</p>
+<ul>
+<li>场景：MQ 消息因为网络抖动可能会重发。</li>
+<li>测试点：权益下发服务如果收到两条同样的‘支付成功’消息，是否会发两次权益？</li>
+<li>方案：使用 JMeter 并发发送相同 <code>order_id</code> 的请求，或者手动在数据库层面模拟重复 MQ 消息，校验数据库记录是否唯一。</li>
+</ul>
+<p>3.状态机闭环校验：</p>
+<ul>
+<li>方案：编写自动化脚本实时扫描数据库，校验是否存在‘支付已成功’但‘权益状态’超过 5 分钟仍为‘未处理’的异常订单。这属于<strong>实时对账监控</strong>。”</li>
+</ul>
 <h2 id="q4-redis">📌 Q4： Redis 通常存储哪些类型的业务数据？存储的原因是什么？</h2>
-<ol>
-<li>
-<p>通常存储的业务数据：</p>
-</li>
-<li>
-<p>高频配置类数据：比如计酬数据源、渠道的基本信息、结算规则模板、费率参数等。这些数据在结算周期内几乎不变，但查询极度频繁。</p>
-</li>
+<p>1.通常存储的业务数据：</p>
+<ul>
+<li>高频配置类数据：比如计酬数据源、渠道的基本信息、结算规则模板、费率参数等。这些数据在结算周期内几乎不变，但查询极度频繁。</li>
 <li>状态与中间结果：计酬计算的引擎执行时的临时变量、状态管理等。</li>
-<li>
-<p>安全与权限数据：用户的 Session Token、接口防刷的频率限制（Rate Limiting）以及各地市操作员的菜单权限缓存。</p>
-</li>
-<li>
-<p>存储原因：</p>
-</li>
-<li>
-<p>降低数据库压力：减少数据库IO，同时加速读取；高并发或大批量导出时，数据库 CPU 会瞬间飙升。通过 Redis 做缓冲层，可以将响应耗时从百毫秒级降低到毫秒级。</p>
-</li>
+<li>安全与权限数据：用户的 Session Token、接口防刷的频率限制（Rate Limiting）以及各地市操作员的菜单权限缓存。</li>
+</ul>
+<p>2.存储原因：</p>
+<ul>
+<li>降低数据库压力：减少数据库IO，同时加速读取；高并发或大批量导出时，数据库 CPU 会瞬间飙升。通过 Redis 做缓冲层，可以将响应耗时从百毫秒级降低到毫秒级。</li>
 <li>支持分布式一致性：多实例部署时，如果数据存在本地内存，多个实例间无法同步。Redis 作为<strong>分布式缓存</strong>，保证了所有节点读取到的状态是唯一的。</li>
-<li>
-<p>利用原子性操作：在处理渠道费用发放额度时，我们利用 Redis 的 <code>INCR/DECR</code> 等原子操作来防止‘超发’或‘并发覆盖’问题，这比在关系型数据库加锁成本更低。</p>
-</li>
-<li>
-<p>存储的数据结构：</p>
-</li>
-<li>
-<p>复杂的数据以 Hash 结构存储，比如渠道详情、结算规则模板等。</p>
-</li>
+<li>利用原子性操作：在处理渠道费用发放额度时，我们利用 Redis 的 <code>INCR/DECR</code> 等原子操作来防止‘超发’或‘并发覆盖’问题，这比在关系型数据库加锁成本更低。</li>
+</ul>
+<p>3.存储的数据结构：</p>
+<ul>
+<li>复杂的数据以 Hash 结构存储，比如渠道详情、结算规则模板等。</li>
 <li>简单的数据以 String 结构存储，比如结算开关、用户Session Token等。</li>
 <li>去重类需求利用 Set 结构。</li>
-</ol>
+</ul>
 <h2 id="q5-redis">📌 Q5： Redis 有哪些特性？测试人员会关注什么？</h2>
 <h2 id="q6-redis">📌 Q6： 移动云盘项目中 Redis 爆满问题的压测场景、脚本设计及问题排查过程？</h2>
 <h2 id="q10-playwright-selenium">📌 Q10：为什么要用 Playwright 而不是 Selenium ？</h2>
@@ -7327,7 +7313,7 @@ playwright<span class="w"> </span>show-trace<span class="w"> </span>xxx_manage.z
     <span class="md-icon" title="最后更新">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"></path></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime" title="2026年5月4日 22:28:18 CST">2026-05-04 22:28:18</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime" title="2026年5月9日 14:12:43 CST">2026-05-09 14:12:43</span>
   </span>
 
     
