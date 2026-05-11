@@ -87,6 +87,7 @@ nav:
       - JVMGC: java/jvmgc/JVMGC.md
   - Vue:
       - 基础: vue/basic.md
+      - npm: vue/npm.md
   - 数据库:
       - Oracle:
           - sqlldr导入大量数据: sql/oracle/sqlldr_import.md
