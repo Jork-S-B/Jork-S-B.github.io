@@ -3357,6 +3357,34 @@
 
               
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../vue/npm/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    npm
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
@@ -5818,6 +5846,92 @@
 
               
             
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_9_6">
+        
+          
+          <label class="md-nav__link" for="__nav_9_6" id="__nav_9_6_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Windows
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_9_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_9_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Windows
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix="">
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../other/windows/system_disk/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    系统盘空间抢救方案
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
@@ -7675,37 +7789,45 @@ trace<span class="w"> </span>--skipJDKMethod<span class="w"> </span><span class=
 <div class="highlight"><pre><span></span><code>使用 Little's Law（利特尔法则）：
 并发用户数 = QPS × 平均响应时间
 </code></pre></div>
-<p>说明：
-- <strong>QPS (Queries Per Second)</strong>：每秒查询数/请求数，表示系统吞吐量
-- <strong>TPS (Transactions Per Second)</strong>：每秒事务数，一个事务可能包含多个请求</p>
-<p><strong>基础计算</strong>：
-- 目标：达到 10000 QPS，平均响应时间 500ms
-- 并发用户数 = 10000 × 0.5 = 5000 个虚拟用户</p>
-<p><strong>考虑思考时间</strong>：
-</p><div class="highlight"><pre><span></span><code>并发用户数 = QPS × (平均响应时间 + 思考时间)
+<p>说明：</p>
+<ul>
+<li><strong>QPS (Queries Per Second)</strong>：每秒查询数/请求数，表示系统吞吐量</li>
+<li><strong>TPS (Transactions Per Second)</strong>：每秒事务数，一个事务可能包含多个请求</li>
+</ul>
+<p>基础计算：</p>
+<ul>
+<li>目标：达到 10000 QPS，平均响应时间 500ms</li>
+<li>并发用户数 = 10000 × 0.5 = 5000 个虚拟用户</li>
+</ul>
+<p>考虑思考时间：</p>
+<div class="highlight"><pre><span></span><code>并发用户数 = QPS × (平均响应时间 + 思考时间)
 </code></pre></div>
-- 例如：用户浏览商品后思考 2 秒再下单
-- 并发用户数 = 10000 × (0.5 + 2) = 25000 个虚拟用户<p></p>
-<p><strong>实际案例</strong>（本次压测）：
-- 目标 TPS：5000（用户级别的完整业务流程）
-- 实际 QPS：约 15000-20000（系统内部的请求总数，包括 Redis、MySQL、风控 API）
-- 实际 P99 响应时间：150ms
-- 理论并发用户数 = 15000 × 0.15 = 2250 个（基于 QPS）
-- 实际设置：1000 个线程（考虑波动和余量，且部分内部调用有缓存优化）</p>
-<p><strong>JMeter 实现方式</strong>：
-- 使用 <code>Thread Group</code> 配置线程数
-- 设置 <code>Ramp-up Period</code>：逐步加压时间（避免瞬间冲击）
-- 使用 <code>Loop Controller</code> 或 <code>Duration Assertion</code> 控制持续时间</p>
-<p><strong>Ramp-up 时间建议</strong>：
-</p><div class="highlight"><pre><span></span><code>Ramp-up 时间 = 线程数 / 每秒启动线程数
+<p><strong>实际案例</strong>（本次压测）：</p>
+<ul>
+<li>目标 TPS：5000（用户级别的完整业务流程）</li>
+<li>实际 QPS：约 15000-20000（系统内部的请求总数，包括 Redis、MySQL、风控 API）</li>
+<li>实际 P99 响应时间：150ms</li>
+<li>理论并发用户数 = 15000 × 0.15 = 2250 个（基于 QPS）</li>
+<li>实际设置：1000 个线程（考虑波动和余量，且部分内部调用有缓存优化）</li>
+</ul>
+<p>JMeter 实现方式：</p>
+<ul>
+<li>使用 <code>Thread Group</code> 配置线程数</li>
+<li>设置 <code>Ramp-up Period</code>：逐步加压时间（避免瞬间冲击）</li>
+<li>使用 <code>Loop Controller</code> 或 <code>Duration Assertion</code> 控制持续时间</li>
+</ul>
+<p>Ramp-up 时间建议：</p>
+<div class="highlight"><pre><span></span><code>Ramp-up 时间 = 线程数 / 每秒启动线程数
+一般每秒启动 5-10 个线程
+例如：1000 线程，Ramp-up 设置 100-200 秒
 </code></pre></div>
-- 一般每秒启动 5-10 个线程
-- 例如：1000 线程，Ramp-up 设置 100-200 秒<p></p>
-<p><strong>注意事项</strong>：
-- 压测机资源：单机线程数不超过推荐值（参考压测机配置）
-- 分布式压测：总线程数 = 单机线程数 × 压测机数量
-- 监控指标：TPS、响应时间、错误率、资源使用率
-- 持续时间：稳定性测试建议持续 1-2 小时，观察内存泄漏等问题</p>
+<p><strong>注意事项</strong>：</p>
+<ul>
+<li>压测机资源：单机线程数不超过推荐值（参考压测机配置）</li>
+<li>分布式压测：总线程数 = 单机线程数 × 压测机数量</li>
+<li>监控指标：TPS、响应时间、错误率、资源使用率</li>
+<li>持续时间：稳定性测试建议持续 1-2 小时，观察内存泄漏等问题</li>
+</ul>
 <p>第三步：结合案例</p>
 <p>若压测时要达到 1 万个 QPS，响应延迟最大 500 毫秒，怎么设置和计算需要多少台机器做并发？</p>
 <ol>
@@ -7743,38 +7865,94 @@ trace<span class="w"> </span>--skipJDKMethod<span class="w"> </span><span class=
 </li>
 </ul>
 <h3 id="qtps-cpu">Q：假设压测时，TPS 上不去但 CPU 和内存都不高，你会从哪些方向排查？</h3>
-<p>1.数据库层面（最可能）
-- <strong>行锁竞争</strong>：当压测使用<strong>同一账户ID</strong>，数据库会串行化行锁，TPS上不去，而CPU/内存正常。<br>
-  - <strong>排查</strong>：<code>show engine innodb status</code>查看锁等待；<code>performance_schema</code>统计锁等待时间。<br>
-  - <strong>解决</strong>：改造为<strong>批量扣减+账户分片</strong>，或用<strong>Redis原子操作+异步落库</strong>。
-- <strong>数据库连接池</strong>：连接池（如HikariCP）默认最大连接数可能只有10-20，压测时连接被占满，线程等待。<br>
-  - <strong>排查</strong>：监控<code>active connections</code>、<code>waiting threads</code>。<br>
-  - <strong>解决</strong>：适当增大连接池，但注意数据库自身连接数上限。
-- 还有慢查询</p>
-<p>2.服务端线程池配置
-- <strong>Tomcat/Undertow</strong>：<code>maxThreads</code>较小（如200），或<code>acceptCount</code>队列满了导致丢包。<br>
-  - <strong>排查</strong>：查看服务端日志是否有“Thread pool exhausted”或拒绝连接。<br>
-  - <strong>解决</strong>：增大<code>maxThreads</code>，同时结合压测并发数调整。</p>
-<p>3.压测机器及脚本问题
-- <strong>JMeter 非GUI模式</strong>：未启用<code>-n -t -l</code>，或<code>Loop Controller</code>未设置合理的<code>pacing</code>，导致线程空转。
-- <strong>网络带宽</strong>：虽然CPU不高，但若响应体过大（如返回完整账户信息），千兆网卡可能打满。<br>
-  - <strong>排查</strong>：<code>iftop</code>或<code>nload</code>观察压测机出网带宽。<br>
-- <strong>端口耗尽</strong>：短压测时，TIME_WAIT状态占满端口范围。<br>
-  - <strong>排查</strong>：<code>netstat -an | grep TIME_WAIT | wc -l</code>。<br>
-  - <strong>解决</strong>：调整<code>net.ipv4.ip_local_port_range</code>和<code>tcp_tw_reuse</code>。（或者改用长连接（Keep-Alive）可规避端口耗尽）
-- 还有压测机本身的配置，导致线程并发数上不去</p>
-<p>4.外部依赖/下游接口
-- 若扣减接口调用风控、积分等外部服务，且<strong>未设置合理超时+熔断</strong>，即使下游慢但未报错，也会导致线程阻塞。<br>
-  - <strong>排查</strong>：用<code>Arthas trace</code>或<code>SkyWalking</code>查看调用链耗时分布。<br>
-  - <strong>解决</strong>：对弱依赖做<strong>异步降级</strong>或增加超时重试策略。</p>
-<p>5.GC与JVM内部锁
-- CPU不高但TPS低，可能出现<strong>频繁Young GC</strong>（如每秒多次），导致“停顿但CPU不飙高”。<br>
-  - <strong>排查</strong>：<code>jstat -gcutil &lt;pid&gt; 1000</code> 查看GC次数及耗时。<br>
-- <strong>JVM内部同步</strong>：如<code>Random</code>、<code>Logger</code>、<code>StringBuffer</code>等隐式锁竞争。<br>
-  - <strong>排查</strong>：<code>jstack</code> 抓取线程栈，统计BLOCKED状态的线程数。</p>
-<p>6.操作系统限制
-- <strong>文件句柄数</strong>：<code>ulimit -n</code>默认为1024，高并发下socket连接不足。<br>
-- <strong>网卡队列溢出</strong>：<code>ethtool -S eth0 | grep drop</code> 查看是否有丢包。</p>
+<p>1.数据库层面（最可能）</p>
+<ul>
+<li>
+<p><strong>行锁竞争</strong>：当压测使用<strong>同一账户ID</strong>，数据库会串行化行锁，TPS上不去，而CPU/内存正常。  </p>
+</li>
+<li>
+<p><strong>排查</strong>：<code>show engine innodb status</code>查看锁等待；<code>performance_schema</code>统计锁等待时间。  </p>
+</li>
+<li>
+<p><strong>解决</strong>：改造为<strong>批量扣减+账户分片</strong>，或用<strong>Redis原子操作+异步落库</strong>。</p>
+</li>
+<li>
+<p><strong>数据库连接池</strong>：连接池（如HikariCP）默认最大连接数可能只有10-20，压测时连接被占满，线程等待。</p>
+</li>
+<li>
+<p><strong>排查</strong>：监控<code>active connections</code>、<code>waiting threads</code>。  </p>
+</li>
+<li>
+<p><strong>解决</strong>：适当增大连接池，但注意数据库自身连接数上限。</p>
+</li>
+<li>
+<p>还有慢查询</p>
+</li>
+</ul>
+<p>2.服务端线程池配置</p>
+<ul>
+<li>
+<p><strong>Tomcat/Undertow</strong>：<code>maxThreads</code>较小（如200），或<code>acceptCount</code>队列满了导致丢包。  </p>
+</li>
+<li>
+<p><strong>排查</strong>：查看服务端日志是否有“Thread pool exhausted”或拒绝连接。  </p>
+</li>
+<li><strong>解决</strong>：增大<code>maxThreads</code>，同时结合压测并发数调整。</li>
+</ul>
+<p>3.压测机器及脚本问题</p>
+<ul>
+<li>
+<p><strong>JMeter 非GUI模式</strong>：未启用<code>-n -t -l</code>，或<code>Loop Controller</code>未设置合理的<code>pacing</code>，导致线程空转。</p>
+</li>
+<li>
+<p><strong>网络带宽</strong>：虽然CPU不高，但若响应体过大（如返回完整账户信息），千兆网卡可能打满。  </p>
+</li>
+<li>
+<p><strong>排查</strong>：<code>iftop</code>或<code>nload</code>观察压测机出网带宽。  </p>
+</li>
+<li>
+<p><strong>端口耗尽</strong>：短压测时，TIME_WAIT状态占满端口范围。  </p>
+</li>
+<li>
+<p><strong>排查</strong>：<code>netstat -an | grep TIME_WAIT | wc -l</code>。  </p>
+</li>
+<li>
+<p><strong>解决</strong>：调整<code>net.ipv4.ip_local_port_range</code>和<code>tcp_tw_reuse</code>。（或者改用长连接（Keep-Alive）可规避端口耗尽）</p>
+</li>
+<li>
+<p>还有压测机本身的配置，导致线程并发数上不去</p>
+</li>
+</ul>
+<p>4.外部依赖/下游接口</p>
+<ul>
+<li>
+<p>若扣减接口调用风控、积分等外部服务，且<strong>未设置合理超时+熔断</strong>，即使下游慢但未报错，也会导致线程阻塞。  </p>
+</li>
+<li>
+<p><strong>排查</strong>：用<code>Arthas trace</code>或<code>SkyWalking</code>查看调用链耗时分布。  </p>
+</li>
+<li><strong>解决</strong>：对弱依赖做<strong>异步降级</strong>或增加超时重试策略。</li>
+</ul>
+<p>5.GC与JVM内部锁</p>
+<ul>
+<li>
+<p>CPU不高但TPS低，可能出现<strong>频繁Young GC</strong>（如每秒多次），导致“停顿但CPU不飙高”。  </p>
+</li>
+<li>
+<p><strong>排查</strong>：<code>jstat -gcutil &lt;pid&gt; 1000</code> 查看GC次数及耗时。  </p>
+</li>
+<li>
+<p><strong>JVM内部同步</strong>：如<code>Random</code>、<code>Logger</code>、<code>StringBuffer</code>等隐式锁竞争。  </p>
+</li>
+<li>
+<p><strong>排查</strong>：<code>jstack</code> 抓取线程栈，统计BLOCKED状态的线程数。</p>
+</li>
+</ul>
+<p>6.操作系统限制</p>
+<ul>
+<li><strong>文件句柄数</strong>：<code>ulimit -n</code>默认为1024，高并发下socket连接不足。  </li>
+<li><strong>网卡队列溢出</strong>：<code>ethtool -S eth0 | grep drop</code> 查看是否有丢包。</li>
+</ul>
 <div class="admonition note">
 <p class="admonition-title">工具推荐</p>
 </div>
@@ -7891,7 +8069,7 @@ trace<span class="w"> </span>--skipJDKMethod<span class="w"> </span><span class=
     <span class="md-icon" title="最后更新">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"></path></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime" title="2026年5月9日 14:52:02 CST">2026-05-09 14:52:02</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime" title="2026年5月11日 13:57:01 CST">2026-05-11 13:57:01</span>
   </span>
 
     
