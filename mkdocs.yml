@@ -160,6 +160,8 @@ nav:
       - ai的各种名词: other/ai.md
       - CICD: other/cicd.md
       - SSE流式响应机制: other/sse.md
+      - Windows:
+          - 系统盘空间抢救方案: other/windows/system_disk.md
   - ielts:
       - vocabulary:
           - Synonym substitution: ielts/vocabulary/synonym_substitution.md
