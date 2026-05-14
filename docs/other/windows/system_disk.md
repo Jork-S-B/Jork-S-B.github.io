@@ -43,7 +43,7 @@
 .\Migrate-Folder.ps1 -SourceDir "C:\Users\你的用户名\AppData\Roaming\Trae CN" -TargetDir "G"
 ```
 
-（会自动将目标路径扩展为 `G:\Users\你的用户名\AppData\Roaming\Trae CN`）
+目标目录会自动将目标路径扩展为 `G:\Users\你的用户名\AppData\Roaming\Trae CN`
 
 ??? note "Migrate-Folder.ps1"
 
