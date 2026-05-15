@@ -7322,21 +7322,13 @@
 <h2 id="q_1">📌 Q：如何保障跨平台的数据一致性？</h2>
 <p>“由粗到细、由面到点”</p>
 <p>🛠️ 跨平台数据一致性校验脚本设计思路：</p>
-<ol>
-<li>
-<p>宏观对账：元数据与聚合统计 (Metadata Check) </p>
-</li>
-<li>
-<p>总量对比 (Count)： SELECT COUNT(*) 是否相等。</p>
-</li>
+<p>1.宏观对账：元数据与聚合统计 (Metadata Check) </p>
+<ul>
+<li>总量对比 (Count)： SELECT COUNT(*) 是否相等。</li>
 <li>关键指标对比 (Sum/Avg)： 针对金额、积分、数量等字段做 SUM(balance) 。如果总量对但总金额不对，说明发生了“数据偏移”或“精度丢失”。</li>
-<li>
-<p>边界值对比 (Min/Max)： 对比最大/最小 ID 或更新时间，确认同步范围是否一致。</p>
-</li>
-<li>
-<p>第二层：分批哈希对比 (Batch Hash Check)</p>
-</li>
-</ol>
+<li>边界值对比 (Min/Max)： 对比最大/最小 ID 或更新时间，确认同步范围是否一致。</li>
+</ul>
+<p>2.分批哈希对比 (Batch Hash Check)</p>
 <p>核心点：为提高效率，引入 “递归下钻” 的思路：</p>
 <ul>
 <li>分批/分片策略： 按照主键 ID 取模或按创建时间分片（例如：每 10 万条数据一个 Bucket）。</li>
@@ -7360,10 +7352,8 @@
 <li>如果 Batch_01 的 MD5 对不上，将该批次再细分为 10 个小批次，递归定位，直到锁定具体的几个 ID，最后只对这几个 ID 进行全字段打印对比。</li>
 </ul>
 </li>
-<li>
-<p>第三层：动态抽样对比 (Sampling Check)</p>
-</li>
 </ul>
+<p>3.动态抽样对比 (Sampling Check)</p>
 <p>用于日常监控或数据量极大的场景。</p>
 <ul>
 <li>随机抽样： 每天随机抽取 1% 的数据进行全字段对比。</li>
@@ -7494,7 +7484,6 @@ playwright<span class="w"> </span>show-trace<span class="w"> </span>xxx_manage.z
 <ul>
 <li>Playwright 无需配置浏览器驱动</li>
 </ul>
-<p>由于中移那边要求工作电脑上所有软件都是最新版本，以避免安全漏洞。因此每当更新浏览器时，都需要更新对应的浏览器驱动。而 Playwright 则无需配置浏览器驱动，直接使用即可。</p>
 <h3 id="_1">🚁 拓展</h3>
 <ul>
 <li>支持并行执行</li>
@@ -7536,7 +7525,7 @@ playwright<span class="w"> </span>show-trace<span class="w"> </span>xxx_manage.z
     <span class="md-icon" title="最后更新">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"></path></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime" title="2026年5月14日 11:43:10 CST">2026-05-14 11:43:10</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime" title="2026年5月15日 15:00:33 CST">2026-05-15 15:00:33</span>
   </span>
 
     
