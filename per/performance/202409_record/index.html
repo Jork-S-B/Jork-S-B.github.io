@@ -3618,7 +3618,7 @@
   <span class="md-ellipsis">
     
   
-    收集表统计信息
+    统计信息
   
 
     
@@ -7517,6 +7517,21 @@
 </li>
 </ul>
 <p>初步定位：<strong>慢查询 + 大key</strong> 可能是导致Redis内存压力增大、接口耗时升高的原因。</p>
+<div class="admonition note">
+<p class="admonition-title">redis 慢查询</p>
+<p>Redis 慢查询的默认阈值是 10000 微秒（10 毫秒）。</p>
+<ul>
+<li>临时调整：
+  <div class="highlight"><pre><span></span><code>CONFIG<span class="w"> </span>SET<span class="w"> </span>slowlog-log-slower-than<span class="w"> </span><span class="m">5000</span><span class="w">  </span><span class="c1"># 改为 5ms</span>
+CONFIG<span class="w"> </span>SET<span class="w"> </span>slowlog-max-len<span class="w"> </span><span class="m">1024</span><span class="w">  </span><span class="c1"># 最多记录 1024 条慢查询</span>
+</code></pre></div></li>
+<li>永久保存：修改 redis.conf 中的对应行，重启 Redis。</li>
+</ul>
+<p>慢查询日志：
+</p><div class="highlight"><pre><span></span><code>SLOWLOG<span class="w"> </span>GET<span class="w"> </span><span class="m">10</span><span class="w">  </span><span class="c1"># 获取最近 10 条慢查询记录</span>
+SLOWLOG<span class="w"> </span>LEN<span class="w">  </span><span class="c1"># 当前慢查询日志条数</span>
+</code></pre></div><p></p>
+</div>
 <h3 id="_2">补充：数据来源</h3>
 <p>压测接口为一个核心聚合接口（如 /api/v1/ad/match），其内部采用中台化分层调用模式。</p>
 <p>接口逻辑顺序（Pipeline）</p>
@@ -8069,7 +8084,7 @@ trace<span class="w"> </span>--skipJDKMethod<span class="w"> </span><span class=
     <span class="md-icon" title="最后更新">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"></path></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime" title="2026年5月11日 13:57:01 CST">2026-05-11 13:57:01</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime" title="2026年5月14日 15:38:23 CST">2026-05-14 15:38:23</span>
   </span>
 
     
