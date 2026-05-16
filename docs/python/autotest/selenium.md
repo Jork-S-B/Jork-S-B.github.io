@@ -38,6 +38,8 @@ WebDriverWait(driver, 10).until(lambda x: x.find_element(by='xpath', value=value
 
 ## 📌 xpath
 
+通过结构关系锚定唯一元素，而不是直接复制xpath表达式。
+
 |           表达式            | 补充说明                    |
 |:------------------------:|:------------------------|
 |     `following::div`     | 获取节点后的所有div             |
