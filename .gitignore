@@ -7,12 +7,7 @@
 !/scripts
 !/requirements.txt
 
-# RAG 索引文件（不提交到仓库）
-data/
-*.bin
-*.pkl
-
-# 模型缓存
+# 缓存
 .cache/
 __pycache__/
 *.pyc
