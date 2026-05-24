@@ -42,7 +42,7 @@ my_function(1, 2, 3, key1="value1", key2="value2")
 
 - 浅拷贝仅复制其引用，当对象存在嵌套层次时，其内部元素的引用也会被复制，修改影响原对象。适合复制不可变对象或顶层结构。
 
-- 深拷贝会递归地复制对象及其所有嵌套层次的内容，并创建完整副本，而不是引用。
+- 深拷贝 copy.deepcopy() ，递归地创建新对象，完全独立。
 
 ```python
 a = [1, 2, [3, 4]]
@@ -71,17 +71,21 @@ print(b)  # 输出[1, 1, [5, 4]]
 * 字典推导式格式如：`{表达式1:表达式2 for 变量 in 列表 if 条件}`
 * 集合推导式格式如：`{表达式 for 变量 in 列表 if 条件}`
 
-=== "示例"
+=== "示例（伪代码）"
 
     ```python
-    ml = [x for x in range(10) if x % 2 == 0]
-    print(ml)  # 输出[0, 2, 4, 6, 8]
-    
-    md = {x: x ** 2 for x in range(10) if x % 2 == 0}
-    print(md)  # 输出{0: 0, 2: 4, 4: 16, 6: 36, 8: 64}
-    
-    ms = {x for x in range(10) if x % 2 == 0}
-    print(ms)  # 输出{0, 2, 4, 6, 8}
+    # 面试题1：一行代码筛选出：字符串列表中，以下划线开头的字符串
+    tmp = [ i for i in str_list if i.startswith("_")]
+    print(tmp)  # 输出['_abc', '_def']
+       
+    # 面试题2：对一个列表，第一步去重，第二步用推导式求出能被 5 整除的新列表，怎么写？
+    lst = [10, 15, 20, 15, 10, 7, 25, 0, -5]
+    unique_lst = list(set(lst))  # 简单去重，顺序可能变
+    # 或保持顺序：unique_lst = list(dict.fromkeys(lst))
+
+    # 第二步：推导式筛选能被5整除的数
+    result = [x for x in unique_lst if x % 5 == 0]
+    print(result)  # 输出: [10, 20, 15, 25, 0, -5]
     
     ```
 

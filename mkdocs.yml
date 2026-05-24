@@ -4,209 +4,211 @@ site_author: whm
 site_description: myblog
 
 nav:
-  - Home: index.md
-  - Python:
-      - 并发模型:
-          - GIL: python/concurrent_futures/gil.md
-          - 多线程: python/concurrent_futures/thread.md
-          - 多进程: python/concurrent_futures/multiprocessing.md
-          - 协程: python/concurrent_futures/async.md
-      - 数据类型:
-          - 数值型: python/datatype/number.md
-          - 序列: python/datatype/sequence.md
-          - 字典和集合: python/datatype/dict&set.md
-          - 可变/不可变类型: python/datatype/mutable&immutable.md
-      - 数据结构: python/structure/structure.md
-      - 算法:
-          - 排序: python/oj/sort.md
-          - 动态规划: python/oj/dp.md
-          - 滑动窗口: python/oj/window.md
-      - 面向对象: python/oop.md
-      - 内置函数: python/builtin_func.md
-      - 内置库:
-          - 正则表达式: python/builtin_lib/re.md
-          - 文件路径: python/builtin_lib/pypath.md
-          - json: python/builtin_lib/pyjson_notes.md
-          - collections: python/builtin_lib/collections.md
-      - 闭包&装饰器&柯里化: python/closure.md
-      - 自动化:
-          - 设计: python/autotest/model.md
-          - unittest: python/autotest/unittest/unittest_notes.md
-          - pytest:
-              - conftest: python/autotest/pytest/conftest.md
-              - 测试夹具: python/autotest/pytest/fixture.md
-              - pytest.main: python/autotest/pytest/pytest.main.md
-              - pytest.ini: python/autotest/pytest/pytest.ini.md
-          - selenium: python/autotest/selenium.md
-          - app自动化:
-              - airtest: python/autotest/app/mumu_sim.md
-              - appium: python/autotest/app/appium.md
-              - uiautomator2: python/autotest/app/uiautomator2.md
-              - wda: python/autotest/app/webdriveragent.md
-          - mitmproxy: python/autotest/mitmproxy.md
-          - requests: python/autotest/requests.md
-          - Playwright:
-              - 001_basic: python/autotest/playwright/001_basic.md
-              - 002_po: python/autotest/playwright/002_po.md
-      - Web:
-          - Flask: python/web/flask.md
-          - Django:
-              - ORM: python/web/django/django_orm.md
-              - DTL模版引擎: python/web/django/django_templates.md
-              - Cookie与Session: python/web/django/cookie&session.md
-      - Pandas:
-          - Day1: python/pandas/day01.md
-          - Day2: python/pandas/day02.md
-          - Day3: python/pandas/day03.md
-          - Day4: python/pandas/day04.md
-          - Day5: python/pandas/day05.md
-      - kafka:
-          - 一些概念: python/kafka/concept.md
-          - kafka-python: python/kafka/kafka-python.md
-          - confluent_kafka: python/kafka/confluent_kafka.md
-      - redis:
-          - 特性: python/redis/redis_note.md
-          - 常用方法: python/redis/function.md
-      - 其他:
-          - Python安装路径迁移: python/other/mv_py_path.md
-          - mkdocs使用记录: python/other/mkdocs_notes.md
-          - docx: python/pydocx/pydocx_notes.md
-          - excel: python/pyexcel/pyexcel_notes.md
-          - 爬虫入门笔记: python/other/scrapy_notes.md
-          - 编程规范: python/other/coding_standard.md
-          - 垃圾回收机制: python/other/garbage_collection.md
-          - 环境变量: python/other/env.md
-          - 项目管理工具: python/other/uv.md
-  - Java:
-      - Spring Boot:
-          - 组件: java/springboot/basic.md
-      - leetcode热题100:
-          - 哈希: java/leetcode/hash.md
-          - 双指针: java/leetcode/two_pointers.md
-          - 普通数组: java/leetcode/array.md
-          - 二分查找: java/leetcode/binary_search.md
-          - 栈: java/leetcode/stack.md
-      - JUnit 5: java/junit5.md
-      - Cucumber: java/cucumber.md
-      - JVMGC: java/jvmgc/JVMGC.md
-  - Vue:
-      - 基础: vue/basic.md
-      - npm: vue/npm.md
-  - 数据库:
-      - Oracle:
-          - sqlldr导入大量数据: sql/oracle/sqlldr_import.md
-          - 分区&同义词&序列: sql/oracle/some.md
-          - 查询锁表&解锁: sql/oracle/lock&unlock.md
-          - 存储过程: sql/oracle/procedure.md
-          - 统计信息: sql/oracle/gather_table_stats.md
-          - 备忘: sql/oracle/other_notes.md
-      - Mysql: sql/mysql_notes.md
-      - ElasticSearch: other/elasticsearch.md
-      - PostgreSQL: sql/pg/readme.md
-      - 数仓和数据中台: sql/data.md
-  - Shell:
-      - 复习: shell/review.md
-      - git: other/git_notes.md
-      - timestamp: shell/timestamp.md
-      - regex.sh: shell/regex.md
-      - k8s:
-          - 基础: shell/k8s/basic.md
-          - 探针技术: shell/k8s/probe.md
-          - kind: shell/k8s/kind.md
-          - 部署微服务: shell/k8s/deploy.md
-      - Docker:
-          - Docker for Windows: shell/docker/windows_docker.md
-          - Docker for Arch Linux: shell/docker/archlinux_docker.md
-          - 构建MySQL镜像: shell/docker/build_mysql.md
-          - 构建Oracle镜像: shell/docker/build_oracle.md
-          - 构建Jenkins镜像: shell/docker/build_jenkins.md
-          - 构建RockyLinux镜像: shell/docker/build_rockylinux.md
-          - 构建HBase镜像: shell/docker/build_hbase.md
-          - docker-compose: shell/docker/compose.md
-  - 测试:
-      - 软件工程: test/software_engineering.md
-      - 测试类型:
-          - 代码覆盖率: test/coverage.md
-          - app测试: test/test_app.md
-          - 性能测试:
-              - 性能测试: test/test_performance.md
-              - 压测工具:
-                  - JMeter: utils/jmeter_notes.md
-                  - Locust: utils/locust_notes.md
-                  - Arthas: utils/arthas.md
-              - 监控工具:
-                  - 监控平台: utils/performance/monitor/platform.md
-                  - nmon: utils/nmon.md
-                  - 监控服务器: utils/performance/monitor/server.md
-                  - 监控Mysql: utils/performance/monitor/mysql.md
-                  - Skywalking: utils/performance/monitor/Skywalking.md
-              - 性能调优:
-                  - 高性能: other/high_performance.md
-                  - 高可用: other/high_availability.md
-                  - Nginx: other/nginx_notes.md
-                  - Tomcat: other/tomcat_notes.md
-          - 安全测试: test/test_security.md
-      - 测试工具:
-          - Fiddler: utils/fiddler_notes.md
-          - Charles: utils/charles_notes.md
-          - Postman: utils/postman_notes.md
-          - Apifox: utils/apifox_notes.md
-  - Hadoop:
-      - Hadoop生态: hadoop/ecosystem.md
-      - Scala:
-          - Day01: hadoop/scala/day01.md
-          - Day02: hadoop/scala/day02.md
-          - Day03: hadoop/scala/day03.md
-          - Day04: hadoop/scala/day04.md
-  - 其他:
-      - 区块链: other/blockchain.md
-      - 深度学习: other/deep_learning.md
-      - ai的各种名词: other/ai.md
-      - CICD: other/cicd.md
-      - SSE流式响应机制: other/sse.md
-      - Windows:
-          - 系统盘空间抢救方案: other/windows/system_disk.md
-          - 默认编码: other/windows/default_encoding.md
-  - ielts:
-      - vocabulary:
-          - Synonym substitution: ielts/vocabulary/synonym_substitution.md
-          - phrase & sentence: ielts/vocabulary/phrase&sentence.md
-          - notes: ielts/vocabulary/notes.md
-      - reading:
-          - 经济学人:
-              - 租房还是买房: ielts/reading/the_economist/rent_or_buy.md
-              - 自助结账机寓言: ielts/reading/the_economist/self_checkout.md
-              - 人工智能对入门级工作的影响: ielts/reading/the_economist/the_impact_of_AI_on_entry_level_job.md
-          - TED演讲:
-              - 如何利用AI进行学习: ielts/reading/ted/ai_age_learning.md
-              - 如何自我介绍: ielts/reading/ted/self_introduction.md
-          - 剑桥雅思真题:
-              - 剑雅7-T4-P3: ielts/reading/authentic/C7-T4-P3.md
-              - 剑雅11-T3-P3: ielts/reading/authentic/C11-T3-P3.md
-              - 剑雅12-T2-P2: ielts/reading/authentic/C12-T2-P2.md
-          - 时事:
-              - 中国禁止隐藏式车门把手 全球首例: ielts/reading/current_affair/ban_hidden_door_handles.md
-      - spoken:
-          - universal topic: ielts/spoken/universal.md
-          - topic:
-              - Daily Life: ielts/spoken/topic/daily_life.md
-              - Education: ielts/spoken/topic/education.md
-              - Pet: ielts/spoken/topic/pet.md
-              - Job: ielts/spoken/topic/job.md
-              - Character: ielts/spoken/topic/character.md
-      - listening:
-              - technique: ielts/listening/technique.md
-              - 剑桥雅思真题:
-                  - 剑雅10听力-T2-Section3: ielts/listening/authentic/C10-T2-Section3.md
-  - ai工程: 
-      - 基本名词: vibe/basic_nouns.md
-      - rag/retrieval: vibe/rag.md
-      - 免费中间件:
-          - ngrok: vibe/mvp/ngrok.md
+    - Home: index.md
+    - Python:
+          - advanced:
+                - 并发模型:
+                      - GIL: python/advanced/concurrent_futures/gil.md
+                      - 多线程: python/advanced/concurrent_futures/thread.md
+                      - 多进程: python/advanced/concurrent_futures/multiprocessing.md
+                      - 协程: python/advanced/concurrent_futures/async.md
+                - 可变&不可变类型: python/advanced/mutable&immutable.md
+                - 装饰器: python/advanced/decorator.md
+                - 生成器: python/advanced/yield.md
+          - basic:
+                - 面向对象: python/basic/oop.md
+                - 数据类型:
+                      - 数值型: python/basic/datatype/number.md
+                      - 序列: python/basic/datatype/sequence.md
+                      - 字典和集合: python/basic/datatype/dict&set.md
+          - 内置:
+                - 内置函数: python/builtin/builtin_func.md
+                - 正则表达式: python/builtin/re.md
+                - 文件路径: python/builtin/pypath.md
+                - json: python/builtin/pyjson_notes.md
+                - collections: python/builtin/collections.md
+          - 自动化:
+                - 设计: python/autotest/model.md
+                - unittest: python/autotest/unittest/unittest_notes.md
+                - pytest:
+                      - conftest: python/autotest/pytest/conftest.md
+                      - 测试夹具: python/autotest/pytest/fixture.md
+                      - pytest.main: python/autotest/pytest/pytest.main.md
+                      - pytest.ini: python/autotest/pytest/pytest.ini.md
+                - selenium: python/autotest/selenium.md
+                - app自动化:
+                      - airtest: python/autotest/app/mumu_sim.md
+                      - appium: python/autotest/app/appium.md
+                      - uiautomator2: python/autotest/app/uiautomator2.md
+                      - wda: python/autotest/app/webdriveragent.md
+                - mitmproxy: python/autotest/mitmproxy.md
+                - requests: python/autotest/requests.md
+                - Playwright:
+                      - 001_basic: python/autotest/playwright/001_basic.md
+                      - 002_po: python/autotest/playwright/002_po.md
+          - Web:
+                - 环境变量: python/other/env.md
+                - 项目管理工具: python/other/uv.md
+                - Flask: python/web/flask.md
+                - Django:
+                      - ORM: python/web/django/django_orm.md
+                      - DTL模版引擎: python/web/django/django_templates.md
+                      - Cookie与Session: python/web/django/cookie&session.md
+          - Pandas:
+                - Day1: python/pandas/day01.md
+                - Day2: python/pandas/day02.md
+                - Day3: python/pandas/day03.md
+                - Day4: python/pandas/day04.md
+                - Day5: python/pandas/day05.md
+          - kafka:
+                - 一些概念: python/kafka/concept.md
+                - kafka-python: python/kafka/kafka-python.md
+                - confluent_kafka: python/kafka/confluent_kafka.md
+          - redis:
+                - 特性: python/redis/redis_note.md
+                - 常用方法: python/redis/function.md
+          - 其他:
+                - 数据结构: python/other/structure/structure.md
+                - 算法:
+                      - 排序: python/other/oj/sort.md
+                      - 动态规划: python/other/oj/dp.md
+                      - 滑动窗口: python/other/oj/window.md
+                - Python安装路径迁移: python/other/mv_py_path.md
+                - mkdocs使用记录: python/other/mkdocs_notes.md
+                - docx: python/other/pydocx/pydocx_notes.md
+                - excel: python/other/pyexcel/pyexcel_notes.md
+                - 爬虫入门笔记: python/other/scrapy_notes.md
+                - 编程规范: python/other/coding_standard.md
+                - 垃圾回收机制: python/other/garbage_collection.md
+    - Java:
+          - Spring Boot:
+                - 组件: java/springboot/basic.md
+          - leetcode热题100:
+                - 哈希: java/leetcode/hash.md
+                - 双指针: java/leetcode/two_pointers.md
+                - 普通数组: java/leetcode/array.md
+                - 二分查找: java/leetcode/binary_search.md
+                - 栈: java/leetcode/stack.md
+          - JUnit 5: java/junit5.md
+          - Cucumber: java/cucumber.md
+          - JVMGC: java/jvmgc/JVMGC.md
+    - Vue:
+          - 基础: vue/basic.md
+          - npm: vue/npm.md
+    - 数据库:
+          - Oracle:
+                - sqlldr导入大量数据: sql/oracle/sqlldr_import.md
+                - 分区&同义词&序列: sql/oracle/some.md
+                - 查询锁表&解锁: sql/oracle/lock&unlock.md
+                - 存储过程: sql/oracle/procedure.md
+                - 统计信息: sql/oracle/gather_table_stats.md
+                - 备忘: sql/oracle/other_notes.md
+          - Mysql: sql/mysql_notes.md
+          - ElasticSearch: other/elasticsearch.md
+          - PostgreSQL: sql/pg/readme.md
+          - 数仓和数据中台: sql/data.md
+    - Shell:
+          - 复习: shell/review.md
+          - git: other/git_notes.md
+          - timestamp: shell/timestamp.md
+          - regex.sh: shell/regex.md
+          - k8s:
+                - 基础: shell/k8s/basic.md
+                - 探针技术: shell/k8s/probe.md
+                - kind: shell/k8s/kind.md
+                - 部署微服务: shell/k8s/deploy.md
+          - Docker:
+                - Docker for Windows: shell/docker/windows_docker.md
+                - Docker for Arch Linux: shell/docker/archlinux_docker.md
+                - 构建MySQL镜像: shell/docker/build_mysql.md
+                - 构建Oracle镜像: shell/docker/build_oracle.md
+                - 构建Jenkins镜像: shell/docker/build_jenkins.md
+                - 构建RockyLinux镜像: shell/docker/build_rockylinux.md
+                - 构建HBase镜像: shell/docker/build_hbase.md
+                - docker-compose: shell/docker/compose.md
+    - 测试:
+          - 软件工程: test/software_engineering.md
+          - 测试类型:
+                - 代码覆盖率: test/coverage.md
+                - app测试: test/test_app.md
+                - 性能测试:
+                      - 性能测试: test/test_performance.md
+                      - 压测工具:
+                            - JMeter: utils/jmeter_notes.md
+                            - Locust: utils/locust_notes.md
+                            - Arthas: utils/arthas.md
+                      - 监控工具:
+                            - 监控平台: utils/performance/monitor/platform.md
+                            - nmon: utils/nmon.md
+                            - 监控服务器: utils/performance/monitor/server.md
+                            - 监控Mysql: utils/performance/monitor/mysql.md
+                            - Skywalking: utils/performance/monitor/Skywalking.md
+                      - 性能调优:
+                            - 高性能: other/high_performance.md
+                            - 高可用: other/high_availability.md
+                            - Nginx: other/nginx_notes.md
+                            - Tomcat: other/tomcat_notes.md
+                - 安全测试: test/test_security.md
+          - 测试工具:
+                - Fiddler: utils/fiddler_notes.md
+                - Charles: utils/charles_notes.md
+                - Postman: utils/postman_notes.md
+                - Apifox: utils/apifox_notes.md
+    - Hadoop:
+          - Hadoop生态: hadoop/ecosystem.md
+          - Scala:
+                - Day01: hadoop/scala/day01.md
+                - Day02: hadoop/scala/day02.md
+                - Day03: hadoop/scala/day03.md
+                - Day04: hadoop/scala/day04.md
+    - 其他:
+          - 区块链: other/blockchain.md
+          - 深度学习: other/deep_learning.md
+          - CICD: other/cicd.md
+          - Windows:
+                - 系统盘空间抢救方案: other/windows/system_disk.md
+                - 默认编码: other/windows/default_encoding.md
+    - ielts:
+          - vocabulary:
+                - Synonym substitution: ielts/vocabulary/synonym_substitution.md
+                - phrase & sentence: ielts/vocabulary/phrase&sentence.md
+                - notes: ielts/vocabulary/notes.md
+          - reading:
+                - 经济学人:
+                      - 租房还是买房: ielts/reading/the_economist/rent_or_buy.md
+                      - 自助结账机寓言: ielts/reading/the_economist/self_checkout.md
+                      - 人工智能对入门级工作的影响: ielts/reading/the_economist/the_impact_of_AI_on_entry_level_job.md
+                - TED演讲:
+                      - 如何利用AI进行学习: ielts/reading/ted/ai_age_learning.md
+                      - 如何自我介绍: ielts/reading/ted/self_introduction.md
+                - 剑桥雅思真题:
+                      - 剑雅7-T4-P3: ielts/reading/authentic/C7-T4-P3.md
+                      - 剑雅11-T3-P3: ielts/reading/authentic/C11-T3-P3.md
+                      - 剑雅12-T2-P2: ielts/reading/authentic/C12-T2-P2.md
+                - 时事:
+                      - 中国禁止隐藏式车门把手 全球首例: ielts/reading/current_affair/ban_hidden_door_handles.md
+          - spoken:
+                - universal topic: ielts/spoken/universal.md
+                - topic:
+                      - Daily Life: ielts/spoken/topic/daily_life.md
+                      - Education: ielts/spoken/topic/education.md
+                      - Pet: ielts/spoken/topic/pet.md
+                      - Job: ielts/spoken/topic/job.md
+                      - Character: ielts/spoken/topic/character.md
+          - listening:
+                - technique: ielts/listening/technique.md
+                - 剑桥雅思真题:
+                      - 剑雅10听力-T2-Section3: ielts/listening/authentic/C10-T2-Section3.md
+    - ai工程:
+          - 基本名词: vibe/basic_nouns.md
+          - rag/retrieval: vibe/rag.md
+          - SSE流式响应机制: other/sse.md
+          - 免费中间件:
+                - ngrok: vibe/mvp/ngrok.md
 
 # 搜索栏右侧git链接
 repo_url: https://github.com/Jork-S-B/Jork-S-B.github.io/tree/main
-repo_name: 'myblog'
+repo_name: "myblog"
 
 theme:
   # favicon: logo.png  # 网站logo，默认从./docs/logo.png读取
