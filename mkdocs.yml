@@ -6,6 +6,11 @@ site_description: myblog
 nav:
   - Home: index.md
   - Python:
+      - 并发模型:
+          - GIL: python/concurrent_futures/gil.md
+          - 多线程: python/concurrent_futures/thread.md
+          - 多进程: python/concurrent_futures/multiprocessing.md
+          - 协程: python/concurrent_futures/async.md
       - 数据类型:
           - 数值型: python/datatype/number.md
           - 序列: python/datatype/sequence.md
@@ -22,14 +27,13 @@ nav:
           - 正则表达式: python/builtin_lib/re.md
           - 文件路径: python/builtin_lib/pypath.md
           - json: python/builtin_lib/pyjson_notes.md
-          - 多线程&多进程: python/builtin_lib/thread.md
-          - 异步编程: python/builtin_lib/async.md
           - collections: python/builtin_lib/collections.md
       - 闭包&装饰器&柯里化: python/closure.md
       - 自动化:
           - 设计: python/autotest/model.md
           - unittest: python/autotest/unittest/unittest_notes.md
           - pytest:
+              - conftest: python/autotest/pytest/conftest.md
               - 测试夹具: python/autotest/pytest/fixture.md
               - pytest.main: python/autotest/pytest/pytest.main.md
               - pytest.ini: python/autotest/pytest/pytest.ini.md
