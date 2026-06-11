@@ -15,6 +15,25 @@ nav:
                 - 可变&不可变类型: python/advanced/mutable&immutable.md
                 - 装饰器: python/advanced/decorator.md
                 - 生成器: python/advanced/yield.md
+          - 自动化:
+                - 分层设计: python/autotest/layering_model.md
+                - pytest:
+                      - fixture: python/autotest/pytest/fixture.md
+                      - conftest: python/autotest/pytest/conftest.md
+                      - pytest.main: python/autotest/pytest/pytest.main.md
+                      - pytest.ini: python/autotest/pytest/pytest.ini.md
+                - unittest: python/autotest/unittest/unittest_notes.md
+                - selenium: python/autotest/selenium.md
+                - app自动化:
+                      - airtest: python/autotest/app/mumu_sim.md
+                      - appium: python/autotest/app/appium.md
+                      - uiautomator2: python/autotest/app/uiautomator2.md
+                      - wda: python/autotest/app/webdriveragent.md
+                - mitmproxy: python/autotest/mitmproxy.md
+                - requests: python/autotest/requests.md
+                - Playwright:
+                      - 001_basic: python/autotest/playwright/001_basic.md
+                      - 002_po: python/autotest/playwright/002_po.md
           - basic:
                 - 面向对象: python/basic/oop.md
                 - 数据类型:
@@ -27,25 +46,6 @@ nav:
                 - 文件路径: python/builtin/pypath.md
                 - json: python/builtin/pyjson_notes.md
                 - collections: python/builtin/collections.md
-          - 自动化:
-                - 设计: python/autotest/model.md
-                - unittest: python/autotest/unittest/unittest_notes.md
-                - pytest:
-                      - conftest: python/autotest/pytest/conftest.md
-                      - 测试夹具: python/autotest/pytest/fixture.md
-                      - pytest.main: python/autotest/pytest/pytest.main.md
-                      - pytest.ini: python/autotest/pytest/pytest.ini.md
-                - selenium: python/autotest/selenium.md
-                - app自动化:
-                      - airtest: python/autotest/app/mumu_sim.md
-                      - appium: python/autotest/app/appium.md
-                      - uiautomator2: python/autotest/app/uiautomator2.md
-                      - wda: python/autotest/app/webdriveragent.md
-                - mitmproxy: python/autotest/mitmproxy.md
-                - requests: python/autotest/requests.md
-                - Playwright:
-                      - 001_basic: python/autotest/playwright/001_basic.md
-                      - 002_po: python/autotest/playwright/002_po.md
           - Web:
                 - 环境变量: python/other/env.md
                 - 项目管理工具: python/other/uv.md

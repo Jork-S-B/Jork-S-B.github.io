@@ -75,7 +75,7 @@ print(b)  # 输出[1, 1, [5, 4]]
 
     ```python
     # 面试题1：一行代码筛选出：字符串列表中，以下划线开头的字符串
-    tmp = [ i for i in str_list if i.startswith("_")]
+    tmp = [i for i in str_list if i.startswith("_")]
     print(tmp)  # 输出['_abc', '_def']
        
     # 面试题2：对一个列表，第一步去重，第二步用推导式求出能被 5 整除的新列表，怎么写？

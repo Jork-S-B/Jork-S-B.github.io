@@ -1,28 +1,39 @@
-### 🚁 Fixture 作用域
+## 📌 fixture 作用域
 
 当测试第一次请求时创建fixture，并根据它们的`scope`参数值销毁：
 
-* function：默认值，函数级每个测试函数执行一次。
-
+* function（默认）：函数级每个测试函数执行一次。项目中大部分请求 session、测试数据构造用的就是这个级别，避免用例间数据污染。
 * class：类级别，每个测试类执行一次。
-
 * module：模块级，每个测试模块执行一次。
-
 * package: 包级别，每个测试包执行一次。要求testcase目录是package而非directory。
+* session: 会话级，整个会话只执行一次。适合重量级资源，比如*全局登录 token、数据库连接池、Docker 容器*等。
 
-* session: 会话级，整个会话只执行一次。
+总结：作用域越小，隔离性越好但性能越差；作用域越大，性能越好但需要处理状态重置问题。实际使用时，一般优先选最小够用的作用域，遇到性能瓶颈再提升级别。
+
+
+### 🚁 通过 fixture 实现多环境快速切换
+
+1.配置与代码分离：环境相关的 URL、账号、数据库连接，通过配置文件（YAML/JSON/INI）或环境变量管理。
+
+2.fixture 动态加载配置：定义一个 env_config - session 级别的 fixture，根据传入的环境标识（如 --env）读取对应配置。
+
+3.自定义命令行参数：在 conftest.py 中通过 pytest_addoption 添加 --env 参数，用户执行 pytest --env=staging 即可切换。
+
+4.依赖传递：其他 fixture（如 api_client）依赖 env_config，自动获得当前环境的 base_url、headers 等。
+
+通过这种方式，在 CI/CD 中通过环境变量 `PYTEST_ADDOPTS="--env=staging"` 来动态注入，真正做到“配置即代码”。
 
 ### 🚁 setUp/tearDown方法
 
 setUp/tearDown是执行测试用例的前置/后置方法，用于初始化/清理环境。继承unittest的类可直接使用同名方法。
 
-pytest中也有[类似名称的方法](https://blog.csdn.net/qq_36502272/article/details/100671845)，也可通过`yield fixtures`
-实现类似功能。
+pytest中也有[类似名称的方法](https://blog.csdn.net/qq_36502272/article/details/100671845)，也可通过`yield fixtures`实现类似功能。
 
 === "conftest.py"
 
     ```python
-    @pytest.fixture(scope='package')
+    # 搭配autouse，以初始或清理全局测试环境
+    @pytest.fixture(scope='package', autouse=True)
     def myfunc():
         conn = dbUtils.connect()  # 数据库工具类实例
         driver = webdriver.Chrome()  # webdriver实例
@@ -43,7 +54,7 @@ pytest中也有[类似名称的方法](https://blog.csdn.net/qq_36502272/article
 
     ```
 
-### 🚁 参数化
+## 📌 参数化
 
 pytest参数化的方式包括：
 
@@ -163,7 +174,7 @@ pytest参数化的方式包括：
     @pytest.mark.parametrize("iteration", range(6))
 
 
-#### ❓ 关于控制台打印将汉字转为Unicode字符
+### 🚁 关于控制台打印将汉字转为Unicode字符
 
 从上述运行结果可以看出，使用`pytest.mark.parametrize`装饰器时，控制台打印将汉字转为了Unicode字符。
 
