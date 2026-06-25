@@ -5154,6 +5154,312 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#locust_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        一、Locust的权重机制
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="一、Locust的权重机制">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#11" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.1 权重定义方式
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#12" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.2 实际执行比例计算
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#13" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.3 权重机制的本质
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#jmeter" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        二、JMeter如何实现权重场景？
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="二、JMeter如何实现权重场景？">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1throughput-controller" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        方式1：Throughput Controller（推荐）
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="方式1：Throughput Controller（推荐）">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#211" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.1.1 配置结构
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#212" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.1.2 配置步骤
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#213-throughput-controller" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.1.3 Throughput Controller参数说明
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2weighted-switch-controller" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        方式2：Weighted Switch Controller（需插件）
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="方式2：Weighted Switch Controller（需插件）">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#221-jmeter-plugins" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.2.1 安装JMeter Plugins
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#222" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.2.2 配置示例
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#223" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.2.3 优点
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3if-controller" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        方式3：If Controller + 计数器（不推荐）
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="方式3：If Controller + 计数器（不推荐）">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#231" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.3.1 配置结构
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#232" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.3.2 缺点
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#locust-vs-jmeter" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        三、Locust vs JMeter对比
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        四、实战建议
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="四、实战建议">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#41-locust" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.1 选择Locust的场景
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#42-jmeter" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.2 选择JMeter的场景
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        五、完整示例
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="五、完整示例">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#51-locust" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.1 Locust完整示例
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#52-jmeterjmx" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.2 JMeter完整示例（.jmx片段）
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        六、总结
+      
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -7843,6 +8149,312 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#locust_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        一、Locust的权重机制
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="一、Locust的权重机制">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#11" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.1 权重定义方式
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#12" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.2 实际执行比例计算
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#13" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.3 权重机制的本质
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#jmeter" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        二、JMeter如何实现权重场景？
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="二、JMeter如何实现权重场景？">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1throughput-controller" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        方式1：Throughput Controller（推荐）
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="方式1：Throughput Controller（推荐）">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#211" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.1.1 配置结构
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#212" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.1.2 配置步骤
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#213-throughput-controller" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.1.3 Throughput Controller参数说明
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2weighted-switch-controller" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        方式2：Weighted Switch Controller（需插件）
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="方式2：Weighted Switch Controller（需插件）">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#221-jmeter-plugins" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.2.1 安装JMeter Plugins
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#222" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.2.2 配置示例
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#223" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.2.3 优点
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3if-controller" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        方式3：If Controller + 计数器（不推荐）
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="方式3：If Controller + 计数器（不推荐）">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#231" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.3.1 配置结构
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#232" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.3.2 缺点
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#locust-vs-jmeter" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        三、Locust vs JMeter对比
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        四、实战建议
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="四、实战建议">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#41-locust" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.1 选择Locust的场景
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#42-jmeter" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.2 选择JMeter的场景
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        五、完整示例
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="五、完整示例">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#51-locust" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.1 Locust完整示例
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#52-jmeterjmx" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.2 JMeter完整示例（.jmx片段）
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        六、总结
+      
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -8000,6 +8612,351 @@
 </div>
 </div>
 </div>
+<hr>
+<h2 id="locust_1">一、Locust的权重机制</h2>
+<h3 id="11">1.1 权重定义方式</h3>
+<p>Locust通过<code>@task(weight)</code>装饰器来模拟真实用户的操作频率：</p>
+<div class="highlight"><pre><span></span><code><span class="nd">@task</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>  <span class="c1"># 权重10 - 最常见操作</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">query_user_info</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="o">...</span>
+
+<span class="nd">@task</span><span class="p">(</span><span class="mi">8</span><span class="p">)</span>   <span class="c1"># 权重8 - 常见操作</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">query_product_info</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="o">...</span>
+
+<span class="nd">@task</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>   <span class="c1"># 权重5 - 中等频率</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">query_order_list</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="o">...</span>
+
+<span class="nd">@task</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>   <span class="c1"># 权重3 - 较低频率</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">create_order</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="o">...</span>
+
+<span class="nd">@task</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>   <span class="c1"># 权重1 - 低频率</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">query_inventory</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="o">...</span>
+</code></pre></div>
+<h3 id="12">1.2 实际执行比例计算</h3>
+<p>权重总和：10 + 8 + 5 + 3 + 1 = 27</p>
+<p>各任务执行比例：
+- <code>query_user_info</code>：10/27 = 37.0%
+- <code>query_product_info</code>：8/27 = 29.6%
+- <code>query_order_list</code>：5/27 = 18.5%
+- <code>create_order</code>：3/27 = 11.1%
+- <code>query_inventory</code>：1/27 = 3.7%</p>
+<h3 id="13">1.3 权重机制的本质</h3>
+<p><strong>Locust的权重机制本质上是概率分布</strong>：
+- 每个虚拟用户在每次迭代时，根据权重随机选择下一个要执行的任务
+- 权重越高，被选中的概率越大
+- 长期运行后，各任务的执行次数比例趋近于权重比例</p>
+<hr>
+<h2 id="jmeter">二、JMeter如何实现权重场景？</h2>
+<p>JMeter有<strong>多种方式</strong>实现类似的权重控制：</p>
+<h3 id="1throughput-controller">方式1：Throughput Controller（推荐）</h3>
+<h4 id="211">2.1.1 配置结构</h4>
+<div class="highlight"><pre><span></span><code>Test Plan
+├── Thread Group (100 users)
+    ├── Throughput Controller (37.0%) - 查询用户信息
+    │   └── HTTP Request: /user/users/${user_id}
+    ├── Throughput Controller (29.6%) - 查询商品信息
+    │   └── HTTP Request: /product/products/${product_id}
+    ├── Throughput Controller (18.5%) - 查询订单列表
+    │   └── HTTP Request: /order/orders/user/${user_id}
+    ├── Throughput Controller (11.1%) - 创建订单
+    │   └── HTTP Request: POST /order/orders
+    └── Throughput Controller (3.7%) - 查询库存
+        └── HTTP Request: /inventory/inventory/${product_id}
+</code></pre></div>
+<h4 id="212">2.1.2 配置步骤</h4>
+<ol>
+<li><strong>添加Thread Group</strong></li>
+<li>右键 Test Plan → Add → Threads (Users) → Thread Group</li>
+<li>设置 Number of Threads (users): 100</li>
+<li>
+<p>设置 Ramp-Up Period: 10</p>
+</li>
+<li>
+<p><strong>添加Throughput Controller</strong></p>
+</li>
+<li>右键 Thread Group → Add → Logic Controller → Throughput Controller</li>
+<li>
+<p>配置参数：</p>
+<ul>
+<li>Name: "查询用户信息"</li>
+<li>Throughput: 37.0</li>
+<li>Units: "percent executions"</li>
+</ul>
+</li>
+<li>
+<p><strong>添加HTTP Request</strong></p>
+</li>
+<li>右键 Throughput Controller → Add → Sampler → HTTP Request</li>
+<li>配置请求参数</li>
+</ol>
+<h4 id="213-throughput-controller">2.1.3 Throughput Controller参数说明</h4>
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Name</strong></td>
+<td>控制器名称</td>
+</tr>
+<tr>
+<td><strong>Throughput</strong></td>
+<td>执行百分比或执行次数</td>
+</tr>
+<tr>
+<td><strong>Units</strong></td>
+<td>- "percent executions"：按百分比执行<br>- "executions"：按固定次数执行</td>
+</tr>
+<tr>
+<td><strong>Per User</strong></td>
+<td>是否每个用户独立计算</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h3 id="2weighted-switch-controller">方式2：Weighted Switch Controller（需插件）</h3>
+<h4 id="221-jmeter-plugins">2.2.1 安装JMeter Plugins</h4>
+<ol>
+<li>下载 JMeter Plugins：https://jmeter-plugins.org/</li>
+<li>将 <code>JMeterPlugins-Standard.jar</code> 放入 <code>lib/ext</code> 目录</li>
+<li>重启JMeter</li>
+</ol>
+<h4 id="222">2.2.2 配置示例</h4>
+<div class="highlight"><pre><span></span><code><span class="nt">&lt;com.blazemeter.jmeter.controller.WeightedSwitchController</span><span class="w"> </span><span class="na">guiclass=</span><span class="s">"com.blazemeter.jmeter.controller.WeightedSwitchControllerGui"</span><span class="nt">&gt;</span>
+<span class="w">  </span><span class="nt">&lt;collectionProp</span><span class="w"> </span><span class="na">name=</span><span class="s">"WeightedSwitchController.weights"</span><span class="nt">&gt;</span>
+<span class="w">    </span><span class="nt">&lt;stringProp&gt;</span>10<span class="nt">&lt;/stringProp&gt;</span><span class="w">  </span><span class="cm">&lt;!-- 查询用户信息 --&gt;</span>
+<span class="w">    </span><span class="nt">&lt;stringProp&gt;</span>8<span class="nt">&lt;/stringProp&gt;</span><span class="w">   </span><span class="cm">&lt;!-- 查询商品信息 --&gt;</span>
+<span class="w">    </span><span class="nt">&lt;stringProp&gt;</span>5<span class="nt">&lt;/stringProp&gt;</span><span class="w">   </span><span class="cm">&lt;!-- 查询订单列表 --&gt;</span>
+<span class="w">    </span><span class="nt">&lt;stringProp&gt;</span>3<span class="nt">&lt;/stringProp&gt;</span><span class="w">   </span><span class="cm">&lt;!-- 创建订单 --&gt;</span>
+<span class="w">    </span><span class="nt">&lt;stringProp&gt;</span>1<span class="nt">&lt;/stringProp&gt;</span><span class="w">   </span><span class="cm">&lt;!-- 查询库存 --&gt;</span>
+<span class="w">  </span><span class="nt">&lt;/collectionProp&gt;</span>
+
+<span class="w">  </span><span class="nt">&lt;elementProp</span><span class="w"> </span><span class="na">name=</span><span class="s">"查询用户信息"</span><span class="w"> </span><span class="na">elementType=</span><span class="s">"HTTP Request"</span><span class="nt">&gt;</span>
+<span class="w">    </span><span class="nt">&lt;stringProp</span><span class="w"> </span><span class="na">name=</span><span class="s">"HTTPSampler.domain"</span><span class="nt">&gt;</span>localhost<span class="nt">&lt;/stringProp&gt;</span>
+<span class="w">    </span><span class="nt">&lt;stringProp</span><span class="w"> </span><span class="na">name=</span><span class="s">"HTTPSampler.port"</span><span class="nt">&gt;</span>8000<span class="nt">&lt;/stringProp&gt;</span>
+<span class="w">    </span><span class="nt">&lt;stringProp</span><span class="w"> </span><span class="na">name=</span><span class="s">"HTTPSampler.path"</span><span class="nt">&gt;</span>/user/users/${user_id}<span class="nt">&lt;/stringProp&gt;</span>
+<span class="w">  </span><span class="nt">&lt;/elementProp&gt;</span>
+
+<span class="w">  </span><span class="nt">&lt;elementProp</span><span class="w"> </span><span class="na">name=</span><span class="s">"查询商品信息"</span><span class="w"> </span><span class="na">elementType=</span><span class="s">"HTTP Request"</span><span class="nt">&gt;</span>
+<span class="w">    </span><span class="nt">&lt;stringProp</span><span class="w"> </span><span class="na">name=</span><span class="s">"HTTPSampler.domain"</span><span class="nt">&gt;</span>localhost<span class="nt">&lt;/stringProp&gt;</span>
+<span class="w">    </span><span class="nt">&lt;stringProp</span><span class="w"> </span><span class="na">name=</span><span class="s">"HTTPSampler.port"</span><span class="nt">&gt;</span>8000<span class="nt">&lt;/stringProp&gt;</span>
+<span class="w">    </span><span class="nt">&lt;stringProp</span><span class="w"> </span><span class="na">name=</span><span class="s">"HTTPSampler.path"</span><span class="nt">&gt;</span>/product/products/${product_id}<span class="nt">&lt;/stringProp&gt;</span>
+<span class="w">  </span><span class="nt">&lt;/elementProp&gt;</span>
+
+<span class="w">  </span><span class="cm">&lt;!-- 其他请求配置... --&gt;</span>
+<span class="nt">&lt;/com.blazemeter.jmeter.controller.WeightedSwitchController&gt;</span>
+</code></pre></div>
+<h4 id="223">2.2.3 优点</h4>
+<ul>
+<li>权重配置直观，与Locust类似</li>
+<li>自动计算执行比例</li>
+<li>支持动态调整权重</li>
+</ul>
+<hr>
+<h3 id="3if-controller">方式3：If Controller + 计数器（不推荐）</h3>
+<h4 id="231">2.3.1 配置结构</h4>
+<div class="highlight"><pre><span></span><code>Thread Group
+├── Counter (1 to 100, 循环)
+├── If Controller (${counter} &lt;= 37) → 查询用户信息
+├── If Controller (${counter} &gt; 37 &amp;&amp; ${counter} &lt;= 66) → 查询商品信息
+├── If Controller (${counter} &gt; 66 &amp;&amp; ${counter} &lt;= 85) → 查询订单列表
+├── If Controller (${counter} &gt; 85 &amp;&amp; ${counter} &lt;= 96) → 创建订单
+└── If Controller (${counter} &gt; 96) → 查询库存
+</code></pre></div>
+<h4 id="232">2.3.2 缺点</h4>
+<ul>
+<li>配置复杂，维护困难</li>
+<li>不够灵活，调整权重需要重新计算</li>
+<li>性能开销较大（每次都要判断条件）</li>
+</ul>
+<hr>
+<h2 id="locust-vs-jmeter">三、Locust vs JMeter对比</h2>
+<table>
+<thead>
+<tr>
+<th>特性</th>
+<th>Locust</th>
+<th>JMeter</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>权重控制</strong></td>
+<td><code>@task(weight)</code> 装饰器，简单直观</td>
+<td>Throughput Controller或插件</td>
+</tr>
+<tr>
+<td><strong>脚本编写</strong></td>
+<td>Python代码，灵活易维护</td>
+<td>XML配置或GUI操作，学习曲线陡</td>
+</tr>
+<tr>
+<td><strong>分布式压测</strong></td>
+<td>Master-Worker架构，原生支持</td>
+<td>需要配置远程服务器</td>
+</tr>
+<tr>
+<td><strong>监控可视化</strong></td>
+<td>Web UI实时监控</td>
+<td>需要Backend Listener + Grafana</td>
+</tr>
+<tr>
+<td><strong>资源消耗</strong></td>
+<td>轻量级，单机支持更多并发</td>
+<td>较重量级，GUI模式消耗大</td>
+</tr>
+<tr>
+<td><strong>调试能力</strong></td>
+<td>Python调试工具，方便</td>
+<td>需要使用Debug Sampler</td>
+</tr>
+<tr>
+<td><strong>扩展性</strong></td>
+<td>编写Python插件，灵活</td>
+<td>需要编写Java插件</td>
+</tr>
+<tr>
+<td><strong>适用场景</strong></td>
+<td>开发友好，适合持续集成</td>
+<td>企业级压测，GUI操作友好</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h2 id="_1">四、实战建议</h2>
+<h3 id="41-locust">4.1 选择Locust的场景</h3>
+<ul>
+<li>✅ 开发团队熟悉Python</li>
+<li>✅ 需要快速编写和维护测试脚本</li>
+<li>✅ 需要集成到CI/CD流程</li>
+<li>✅ 需要灵活的分布式压测</li>
+<li>✅ 需要自定义复杂的测试逻辑</li>
+</ul>
+<h3 id="42-jmeter">4.2 选择JMeter的场景</h3>
+<ul>
+<li>✅ 团队已有JMeter使用经验</li>
+<li>✅ 需要GUI界面操作</li>
+<li>✅ 需要丰富的测试报告</li>
+<li>✅ 需要测试非HTTP协议（JDBC、JMS等）</li>
+<li>✅ 企业级压测项目，有成熟的JMeter基础设施</li>
+</ul>
+<hr>
+<h2 id="_2">五、完整示例</h2>
+<h3 id="51-locust">5.1 Locust完整示例</h3>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">locust</span><span class="w"> </span><span class="kn">import</span> <span class="n">HttpUser</span><span class="p">,</span> <span class="n">task</span><span class="p">,</span> <span class="n">between</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">random</span>
+
+<span class="k">class</span><span class="w"> </span><span class="nc">FullChainUser</span><span class="p">(</span><span class="n">HttpUser</span><span class="p">):</span>
+    <span class="n">wait_time</span> <span class="o">=</span> <span class="n">between</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">on_start</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">user_id</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">100000</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">token</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">"mock-token-</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">user_id</span><span class="si">}</span><span class="s2">"</span>
+
+    <span class="nd">@task</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">query_user_info</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">user_id</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">100000</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">get</span><span class="p">(</span>
+            <span class="sa">f</span><span class="s2">"/user/users/</span><span class="si">{</span><span class="n">user_id</span><span class="si">}</span><span class="s2">"</span><span class="p">,</span>
+            <span class="n">headers</span><span class="o">=</span><span class="p">{</span><span class="s2">"Authorization"</span><span class="p">:</span> <span class="sa">f</span><span class="s2">"Bearer </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">token</span><span class="si">}</span><span class="s2">"</span><span class="p">},</span>
+            <span class="n">name</span><span class="o">=</span><span class="s2">"/user/users/[id]"</span>
+        <span class="p">)</span>
+
+    <span class="nd">@task</span><span class="p">(</span><span class="mi">8</span><span class="p">)</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">query_product_info</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">product_id</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">10000</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">get</span><span class="p">(</span>
+            <span class="sa">f</span><span class="s2">"/product/products/</span><span class="si">{</span><span class="n">product_id</span><span class="si">}</span><span class="s2">"</span><span class="p">,</span>
+            <span class="n">headers</span><span class="o">=</span><span class="p">{</span><span class="s2">"Authorization"</span><span class="p">:</span> <span class="sa">f</span><span class="s2">"Bearer </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">token</span><span class="si">}</span><span class="s2">"</span><span class="p">},</span>
+            <span class="n">name</span><span class="o">=</span><span class="s2">"/product/products/[id]"</span>
+        <span class="p">)</span>
+
+    <span class="nd">@task</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">query_order_list</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">get</span><span class="p">(</span>
+            <span class="sa">f</span><span class="s2">"/order/orders/user/</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">user_id</span><span class="si">}</span><span class="s2">?limit=20"</span><span class="p">,</span>
+            <span class="n">headers</span><span class="o">=</span><span class="p">{</span><span class="s2">"Authorization"</span><span class="p">:</span> <span class="sa">f</span><span class="s2">"Bearer </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">token</span><span class="si">}</span><span class="s2">"</span><span class="p">},</span>
+            <span class="n">name</span><span class="o">=</span><span class="s2">"/order/orders/user/[id]"</span>
+        <span class="p">)</span>
+
+    <span class="nd">@task</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">create_order</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">order_data</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="s2">"user_id"</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">user_id</span><span class="p">,</span>
+            <span class="s2">"product_id"</span><span class="p">:</span> <span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">10000</span><span class="p">),</span>
+            <span class="s2">"quantity"</span><span class="p">:</span> <span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
+        <span class="p">}</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">post</span><span class="p">(</span>
+            <span class="s2">"/order/orders"</span><span class="p">,</span>
+            <span class="n">json</span><span class="o">=</span><span class="n">order_data</span><span class="p">,</span>
+            <span class="n">headers</span><span class="o">=</span><span class="p">{</span><span class="s2">"Authorization"</span><span class="p">:</span> <span class="sa">f</span><span class="s2">"Bearer </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">token</span><span class="si">}</span><span class="s2">"</span><span class="p">},</span>
+            <span class="n">name</span><span class="o">=</span><span class="s2">"/order/orders [POST]"</span>
+        <span class="p">)</span>
+
+    <span class="nd">@task</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">query_inventory</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">product_id</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">10000</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">get</span><span class="p">(</span>
+            <span class="sa">f</span><span class="s2">"/inventory/inventory/</span><span class="si">{</span><span class="n">product_id</span><span class="si">}</span><span class="s2">"</span><span class="p">,</span>
+            <span class="n">headers</span><span class="o">=</span><span class="p">{</span><span class="s2">"Authorization"</span><span class="p">:</span> <span class="sa">f</span><span class="s2">"Bearer </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">token</span><span class="si">}</span><span class="s2">"</span><span class="p">},</span>
+            <span class="n">name</span><span class="o">=</span><span class="s2">"/inventory/inventory/[id]"</span>
+        <span class="p">)</span>
+</code></pre></div>
+<h3 id="52-jmeterjmx">5.2 JMeter完整示例（.jmx片段）</h3>
+<div class="highlight"><pre><span></span><code><span class="cp">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span>
+<span class="nt">&lt;jmeterTestPlan</span><span class="w"> </span><span class="na">version=</span><span class="s">"1.2"</span><span class="nt">&gt;</span>
+<span class="w">  </span><span class="nt">&lt;hashTree&gt;</span>
+<span class="w">    </span><span class="nt">&lt;TestPlan</span><span class="w"> </span><span class="na">guiclass=</span><span class="s">"TestPlanGui"</span><span class="w"> </span><span class="na">testclass=</span><span class="s">"TestPlan"</span><span class="w"> </span><span class="na">testname=</span><span class="s">"全链路压测"</span><span class="nt">&gt;</span>
+<span class="w">      </span><span class="nt">&lt;elementProp</span><span class="w"> </span><span class="na">name=</span><span class="s">"TestPlan.user_defined_variables"</span><span class="w"> </span><span class="na">elementType=</span><span class="s">"Arguments"</span><span class="nt">&gt;</span>
+<span class="w">        </span><span class="nt">&lt;collectionProp</span><span class="w"> </span><span class="na">name=</span><span class="s">"Arguments.arguments"</span><span class="nt">/&gt;</span>
+<span class="w">      </span><span class="nt">&lt;/elementProp&gt;</span>
+<span class="w">    </span><span class="nt">&lt;/TestPlan&gt;</span>
+<span class="w">    </span><span class="nt">&lt;hashTree&gt;</span>
+<span class="w">      </span><span class="nt">&lt;ThreadGroup</span><span class="w"> </span><span class="na">guiclass=</span><span class="s">"ThreadGroupGui"</span><span class="w"> </span><span class="na">testclass=</span><span class="s">"ThreadGroup"</span><span class="w"> </span><span class="na">testname=</span><span class="s">"用户组"</span><span class="nt">&gt;</span>
+<span class="w">        </span><span class="nt">&lt;stringProp</span><span class="w"> </span><span class="na">name=</span><span class="s">"ThreadGroup.num_threads"</span><span class="nt">&gt;</span>100<span class="nt">&lt;/stringProp&gt;</span>
+<span class="w">        </span><span class="nt">&lt;stringProp</span><span class="w"> </span><span class="na">name=</span><span class="s">"ThreadGroup.ramp_time"</span><span class="nt">&gt;</span>10<span class="nt">&lt;/stringProp&gt;</span>
+<span class="w">        </span><span class="nt">&lt;boolProp</span><span class="w"> </span><span class="na">name=</span><span class="s">"ThreadGroup.scheduler"</span><span class="nt">&gt;</span>false<span class="nt">&lt;/boolProp&gt;</span>
+<span class="w">      </span><span class="nt">&lt;/ThreadGroup&gt;</span>
+<span class="w">      </span><span class="nt">&lt;hashTree&gt;</span>
+<span class="w">        </span><span class="cm">&lt;!-- 查询用户信息 - 37% --&gt;</span>
+<span class="w">        </span><span class="nt">&lt;ThroughputController</span><span class="w"> </span><span class="na">guiclass=</span><span class="s">"ThroughputControllerGui"</span><span class="w"> </span><span class="na">testclass=</span><span class="s">"ThroughputController"</span><span class="w"> </span><span class="na">testname=</span><span class="s">"查询用户信息"</span><span class="nt">&gt;</span>
+<span class="w">          </span><span class="nt">&lt;intProp</span><span class="w"> </span><span class="na">name=</span><span class="s">"ThroughputController.style"</span><span class="nt">&gt;</span>1<span class="nt">&lt;/intProp&gt;</span>
+<span class="w">          </span><span class="nt">&lt;stringProp</span><span class="w"> </span><span class="na">name=</span><span class="s">"ThroughputController.throughput"</span><span class="nt">&gt;</span>37.0<span class="nt">&lt;/stringProp&gt;</span>
+<span class="w">        </span><span class="nt">&lt;/ThroughputController&gt;</span>
+<span class="w">        </span><span class="nt">&lt;hashTree&gt;</span>
+<span class="w">          </span><span class="nt">&lt;HTTPSamplerProxy</span><span class="w"> </span><span class="na">guiclass=</span><span class="s">"HttpTestSampleGui"</span><span class="w"> </span><span class="na">testclass=</span><span class="s">"HTTPSamplerProxy"</span><span class="w"> </span><span class="na">testname=</span><span class="s">"查询用户信息"</span><span class="nt">&gt;</span>
+<span class="w">            </span><span class="nt">&lt;stringProp</span><span class="w"> </span><span class="na">name=</span><span class="s">"HTTPSampler.domain"</span><span class="nt">&gt;</span>localhost<span class="nt">&lt;/stringProp&gt;</span>
+<span class="w">            </span><span class="nt">&lt;stringProp</span><span class="w"> </span><span class="na">name=</span><span class="s">"HTTPSampler.port"</span><span class="nt">&gt;</span>8000<span class="nt">&lt;/stringProp&gt;</span>
+<span class="w">            </span><span class="nt">&lt;stringProp</span><span class="w"> </span><span class="na">name=</span><span class="s">"HTTPSampler.path"</span><span class="nt">&gt;</span>/user/users/${user_id}<span class="nt">&lt;/stringProp&gt;</span>
+<span class="w">            </span><span class="nt">&lt;stringProp</span><span class="w"> </span><span class="na">name=</span><span class="s">"HTTPSampler.method"</span><span class="nt">&gt;</span>GET<span class="nt">&lt;/stringProp&gt;</span>
+<span class="w">          </span><span class="nt">&lt;/HTTPSamplerProxy&gt;</span>
+<span class="w">        </span><span class="nt">&lt;/hashTree&gt;</span>
+
+<span class="w">        </span><span class="cm">&lt;!-- 其他请求配置... --&gt;</span>
+<span class="w">      </span><span class="nt">&lt;/hashTree&gt;</span>
+<span class="w">    </span><span class="nt">&lt;/hashTree&gt;</span>
+<span class="w">  </span><span class="nt">&lt;/hashTree&gt;</span>
+<span class="nt">&lt;/jmeterTestPlan&gt;</span>
+</code></pre></div>
+<hr>
+<h2 id="_3">六、总结</h2>
+<ol>
+<li><strong>Locust的权重机制</strong>：通过<code>@task(weight)</code>装饰器实现，简单直观，适合开发团队</li>
+<li><strong>JMeter实现权重</strong>：推荐使用Throughput Controller，按百分比控制执行频率</li>
+<li><strong>工具选择</strong>：根据团队技术栈、项目需求、维护成本综合考虑</li>
+<li><strong>最佳实践</strong>：先使用Locust快速验证，再根据需要迁移到JMeter进行企业级压测</li>
+</ol>
+<hr>
+<p><strong>创建时间</strong>：2026-06-21<br>
+<strong>文档版本</strong>：v1.0<br>
+<strong>适用场景</strong>：全链路压测、性能测试、接口测试</p>
 
 
 
@@ -8020,7 +8977,7 @@
     <span class="md-icon" title="最后更新">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"></path></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime" title="2025年7月10日 16:29:45 CST">2025-07-10 16:29:45</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime" title="2026年6月25日 22:04:27 CST">2026-06-25 22:04:27</span>
   </span>
 
     
