@@ -6,6 +6,22 @@ npm install -g @fission-ai/openspec@latest
 
 ```
 
+---
+
+### 通过openspec优化skill
+
+```shell
+# 步骤1：探索需求
+/openspec-explore "idea"
+
+# 步骤2：生成规范文档
+/openspec-propose
+
+# 步骤3：应用变更至skill
+/openspec-apply
+
+```
+
 ## superpowers
 
 ```shell
@@ -98,11 +114,11 @@ claude
                     └──────────┬──────────────────────┘
                                 │ 规划
                     ┌──────────▼──────────────────────┐
-                    │     superpowers (头脑风暴/写计划) │
+                    │    superpowers (头脑风暴/写计划) │
                     └──────────┬──────────────────────┘
                                 │ 开发
                     ┌──────────▼──────────────────────┐
-                    │     TDD / execute-plan           │
+                    │    TDD / execute-plan           │
                     └──────────┬──────────────────────┘
                                 │ 输出
                     ┌──────────▼──────────────────────┐
@@ -117,7 +133,7 @@ claude
                     │     validate / archive           │
                     │     retro / document-generate    │
                     │         ↓                        │
-                    │  再次沉淀，反哺下一轮规划          │
+                    │     再次沉淀，反哺下一轮规划       │
                     └─────────────────────────────────┘
 
 关键变化：
