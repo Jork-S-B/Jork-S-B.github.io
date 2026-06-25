@@ -55,6 +55,32 @@ WebDriverWait(driver, 10).until(lambda x: x.find_element(by='xpath', value=value
 
     2025/5/18: setTimeout(()=>{debugger;},1000)，同理，效果一样。
 
+### 定位选择优先级
+
+禁用绝对路径、动态class、索引，如：`/html/body/div[3]...`，优先语义化定位，如：`//button[text()="登录"]`。
+
+1. 有唯一ID属性，用`@id`定位。
+2. 无唯一ID但有label，用label关联定位。
+3. 无唯一ID、无label，用text定位。
+4. 最后用class或结构定位。
+
+如：
+```xpath
+//div[@id="login"]
+//div[text()="登录"]
+//div[@class="login"]
+//div[@class="login"]//div[text()="登录"]
+```
+
+## 方法命名规范
+
+以用户意图为导向: 
+
+- 用户想”输入XX“，则方法名为`input_XX(value)`。
+- 用户想”选择XX“，则方法名为`select_XX(value)`。
+- 用户想”点击XX“，则方法名为`click_XX()`。
+- 禁用拼音、模糊名（如field2、element1）
+
 ## 📌 chromedriver
 
 chromedriver和chrome浏览器大版本号保持一致即可。
