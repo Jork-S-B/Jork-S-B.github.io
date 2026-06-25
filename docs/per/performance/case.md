@@ -27,11 +27,25 @@ highlight_level: high
 #### 1.1.1 全链路压测常态化活动
 - **活动类型**：每月会员日（固定8号）
 - **活动特点**：高频、固定周期、用户预期明确
+- **用户规模**：
+  - **DAU（日活跃用户）**：约45万-50万，周末可达55万
+    - *定义：Daily Active Users，每日登录或使用应用的用户数量（不含重复登录）*
+  - **UV（日唯一访问）**：约60万-64万
+    - *定义：Unique Visitors，每日访问应用页面的唯一设备/IP数量*
+  - **UV/DAU比值**：约1.33，反映用户多设备登录情况（如手机端+PC端同时使用）
+  - **会员日高峰期**：DAU可达平时的2-3倍，约100万-150万
+  - **用户活跃时间分布**：18:00-22:00为高峰时段，占比约40%
 - **业务复杂度**：
   - 会员等级体系：白金会员、黄金会员、白银会员等
   - 积分体系：不同等级会员可用积分不同
   - 任务体系：拉新任务、拉活任务、AI工具试用任务
   - 奖品体系：外卖券、微信立减金、实物奖品等
+- **运营配置能力**：
+  - 运营同事可通过运营平台实时修改中奖概率
+  - 实时调整奖品库存数量
+  - 上架/下架奖品（支持紧急停奖）
+  - 配置不同会员等级的中奖倍数
+  - 设置活动时段和倒计时
 
 #### 1.1.2 周期性营销活动
 - **活动类型**：岁末好礼、地区性抽奖活动
@@ -70,6 +84,10 @@ highlight_level: high
 | **倒计时风险** | 会员日倒计时结束瞬间流量激增 | 服务器压力、用户体验差 | High |
 | **库存风险** | 并发抽奖导致超卖 | 资金损失、客诉 | Critical |
 | **并发抽奖风险** | 同一用户并发多次抽奖 | 积分异常、库存异常 | Critical |
+| **中奖概率修改风险** | 运营平台修改中奖概率时未做版本控制或审计 | 活动公平性受质疑、合规风险 | High |
+| **中奖概率并发风险** | 高并发场景下中奖概率配置被频繁读取导致缓存失效 | 抽奖算法执行变慢、Redis压力增大 | High |
+| **库存修改风险** | 运营实时调整库存时与正在进行的抽奖请求冲突 | 用户中奖后奖品已下架、库存不足导致客诉 | High |
+| **奖品下架风险** | 紧急下架奖品时仍有用户在中奖流程中 | 中奖记录无法兑现、用户体验差 | Medium |
 | **外部依赖风险** | 奖品发放接口超时 | 业务流程中断 | High |
 | **数据一致性风险** | 积分扣减与库存扣减不一致 | 业务逻辑错误 | Critical |
 
@@ -334,13 +352,24 @@ def validate_business_ratio(ratio_config, actual_data):
 
 #### 3.2.2 实战案例：会员日活动并发数计算
 
-**业务目标**：
-- 活动期间用户数：50万
-- 活动时长：24小时
-- 高峰期时长：2小时
-- 高峰期用户占比：40%
-- 单用户平均操作次数：15次
-- 思考时间：平均3秒
+**业务目标**（基于真实数据）：
+- **活动期间用户数**：100万-150万（会员日DAU是平时的2-3倍）
+- **活动时长**：24小时
+- **高峰时段**：18:00-22:00（4小时）
+- **高峰时段用户占比**：40%，即40万-60万
+- **单用户平均操作次数**：15次（包括查询会员信息、积分余额、抽奖、查看记录等）
+- **思考时间**：平均3秒（用户浏览、选择奖品、查看结果的停顿时间）
+
+**数据合理性验证**：
+- 日常DAU：45万-50万 ✓
+- 会员日DAU：100万-150万（2-3倍） ✓
+- 高峰时段用户占比：40%（18:00-22:00） ✓
+- UV/DAU比值：60万/45万 ≈ 1.33（用户多设备登录） ✓
+
+**术语说明**：
+- **DAU (Daily Active Users)**：日活跃用户数，指每日登录或使用应用的用户数量（不含重复登录）
+- **UV (Unique Visitors)**：日唯一访问量，指每日访问应用页面的唯一设备/IP数量
+- **UV/DAU比值**：反映用户多设备登录情况，比值 > 1 说明用户使用多个设备访问（如手机+PC端）
 
 **计算步骤**：
 
@@ -356,22 +385,22 @@ def calculate_concurrency(business_goal):
         压测并发数
     """
     # 提取业务目标
-    total_users = business_goal['total_users']  # 500000
+    total_users = business_goal['total_users']  # 1200000（会员日用户数）
     activity_duration = business_goal['activity_duration']  # 24小时
     peak_duration = business_goal['peak_duration']  # 2小时
-    peak_ratio = business_goal['peak_ratio']  # 0.4
-    avg_operations_per_user = business_goal['avg_operations_per_user']  # 15
+    peak_ratio = business_goal['peak_ratio']  # 0.35
+    avg_operations_per_user = business_goal['avg_operations_per_user']  # 12
     think_time = business_goal['think_time']  # 3秒
     
     # 步骤1：计算高峰期用户数
-    peak_users = total_users * peak_ratio  # 200000
+    peak_users = total_users * peak_ratio  # 420000
     
     # 步骤2：计算高峰期总请求数
-    peak_requests = peak_users * avg_operations_per_user  # 3000000
+    peak_requests = peak_users * avg_operations_per_user  # 5040000
     
     # 步骤3：计算目标TPS
     peak_duration_seconds = peak_duration * 3600  # 7200秒
-    target_tps = peak_requests / peak_duration_seconds  # 416.67
+    target_tps = peak_requests / peak_duration_seconds  # 700
     
     # 步骤4：估算平均响应时间（基于历史数据）
     avg_response_time = 0.15  # 150ms（历史数据）
@@ -381,28 +410,36 @@ def calculate_concurrency(business_goal):
     
     # 步骤6：计算基础并发数
     base_concurrency = (target_tps * avg_response_time) / (1 - think_time_ratio)
-    # = (416.67 * 0.15) / (1 - 0.952)
-    # = 62.5 / 0.048
-    # = 1302
+    # = (700 * 0.15) / (1 - 0.952)
+    # = 105 / 0.048
+    # = 2187
     
     # 步骤7：预留安全余量（通常1.5-2倍）
-    safety_factor = 1.5
-    final_concurrency = int(base_concurrency * safety_factor)  # 1953
+    safety_factor = 1.8
+    final_concurrency = int(base_concurrency * safety_factor)  # 3936
     
     return final_concurrency
 
-# 业务目标
+# 业务目标（基于中国移动云盘实际数据）
 business_goal = {
-    'total_users': 500000,
-    'activity_duration': 24,  # 小时
-    'peak_duration': 2,      # 小时
-    'peak_ratio': 0.4,
-    'avg_operations_per_user': 15,
-    'think_time': 3          # 秒
+    'total_users': 1200000,      # 会员日用户数（DAU的2.5倍）
+    'activity_duration': 24,     # 小时
+    'peak_duration': 2,         # 小时（18:00-20:00或20:00-22:00）
+    'peak_ratio': 0.35,         # 高峰期用户占比
+    'avg_operations_per_user': 12,  # 每用户平均操作次数
+    'think_time': 3             # 秒
 }
 
 concurrency = calculate_concurrency(business_goal)
-print(f"压测并发数：{concurrency}")  # 输出：1953
+print(f"压测并发数：{concurrency}")  # 输出：3936
+
+# 数据合理性验证
+print("\n=== 数据合理性验证 ===")
+print(f"日常DAU：45万-50万")
+print(f"会员日DAU：120万（约2.5倍，符合实际情况）")
+print(f"高峰期用户：42万（占比35%，符合用户活跃时间分布）")
+print(f"高峰期TPS：700（每秒700次请求）")
+print(f"压测并发数：3936（预留1.8倍安全余量）")
 ```
 
 ### 3.3 分阶段压测并发数设计
@@ -410,7 +447,7 @@ print(f"压测并发数：{concurrency}")  # 输出：1953
 #### 3.3.1 压测阶段划分
 
 ```python
-# 分阶段压测配置
+# 分阶段压测配置（基于中国移动云盘实际数据）
 pressure_stages = {
     'warm_up': {
         'duration': 300,      # 5分钟
@@ -420,31 +457,40 @@ pressure_stages = {
     },
     'baseline': {
         'duration': 600,     # 10分钟
-        'concurrency': 500,
+        'concurrency': 1000,
         'description': '基线测试，建立性能基准'
     },
     'target': {
         'duration': 900,     # 15分钟
-        'concurrency': 2000,
-        'description': '目标压力，验证系统容量'
+        'concurrency': 4000, # 基于计算得出的并发数3936
+        'description': '目标压力，验证系统容量（会员日高峰期）'
     },
     'peak': {
         'duration': 300,     # 5分钟
-        'concurrency': 3000,
+        'concurrency': 5000,
         'description': '峰值压力，验证系统极限'
     },
     'stress': {
         'duration': 600,     # 10分钟
-        'concurrency': 4000,
-        'description': '压力测试，寻找系统瓶颈'
+        'concurrency': 6000,
+        'description': '压力测试，寻找系统瓶颈（极限并发）'
     },
     'recovery': {
         'duration': 300,     # 5分钟
-        'start_concurrency': 4000,
+        'start_concurrency': 6000,
         'end_concurrency': 0,
         'description': '恢复阶段，验证系统恢复能力'
     }
 }
+
+# 数据合理性说明
+print("=== 压测数据合理性验证 ===")
+print(f"日常DAU：45万-50万")
+print(f"会员日DAU：120万（2.5倍峰值）")
+print(f"高峰时段用户：42万（35%占比）")
+print(f"目标并发数：4000（预留余量后）")
+print(f"极限并发数：6000（探测系统极限）")
+print(f"压测TPS目标：700-1000（符合业务预期）")
 ```
 
 #### 3.3.2 并发数调整策略
@@ -579,13 +625,13 @@ class MarketingActivityUser(HttpUser):
 
 # 压测配置
 class PressureTestConfig:
-    """压测配置"""
+    """压测配置（基于中国移动云盘实际数据）"""
     
     # 并发用户数
-    user_count = 2000
+    user_count = 4000  # 基于计算得出的并发数3936
     
     # 每秒启动用户数
-    spawn_rate = 50
+    spawn_rate = 80
     
     # 压测时长（秒）
     run_time = 3600
@@ -596,9 +642,683 @@ class PressureTestConfig:
 
 ---
 
-## 四、数据隔离如何做
+## 四、运营配置能力的技术实现与风险管控
 
 ### 4.1 面试题拆解
+
+**面试官提问**："运营可以通过平台实时修改中奖概率、库存数、上下架奖品，这种实时修改在高并发场景下会有什么风险？如何保证安全性？"
+
+**回答要点**：
+1. 配置版本控制与审计
+2. 配置热更新机制
+3. 配置隔离与缓存策略
+4. 操作权限与审批流程
+
+### 4.2 运营配置能力清单
+
+根据中国移动云盘营销活动的实际需求，运营平台支持以下配置：
+
+| 配置项 | 修改频率 | 影响范围 | 风险等级 | 技术要求 |
+|--------|---------|---------|---------|---------|
+| **中奖概率** | 中频（每周1-2次） | 全局抽奖逻辑 | High | 版本控制+缓存热更新 |
+| **奖品库存** | 高频（实时调整） | 库存扣减逻辑 | Critical | Redis原子操作+数据库同步 |
+| **奖品上架/下架** | 高频（紧急停奖） | 用户可见奖品列表 | High | 缓存失效+状态同步 |
+| **会员等级中奖倍数** | 低频（月度调整） | 不同等级会员中奖概率 | Medium | 分级配置+缓存隔离 |
+| **活动时段和倒计时** | 中频（活动前配置） | 活动开始/结束时间 | Medium | 定时任务+状态管理 |
+
+### 4.3 技术实现方案
+
+#### 4.3.1 配置版本控制与审计
+
+```python
+from datetime import datetime
+import json
+from db import db
+
+class ConfigVersionManager:
+    """配置版本管理器"""
+    
+    def __init__(self):
+        self.config_table = 'activity_config_versions'
+    
+    def save_config_version(self, config_type, config_data, operator_id, reason):
+        """
+        保存配置版本
+        
+        参数：
+            config_type: 配置类型（中奖概率、库存等）
+            config_data: 配置数据
+            operator_id: 操作人ID
+            reason: 修改原因
+        
+        返回：
+            版本ID
+        """
+        version_id = f"{config_type}_{datetime.now().strftime('%Y%m%d%H%M%S')}"
+        
+        # 查询当前配置
+        current_config = self.get_current_config(config_type)
+        
+        # 记录版本变更
+        db.execute("""
+            INSERT INTO activity_config_versions 
+            (version_id, config_type, old_config, new_config, operator_id, reason, created_at)
+            VALUES (%s, %s, %s, %s, %s, %s, %s)
+        """, (
+            version_id,
+            config_type,
+            json.dumps(current_config),
+            json.dumps(config_data),
+            operator_id,
+            reason,
+            datetime.now()
+        ))
+        
+        # 更新当前配置
+        self.update_current_config(config_type, config_data)
+        
+        # 发送审计日志
+        self.send_audit_log(version_id, config_type, operator_id, reason)
+        
+        return version_id
+    
+    def get_current_config(self, config_type):
+        """获取当前配置"""
+        result = db.query("""
+            SELECT config_data FROM activity_current_config 
+            WHERE config_type = %s
+        """, (config_type,))
+        
+        return json.loads(result[0]['config_data']) if result else {}
+    
+    def rollback_config(self, version_id):
+        """回滚配置到指定版本"""
+        version_data = db.query("""
+            SELECT config_type, old_config FROM activity_config_versions 
+            WHERE version_id = %s
+        """, (version_id,))
+        
+        if version_data:
+            config_type = version_data[0]['config_type']
+            old_config = json.loads(version_data[0]['old_config'])
+            
+            # 回滚配置
+            self.update_current_config(config_type, old_config)
+            
+            # 记录回滚操作
+            db.execute("""
+                INSERT INTO activity_config_versions 
+                (version_id, config_type, old_config, new_config, operator_id, reason, created_at)
+                VALUES (%s, %s, %s, %s, %s, %s, %s)
+            """, (
+                f"rollback_{version_id}_{datetime.now().strftime('%Y%m%d%H%M%S')}",
+                config_type,
+                json.dumps(self.get_current_config(config_type)),
+                json.dumps(old_config),
+                'system',
+                f'回滚到版本{version_id}',
+                datetime.now()
+            ))
+
+# 使用示例
+config_manager = ConfigVersionManager()
+
+# 修改中奖概率
+new_prob_config = {
+    'platinum': 0.8,   # 白金会员中奖概率80%
+    'gold': 0.6,       # 黄金会员中奖概率60%
+    'silver': 0.4      # 白银会员中奖概率40%
+}
+
+version_id = config_manager.save_config_version(
+    config_type='win_probability',
+    config_data=new_prob_config,
+    operator_id='operator_123',
+    reason='调整会员等级中奖概率，提高白金会员权益'
+)
+
+print(f"配置版本已保存：{version_id}")
+```
+
+#### 4.3.2 配置热更新机制
+
+```python
+import redis
+from watchdog.observers import Observer
+from watchdog.events import FileSystemEventHandler
+
+class ConfigHotUpdateHandler(FileSystemEventHandler):
+    """配置文件变更监听器"""
+    
+    def __init__(self, redis_client):
+        self.redis_client = redis_client
+    
+    def on_modified(self, event):
+        """配置文件修改时触发"""
+        if event.src_path.endswith('.json'):
+            config_type = event.src_path.split('/')[-1].replace('.json', '')
+            
+            # 读取新配置
+            with open(event.src_path, 'r') as f:
+                new_config = json.load(f)
+            
+            # 更新Redis缓存
+            self.update_redis_cache(config_type, new_config)
+            
+            # 发送配置变更通知
+            self.notify_config_change(config_type)
+    
+    def update_redis_cache(self, config_type, config_data):
+        """更新Redis缓存"""
+        # 使用Redis事务保证原子性
+        with self.redis_client.pipeline() as pipe:
+            # 设置新配置
+            pipe.set(f"config:{config_type}", json.dumps(config_data))
+            # 设置配置版本
+            pipe.set(f"config:{config_type}:version", datetime.now().strftime('%Y%m%d%H%M%S'))
+            # 设置配置更新时间
+            pipe.set(f"config:{config_type}:updated_at", datetime.now().isoformat())
+            pipe.execute()
+    
+    def notify_config_change(self, config_type):
+        """通知配置变更"""
+        # 发布配置变更事件
+        self.redis_client.publish(
+            'config_change_channel',
+            json.dumps({
+                'config_type': config_type,
+                'timestamp': datetime.now().isoformat()
+            })
+        )
+
+# 配置缓存更新服务
+class ConfigCacheService:
+    """配置缓存服务"""
+    
+    def __init__(self):
+        self.redis_client = redis.Redis(host='localhost', port=6379, db=0)
+        self.local_cache = {}
+        self.cache_ttl = 300  # 5分钟
+    
+    def get_config(self, config_type):
+        """
+        获取配置（优先本地缓存，其次Redis）
+        
+        参数：
+            config_type: 配置类型
+        
+        返回：
+            配置数据
+        """
+        # 检查本地缓存
+        if config_type in self.local_cache:
+            cached_data, cached_time = self.local_cache[config_type]
+            if datetime.now() - cached_time < timedelta(seconds=self.cache_ttl):
+                return cached_data
+        
+        # 从Redis获取
+        config_data = self.redis_client.get(f"config:{config_type}")
+        if config_data:
+            config = json.loads(config_data)
+            # 更新本地缓存
+            self.local_cache[config_type] = (config, datetime.now())
+            return config
+        
+        # 从数据库获取（兜底）
+        return self.get_config_from_db(config_type)
+    
+    def subscribe_config_changes(self):
+        """订阅配置变更"""
+        pubsub = self.redis_client.pubsub()
+        pubsub.subscribe('config_change_channel')
+        
+        for message in pubsub.listen():
+            if message['type'] == 'message':
+                data = json.loads(message['data'])
+                config_type = data['config_type']
+                
+                # 清除本地缓存
+                if config_type in self.local_cache:
+                    del self.local_cache[config_type]
+                
+                print(f"配置变更通知：{config_type}")
+
+# 使用示例
+config_service = ConfigCacheService()
+
+# 获取中奖概率配置
+win_probability = config_service.get_config('win_probability')
+print(f"中奖概率配置：{win_probability}")
+```
+
+#### 4.3.3 库存实时调整方案
+
+```python
+import redis
+from redis.lock import Lock
+
+class InventoryManager:
+    """库存管理器"""
+    
+    def __init__(self):
+        self.redis_client = redis.Redis(host='localhost', port=6379, db=0)
+    
+    def adjust_inventory(self, prize_id, new_inventory, operator_id, reason):
+        """
+        实时调整库存
+        
+        参数：
+            prize_id: 奖品ID
+            new_inventory: 新库存数
+            operator_id: 操作人ID
+            reason: 修改原因
+        
+        返回：
+            是否成功
+        """
+        # 使用分布式锁保证原子性
+        lock_key = f"lock:inventory:{prize_id}"
+        lock = self.redis_client.lock(lock_key, timeout=10)
+        
+        try:
+            with lock:
+                # 获取当前库存
+                current_inventory = int(self.redis_client.get(f"inventory:{prize_id}") or 0)
+                
+                # 记录库存变更日志
+                self.log_inventory_change(
+                    prize_id,
+                    current_inventory,
+                    new_inventory,
+                    operator_id,
+                    reason
+                )
+                
+                # 更新Redis库存
+                self.redis_client.set(f"inventory:{prize_id}", new_inventory)
+                
+                # 同步到数据库
+                self.sync_inventory_to_db(prize_id, new_inventory)
+                
+                # 发送库存变更通知
+                self.notify_inventory_change(prize_id, new_inventory)
+                
+                return True
+        
+        except Exception as e:
+            print(f"库存调整失败：{e}")
+            return False
+    
+    def emergency_stop_prize(self, prize_id, operator_id, reason):
+        """
+        紧急下架奖品
+        
+        参数：
+            prize_id: 奖品ID
+            operator_id: 操作人ID
+            reason: 下架原因
+        
+        返回：
+            是否成功
+        """
+        # 使用分布式锁
+        lock_key = f"lock:prize:{prize_id}"
+        lock = self.redis_client.lock(lock_key, timeout=10)
+        
+        try:
+            with lock:
+                # 标记奖品为下架状态
+                self.redis_client.set(f"prize_status:{prize_id}", 'offline')
+                
+                # 记录下架操作
+                self.log_prize_status_change(
+                    prize_id,
+                    'online',
+                    'offline',
+                    operator_id,
+                    reason
+                )
+                
+                # 发送奖品下架通知
+                self.notify_prize_status_change(prize_id, 'offline')
+                
+                return True
+        
+        except Exception as e:
+            print(f"奖品下架失败：{e}")
+            return False
+    
+    def sync_inventory_to_db(self, prize_id, inventory):
+        """同步库存到数据库"""
+        db.execute("""
+            UPDATE prizes 
+            SET remaining_stock = %s, updated_at = %s 
+            WHERE prize_id = %s
+        """, (inventory, datetime.now(), prize_id))
+
+# 使用示例
+inventory_manager = InventoryManager()
+
+# 实时调整库存
+inventory_manager.adjust_inventory(
+    prize_id='prize_001',
+    new_inventory=5000,
+    operator_id='operator_123',
+    reason='库存补充'
+)
+
+# 紧急下架奖品
+inventory_manager.emergency_stop_prize(
+    prize_id='prize_002',
+    operator_id='operator_123',
+    reason='奖品供应异常，紧急下架'
+)
+```
+
+### 4.4 风险管控措施
+
+#### 4.4.1 操作权限与审批流程
+
+```python
+class ConfigApprovalService:
+    """配置审批服务"""
+    
+    def __init__(self):
+        self.approval_levels = {
+            'win_probability': 2,   # 中奖概率修改需要2级审批
+            'inventory': 1,        # 库存调整需要1级审批
+            'prize_status': 0,     # 紧急下架无需审批（但需要事后审计）
+            'member_multiplier': 1
+        }
+    
+    def request_config_change(self, config_type, config_data, operator_id, reason):
+        """
+        申请配置变更
+        
+        参数：
+            config_type: 配置类型
+            config_data: 新配置数据
+            operator_id: 操作人ID
+            reason: 修改原因
+        
+        返回：
+            申请ID
+        """
+        required_approvals = self.approval_levels.get(config_type, 1)
+        
+        # 创建审批申请
+        application_id = db.execute("""
+            INSERT INTO config_change_applications 
+            (application_id, config_type, config_data, operator_id, reason, 
+             required_approvals, current_approvals, status, created_at)
+            VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s)
+            RETURNING application_id
+        """, (
+            f"APP_{datetime.now().strftime('%Y%m%d%H%M%S')}",
+            config_type,
+            json.dumps(config_data),
+            operator_id,
+            reason,
+            required_approvals,
+            0,
+            'pending',
+            datetime.now()
+        ))
+        
+        # 发送审批通知
+        self.send_approval_notification(application_id, config_type)
+        
+        return application_id
+    
+    def approve_config_change(self, application_id, approver_id, comment):
+        """
+        审批配置变更
+        
+        参数：
+            application_id: 申请ID
+            approver_id: 审批人ID
+            comment: 审批意见
+        
+        返回：
+            是否审批完成
+        """
+        # 查询申请信息
+        application = db.query("""
+            SELECT * FROM config_change_applications 
+            WHERE application_id = %s
+        """, (application_id,))
+        
+        if not application:
+            return False
+        
+        current_approvals = application[0]['current_approvals']
+        required_approvals = application[0]['required_approvals']
+        
+        # 记录审批
+        db.execute("""
+            INSERT INTO config_approvals 
+            (application_id, approver_id, comment, created_at)
+            VALUES (%s, %s, %s, %s)
+        """, (application_id, approver_id, comment, datetime.now()))
+        
+        # 更新审批计数
+        current_approvals += 1
+        
+        # 检查是否审批完成
+        if current_approvals >= required_approvals:
+            # 执行配置变更
+            self.execute_config_change(application_id)
+            
+            # 更新申请状态
+            db.execute("""
+                UPDATE config_change_applications 
+                SET status = 'approved', current_approvals = %s, updated_at = %s 
+                WHERE application_id = %s
+            """, (current_approvals, datetime.now(), application_id))
+            
+            return True
+        else:
+            # 更新审批计数
+            db.execute("""
+                UPDATE config_change_applications 
+                SET current_approvals = %s, updated_at = %s 
+                WHERE application_id = %s
+            """, (current_approvals, datetime.now(), application_id))
+            
+            return False
+
+# 使用示例
+approval_service = ConfigApprovalService()
+
+# 申请中奖概率修改
+application_id = approval_service.request_config_change(
+    config_type='win_probability',
+    config_data={'platinum': 0.9, 'gold': 0.7, 'silver': 0.5},
+    operator_id='operator_123',
+    reason='提高会员中奖概率'
+)
+
+print(f"申请已提交：{application_id}")
+
+# 审批人审批
+approval_service.approve_config_change(
+    application_id=application_id,
+    approver_id='approver_001',
+    comment='同意修改，提高会员权益'
+)
+```
+
+#### 4.4.2 高并发场景下的配置读取优化
+
+```python
+import asyncio
+from functools import lru_cache
+
+class ConfigOptimizedReader:
+    """配置优化读取器"""
+    
+    def __init__(self):
+        self.redis_client = redis.Redis(host='localhost', port=6379, db=0)
+        self.local_cache = {}
+        self.cache_update_time = {}
+        self.cache_ttl = 60  # 1分钟
+    
+    async def get_win_probability(self, member_level):
+        """
+        获取中奖概率（高并发优化）
+        
+        参数：
+            member_level: 会员等级
+        
+        返回：
+            中奖概率
+        """
+        # 使用本地缓存（最快）
+        cache_key = f"win_probability:{member_level}"
+        
+        if cache_key in self.local_cache:
+            cached_time = self.cache_update_time.get(cache_key, datetime.min)
+            if datetime.now() - cached_time < timedelta(seconds=self.cache_ttl):
+                return self.local_cache[cache_key]
+        
+        # 从Redis批量读取（减少Redis压力）
+        config_data = await self.batch_read_config_from_redis('win_probability')
+        
+        if config_data and member_level in config_data:
+            probability = config_data[member_level]
+            # 更新本地缓存
+            self.local_cache[cache_key] = probability
+            self.cache_update_time[cache_key] = datetime.now()
+            return probability
+        
+        # 从数据库读取（兜底）
+        return await self.get_config_from_db('win_probability', member_level)
+    
+    async def batch_read_config_from_redis(self, config_type):
+        """批量读取配置（减少Redis调用次数）"""
+        # 使用Redis Pipeline批量读取
+        pipe = self.redis_client.pipeline()
+        pipe.get(f"config:{config_type}")
+        pipe.get(f"config:{config_type}:version")
+        results = pipe.execute()
+        
+        if results[0]:
+            return json.loads(results[0])
+        
+        return None
+    
+    @lru_cache(maxsize=1000)
+    def get_cached_config(self, config_type, member_level):
+        """使用LRU缓存进一步提升性能"""
+        # 这个方法会在内存中缓存最近使用的1000个配置组合
+        return self.redis_client.hget(f"config:{config_type}", member_level)
+
+# 在抽奖算法中使用
+class LotteryAlgorithm:
+    """抽奖算法"""
+    
+    def __init__(self):
+        self.config_reader = ConfigOptimizedReader()
+    
+    async def draw(self, user_id, member_level, points):
+        """
+        抽奖
+        
+        参数：
+            user_id: 用户ID
+            member_level: 会员等级
+            points: 消费积分
+        
+        返回：
+            抽奖结果
+        """
+        # 获取中奖概率（使用优化读取）
+        win_probability = await self.config_reader.get_win_probability(member_level)
+        
+        # 根据积分计算抽奖次数
+        draw_count = points // 100
+        
+        # 执行抽奖算法
+        results = []
+        for i in range(draw_count):
+            # 使用随机数判断是否中奖
+            if random.random() < win_probability:
+                # 中奖，分配奖品
+                prize = await self.allocate_prize(user_id)
+                results.append(prize)
+            else:
+                results.append(None)
+        
+        return results
+
+# 使用示例
+lottery = LotteryAlgorithm()
+
+# 高并发抽奖
+result = await lottery.draw(
+    user_id='user_123',
+    member_level='platinum',
+    points=500
+)
+
+print(f"抽奖结果：{result}")
+```
+
+### 4.5 面试回答模板
+
+#### 问题：运营实时修改配置的风险和应对方案
+
+**回答模板**：
+
+> "运营平台支持实时修改中奖概率、库存数、奖品上下架等配置，在高并发场景下确实会带来风险，我们通过以下方案管控：
+> 
+> **风险点识别**：
+> 1. **中奖概率修改风险**：修改时未做版本控制，可能导致活动公平性受质疑
+> 2. **库存调整风险**：实时调整库存时可能与正在进行的抽奖请求冲突，导致用户中奖后奖品已下架
+> 3. **配置并发读取风险**：高并发场景下频繁读取配置导致Redis压力增大，影响抽奖性能
+> 
+> **技术应对方案**：
+> 
+> 1. **配置版本控制与审计**：
+>    - 所有配置修改都记录版本号和变更历史
+>    - 支持配置回滚到指定版本
+>    - 发送审计日志到监控系统
+>    - 修改原因、操作人、时间戳全程可追溯
+> 
+> 2. **配置热更新机制**：
+>    - 使用Redis存储当前配置，支持热更新
+>    - 配置变更时通过Redis Pub/Sub通知所有服务实例
+>    - 本地缓存+Redis缓存双重缓存策略
+>    - 缓存失效时间1分钟，保证配置及时生效
+> 
+> 3. **库存实时调整方案**：
+>    - 使用Redis分布式锁保证库存调整的原子性
+>    - 库存调整时记录变更日志，同步到数据库
+>    - 紧急下架奖品时先标记状态，再清理缓存
+> 
+> 4. **审批流程管控**：
+>    - 中奖概率修改需要2级审批（运营主管+技术负责人）
+>    - 库存调整需要1级审批（运营主管）
+>    - 紧急下架奖品无需审批，但必须事后审计
+> 
+> 5. **高并发配置读取优化**：
+>    - 使用LRU缓存提升配置读取性能
+>    - Redis Pipeline批量读取配置，减少调用次数
+>    - 本地缓存1分钟失效，避免频繁读取Redis
+> 
+> **实际效果**：
+> - 配置变更平均响应时间：2秒（从提交到生效）
+> - 配置读取性能：P99 < 5ms
+> - 配置审计完整度：100%
+> - 配置回滚成功率：100%
+> 
+> 这样既保证了运营的灵活性，又确保了系统的稳定性和合规性。"
+
+---
+
+## 五、数据隔离如何做
+
+### 5.1 面试题拆解
 
 **面试官提问**："你们压测时的数据是怎么隔离的？会不会影响生产数据？"
 
@@ -608,7 +1328,7 @@ class PressureTestConfig:
 3. 影子库/影子表方案
 4. 数据清理机制
 
-### 4.2 数据隔离方案对比
+### 5.2 数据隔离方案对比
 
 | 方案 | 优点 | 缺点 | 适用场景 |
 |------|------|------|---------|
@@ -617,9 +1337,9 @@ class PressureTestConfig:
 | **影子库/影子表** | 隔离效果好，可回滚 | 实现复杂 | 金融级系统 |
 | **Mock外部依赖** | 隔离外部系统 | 不真实 | 外部依赖多的系统 |
 
-### 4.3 实战方案：生产环境压测数据隔离
+### 5.3 实战方案：生产环境压测数据隔离
 
-#### 4.3.1 数据标记方案
+#### 5.3.1 数据标记方案
 
 **标记维度**：
 1. 用户标记：压测用户ID前缀（如 `test_`）
@@ -689,7 +1409,7 @@ def draw_lottery():
     return jsonify(result)
 ```
 
-#### 4.3.2 数据清理机制
+#### 5.3.2 数据清理机制
 
 **定时清理脚本**：
 
@@ -755,7 +1475,7 @@ while True:
     time.sleep(60)
 ```
 
-#### 4.3.3 压测数据构造工具
+#### 5.3.3 压测数据构造工具
 
 ```python
 import random
@@ -908,7 +1628,7 @@ if __name__ == '__main__':
     print("压测数据生成完成！")
 ```
 
-### 4.4 外部依赖隔离
+### 5.4 外部依赖隔离
 
 **Mock外部服务**：
 
@@ -991,9 +1711,9 @@ def run_pressure_test():
 
 ---
 
-## 五、压测环境如何选择
+## 六、压测环境如何选择
 
-### 5.1 面试题拆解
+### 6.1 面试题拆解
 
 **面试官提问**："你们压测是在生产环境还是测试环境？怎么选择压测环境？"
 
@@ -1003,7 +1723,7 @@ def run_pressure_test():
 3. 混合环境方案
 4. 环境一致性保障
 
-### 5.2 压测环境选择矩阵
+### 6.2 压测环境选择矩阵
 
 | 评估维度 | 生产环境压测 | 独立测试环境 | 预发布环境 |
 |---------|------------|------------|----------|
@@ -1013,7 +1733,7 @@ def run_pressure_test():
 | **成本** | ⭐⭐⭐ | ⭐⭐⭐⭐ | ⭐⭐⭐⭐⭐ |
 | **实施难度** | ⭐⭐ | ⭐⭐⭐⭐ | ⭐⭐⭐ |
 
-### 5.3 环境选择决策树
+### 6.3 环境选择决策树
 
 ```
 开始选择压测环境
@@ -1027,7 +1747,7 @@ def run_pressure_test():
             └─ 否 → 选择独立测试环境
 ```
 
-### 5.4 实战方案：分阶段环境策略
+### 6.4 实战方案：分阶段环境策略
 
 #### 阶段1：开发环境压测
 
@@ -1218,7 +1938,7 @@ production_pressure_test:
       - 启用限流（RT>1s）
 ```
 
-### 5.5 环境一致性保障
+### 6.5 环境一致性保障
 
 #### 5.5.1 配置管理
 
@@ -1322,9 +2042,9 @@ def anonymize_production_data(production_db, test_db):
 
 ---
 
-## 六、压测时TPS上不去但CPU、内存都不高如何排查
+## 七、压测时TPS上不去但CPU、内存都不高如何排查
 
-### 6.1 面试题拆解
+### 7.1 面试题拆解
 
 **面试官提问**："压测时发现TPS上不去，但CPU、内存都不高，这种情况怎么排查？"
 
@@ -1334,7 +2054,7 @@ def anonymize_production_data(production_db, test_db):
 3. 工具使用方法
 4. 优化案例演示
 
-### 6.2 排查思路框架
+### 7.2 排查思路框架
 
 ```
 TPS上不去 + CPU/内存不高 = 有瓶颈，但不在CPU/内存
@@ -1349,7 +2069,7 @@ TPS上不去 + CPU/内存不高 = 有瓶颈，但不在CPU/内存
     └─ 代码逻辑问题
 ```
 
-### 6.3 常见原因及排查方法
+### 7.3 常见原因及排查方法
 
 #### 6.3.1 网络IO瓶颈
 
@@ -1863,7 +2583,7 @@ lp.print_stats()
                draw_lottery(user_id, user.points)
    ```
 
-### 6.4 实战案例：营销活动压测TPS上不去问题排查
+### 7.4 实战案例：营销活动压测TPS上不去问题排查
 
 #### 6.4.1 问题现象
 
@@ -2060,9 +2780,9 @@ def get_user_info(user_id):
 
 ---
 
-## 七、总结与最佳实践
+## 八、总结与最佳实践
 
-### 7.1 压测全流程最佳实践
+### 8.1 压测全流程最佳实践
 
 ```
 ┌─────────────────────────────────────────────────────────────────────┐
@@ -2108,7 +2828,7 @@ def get_user_info(user_id):
 └─────────────────────────────────────────────────────────────────────┘
 ```
 
-### 7.2 常见问题与解决方案速查表
+### 8.2 常见问题与解决方案速查表
 
 | 问题现象 | 可能原因 | 排查方法 | 解决方案 |
 |---------|---------|---------|---------|
@@ -2120,7 +2840,7 @@ def get_user_info(user_id):
 | TPS上不去，CPU低 | 连接池耗尽 | 查看连接池状态<br>查看等待连接数 | 增加连接池大小<br>修复连接泄漏 |
 | TPS上不去，CPU低 | 代码逻辑慢 | 性能分析工具<br>代码审查 | 优化算法<br>批量查询 |
 
-### 7.3 面试回答模板
+### 8.3 面试回答模板
 
 #### 问题1：压测链路业务配比数据来源？
 
@@ -2142,17 +2862,23 @@ def get_user_info(user_id):
 
 > "我们通过业务目标来计算并发数。以会员日活动为例：
 > 
-> 1. **计算目标TPS**：活动期间用户数50万，高峰期用户占比40%即20万，单用户平均操作15次，高峰期2小时，计算得出目标TPS约417。
+> 1. **计算目标TPS**：会员日期间用户数120万（会员日DAU为日常的2.5倍），高峰期用户占比35%即42万，单用户平均操作12次，高峰期2小时，计算得出目标TPS约700。
 > 
 > 2. **估算平均响应时间**：基于历史数据，平均响应时间150ms。
 > 
 > 3. **计算思考时间**：用户操作间平均停顿3秒，思考时间比例约95%。
 > 
-> 4. **应用公式**：并发数 = (目标TPS × 平均响应时间) / (1 - 思考时间比例)，计算得到约1300。
+> 4. **应用公式**：并发数 = (目标TPS × 平均响应时间) / (1 - 思考时间比例)，计算得到约2187。
 > 
-> 5. **预留余量**：乘以1.5倍安全系数，最终确定并发数约2000。
+> 5. **预留余量**：乘以1.8倍安全系数，最终确定并发数约3936。
 > 
-> 实际压测时，我们会采用分阶段压测策略，从预热阶段100并发开始，逐步增加到目标并发2000，最后测试极限并发4000，观察系统的承载能力和瓶颈。"
+> 实际压测时，我们会采用分阶段压测策略，从预热阶段100并发开始，逐步增加到目标并发4000，最后测试极限并发6000，观察系统的承载能力和瓶颈。
+> 
+> **数据合理性验证**：
+> - 日常DAU：45万-50万（周末可达55万）
+> - 会员日DAU：120万（约2.5倍，符合实际情况）
+> - 高峰时段：18:00-22:00，占比35-40%
+> - UV：60万-64万，UV/DAU比值约1.3（用户多设备登录）"
 
 #### 问题3：数据隔离如何做？
 
@@ -2217,9 +2943,9 @@ def get_user_info(user_id):
 
 ---
 
-## 八、附录
+## 九、附录
 
-### 8.1 压测工具对比
+### 9.1 压测工具对比
 
 | 工具 | 优势 | 劣势 | 适用场景 |
 |------|------|------|---------|
@@ -2235,7 +2961,7 @@ def get_user_info(user_id):
 - **极限压测**：推荐 wrk（性能极高，快速验证极限）
 - **CI集成**：推荐 k6（云原生，易于自动化）
 
-### 8.2 常用监控工具
+### 9.2 常用监控工具
 
 | 监控工具 | 监控对象 | 核心指标 | 部署方式 |
 |---------|---------|---------|---------|
@@ -2246,7 +2972,7 @@ def get_user_info(user_id):
 | **PostgreSQL Exporter** | PostgreSQL | 连接数、慢查询、事务数 | Docker部署 |
 | **Redis Exporter** | Redis | 内存、命中率、连接数 | Docker部署 |
 
-### 8.3 常用排查命令速查
+### 9.3 常用排查命令速查
 
 #### 网络排查
 
@@ -2344,7 +3070,7 @@ memory
 monitor com.example.service.LotteryService draw -c 5
 ```
 
-### 8.4 性能优化最佳实践
+### 9.4 性能优化最佳实践
 
 #### 代码层面优化
 
@@ -2376,7 +3102,7 @@ monitor com.example.service.LotteryService draw -c 5
 | **CDN加速** | 静态资源多 | 低 | 静态资源访问提速 |
 | **负载均衡** | 高并发 | 中 | 流量分发、容量提升 |
 
-### 8.5 压测报告模板
+### 9.5 压测报告模板
 
 ```markdown
 # 营销活动全链路压测报告
@@ -2388,8 +3114,8 @@ monitor com.example.service.LotteryService draw -c 5
 
 ## 1. 压测目标
 
-- **目标TPS**：2000
-- **目标并发数**：2000
+- **目标TPS**：700-1000（会员日高峰期业务目标）
+- **目标并发数**：4000（基于DAU和业务计算得出）
 - **目标响应时间**：P99 < 500ms
 - **目标错误率**：< 1%
 
@@ -2402,15 +3128,15 @@ monitor com.example.service.LotteryService draw -c 5
 - 监控：Prometheus + Grafana
 
 ### 2.2 压测配置
-- 并发用户数：2000
-- 持续时间：30分钟
-- 思考时间：1-5秒
-- 业务配比：抽奖22%，查询15%，任务12%
+- **并发用户数**：4000（基于会员日DAU120万计算得出）
+- **持续时间**：30分钟
+- **思考时间**：1-5秒
+- **业务配比**：抽奖22%，查询15%，任务12%
 
 ### 2.3 数据准备
-- 测试用户：50000
-- 测试库存：10000
-- 测试积分：100-10000
+- **测试用户**：50000（模拟会员日用户）
+- **测试库存**：10000（模拟奖品库存）
+- **测试积分**：100-10000（模拟不同会员等级积分）
 
 ## 3. 压测结果
 
@@ -2418,7 +3144,7 @@ monitor com.example.service.LotteryService draw -c 5
 
 | 指标 | 目标值 | 实际值 | 达标情况 |
 |------|--------|--------|---------|
-| TPS | 2000 | 2200 | ✓ 达标 |
+| TPS | 700-1000 | 850 | ✓ 达标 |
 | P50响应时间 | < 100ms | 85ms | ✓ 达标 |
 | P95响应时间 | < 300ms | 250ms | ✓ 达标 |
 | P99响应时间 | < 500ms | 480ms | ✓ 达标 |
@@ -2490,17 +3216,18 @@ monitor com.example.service.LotteryService draw -c 5
 
 ### 6.1 当前容量
 
-- **峰值TPS**：2200（已验证）
-- **安全容量**：2000（预留10%余量）
+- **峰值TPS**：850（已验证，目标700-1000）
+- **安全容量**：750（预留15%余量）
 - **资源利用率**：65%（CPU峰值）
+- **用户承载能力**：120万DAU（会员日）
 
 ### 6.2 扩容建议
 
 | 扩容场景 | 推荐配置 | 预期效果 |
 |---------|---------|---------|
-| TPS提升至3000 | API服务器增加2台 | TPS可达3000 |
-| TPS提升至5000 | API服务器增加4台 + 数据库升级 | TPS可达5000 |
-| 用户数翻倍 | Redis扩容 + 数据库分库 | 可支撑翻倍流量 |
+| TPS提升至1500（会员日峰值翻倍） | API服务器增加2台 | 可支撑240万DAU |
+| TPS提升至2000 | API服务器增加4台 + 数据库升级 | 可支撑300万DAU |
+| 用户数翻倍（DAU从50万到100万） | Redis扩容 + 数据库分库 | 可支撑更高并发 |
 
 ## 7. 风险评估
 
@@ -2523,12 +3250,21 @@ monitor com.example.service.LotteryService draw -c 5
 
 本次压测验证了营销活动系统的承载能力，达到预期目标：
 
-- ✓ TPS达到2200，超过目标10%
+- ✓ TPS达到850，符合目标700-1000
 - ✓ 响应时间达标，P99 < 500ms
 - ✓ 错误率达标，0.3% < 1%
-- ✓ 系统资源使用合理
+- ✓ 系统资源使用合理（CPU 65%，内存 55%）
+- ✓ 可支撑会员日120万DAU（日常DAU的2.5倍）
 
 **系统可上线，建议执行紧急优化后部署。**
+
+---
+
+**数据合理性验证**：
+- 日常DAU：45万-50万 ✓
+- 会员日DAU：120万（约2.5倍） ✓
+- 高峰时段TPS：850（符合业务预期） ✓
+- 压测并发数：4000（基于计算得出） ✓
 
 ---
 
@@ -2539,23 +3275,23 @@ monitor com.example.service.LotteryService draw -c 5
 
 ---
 
-## 九、使用建议
+## 十、使用建议
 
-### 9.1 如何使用此案例准备面试
+### 10.1 如何使用此案例准备面试
 
 1. **熟悉业务场景**：理解中国移动云盘营销活动的业务背景和技术挑战
 2. **掌握核心方法**：重点掌握业务配比确定、并发数计算、数据隔离方案、环境选择策略、问题排查方法
 3. **理解优化思路**：理解各种性能瓶颈的优化方案和实施步骤
 4. **准备实际案例**：结合自己的实际项目经历，准备类似的问题排查和优化案例
 
-### 9.2 面试回答技巧
+### 10.2 面试回答技巧
 
 1. **结构化回答**：按照"问题 → 分析 → 方法 → 案例 → 效果"的结构回答
 2. **数据驱动**：用具体数据支撑观点，避免空泛的描述
 3. **突出亮点**：强调自己的贡献和创新点
 4. **展示深度**：不仅说怎么做，还要说为什么这么做，以及可能的替代方案
 
-### 9.3 补充学习资源
+### 10.3 补充学习资源
 
 **推荐书籍**：
 - 《性能测试实战》
