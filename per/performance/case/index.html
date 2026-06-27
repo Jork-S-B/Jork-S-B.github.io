@@ -9015,12 +9015,14 @@
 <p><strong>项目背景</strong>：中国移动云盘营销活动平台<br>
 <strong>面试岗位</strong>：高级测试工程师 / 性能测试工程师<br>
 <strong>案例难度</strong>：advanced<br>
-<strong>覆盖面试题</strong>：
-1. 压测链路业务配比数据来源？
-2. 如何确定并发数？
-3. 数据隔离如何做？
-4. 压测环境如何选择？
-5. 压测时TPS上不去但CPU、内存都不高如何排查？</p>
+<strong>覆盖面试题</strong>：</p>
+<ol>
+<li>压测链路业务配比数据来源？</li>
+<li>如何确定并发数？</li>
+<li>数据隔离如何做？</li>
+<li>压测环境如何选择？</li>
+<li>压测时TPS上不去但CPU、内存都不高如何排查？</li>
+</ol>
 <hr>
 <h2 id="_2">一、项目背景与业务场景</h2>
 <h3 id="11">1.1 业务场景描述</h3>
@@ -9029,25 +9031,45 @@
 <ul>
 <li><strong>活动类型</strong>：每月会员日（固定8号）</li>
 <li><strong>活动特点</strong>：高频、固定周期、用户预期明确</li>
-<li><strong>用户规模</strong>：</li>
-<li><strong>DAU（日活跃用户）</strong>：约45万-50万，周末可达55万<ul>
+<li>
+<p><strong>用户规模</strong>：</p>
+</li>
+<li>
+<p><strong>DAU（日活跃用户）</strong>：约45万-50万，周末可达55万</p>
+<ul>
 <li><em>定义：Daily Active Users，每日登录或使用应用的用户数量（不含重复登录）</em></li>
 </ul>
 </li>
-<li><strong>UV（日唯一访问）</strong>：约60万-64万<ul>
+<li>
+<p><strong>UV（日唯一访问）</strong>：约60万-64万</p>
+<ul>
 <li><em>定义：Unique Visitors，每日访问应用页面的唯一设备/IP数量</em></li>
 </ul>
 </li>
-<li><strong>UV/DAU比值</strong>：约1.33，反映用户多设备登录情况（如手机端+PC端同时使用）</li>
+<li>
+<p><strong>UV/DAU比值</strong>：约1.33，反映用户多设备登录情况（如手机端+PC端同时使用）</p>
+</li>
 <li><strong>会员日高峰期</strong>：DAU可达平时的2-3倍，约100万-150万</li>
-<li><strong>用户活跃时间分布</strong>：18:00-22:00为高峰时段，占比约40%</li>
-<li><strong>业务复杂度</strong>：</li>
-<li>会员等级体系：白金会员、黄金会员、白银会员等</li>
+<li>
+<p><strong>用户活跃时间分布</strong>：18:00-22:00为高峰时段，占比约40%</p>
+</li>
+<li>
+<p><strong>业务复杂度</strong>：</p>
+</li>
+<li>
+<p>会员等级体系：白金会员、黄金会员、白银会员等</p>
+</li>
 <li>积分体系：不同等级会员可用积分不同</li>
 <li>任务体系：拉新任务、拉活任务、AI工具试用任务</li>
-<li>奖品体系：外卖券、微信立减金、实物奖品等</li>
-<li><strong>运营配置能力</strong>：</li>
-<li>运营同事可通过运营平台实时修改中奖概率</li>
+<li>
+<p>奖品体系：外卖券、微信立减金、实物奖品等</p>
+</li>
+<li>
+<p><strong>运营配置能力</strong>：</p>
+</li>
+<li>
+<p>运营同事可通过运营平台实时修改中奖概率</p>
+</li>
 <li>实时调整奖品库存数量</li>
 <li>上架/下架奖品（支持紧急停奖）</li>
 <li>配置不同会员等级的中奖倍数</li>
@@ -9057,8 +9079,12 @@
 <ul>
 <li><strong>活动类型</strong>：岁末好礼、地区性抽奖活动</li>
 <li><strong>活动特点</strong>：低频、不确定性、短期流量峰值</li>
-<li><strong>业务复杂度</strong>：</li>
-<li>库存管理：奖品库存实时扣减</li>
+<li>
+<p><strong>业务复杂度</strong>：</p>
+</li>
+<li>
+<p>库存管理：奖品库存实时扣减</p>
+</li>
 <li>并发抽奖：高并发场景下的库存一致性</li>
 <li>多渠道入口：APP端内、浏览器、微信H5</li>
 </ul>
@@ -9152,16 +9178,20 @@
 <h2 id="_3">二、压测链路业务配比数据来源</h2>
 <h3 id="21">2.1 面试题拆解</h3>
 <p><strong>面试官提问</strong>："你们压测时，各个业务接口的配比是怎么确定的？数据从哪里来？"</p>
-<p><strong>回答要点</strong>：
-1. 生产环境历史数据分析
-2. 活动预热期数据预测
-3. 多维度数据融合</p>
+<p><strong>回答要点</strong>：</p>
+<ol>
+<li>生产环境历史数据分析</li>
+<li>活动预热期数据预测</li>
+<li>多维度数据融合</li>
+</ol>
 <h3 id="22">2.2 实战案例：数据来源三步法</h3>
 <h4 id="1">步骤1：生产环境历史数据分析</h4>
-<p><strong>数据来源</strong>：
-- Prometheus监控数据：过去3个月会员日活动的访问量
-- 业务日志：接口调用链路和响应时间
-- Nginx访问日志：用户行为轨迹</p>
+<p><strong>数据来源</strong>：</p>
+<ul>
+<li>Prometheus监控数据：过去3个月会员日活动的访问量</li>
+<li>业务日志：接口调用链路和响应时间</li>
+<li>Nginx访问日志：用户行为轨迹</li>
+</ul>
 <p><strong>分析方法</strong>：</p>
 <div class="highlight"><pre><span></span><code><span class="c1"># 分析脚本：extract_business_ratio.py</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
@@ -9214,10 +9244,12 @@
 <span class="c1"># }</span>
 </code></pre></div>
 <h4 id="2">步骤2：活动预热期数据预测</h4>
-<p><strong>数据来源</strong>：
-- 运营团队的活动推广计划
-- 用户增长团队的用户预期数据
-- 历史同类型活动的增长曲线</p>
+<p><strong>数据来源</strong>：</p>
+<ul>
+<li>运营团队的活动推广计划</li>
+<li>用户增长团队的用户预期数据</li>
+<li>历史同类型活动的增长曲线</li>
+</ul>
 <p><strong>预测模型</strong>：</p>
 <div class="highlight"><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">predict_traffic</span><span class="p">(</span><span class="n">activity_type</span><span class="p">,</span> <span class="n">promotion_budget</span><span class="p">,</span> <span class="n">user_base</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">"""</span>
@@ -9357,36 +9389,46 @@
 <h2 id="_4">三、如何确定并发数</h2>
 <h3 id="31">3.1 面试题拆解</h3>
 <p><strong>面试官提问</strong>："你们压测时的并发数是怎么确定的？是拍脑袋定的吗？"</p>
-<p><strong>回答要点</strong>：
-1. 基于业务目标计算
-2. 参考历史数据
-3. 考虑业务增长因子
-4. 预留安全余量</p>
+<p><strong>回答要点</strong>：</p>
+<ol>
+<li>基于业务目标计算</li>
+<li>参考历史数据</li>
+<li>考虑业务增长因子</li>
+<li>预留安全余量</li>
+</ol>
 <h3 id="32">3.2 并发数计算模型</h3>
 <h4 id="321">3.2.1 基础公式</h4>
 <div class="highlight"><pre><span></span><code>并发数 = (目标TPS × 平均响应时间) / (1 - 思考时间比例)
 </code></pre></div>
-<p><strong>参数说明</strong>：
-- 目标TPS：系统每秒需要处理的请求数
-- 平均响应时间：单个请求的处理时间（秒）
-- 思考时间比例：用户在操作间的停顿时间占比</p>
+<p><strong>参数说明</strong>：</p>
+<ul>
+<li>目标TPS：系统每秒需要处理的请求数</li>
+<li>平均响应时间：单个请求的处理时间（秒）</li>
+<li>思考时间比例：用户在操作间的停顿时间占比</li>
+</ul>
 <h4 id="322">3.2.2 实战案例：会员日活动并发数计算</h4>
-<p><strong>业务目标</strong>（基于真实数据）：
-- <strong>活动期间用户数</strong>：100万-150万（会员日DAU是平时的2-3倍）
-- <strong>活动时长</strong>：24小时
-- <strong>高峰时段</strong>：18:00-22:00（4小时）
-- <strong>高峰时段用户占比</strong>：40%，即40万-60万
-- <strong>单用户平均操作次数</strong>：15次（包括查询会员信息、积分余额、抽奖、查看记录等）
-- <strong>思考时间</strong>：平均3秒（用户浏览、选择奖品、查看结果的停顿时间）</p>
-<p><strong>数据合理性验证</strong>：
-- 日常DAU：45万-50万 ✓
-- 会员日DAU：100万-150万（2-3倍） ✓
-- 高峰时段用户占比：40%（18:00-22:00） ✓
-- UV/DAU比值：60万/45万 ≈ 1.33（用户多设备登录） ✓</p>
-<p><strong>术语说明</strong>：
-- <strong>DAU (Daily Active Users)</strong>：日活跃用户数，指每日登录或使用应用的用户数量（不含重复登录）
-- <strong>UV (Unique Visitors)</strong>：日唯一访问量，指每日访问应用页面的唯一设备/IP数量
-- <strong>UV/DAU比值</strong>：反映用户多设备登录情况，比值 &gt; 1 说明用户使用多个设备访问（如手机+PC端）</p>
+<p><strong>业务目标</strong>（基于真实数据）：</p>
+<ul>
+<li><strong>活动期间用户数</strong>：100万-150万（会员日DAU是平时的2-3倍）</li>
+<li><strong>活动时长</strong>：24小时</li>
+<li><strong>高峰时段</strong>：18:00-22:00（4小时）</li>
+<li><strong>高峰时段用户占比</strong>：40%，即40万-60万</li>
+<li><strong>单用户平均操作次数</strong>：15次（包括查询会员信息、积分余额、抽奖、查看记录等）</li>
+<li><strong>思考时间</strong>：平均3秒（用户浏览、选择奖品、查看结果的停顿时间）</li>
+</ul>
+<p><strong>数据合理性验证</strong>：</p>
+<ul>
+<li>日常DAU：45万-50万 ✓</li>
+<li>会员日DAU：100万-150万（2-3倍） ✓</li>
+<li>高峰时段用户占比：40%（18:00-22:00） ✓</li>
+<li>UV/DAU比值：60万/45万 ≈ 1.33（用户多设备登录） ✓</li>
+</ul>
+<p><strong>术语说明</strong>：</p>
+<ul>
+<li><strong>DAU (Daily Active Users)</strong>：日活跃用户数，指每日登录或使用应用的用户数量（不含重复登录）</li>
+<li><strong>UV (Unique Visitors)</strong>：日唯一访问量，指每日访问应用页面的唯一设备/IP数量</li>
+<li><strong>UV/DAU比值</strong>：反映用户多设备登录情况，比值 &gt; 1 说明用户使用多个设备访问（如手机+PC端）</li>
+</ul>
 <p><strong>计算步骤</strong>：</p>
 <div class="highlight"><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">calculate_concurrency</span><span class="p">(</span><span class="n">business_goal</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">"""</span>
@@ -9646,11 +9688,13 @@
 <h2 id="_5">四、运营配置能力的技术实现与风险管控</h2>
 <h3 id="41">4.1 面试题拆解</h3>
 <p><strong>面试官提问</strong>："运营可以通过平台实时修改中奖概率、库存数、上下架奖品，这种实时修改在高并发场景下会有什么风险？如何保证安全性？"</p>
-<p><strong>回答要点</strong>：
-1. 配置版本控制与审计
-2. 配置热更新机制
-3. 配置隔离与缓存策略
-4. 操作权限与审批流程</p>
+<p><strong>回答要点</strong>：</p>
+<ol>
+<li>配置版本控制与审计</li>
+<li>配置热更新机制</li>
+<li>配置隔离与缓存策略</li>
+<li>操作权限与审批流程</li>
+</ol>
 <h3 id="42">4.2 运营配置能力清单</h3>
 <p>根据中国移动云盘营销活动的实际需求，运营平台支持以下配置：</p>
 <table>
@@ -10287,14 +10331,20 @@
 <p><strong>回答模板</strong>：</p>
 <blockquote>
 <p>"运营平台支持实时修改中奖概率、库存数、奖品上下架等配置，在高并发场景下确实会带来风险，我们通过以下方案管控：</p>
-<p><strong>风险点识别</strong>：
-1. <strong>中奖概率修改风险</strong>：修改时未做版本控制，可能导致活动公平性受质疑
-2. <strong>库存调整风险</strong>：实时调整库存时可能与正在进行的抽奖请求冲突，导致用户中奖后奖品已下架
-3. <strong>配置并发读取风险</strong>：高并发场景下频繁读取配置导致Redis压力增大，影响抽奖性能</p>
+<p><strong>风险点识别</strong>：</p>
+<ol>
+<li><strong>中奖概率修改风险</strong>：修改时未做版本控制，可能导致活动公平性受质疑</li>
+<li><strong>库存调整风险</strong>：实时调整库存时可能与正在进行的抽奖请求冲突，导致用户中奖后奖品已下架</li>
+<li><strong>配置并发读取风险</strong>：高并发场景下频繁读取配置导致Redis压力增大，影响抽奖性能</li>
+</ol>
 <p><strong>技术应对方案</strong>：</p>
 <ol>
-<li><strong>配置版本控制与审计</strong>：</li>
-<li>所有配置修改都记录版本号和变更历史</li>
+<li>
+<p><strong>配置版本控制与审计</strong>：</p>
+</li>
+<li>
+<p>所有配置修改都记录版本号和变更历史</p>
+</li>
 <li>支持配置回滚到指定版本</li>
 <li>发送审计日志到监控系统</li>
 <li>
@@ -10303,7 +10353,9 @@
 <li>
 <p><strong>配置热更新机制</strong>：</p>
 </li>
-<li>使用Redis存储当前配置，支持热更新</li>
+<li>
+<p>使用Redis存储当前配置，支持热更新</p>
+</li>
 <li>配置变更时通过Redis Pub/Sub通知所有服务实例</li>
 <li>本地缓存+Redis缓存双重缓存策略</li>
 <li>
@@ -10312,7 +10364,9 @@
 <li>
 <p><strong>库存实时调整方案</strong>：</p>
 </li>
-<li>使用Redis分布式锁保证库存调整的原子性</li>
+<li>
+<p>使用Redis分布式锁保证库存调整的原子性</p>
+</li>
 <li>库存调整时记录变更日志，同步到数据库</li>
 <li>
 <p>紧急下架奖品时先标记状态，再清理缓存</p>
@@ -10320,7 +10374,9 @@
 <li>
 <p><strong>审批流程管控</strong>：</p>
 </li>
-<li>中奖概率修改需要2级审批（运营主管+技术负责人）</li>
+<li>
+<p>中奖概率修改需要2级审批（运营主管+技术负责人）</p>
+</li>
 <li>库存调整需要1级审批（运营主管）</li>
 <li>
 <p>紧急下架奖品无需审批，但必须事后审计</p>
@@ -10328,26 +10384,32 @@
 <li>
 <p><strong>高并发配置读取优化</strong>：</p>
 </li>
-<li>使用LRU缓存提升配置读取性能</li>
+<li>
+<p>使用LRU缓存提升配置读取性能</p>
+</li>
 <li>Redis Pipeline批量读取配置，减少调用次数</li>
 <li>本地缓存1分钟失效，避免频繁读取Redis</li>
 </ol>
-<p><strong>实际效果</strong>：
-- 配置变更平均响应时间：2秒（从提交到生效）
-- 配置读取性能：P99 &lt; 5ms
-- 配置审计完整度：100%
-- 配置回滚成功率：100%</p>
+<p><strong>实际效果</strong>：</p>
+<ul>
+<li>配置变更平均响应时间：2秒（从提交到生效）</li>
+<li>配置读取性能：P99 &lt; 5ms</li>
+<li>配置审计完整度：100%</li>
+<li>配置回滚成功率：100%</li>
+</ul>
 <p>这样既保证了运营的灵活性，又确保了系统的稳定性和合规性。"</p>
 </blockquote>
 <hr>
 <h2 id="_7">五、数据隔离如何做</h2>
 <h3 id="51">5.1 面试题拆解</h3>
 <p><strong>面试官提问</strong>："你们压测时的数据是怎么隔离的？会不会影响生产数据？"</p>
-<p><strong>回答要点</strong>：
-1. 环境隔离策略
-2. 数据标记与识别
-3. 影子库/影子表方案
-4. 数据清理机制</p>
+<p><strong>回答要点</strong>：</p>
+<ol>
+<li>环境隔离策略</li>
+<li>数据标记与识别</li>
+<li>影子库/影子表方案</li>
+<li>数据清理机制</li>
+</ol>
 <h3 id="52">5.2 数据隔离方案对比</h3>
 <table>
 <thead>
@@ -10387,10 +10449,12 @@
 </table>
 <h3 id="53">5.3 实战方案：生产环境压测数据隔离</h3>
 <h4 id="531">5.3.1 数据标记方案</h4>
-<p><strong>标记维度</strong>：
-1. 用户标记：压测用户ID前缀（如 <code>test_</code>）
-2. 数据标记：数据库表添加 <code>is_pressure_test</code> 字段
-3. 请求标记：HTTP Header 添加 <code>X-Pressure-Test: true</code></p>
+<p><strong>标记维度</strong>：</p>
+<ol>
+<li>用户标记：压测用户ID前缀（如 <code>test_</code>）</li>
+<li>数据标记：数据库表添加 <code>is_pressure_test</code> 字段</li>
+<li>请求标记：HTTP Header 添加 <code>X-Pressure-Test: true</code></li>
+</ol>
 <p><strong>数据库表设计</strong>：</p>
 <div class="highlight"><pre><span></span><code><span class="c1">-- 用户表添加压测标记</span>
 <span class="k">ALTER</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">users</span><span class="w"> </span><span class="k">ADD</span><span class="w"> </span><span class="k">COLUMN</span><span class="w"> </span><span class="n">is_pressure_test</span><span class="w"> </span><span class="nb">BOOLEAN</span><span class="w"> </span><span class="k">DEFAULT</span><span class="w"> </span><span class="k">FALSE</span><span class="p">;</span>
@@ -10741,11 +10805,13 @@
 <h2 id="_8">六、压测环境如何选择</h2>
 <h3 id="61">6.1 面试题拆解</h3>
 <p><strong>面试官提问</strong>："你们压测是在生产环境还是测试环境？怎么选择压测环境？"</p>
-<p><strong>回答要点</strong>：
-1. 环境选择标准
-2. 不同环境的优缺点
-3. 混合环境方案
-4. 环境一致性保障</p>
+<p><strong>回答要点</strong>：</p>
+<ol>
+<li>环境选择标准</li>
+<li>不同环境的优缺点</li>
+<li>混合环境方案</li>
+<li>环境一致性保障</li>
+</ol>
 <h3 id="62">6.2 压测环境选择矩阵</h3>
 <table>
 <thead>
@@ -10802,10 +10868,12 @@
 </code></pre></div>
 <h3 id="64">6.4 实战方案：分阶段环境策略</h3>
 <h4 id="1_1">阶段1：开发环境压测</h4>
-<p><strong>目标</strong>：
-- 验证功能正确性
-- 发现明显性能问题
-- 优化代码性能</p>
+<p><strong>目标</strong>：</p>
+<ul>
+<li>验证功能正确性</li>
+<li>发现明显性能问题</li>
+<li>优化代码性能</li>
+</ul>
 <p><strong>环境配置</strong>：
 </p><div class="highlight"><pre><span></span><code><span class="c1"># 开发环境配置</span>
 <span class="nt">development</span><span class="p">:</span>
@@ -10836,12 +10904,14 @@
 <span class="w">    </span><span class="nt">duration</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">300</span><span class="w">  </span><span class="c1"># 5分钟</span>
 </code></pre></div><p></p>
 <h4 id="2_1">阶段2：测试环境压测</h4>
-<p><strong>目标</strong>：
-- 验证系统容量
-- 建立性能基线
-- 发现性能瓶颈</p>
-<p><strong>环境配置</strong>：
-</p><div class="highlight"><pre><span></span><code><span class="c1"># 测试环境配置</span>
+<p><strong>目标</strong>：</p>
+<ul>
+<li>验证系统容量</li>
+<li>建立性能基线</li>
+<li>发现性能瓶颈</li>
+</ul>
+<p><strong>环境配置</strong>：</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># 测试环境配置</span>
 <span class="nt">testing</span><span class="p">:</span>
 <span class="w">  </span><span class="nt">servers</span><span class="p">:</span>
 <span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">api-server</span>
@@ -10871,12 +10941,14 @@
 <span class="w">  </span><span class="nt">pressure_test</span><span class="p">:</span>
 <span class="w">    </span><span class="nt">concurrency</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">500</span>
 <span class="w">    </span><span class="nt">duration</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1800</span><span class="w">  </span><span class="c1"># 30分钟</span>
-</code></pre></div><p></p>
+</code></pre></div>
 <h4 id="3_1">阶段3：预发布环境压测</h4>
-<p><strong>目标</strong>：
-- 验证生产环境性能
-- 验证配置正确性
-- 验证监控告警</p>
+<p><strong>目标</strong>：</p>
+<ul>
+<li>验证生产环境性能</li>
+<li>验证配置正确性</li>
+<li>验证监控告警</li>
+</ul>
 <p><strong>环境配置</strong>：
 </p><div class="highlight"><pre><span></span><code><span class="c1"># 预发布环境配置</span>
 <span class="nt">staging</span><span class="p">:</span>
@@ -10912,10 +10984,12 @@
 <span class="w">    </span><span class="nt">duration</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">3600</span><span class="w">  </span><span class="c1"># 1小时</span>
 </code></pre></div><p></p>
 <h4 id="4">阶段4：生产环境压测</h4>
-<p><strong>目标</strong>：
-- 验证真实流量承载能力
-- 验证真实网络环境
-- 验证真实数据量</p>
+<p><strong>目标</strong>：</p>
+<ul>
+<li>验证真实流量承载能力</li>
+<li>验证真实网络环境</li>
+<li>验证真实数据量</li>
+</ul>
 <p><strong>环境配置</strong>：
 </p><div class="highlight"><pre><span></span><code><span class="c1"># 生产环境配置（压测专用）</span>
 <span class="nt">production_pressure_test</span><span class="p">:</span>
@@ -11068,11 +11142,13 @@
 <h2 id="tpscpu">七、压测时TPS上不去但CPU、内存都不高如何排查</h2>
 <h3 id="71">7.1 面试题拆解</h3>
 <p><strong>面试官提问</strong>："压测时发现TPS上不去，但CPU、内存都不高，这种情况怎么排查？"</p>
-<p><strong>回答要点</strong>：
-1. 排查思路框架
-2. 常见原因分析
-3. 工具使用方法
-4. 优化案例演示</p>
+<p><strong>回答要点</strong>：</p>
+<ol>
+<li>排查思路框架</li>
+<li>常见原因分析</li>
+<li>工具使用方法</li>
+<li>优化案例演示</li>
+</ol>
 <h3 id="72">7.2 排查思路框架</h3>
 <div class="highlight"><pre><span></span><code>TPS上不去 + CPU/内存不高 = 有瓶颈，但不在CPU/内存
     ↓
@@ -11087,11 +11163,13 @@
 </code></pre></div>
 <h3 id="73">7.3 常见原因及排查方法</h3>
 <h4 id="631-io">6.3.1 网络IO瓶颈</h4>
-<p><strong>现象</strong>：
-- TPS上不去
-- CPU、内存正常
-- 网络带宽利用率低
-- 网络连接数高</p>
+<p><strong>现象</strong>：</p>
+<ul>
+<li>TPS上不去</li>
+<li>CPU、内存正常</li>
+<li>网络带宽利用率低</li>
+<li>网络连接数高</li>
+</ul>
 <p><strong>排查方法</strong>：</p>
 <div class="highlight"><pre><span></span><code><span class="c1"># 查看网络连接状态</span>
 netstat<span class="w"> </span>-an<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>ESTABLISHED<span class="w"> </span><span class="p">|</span><span class="w"> </span>wc<span class="w"> </span>-l
@@ -11138,11 +11216,13 @@ traceroute<span class="w"> </span>api-server
 </li>
 </ol>
 <h4 id="632-io">6.3.2 磁盘IO瓶颈</h4>
-<p><strong>现象</strong>：
-- TPS上不去
-- CPU、内存正常
-- 磁盘IO利用率高
-- IOPS达到上限</p>
+<p><strong>现象</strong>：</p>
+<ul>
+<li>TPS上不去</li>
+<li>CPU、内存正常</li>
+<li>磁盘IO利用率高</li>
+<li>IOPS达到上限</li>
+</ul>
 <p><strong>排查方法</strong>：</p>
 <div class="highlight"><pre><span></span><code><span class="c1"># 查看磁盘IO</span>
 iostat<span class="w"> </span>-x<span class="w"> </span><span class="m">1</span>
@@ -11197,11 +11277,13 @@ iotop
 </li>
 </ol>
 <h4 id="633">6.3.3 数据库瓶颈</h4>
-<p><strong>现象</strong>：
-- TPS上不去
-- CPU、内存正常
-- 数据库连接数高
-- 数据库慢查询多</p>
+<p><strong>现象</strong>：</p>
+<ul>
+<li>TPS上不去</li>
+<li>CPU、内存正常</li>
+<li>数据库连接数高</li>
+<li>数据库慢查询多</li>
+</ul>
 <p><strong>排查方法</strong>：</p>
 <div class="highlight"><pre><span></span><code><span class="c1"># PostgreSQL</span>
 <span class="c1"># 查看连接数</span>
@@ -11269,11 +11351,13 @@ redis-cli<span class="w"> </span>--bigkeys
 </li>
 </ol>
 <h4 id="634">6.3.4 外部依赖瓶颈</h4>
-<p><strong>现象</strong>：
-- TPS上不去
-- CPU、内存正常
-- 外部接口响应慢
-- 有大量TIME_WAIT连接</p>
+<p><strong>现象</strong>：</p>
+<ul>
+<li>TPS上不去</li>
+<li>CPU、内存正常</li>
+<li>外部接口响应慢</li>
+<li>有大量TIME_WAIT连接</li>
+</ul>
 <p><strong>排查方法</strong>：</p>
 <div class="highlight"><pre><span></span><code><span class="c1"># 查看外部接口调用时间</span>
 curl<span class="w"> </span>-w<span class="w"> </span><span class="s2">"@curl-format.txt"</span><span class="w"> </span>-o<span class="w"> </span>/dev/null<span class="w"> </span>-s<span class="w"> </span>https://api.example.com/endpoint
@@ -11337,11 +11421,13 @@ sysctl<span class="w"> </span>-p
 </li>
 </ol>
 <h4 id="635">6.3.5 锁竞争问题</h4>
-<p><strong>现象</strong>：
-- TPS上不去
-- CPU、内存正常
-- 线程状态为BLOCKED
-- 有大量锁等待</p>
+<p><strong>现象</strong>：</p>
+<ul>
+<li>TPS上不去</li>
+<li>CPU、内存正常</li>
+<li>线程状态为BLOCKED</li>
+<li>有大量锁等待</li>
+</ul>
 <p><strong>排查方法</strong>：</p>
 <div class="highlight"><pre><span></span><code><span class="c1"># Java应用</span>
 <span class="c1"># 使用jstack查看线程堆栈</span>
@@ -11432,11 +11518,13 @@ logging.basicConfig<span class="o">(</span><span class="nv">level</span><span cl
 </li>
 </ol>
 <h4 id="636">6.3.6 连接池问题</h4>
-<p><strong>现象</strong>：
-- TPS上不去
-- CPU、内存正常
-- 大量连接等待
-- 连接池耗尽</p>
+<p><strong>现象</strong>：</p>
+<ul>
+<li>TPS上不去</li>
+<li>CPU、内存正常</li>
+<li>大量连接等待</li>
+<li>连接池耗尽</li>
+</ul>
 <p><strong>排查方法</strong>：</p>
 <div class="highlight"><pre><span></span><code><span class="c1"># 查看连接池状态</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">sqlalchemy</span><span class="w"> </span><span class="kn">import</span> <span class="n">create_engine</span>
@@ -11496,11 +11584,13 @@ logging.basicConfig<span class="o">(</span><span class="nv">level</span><span cl
 </li>
 </ol>
 <h4 id="637">6.3.7 代码逻辑问题</h4>
-<p><strong>现象</strong>：
-- TPS上不去
-- CPU、内存正常
-- 响应时间长
-- 代码执行慢</p>
+<p><strong>现象</strong>：</p>
+<ul>
+<li>TPS上不去</li>
+<li>CPU、内存正常</li>
+<li>响应时间长</li>
+<li>代码执行慢</li>
+</ul>
 <p><strong>排查方法</strong>：</p>
 <div class="highlight"><pre><span></span><code><span class="c1"># 使用性能分析工具</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">cProfile</span>
@@ -11573,6 +11663,7 @@ logging.basicConfig<span class="o">(</span><span class="nv">level</span><span cl
 <h3 id="74-tps">7.4 实战案例：营销活动压测TPS上不去问题排查</h3>
 <h4 id="641">6.4.1 问题现象</h4>
 <div class="highlight"><pre><span></span><code>压测场景：会员日抽奖活动
+
 目标TPS：2000
 实际TPS：500
 CPU使用率：30%
@@ -11617,8 +11708,12 @@ $<span class="w"> </span>thread<span class="w"> </span>-n<span class="w"> </span
 <p><strong>发现</strong>：大量线程BLOCKED在获取数据库连接</p>
 <h4 id="643">6.4.3 根因分析</h4>
 <ol>
-<li><strong>数据库连接池配置过小</strong></li>
-<li>当前配置：pool_size=20, max_overflow=5</li>
+<li>
+<p><strong>数据库连接池配置过小</strong></p>
+</li>
+<li>
+<p>当前配置：pool_size=20, max_overflow=5</p>
+</li>
 <li>压测并发：2000用户</li>
 <li>
 <p>问题：连接数不够用</p>
@@ -11626,14 +11721,18 @@ $<span class="w"> </span>thread<span class="w"> </span>-n<span class="w"> </span
 <li>
 <p><strong>外部API调用超时</strong></p>
 </li>
-<li>外部奖品发放接口响应时间：2-5秒</li>
+<li>
+<p>外部奖品发放接口响应时间：2-5秒</p>
+</li>
 <li>
 <p>导致数据库连接长时间占用</p>
 </li>
 <li>
 <p><strong>TIME_WAIT连接过多</strong></p>
 </li>
-<li>大量短连接导致TIME_WAIT堆积</li>
+<li>
+<p>大量短连接导致TIME_WAIT堆积</p>
+</li>
 </ol>
 <h4 id="644">6.4.4 优化方案</h4>
 <p><strong>优化1：调整数据库连接池</strong></p>
@@ -11874,11 +11973,13 @@ sysctl<span class="w"> </span>-p
 </li>
 </ol>
 <p>实际压测时，我们会采用分阶段压测策略，从预热阶段100并发开始，逐步增加到目标并发4000，最后测试极限并发6000，观察系统的承载能力和瓶颈。</p>
-<p><strong>数据合理性验证</strong>：
-- 日常DAU：45万-50万（周末可达55万）
-- 会员日DAU：120万（约2.5倍，符合实际情况）
-- 高峰时段：18:00-22:00，占比35-40%
-- UV：60万-64万，UV/DAU比值约1.3（用户多设备登录）"</p>
+<p><strong>数据合理性验证</strong>：</p>
+<ul>
+<li>日常DAU：45万-50万（周末可达55万）</li>
+<li>会员日DAU：120万（约2.5倍，符合实际情况）</li>
+<li>高峰时段：18:00-22:00，占比35-40%</li>
+<li>UV：60万-64万，UV/DAU比值约1.3（用户多设备登录）"</li>
+</ul>
 </blockquote>
 <h4 id="3_2">问题3：数据隔离如何做？</h4>
 <p><strong>回答模板</strong>：</p>
@@ -11941,15 +12042,19 @@ sysctl<span class="w"> </span>-p
 <p><strong>使用Arthas分析</strong>：通过Arthas查看线程堆栈，确认大量线程BLOCKED在获取数据库连接。</p>
 </li>
 </ol>
-<p><strong>根因分析</strong>：
-- 数据库连接池配置过小（pool_size=20, max_overflow=5）
-- 外部API调用超时（2-5秒），导致连接长时间占用
-- 大量短连接导致TIME_WAIT堆积</p>
-<p><strong>优化方案</strong>：
-- 增加数据库连接池配置（pool_size=50, max_overflow=20）
-- 外部API异步化，设置超时时间
-- 调整内核参数，优化TIME_WAIT
-- 添加缓存，减少数据库查询</p>
+<p><strong>根因分析</strong>：</p>
+<ul>
+<li>数据库连接池配置过小（pool_size=20, max_overflow=5）</li>
+<li>外部API调用超时（2-5秒），导致连接长时间占用</li>
+<li>大量短连接导致TIME_WAIT堆积</li>
+</ul>
+<p><strong>优化方案</strong>：</p>
+<ul>
+<li>增加数据库连接池配置（pool_size=50, max_overflow=20）</li>
+<li>外部API异步化，设置超时时间</li>
+<li>调整内核参数，优化TIME_WAIT</li>
+<li>添加缓存，减少数据库查询</li>
+</ul>
 <p><strong>优化效果</strong>：TPS从500提升到2200，达到目标。"</p>
 </blockquote>
 <hr>
@@ -11997,11 +12102,13 @@ sysctl<span class="w"> </span>-p
 </tr>
 </tbody>
 </table>
-<p><strong>推荐选择</strong>：
-- <strong>营销活动压测</strong>：推荐 Locust（Python生态，易于编写复杂业务逻辑）
-- <strong>企业级压测</strong>：推荐 JMeter（功能全面，团队协作方便）
-- <strong>极限压测</strong>：推荐 wrk（性能极高，快速验证极限）
-- <strong>CI集成</strong>：推荐 k6（云原生，易于自动化）</p>
+<p><strong>推荐选择</strong>：</p>
+<ul>
+<li><strong>营销活动压测</strong>：推荐 Locust（Python生态，易于编写复杂业务逻辑）</li>
+<li><strong>企业级压测</strong>：推荐 JMeter（功能全面，团队协作方便）</li>
+<li><strong>极限压测</strong>：推荐 wrk（性能极高，快速验证极限）</li>
+<li><strong>CI集成</strong>：推荐 k6（云原生，易于自动化）</li>
+</ul>
 <h3 id="92">9.2 常用监控工具</h3>
 <table>
 <thead>
@@ -12482,7 +12589,7 @@ monitor<span class="w"> </span>com.example.service.LotteryService<span class="w"
     <span class="md-icon" title="最后更新">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"></path></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime" title="2026年6月25日 22:47:17 CST">2026-06-25 22:47:17</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime" title="2026年6月27日 16:20:42 CST">2026-06-27 16:20:42</span>
   </span>
 
     
