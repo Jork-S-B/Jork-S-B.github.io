@@ -7800,6 +7800,17 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#mitmproxymock" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        基于mitmproxy的mock服务
+      
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -7833,6 +7844,30 @@
 <p>问题定位：不同测试用例可能对同一个接口有不同的期望返回。并发执行时，如果不做隔离，会出现“桩数据污染”。</p>
 <p>解决方案：框架在发送请求时生成唯一的Mock-ID（UUID），并在请求头中携带。</p>
 <p>Flask桩端维护一个内存映射表（如Redis或Dict），根据请求头中的ID动态返回对应的Mock数据。</p>
+<h2 id="mitmproxymock">基于mitmproxy的mock服务</h2>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="mock.png" data-desc-position="bottom"><img alt="mock" src="mock.png"></a>
+<a href="../mock.eddx">下载该脑图</a></p>
+<hr>
+<p>性能</p>
+<p>1.压测链路业务配比如何确定？数据来源呢？</p>
+<p>2.如何评估并发用户数？比如压测时要达到 1 万个 QPS，响应延迟最大 500 毫秒，怎么设置和计算需要多少台机器做并发？</p>
+<p>3.压测时，TPS 上不去但 CPU / 内存不高的排查方向？</p>
+<p>4.有库存和时限的秒杀场景，有哪些技术风险需要关注，哪些维度进行测试</p>
+<p>自动化</p>
+<p>1.PyTest 中如何通过 fixture 实现多环境快速切换？</p>
+<p>2.PyTest 的 fixture 不同作用域的含义是什么？</p>
+<p>3.Python 列表去重 + 筛选的推导式实现</p>
+<p>4.一行代码筛选出：字符串列表中，以下划线开头的字符串</p>
+<p>redis</p>
+<p>1.Redis 通常存储哪些类型的业务数据？存储的原因是什么？</p>
+<p>2.Redis 的特性及测试关注点？</p>
+<p>mq
+1.什么场景需要用消息队列，作用是什么 </p>
+<p>2.支付、权益下发的事务一致性，会出现哪些异常场景？怎么测试？</p>
+<p>3.营销活动中如何避免库存重复扣减？如何测试该场景？</p>
+<p>sql</p>
+<p>1.慢查询的分析方法及复杂 SQL 的测试思路</p>
+<p>2.跨平台数据一致性校验方案</p>
 
 
 
@@ -7853,7 +7888,7 @@
     <span class="md-icon" title="最后更新">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"></path></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime" title="2026年4月10日 21:30:59 CST">2026-04-10 21:30:59</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime" title="2026年7月7日 23:43:51 CST">2026-07-07 23:43:51</span>
   </span>
 
     
