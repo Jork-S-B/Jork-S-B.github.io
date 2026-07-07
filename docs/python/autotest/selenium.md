@@ -36,9 +36,38 @@ WebDriverWait(driver, 10).until(lambda x: x.find_element(by='xpath', value=value
 |               `drvier.switch_to.frame()`               | 切换至指定frame                     |
 |             `drvier.save_screenshot(path)`             | 截图                             |
 
-## 📌 xpath
 
-通过结构关系锚定唯一元素，而不是直接复制xpath表达式。
+!!! tip
+
+    chromedriver和chrome浏览器大版本号保持一致即可。
+
+    114及更早版本: https://chromedriver.storage.googleapis.com/index.html
+
+    130以上版本: https://googlechromelabs.github.io/chrome-for-testing
+
+---
+
+## 📌 驱动ai进行ui自动化
+
+### 识别元素
+
+通过playwright识别页面元素要点：
+
+- 使用Accessibility Tree返回的结构化数据，生成xpath表达式（按xpath定位策略优先级）
+- 示例数据必须来自真实查询结果，禁止虚构
+
+### xpath定位策略优先级
+
+通过结构关系锚定唯一元素，而不是直接复制绝对路径的xpath表达式。
+
+禁用绝对路径、动态class，如：`/html/body/div[3]...`，优先语义化定位，如：`//button[text()="登录"]`。
+
+- 优先级1: id定位（最稳定），如`//div[@id="login"]`
+- 优先级2: label关键定位（语义化），如`//div[@for="login"]//span[text()="字段名"]`
+- 优先级3: text定位，如`//div[text()="按钮文本"]`
+- 优先级4: 属性组合定位，尤其页面有loading元素遮罩时，如`//div[@class="login" and @name="logintype" and not contains(@class,"loading")]`
+- 优先级5: 结构关系定位，如`//div[@id="login"]/following::div`、`//div[@id="login"]/preceding-sibling::div`、`//div[@id="login"]/parent::div`
+- 优先级6: class或结构定位，如`//div[@class="login"]`
 
 |           表达式            | 补充说明                    |
 |:------------------------:|:------------------------|
@@ -55,24 +84,7 @@ WebDriverWait(driver, 10).until(lambda x: x.find_element(by='xpath', value=value
 
     2025/5/18: setTimeout(()=>{debugger;},1000)，同理，效果一样。
 
-### 定位选择优先级
-
-禁用绝对路径、动态class、索引，如：`/html/body/div[3]...`，优先语义化定位，如：`//button[text()="登录"]`。
-
-1. 有唯一ID属性，用`@id`定位。
-2. 无唯一ID但有label，用label关联定位。
-3. 无唯一ID、无label，用text定位。
-4. 最后用class或结构定位。
-
-如：
-```xpath
-//div[@id="login"]
-//div[text()="登录"]
-//div[@class="login"]
-//div[@class="login"]//div[text()="登录"]
-```
-
-## 方法命名规范
+### 用例方法命名规范
 
 以用户意图为导向: 
 
@@ -80,14 +92,6 @@ WebDriverWait(driver, 10).until(lambda x: x.find_element(by='xpath', value=value
 - 用户想”选择XX“，则方法名为`select_XX(value)`。
 - 用户想”点击XX“，则方法名为`click_XX()`。
 - 禁用拼音、模糊名（如field2、element1）
-
-## 📌 chromedriver
-
-chromedriver和chrome浏览器大版本号保持一致即可。
-
-114及更早版本: https://chromedriver.storage.googleapis.com/index.html
-
-130以上版本: https://googlechromelabs.github.io/chrome-for-testing
 
 ---
 
