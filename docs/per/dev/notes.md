@@ -26,7 +26,7 @@ Flask桩端维护一个内存映射表（如Redis或Dict），根据请求头中
 
 ## 基于mitmproxy的mock服务
 
-![mock](mock.png)
+![mock](mock.jpg)
 [下载该脑图](mock.eddx)
 
 
