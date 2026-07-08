@@ -20,7 +20,7 @@
     
     
       
-        <title>Notes - whm</title>
+        <title>营销活动压测面试 · 表达文字稿（完整版） - whm</title>
       
     
     
@@ -77,7 +77,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#mock" class="md-skip">
+        <a href="#_1" class="md-skip">
           跳转至
         </a>
       
@@ -111,7 +111,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Notes
+              营销活动压测面试 · 表达文字稿（完整版）
             
           </span>
         </div>
@@ -7754,6 +7754,8 @@
   
   
   
+    
+  
   
     <label class="md-nav__title" for="__toc">
       <span class="md-nav__icon md-icon"></span>
@@ -7762,49 +7764,98 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix="">
       
         <li class="md-nav__item">
-  <a href="#mock" class="md-nav__link">
+  <a href="#30" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Mock
+        开场定位（30秒）
       
     </span>
   </a>
-  
-    <nav class="md-nav" aria-label="Mock">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#_1" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        端口冲突
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#_2" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        数据隔离
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#mitmproxymock" class="md-nav__link">
+  <a href="#qpstps2" class="md-nav__link">
     <span class="md-ellipsis">
       
-        基于mitmproxy的mock服务
+        一、数据倒推 QPS/TPS（2分钟）
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#15" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        二、风险识别（1.5分钟）
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#jmeter2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        三、JMeter压测方案（2分钟）
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#15_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        四、面试高频追问：配比的数据来源（1.5分钟）
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        五、面试高频追问：并发用户数计算（1分钟）
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#tpscpu15" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        六、面试高频追问：TPS上不去但CPU内存不高（1.5分钟）
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#30_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        收尾（30秒）
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        附：面试表达建议
       
     </span>
   </a>
@@ -7831,43 +7882,85 @@
   
 
 
-  <h1>Notes</h1>
-
-<h2 id="mock">Mock</h2>
-<p>Q：你在项目里使用Flask动态拉起模拟桩来规避外围系统不稳定。</p>
-<p>在高并发或多流水线并行执行时，你是如何解决端口冲突和桩数据隔离问题的？</p>
-<p>A：【问题定位】→【解决方案】→【代码/步骤】→【避坑】→【效果】</p>
-<h3 id="_1">端口冲突</h3>
-<p>问题定位：在流水线（如Jenkins）中，多个Job同时触发执行，若硬编码端口，会导致<code>Address already in use</code></p>
-<p>解决方案：不指定固定端口，利用socket库在启动前申请一个空闲端口，并将其作为启动参数传给Flask。</p>
-<h3 id="_2">数据隔离</h3>
-<p>问题定位：不同测试用例可能对同一个接口有不同的期望返回。并发执行时，如果不做隔离，会出现“桩数据污染”。</p>
-<p>解决方案：框架在发送请求时生成唯一的Mock-ID（UUID），并在请求头中携带。</p>
-<p>Flask桩端维护一个内存映射表（如Redis或Dict），根据请求头中的ID动态返回对应的Mock数据。</p>
-<h2 id="mitmproxymock">基于mitmproxy的mock服务</h2>
-<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="../mock.jpg" data-desc-position="bottom"><img alt="mock" src="../mock.jpg"></a>
-<a href="../mock.eddx">下载该脑图</a></p>
-<hr>
-<p>性能</p>
-<p>1.压测链路业务配比如何确定？数据来源呢？</p>
-<p>2.如何评估并发用户数？比如压测时要达到 1 万个 QPS，响应延迟最大 500 毫秒，怎么设置和计算需要多少台机器做并发？</p>
-<p>3.压测时，TPS 上不去但 CPU / 内存不高的排查方向？</p>
-<p>4.有库存和时限的秒杀场景，有哪些技术风险需要关注，哪些维度进行测试</p>
-<p>自动化</p>
-<p>1.PyTest 中如何通过 fixture 实现多环境快速切换？</p>
-<p>2.PyTest 的 fixture 不同作用域的含义是什么？</p>
-<p>3.Python 列表去重 + 筛选的推导式实现</p>
-<p>4.一行代码筛选出：字符串列表中，以下划线开头的字符串</p>
-<p>redis</p>
-<p>1.Redis 通常存储哪些类型的业务数据？存储的原因是什么？</p>
-<p>2.Redis 的特性及测试关注点？</p>
-<p>mq
-1.什么场景需要用消息队列，作用是什么 </p>
-<p>2.支付、权益下发的事务一致性，会出现哪些异常场景？怎么测试？</p>
-<p>3.营销活动中如何避免库存重复扣减？如何测试该场景？</p>
-<p>sql</p>
-<p>1.慢查询的分析方法及复杂 SQL 的测试思路</p>
-<p>2.跨平台数据一致性校验方案</p>
+<h1 id="_1">营销活动压测面试 · 表达文字稿（完整版）</h1>
+<h2 id="30">开场定位（30秒）</h2>
+<p>面试官您好，我想分享一个我之前深度参与的活动压测案例——某运营商的“全网移动云盘会员日”活动。这个活动有几个典型特征：每月会员日开启当天才能做任务（拉新、拉活、AI工具试用）来获取抽奖次数，奖品有库存限制。这类场景在大厂营销活动中非常常见，我围绕它完整走了一遍“倒推目标→风险识别→压测方案设计→问题排查”的全流程。</p>
+<h2 id="qpstps2">一、数据倒推 QPS/TPS（2分钟）</h2>
+<p>我拿到的是首周7日汇总数据：PV约131万，UV约62万，登录用户数约47万，登录转化率约75%，中奖率约33%。但<strong>不能直接用7天均值</strong>去压，因为任务只在开启当天可做，流量极度偏斜。</p>
+<p>我的推算逻辑是三步：</p>
+<p><strong>第一步，浓缩有效天数</strong>。核心写接口集中在7月15日当天，按运营经验，当天流量约占全周的70%。</p>
+<p><strong>第二步，计算单日总量</strong>。以任务提交为例，7日日均约20万次，当天估算约98.5万次。</p>
+<p><strong>第三步，聚焦峰值分钟</strong>。参考大促规律，开启瞬间前10分钟流量通常占单日20%，所以任务提交峰值 ≈ 98.5万 × 20% ÷ 600秒 ≈ 328 TPS。按这个逻辑推下来，<strong>核心业务目标峰值定500 TPS，摸高压测按1000 TPS</strong>。</p>
+<p>这里要特别强调，<strong>抽奖/兑换接口虽然只有约100 TPS，但涉及分布式锁竞争和库存扣减，必须作为最高优先级来压</strong>。</p>
+<h2 id="15">二、风险识别（1.5分钟）</h2>
+<p>基于活动特性，我识别了四大核心风险：</p>
+<p><strong>第一，库存超卖。</strong> 奖品有限，高并发下如果查库存和扣减不是原子操作，或者缓存和DB不一致，就会超发，这属于事故级别。</p>
+<p><strong>第二，幂等性风险。</strong> 用户网络超时后重试，如果后端没做幂等校验，同一个任务可能发多次积分。</p>
+<p><strong>第三，外部依赖故障。</strong> AI工具试用要调第三方模型，如果响应超时超过3秒，会占满Tomcat线程池，导致任务接口整体阻塞，产生级联故障。</p>
+<p><strong>第四，缓存击穿和雪崩。</strong> 奖品库存和活动配置通常会缓存在Redis中。击穿是指<strong>某个热点Key</strong>（比如爆款奖品的库存）在失效的瞬间，海量请求直接穿透缓存打到DB上；雪崩更严重，是指<strong>大批量Key在同一时段集中失效</strong>，导致DB瞬间承压。这个活动里的典型场景是：运营配置的奖品池如果设置了统一的缓存过期时间，准点失效时刚好撞上会员日流量高峰，DB连接池很可能被瞬间打满，引发服务不可用。</p>
+<h2 id="jmeter2">三、JMeter压测方案（2分钟）</h2>
+<p>我的设计思路是“梯度增压加混合场景”，模拟真实用户路径：登录→做任务→抽奖。</p>
+<p><strong>线程组层面</strong>，我使用阶梯爬坡，从100 TPS逐步增压到1000 TPS，每阶段2分钟，目的是精准找到系统的性能拐点。</p>
+<p><strong>数据层面</strong>，用CSV准备50万测试用户，配合HTTP Cookie Manager保持会话，用JSON Extractor提取token传递给后续请求，模拟真实用户的串联行为。</p>
+<p><strong>业务配比层面</strong>，这是面试中经常被追问的点。我的配比不是拍脑袋的，而是基于漏斗转化算出来的。比如登录转化率75%，中奖率33%，那么抽奖扣库存的流量必须按“登录流量×75%×任务完成率×33%”来衰减，不能平均分配。</p>
+<p><strong>防超卖层面</strong>，我用了Synchronizing Timer做集合点，模拟50个人同时抢最后一个库存，观察系统会不会扣成负数。</p>
+<p><strong>幂等方面</strong>，用JSR223 PreProcessor在请求头里生成幂等Token，模拟防重提交。</p>
+<p><strong>缓存击穿/雪崩的针对性验证</strong>，我会做两件事：一是拿到压测脚本里固定热点奖品ID，先手动清除Redis里对应的缓存Key，再瞬间释放并发请求，观察DB的QPS有没有突然飙升以及接口错误率有没有骤增；二是在压测前检查缓存过期时间的配置，如果发现所有奖品Key都是整点统一过期，会直接向开发提出<strong>增加随机偏移量</strong>的建议来打散失效时间。</p>
+<h2 id="15_1">四、面试高频追问：配比的数据来源（1.5分钟）</h2>
+<p>面试官如果追问“配比数据从哪来”，我的回答分三层：</p>
+<p><strong>第一层，Nginx日志。</strong> 我会用 <code>awk</code> 按小时聚合接口PV，过滤掉静态资源和健康检查，按活动开启高峰期切片统计。但我会主动说明这个命令的局限性——需要过滤 <code>.css/.js</code> 这些静态资源，否则统计会失真。生产上更推荐直接看ELK或GoAccess的聚合图表。</p>
+<p><strong>第二层，APM埋点。</strong> 开发运维会部署SkyWalking这类探针，每个请求生成全局TraceId串联全链路。测试人员要自己登录SkyWalking控制台，按接口和时间范围导出调用量和平均耗时，这是最精准的数据来源。</p>
+<p><strong>第三层，业务转化率。</strong> 像中奖率、登录转化率这些，需要数据侧或DBA从数据库里统计，测试人员要主动提口径需求，拿到数据后校准脚本。</p>
+<p><strong>职责边界我要拎清</strong>：Nginx日志我可以自己Shell分析，APM看板要自己会查，但探针部署是开发运维的事，业务宽表要数据侧加工——测试人员不能什么都等别人给，也不能越界去动生产环境。</p>
+<h2 id="1">五、面试高频追问：并发用户数计算（1分钟）</h2>
+<p>如果面试官问“要压1万QPS、响应延迟500毫秒，需要多少并发用户和压测机”，我直接用Little定律：</p>
+<p><strong>并发用户数 = QPS × 平均响应时间 = 10,000 × 0.5 = 5,000个线程</strong>。</p>
+<p>压测机台数方面，单台8C16G的施压机，JMeter每个线程约占1MB堆内存，分配12G堆的话，<strong>生产上稳妥的并发数建议控制在1500到2000</strong>，超过的话GC频繁，数据会呈锯齿状失真。所以5000线程需要4台压测机，3台主力加1台冗余。</p>
+<h2 id="tpscpu15">六、面试高频追问：TPS上不去但CPU内存不高（1.5分钟）</h2>
+<p>这是线上最棘手的“假死”现象，我的排查思路分两个阶段：</p>
+<p><strong>基础排查阶段</strong>，先看连接池是否打满——大量线程处于等待获取连接的状态。再看下游依赖是否超时，AI接口响应慢会导致线程都在睡。然后用 <code>iftop</code> 看网卡带宽是否到顶，用 <code>netstat</code> 检查端口是否耗尽或TIME_WAIT堆积。还有分布式锁竞争，Redisson或 <code>select for update</code> 会让大量线程自旋等待。</p>
+<p><strong>进阶阶段</strong>，我会用Arthas做动态诊断，不用重启应用。举三个实战场景：</p>
+<p>一是用 <code>trace</code> 命令打印方法内部每一步的精确耗时，比如发现900毫秒全花在HttpClient.execute上，秒级定位是网络IO超时，而不是业务代码慢。</p>
+<p>二是用 <code>logger --level debug</code> 实时打开DEBUG日志，观察分布式锁的等待时间，验证完再改回INFO级别，免重启。</p>
+<p>三是用 <code>jad</code> 反编译JVM内存中的字节码，如果怀疑部署的包不是最新代码，直接反编译出来看，实锤截图发给开发，终结扯皮。</p>
+<p><strong>我的习惯是</strong>：先看服务端口的Backlog排队数和中间件连接池监控，再用jstack打印线程堆栈，如果大量线程处于parking或waiting for connection，直接锁定连接池或外部IO超时。当常规手段看不出问题时，Arthas就是手术刀式的精准诊断工具。</p>
+<h2 id="30_1">收尾（30秒）</h2>
+<p>最后总结一下，这个案例的核心思路是：<strong>用数据驱动配比，用漏斗校准流量，用梯度寻找拐点，用Arthas精准诊断</strong>。整个过程中，测试人员既要懂工具和命令，也要清楚协作边界——能自己动手分析的绝不等别人，涉及生产变动的必须拉上运维和开发一起评估。以上是我的分享，谢谢。</p>
+<h2 id="_2">附：面试表达建议</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">注意事项</th>
+<th style="text-align: left;">说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><strong>逻辑锚点</strong></td>
+<td style="text-align: left;">每次提到数字（如500 TPS）时，顺势带出“这是怎么算出来的”，体现数据驱动思维</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>停顿节奏</strong></td>
+<td style="text-align: left;">讲到“漏斗转化”“Little定律”“Arthas诊断”时稍作停顿，给面试官追问的空间</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>避坑提醒</strong></td>
+<td style="text-align: left;">不要只说JMeter操作，要强调“为什么这样做”——面试官更看重决策逻辑</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>金句植入</strong></td>
+<td style="text-align: left;">“不会先看应用日志，先看Backlog排队数和连接池”——这句话能体现排障经验</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>时长控制</strong></td>
+<td style="text-align: left;">以上全文按正常语速约8.5分钟，可根据面试官表情灵活删减“JMeter元件”部分的细节</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>击穿/雪崩话术</strong></td>
+<td style="text-align: left;">提到缓存问题时，顺带说出“随机偏移量”这个解决方案，体现你不仅知道问题还能给出落地方案</td>
+</tr>
+</tbody>
+</table>
 
 
 
