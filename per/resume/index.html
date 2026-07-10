@@ -7776,12 +7776,12 @@
   <a href="#q_1" class="md-nav__link">
     <span class="md-ellipsis">
       
-        📌 Q：如何保障跨平台的数据一致性？
+        📌 Q：如何保障跨系统的数据一致性？对账脚本如何设计？
       
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="📌 Q：如何保障跨平台的数据一致性？">
+    <nav class="md-nav" aria-label="📌 Q：如何保障跨系统的数据一致性？对账脚本如何设计？">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -7872,6 +7872,56 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        📌 第三方支付的营销活动详情
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="📌 第三方支付的营销活动详情">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🚁 支付如何测试设计？
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#-" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        📌 意图识别-语义搜图-回忆相册，如何进行测试设计？
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#apm" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        📌 APM 数据看板，有现成工具为什么还重复开发？
+      
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -7894,6 +7944,40 @@
 
   <h1>Resume</h1>
 
+<hr>
+<p>tags: [简历]</p>
+<p>[ ] 加入线索管理平台？不加，先掌握</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">项目名称</th>
+<th style="text-align: left;">系统类型</th>
+<th style="text-align: left;">核心业务方向</th>
+<th style="text-align: left;">服务对象</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><strong>智能相册</strong></td>
+<td style="text-align: left;"><strong>To C 消费级应用</strong></td>
+<td style="text-align: left;">AI算法应用、端侧交互体验</td>
+<td style="text-align: left;">外部个人消费者</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>营销活动平台</strong></td>
+<td style="text-align: left;"><strong>To B 内部运营中台</strong></td>
+<td style="text-align: left;">活动配置、订单流转、精准营销</td>
+<td style="text-align: left;">内部运营/市场团队</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>渠道费用&amp;权限中心</strong></td>
+<td style="text-align: left;"><strong>To B 企业后台/CRM/IAM</strong></td>
+<td style="text-align: left;">渠道管理、酬金结算、权限控制</td>
+<td style="text-align: left;">内部渠道经理/财务/地市员工</td>
+</tr>
+</tbody>
+</table>
+<hr>
 <h2 id="q">📌 Q：最有成就感的项目</h2>
 <p>做了什么事情、总结沉淀、工具等？遇到什么难点？</p>
 <p>A：面试官您好，我讲一下广东移动渠道费用管理系统这个项目。</p>
@@ -7920,9 +8004,9 @@
 <p>权限中心早期代码耦合严重，改一个菜单可能影响所有财务相关菜单，每次回归要投入十几个测试人员跑 200 多个用例。</p>
 <p>我基于 Playwright + POM 模式搭建了 UI 自动化框架。选 Playwright 而不是 Selenium 的原因是：它默认自动等待、支持多浏览器、调试工具更友好。最终覆盖了 50+ 核心页面，自动化通过率稳定在 97% 以上，把回归时间从 2 天压缩到 2 小时。</p>
 <p>总结一下，这个项目让我在 ETL 数据质量、规则引擎灰盒测试、Mock 服务开发、UI 自动化落地 四个方面都有了比较扎实的实战经验。</p>
-<h2 id="q_1">📌 Q：如何保障跨平台的数据一致性？</h2>
+<h2 id="q_1">📌 Q：如何保障跨系统的数据一致性？对账脚本如何设计？</h2>
 <p>“由粗到细、由面到点”</p>
-<p>🛠️ 跨平台数据一致性校验脚本设计思路：</p>
+<p>🛠️ 跨系统数据一致性校验脚本设计思路：</p>
 <p>1.宏观对账：元数据与聚合统计 (Metadata Check) </p>
 <ul>
 <li>总量对比 (Count)： SELECT COUNT(*) 是否相等。</li>
@@ -8106,6 +8190,19 @@ playwright<span class="w"> </span>show-trace<span class="w"> </span>xxx_manage.z
 <li>模拟慢网速、弱网环境：<code>route.fulfill(delay=3000)</code></li>
 </ul>
 </div>
+<h2 id="_2">📌 第三方支付的营销活动详情</h2>
+<p>第三方如：书旗、如祺等，通过走对方的支付，订单状态为<code>已签约已支付</code>时，可领取云盘及对方的权益。</p>
+<h3 id="_3">🚁 支付如何测试设计？</h3>
+<p>{todo}</p>
+<h2 id="-">📌 意图识别-语义搜图-回忆相册，如何进行测试设计？</h2>
+<p>1.主导智能相册模块测试，覆盖从聚类、元数据提取、向量化处理到结果透传的完整链路；通过代码走读梳理定时任务调度逻辑，并集成意图识别-语义搜图-回忆相册的端到端测试，上线后核心链路零故障。</p>
+<p>{todo}</p>
+<h2 id="apm">📌 APM 数据看板，有现成工具为什么还重复开发？</h2>
+<ul>
+<li>数据清洗：排除健康检查、探活、静态资源，通过聚合到同一个大屏，解决数据孤岛问题</li>
+<li>通常默认保留原始Trace数据仅7-15天（存储成本极高），过期即删。</li>
+</ul>
+<p>定时清洗后将聚合指标（分钟级）存入PostgreSQL，可以长期保留</p>
 
 
 
@@ -8126,7 +8223,7 @@ playwright<span class="w"> </span>show-trace<span class="w"> </span>xxx_manage.z
     <span class="md-icon" title="最后更新">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"></path></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime" title="2026年5月15日 15:00:33 CST">2026-05-15 15:00:33</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime" title="2026年7月10日 20:50:46 CST">2026-07-10 20:50:46</span>
   </span>
 
     
