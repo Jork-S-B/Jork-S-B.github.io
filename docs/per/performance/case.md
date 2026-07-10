@@ -276,6 +276,24 @@ activity: "会员日" AND message: "lottery_success" | count()
 **面试金句**：
 > "当只有 Nginx + ELK 时，我会先用 Shell 命令或 GoAccess 从 Nginx 日志提取接口 PV 分布，再用 ELK 查业务埋点日志获取转化率。虽然没有 APM 的链路追踪，但组合使用仍能得到合理的压测配比。如果条件允许，我会建议团队引入 SkyWalking 等轻量级 APM。"
 
+---
+
+通过nginx日志统计接口访问量
+
+```shell
+cat access.log | awk '{print $7}' | sort | uniq -c | sort -rn | head -20
+# 命令含义：awk '{print $7}' 提取URI路径 → sort排序 → uniq -c统计次数 → sort -rn降序 → head -20取Top20。
+```
+
+“Nginx日志法仅适用于宏观PV总量和接口热点排序，但无法支撑压测配比决策，因为：
+
+1.无法关联用户行为漏斗（不知道这15万次抽奖是由多少‘登录用户’发起的，也无法知道‘任务完成数’）。
+
+2.无法剔除静态资源/爬虫/健康检查（K8s的/actuator/health探针会污染统计）。
+
+3.实时性差（离线分析，无法动态调整压测模型）。”
+
+
 ### Q2：如何评估并发用户数？压测机台数怎么算？（QPS=1万，RT=500ms）
 
 > **面试官考察点**：是否掌握 **Little定律** 和施压机性能瓶颈。
