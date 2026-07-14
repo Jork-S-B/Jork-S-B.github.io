@@ -8014,13 +8014,96 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#43" class="md-nav__link">
+  <a href="#43-jmeter" class="md-nav__link">
     <span class="md-ellipsis">
       
-        4.3 针对特定风险的压测执行方案
+        4.3 JMeter 测试计划树形结构
       
     </span>
   </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#44" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.4 针对特定风险的压测执行方案
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#45-locust" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.5 补充方案：基于 Locust 的全链路压测
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4.5 补充方案：基于 Locust 的全链路压测">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#451-locust-vs-jmeter" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.5.1 Locust vs JMeter 对比
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#452-locust" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.5.2 Locust 压测脚本示例
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#453" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.5.3 分布式压测与监控
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#454-locust" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.5.4 Locust 高级特性
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#455-jmeter-vs-locust" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.5.5 面试对比：JMeter vs Locust
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
         
@@ -8120,10 +8203,32 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#key" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        (四)瓶颈四:活动奖品配置大 Key 导致抽奖接口响应慢
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#_12" class="md-nav__link">
     <span class="md-ellipsis">
       
-        (四)其他优化措施
+        (五)瓶颈五:同步调用积分系统导致任务提交和抽奖接口超时
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_13" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        (六)其他优化措施
       
     </span>
   </a>
@@ -8141,7 +8246,7 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#_13" class="md-nav__link">
+  <a href="#_14" class="md-nav__link">
     <span class="md-ellipsis">
       
         六、压测通过标准建议
@@ -8236,6 +8341,7 @@
 <ul>
 <li>任务<strong>仅在每月会员日开启当天可做</strong></li>
 <li>任务包括：拉新/拉活/指定活动停留浏览几秒/AI工具（如文生图）试用，跳转到对应活动h5，满足条件后获得抽奖次数。</li>
+<li><strong>AI 工具试用流程</strong>：用户跳转到 AI 服务 H5 页面 → 完成试用 → AI 服务通过 MQ 异步通知活动系统 → 活动系统轮询检查任务状态 → 发放抽奖次数（非同步调用,不会成为性能瓶颈）</li>
 <li>流量时间分布高度偏斜（开启瞬间突增）</li>
 <li>核心写接口集中在活动开启首日</li>
 </ul>
@@ -8627,7 +8733,145 @@
 </tr>
 </tbody>
 </table>
-<h3 id="43">4.3 针对特定风险的压测执行方案</h3>
+<h3 id="43-jmeter">4.3 JMeter 测试计划树形结构</h3>
+<div class="highlight"><pre><span></span><code>Test Plan（会员日活动压测）
+│
+├── setUp Thread Group（预热线程组）
+│   ├── CSV Data Set Config（预热用户数据）
+│   ├── HTTP Request（登录预热）
+│   │   ├── JSON Extractor（提取 token）
+│   │   └── Response Assertion（校验登录成功）
+│   └── Uniform Random Timer（100-200ms）
+│
+├── Concurrency Thread Group（梯度压测线程组）
+│   │
+│   ├── 【配置元件】
+│   │   ├── CSV Data Set Config
+│   │   │   └── 文件：users.csv（50万测试用户）
+│   │   ├── HTTP Cookie Manager（自动管理 Session）
+│   │   └── HTTP Request Defaults
+│   │       ├── 服务器：activity.xxx.com
+│   │       ├── 连接超时：3000ms
+│   │       └── 响应超时：5000ms
+│   │
+│   ├── 【登录场景】（10%流量）
+│   │   ├── Throughput Controller（Percent Executions: 10%）
+│   │   ├── HTTP Request（POST /api/login）
+│   │   │   ├── JSR223 PreProcessor（生成幂等 Token）
+│   │   │   ├── JSON Extractor（提取 accessToken）
+│   │   │   ├── BeanShell PostProcessor（校验 code=0）
+│   │   │   └── Duration Assertion（RT ≤ 1s）
+│   │   └── Uniform Random Timer（200-500ms）
+│   │
+│   ├── 【做任务场景】（60%流量）
+│   │   ├── Throughput Controller（Percent Executions: 60%）
+│   │   │
+│   │   ├── If Controller（${task_type} == "拉新"）
+│   │   │   └── HTTP Request（POST /api/task/invite）
+│   │   │       ├── JSR223 PreProcessor（生成 taskId）
+│   │   │       ├── Response Assertion（校验 success=true）
+│   │   │       └── Duration Assertion（RT ≤ 500ms）
+│   │   │
+│   │   ├── If Controller（${task_type} == "拉活"）
+│   │   │   └── HTTP Request（POST /api/task/active）
+│   │   │       ├── JSR223 PreProcessor（生成 taskId）
+│   │   │       ├── Response Assertion（校验 success=true）
+│   │   │       └── Duration Assertion（RT ≤ 500ms）
+│   │   │
+│   │   ├── If Controller（${task_type} == "AI试用"）
+│   │   │   └── HTTP Request（POST /api/task/ai-trial）
+│   │   │       ├── JSR223 PreProcessor（生成 taskId）
+│   │   │       ├── Response Assertion（校验 success=true）
+│   │   │       └── Duration Assertion（RT ≤ 500ms）
+│   │   │
+│   │   └── Uniform Random Timer（100-300ms）
+│   │
+│   ├── 【抽奖场景】（30%流量）
+│   │   ├── Throughput Controller（Percent Executions: 30%）
+│   │   ├── HTTP Request（POST /api/lottery/draw）
+│   │   │   ├── JSR223 PreProcessor（生成幂等 Token）
+│   │   │   ├── JSON Extractor（提取 prizeId）
+│   │   │   ├── BeanShell PostProcessor（检测库存是否为负数）
+│   │   │   ├── Response Assertion（校验 success=true）
+│   │   │   └── Duration Assertion（RT ≤ 500ms）
+│   │   └── Uniform Random Timer（150-350ms）
+│   │
+│   └── 【监听器】
+│       ├── Backend Listener（InfluxDB + Grafana）
+│       │   ├── influxdbUrl: http://influxdb:8086
+│       │   ├── application: member_day_activity
+│       │   └── measurement: jmeter_results
+│       ├── Aggregate Report（保存 jtl 文件）
+│       └── Active Threads Over Time（实时监控并发）
+│
+└── tearDown Thread Group（清理线程组）
+    └── Debug Sampler（输出测试结果摘要）
+</code></pre></div>
+<p><strong>关键节点说明</strong>：</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">节点层级</th>
+<th style="text-align: left;">作用</th>
+<th style="text-align: left;">备注</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><strong>Test Plan</strong></td>
+<td style="text-align: left;">测试计划根节点</td>
+<td style="text-align: left;">定义全局配置（用户变量、类路径）</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Thread Group</strong></td>
+<td style="text-align: left;">并发控制核心</td>
+<td style="text-align: left;">梯度增压：100→300→500→700→1000 TPS</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Throughput Controller</strong></td>
+<td style="text-align: left;">流量分配</td>
+<td style="text-align: left;">按业务配比控制场景权重</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>If Controller</strong></td>
+<td style="text-align: left;">动态路由</td>
+<td style="text-align: left;">根据参数路由到不同任务类型</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>PreProcessor</strong></td>
+<td style="text-align: left;">前置处理</td>
+<td style="text-align: left;">生成幂等 Token、签名等</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>PostProcessor</strong></td>
+<td style="text-align: left;">后置处理</td>
+<td style="text-align: left;">提取变量、增强断言</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Assertion</strong></td>
+<td style="text-align: left;">结果校验</td>
+<td style="text-align: left;">响应码、响应时间、业务逻辑</td>
+</tr>
+</tbody>
+</table>
+<p><strong>压测执行流程</strong>：</p>
+<div class="highlight"><pre><span></span><code>1. setUp Thread Group 预热（100 线程）
+   └─→ 登录系统，缓存热点数据
+
+2. Concurrency Thread Group 梯度加压
+   ├─→ 阶段一：100 线程，持续 5 分钟
+   ├─→ 阶段二：300 线程，持续 5 分钟
+   ├─→ 阶段三：500 线程，持续 5 分钟
+   ├─→ 阶段四：700 线程，持续 5 分钟
+   └─→ 阶段五：1000 线程，持续 10 分钟
+
+3. Backend Listener 实时监控
+   └─→ InfluxDB 收集指标 → Grafana 展示曲线
+
+4. tearDown Thread Group 清理
+   └─→ 输出测试摘要，生成报告
+</code></pre></div>
+<h3 id="44">4.4 针对特定风险的压测执行方案</h3>
 <table>
 <thead>
 <tr>
@@ -8654,6 +8898,371 @@
 </tr>
 </tbody>
 </table>
+<h3 id="45-locust">4.5 补充方案：基于 Locust 的全链路压测</h3>
+<blockquote>
+<p><strong>为什么需要 Locust？</strong> JMeter 适合标准化压测，但对于<strong>复杂业务逻辑</strong>（如动态签名、加密参数、多步骤依赖），Python 编写更灵活。</p>
+</blockquote>
+<h4 id="451-locust-vs-jmeter">4.5.1 Locust vs JMeter 对比</h4>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">维度</th>
+<th style="text-align: left;">JMeter</th>
+<th style="text-align: left;">Locust</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><strong>编写语言</strong></td>
+<td style="text-align: left;">Java/Groovy（GUI 配置为主）</td>
+<td style="text-align: left;">Python（代码为主，更灵活）</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>脚本维护</strong></td>
+<td style="text-align: left;">XML 配置，可读性差</td>
+<td style="text-align: left;">Python 代码，易维护、易版本控制</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>复杂逻辑</strong></td>
+<td style="text-align: left;">BeanShell/Groovy 脚本，调试困难</td>
+<td style="text-align: left;">原生 Python，支持断点、IDE 调试</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>分布式压测</strong></td>
+<td style="text-align: left;">Master-Slave 模式（需配置）</td>
+<td style="text-align: left;">Master-Worker 模式（一条命令启动）</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>资源消耗</strong></td>
+<td style="text-align: left;">每个 VU 约 1MB 堆内存</td>
+<td style="text-align: left;">每个 VU 约 几十 KB（轻量级协程）</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>实时监控</strong></td>
+<td style="text-align: left;">需配置 Backend Listener</td>
+<td style="text-align: left;">自带 Web UI，实时展示曲线</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>扩展性</strong></td>
+<td style="text-align: left;">插件机制，Java 生态</td>
+<td style="text-align: left;">Python 生态，集成第三方库容易</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>适用场景</strong></td>
+<td style="text-align: left;">标准化压测、团队协作、合规审计</td>
+<td style="text-align: left;">复杂业务逻辑、快速迭代、技术团队</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Locust 核心优势</strong>：
+- <strong>轻量级</strong>：基于协程（gevent），单机可支持数万并发
+- <strong>灵活</strong>：Python 代码编写，支持复杂业务逻辑（如加密、签名）
+- <strong>易扩展</strong>：可直接调用第三方库（如 requests、PyCryptodome）
+- <strong>实时监控</strong>：Web UI 实时展示 TPS、RT、错误率曲线</p>
+<h4 id="452-locust">4.5.2 Locust 压测脚本示例</h4>
+<p><strong>场景</strong>：会员日活动全链路压测（登录 → 做任务 → 抽奖）</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># locustfile.py</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">locust</span><span class="w"> </span><span class="kn">import</span> <span class="n">HttpUser</span><span class="p">,</span> <span class="n">task</span><span class="p">,</span> <span class="n">between</span><span class="p">,</span> <span class="n">events</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">json</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">hashlib</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">time</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">random</span><span class="w"> </span><span class="kn">import</span> <span class="n">randint</span><span class="p">,</span> <span class="n">choice</span>
+
+<span class="k">class</span><span class="w"> </span><span class="nc">MemberDayUser</span><span class="p">(</span><span class="n">HttpUser</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">"""</span>
+<span class="sd">    会员日活动用户行为模拟</span>
+<span class="sd">    业务流程：登录 → 做任务 → 抽奖 → 查领奖记录</span>
+<span class="sd">    """</span>
+    <span class="n">wait_time</span> <span class="o">=</span> <span class="n">between</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>  <span class="c1"># 请求间等待 1-3 秒</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">on_start</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">"""初始化：模拟登录获取 token"""</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">phone</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">"13800</span><span class="si">{</span><span class="n">randint</span><span class="p">(</span><span class="mi">100000</span><span class="p">,</span><span class="w"> </span><span class="mi">999999</span><span class="p">)</span><span class="si">}</span><span class="s2">"</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">user_id</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">access_token</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">prize_ids</span> <span class="o">=</span> <span class="p">[]</span>
+
+        <span class="c1"># 登录接口</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">login</span><span class="p">()</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">login</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">"""登录接口"""</span>
+        <span class="n">payload</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="s2">"phone"</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">phone</span><span class="p">,</span>
+            <span class="s2">"deviceId"</span><span class="p">:</span> <span class="sa">f</span><span class="s2">"device_</span><span class="si">{</span><span class="n">randint</span><span class="p">(</span><span class="mi">1000</span><span class="p">,</span><span class="w"> </span><span class="mi">9999</span><span class="p">)</span><span class="si">}</span><span class="s2">"</span>
+        <span class="p">}</span>
+
+        <span class="k">with</span> <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="s2">"/api/login"</span><span class="p">,</span> <span class="n">json</span><span class="o">=</span><span class="n">payload</span><span class="p">,</span> <span class="n">catch_response</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span> <span class="k">as</span> <span class="n">response</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">response</span><span class="o">.</span><span class="n">status_code</span> <span class="o">==</span> <span class="mi">200</span><span class="p">:</span>
+                <span class="n">data</span> <span class="o">=</span> <span class="n">response</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
+                <span class="k">if</span> <span class="n">data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">"code"</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">access_token</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s2">"data"</span><span class="p">][</span><span class="s2">"accessToken"</span><span class="p">]</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">user_id</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s2">"data"</span><span class="p">][</span><span class="s2">"userId"</span><span class="p">]</span>
+                    <span class="n">response</span><span class="o">.</span><span class="n">success</span><span class="p">()</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="n">response</span><span class="o">.</span><span class="n">failure</span><span class="p">(</span><span class="sa">f</span><span class="s2">"登录失败: </span><span class="si">{</span><span class="n">data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">'msg'</span><span class="p">)</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">response</span><span class="o">.</span><span class="n">failure</span><span class="p">(</span><span class="sa">f</span><span class="s2">"HTTP </span><span class="si">{</span><span class="n">response</span><span class="o">.</span><span class="n">status_code</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">generate_idempotent_token</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">"""生成幂等 Token（MD5）"""</span>
+        <span class="n">timestamp</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span> <span class="o">*</span> <span class="mi">1000</span><span class="p">)</span>
+        <span class="n">raw</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">user_id</span><span class="si">}</span><span class="s2">_</span><span class="si">{</span><span class="n">timestamp</span><span class="si">}</span><span class="s2">_</span><span class="si">{</span><span class="n">randint</span><span class="p">(</span><span class="mi">1000</span><span class="p">,</span><span class="w"> </span><span class="mi">9999</span><span class="p">)</span><span class="si">}</span><span class="s2">"</span>
+        <span class="k">return</span> <span class="n">hashlib</span><span class="o">.</span><span class="n">md5</span><span class="p">(</span><span class="n">raw</span><span class="o">.</span><span class="n">encode</span><span class="p">())</span><span class="o">.</span><span class="n">hexdigest</span><span class="p">()</span>
+
+    <span class="nd">@task</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">do_task_invite</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">"""任务1：拉新（权重10）"""</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">access_token</span><span class="p">:</span>
+            <span class="k">return</span>
+
+        <span class="n">headers</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="s2">"Authorization"</span><span class="p">:</span> <span class="sa">f</span><span class="s2">"Bearer </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">access_token</span><span class="si">}</span><span class="s2">"</span><span class="p">,</span>
+            <span class="s2">"Idempotent-Key"</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">generate_idempotent_token</span><span class="p">()</span>
+        <span class="p">}</span>
+
+        <span class="n">payload</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="s2">"taskId"</span><span class="p">:</span> <span class="sa">f</span><span class="s2">"task_</span><span class="si">{</span><span class="n">randint</span><span class="p">(</span><span class="mi">10000</span><span class="p">,</span><span class="w"> </span><span class="mi">99999</span><span class="p">)</span><span class="si">}</span><span class="s2">"</span><span class="p">,</span>
+            <span class="s2">"taskType"</span><span class="p">:</span> <span class="s2">"invite"</span><span class="p">,</span>
+            <span class="s2">"inviteCode"</span><span class="p">:</span> <span class="sa">f</span><span class="s2">"CODE</span><span class="si">{</span><span class="n">randint</span><span class="p">(</span><span class="mi">1000</span><span class="p">,</span><span class="w"> </span><span class="mi">9999</span><span class="p">)</span><span class="si">}</span><span class="s2">"</span>
+        <span class="p">}</span>
+
+        <span class="k">with</span> <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="s2">"/api/task/submit"</span><span class="p">,</span> <span class="n">json</span><span class="o">=</span><span class="n">payload</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">,</span> <span class="n">catch_response</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span> <span class="k">as</span> <span class="n">response</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">response</span><span class="o">.</span><span class="n">status_code</span> <span class="o">==</span> <span class="mi">200</span><span class="p">:</span>
+                <span class="n">data</span> <span class="o">=</span> <span class="n">response</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
+                <span class="k">if</span> <span class="n">data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">"success"</span><span class="p">):</span>
+                    <span class="n">response</span><span class="o">.</span><span class="n">success</span><span class="p">()</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="n">response</span><span class="o">.</span><span class="n">failure</span><span class="p">(</span><span class="sa">f</span><span class="s2">"任务提交失败: </span><span class="si">{</span><span class="n">data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">'msg'</span><span class="p">)</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">response</span><span class="o">.</span><span class="n">failure</span><span class="p">(</span><span class="sa">f</span><span class="s2">"HTTP </span><span class="si">{</span><span class="n">response</span><span class="o">.</span><span class="n">status_code</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+
+    <span class="nd">@task</span><span class="p">(</span><span class="mi">6</span><span class="p">)</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">do_task_ai_trial</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">"""任务2：AI 工具试用（权重6）"""</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">access_token</span><span class="p">:</span>
+            <span class="k">return</span>
+
+        <span class="n">headers</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="s2">"Authorization"</span><span class="p">:</span> <span class="sa">f</span><span class="s2">"Bearer </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">access_token</span><span class="si">}</span><span class="s2">"</span><span class="p">,</span>
+            <span class="s2">"Idempotent-Key"</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">generate_idempotent_token</span><span class="p">()</span>
+        <span class="p">}</span>
+
+        <span class="n">payload</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="s2">"taskId"</span><span class="p">:</span> <span class="sa">f</span><span class="s2">"task_</span><span class="si">{</span><span class="n">randint</span><span class="p">(</span><span class="mi">10000</span><span class="p">,</span><span class="w"> </span><span class="mi">99999</span><span class="p">)</span><span class="si">}</span><span class="s2">"</span><span class="p">,</span>
+            <span class="s2">"taskType"</span><span class="p">:</span> <span class="s2">"ai_trial"</span><span class="p">,</span>
+            <span class="s2">"aiTool"</span><span class="p">:</span> <span class="n">choice</span><span class="p">([</span><span class="s2">"text2img"</span><span class="p">,</span> <span class="s2">"img2img"</span><span class="p">,</span> <span class="s2">"ocr"</span><span class="p">])</span>
+        <span class="p">}</span>
+
+        <span class="k">with</span> <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="s2">"/api/task/submit"</span><span class="p">,</span> <span class="n">json</span><span class="o">=</span><span class="n">payload</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">,</span> <span class="n">catch_response</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span> <span class="k">as</span> <span class="n">response</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">response</span><span class="o">.</span><span class="n">status_code</span> <span class="o">==</span> <span class="mi">200</span><span class="p">:</span>
+                <span class="n">data</span> <span class="o">=</span> <span class="n">response</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
+                <span class="k">if</span> <span class="n">data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">"success"</span><span class="p">):</span>
+                    <span class="n">response</span><span class="o">.</span><span class="n">success</span><span class="p">()</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="n">response</span><span class="o">.</span><span class="n">failure</span><span class="p">(</span><span class="sa">f</span><span class="s2">"AI 试用失败: </span><span class="si">{</span><span class="n">data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">'msg'</span><span class="p">)</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">response</span><span class="o">.</span><span class="n">failure</span><span class="p">(</span><span class="sa">f</span><span class="s2">"HTTP </span><span class="si">{</span><span class="n">response</span><span class="o">.</span><span class="n">status_code</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+
+    <span class="nd">@task</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">lottery_draw</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">"""抽奖（权重3）"""</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">access_token</span><span class="p">:</span>
+            <span class="k">return</span>
+
+        <span class="n">headers</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="s2">"Authorization"</span><span class="p">:</span> <span class="sa">f</span><span class="s2">"Bearer </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">access_token</span><span class="si">}</span><span class="s2">"</span><span class="p">,</span>
+            <span class="s2">"Idempotent-Key"</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">generate_idempotent_token</span><span class="p">()</span>
+        <span class="p">}</span>
+
+        <span class="n">payload</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="s2">"lotteryId"</span><span class="p">:</span> <span class="sa">f</span><span class="s2">"lottery_</span><span class="si">{</span><span class="n">randint</span><span class="p">(</span><span class="mi">10000</span><span class="p">,</span><span class="w"> </span><span class="mi">99999</span><span class="p">)</span><span class="si">}</span><span class="s2">"</span><span class="p">,</span>
+            <span class="s2">"activityId"</span><span class="p">:</span> <span class="s2">"member_day_2025"</span>
+        <span class="p">}</span>
+
+        <span class="k">with</span> <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="s2">"/api/lottery/draw"</span><span class="p">,</span> <span class="n">json</span><span class="o">=</span><span class="n">payload</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">,</span> <span class="n">catch_response</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span> <span class="k">as</span> <span class="n">response</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">response</span><span class="o">.</span><span class="n">status_code</span> <span class="o">==</span> <span class="mi">200</span><span class="p">:</span>
+                <span class="n">data</span> <span class="o">=</span> <span class="n">response</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
+                <span class="k">if</span> <span class="n">data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">"success"</span><span class="p">):</span>
+                    <span class="n">prize_id</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s2">"data"</span><span class="p">]</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">"prizeId"</span><span class="p">)</span>
+                    <span class="k">if</span> <span class="n">prize_id</span><span class="p">:</span>
+                        <span class="bp">self</span><span class="o">.</span><span class="n">prize_ids</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">prize_id</span><span class="p">)</span>
+                    <span class="n">response</span><span class="o">.</span><span class="n">success</span><span class="p">()</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="n">response</span><span class="o">.</span><span class="n">failure</span><span class="p">(</span><span class="sa">f</span><span class="s2">"抽奖失败: </span><span class="si">{</span><span class="n">data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">'msg'</span><span class="p">)</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">response</span><span class="o">.</span><span class="n">failure</span><span class="p">(</span><span class="sa">f</span><span class="s2">"HTTP </span><span class="si">{</span><span class="n">response</span><span class="o">.</span><span class="n">status_code</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+
+    <span class="nd">@task</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">get_lottery_history</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">"""查领奖记录（权重2）"""</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">access_token</span> <span class="ow">or</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">prize_ids</span><span class="p">:</span>
+            <span class="k">return</span>
+
+        <span class="n">headers</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="s2">"Authorization"</span><span class="p">:</span> <span class="sa">f</span><span class="s2">"Bearer </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">access_token</span><span class="si">}</span><span class="s2">"</span>
+        <span class="p">}</span>
+
+        <span class="k">with</span> <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">"/api/lottery/history"</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">,</span> <span class="n">catch_response</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span> <span class="k">as</span> <span class="n">response</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">response</span><span class="o">.</span><span class="n">status_code</span> <span class="o">==</span> <span class="mi">200</span><span class="p">:</span>
+                <span class="n">data</span> <span class="o">=</span> <span class="n">response</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
+                <span class="k">if</span> <span class="n">data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">"success"</span><span class="p">):</span>
+                    <span class="n">response</span><span class="o">.</span><span class="n">success</span><span class="p">()</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="n">response</span><span class="o">.</span><span class="n">failure</span><span class="p">(</span><span class="sa">f</span><span class="s2">"查询失败: </span><span class="si">{</span><span class="n">data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">'msg'</span><span class="p">)</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">response</span><span class="o">.</span><span class="n">failure</span><span class="p">(</span><span class="sa">f</span><span class="s2">"HTTP </span><span class="si">{</span><span class="n">response</span><span class="o">.</span><span class="n">status_code</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+
+<span class="c1"># 自定义事件监听：实时统计业务指标</span>
+<span class="nd">@events</span><span class="o">.</span><span class="n">request</span><span class="o">.</span><span class="n">add_listener</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">on_request</span><span class="p">(</span><span class="n">request_type</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">response_time</span><span class="p">,</span> <span class="n">response_length</span><span class="p">,</span> <span class="n">exception</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">"""每个请求完成后触发"""</span>
+    <span class="k">if</span> <span class="n">exception</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"请求失败: </span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s2">, 错误: </span><span class="si">{</span><span class="n">exception</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="c1"># 可扩展：将数据推送到 InfluxDB</span>
+        <span class="k">pass</span>
+</code></pre></div>
+<p><strong>关键设计说明</strong>：</p>
+<ol>
+<li><strong>任务权重</strong>：<code>@task(10)</code> 表示拉新任务权重为 10，抽奖权重为 3，流量配比约为 10:3</li>
+<li><strong>幂等 Token</strong>：每个写接口都生成唯一的幂等 Token，防止重复提交</li>
+<li><strong>动态令牌管理</strong>：登录后自动提取 <code>accessToken</code>，后续请求自动携带</li>
+<li><strong>业务逻辑验证</strong>：<code>catch_response=True</code> 允许自定义成功/失败判断逻辑</li>
+<li><strong>链式依赖</strong>：抽奖成功后记录 <code>prizeId</code>，用于后续"查领奖记录"场景</li>
+</ol>
+<h4 id="453">4.5.3 分布式压测与监控</h4>
+<p><strong>启动 Master 节点</strong>：
+</p><div class="highlight"><pre><span></span><code><span class="c1"># 启动 Web UI（默认 http://localhost:8089）</span>
+locust<span class="w"> </span>-f<span class="w"> </span>locustfile.py<span class="w"> </span>--master
+
+<span class="c1"># 指定并发数和增长率（命令行模式）</span>
+locust<span class="w"> </span>-f<span class="w"> </span>locustfile.py<span class="w"> </span>--master<span class="w"> </span>-u<span class="w"> </span><span class="m">1000</span><span class="w"> </span>-r<span class="w"> </span><span class="m">100</span><span class="w"> </span>-t<span class="w"> </span>30m
+<span class="c1"># -u: 总用户数 1000</span>
+<span class="c1"># -r: 每秒启动用户数 100</span>
+<span class="c1"># -t: 持续时间 30 分钟</span>
+</code></pre></div><p></p>
+<p><strong>启动 Worker 节点</strong>（多台压测机）：
+</p><div class="highlight"><pre><span></span><code><span class="c1"># Worker 1</span>
+locust<span class="w"> </span>-f<span class="w"> </span>locustfile.py<span class="w"> </span>--worker<span class="w"> </span>--master-host<span class="o">=</span><span class="m">192</span>.168.1.100
+
+<span class="c1"># Worker 2</span>
+locust<span class="w"> </span>-f<span class="w"> </span>locustfile.py<span class="w"> </span>--worker<span class="w"> </span>--master-host<span class="o">=</span><span class="m">192</span>.168.1.100
+
+<span class="c1"># Worker 3</span>
+locust<span class="w"> </span>-f<span class="w"> </span>locustfile.py<span class="w"> </span>--worker<span class="w"> </span>--master-host<span class="o">=</span><span class="m">192</span>.168.1.100
+</code></pre></div><p></p>
+<p><strong>实时监控（Web UI）</strong>：
+- <strong>Total RPS</strong>：总请求数/秒
+- <strong>Total Failures/s</strong>：失败请求数/秒
+- <strong>Response Time (ms)</strong>：平均响应时间
+- <strong>Active Users</strong>：当前活跃用户数</p>
+<p><strong>导出报告</strong>：
+</p><div class="highlight"><pre><span></span><code><span class="c1"># 导出 CSV 格式结果</span>
+locust<span class="w"> </span>-f<span class="w"> </span>locustfile.py<span class="w"> </span>--headless<span class="w"> </span>-u<span class="w"> </span><span class="m">1000</span><span class="w"> </span>-r<span class="w"> </span><span class="m">100</span><span class="w"> </span>-t<span class="w"> </span>30m<span class="w"> </span>--csv<span class="o">=</span>member_day_test
+
+<span class="c1"># 生成文件：</span>
+<span class="c1"># - member_day_test_stats.csv（统计结果）</span>
+<span class="c1"># - member_day_test_stats_history.csv（历史数据）</span>
+<span class="c1"># - member_day_test_failures.csv（失败记录）</span>
+</code></pre></div><p></p>
+<h4 id="454-locust">4.5.4 Locust 高级特性</h4>
+<p><strong>1. 自定义负载形状（阶梯加压）</strong>：
+</p><div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">locust</span><span class="w"> </span><span class="kn">import</span> <span class="n">LoadTestShape</span>
+
+<span class="k">class</span><span class="w"> </span><span class="nc">StagesLoadShape</span><span class="p">(</span><span class="n">LoadTestShape</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">"""阶梯加压：100 → 300 → 500 → 700 → 1000 TPS"""</span>
+
+    <span class="n">stages</span> <span class="o">=</span> <span class="p">[</span>
+        <span class="p">{</span><span class="s2">"duration"</span><span class="p">:</span> <span class="mi">300</span><span class="p">,</span> <span class="s2">"users"</span><span class="p">:</span> <span class="mi">100</span><span class="p">,</span> <span class="s2">"spawn_rate"</span><span class="p">:</span> <span class="mi">10</span><span class="p">},</span>   <span class="c1"># 5 分钟，100 用户</span>
+        <span class="p">{</span><span class="s2">"duration"</span><span class="p">:</span> <span class="mi">600</span><span class="p">,</span> <span class="s2">"users"</span><span class="p">:</span> <span class="mi">300</span><span class="p">,</span> <span class="s2">"spawn_rate"</span><span class="p">:</span> <span class="mi">20</span><span class="p">},</span>   <span class="c1"># 10 分钟，300 用户</span>
+        <span class="p">{</span><span class="s2">"duration"</span><span class="p">:</span> <span class="mi">900</span><span class="p">,</span> <span class="s2">"users"</span><span class="p">:</span> <span class="mi">500</span><span class="p">,</span> <span class="s2">"spawn_rate"</span><span class="p">:</span> <span class="mi">30</span><span class="p">},</span>   <span class="c1"># 15 分钟，500 用户</span>
+        <span class="p">{</span><span class="s2">"duration"</span><span class="p">:</span> <span class="mi">1200</span><span class="p">,</span> <span class="s2">"users"</span><span class="p">:</span> <span class="mi">700</span><span class="p">,</span> <span class="s2">"spawn_rate"</span><span class="p">:</span> <span class="mi">40</span><span class="p">},</span>  <span class="c1"># 20 分钟，700 用户</span>
+        <span class="p">{</span><span class="s2">"duration"</span><span class="p">:</span> <span class="mi">1800</span><span class="p">,</span> <span class="s2">"users"</span><span class="p">:</span> <span class="mi">1000</span><span class="p">,</span> <span class="s2">"spawn_rate"</span><span class="p">:</span> <span class="mi">50</span><span class="p">},</span> <span class="c1"># 30 分钟，1000 用户</span>
+    <span class="p">]</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">tick</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">run_time</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_run_time</span><span class="p">()</span>
+
+        <span class="k">for</span> <span class="n">stage</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">stages</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">run_time</span> <span class="o">&lt;</span> <span class="n">stage</span><span class="p">[</span><span class="s2">"duration"</span><span class="p">]:</span>
+                <span class="k">return</span> <span class="p">(</span><span class="n">stage</span><span class="p">[</span><span class="s2">"users"</span><span class="p">],</span> <span class="n">stage</span><span class="p">[</span><span class="s2">"spawn_rate"</span><span class="p">])</span>
+
+        <span class="k">return</span> <span class="kc">None</span>  <span class="c1"># 结束压测</span>
+
+<span class="c1"># 使用自定义负载形状</span>
+<span class="n">locust</span> <span class="o">-</span><span class="n">f</span> <span class="n">locustfile</span><span class="o">.</span><span class="n">py</span> <span class="o">--</span><span class="n">headless</span> <span class="o">--</span><span class="n">class</span><span class="o">-</span><span class="n">shape</span><span class="o">=</span><span class="n">StagesLoadShape</span>
+</code></pre></div><p></p>
+<p><strong>2. 集成 InfluxDB + Grafana 实时监控</strong>：
+</p><div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">locust</span><span class="w"> </span><span class="kn">import</span> <span class="n">events</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">influxdb_client</span><span class="w"> </span><span class="kn">import</span> <span class="n">InfluxDBClient</span><span class="p">,</span> <span class="n">Point</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">influxdb_client.client.write_api</span><span class="w"> </span><span class="kn">import</span> <span class="n">SYNCHRONOUS</span>
+
+<span class="c1"># InfluxDB 配置</span>
+<span class="n">client</span> <span class="o">=</span> <span class="n">InfluxDBClient</span><span class="p">(</span><span class="n">url</span><span class="o">=</span><span class="s2">"http://localhost:8086"</span><span class="p">,</span> <span class="n">token</span><span class="o">=</span><span class="s2">"my-token"</span><span class="p">)</span>
+<span class="n">write_api</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">write_api</span><span class="p">(</span><span class="n">write_options</span><span class="o">=</span><span class="n">SYNCHRONOUS</span><span class="p">)</span>
+
+<span class="nd">@events</span><span class="o">.</span><span class="n">request</span><span class="o">.</span><span class="n">add_listener</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">on_request</span><span class="p">(</span><span class="n">request_type</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">response_time</span><span class="p">,</span> <span class="n">response_length</span><span class="p">,</span> <span class="n">exception</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">"""每个请求推送到 InfluxDB"""</span>
+    <span class="n">point</span> <span class="o">=</span> <span class="n">Point</span><span class="p">(</span><span class="s2">"locust_requests"</span><span class="p">)</span> \
+        <span class="o">.</span><span class="n">tag</span><span class="p">(</span><span class="s2">"request_type"</span><span class="p">,</span> <span class="n">request_type</span><span class="p">)</span> \
+        <span class="o">.</span><span class="n">tag</span><span class="p">(</span><span class="s2">"name"</span><span class="p">,</span> <span class="n">name</span><span class="p">)</span> \
+        <span class="o">.</span><span class="n">field</span><span class="p">(</span><span class="s2">"response_time"</span><span class="p">,</span> <span class="n">response_time</span><span class="p">)</span> \
+        <span class="o">.</span><span class="n">field</span><span class="p">(</span><span class="s2">"response_length"</span><span class="p">,</span> <span class="n">response_length</span><span class="p">)</span> \
+        <span class="o">.</span><span class="n">field</span><span class="p">(</span><span class="s2">"success"</span><span class="p">,</span> <span class="mi">1</span> <span class="k">if</span> <span class="ow">not</span> <span class="n">exception</span> <span class="k">else</span> <span class="mi">0</span><span class="p">)</span>
+
+    <span class="n">write_api</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">bucket</span><span class="o">=</span><span class="s2">"locust"</span><span class="p">,</span> <span class="n">record</span><span class="o">=</span><span class="n">point</span><span class="p">)</span>
+</code></pre></div><p></p>
+<p><strong>3. 复杂业务逻辑（加密参数）</strong>：
+</p><div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">Crypto.Cipher</span><span class="w"> </span><span class="kn">import</span> <span class="n">AES</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">base64</span>
+
+<span class="k">class</span><span class="w"> </span><span class="nc">EncryptedUser</span><span class="p">(</span><span class="n">HttpUser</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">"""需要加密参数的接口"""</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">encrypt_params</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">"""AES 加密"""</span>
+        <span class="n">key</span> <span class="o">=</span> <span class="sa">b</span><span class="s2">"16bytesecretkey!!"</span>
+        <span class="n">cipher</span> <span class="o">=</span> <span class="n">AES</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="n">AES</span><span class="o">.</span><span class="n">MODE_ECB</span><span class="p">)</span>
+        <span class="n">encrypted</span> <span class="o">=</span> <span class="n">cipher</span><span class="o">.</span><span class="n">encrypt</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">encode</span><span class="p">()</span><span class="o">.</span><span class="n">ljust</span><span class="p">(</span><span class="mi">32</span><span class="p">))</span>
+        <span class="k">return</span> <span class="n">base64</span><span class="o">.</span><span class="n">b64encode</span><span class="p">(</span><span class="n">encrypted</span><span class="p">)</span><span class="o">.</span><span class="n">decode</span><span class="p">()</span>
+
+    <span class="nd">@task</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">encrypted_request</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">"""加密请求"""</span>
+        <span class="n">raw_data</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">({</span><span class="s2">"userId"</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">user_id</span><span class="p">,</span> <span class="s2">"timestamp"</span><span class="p">:</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()})</span>
+        <span class="n">encrypted_data</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">encrypt_params</span><span class="p">(</span><span class="n">raw_data</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="s2">"/api/encrypted"</span><span class="p">,</span> <span class="n">json</span><span class="o">=</span><span class="p">{</span><span class="s2">"data"</span><span class="p">:</span> <span class="n">encrypted_data</span><span class="p">})</span>
+</code></pre></div><p></p>
+<h4 id="455-jmeter-vs-locust">4.5.5 面试对比：JMeter vs Locust</h4>
+<p><strong>面试官可能追问</strong>："你为什么选择 Locust 而不是 JMeter？两者的优劣是什么？"</p>
+<p><strong>回答策略</strong>：</p>
+<blockquote>
+<p>"我们项目中同时使用了 JMeter 和 Locust，各有优势：</p>
+<p><strong>JMeter 适合标准化压测</strong>：
+- 团队协作友好：GUI 配置，非技术人员也能操作
+- 合规审计：JMX 文件可直接作为测试用例存档
+- 生态成熟：大量插件、文档、培训资料</p>
+<p><strong>Locust 适合复杂业务逻辑</strong>：
+- <strong>加密参数</strong>：本次压测的登录接口需要 AES 加密，Locust 直接调用 PyCryptodome 库，JMeter 需要写 BeanShell 脚本，调试困难
+- <strong>动态签名</strong>：每个请求需要根据时间戳和用户 ID 生成签名，Python 代码一目了然
+- <strong>链式依赖</strong>：抽奖成功后才能查领奖记录，Locust 的 <code>on_start</code> 和任务权重机制天然支持
+- <strong>轻量级</strong>：单机支持数万并发，JMeter 单机安全上限约 1500-2000 线程</p>
+<p><strong>我的建议</strong>：
+- 如果是<strong>标准化接口压测</strong>（如 REST API、数据库、MQ），优先 JMeter
+- 如果是<strong>复杂业务逻辑压测</strong>（如加密、签名、多步骤依赖），优先 Locust
+- 如果是<strong>全链路压测</strong>（包括前端、网关、后端），可以组合使用：JMeter 压测标准接口，Locust 压测复杂逻辑"</p>
+</blockquote>
+<p><strong>加分项</strong>：</p>
+<blockquote>
+<p>"我在项目中还遇到了一个 JMeter 难以解决的问题：<strong>动态令牌管理</strong>。每次请求需要从上一个接口的响应中提取变量，JMeter 的 JSON Extractor 虽然能实现，但配置复杂且难以调试。而 Locust 直接用 Python 代码解析 JSON，一行代码就能搞定：</p>
+<div class="highlight"><pre><span></span><code><span class="n">data</span> <span class="o">=</span> <span class="n">response</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
+<span class="bp">self</span><span class="o">.</span><span class="n">access_token</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s2">"data"</span><span class="p">][</span><span class="s2">"accessToken"</span><span class="p">]</span>
+</code></pre></div>
+<p>这让我深刻体会到：<strong>工具选择没有绝对优劣，关键是根据场景选择最合适的工具</strong>。"</p>
+</blockquote>
 <h2 id="_9">五、面试追问高频题与深度答疑</h2>
 <h3 id="q1elknginx">Q1：压测链路业务配比，当只有elk+nginx时，如何获取？</h3>
 <blockquote>
@@ -8996,7 +9605,410 @@ activity: "会员日" AND message: "lottery_success" | count()
 - 锁等待超时错误从20%降至0
 - 支持TPS从600提升到850</p>
 <hr>
-<h4 id="_12">(四)其他优化措施</h4>
+<h4 id="key">(四)瓶颈四:活动奖品配置大 Key 导致抽奖接口响应慢</h4>
+<p><strong>问题现象</strong>:
+- 压测"抽奖"环节时,接口 P95 RT 从 200ms 升至 1.2s
+- Redis 内存占用持续上涨,突破 80%
+- 通过 <code>redis-cli --bigkeys</code> 发现 Key <code>activity:prizes:2025</code> 大小约 1.5MB
+- 用 <code>redis-cli --stat</code> 观察到,每次抽奖查询该 Key 时,内网带宽出现 120Mbps 流量尖峰</p>
+<p><strong>根因分析</strong>:
+- <strong>业务场景</strong>:活动有多个奖品(iPhone、现金红包、会员权益、积分等),每个奖品包含:
+  - 基础信息:名称、图片URL、描述、价值
+  - 库存信息:总库存、剩余库存、已发放数量
+  - 限制规则:每人限领次数、用户等级限制、地域限制
+  - 展示配置:排序权重、标签、活动时间
+- <strong>错误设计</strong>:开发将所有奖品的完整配置存成单个 String Key:
+  </p><div class="highlight"><pre><span></span><code>Key: activity:prizes:2025
+Value: {
+  "prizes": [
+    {"id":1,"name":"iPhone","img":"http://...","stock":100,"rules":{...}},
+    {"id":2,"name":"现金红包","img":"http://...","stock":5000,"rules":{...}},
+    ... // 共 20+ 个奖品,总计 1.5MB
+  ]
+}
+</code></pre></div>
+- <strong>性能瓶颈</strong>:
+  - 每次抽奖都查询 1.5MB 配置数据(实际只需读取库存字段)
+  - 单次 GET 操作耗时 150ms+(Redis 序列化 + 网络传输)
+  - 高并发下占用大量带宽和 CPU,导致 Redis 响应变慢
+  - 影响其他依赖 Redis 的接口(如用户信息查询)<p></p>
+<p><strong>排查手段</strong>:
+</p><div class="highlight"><pre><span></span><code><span class="c1"># 1. 使用 bigkeys 扫描大 Key</span>
+redis-cli<span class="w"> </span>--bigkeys<span class="w"> </span>-i<span class="w"> </span><span class="m">0</span>.1
+
+<span class="c1"># 2. 实时监控网络流量(观察到流量尖峰)</span>
+redis-cli<span class="w"> </span>--stat
+
+<span class="c1"># 3. 查看大 Key 具体内容</span>
+redis-cli<span class="w"> </span>--raw<span class="w"> </span>GET<span class="w"> </span><span class="s2">"activity:prizes:2025"</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>wc<span class="w"> </span>-c<span class="w">  </span><span class="c1"># 查看字节数</span>
+</code></pre></div><p></p>
+<p><strong>优化方案</strong>:</p>
+<p><strong>方案一:数据结构重构——按奖品拆分 Key</strong>
+</p><div class="highlight"><pre><span></span><code><span class="c1">// 原方案:所有奖品配置存成单个 String(错误)</span>
+<span class="n">String</span><span class="w"> </span><span class="n">key</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">"activity:prizes:2025"</span><span class="p">;</span>
+<span class="n">String</span><span class="w"> </span><span class="n">allPrizesJson</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">redisTemplate</span><span class="p">.</span><span class="na">opsForValue</span><span class="p">().</span><span class="na">get</span><span class="p">(</span><span class="n">key</span><span class="p">);</span><span class="w"> </span><span class="c1">// 1.5MB</span>
+
+<span class="c1">// 优化方案:每个奖品独立 Key</span>
+<span class="n">String</span><span class="w"> </span><span class="n">key</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">"activity:prize:"</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">prizeId</span><span class="p">;</span>
+<span class="n">Prize</span><span class="w"> </span><span class="n">prize</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">Prize</span><span class="p">)</span><span class="w"> </span><span class="n">redisTemplate</span><span class="p">.</span><span class="na">opsForValue</span><span class="p">().</span><span class="na">get</span><span class="p">(</span><span class="n">key</span><span class="p">);</span><span class="w"> </span><span class="c1">// &lt;10KB</span>
+
+<span class="c1">// 初始化时批量写入</span>
+<span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">initPrizeCache</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="n">Prize</span><span class="w"> </span><span class="n">prize</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="n">prizeList</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">String</span><span class="w"> </span><span class="n">key</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">"activity:prize:"</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">prize</span><span class="p">.</span><span class="na">getId</span><span class="p">();</span>
+<span class="w">        </span><span class="n">redisTemplate</span><span class="p">.</span><span class="na">opsForValue</span><span class="p">().</span><span class="na">set</span><span class="p">(</span><span class="n">key</span><span class="p">,</span><span class="w"> </span><span class="n">prize</span><span class="p">,</span><span class="w"> </span><span class="mi">7</span><span class="p">,</span><span class="w"> </span><span class="n">TimeUnit</span><span class="p">.</span><span class="na">DAYS</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div><p></p>
+<p><strong>方案二:库存与配置分离——核心数据独立缓存</strong>
+</p><div class="highlight"><pre><span></span><code><span class="c1">// 将高频访问的库存数据独立存储</span>
+<span class="c1">// Key 1: 库存信息(高频读写)</span>
+<span class="n">String</span><span class="w"> </span><span class="n">stockKey</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">"activity:prize:stock:"</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">prizeId</span><span class="p">;</span>
+<span class="n">redisTemplate</span><span class="p">.</span><span class="na">opsForValue</span><span class="p">().</span><span class="na">set</span><span class="p">(</span><span class="n">stockKey</span><span class="p">,</span><span class="w"> </span><span class="n">stock</span><span class="p">,</span><span class="w"> </span><span class="mi">7</span><span class="p">,</span><span class="w"> </span><span class="n">TimeUnit</span><span class="p">.</span><span class="na">DAYS</span><span class="p">);</span>
+
+<span class="c1">// Key 2: 配置信息(低频只读)</span>
+<span class="n">String</span><span class="w"> </span><span class="n">configKey</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">"activity:prize:config:"</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">prizeId</span><span class="p">;</span>
+<span class="n">redisTemplate</span><span class="p">.</span><span class="na">opsForValue</span><span class="p">().</span><span class="na">set</span><span class="p">(</span><span class="n">configKey</span><span class="p">,</span><span class="w"> </span><span class="n">config</span><span class="p">,</span><span class="w"> </span><span class="mi">7</span><span class="p">,</span><span class="w"> </span><span class="n">TimeUnit</span><span class="p">.</span><span class="na">DAYS</span><span class="p">);</span>
+
+<span class="c1">// 抽奖时只查询库存(几 KB)</span>
+<span class="n">Integer</span><span class="w"> </span><span class="n">stock</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">Integer</span><span class="p">)</span><span class="w"> </span><span class="n">redisTemplate</span><span class="p">.</span><span class="na">opsForValue</span><span class="p">().</span><span class="na">get</span><span class="p">(</span><span class="n">stockKey</span><span class="p">);</span>
+</code></pre></div><p></p>
+<p><strong>方案三:本地缓存热点奖品配置</strong>
+</p><div class="highlight"><pre><span></span><code><span class="c1">// 使用 Caffeine 缓存热点奖品配置(如 iPhone、现金红包)</span>
+<span class="kd">private</span><span class="w"> </span><span class="n">Cache</span><span class="o">&lt;</span><span class="n">Long</span><span class="p">,</span><span class="w"> </span><span class="n">Prize</span><span class="o">&gt;</span><span class="w"> </span><span class="n">prizeCache</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Caffeine</span><span class="p">.</span><span class="na">newBuilder</span><span class="p">()</span>
+<span class="w">    </span><span class="p">.</span><span class="na">maximumSize</span><span class="p">(</span><span class="mi">20</span><span class="p">)</span><span class="w"> </span><span class="c1">// 缓存热点奖品</span>
+<span class="w">    </span><span class="p">.</span><span class="na">expireAfterWrite</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="w"> </span><span class="n">TimeUnit</span><span class="p">.</span><span class="na">MINUTES</span><span class="p">)</span>
+<span class="w">    </span><span class="p">.</span><span class="na">build</span><span class="p">();</span>
+
+<span class="kd">public</span><span class="w"> </span><span class="n">Prize</span><span class="w"> </span><span class="nf">getPrize</span><span class="p">(</span><span class="n">Long</span><span class="w"> </span><span class="n">prizeId</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="c1">// 先查本地缓存</span>
+<span class="w">    </span><span class="n">Prize</span><span class="w"> </span><span class="n">prize</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">prizeCache</span><span class="p">.</span><span class="na">getIfPresent</span><span class="p">(</span><span class="n">prizeId</span><span class="p">);</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">prize</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="kc">null</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">prize</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="c1">// 本地未命中,查 Redis</span>
+<span class="w">    </span><span class="n">String</span><span class="w"> </span><span class="n">key</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">"activity:prize:"</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">prizeId</span><span class="p">;</span>
+<span class="w">    </span><span class="n">prize</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">Prize</span><span class="p">)</span><span class="w"> </span><span class="n">redisTemplate</span><span class="p">.</span><span class="na">opsForValue</span><span class="p">().</span><span class="na">get</span><span class="p">(</span><span class="n">key</span><span class="p">);</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">prize</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="kc">null</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">prizeCache</span><span class="p">.</span><span class="na">put</span><span class="p">(</span><span class="n">prizeId</span><span class="p">,</span><span class="w"> </span><span class="n">prize</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">prize</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div><p></p>
+<p><strong>方案四:Redis Hash 结构——按字段拆分(适合部分更新场景)</strong>
+</p><div class="highlight"><pre><span></span><code><span class="c1">// 使用 Hash 结构存储奖品信息,按字段拆分</span>
+<span class="n">String</span><span class="w"> </span><span class="n">key</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">"activity:prize:"</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">prizeId</span><span class="p">;</span>
+<span class="n">redisTemplate</span><span class="p">.</span><span class="na">opsForHash</span><span class="p">().</span><span class="na">put</span><span class="p">(</span><span class="n">key</span><span class="p">,</span><span class="w"> </span><span class="s">"name"</span><span class="p">,</span><span class="w"> </span><span class="s">"iPhone"</span><span class="p">);</span>
+<span class="n">redisTemplate</span><span class="p">.</span><span class="na">opsForHash</span><span class="p">().</span><span class="na">put</span><span class="p">(</span><span class="n">key</span><span class="p">,</span><span class="w"> </span><span class="s">"stock"</span><span class="p">,</span><span class="w"> </span><span class="s">"100"</span><span class="p">);</span>
+<span class="n">redisTemplate</span><span class="p">.</span><span class="na">opsForHash</span><span class="p">().</span><span class="na">put</span><span class="p">(</span><span class="n">key</span><span class="p">,</span><span class="w"> </span><span class="s">"config"</span><span class="p">,</span><span class="w"> </span><span class="n">configJson</span><span class="p">);</span>
+
+<span class="c1">// 只获取库存字段(HGET 传输量极小)</span>
+<span class="n">Integer</span><span class="w"> </span><span class="n">stock</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">Integer</span><span class="p">)</span><span class="w"> </span><span class="n">redisTemplate</span><span class="p">.</span><span class="na">opsForHash</span><span class="p">().</span><span class="na">get</span><span class="p">(</span><span class="n">key</span><span class="p">,</span><span class="w"> </span><span class="s">"stock"</span><span class="p">);</span>
+</code></pre></div><p></p>
+<p><strong>优化效果</strong>:
+- Redis 内存占用从 80% 降至稳定水位 45%
+- "抽奖"接口 P95 RT 从 1.2s 降至 180ms
+- 单次查询 Redis 数据量从 1.5MB 降至 &lt;10KB
+- Redis 缓存命中率保持 95% 以上</p>
+<p><strong>面试对比分析：大 Key 问题 vs 缓存击穿</strong></p>
+<blockquote>
+<p><strong>面试官可能追问</strong>："你刚才说大 Key 导致性能问题，那和缓存击穿有什么区别？在实际项目中如何区分？"</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">维度</th>
+<th style="text-align: left;">大 Key 问题</th>
+<th style="text-align: left;">缓存击穿（缓存未命中）</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><strong>问题本质</strong></td>
+<td style="text-align: left;">Redis Key 存在，但 Value 过大（1MB+）</td>
+<td style="text-align: left;">Redis Key 不存在或失效，大量请求穿透到 DB</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>典型场景</strong></td>
+<td style="text-align: left;">将多个实体的完整信息存成单个 Key（如所有奖品配置）</td>
+<td style="text-align: left;">键名拼接错误、缓存过期、缓存被意外删除</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>问题表现</strong></td>
+<td style="text-align: left;">Redis 响应变慢、内存占用高、网络带宽打满</td>
+<td style="text-align: left;">数据库 QPS 飙升、连接池耗尽、慢查询增多</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>排查手段</strong></td>
+<td style="text-align: left;"><code>redis-cli --bigkeys</code> 扫描大 Key<br><code>redis-cli --stat</code> 观察网络流量尖峰</td>
+<td style="text-align: left;">检查应用日志是否有缓存未命中日志<br>对比 Redis Key 和业务代码中的键名拼接逻辑</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>根因定位</strong></td>
+<td style="text-align: left;">业务代码设计问题（将多个实体存成单个 Key）</td>
+<td style="text-align: left;">键名拼接逻辑错误（如奖品编码写错）</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>优化方案</strong></td>
+<td style="text-align: left;">数据结构重构（String 改 Hash/拆分 Key）<br>本地缓存热点数据</td>
+<td style="text-align: left;">修复键名拼接逻辑<br>增加缓存预热<br>增加分布式锁防止并发重建</td>
+</tr>
+</tbody>
+</table>
+<p><strong>实际案例对比</strong>：</p>
+<p><strong>案例一：大 Key 问题（本次压测）</strong>
+</p><div class="highlight"><pre><span></span><code><span class="c1"># 问题：所有奖品配置存成单个 Key，大小 1.5MB</span>
+Key:<span class="w"> </span>activity:prizes:2025
+Value:<span class="w"> </span><span class="o">{</span><span class="s2">"prizes"</span>:<span class="o">[{</span>...<span class="o">}</span>,<span class="o">{</span>...<span class="o">}]}</span><span class="w"> </span>//<span class="w"> </span><span class="m">1</span>.5MB
+
+<span class="c1"># 排查：通过 bigkeys 发现</span>
+$<span class="w"> </span>redis-cli<span class="w"> </span>--bigkeys
+<span class="o">[</span>found<span class="o">]</span><span class="w"> </span><span class="s2">"activity:prizes:2025"</span><span class="w"> </span>with<span class="w"> </span><span class="m">1572864</span><span class="w"> </span>bytes
+
+<span class="c1"># 优化：按奖品拆分 Key</span>
+Key:<span class="w"> </span>activity:prize:1
+Value:<span class="w"> </span><span class="o">{</span><span class="s2">"name"</span>:<span class="s2">"iPhone"</span>,<span class="s2">"stock"</span>:100<span class="o">}</span><span class="w"> </span>//<span class="w"> </span>&lt;10KB
+</code></pre></div><p></p>
+<p><strong>案例二：缓存击穿（历史项目）</strong>
+</p><div class="highlight"><pre><span></span><code><span class="c1"># 问题：奖品编码拼接错误，导致缓存 Key 不存在</span>
+业务代码：String<span class="w"> </span><span class="nv">key</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"activity:prize:"</span><span class="w"> </span>+<span class="w"> </span>prizeCode<span class="p">;</span><span class="w"> </span>//<span class="w"> </span><span class="nv">prizeCode</span><span class="o">=</span><span class="s2">"iPhone15"</span>
+实际缓存：activity:prize:iPhone-15-pro-max<span class="w">  </span>//<span class="w"> </span>缓存中是<span class="s2">"iPhone-15-pro-max"</span>
+
+<span class="c1"># 排查：对比 Redis Key 和业务代码</span>
+$<span class="w"> </span>redis-cli<span class="w"> </span>KEYS<span class="w"> </span><span class="s2">"activity:prize:*"</span>
+<span class="m">1</span><span class="o">)</span><span class="w"> </span><span class="s2">"activity:prize:iPhone-15-pro-max"</span>
+<span class="m">2</span><span class="o">)</span><span class="w"> </span><span class="s2">"activity:prize:现金红包"</span>
+
+<span class="c1"># 应用日志显示：</span>
+<span class="o">[</span>WARN<span class="o">]</span><span class="w"> </span>Cache<span class="w"> </span>miss<span class="w"> </span><span class="k">for</span><span class="w"> </span>key:<span class="w"> </span>activity:prize:iPhone15
+
+<span class="c1"># 优化：修复键名拼接逻辑</span>
+String<span class="w"> </span><span class="nv">key</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"activity:prize:"</span><span class="w"> </span>+<span class="w"> </span>prizeCode.replace<span class="o">(</span><span class="s2">"-"</span>,<span class="w"> </span><span class="s2">""</span><span class="o">)</span><span class="p">;</span><span class="w"> </span>//<span class="w"> </span>去掉横杠
+</code></pre></div><p></p>
+<p><strong>面试金句</strong>：</p>
+<blockquote>
+<p>"大 Key 和缓存击穿虽然都会导致性能问题，但根因和排查思路完全不同。大 Key 是'有缓存但太大'，缓存击穿是'没有缓存或缓存失效'。我在项目中先用 <code>redis-cli --bigkeys</code> 和 <code>--stat</code> 排除大 Key 问题，再检查应用日志和 Redis Key 列表定位缓存击穿。这两个问题都需要在代码 Review 阶段预防，而不是等压测才发现。"</p>
+</blockquote>
+<hr>
+<h4 id="_12">(五)瓶颈五:同步调用积分系统导致任务提交和抽奖接口超时</h4>
+<p><strong>问题现象</strong>:
+- 压测"做任务"环节时,任务提交接口 P999 RT 飙升至 2-4 秒
+- 压测"抽奖"环节时,抽奖接口 P999 RT 飙升至 3-5 秒
+- 压测到 400 TPS 时,Tomcat 线程池出现大量 BLOCKED 状态线程
+- 应用日志报错: <code>java.net.SocketTimeoutException: Read timed out</code>
+- 通过 Arthas 的 <code>trace</code> 命令发现,积分系统调用耗时 500ms-2s</p>
+<p><strong>根因分析</strong>:
+- <strong>业务场景</strong>:
+  - <strong>做任务</strong>:用户完成任务后,需同步调用积分系统增加积分或发放抽奖次数
+  - <strong>抽奖</strong>:用户抽奖时,需同步调用积分系统扣减积分(如消耗积分抽奖)
+- <strong>同步阻塞</strong>:业务逻辑要求必须拿到积分系统响应才能继续,无法跳过
+- <strong>性能瓶颈</strong>:
+  - 积分系统是外部微服务,响应时间不可控(平均 500ms,高峰期可达 2s)
+  - 同步调用导致 Tomcat 线程长时间阻塞,并发能力受限
+  - 当积分系统故障或响应慢时,会拖垮整个活动系统
+  - 积分系统自身也可能因为活动高峰流量而压力过大</p>
+<p><strong>Arthas 排查过程</strong>:
+</p><div class="highlight"><pre><span></span><code><span class="c1"># 追踪任务提交接口的耗时分布</span>
+trace<span class="w"> </span>com.xxx.activity.service.TaskService<span class="w"> </span>submitTask<span class="w"> </span><span class="s1">'#cost &gt; 100'</span><span class="w"> </span>-n<span class="w"> </span><span class="m">5</span>
+
+<span class="c1"># 追踪抽奖接口的耗时分布</span>
+trace<span class="w"> </span>com.xxx.activity.service.LotteryService<span class="w"> </span>drawLottery<span class="w"> </span><span class="s1">'#cost &gt; 100'</span><span class="w"> </span>-n<span class="w"> </span><span class="m">5</span>
+
+<span class="c1"># 追踪积分系统调用链路</span>
+trace<span class="w"> </span>com.xxx.point.service.PointService<span class="w"> </span>addPoint<span class="w"> </span><span class="s1">'#cost &gt; 100'</span><span class="w"> </span>-n<span class="w"> </span><span class="m">5</span>
+trace<span class="w"> </span>com.xxx.point.service.PointService<span class="w"> </span>deductPoint<span class="w"> </span><span class="s1">'#cost &gt; 100'</span><span class="w"> </span>-n<span class="w"> </span><span class="m">5</span>
+</code></pre></div><p></p>
+<p><strong>优化方案</strong>:</p>
+<p><strong>方案一:引入超时控制与熔断降级(Sentinel,适合弱依赖场景)</strong>
+</p><div class="highlight"><pre><span></span><code><span class="c1">// 使用 Sentinel 进行熔断降级</span>
+<span class="nd">@SentinelResource</span><span class="p">(</span>
+<span class="w">    </span><span class="n">value</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">"addPoint"</span><span class="p">,</span>
+<span class="w">    </span><span class="n">fallback</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">"addPointFallback"</span>
+<span class="p">)</span>
+<span class="kd">public</span><span class="w"> </span><span class="n">PointResult</span><span class="w"> </span><span class="nf">addPoint</span><span class="p">(</span><span class="n">String</span><span class="w"> </span><span class="n">userId</span><span class="p">,</span><span class="w"> </span><span class="n">Integer</span><span class="w"> </span><span class="n">points</span><span class="p">,</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="n">taskId</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="c1">// 设置超时时间为 500ms</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">pointServiceClient</span><span class="p">.</span><span class="na">addPoint</span><span class="p">(</span><span class="n">userId</span><span class="p">,</span><span class="w"> </span><span class="n">points</span><span class="p">,</span><span class="w"> </span><span class="n">taskId</span><span class="p">,</span><span class="w"> </span><span class="mi">500</span><span class="p">,</span><span class="w"> </span><span class="n">TimeUnit</span><span class="p">.</span><span class="na">MILLISECONDS</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="c1">// 熔断后降级逻辑:异步补偿</span>
+<span class="kd">public</span><span class="w"> </span><span class="n">PointResult</span><span class="w"> </span><span class="nf">addPointFallback</span><span class="p">(</span><span class="n">String</span><span class="w"> </span><span class="n">userId</span><span class="p">,</span><span class="w"> </span><span class="n">Integer</span><span class="w"> </span><span class="n">points</span><span class="p">,</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="n">taskId</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="c1">// 记录到补偿表,定时任务重试</span>
+<span class="w">    </span><span class="n">compensateDao</span><span class="p">.</span><span class="na">insert</span><span class="p">(</span><span class="k">new</span><span class="w"> </span><span class="n">CompensateTask</span><span class="p">(</span><span class="n">userId</span><span class="p">,</span><span class="w"> </span><span class="n">points</span><span class="p">,</span><span class="w"> </span><span class="n">taskId</span><span class="p">,</span><span class="w"> </span><span class="s">"ADD_POINT"</span><span class="p">));</span>
+
+<span class="w">    </span><span class="c1">// 返回成功(先快速响应,后台补偿)</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">PointResult</span><span class="p">.</span><span class="na">success</span><span class="p">(</span><span class="s">"积分将在 5 分钟内到账"</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="c1">// Sentinel 熔断规则</span>
+<span class="n">DegradeRule</span><span class="w"> </span><span class="n">rule</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">DegradeRule</span><span class="p">(</span><span class="s">"addPoint"</span><span class="p">)</span>
+<span class="w">    </span><span class="p">.</span><span class="na">setGrade</span><span class="p">(</span><span class="n">CircuitBreakerStrategy</span><span class="p">.</span><span class="na">SLOW_REQUEST_RATIO</span><span class="p">.</span><span class="na">getType</span><span class="p">())</span>
+<span class="w">    </span><span class="p">.</span><span class="na">setSlowRatioThreshold</span><span class="p">(</span><span class="mf">0.5</span><span class="p">)</span><span class="w">  </span><span class="c1">// 慢调用比例 &gt; 50%</span>
+<span class="w">    </span><span class="p">.</span><span class="na">setStatIntervalMs</span><span class="p">(</span><span class="mi">10000</span><span class="p">)</span>
+<span class="w">    </span><span class="p">.</span><span class="na">setSlowRequestDuration</span><span class="p">(</span><span class="mi">500</span><span class="p">)</span><span class="w">  </span><span class="c1">// 慢调用阈值 500ms</span>
+<span class="w">    </span><span class="p">.</span><span class="na">setTimeWindow</span><span class="p">(</span><span class="mi">10</span><span class="p">);</span><span class="w">           </span><span class="c1">// 熔断时长 10 秒</span>
+</code></pre></div><p></p>
+<p><strong>方案二:消息队列异步解耦(RabbitMQ,推荐)</strong>
+</p><div class="highlight"><pre><span></span><code><span class="c1">// 做任务:快速入队</span>
+<span class="nd">@PostMapping</span><span class="p">(</span><span class="s">"/task/complete"</span><span class="p">)</span>
+<span class="kd">public</span><span class="w"> </span><span class="n">Result</span><span class="w"> </span><span class="nf">completeTask</span><span class="p">(</span><span class="nd">@RequestBody</span><span class="w"> </span><span class="n">TaskRequest</span><span class="w"> </span><span class="n">req</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">String</span><span class="w"> </span><span class="n">taskId</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">UUID</span><span class="p">.</span><span class="na">randomUUID</span><span class="p">().</span><span class="na">toString</span><span class="p">();</span>
+<span class="w">    </span><span class="n">req</span><span class="p">.</span><span class="na">setTaskId</span><span class="p">(</span><span class="n">taskId</span><span class="p">);</span>
+
+<span class="w">    </span><span class="c1">// 快速入队(耗时 &lt;10ms)</span>
+<span class="w">    </span><span class="n">rabbitTemplate</span><span class="p">.</span><span class="na">convertAndSend</span><span class="p">(</span><span class="s">"task_exchange"</span><span class="p">,</span><span class="w"> </span><span class="s">"task.complete"</span><span class="p">,</span><span class="w"> </span><span class="n">req</span><span class="p">);</span>
+
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">Result</span><span class="p">.</span><span class="na">success</span><span class="p">(</span><span class="s">"任务完成,积分将在 5 分钟内到账"</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="c1">// 抽奖:快速入队</span>
+<span class="nd">@PostMapping</span><span class="p">(</span><span class="s">"/lottery/draw"</span><span class="p">)</span>
+<span class="kd">public</span><span class="w"> </span><span class="n">Result</span><span class="w"> </span><span class="nf">drawLottery</span><span class="p">(</span><span class="nd">@RequestBody</span><span class="w"> </span><span class="n">LotteryRequest</span><span class="w"> </span><span class="n">req</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">String</span><span class="w"> </span><span class="n">lotteryId</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">UUID</span><span class="p">.</span><span class="na">randomUUID</span><span class="p">().</span><span class="na">toString</span><span class="p">();</span>
+<span class="w">    </span><span class="n">req</span><span class="p">.</span><span class="na">setLotteryId</span><span class="p">(</span><span class="n">lotteryId</span><span class="p">);</span>
+
+<span class="w">    </span><span class="c1">// 快速入队(耗时 &lt;10ms)</span>
+<span class="w">    </span><span class="n">rabbitTemplate</span><span class="p">.</span><span class="na">convertAndSend</span><span class="p">(</span><span class="s">"lottery_exchange"</span><span class="p">,</span><span class="w"> </span><span class="s">"lottery.draw"</span><span class="p">,</span><span class="w"> </span><span class="n">req</span><span class="p">);</span>
+
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">Result</span><span class="p">.</span><span class="na">success</span><span class="p">(</span><span class="s">"抽奖请求已提交,请稍后查看结果"</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="c1">// 消费者:异步调用积分系统</span>
+<span class="nd">@RabbitListener</span><span class="p">(</span><span class="n">queues</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">"task_complete_queue"</span><span class="p">)</span>
+<span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">consumeTaskComplete</span><span class="p">(</span><span class="n">TaskRequest</span><span class="w"> </span><span class="n">req</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">String</span><span class="w"> </span><span class="n">userId</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">req</span><span class="p">.</span><span class="na">getUserId</span><span class="p">();</span>
+<span class="w">    </span><span class="n">Integer</span><span class="w"> </span><span class="n">points</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">req</span><span class="p">.</span><span class="na">getPoints</span><span class="p">();</span>
+<span class="w">    </span><span class="n">String</span><span class="w"> </span><span class="n">taskId</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">req</span><span class="p">.</span><span class="na">getTaskId</span><span class="p">();</span>
+
+<span class="w">    </span><span class="k">try</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="c1">// 调用积分系统(可设置更长超时,不阻塞主流程)</span>
+<span class="w">        </span><span class="n">PointResult</span><span class="w"> </span><span class="n">result</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">pointServiceClient</span><span class="p">.</span><span class="na">addPoint</span><span class="p">(</span><span class="n">userId</span><span class="p">,</span><span class="w"> </span><span class="n">points</span><span class="p">,</span><span class="w"> </span><span class="n">taskId</span><span class="p">);</span>
+
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">result</span><span class="p">.</span><span class="na">isSuccess</span><span class="p">())</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="c1">// 发放抽奖次数</span>
+<span class="w">            </span><span class="n">lotteryService</span><span class="p">.</span><span class="na">addLotteryChance</span><span class="p">(</span><span class="n">userId</span><span class="p">,</span><span class="w"> </span><span class="n">taskId</span><span class="p">);</span>
+<span class="w">            </span><span class="n">log</span><span class="p">.</span><span class="na">info</span><span class="p">(</span><span class="s">"积分发放成功: userId={}, points={}"</span><span class="p">,</span><span class="w"> </span><span class="n">userId</span><span class="p">,</span><span class="w"> </span><span class="n">points</span><span class="p">);</span>
+<span class="w">        </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="n">log</span><span class="p">.</span><span class="na">warn</span><span class="p">(</span><span class="s">"积分发放失败: userId={}, reason={}"</span><span class="p">,</span><span class="w"> </span><span class="n">userId</span><span class="p">,</span><span class="w"> </span><span class="n">result</span><span class="p">.</span><span class="na">getMsg</span><span class="p">());</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span><span class="w"> </span><span class="k">catch</span><span class="w"> </span><span class="p">(</span><span class="n">Exception</span><span class="w"> </span><span class="n">e</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">log</span><span class="p">.</span><span class="na">error</span><span class="p">(</span><span class="s">"积分系统异常: userId={}"</span><span class="p">,</span><span class="w"> </span><span class="n">userId</span><span class="p">,</span><span class="w"> </span><span class="n">e</span><span class="p">);</span>
+<span class="w">        </span><span class="c1">// 发送到死信队列,人工介入或重试</span>
+<span class="w">        </span><span class="n">rabbitTemplate</span><span class="p">.</span><span class="na">convertAndSend</span><span class="p">(</span><span class="s">"task_dlx_exchange"</span><span class="p">,</span><span class="w"> </span><span class="s">"task.failed"</span><span class="p">,</span><span class="w"> </span><span class="n">req</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div><p></p>
+<p><strong>方案三:本地积分预扣 + 异步同步(适合强依赖场景)</strong>
+</p><div class="highlight"><pre><span></span><code><span class="c1">// 抽奖时:本地预扣积分,异步同步到积分系统</span>
+<span class="nd">@Transactional</span>
+<span class="kd">public</span><span class="w"> </span><span class="n">LotteryResult</span><span class="w"> </span><span class="nf">drawLottery</span><span class="p">(</span><span class="n">String</span><span class="w"> </span><span class="n">userId</span><span class="p">,</span><span class="w"> </span><span class="n">Long</span><span class="w"> </span><span class="n">prizeId</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="c1">// 1. 本地预扣积分(快速)</span>
+<span class="w">    </span><span class="n">UserPoint</span><span class="w"> </span><span class="n">userPoint</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">userPointDao</span><span class="p">.</span><span class="na">selectByUserId</span><span class="p">(</span><span class="n">userId</span><span class="p">);</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">userPoint</span><span class="p">.</span><span class="na">getPoints</span><span class="p">()</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mi">10</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">throw</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">BusinessException</span><span class="p">(</span><span class="s">"积分不足"</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">    </span><span class="n">userPoint</span><span class="p">.</span><span class="na">setPoints</span><span class="p">(</span><span class="n">userPoint</span><span class="p">.</span><span class="na">getPoints</span><span class="p">()</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">10</span><span class="p">);</span>
+<span class="w">    </span><span class="n">userPointDao</span><span class="p">.</span><span class="na">updateById</span><span class="p">(</span><span class="n">userPoint</span><span class="p">);</span>
+
+<span class="w">    </span><span class="c1">// 2. 执行抽奖逻辑</span>
+<span class="w">    </span><span class="n">Prize</span><span class="w"> </span><span class="n">prize</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">lotteryEngine</span><span class="p">.</span><span class="na">draw</span><span class="p">(</span><span class="n">prizeId</span><span class="p">);</span>
+
+<span class="w">    </span><span class="c1">// 3. 异步同步到积分系统</span>
+<span class="w">    </span><span class="n">CompletableFuture</span><span class="p">.</span><span class="na">runAsync</span><span class="p">(()</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">pointServiceClient</span><span class="p">.</span><span class="na">deductPoint</span><span class="p">(</span><span class="n">userId</span><span class="p">,</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span><span class="w"> </span><span class="s">"抽奖消费"</span><span class="p">);</span>
+<span class="w">    </span><span class="p">},</span><span class="w"> </span><span class="n">asyncExecutor</span><span class="p">);</span>
+
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">LotteryResult</span><span class="p">.</span><span class="na">success</span><span class="p">(</span><span class="n">prize</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div><p></p>
+<p><strong>方案四:积分系统接口优化(服务端优化)</strong>
+</p><div class="highlight"><pre><span></span><code><span class="c1">// 积分系统侧:批量接口提升吞吐量</span>
+<span class="nd">@PostMapping</span><span class="p">(</span><span class="s">"/point/batchAdd"</span><span class="p">)</span>
+<span class="kd">public</span><span class="w"> </span><span class="n">BatchResult</span><span class="w"> </span><span class="nf">batchAddPoint</span><span class="p">(</span><span class="nd">@RequestBody</span><span class="w"> </span><span class="n">List</span><span class="o">&lt;</span><span class="n">PointRequest</span><span class="o">&gt;</span><span class="w"> </span><span class="n">requests</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="c1">// 批量插入数据库,减少 IO 次数</span>
+<span class="w">    </span><span class="n">List</span><span class="o">&lt;</span><span class="n">PointRecord</span><span class="o">&gt;</span><span class="w"> </span><span class="n">records</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">requests</span><span class="p">.</span><span class="na">stream</span><span class="p">()</span>
+<span class="w">        </span><span class="p">.</span><span class="na">map</span><span class="p">(</span><span class="n">req</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">PointRecord</span><span class="p">(</span><span class="n">req</span><span class="p">.</span><span class="na">getUserId</span><span class="p">(),</span><span class="w"> </span><span class="n">req</span><span class="p">.</span><span class="na">getPoints</span><span class="p">(),</span><span class="w"> </span><span class="n">req</span><span class="p">.</span><span class="na">getTaskId</span><span class="p">()))</span>
+<span class="w">        </span><span class="p">.</span><span class="na">collect</span><span class="p">(</span><span class="n">Collectors</span><span class="p">.</span><span class="na">toList</span><span class="p">());</span>
+<span class="w">    </span><span class="n">pointRecordDao</span><span class="p">.</span><span class="na">batchInsert</span><span class="p">(</span><span class="n">records</span><span class="p">);</span>
+
+<span class="w">    </span><span class="c1">// 批量更新用户积分(使用 CASE WHEN 批量更新)</span>
+<span class="w">    </span><span class="n">userPointDao</span><span class="p">.</span><span class="na">batchAddPoints</span><span class="p">(</span><span class="n">records</span><span class="p">);</span>
+
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">BatchResult</span><span class="p">.</span><span class="na">success</span><span class="p">(</span><span class="n">requests</span><span class="p">.</span><span class="na">size</span><span class="p">());</span>
+<span class="p">}</span>
+
+<span class="c1">// 活动侧:定时批量调用积分系统</span>
+<span class="nd">@Scheduled</span><span class="p">(</span><span class="n">fixedRate</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">5000</span><span class="p">)</span><span class="w"> </span><span class="c1">// 每 5 秒批量同步一次</span>
+<span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">batchSyncPoints</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="c1">// 从本地缓冲区取出待同步的积分变更</span>
+<span class="w">    </span><span class="n">List</span><span class="o">&lt;</span><span class="n">PointRequest</span><span class="o">&gt;</span><span class="w"> </span><span class="n">pendingPoints</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">pointBuffer</span><span class="p">.</span><span class="na">drain</span><span class="p">(</span><span class="mi">100</span><span class="p">);</span>
+
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="n">pendingPoints</span><span class="p">.</span><span class="na">isEmpty</span><span class="p">())</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="c1">// 批量调用积分系统</span>
+<span class="w">        </span><span class="n">pointServiceClient</span><span class="p">.</span><span class="na">batchAddPoint</span><span class="p">(</span><span class="n">pendingPoints</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div><p></p>
+<p><strong>优化效果</strong>:
+- "任务提交"接口 P99 RT 从 2s 降至 150ms
+- "抽奖"接口 P99 RT 从 3s 降至 180ms
+- 积分系统故障时自动降级,不影响用户操作
+- 系统并发能力提升约 50%(从 400 TPS 提升至 850 TPS)
+- 实现了业务解耦,积分系统可独立扩容</p>
+<p><strong>补充:如何保证最终一致性?</strong>
+</p><div class="highlight"><pre><span></span><code><span class="c1">// 消费者端增加幂等性校验</span>
+<span class="nd">@RabbitListener</span><span class="p">(</span><span class="n">queues</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">"task_complete_queue"</span><span class="p">)</span>
+<span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">consumeTaskComplete</span><span class="p">(</span><span class="n">TaskRequest</span><span class="w"> </span><span class="n">req</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">String</span><span class="w"> </span><span class="n">taskId</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">req</span><span class="p">.</span><span class="na">getTaskId</span><span class="p">();</span>
+
+<span class="w">    </span><span class="c1">// 幂等性校验:检查是否已处理过该任务</span>
+<span class="w">    </span><span class="n">String</span><span class="w"> </span><span class="n">lockKey</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">"task:lock:"</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">taskId</span><span class="p">;</span>
+<span class="w">    </span><span class="kt">boolean</span><span class="w"> </span><span class="n">locked</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">redisTemplate</span><span class="p">.</span><span class="na">opsForValue</span><span class="p">().</span><span class="na">setIfAbsent</span><span class="p">(</span><span class="n">lockKey</span><span class="p">,</span><span class="w"> </span><span class="s">"1"</span><span class="p">,</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w"> </span><span class="n">TimeUnit</span><span class="p">.</span><span class="na">MINUTES</span><span class="p">);</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="n">locked</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">log</span><span class="p">.</span><span class="na">warn</span><span class="p">(</span><span class="s">"任务已处理,跳过: taskId={}"</span><span class="p">,</span><span class="w"> </span><span class="n">taskId</span><span class="p">);</span>
+<span class="w">        </span><span class="k">return</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="c1">// 执行业务逻辑...</span>
+<span class="p">}</span>
+
+<span class="c1">// 增加补偿机制:定时任务扫描未完成任务</span>
+<span class="nd">@Scheduled</span><span class="p">(</span><span class="n">fixedRate</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">300000</span><span class="p">)</span><span class="w"> </span><span class="c1">// 每 5 分钟执行一次</span>
+<span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">checkUnfinishedTasks</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">List</span><span class="o">&lt;</span><span class="n">Task</span><span class="o">&gt;</span><span class="w"> </span><span class="n">unfinishedTasks</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">taskDao</span><span class="p">.</span><span class="na">selectUnfinishedTasks</span><span class="p">();</span>
+<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="n">Task</span><span class="w"> </span><span class="n">task</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="n">unfinishedTasks</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="c1">// 重新发送到队列</span>
+<span class="w">        </span><span class="n">rabbitTemplate</span><span class="p">.</span><span class="na">convertAndSend</span><span class="p">(</span><span class="s">"task_exchange"</span><span class="p">,</span><span class="w"> </span><span class="s">"task.complete"</span><span class="p">,</span><span class="w"> </span><span class="n">task</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+
+<span class="c1">// 积分系统侧:增加分布式锁防止重复扣减</span>
+<span class="kd">public</span><span class="w"> </span><span class="n">PointResult</span><span class="w"> </span><span class="nf">addPoint</span><span class="p">(</span><span class="n">String</span><span class="w"> </span><span class="n">userId</span><span class="p">,</span><span class="w"> </span><span class="n">Integer</span><span class="w"> </span><span class="n">points</span><span class="p">,</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="n">taskId</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">String</span><span class="w"> </span><span class="n">lockKey</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">"point:lock:"</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">taskId</span><span class="p">;</span>
+<span class="w">    </span><span class="n">RLock</span><span class="w"> </span><span class="n">lock</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">redissonClient</span><span class="p">.</span><span class="na">getLock</span><span class="p">(</span><span class="n">lockKey</span><span class="p">);</span>
+
+<span class="w">    </span><span class="k">try</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">lock</span><span class="p">.</span><span class="na">tryLock</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span><span class="w"> </span><span class="n">TimeUnit</span><span class="p">.</span><span class="na">SECONDS</span><span class="p">))</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="c1">// 再次检查是否已处理(双重检查)</span>
+<span class="w">            </span><span class="n">PointRecord</span><span class="w"> </span><span class="n">record</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">pointRecordDao</span><span class="p">.</span><span class="na">selectByTaskId</span><span class="p">(</span><span class="n">taskId</span><span class="p">);</span>
+<span class="w">            </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">record</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="kc">null</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span><span class="k">return</span><span class="w"> </span><span class="n">PointResult</span><span class="p">.</span><span class="na">success</span><span class="p">(</span><span class="s">"已处理"</span><span class="p">);</span>
+<span class="w">            </span><span class="p">}</span>
+
+<span class="w">            </span><span class="c1">// 执行积分增加逻辑</span>
+<span class="w">            </span><span class="n">userPointDao</span><span class="p">.</span><span class="na">addPoint</span><span class="p">(</span><span class="n">userId</span><span class="p">,</span><span class="w"> </span><span class="n">points</span><span class="p">);</span>
+<span class="w">            </span><span class="n">pointRecordDao</span><span class="p">.</span><span class="na">insert</span><span class="p">(</span><span class="k">new</span><span class="w"> </span><span class="n">PointRecord</span><span class="p">(</span><span class="n">userId</span><span class="p">,</span><span class="w"> </span><span class="n">points</span><span class="p">,</span><span class="w"> </span><span class="n">taskId</span><span class="p">));</span>
+
+<span class="w">            </span><span class="k">return</span><span class="w"> </span><span class="n">PointResult</span><span class="p">.</span><span class="na">success</span><span class="p">();</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span><span class="w"> </span><span class="k">finally</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">lock</span><span class="p">.</span><span class="na">unlock</span><span class="p">();</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">PointResult</span><span class="p">.</span><span class="na">fail</span><span class="p">(</span><span class="s">"获取锁失败"</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div><p></p>
+<hr>
+<h4 id="_13">(六)其他优化措施</h4>
 <table>
 <thead>
 <tr>
@@ -9031,9 +10043,9 @@ activity: "会员日" AND message: "lottery_success" | count()
 <hr>
 <p><strong>面试金句</strong>:</p>
 <blockquote>
-<p>"压测最大的价值不是得出一个数字,而是发现瓶颈并验证优化效果。我们这次压测从500 TPS提升到850 TPS,过程中解决了数据库连接池耗尽、缓存穿透、分布式锁竞争三个关键瓶颈,每个瓶颈的优化都是基于真实数据分析和根因定位,而不是盲目调参。"</p>
+<p>"压测最大的价值不是得出一个数字,而是发现瓶颈并验证优化效果。我们这次压测从500 TPS提升到850 TPS,过程中解决了数据库连接池耗尽、热点奖品缓存穿透、分布式锁竞争、活动奖品配置大 Key、同步调用积分系统超时五个关键瓶颈,每个瓶颈的优化都是基于真实数据分析和根因定位,而不是盲目调参。"</p>
 </blockquote>
-<h2 id="_13">六、压测通过标准建议</h2>
+<h2 id="_14">六、压测通过标准建议</h2>
 <table>
 <thead>
 <tr>
@@ -9091,7 +10103,7 @@ activity: "会员日" AND message: "lottery_success" | count()
     <span class="md-icon" title="最后更新">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"></path></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime" title="2026年7月10日 20:50:46 CST">2026-07-10 20:50:46</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime" title="2026年7月14日 23:44:52 CST">2026-07-14 23:44:52</span>
   </span>
 
     
