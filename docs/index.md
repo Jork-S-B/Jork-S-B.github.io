@@ -6,8 +6,6 @@ hide:
   - navigation
 ---
 
-# :smile:Welcome to myblog
-
 # 全链路压测
 
 ## GC

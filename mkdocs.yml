@@ -169,6 +169,7 @@ nav:
           - Windows:
                 - 系统盘空间抢救方案: other/windows/system_disk.md
                 - 默认编码: other/windows/default_encoding.md
+          - mermaid: other/mermaid.md
     - ielts:
           - vocabulary:
                 - Synonym substitution: ielts/vocabulary/synonym_substitution.md

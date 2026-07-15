@@ -18,7 +18,7 @@ GC线程也是守护线程的一种，用于回收不再使用的对象，并释
 
 ![JVM内存结构图](jvm_memory.png)
 
-??? note "JVM内存结构图mermaid"
+??? note "JVM内存结构图_mermaid"
 
     ```mermaid
     graph TB
