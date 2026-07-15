@@ -92,6 +92,7 @@ nav:
           - JUnit 5: java/junit5.md
           - Cucumber: java/cucumber.md
           - JVMGC: java/jvmgc/JVMGC.md
+          - JMX: java/jvmgc/GC监控.md
     - Vue:
           - 基础: vue/basic.md
           - npm: vue/npm.md

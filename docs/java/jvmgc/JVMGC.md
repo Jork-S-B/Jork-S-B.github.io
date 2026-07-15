@@ -16,6 +16,52 @@ Java的跨平台特性得以实现靠的是JVM，相当于Java在每个平台都
 
 GC线程也是守护线程的一种，用于回收不再使用的对象，并释放占用的内存空间。
 
+![JVM内存结构图](jvm_memory.png)
+
+JVM内存结构图mermaid
+
+```mermaid
+graph TB
+    subgraph JVM["JVM 内存结构"]
+        direction TB
+
+        subgraph Heap["堆内存 (Heap)"]
+            direction LR
+
+            subgraph Young["年轻代 (Young Generation)"]
+                Eden["Eden Space<br/>新对象创建区<br/>🟢 回收频率高<br/>⚡ 复制算法<br/>⏱️ 回收快"]
+                S0["Survivor 0<br/>对象过渡区"]
+                S1["Survivor 1<br/>对象过渡区"]
+
+                Eden -->|"Minor GC"| S0
+                S0 -.->|"交换"| S1
+                S0 -->|"年龄达标"| Old
+            end
+
+            Old["老年代 (Old Generation)<br/>🟡 回收频率低<br/>🔄 复杂算法<br/>⏱️ 回收慢<br/>📍 Minor GC后执行"]
+        end
+
+        Meta["元空间 (Metaspace)<br/>Perm Gen<br/>📋 类元数据存储<br/>🏗️ 类结构/方法/字段<br/>🤖 JVM自动管理"]
+
+        Young -.->|"空间不足触发"| GC1["Minor GC"]
+        Old -.->|"空间不足触发"| GC2["Major/Full GC"]
+
+        style Eden fill:#e1f5e1,stroke:#4caf50,stroke-width:2px
+        style S0 fill:#fff9c4,stroke:#fbc02d,stroke-width:2px
+        style S1 fill:#fff9c4,stroke:#fbc02d,stroke-width:2px
+        style Old fill:#ffccbc,stroke:#ff5722,stroke-width:2px
+        style Meta fill:#e1f5fe,stroke:#0277bd,stroke-width:2px
+        style Young fill:#f9fbe7,stroke:#689f38,stroke-width:3px
+        style Heap fill:#fafafa,stroke:#616161,stroke-width:3px
+    end
+```
+
+**图解说明:**
+
+- 🟢 **年轻代**: 新对象首先在Eden区创建,经过多次Minor GC后存活的对象会移动到Survivor区
+- 🟡 **老年代**: 存活时间长的对象会从年轻代晋升到老年代,采用更复杂的GC算法
+- 📋 **元空间**: 独立于堆内存,存储类的元数据信息,由JVM自动管理
+
 ### 🚁 年轻代
 
 Eden Space + Survivor 0 + Survivor 1
@@ -34,7 +80,27 @@ Old Gen
 
 Perm Gen
 
-存储类的元数据（类的结构、方法、字段等信息），由Java虚拟机自动管理元空间的内存。
+存储类的元数据(类的结构、方法、字段等信息),由Java虚拟机自动管理元空间的内存。
+
+### 🚁 JVM内存结构图
+
+
+
+**对象生命周期流向:**
+
+```mermaid
+flowchart LR
+    A[新对象创建] --> B[Eden区]
+    B -->|Minor GC| C[Survivor区]
+    C -->|年龄达标| D[老年代]
+    D -->|Full GC| E[被回收]
+
+    style A fill:#c8e6c9,stroke:#388e3c
+    style B fill:#e1f5e1,stroke:#4caf50
+    style C fill:#fff9c4,stroke:#fbc02d
+    style D fill:#ffccbc,stroke:#ff5722
+    style E fill:#ffcdd2,stroke:#d32f2f
+```
 
 ### 🚁 需要关注的指标
 
