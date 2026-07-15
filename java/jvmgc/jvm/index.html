@@ -13,7 +13,7 @@
         <link rel="prev" href="../../cucumber/">
       
       
-        <link rel="next" href="../../../vue/basic/">
+        <link rel="next" href="../jmx/">
       
       
         
@@ -24,7 +24,7 @@
     
     
       
-        <title>JVMGC - whm</title>
+        <title>JVM内存结构 - whm</title>
       
     
     
@@ -115,7 +115,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              JVMGC
+              JVM内存结构
             
           </span>
         </div>
@@ -3594,7 +3594,7 @@
   <span class="md-ellipsis">
     
   
-    JVMGC
+    JVM内存结构
   
 
     
@@ -3612,7 +3612,7 @@
   <span class="md-ellipsis">
     
   
-    JVMGC
+    JVM内存结构
   
 
     
@@ -3709,17 +3709,6 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#jvm_1" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        🚁 JVM内存结构图
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
   <a href="#_5" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -3801,14 +3790,14 @@
   
   
     <li class="md-nav__item">
-      <a href="../GC监控.md" class="md-nav__link">
+      <a href="../jmx/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    JMX
+    GC监控
   
 
     
@@ -8069,17 +8058,6 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#jvm_1" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        🚁 JVM内存结构图
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
   <a href="#_5" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -8165,7 +8143,7 @@
   
 
 
-  <h1>JVMGC</h1>
+  <h1>JVM内存结构</h1>
 
 <h2 id="jvm">📌 JVM</h2>
 <p>JDK-开发工具包 &gt; JRE-运行环境/运行时类库 &gt; JVM-Java虚拟机</p>
@@ -8177,7 +8155,8 @@
 <h2 id="gc">📌 GC</h2>
 <p>GC线程也是守护线程的一种，用于回收不再使用的对象，并释放占用的内存空间。</p>
 <p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="../jvm_memory.png" data-desc-position="bottom"><img alt="JVM内存结构图" src="../jvm_memory.png"></a></p>
-<p>JVM内存结构图mermaid</p>
+<details class="note">
+<summary>JVM内存结构图mermaid</summary>
 <div class="highlight"><pre><span></span><code>graph TB
     subgraph JVM["JVM 内存结构"]
         direction TB
@@ -8195,12 +8174,12 @@
                 S0 --&gt;|"年龄达标"| Old
             end
 
-            Old["老年代 (Old Generation)&lt;br/&gt;🟡 回收频率低&lt;br/&gt;🔄 复杂算法&lt;br/&gt;⏱️ 回收慢&lt;br/&gt;📍 Minor GC后执行"]
+            Old["老年代 (Old Generation)&lt;br/&gt;🟡 回收频率低&lt;br/&gt;🔄 复杂算法&lt;br/&gt;⏱️ 回收慢"]
         end
 
         Meta["元空间 (Metaspace)&lt;br/&gt;Perm Gen&lt;br/&gt;📋 类元数据存储&lt;br/&gt;🏗️ 类结构/方法/字段&lt;br/&gt;🤖 JVM自动管理"]
 
-        Young -.-&gt;|"空间不足触发"| GC1["Minor GC"]
+        Young -.-&gt;|"空间不足触发"| GC1["Minor GC / Young GC"]
         Old -.-&gt;|"空间不足触发"| GC2["Major/Full GC"]
 
         style Eden fill:#e1f5e1,stroke:#4caf50,stroke-width:2px
@@ -8212,12 +8191,7 @@
         style Heap fill:#fafafa,stroke:#616161,stroke-width:3px
     end
 </code></pre></div>
-<p><strong>图解说明:</strong></p>
-<ul>
-<li>🟢 <strong>年轻代</strong>: 新对象首先在Eden区创建,经过多次Minor GC后存活的对象会移动到Survivor区</li>
-<li>🟡 <strong>老年代</strong>: 存活时间长的对象会从年轻代晋升到老年代,采用更复杂的GC算法</li>
-<li>📋 <strong>元空间</strong>: 独立于堆内存,存储类的元数据信息,由JVM自动管理</li>
-</ul>
+</details>
 <h3 id="_2">🚁 年轻代</h3>
 <p>Eden Space + Survivor 0 + Survivor 1</p>
 <p>存放新创建对象的内存区域，采用复制算法进行垃圾回收，回收频率高，且回收过程通常较快。</p>
@@ -8227,21 +8201,7 @@
 <p>老年代的垃圾回收相对低频，采用更复杂的算法进行垃圾回收，回收时间较长，且在新生代垃圾回收完成后进行，以减少对应用程序的影响。</p>
 <h3 id="_4">🚁 元空间</h3>
 <p>Perm Gen</p>
-<p>存储类的元数据(类的结构、方法、字段等信息),由Java虚拟机自动管理元空间的内存。</p>
-<h3 id="jvm_1">🚁 JVM内存结构图</h3>
-<p><strong>对象生命周期流向:</strong></p>
-<div class="highlight"><pre><span></span><code>flowchart LR
-    A[新对象创建] --&gt; B[Eden区]
-    B --&gt;|Minor GC| C[Survivor区]
-    C --&gt;|年龄达标| D[老年代]
-    D --&gt;|Full GC| E[被回收]
-
-    style A fill:#c8e6c9,stroke:#388e3c
-    style B fill:#e1f5e1,stroke:#4caf50
-    style C fill:#fff9c4,stroke:#fbc02d
-    style D fill:#ffccbc,stroke:#ff5722
-    style E fill:#ffcdd2,stroke:#d32f2f
-</code></pre></div>
+<p>存储类的元数据(类的结构、方法、字段等信息)，由Java虚拟机自动管理元空间的内存。</p>
 <h3 id="_5">🚁 需要关注的指标</h3>
 <p><strong>GC频次</strong>: collections / GC Time = 每几秒进行1次GC</p>
 <p>GC频次的大小，需要根据业务体量、数据级、服务器资源等来进行综合评估。</p>
@@ -8324,7 +8284,7 @@ ps<span class="w"> </span>-ef<span class="w"> </span><span class="p">|</span><sp
     <span class="md-icon" title="最后更新">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"></path></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime" title="2026年7月15日 19:31:55 CST">2026-07-15 19:31:55</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime" title="2026年7月15日 19:49:31 CST">2026-07-15 19:49:31</span>
   </span>
 
     
@@ -8377,13 +8337,13 @@ ps<span class="w"> </span>-ef<span class="w"> </span><span class="p">|</span><sp
         
         
           
-          <a href="../../../vue/basic/" class="md-footer__link md-footer__link--next" aria-label="下一页: 基础">
+          <a href="../jmx/" class="md-footer__link md-footer__link--next" aria-label="下一页: GC监控">
             <div class="md-footer__title">
               <span class="md-footer__direction">
                 下一页
               </span>
               <div class="md-ellipsis">
-                基础
+                GC监控
               </div>
             </div>
             <div class="md-footer__button md-icon">
