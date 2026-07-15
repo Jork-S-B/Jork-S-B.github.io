@@ -91,7 +91,7 @@ nav:
                 - 栈: java/leetcode/stack.md
           - JUnit 5: java/junit5.md
           - Cucumber: java/cucumber.md
-          - JVMGC: java/jvmgc/JVMGC.md
+          - JVM内存结构: java/jvmgc/jvm.md
           - GC监控: java/jvmgc/jmx.md
     - Vue:
           - 基础: vue/basic.md

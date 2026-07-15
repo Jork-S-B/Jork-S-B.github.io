@@ -7,3 +7,10 @@ hide:
 ---
 
 # :smile:Welcome to myblog
+
+# 全链路压测
+
+## GC
+
+- [JVM内存结构](./java/jvmgc/jvm.md)
+- [GC监控](./java/jvmgc/jmx.md)
