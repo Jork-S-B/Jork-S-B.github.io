@@ -3689,9 +3689,6 @@
 <p>3.JVM实例结束: 当程序中所有非守护线程都结束时。</p>
 <h2 id="gc">📌 GC</h2>
 <p>GC线程也是守护线程的一种，用于回收不再使用的对象，并释放占用的内存空间。</p>
-<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-type="image" data-width="auto" href="../jvm_memory.png"><img alt="JVM内存结构图" src="../jvm_memory.png"/></a></p>
-<details class="note">
-<summary>JVM内存结构图_mermaid</summary>
 <div class="mermaid">graph TB
     subgraph JVM["JVM 内存结构"]
         direction TB
@@ -3725,7 +3722,6 @@
         style Heap fill:#fafafa,stroke:#616161,stroke-width:3px
     end
 </div>
-</details>
 <h3 id="_2">🚁 年轻代</h3>
 <p>Eden Space + Survivor 0 + Survivor 1</p>
 <p>存放新创建对象的内存区域，采用复制算法进行垃圾回收，回收频率高，且回收过程通常较快。</p>

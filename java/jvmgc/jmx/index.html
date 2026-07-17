@@ -3750,9 +3750,6 @@
 <h3 id="rt">rt周期性飙升</h3>
 <p>飙升时间点若跟 full gc 吻合，说明 stw 影响业务，需优化jvm参数（调大年轻代、调触发gc的内存阈值等）</p>
 <h3 id="cpugc">CPU飙升且GC频繁</h3>
-<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-type="image" data-width="auto" href="../arthas_trace_flow.png"><img alt="arthas_trace_flow" src="../arthas_trace_flow.png"/></a></p>
-<details class="note">
-<summary>arthas排查整体流程_mermaid</summary>
 <div class="mermaid">flowchart TD
     B[Step 1: dashboard<br/>看全局]
     B --&gt;|GC次数增长快| D[Step 2: profiler<br/>抓分配热点]
@@ -3766,7 +3763,6 @@
     I --&gt;|否| K[修复代码]
     J --&gt; K
 </div>
-</details>
 <h4 id="step-1dashboard">Step 1：dashboard</h4>
 <p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-type="image" data-width="auto" href="../dashboard.png"><img alt="dashboard" src="../dashboard.png"/></a></p>
 <ul>
