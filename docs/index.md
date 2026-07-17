@@ -12,3 +12,7 @@ hide:
 
 - [JVM内存结构](./java/jvmgc/jvm.md)
 - [GC监控](./java/jvmgc/jmx.md)
+
+## db
+
+- [Mysql监控](./utils/performance/monitor/mysql.md)

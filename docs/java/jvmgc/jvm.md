@@ -43,7 +43,6 @@ GC线程也是守护线程的一种，用于回收不再使用的对象，并释
 
             Meta["元空间 (Metaspace)<br/>Perm Gen<br/>📋 类元数据存储<br/>🏗️ 类结构/方法/字段<br/>🤖 JVM自动管理"]
 
-            Young -.->|"空间不足触发"| GC1["Minor GC / Young GC"]
             Old -.->|"空间不足触发"| GC2["Major/Full GC"]
 
             style Eden fill:#e1f5e1,stroke:#4caf50,stroke-width:2px

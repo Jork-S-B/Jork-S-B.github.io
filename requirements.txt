@@ -3,3 +3,4 @@ mkdocs-material
 mkdocs-glightbox
 jieba
 mkdocs-git-revision-date-localized-plugin
+mkdocs-mermaid2-plugin
