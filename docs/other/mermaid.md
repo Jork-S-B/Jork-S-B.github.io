@@ -1,7 +1,5 @@
 ## 泳道图示例
 
-![swimlane_diagram](./mermaid/swimlane_diagram.png)
-
 ```mermaid
 sequenceDiagram
     participant U as 用户

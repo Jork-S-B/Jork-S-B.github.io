@@ -16,44 +16,41 @@ Java的跨平台特性得以实现靠的是JVM，相当于Java在每个平台都
 
 GC线程也是守护线程的一种，用于回收不再使用的对象，并释放占用的内存空间。
 
-![JVM内存结构图](jvm_memory.png)
+```mermaid
+graph TB
+    subgraph JVM["JVM 内存结构"]
+        direction TB
 
-??? note "JVM内存结构图_mermaid"
+        subgraph Heap["堆内存 (Heap)"]
+            direction LR
 
-    ```mermaid
-    graph TB
-        subgraph JVM["JVM 内存结构"]
-            direction TB
+            subgraph Young["年轻代 (Young Generation)"]
+                Eden["Eden Space<br/>新对象创建区<br/>🟢 回收频率高<br/>⚡ 复制算法<br/>⏱️ 回收快"]
+                S0["Survivor 0<br/>对象过渡区"]
+                S1["Survivor 1<br/>对象过渡区"]
 
-            subgraph Heap["堆内存 (Heap)"]
-                direction LR
-
-                subgraph Young["年轻代 (Young Generation)"]
-                    Eden["Eden Space<br/>新对象创建区<br/>🟢 回收频率高<br/>⚡ 复制算法<br/>⏱️ 回收快"]
-                    S0["Survivor 0<br/>对象过渡区"]
-                    S1["Survivor 1<br/>对象过渡区"]
-
-                    Eden -->|"Minor GC"| S0
-                    S0 -.->|"交换"| S1
-                    S0 -->|"年龄达标"| Old
-                end
-
-                Old["老年代 (Old Generation)<br/>🟡 回收频率低<br/>🔄 复杂算法<br/>⏱️ 回收慢"]
+                Eden -->|"Minor GC"| S0
+                S0 -.->|"交换"| S1
+                S0 -->|"年龄达标"| Old
             end
 
-            Meta["元空间 (Metaspace)<br/>Perm Gen<br/>📋 类元数据存储<br/>🏗️ 类结构/方法/字段<br/>🤖 JVM自动管理"]
-
-            Old -.->|"空间不足触发"| GC2["Major/Full GC"]
-
-            style Eden fill:#e1f5e1,stroke:#4caf50,stroke-width:2px
-            style S0 fill:#fff9c4,stroke:#fbc02d,stroke-width:2px
-            style S1 fill:#fff9c4,stroke:#fbc02d,stroke-width:2px
-            style Old fill:#ffccbc,stroke:#ff5722,stroke-width:2px
-            style Meta fill:#e1f5fe,stroke:#0277bd,stroke-width:2px
-            style Young fill:#f9fbe7,stroke:#689f38,stroke-width:3px
-            style Heap fill:#fafafa,stroke:#616161,stroke-width:3px
+            Old["老年代 (Old Generation)<br/>🟡 回收频率低<br/>🔄 复杂算法<br/>⏱️ 回收慢"]
         end
-    ```
+
+        Meta["元空间 (Metaspace)<br/>Perm Gen<br/>📋 类元数据存储<br/>🏗️ 类结构/方法/字段<br/>🤖 JVM自动管理"]
+
+        Old -.->|"空间不足触发"| GC2["Major/Full GC"]
+
+        style Eden fill:#e1f5e1,stroke:#4caf50,stroke-width:2px
+        style S0 fill:#fff9c4,stroke:#fbc02d,stroke-width:2px
+        style S1 fill:#fff9c4,stroke:#fbc02d,stroke-width:2px
+        style Old fill:#ffccbc,stroke:#ff5722,stroke-width:2px
+        style Meta fill:#e1f5fe,stroke:#0277bd,stroke-width:2px
+        style Young fill:#f9fbe7,stroke:#689f38,stroke-width:3px
+        style Heap fill:#fafafa,stroke:#616161,stroke-width:3px
+    end
+```
+
 ### 🚁 年轻代
 
 Eden Space + Survivor 0 + Survivor 1
