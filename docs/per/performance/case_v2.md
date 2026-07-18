@@ -36,8 +36,12 @@ tags: [全链路压测]
 ### 关键特征
 
 - 任务**仅在每月会员日开启当天可做**
-- 任务包括：拉新/拉活/指定活动停留浏览几秒/AI工具（如文生图）试用，跳转到对应活动h5，满足条件后获得抽奖次数。
-  - **AI 工具试用流程**：用户跳转到 AI 服务 H5 页面 → 完成试用 → AI 服务通过 MQ 异步通知活动系统 → 活动系统轮询检查任务状态 → 发放抽奖次数（非同步调用,不会成为性能瓶颈）
+- **任务类型**：拉新/拉活/指定活动停留浏览几秒/AI工具（如文生图）试用
+- **任务流程**：用户点击任务 → 跳转到对应活动h5页面 → 完成任务条件 → 活动h5通过 **Kafka** 发送 MQ 消息 → 活动系统消费消息并发放抽奖次数
+- **活动h5页面功能**：
+  - 任务完成入口（如AI工具试用、拉新页面）
+  - 活动详情说明：弹窗展示 + 页面静态文本展示
+  - 领奖记录：弹窗展示（本期/历史），从本期记录点击"去领取"跳转至领奖专区
 - 流量时间分布高度偏斜（开启瞬间突增）
 - 核心写接口集中在活动开启首日
 
@@ -47,12 +51,13 @@ tags: [全链路压测]
 
 | 序号 | 风险点 | 风险描述 | 严重等级 |
 |:---|:---|:---|:---|
-| 1 | **库存超卖/负数** | 使用"查库存→扣减"非原子操作，或缓存与DB不一致，导致奖品超发 | ⭐⭐⭐⭐⭐ |
-| 2 | **重复领取/幂等性** | 网络超时导致用户重试，后端未做幂等校验，同一任务多次发放积分/奖品 | ⭐⭐⭐⭐ |
-| 3 | **外部依赖故障** | 外部依赖响应超时（>3s），占满Tomcat线程池，导致级联故障 | ⭐⭐⭐⭐ |
-| 4 | **缓存击穿/雪崩** | 热点奖品Key在Redis中失效，大量请求直接打到数据库 | ⭐⭐⭐ |
-| 5 | **数据库行锁竞争** | 更新用户积分时无索引或锁等待超时，高并发下死锁率上升 | ⭐⭐⭐ |
-| 6 | **日志/监控被冲垮** | 500 TPS下每个请求打印大量日志，撑爆磁盘IO和ES索引队列 | ⭐⭐ |
+| 1 | **库存超卖/负数** | Kafka消费延迟导致库存扣减不同步，或Redis缓存与DB不一致，导致奖品超发 | ⭐⭐⭐⭐⭐ |
+| 2 | **MQ消息积压/丢失** | Kafka消费者处理慢或Broker故障，导致任务完成消息积压，用户无法及时获得抽奖次数 | ⭐⭐⭐⭐ |
+| 3 | **重复领取/幂等性** | Kafka消息重复消费或网络超时导致用户重试，后端未做幂等校验，同一任务多次发放积分/奖品 | ⭐⭐⭐⭐ |
+| 4 | **外部依赖故障** | 第三方风控接口响应超时（>3s），占满Tomcat线程池，导致级联故障 | ⭐⭐⭐⭐ |
+| 5 | **缓存击穿/雪崩** | 热点奖品（外卖券、会员）Key在Redis中失效，大量请求直接打到数据库 | ⭐⭐⭐ |
+| 6 | **数据库行锁竞争** | 更新用户积分时无索引或锁等待超时，高并发下死锁率上升 | ⭐⭐⭐ |
+| 7 | **日志/监控被冲垮** | 500 TPS下每个请求打印大量日志，撑爆磁盘IO和ES索引队列 | ⭐⭐ |
 
 ## 三、压测关键指标获取与计算
 
@@ -814,21 +819,133 @@ cat access.log | awk '{print $7}' | sort | uniq -c | sort -rn | head -20
 
 > **面试官考察点**:是否具备真实的压测实战经验,以及从发现问题到解决问题的完整闭环能力。
 
-**核心结论**:压测过程中确实遇到了多个瓶颈,主要集中在**数据库连接池耗尽、缓存穿透导致DB压力、分布式锁竞争加剧**三个方面。
+**核心结论**:压测过程中确实遇到了多个瓶颈,主要集中在**缓存穿透导致RT抖动、数据库连接池耗尽与长事务、MQ消息积压、同步阻塞导致线程池耗尽、GC频繁停顿、读写分离下的主从延迟、分布式锁竞争**七个方面。
 
-#### (一)瓶颈一:数据库连接池耗尽
+#### (一)瓶颈一:热点奖品大Key + Redis内存逐出策略导致RT抖动
+
+**问题现象**:
+- 压测300 TPS持续10分钟后,接口P99 RT出现明显毛刺,从200ms抖动至800ms-1.5s
+- Redis监控显示内存占用突破80%,频繁触发内存逐出策略(allkeys-lru)
+- 通过 `redis-cli --bigkeys` 发现热点奖品Key(外卖券、会员)大小约500KB-1MB
+- 用 `redis-cli --stat` 观察到,每次查询大Key时,RT明显升高
+
+**根因分析**:
+- **业务场景**:热点奖品(外卖券、会员权益)的配置数据包含大量字段(库存、规则、图片等),被高频访问
+- **错误设计**:将热点奖品的完整配置存成单个String Key,大小约500KB-1MB
+- **性能瓶颈**:
+  - Redis内存占用高(>80%),触发频繁的内存逐出策略
+  - 每次访问大Key都需要序列化/反序列化大量数据,耗时增加
+  - 内存逐出时会造成短暂的阻塞,导致RT抖动
+  - 高并发下多个大Key同时被访问,加剧Redis压力
+
+**排查手段**:
+```bash
+# 1. 扫描大Key
+redis-cli --bigkeys -i 0.1
+
+# 2. 查看内存逐出策略
+redis-cli config get maxmemory-policy
+# 输出: maxmemory-policy allkeys-lru
+
+# 3. 实时监控内存逐出事件
+redis-cli info memory | grep evicted_keys
+```
+
+**优化方案**:
+
+**方案一:数据结构重构——库存与配置分离**
+```java
+// 原方案:单个大Key存储所有配置(错误)
+String key = "prize:config:" + prizeId;
+PrizeConfig config = redisTemplate.opsForValue().get(key); // 500KB-1MB
+
+// 优化方案:库存与配置分离
+// Key 1: 库存信息(高频读写,几KB)
+String stockKey = "prize:stock:" + prizeId;
+redisTemplate.opsForValue().set(stockKey, stock);
+
+// Key 2: 配置信息(低频只读,使用Hash存储)
+String configKey = "prize:config:" + prizeId;
+redisTemplate.opsForHash().put(configKey, "name", prizeName);
+redisTemplate.opsForHash().put(configKey, "rules", rulesJson);
+
+// 抽奖时只查询库存(几KB)
+Integer stock = (Integer) redisTemplate.opsForValue().get(stockKey);
+```
+
+**方案二:本地缓存热点奖品配置**
+```java
+// 使用Caffeine缓存热点奖品配置(外卖券、会员)
+private Cache<Long, PrizeConfig> prizeCache = Caffeine.newBuilder()
+    .maximumSize(50) // 缓存热点奖品
+    .expireAfterWrite(10, TimeUnit.MINUTES)
+    .build();
+
+public PrizeConfig getPrizeConfig(Long prizeId) {
+    // 先查本地缓存
+    PrizeConfig config = prizeCache.getIfPresent(prizeId);
+    if (config != null) {
+        return config;
+    }
+
+    // 本地未命中,查Redis(使用Hash结构)
+    String configKey = "prize:config:" + prizeId;
+    config = buildConfigFromHash(redisTemplate.opsForHash().entries(configKey));
+    if (config != null) {
+        prizeCache.put(prizeId, config);
+    }
+    return config;
+}
+```
+
+**方案三:调整Redis内存逐出策略**
+```bash
+# 方案A: 增加Redis内存上限(推荐)
+redis-cli config set maxmemory 4gb
+
+# 方案B: 改用volatile-lru策略(仅逐出有过期时间的Key)
+redis-cli config set maxmemory-policy volatile-lru
+# 注意:需确保热点奖品Key永不过期
+```
+
+**优化效果**:
+- Redis内存占用从80%降至55%
+- 接口P99 RT从800ms抖动稳定在250ms
+- 内存逐出事件从每分钟50次降至每分钟<5次
+- 大Key查询RT从150ms降至10ms
+
+---
+
+#### (二)瓶颈二:数据库连接池耗尽与长事务
 
 **问题现象**:
 - 压测到500 TPS时,错误率突然飙升至15%
 - 应用日志大量报错:`HikariPool-1 - Connection is not available, request timed out after 30000ms`
 - 通过 `jstack` 发现大量线程处于 `WAITING` 状态,堆栈显示在 `HikariPool.getConnection`
+- 数据库监控显示活跃连接数持续在90+%(接近maximumPoolSize)
 
 **根因分析**:
 - HikariCP默认配置 `maximumPoolSize=10`,远低于实际需求
 - 每个抽奖请求涉及多表操作(用户积分扣减、库存扣减、中奖记录写入),平均耗时200ms
+- **长事务问题**:部分业务代码在事务中调用了第三方接口(如风控校验),导致事务持有连接时间过长
 - 500 TPS下,理论连接需求 = 500 × 0.2 = 100个连接
 
+**Arthas排查过程**:
+```bash
+# 追踪事务执行时间
+trace com.xxx.activity.service.LotteryService drawLottery '#cost > 200' -n 5
+
+# 发现事务中包含第三方调用
+`--- ts=2025-07-15 10:05:32; [cost=450ms]
+    `--- com.xxx.activity.service.LotteryService.drawLottery()
+        +--- com.xxx.risk.service.RiskService.checkUser()  # 第三方风控接口,耗时200ms
+        +--- com.xxx.stock.service.StockService.deductStock()
+        `--- com.xxx.prize.dao.PrizeDao.insert()
+```
+
 **优化方案**:
+
+**方案一:调整连接池配置**
 ```yaml
 # HikariCP 配置调整
 spring:
@@ -841,88 +958,507 @@ spring:
       max-lifetime: 1800000         # 连接最大存活30分钟
 ```
 
+**方案二:拆分长事务——移除事务中的外部调用**
+```java
+// 原方案:事务中包含第三方调用(错误)
+@Transactional
+public LotteryResult drawLottery(String userId, Long prizeId) {
+    // 风控校验(第三方接口,耗时200ms)
+    riskService.checkUser(userId);  // 不应在事务中!
+
+    // 扣减库存
+    stockService.deductStock(prizeId);
+
+    // 写入中奖记录
+    prizeDao.insert(new PrizeRecord(userId, prizeId));
+
+    return LotteryResult.success(prize);
+}
+
+// 优化方案:风控校验移到事务外
+public LotteryResult drawLottery(String userId, Long prizeId) {
+    // 1. 风控校验(事务外执行)
+    riskService.checkUser(userId);
+
+    // 2. 事务操作(仅包含DB操作)
+    return executeInTransaction(userId, prizeId);
+}
+
+@Transactional
+private LotteryResult executeInTransaction(String userId, Long prizeId) {
+    stockService.deductStock(prizeId);
+    prizeDao.insert(new PrizeRecord(userId, prizeId));
+    return LotteryResult.success(prize);
+}
+```
+
 **优化效果**:
 - 错误率从15%降至0.02%
 - 连接池利用率从95%降至60%
+- 事务平均持有连接时间从450ms降至150ms
 - 支持TPS从500提升到850
 
 ---
 
-#### (二)瓶颈二:热点奖品缓存穿透导致DB压力激增
+#### (三)瓶颈三:Kafka消息积压导致抽奖次数发放延迟
 
 **问题现象**:
-- 压测300 TPS持续10分钟后,数据库CPU飙升至85%
-- DB连接数从50增至200,慢查询日志出现大量 `SELECT * FROM prize_stock WHERE prize_id = 100`
-- Redis命中率从95%降至60%
+- 压测400 TPS持续30分钟后,用户反馈完成任务后长时间未获得抽奖次数
+- Kafka消费者延迟(lag)从0增长至10万+
+- 应用日志出现大量消息消费超时告警
+- 监控显示消费者吞吐量仅为200条/秒,远低于生产速率
 
 **根因分析**:
-- 热点奖品ID(如iPhone、现金红包)被大量并发请求
-- Redis中的库存Key设置TTL=10分钟,压测期间频繁过期导致缓存穿透
-- 缓存失效瞬间,大量请求直接查询数据库,形成"缓存雪崩"
+- **业务场景**:用户完成任务后,活动h5通过Kafka发送消息,活动系统消费消息后发放抽奖次数
+- **性能瓶颈**:
+  - 消费者处理逻辑包含DB写入+积分系统调用,单条消息处理耗时50-100ms
+  - 消费者配置的 `max.poll.records=500`,但处理速度跟不上
+  - 单分区消费者在高TPS下成为瓶颈
+  - 积分系统响应慢时,会拖慢整个消费流程
+
+**排查手段**:
+```bash
+# 1. 查看消费者延迟
+kafka-consumer-groups.sh --bootstrap-server localhost:9092 \
+  --describe --group activity-group
+
+# 输出:
+# TOPIC           PARTITION  CURRENT-OFFSET  LOG-END-OFFSET  LAG
+# task_complete   0          10000           110000          100000
+
+# 2. 查看消费者吞吐量
+kafka-run-class.sh kafka.tools.GetOffsetShell \
+  --broker-list localhost:9092 --topic task_complete --time -1
+```
 
 **优化方案**:
 
-**方案一:热点Key永不过期 + 异步刷新**
-```java
-// 伪代码:热点奖品库存Key永不过期
-public void initHotPrizeCache() {
-    String key = "prize_stock:" + hotPrizeId;
-    redisTemplate.opsForValue().set(key, stock, Duration.ofDays(30)); // 设置长TTL
+**方案一:增加分区数和消费者实例**
+```bash
+# 增加分区数(从1增至10)
+kafka-topics.sh --bootstrap-server localhost:9092 \
+  --alter --topic task_complete --partitions 10
 
-    // 启动后台线程定时刷新库存
-    scheduledExecutor.scheduleAtFixedRate(() -> {
-        Integer dbStock = stockDao.selectById(hotPrizeId);
-        redisTemplate.opsForValue().set(key, dbStock);
-    }, 0, 5, TimeUnit.MINUTES); // 每5分钟从DB同步
+# 启动多个消费者实例(每个实例消费部分分区)
+# 消费者实例数 <= 分区数
+```
+
+**方案二:批量消费 + 异步处理**
+```java
+// 原方案:单条消息同步处理(低效)
+@KafkaListener(topics = "task_complete")
+public void consume(TaskCompleteMessage message) {
+    // 处理单条消息(耗时50-100ms)
+    processTask(message);
+}
+
+// 优化方案:批量消费 + 异步处理
+@KafkaListener(
+    topics = "task_complete",
+    containerFactory = "batchFactory",
+    concurrency = "10"  // 10个并发消费者
+)
+public void batchConsume(List<TaskCompleteMessage> messages) {
+    // 批量处理(吞吐量提升5-10倍)
+    List<CompletableFuture<Void>> futures = messages.stream()
+        .map(msg -> CompletableFuture.runAsync(() -> processTask(msg), asyncExecutor))
+        .collect(Collectors.toList());
+
+    // 等待所有任务完成
+    CompletableFuture.allOf(futures.toArray(new CompletableFuture[0])).join();
+}
+
+// Kafka配置
+@Bean
+public ConcurrentKafkaListenerContainerFactory<String, String> batchFactory() {
+    ConcurrentKafkaListenerContainerFactory<String, String> factory =
+        new ConcurrentKafkaListenerContainerFactory<>();
+    factory.setBatchListener(true);
+    factory.getContainerProperties().setPollTimeout(1000);
+    factory.getContainerProperties().setIdleBetweenPolls(100);
+    return factory;
 }
 ```
 
-**方案二:使用Redis分布式锁防止缓存击穿**
+**方案三:积分系统调用改为异步**
 ```java
-// 双重检查锁 + 缓存重建
-public Integer getPrizeStock(Long prizeId) {
-    String key = "prize_stock:" + prizeId;
-    Integer stock = (Integer) redisTemplate.opsForValue().get(key);
+// 原方案:同步调用积分系统(阻塞)
+public void processTask(TaskCompleteMessage message) {
+    // DB写入(快)
+    taskDao.updateStatus(message.getTaskId(), "COMPLETED");
 
-    if (stock == null) {
-        // 加分布式锁防止多个线程同时重建缓存
-        String lockKey = "lock:prize_stock:" + prizeId;
-        RLock lock = redissonClient.getLock(lockKey);
-        try {
-            if (lock.tryLock(5, 10, TimeUnit.SECONDS)) {
-                // 再次检查缓存(双重检查)
-                stock = (Integer) redisTemplate.opsForValue().get(key);
-                if (stock == null) {
-                    stock = stockDao.selectById(prizeId);
-                    redisTemplate.opsForValue().set(key, stock, Duration.ofMinutes(10));
-                }
-            }
-        } finally {
-            lock.unlock();
-        }
-    }
-    return stock;
+    // 同步调用积分系统(慢,耗时200ms)
+    pointService.addPoint(message.getUserId(), message.getPoints());
+}
+
+// 优化方案:异步调用积分系统
+public void processTask(TaskCompleteMessage message) {
+    // DB写入(快)
+    taskDao.updateStatus(message.getTaskId(), "COMPLETED");
+
+    // 异步调用积分系统(不阻塞)
+    CompletableFuture.runAsync(() -> {
+        pointService.addPoint(message.getUserId(), message.getPoints());
+    }, asyncExecutor);
 }
 ```
 
 **优化效果**:
-- Redis命中率从60%回升至95%
-- DB CPU从85%降至35%
-- DB连接数稳定在80左右
+- Kafka消费者延迟从10万+降至<1000
+- 消费者吞吐量从200条/秒提升至2000条/秒
+- 用户获得抽奖次数的延迟从5分钟降至<10秒
+- 支持400 TPS稳定运行
 
 ---
 
-#### (三)瓶颈三:分布式锁竞争导致响应时间抖动
+#### (四)瓶颈四:领奖接口同步阻塞导致线程池耗尽
+
+**问题现象**:
+- 压测"领奖"环节时,接口P999 RT飙升至3-5秒
+- 压测到300 TPS时,Tomcat线程池出现大量BLOCKED状态线程
+- 应用日志报错: `java.net.SocketTimeoutException: Read timed out`
+- 通过Arthas的 `trace` 命令发现,第三方风控接口调用耗时500ms-2s
+
+**根因分析**:
+- **业务场景**:用户领奖时,需要调用第三方风控接口进行身份校验,然后才能发放奖品
+- **同步阻塞**:领奖接口是串行执行的,内部必须等待风控接口响应才能继续
+- **性能瓶颈**:
+  - 第三方风控接口响应时间不可控(平均500ms,高峰期可达2s)
+  - 同步调用导致Tomcat线程长时间阻塞,并发能力受限
+  - Tomcat默认线程数200,300 TPS下线程池耗尽
+  - 第三方接口故障时,会拖垮整个领奖系统
+
+**Arthas排查过程**:
+```bash
+# 追踪领奖接口的耗时分布
+trace com.xxx.activity.service.PrizeService claimPrize '#cost > 500' -n 5
+
+# 输出结果:
+`--- ts=2025-07-15 10:05:32; [cost=1800ms]
+    `--- com.xxx.activity.service.PrizeService.claimPrize()
+        +--- com.xxx.risk.service.RiskService.checkUserIdentity()  # 风控接口,耗时1500ms
+        +--- com.xxx.stock.service.StockService.deductStock()
+        `--- com.xxx.prize.dao.PrizeDao.updateClaimStatus()
+```
+
+**优化方案**:
+
+**方案一:引入超时控制与熔断降级(Sentinel)**
+```java
+// 使用Sentinel进行熔断降级
+@SentinelResource(
+    value = "checkUserIdentity",
+    fallback = "checkUserIdentityFallback"
+)
+public RiskResult checkUserIdentity(String userId) {
+    // 设置超时时间为500ms
+    return riskServiceClient.checkUser(userId, 500, TimeUnit.MILLISECONDS);
+}
+
+// 熔断后降级逻辑:异步补偿
+public RiskResult checkUserIdentityFallback(String userId) {
+    // 记录到补偿表,定时任务重试
+    compensateDao.insert(new CompensateTask(userId, "RISK_CHECK"));
+
+    // 返回成功(先快速响应,后台补偿)
+    return RiskResult.success("校验通过");
+}
+
+// Sentinel熔断规则
+DegradeRule rule = new DegradeRule("checkUserIdentity")
+    .setGrade(CircuitBreakerStrategy.SLOW_REQUEST_RATIO.getType())
+    .setSlowRatioThreshold(0.5)  // 慢调用比例 > 50%
+    .setStatIntervalMs(10000)
+    .setSlowRequestDuration(500)  // 慢调用阈值500ms
+    .setTimeWindow(30);           // 熔断时长30秒
+```
+
+**方案二:异步化 + 回调通知(推荐)**
+```java
+// 原方案:同步调用风控接口(阻塞)
+@PostMapping("/prize/claim")
+public Result claimPrize(@RequestBody PrizeClaimRequest req) {
+    // 同步调用风控接口(阻塞1-2秒)
+    RiskResult riskResult = riskService.checkUserIdentity(req.getUserId());
+
+    if (!riskResult.isSuccess()) {
+        return Result.fail("风控校验失败");
+    }
+
+    // 发放奖品
+    prizeService.deliverPrize(req.getUserId(), req.getPrizeId());
+
+    return Result.success("领奖成功");
+}
+
+// 优化方案:异步调用 + 回调通知
+@PostMapping("/prize/claim")
+public Result claimPrize(@RequestBody PrizeClaimRequest req) {
+    String claimId = UUID.randomUUID().toString();
+    req.setClaimId(claimId);
+
+    // 异步调用风控接口(不阻塞)
+    CompletableFuture.supplyAsync(() -> {
+        return riskService.checkUserIdentity(req.getUserId());
+    }, asyncExecutor).thenAccept(riskResult -> {
+        if (riskResult.isSuccess()) {
+            // 风控通过,发放奖品
+            prizeService.deliverPrize(req.getUserId(), req.getPrizeId());
+        } else {
+            // 风控失败,记录日志
+            log.warn("风控校验失败: userId={}, reason={}", req.getUserId(), riskResult.getMsg());
+        }
+    });
+
+    // 快速响应(不等待风控结果)
+    return Result.success("领奖请求已提交,请稍后查看结果");
+}
+```
+
+**方案三:增加Tomcat线程池配置**
+```yaml
+# application.yml
+server:
+  tomcat:
+    threads:
+      max: 500        # 从200增至500
+      min-spare: 50   # 最小空闲线程数
+    accept-count: 200  # 等待队列长度
+    max-connections: 10000  # 最大连接数
+```
+
+**优化效果**:
+- 领奖接口P999 RT从3-5秒降至300ms
+- Tomcat线程池利用率从100%降至60%
+- 第三方接口故障时自动降级,不影响用户操作
+- 支持300 TPS稳定运行
+
+---
+
+#### (五)瓶颈五:GC频繁停顿导致接口RT毛刺
+
+**问题现象**:
+- 压测600 TPS时,接口P99 RT合格(450ms),但P999 RT出现周期性毛刺(飙升至1-2秒)
+- 通过Grafana监控发现GC频率异常(Young GC每秒10+次,Full GC每分钟2-3次)
+- JVM监控显示堆内存使用率在70%-90%之间剧烈波动
+- 应用日志出现 `GC pause` 警告,单次STW时间达到200-500ms
+
+**根因分析**:
+- **业务场景**:抽奖接口频繁创建大对象(奖品配置JSON、中奖记录对象)
+- **GC瓶颈**:
+  - 堆内存配置偏小(2GB),高并发下对象创建速率过快
+  - 大对象直接进入老年代,加速Full GC
+  - Young GC频繁,单次STW时间虽短但累积影响大
+  - Full GC时STW时间过长(200-500ms),导致请求排队
+
+**排查手段**:
+```bash
+# 1. 查看GC日志
+jstat -gcutil <pid> 1000 10
+
+# 输出:
+#   S0     S1     E      O      M     CCS    YGC     YGCT    FGC    FGCT
+#  15.23  0.00  89.45  75.32  95.12  90.34   1250   12.500     5    2.345
+
+# 2. 分析GC日志(使用GCViewer)
+# 发现Full GC平均耗时300ms,Young GC平均耗时15ms
+
+# 3. 查看堆内存分布
+jmap -histo <pid> | head -20
+
+# 发现大对象:
+#  num     #instances         #bytes  class name
+#  ----------------------------------------------
+#    1:           5000        50000000  com.xxx.prize.PrizeConfig
+#    2:         100000        20000000  com.xxx.prize.PrizeRecord
+```
+
+**优化方案**:
+
+**方案一:调整堆内存大小**
+```bash
+# 原配置
+-Xms2g -Xmx2g -XX:+UseG1GC
+
+# 优化配置(增加堆内存)
+-Xms4g -Xmx4g -XX:+UseG1GC \
+-XX:MaxGCPauseMillis=200 \        # 目标GC停顿时间200ms
+-XX:G1HeapRegionSize=16m \         # G1区域大小
+-XX:InitiatingHeapOccupancyPercent=45  # 触发并发GC的堆占用阈值
+```
+
+**方案二:优化对象创建——复用大对象**
+```java
+// 原方案:每次请求创建新的奖品配置对象(浪费内存)
+public PrizeConfig getPrizeConfig(Long prizeId) {
+    String json = redisTemplate.opsForValue().get("prize:config:" + prizeId);
+    return JSON.parseObject(json, PrizeConfig.class);  // 每次创建新对象
+}
+
+// 优化方案:使用对象池复用
+private ObjectPool<PrizeConfig> configPool = new GenericObjectPool<>(new PrizeConfigFactory());
+
+public PrizeConfig getPrizeConfig(Long prizeId) {
+    PrizeConfig config = configPool.borrowObject();
+    try {
+        String json = redisTemplate.opsForValue().get("prize:config:" + prizeId);
+        config.parseFromJson(json);  // 复用对象
+        return config;
+    } finally {
+        configPool.returnObject(config);
+    }
+}
+```
+
+**方案三:减少大对象——使用本地缓存**
+```java
+// 使用Caffeine本地缓存热点奖品配置(减少Redis序列化和对象创建)
+private Cache<Long, PrizeConfig> prizeCache = Caffeine.newBuilder()
+    .maximumSize(100)
+    .expireAfterWrite(10, TimeUnit.MINUTES)
+    .build();
+
+public PrizeConfig getPrizeConfig(Long prizeId) {
+    return prizeCache.get(prizeId, key -> {
+        String json = redisTemplate.opsForValue().get("prize:config:" + key);
+        return JSON.parseObject(json, PrizeConfig.class);
+    });
+}
+```
+
+**优化效果**:
+- Full GC频率从每分钟2-3次降至每10分钟<1次
+- Young GC频率从每秒10+次降至每秒<5次
+- 单次GC停顿时间从200-500ms降至50-100ms
+- 接口P999 RT从1-2秒降至600ms
+
+---
+
+#### (六)瓶颈六:读写分离下的主从延迟导致数据不一致
+
+**问题现象**:
+- 用户刚完成任务后立即抽奖,提示"抽奖次数不足"
+- 压测400 TPS时,数据不一致问题频发,用户投诉量增加
+- 监控显示主从复制延迟(Slave_lag)达到500ms-2秒
+- 读请求命中从库时,读取到旧数据(抽奖次数未更新)
+
+**根因分析**:
+- **业务场景**:任务完成后更新用户抽奖次数(主库写入),抽奖时查询抽奖次数(从库读取)
+- **主从延迟问题**:
+  - 主库写入后,数据异步复制到从库,存在延迟
+  - 高并发写入时,从库复制延迟加剧(500ms-2秒)
+  - 用户完成任务后立即抽奖,查询从库时数据尚未同步
+- **影响范围**:
+  - 用户投诉"明明完成任务了却无法抽奖"
+  - 数据一致性问题影响用户体验
+
+**排查手段**:
+```bash
+# 1. 查看主从复制延迟
+# MySQL从库执行:
+SHOW SLAVE STATUS;
+
+# 输出关键字段:
+# Seconds_Behind_Master: 1.5  (延迟1.5秒)
+
+# 2. 监控主从延迟趋势
+# 使用Prometheus + MySQL Exporter监控
+mysql_global_status_slave_lag_seconds{instance="slave1"} 1.5
+```
+
+**优化方案**:
+
+**方案一:关键读操作走主库**
+```java
+// 原方案:所有读操作走从库(数据不一致)
+@Transactional(readOnly = true)
+public Integer getLotteryChance(String userId) {
+    return userLotteryDao.selectByUserId(userId);  // 走从库
+}
+
+// 优化方案:关键读操作走主库
+@Transactional(readOnly = true)
+public Integer getLotteryChance(String userId) {
+    // 方案A:使用强制主库注解
+    return userLotteryDao.selectByUserIdForceMaster(userId);
+}
+
+// Dao层实现
+@Select("SELECT lottery_chance FROM user_lottery WHERE user_id = #{userId}")
+@DataSource(value = DataSourceType.MASTER)  // 强制走主库
+Integer selectByUserIdForceMaster(@Param("userId") String userId);
+```
+
+**方案二:写后读一致性保证**
+```java
+// 使用本地缓存记录刚写入的数据(1秒内读本地缓存)
+private Cache<String, Integer> recentUpdateCache = Caffeine.newBuilder()
+    .expireAfterWrite(1, TimeUnit.SECONDS)
+    .build();
+
+public void addLotteryChance(String userId, Integer chance) {
+    // 1. 更新主库
+    userLotteryDao.addChance(userId, chance);
+
+    // 2. 记录到本地缓存
+    recentUpdateCache.put(userId, getChanceFromDB(userId));
+}
+
+public Integer getLotteryChance(String userId) {
+    // 1. 先查本地缓存(写后1秒内)
+    Integer cached = recentUpdateCache.getIfPresent(userId);
+    if (cached != null) {
+        return cached;
+    }
+
+    // 2. 本地缓存未命中,查从库
+    return userLotteryDao.selectByUserId(userId);
+}
+```
+
+**方案三:延迟双删策略**
+```java
+// 更新抽奖次数时,同时删除Redis缓存
+public void addLotteryChance(String userId, Integer chance) {
+    // 1. 删除缓存
+    redisTemplate.delete("lottery_chance:" + userId);
+
+    // 2. 更新数据库
+    userLotteryDao.addChance(userId, chance);
+
+    // 3. 异步延迟删除缓存(确保从库同步完成后再删)
+    CompletableFuture.runAsync(() -> {
+        try {
+            Thread.sleep(1000);  // 等待1秒
+            redisTemplate.delete("lottery_chance:" + userId);
+        } catch (InterruptedException e) {
+            log.error("延迟删除缓存失败", e);
+        }
+    });
+}
+```
+
+**优化效果**:
+- 主从复制延迟从500ms-2秒降至100-300ms
+- 数据不一致问题减少90%
+- 用户投诉量降低80%
+- 支持400 TPS稳定运行
+
+---
+
+#### (七)瓶颈七:分布式锁竞争导致响应时间抖动
 
 **问题现象**:
 - 压测600 TPS时,P99 RT合格(480ms),但P999 RT飙升至3.5秒
 - Grafana监控显示抽奖接口RT出现明显毛刺
 - 日志中出现 `Redisson tryLock timeout` 警告
+- 通过Arthas发现大量线程在 `RedissonLock.tryLock` 处等待
 
 **根因分析**:
 - 抽奖扣库存使用 `Redisson.tryLock()`,高并发下大量线程在自旋等待锁释放
 - 锁持有时间过长(平均150ms),导致锁等待队列堆积
 - Redis单节点锁在600 TPS下成为瓶颈
+- 热点奖品(外卖券、会员)的锁竞争尤为激烈
 
 **优化方案**:
 
@@ -960,29 +1496,29 @@ String script = "local stock = redis.call('GET', KEYS[1]) " +
 Long result = redisTemplate.execute(new DefaultRedisScript<>(script, Long.class),
                                     Arrays.asList("prize_stock:" + prizeId));
 if (result == 1) {
-    // 扣减成功,异步写入DB
-    asyncStockDao.decrementStock(prizeId);
+    // 扣减成功,通过Kafka异步写入DB
+    kafkaTemplate.send("stock_deduct", new StockDeductMessage(prizeId));
 }
 ```
 
-**方案三:引入队列削峰**
+**方案三:引入Kafka队列削峰(推荐)**
 ```java
-// 高并发场景:抽奖请求先入队,异步处理
+// 高并发场景:抽奖请求先入Kafka队列,异步处理
 @RestController
 public class LotteryController {
     @Autowired
-    private RabbitMQProducer producer;
+    private KafkaTemplate<String, LotteryRequest> kafkaTemplate;
 
     @PostMapping("/lottery/draw")
     public Result draw(@RequestBody LotteryRequest req) {
-        // 快速入队响应
-        producer.send("lottery_queue", req);
+        // 快速入队响应(耗时<10ms)
+        kafkaTemplate.send("lottery_queue", req);
         return Result.success("抽奖请求已提交,请稍后查看结果");
     }
 }
 
 // 后台消费者批量处理
-@Consumer(queueName = "lottery_queue")
+@KafkaListener(topics = "lottery_queue", batch = "true")
 public void consume(List<LotteryRequest> requests) {
     // 批量扣减库存,减少锁竞争
     stockDao.batchDecrementStock(extractPrizeIds(requests));
@@ -992,421 +1528,12 @@ public void consume(List<LotteryRequest> requests) {
 **优化效果**:
 - P999 RT从3.5秒降至600ms
 - 锁等待超时错误从20%降至0
+- Redis锁竞争从热点变为分散
 - 支持TPS从600提升到850
 
 ---
 
-#### (四)瓶颈四:活动奖品配置大 Key 导致抽奖接口响应慢
-
-**问题现象**:
-- 压测"抽奖"环节时,接口 P95 RT 从 200ms 升至 1.2s
-- Redis 内存占用持续上涨,突破 80%
-- 通过 `redis-cli --bigkeys` 发现 Key `activity:prizes:2025` 大小约 1.5MB
-- 用 `redis-cli --stat` 观察到,每次抽奖查询该 Key 时,内网带宽出现 120Mbps 流量尖峰
-
-**根因分析**:
-- **业务场景**:活动有多个奖品(iPhone、现金红包、会员权益、积分等),每个奖品包含:
-  - 基础信息:名称、图片URL、描述、价值
-  - 库存信息:总库存、剩余库存、已发放数量
-  - 限制规则:每人限领次数、用户等级限制、地域限制
-  - 展示配置:排序权重、标签、活动时间
-- **错误设计**:开发将所有奖品的完整配置存成单个 String Key:
-  ```
-  Key: activity:prizes:2025
-  Value: {
-    "prizes": [
-      {"id":1,"name":"iPhone","img":"http://...","stock":100,"rules":{...}},
-      {"id":2,"name":"现金红包","img":"http://...","stock":5000,"rules":{...}},
-      ... // 共 20+ 个奖品,总计 1.5MB
-    ]
-  }
-  ```
-- **性能瓶颈**:
-  - 每次抽奖都查询 1.5MB 配置数据(实际只需读取库存字段)
-  - 单次 GET 操作耗时 150ms+(Redis 序列化 + 网络传输)
-  - 高并发下占用大量带宽和 CPU,导致 Redis 响应变慢
-  - 影响其他依赖 Redis 的接口(如用户信息查询)
-
-**排查手段**:
-```bash
-# 1. 使用 bigkeys 扫描大 Key
-redis-cli --bigkeys -i 0.1
-
-# 2. 实时监控网络流量(观察到流量尖峰)
-redis-cli --stat
-
-# 3. 查看大 Key 具体内容
-redis-cli --raw GET "activity:prizes:2025" | wc -c  # 查看字节数
-```
-
-**优化方案**:
-
-**方案一:数据结构重构——按奖品拆分 Key**
-```java
-// 原方案:所有奖品配置存成单个 String(错误)
-String key = "activity:prizes:2025";
-String allPrizesJson = redisTemplate.opsForValue().get(key); // 1.5MB
-
-// 优化方案:每个奖品独立 Key
-String key = "activity:prize:" + prizeId;
-Prize prize = (Prize) redisTemplate.opsForValue().get(key); // <10KB
-
-// 初始化时批量写入
-public void initPrizeCache() {
-    for (Prize prize : prizeList) {
-        String key = "activity:prize:" + prize.getId();
-        redisTemplate.opsForValue().set(key, prize, 7, TimeUnit.DAYS);
-    }
-}
-```
-
-**方案二:库存与配置分离——核心数据独立缓存**
-```java
-// 将高频访问的库存数据独立存储
-// Key 1: 库存信息(高频读写)
-String stockKey = "activity:prize:stock:" + prizeId;
-redisTemplate.opsForValue().set(stockKey, stock, 7, TimeUnit.DAYS);
-
-// Key 2: 配置信息(低频只读)
-String configKey = "activity:prize:config:" + prizeId;
-redisTemplate.opsForValue().set(configKey, config, 7, TimeUnit.DAYS);
-
-// 抽奖时只查询库存(几 KB)
-Integer stock = (Integer) redisTemplate.opsForValue().get(stockKey);
-```
-
-**方案三:本地缓存热点奖品配置**
-```java
-// 使用 Caffeine 缓存热点奖品配置(如 iPhone、现金红包)
-private Cache<Long, Prize> prizeCache = Caffeine.newBuilder()
-    .maximumSize(20) // 缓存热点奖品
-    .expireAfterWrite(10, TimeUnit.MINUTES)
-    .build();
-
-public Prize getPrize(Long prizeId) {
-    // 先查本地缓存
-    Prize prize = prizeCache.getIfPresent(prizeId);
-    if (prize != null) {
-        return prize;
-    }
-
-    // 本地未命中,查 Redis
-    String key = "activity:prize:" + prizeId;
-    prize = (Prize) redisTemplate.opsForValue().get(key);
-    if (prize != null) {
-        prizeCache.put(prizeId, prize);
-    }
-    return prize;
-}
-```
-
-**方案四:Redis Hash 结构——按字段拆分(适合部分更新场景)**
-```java
-// 使用 Hash 结构存储奖品信息,按字段拆分
-String key = "activity:prize:" + prizeId;
-redisTemplate.opsForHash().put(key, "name", "iPhone");
-redisTemplate.opsForHash().put(key, "stock", "100");
-redisTemplate.opsForHash().put(key, "config", configJson);
-
-// 只获取库存字段(HGET 传输量极小)
-Integer stock = (Integer) redisTemplate.opsForHash().get(key, "stock");
-```
-
-**优化效果**:
-- Redis 内存占用从 80% 降至稳定水位 45%
-- "抽奖"接口 P95 RT 从 1.2s 降至 180ms
-- 单次查询 Redis 数据量从 1.5MB 降至 <10KB
-- Redis 缓存命中率保持 95% 以上
-
-**面试对比分析：大 Key 问题 vs 缓存击穿**
-
-> **面试官可能追问**："你刚才说大 Key 导致性能问题，那和缓存击穿有什么区别？在实际项目中如何区分？"
-
-| 维度 | 大 Key 问题 | 缓存击穿（缓存未命中） |
-|:---|:---|:---|
-| **问题本质** | Redis Key 存在，但 Value 过大（1MB+） | Redis Key 不存在或失效，大量请求穿透到 DB |
-| **典型场景** | 将多个实体的完整信息存成单个 Key（如所有奖品配置） | 键名拼接错误、缓存过期、缓存被意外删除 |
-| **问题表现** | Redis 响应变慢、内存占用高、网络带宽打满 | 数据库 QPS 飙升、连接池耗尽、慢查询增多 |
-| **排查手段** | `redis-cli --bigkeys` 扫描大 Key<br>`redis-cli --stat` 观察网络流量尖峰 | 检查应用日志是否有缓存未命中日志<br>对比 Redis Key 和业务代码中的键名拼接逻辑 |
-| **根因定位** | 业务代码设计问题（将多个实体存成单个 Key） | 键名拼接逻辑错误（如奖品编码写错） |
-| **优化方案** | 数据结构重构（String 改 Hash/拆分 Key）<br>本地缓存热点数据 | 修复键名拼接逻辑<br>增加缓存预热<br>增加分布式锁防止并发重建 |
-
-**实际案例对比**：
-
-**案例一：大 Key 问题（本次压测）**
-```bash
-# 问题：所有奖品配置存成单个 Key，大小 1.5MB
-Key: activity:prizes:2025
-Value: {"prizes":[{...},{...}]} // 1.5MB
-
-# 排查：通过 bigkeys 发现
-$ redis-cli --bigkeys
-[found] "activity:prizes:2025" with 1572864 bytes
-
-# 优化：按奖品拆分 Key
-Key: activity:prize:1
-Value: {"name":"iPhone","stock":100} // <10KB
-```
-
-**案例二：缓存击穿（历史项目）**
-```bash
-# 问题：奖品编码拼接错误，导致缓存 Key 不存在
-业务代码：String key = "activity:prize:" + prizeCode; // prizeCode="iPhone15"
-实际缓存：activity:prize:iPhone-15-pro-max  // 缓存中是"iPhone-15-pro-max"
-
-# 排查：对比 Redis Key 和业务代码
-$ redis-cli KEYS "activity:prize:*"
-1) "activity:prize:iPhone-15-pro-max"
-2) "activity:prize:现金红包"
-
-# 应用日志显示：
-[WARN] Cache miss for key: activity:prize:iPhone15
-
-# 优化：修复键名拼接逻辑
-String key = "activity:prize:" + prizeCode.replace("-", ""); // 去掉横杠
-```
-
-**面试金句**：
-> "大 Key 和缓存击穿虽然都会导致性能问题，但根因和排查思路完全不同。大 Key 是'有缓存但太大'，缓存击穿是'没有缓存或缓存失效'。我在项目中先用 `redis-cli --bigkeys` 和 `--stat` 排除大 Key 问题，再检查应用日志和 Redis Key 列表定位缓存击穿。这两个问题都需要在代码 Review 阶段预防，而不是等压测才发现。"
-
----
-
-#### (五)瓶颈五:同步调用积分系统导致任务提交和抽奖接口超时
-
-**问题现象**:
-- 压测"做任务"环节时,任务提交接口 P999 RT 飙升至 2-4 秒
-- 压测"抽奖"环节时,抽奖接口 P999 RT 飙升至 3-5 秒
-- 压测到 400 TPS 时,Tomcat 线程池出现大量 BLOCKED 状态线程
-- 应用日志报错: `java.net.SocketTimeoutException: Read timed out`
-- 通过 Arthas 的 `trace` 命令发现,积分系统调用耗时 500ms-2s
-
-**根因分析**:
-- **业务场景**:
-  - **做任务**:用户完成任务后,需同步调用积分系统增加积分或发放抽奖次数
-  - **抽奖**:用户抽奖时,需同步调用积分系统扣减积分(如消耗积分抽奖)
-- **同步阻塞**:业务逻辑要求必须拿到积分系统响应才能继续,无法跳过
-- **性能瓶颈**:
-  - 积分系统是外部微服务,响应时间不可控(平均 500ms,高峰期可达 2s)
-  - 同步调用导致 Tomcat 线程长时间阻塞,并发能力受限
-  - 当积分系统故障或响应慢时,会拖垮整个活动系统
-  - 积分系统自身也可能因为活动高峰流量而压力过大
-
-**Arthas 排查过程**:
-```bash
-# 追踪任务提交接口的耗时分布
-trace com.xxx.activity.service.TaskService submitTask '#cost > 100' -n 5
-
-# 追踪抽奖接口的耗时分布
-trace com.xxx.activity.service.LotteryService drawLottery '#cost > 100' -n 5
-
-# 追踪积分系统调用链路
-trace com.xxx.point.service.PointService addPoint '#cost > 100' -n 5
-trace com.xxx.point.service.PointService deductPoint '#cost > 100' -n 5
-```
-
-**优化方案**:
-
-**方案一:引入超时控制与熔断降级(Sentinel,适合弱依赖场景)**
-```java
-// 使用 Sentinel 进行熔断降级
-@SentinelResource(
-    value = "addPoint",
-    fallback = "addPointFallback"
-)
-public PointResult addPoint(String userId, Integer points, String taskId) {
-    // 设置超时时间为 500ms
-    return pointServiceClient.addPoint(userId, points, taskId, 500, TimeUnit.MILLISECONDS);
-}
-
-// 熔断后降级逻辑:异步补偿
-public PointResult addPointFallback(String userId, Integer points, String taskId) {
-    // 记录到补偿表,定时任务重试
-    compensateDao.insert(new CompensateTask(userId, points, taskId, "ADD_POINT"));
-
-    // 返回成功(先快速响应,后台补偿)
-    return PointResult.success("积分将在 5 分钟内到账");
-}
-
-// Sentinel 熔断规则
-DegradeRule rule = new DegradeRule("addPoint")
-    .setGrade(CircuitBreakerStrategy.SLOW_REQUEST_RATIO.getType())
-    .setSlowRatioThreshold(0.5)  // 慢调用比例 > 50%
-    .setStatIntervalMs(10000)
-    .setSlowRequestDuration(500)  // 慢调用阈值 500ms
-    .setTimeWindow(10);           // 熔断时长 10 秒
-```
-
-**方案二:消息队列异步解耦(RabbitMQ,推荐)**
-```java
-// 做任务:快速入队
-@PostMapping("/task/complete")
-public Result completeTask(@RequestBody TaskRequest req) {
-    String taskId = UUID.randomUUID().toString();
-    req.setTaskId(taskId);
-
-    // 快速入队(耗时 <10ms)
-    rabbitTemplate.convertAndSend("task_exchange", "task.complete", req);
-
-    return Result.success("任务完成,积分将在 5 分钟内到账");
-}
-
-// 抽奖:快速入队
-@PostMapping("/lottery/draw")
-public Result drawLottery(@RequestBody LotteryRequest req) {
-    String lotteryId = UUID.randomUUID().toString();
-    req.setLotteryId(lotteryId);
-
-    // 快速入队(耗时 <10ms)
-    rabbitTemplate.convertAndSend("lottery_exchange", "lottery.draw", req);
-
-    return Result.success("抽奖请求已提交,请稍后查看结果");
-}
-
-// 消费者:异步调用积分系统
-@RabbitListener(queues = "task_complete_queue")
-public void consumeTaskComplete(TaskRequest req) {
-    String userId = req.getUserId();
-    Integer points = req.getPoints();
-    String taskId = req.getTaskId();
-
-    try {
-        // 调用积分系统(可设置更长超时,不阻塞主流程)
-        PointResult result = pointServiceClient.addPoint(userId, points, taskId);
-
-        if (result.isSuccess()) {
-            // 发放抽奖次数
-            lotteryService.addLotteryChance(userId, taskId);
-            log.info("积分发放成功: userId={}, points={}", userId, points);
-        } else {
-            log.warn("积分发放失败: userId={}, reason={}", userId, result.getMsg());
-        }
-    } catch (Exception e) {
-        log.error("积分系统异常: userId={}", userId, e);
-        // 发送到死信队列,人工介入或重试
-        rabbitTemplate.convertAndSend("task_dlx_exchange", "task.failed", req);
-    }
-}
-```
-
-**方案三:本地积分预扣 + 异步同步(适合强依赖场景)**
-```java
-// 抽奖时:本地预扣积分,异步同步到积分系统
-@Transactional
-public LotteryResult drawLottery(String userId, Long prizeId) {
-    // 1. 本地预扣积分(快速)
-    UserPoint userPoint = userPointDao.selectByUserId(userId);
-    if (userPoint.getPoints() < 10) {
-        throw new BusinessException("积分不足");
-    }
-    userPoint.setPoints(userPoint.getPoints() - 10);
-    userPointDao.updateById(userPoint);
-
-    // 2. 执行抽奖逻辑
-    Prize prize = lotteryEngine.draw(prizeId);
-
-    // 3. 异步同步到积分系统
-    CompletableFuture.runAsync(() -> {
-        pointServiceClient.deductPoint(userId, 10, "抽奖消费");
-    }, asyncExecutor);
-
-    return LotteryResult.success(prize);
-}
-```
-
-**方案四:积分系统接口优化(服务端优化)**
-```java
-// 积分系统侧:批量接口提升吞吐量
-@PostMapping("/point/batchAdd")
-public BatchResult batchAddPoint(@RequestBody List<PointRequest> requests) {
-    // 批量插入数据库,减少 IO 次数
-    List<PointRecord> records = requests.stream()
-        .map(req -> new PointRecord(req.getUserId(), req.getPoints(), req.getTaskId()))
-        .collect(Collectors.toList());
-    pointRecordDao.batchInsert(records);
-
-    // 批量更新用户积分(使用 CASE WHEN 批量更新)
-    userPointDao.batchAddPoints(records);
-
-    return BatchResult.success(requests.size());
-}
-
-// 活动侧:定时批量调用积分系统
-@Scheduled(fixedRate = 5000) // 每 5 秒批量同步一次
-public void batchSyncPoints() {
-    // 从本地缓冲区取出待同步的积分变更
-    List<PointRequest> pendingPoints = pointBuffer.drain(100);
-
-    if (!pendingPoints.isEmpty()) {
-        // 批量调用积分系统
-        pointServiceClient.batchAddPoint(pendingPoints);
-    }
-}
-```
-
-**优化效果**:
-- "任务提交"接口 P99 RT 从 2s 降至 150ms
-- "抽奖"接口 P99 RT 从 3s 降至 180ms
-- 积分系统故障时自动降级,不影响用户操作
-- 系统并发能力提升约 50%(从 400 TPS 提升至 850 TPS)
-- 实现了业务解耦,积分系统可独立扩容
-
-**补充:如何保证最终一致性?**
-```java
-// 消费者端增加幂等性校验
-@RabbitListener(queues = "task_complete_queue")
-public void consumeTaskComplete(TaskRequest req) {
-    String taskId = req.getTaskId();
-
-    // 幂等性校验:检查是否已处理过该任务
-    String lockKey = "task:lock:" + taskId;
-    boolean locked = redisTemplate.opsForValue().setIfAbsent(lockKey, "1", 5, TimeUnit.MINUTES);
-    if (!locked) {
-        log.warn("任务已处理,跳过: taskId={}", taskId);
-        return;
-    }
-
-    // 执行业务逻辑...
-}
-
-// 增加补偿机制:定时任务扫描未完成任务
-@Scheduled(fixedRate = 300000) // 每 5 分钟执行一次
-public void checkUnfinishedTasks() {
-    List<Task> unfinishedTasks = taskDao.selectUnfinishedTasks();
-    for (Task task : unfinishedTasks) {
-        // 重新发送到队列
-        rabbitTemplate.convertAndSend("task_exchange", "task.complete", task);
-    }
-}
-
-// 积分系统侧:增加分布式锁防止重复扣减
-public PointResult addPoint(String userId, Integer points, String taskId) {
-    String lockKey = "point:lock:" + taskId;
-    RLock lock = redissonClient.getLock(lockKey);
-
-    try {
-        if (lock.tryLock(5, 10, TimeUnit.SECONDS)) {
-            // 再次检查是否已处理(双重检查)
-            PointRecord record = pointRecordDao.selectByTaskId(taskId);
-            if (record != null) {
-                return PointResult.success("已处理");
-            }
-
-            // 执行积分增加逻辑
-            userPointDao.addPoint(userId, points);
-            pointRecordDao.insert(new PointRecord(userId, points, taskId));
-
-            return PointResult.success();
-        }
-    } finally {
-        lock.unlock();
-    }
-    return PointResult.fail("获取锁失败");
-}
-```
-
----
-
-#### (六)其他优化措施
+#### (八)其他优化措施
 
 | 优化项 | 具体措施 | 效果 |
 |:---|:---|:---|
@@ -1418,7 +1545,7 @@ public PointResult addPoint(String userId, Integer points, String taskId) {
 ---
 
 **面试金句**:
-> "压测最大的价值不是得出一个数字,而是发现瓶颈并验证优化效果。我们这次压测从500 TPS提升到850 TPS,过程中解决了数据库连接池耗尽、热点奖品缓存穿透、分布式锁竞争、活动奖品配置大 Key、同步调用积分系统超时五个关键瓶颈,每个瓶颈的优化都是基于真实数据分析和根因定位,而不是盲目调参。"
+> "压测最大的价值不是得出一个数字,而是发现瓶颈并验证优化效果。我们这次压测从500 TPS提升到850 TPS,过程中解决了热点奖品大Key+Redis内存逐出导致RT抖动、数据库连接池耗尽与长事务、Kafka消息积压、领奖接口同步阻塞(第三方风控接口)、GC频繁停顿、读写分离下的主从延迟、分布式锁竞争七个关键瓶颈。每个瓶颈的优化都是基于真实数据分析和根因定位,贴合业务场景(热点奖品如外卖券、会员),而不是盲目调参或开发低级缺陷。"
 
 
 ## 六、压测通过标准建议

@@ -3,6 +3,9 @@ git操作前先配置ssh公钥
 
 ## 📌 常用命令
 
+- `git fetch` 只拉代码，不自动合并。
+- `git pull` 拉代码并自动合并，相当于`git fetch && git merge`。
+
 ```shell
 # 设置提交人和邮箱信息  
 git config --global user.name "Jork_S_B"  
