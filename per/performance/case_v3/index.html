@@ -6,7 +6,7 @@
 <meta content="whm" name="author"/>
 <link href="../../../assets/images/favicon.png" rel="icon"/>
 <meta content="mkdocs-1.6.1, mkdocs-material-9.7.7" name="generator"/>
-<title>营销活动压测面试案例 —— 移动云盘会员日活动 - whm</title>
+<title>营销活动压测面试案例 —— 云盘会员日活动 - whm</title>
 <link href="../../../assets/stylesheets/main.ec1eaa64.min.css" rel="stylesheet"/>
 <link href="../../../assets/stylesheets/palette.ab4e12ef.min.css" rel="stylesheet"/>
 <link href="../../../stylesheets/extra.css" rel="stylesheet"/>
@@ -51,7 +51,7 @@
 <div class="md-header__topic" data-md-component="header-topic">
 <span class="md-ellipsis">
             
-              营销活动压测面试案例 —— 移动云盘会员日活动
+              营销活动压测面试案例 —— 云盘会员日活动
             
           </span>
 </div>
@@ -3442,7 +3442,7 @@
 <a class="md-nav__link" href="#_3">
 <span class="md-ellipsis">
       
-        活动核心数据及术语说明
+        关键特征
       
     </span>
 </a>
@@ -3451,7 +3451,7 @@
 <a class="md-nav__link" href="#_4">
 <span class="md-ellipsis">
       
-        关键特征
+        活动核心数据及术语说明
       
     </span>
 </a>
@@ -3757,19 +3757,20 @@
 <nav aria-label="Q4:压测有没有遇到什么瓶颈,做了什么优化?" class="md-nav">
 <ul class="md-nav__list">
 <li class="md-nav__item">
-<a class="md-nav__link" href="#_10">
+<a class="md-nav__link" href="#key">
 <span class="md-ellipsis">
       
-        (一)瓶颈一:数据库连接池耗尽
+        大Key
       
     </span>
 </a>
-</li>
+<nav aria-label="大Key" class="md-nav">
+<ul class="md-nav__list">
 <li class="md-nav__item">
-<a class="md-nav__link" href="#db">
+<a class="md-nav__link" href="#_10">
 <span class="md-ellipsis">
       
-        (二)瓶颈二:热点奖品缓存穿透导致DB压力激增
+        现象
       
     </span>
 </a>
@@ -3778,16 +3779,7 @@
 <a class="md-nav__link" href="#_11">
 <span class="md-ellipsis">
       
-        (三)瓶颈三:分布式锁竞争导致响应时间抖动
-      
-    </span>
-</a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#key">
-<span class="md-ellipsis">
-      
-        (四)瓶颈四:活动奖品配置大 Key 导致抽奖接口响应慢
+        排查
       
     </span>
 </a>
@@ -3796,7 +3788,7 @@
 <a class="md-nav__link" href="#_12">
 <span class="md-ellipsis">
       
-        (五)瓶颈五:同步调用积分系统导致任务提交和抽奖接口超时
+        根因
       
     </span>
 </a>
@@ -3805,10 +3797,13 @@
 <a class="md-nav__link" href="#_13">
 <span class="md-ellipsis">
       
-        (六)其他优化措施
+        优化
       
     </span>
 </a>
+</li>
+</ul>
+</nav>
 </li>
 </ul>
 </nav>
@@ -3832,21 +3827,23 @@
 </div>
 <div class="md-content" data-md-component="content">
 <article class="md-content__inner md-typeset">
-<h1 id="_1">营销活动压测面试案例 —— 移动云盘会员日活动</h1>
+<h1 id="_1">营销活动压测面试案例 —— 云盘会员日活动</h1>
 <h2 id="_2">一、案例背景</h2>
-<p>某运营商开展“全网移动云盘会员日”营销活动，活动规则如下：</p>
+<p>某运营商开展“全网云盘会员日”营销活动，活动规则如下：</p>
 <ul>
-<li><strong>活动时间</strong>：2025-07-15 至 2027-07-15（长期活动）</li>
-<li><strong>核心玩法</strong>：会员日开启当天，用户可通过完成<strong>拉新、拉活、AI工具试用</strong>等任务获取抽奖次数或积分，用于抽奖或兑换奖品</li>
-<li><strong>约束条件</strong>：奖品设有<strong>库存限制</strong></li>
-<li><strong>数据统计周期</strong>：当天</li>
+<li>活动时间：长期运营活动</li>
+<li>核心玩法：每月根据会员等级给基础积分；会员日开启当天，用户可通过完成拉新、拉活、AI工具试用等任务获取积分，用于抽奖或兑换奖品。</li>
+<li>约束条件：奖品设有库存限制，手动领奖时扣减库存</li>
+<li>数据统计周期：当天</li>
 </ul>
-<h3 id="_3">活动核心数据及术语说明</h3>
-<blockquote>
-<p><strong>术语说明</strong>：</p>
-</blockquote>
-<p><strong>PV（Page View，页面浏览量）</strong> 指活动页面被打开/刷新的总次数（用户每刷新一次即累计一次），反映页面被请求的总量；</p>
-<p><strong>UV（Unique Visitor，独立访客）</strong> 指访问页面的去重设备/用户数（同一用户多次访问仅计一次），用于衡量真实的用户覆盖规模。两者结合可计算人均浏览深度（PV/UV）及分析活动吸引力。</p>
+<h3 id="_3">关键特征</h3>
+<ul>
+<li>仅在当天倒计时结束时开放抽奖。</li>
+<li>任务包括：拉新/拉活/指定活动停留浏览几秒/AI工具（如文生图）试用，跳转到对应活动h5，满足条件后（通过http回调）获得抽奖次数。</li>
+<li>奖品包括：云盘白银会员、联合会员、打车券、外卖券、现金红包（热点奖品）。</li>
+</ul>
+<h3 id="_4">活动核心数据及术语说明</h3>
+<p>基于前端埋点获取到，压测计划时上一期的活动数据</p>
 <table>
 <thead>
 <tr>
@@ -3893,69 +3890,66 @@
 </tr>
 </tbody>
 </table>
-<h3 id="_4">关键特征</h3>
+<p>术语说明：</p>
 <ul>
-<li>任务<strong>仅在每月会员日开启当天可做</strong></li>
-<li>任务包括：拉新/拉活/指定活动停留浏览几秒/AI工具（如文生图）试用，跳转到对应活动h5，满足条件后获得抽奖次数。</li>
-<li><strong>AI 工具试用流程</strong>：用户跳转到 AI 服务 H5 页面 → 完成试用 → AI 服务通过http回调通知活动系统 → 活动系统轮询检查任务状态 → 发放抽奖次数（非同步调用,不会成为性能瓶颈）</li>
-<li>流量时间分布高度偏斜（开启瞬间突增）</li>
-<li>核心写接口集中在活动开启首日</li>
+<li>PV（Page View，页面浏览量） 指活动页面被打开/刷新的总次数（用户每刷新一次即累计一次），反映页面被请求的总量；</li>
+<li>UV（Unique Visitor，独立访客） 指访问页面的去重设备/用户数（同一用户多次访问仅计一次），用于衡量真实的用户覆盖规模。</li>
 </ul>
+<p>两者结合可计算人均浏览深度（PV/UV）及分析活动吸引力。</p>
 <h2 id="_5">二、技术风险分析</h2>
-<p>基于活动特性，识别以下六大风险：</p>
+<p>基于活动特性，从测试工程师角度，识别以下技术风险：</p>
 <table>
 <thead>
 <tr>
 <th style="text-align: left;">序号</th>
 <th style="text-align: left;">风险点</th>
-<th style="text-align: left;">风险描述</th>
+<th style="text-align: left;">测试要点</th>
 <th style="text-align: left;">严重等级</th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td style="text-align: left;">1</td>
-<td style="text-align: left;"><strong>库存超卖/负数</strong></td>
-<td style="text-align: left;">使用"查库存→扣减"非原子操作，或缓存与DB不一致，导致奖品超发</td>
-<td style="text-align: left;">⭐⭐⭐⭐⭐</td>
+<td style="text-align: left;">中奖奖品被重复领取</td>
+<td style="text-align: left;">检查幂等、高并发（针对奖品库存）、领奖记录最终一致性</td>
+<td style="text-align: left;">L0</td>
 </tr>
 <tr>
 <td style="text-align: left;">2</td>
-<td style="text-align: left;"><strong>重复领取/幂等性</strong></td>
-<td style="text-align: left;">网络超时导致用户重试，后端未做幂等校验，同一任务多次发放积分/奖品</td>
-<td style="text-align: left;">⭐⭐⭐⭐</td>
+<td style="text-align: left;">倒计时结束瞬时高发流量</td>
+<td style="text-align: left;">检查瞬时高并发时系统表现是否达标</td>
+<td style="text-align: left;">L1</td>
 </tr>
 <tr>
 <td style="text-align: left;">3</td>
-<td style="text-align: left;"><strong>外部依赖故障</strong></td>
-<td style="text-align: left;">外部依赖响应超时（&gt;3s），占满Tomcat线程池，导致级联故障</td>
-<td style="text-align: left;">⭐⭐⭐⭐</td>
+<td style="text-align: left;">缓存击穿/雪崩</td>
+<td style="text-align: left;">检查热点奖品Key的缓存压测时不失效，防止大量请求直接打到数据库</td>
+<td style="text-align: left;">L1</td>
 </tr>
 <tr>
 <td style="text-align: left;">4</td>
-<td style="text-align: left;"><strong>缓存击穿/雪崩</strong></td>
-<td style="text-align: left;">热点奖品Key在Redis中失效，大量请求直接打到数据库</td>
-<td style="text-align: left;">⭐⭐⭐</td>
+<td style="text-align: left;">兜底策略</td>
+<td style="text-align: left;">检查存在服务降级、熔断、限流等</td>
+<td style="text-align: left;">L2</td>
 </tr>
 <tr>
 <td style="text-align: left;">5</td>
-<td style="text-align: left;"><strong>数据库行锁竞争</strong></td>
-<td style="text-align: left;">更新用户积分时无索引或锁等待超时，高并发下死锁率上升</td>
-<td style="text-align: left;">⭐⭐⭐</td>
-</tr>
-<tr>
-<td style="text-align: left;">6</td>
-<td style="text-align: left;"><strong>日志/监控被冲垮</strong></td>
-<td style="text-align: left;">500 TPS下每个请求打印大量日志，撑爆磁盘IO和ES索引队列</td>
-<td style="text-align: left;">⭐⭐</td>
+<td style="text-align: left;">消息队列积压</td>
+<td style="text-align: left;">模拟高并发下消息队列积压，检查有预警和扩容机制</td>
+<td style="text-align: left;">L2</td>
 </tr>
 </tbody>
 </table>
+<p>基于压测常见瓶颈，增加测试要点</p>
+<ol>
+<li>维持30分钟高并发压测，检查是否内存泄露出现<code>OutOfMemory</code>(OOM)；或者压测结束后，CPU使用率锯齿状且一直未下降，需要检查是否GC频繁、死循环、激烈锁竞争；结合arthas排查高cpu线程。</li>
+<li>韧性测试，故障注入模拟服务故障的降级、兜底处理。</li>
+</ol>
 <h2 id="_6">三、压测关键指标获取与计算</h2>
 <p>数据来源以APM（SkyWalking）埋点日志为主</p>
 <h4 id="1">1. 数据来源及业务配比计算</h4>
-<p>遵循 <strong>"历史基线 + 业务预期 + 漏斗转化"</strong> 三层校准。</p>
-<p><strong>数据来源权重建议</strong>：</p>
+<p>遵循 "历史基线 + 业务预期 + 漏斗转化" 三层校准。</p>
+<p>数据来源权重建议：</p>
 <table>
 <thead>
 <tr>
@@ -3966,23 +3960,23 @@
 </thead>
 <tbody>
 <tr>
-<td style="text-align: left;"><strong>APM 埋点日志</strong></td>
+<td style="text-align: left;">APM 埋点日志</td>
 <td style="text-align: left;">50-60%</td>
 <td style="text-align: left;">最精准，含实时调用量、RT、错误率</td>
 </tr>
 <tr>
-<td style="text-align: left;"><strong>数据侧预测增长</strong></td>
+<td style="text-align: left;">数据侧预测增长</td>
 <td style="text-align: left;">20-30%</td>
 <td style="text-align: left;">业务侧对营销力度、用户增长有预判</td>
 </tr>
 <tr>
-<td style="text-align: left;"><strong>漏斗转化衰减</strong></td>
+<td style="text-align: left;">漏斗转化衰减</td>
 <td style="text-align: left;">10-20%</td>
 <td style="text-align: left;">修正压测脚本，确保符合业务逻辑</td>
 </tr>
 </tbody>
 </table>
-<p><strong>团队协作职责边界</strong>：</p>
+<p>团队协作职责边界：</p>
 <table>
 <thead>
 <tr>
@@ -3994,22 +3988,22 @@
 <tbody>
 <tr>
 <td style="text-align: left;">SkyWalking 探针部署</td>
-<td style="text-align: left;"><strong>开发/运维</strong></td>
+<td style="text-align: left;">开发/运维</td>
 <td style="text-align: left;">提醒运维压测期间临时关闭或过滤探针，避免污染线上监控</td>
 </tr>
 <tr>
 <td style="text-align: left;">SkyWalking 数据提取</td>
-<td style="text-align: left;"><strong>测试人员（自行动手）</strong></td>
+<td style="text-align: left;">测试人员（自行动手）</td>
 <td style="text-align: left;">登录 Dashboard 按接口维度导出调用量 CSV</td>
 </tr>
 <tr>
 <td style="text-align: left;">业务转化率（中奖率等）</td>
-<td style="text-align: left;"><strong>数据侧（BI/DBA）</strong></td>
+<td style="text-align: left;">数据侧（BI/DBA）</td>
 <td style="text-align: left;">主动提出统计口径（如按小时粒度），拿到数据后校准压测脚本</td>
 </tr>
 <tr>
 <td style="text-align: left;">Nginx 原始日志捞取</td>
-<td style="text-align: left;"><strong>运维/基础架构组</strong></td>
+<td style="text-align: left;">运维/基础架构组</td>
 <td style="text-align: left;">掌握 Shell（awk/grep）自行分析，不依赖运维代劳</td>
 </tr>
 </tbody>
@@ -4026,34 +4020,34 @@
 </thead>
 <tbody>
 <tr>
-<td style="text-align: left;"><strong>CPM</strong></td>
+<td style="text-align: left;">CPM</td>
 <td style="text-align: left;">Calls Per Minute（每分钟调用数）</td>
 <td style="text-align: left;">Dashboard → Service/Endpoint → CPM 折线图</td>
 </tr>
 <tr>
-<td style="text-align: left;"><strong>响应时间</strong></td>
+<td style="text-align: left;">响应时间</td>
 <td style="text-align: left;">P50/P75/P90/P95/P99 RT</td>
 <td style="text-align: left;">Dashboard → Response Time 折线图</td>
 </tr>
 <tr>
-<td style="text-align: left;"><strong>错误率</strong></td>
+<td style="text-align: left;">错误率</td>
 <td style="text-align: left;">Error Rate %</td>
 <td style="text-align: left;">Dashboard → Error 折线图</td>
 </tr>
 <tr>
-<td style="text-align: left;"><strong>SLA</strong></td>
+<td style="text-align: left;">SLA</td>
 <td style="text-align: left;">成功率 %</td>
 <td style="text-align: left;">Dashboard → SLA 折线图</td>
 </tr>
 </tbody>
 </table>
 <h4 id="_7">数据提取步骤</h4>
-<p><strong>步骤一：定位高峰时段</strong>
+<p>步骤一：定位高峰时段
 </p><div class="highlight"><pre><span></span><code>1. Dashboard → Service Dashboard
 2. 时间选活动当天全天
 3. CPM 折线图峰值 → 鼠标悬停看具体时间（如 10:05）
 </code></pre></div><p></p>
-<p><strong>步骤二：放大高峰时段获取接口级数据</strong>
+<p>步骤二：放大高峰时段获取接口级数据
 </p><div class="highlight"><pre><span></span><code>1. 时间范围改为高峰时段（如 10:00-10:15）
 2. Service → Endpoint List
 3. 点击 Export → CSV（含各接口 CPM、P99 RT）
@@ -4069,23 +4063,23 @@
 </thead>
 <tbody>
 <tr>
-<td style="text-align: left;"><strong>QPS</strong></td>
+<td style="text-align: left;">QPS</td>
 <td style="text-align: left;">CPM ÷ 60</td>
 <td style="text-align: left;">读接口（GET）每秒查询数</td>
 </tr>
 <tr>
-<td style="text-align: left;"><strong>TPS</strong></td>
+<td style="text-align: left;">TPS</td>
 <td style="text-align: left;">CPM ÷ 60</td>
 <td style="text-align: left;">写接口（POST/PUT/DELETE）每秒事务数</td>
 </tr>
 <tr>
-<td style="text-align: left;"><strong>并发数</strong></td>
+<td style="text-align: left;">并发数</td>
 <td style="text-align: left;">QPS × 平均响应时间（秒）</td>
 <td style="text-align: left;">Little 定律：并发 = QPS × RT</td>
 </tr>
 </tbody>
 </table>
-<p><strong>计算示例（高峰时段 10:00-10:10）</strong>：</p>
+<p>计算示例（高峰时段 10:00-10:10）：</p>
 <table>
 <thead>
 <tr>
@@ -4119,11 +4113,11 @@
 <td style="text-align: left;">500×0.2 = 100</td>
 </tr>
 <tr>
-<td style="text-align: left;"><strong>合计</strong></td>
+<td style="text-align: left;">合计</td>
 <td style="text-align: left;">-</td>
 <td style="text-align: left;">-</td>
-<td style="text-align: left;"><strong>900</strong></td>
-<td style="text-align: left;"><strong>175</strong></td>
+<td style="text-align: left;">900</td>
+<td style="text-align: left;">175</td>
 </tr>
 </tbody>
 </table>
@@ -4139,7 +4133,7 @@
 - 实际达标TPS：850</p>
 <h2 id="jmeter">四、JMeter 压测方案设计</h2>
 <h3 id="41">4.1 策略总览</h3>
-<p>采用 <strong>"梯度增压 + 混合场景"</strong> 策略，模拟真实用户路径：登录 → 做任务 → 抽奖。</p>
+<p>采用 "梯度增压 + 混合场景" 策略，模拟真实用户路径：登录 → 做任务 → 抽奖。</p>
 <h3 id="42">4.2 关键元件清单</h3>
 <h4 id="1thread-group">（1）线程组（Thread Group）</h4>
 <table>
@@ -4363,7 +4357,7 @@
 └── tearDown Thread Group（清理线程组）
     └── Debug Sampler（输出测试结果摘要）
 </code></pre></div>
-<p><strong>关键节点说明</strong>：</p>
+<p>关键节点说明：</p>
 <table>
 <thead>
 <tr>
@@ -4374,43 +4368,43 @@
 </thead>
 <tbody>
 <tr>
-<td style="text-align: left;"><strong>Test Plan</strong></td>
+<td style="text-align: left;">Test Plan</td>
 <td style="text-align: left;">测试计划根节点</td>
 <td style="text-align: left;">定义全局配置（用户变量、类路径）</td>
 </tr>
 <tr>
-<td style="text-align: left;"><strong>Thread Group</strong></td>
+<td style="text-align: left;">Thread Group</td>
 <td style="text-align: left;">并发控制核心</td>
 <td style="text-align: left;">梯度增压：100→300→500→700→1000 TPS</td>
 </tr>
 <tr>
-<td style="text-align: left;"><strong>Throughput Controller</strong></td>
+<td style="text-align: left;">Throughput Controller</td>
 <td style="text-align: left;">流量分配</td>
 <td style="text-align: left;">按业务配比控制场景权重</td>
 </tr>
 <tr>
-<td style="text-align: left;"><strong>If Controller</strong></td>
+<td style="text-align: left;">If Controller</td>
 <td style="text-align: left;">动态路由</td>
 <td style="text-align: left;">根据参数路由到不同任务类型</td>
 </tr>
 <tr>
-<td style="text-align: left;"><strong>PreProcessor</strong></td>
+<td style="text-align: left;">PreProcessor</td>
 <td style="text-align: left;">前置处理</td>
 <td style="text-align: left;">生成幂等 Token、签名等</td>
 </tr>
 <tr>
-<td style="text-align: left;"><strong>PostProcessor</strong></td>
+<td style="text-align: left;">PostProcessor</td>
 <td style="text-align: left;">后置处理</td>
 <td style="text-align: left;">提取变量、增强断言</td>
 </tr>
 <tr>
-<td style="text-align: left;"><strong>Assertion</strong></td>
+<td style="text-align: left;">Assertion</td>
 <td style="text-align: left;">结果校验</td>
 <td style="text-align: left;">响应码、响应时间、业务逻辑</td>
 </tr>
 </tbody>
 </table>
-<p><strong>压测执行流程</strong>：</p>
+<p>压测执行流程：</p>
 <div class="highlight"><pre><span></span><code>1. setUp Thread Group 预热（100 线程）
    └─→ 登录系统，缓存热点数据
 
@@ -4437,26 +4431,26 @@
 </thead>
 <tbody>
 <tr>
-<td style="text-align: left;"><strong>超卖（库存扣减）</strong></td>
+<td style="text-align: left;">超卖（库存扣减）</td>
 <td style="text-align: left;">使用 <code>Synchronizing Timer</code>，设定50线程同时释放（瞬间集合点），模拟50人同时抢最后一个库存，观察是否返回负数</td>
 </tr>
 <tr>
-<td style="text-align: left;"><strong>AI接口超时阻塞</strong></td>
+<td style="text-align: left;">AI接口超时阻塞</td>
 <td style="text-align: left;">HTTP Request单独设置连接超时1s/响应超时2s，配合 <code>Constant Throughput Timer</code> 在错误率&gt;5%时强制降级</td>
 </tr>
 <tr>
-<td style="text-align: left;"><strong>缓存穿透/DB压力</strong></td>
+<td style="text-align: left;">缓存穿透/DB压力</td>
 <td style="text-align: left;">固定热点奖品ID，清除Redis缓存后并发压测，观察DB的QPS和连接数飙升情况</td>
 </tr>
 <tr>
-<td style="text-align: left;"><strong>日志风暴</strong></td>
+<td style="text-align: left;">日志风暴</td>
 <td style="text-align: left;">压测期间禁用 <code>View Results Tree</code>，仅依赖 <code>Simple Data Writer</code> 落盘，避免压测机自身成为瓶颈</td>
 </tr>
 </tbody>
 </table>
 <h3 id="45-locust">4.5 补充方案：基于 Locust 的全链路压测</h3>
 <blockquote>
-<p><strong>为什么需要 Locust？</strong> JMeter 适合标准化压测，但对于<strong>复杂业务逻辑</strong>（如动态签名、加密参数、多步骤依赖），Python 编写更灵活。</p>
+<p>为什么需要 Locust？ JMeter 适合标准化压测，但对于复杂业务逻辑（如动态签名、加密参数、多步骤依赖），Python 编写更灵活。</p>
 </blockquote>
 <h4 id="451-locust-vs-jmeter">4.5.1 Locust vs JMeter 对比</h4>
 <table>
@@ -4469,54 +4463,54 @@
 </thead>
 <tbody>
 <tr>
-<td style="text-align: left;"><strong>编写语言</strong></td>
+<td style="text-align: left;">编写语言</td>
 <td style="text-align: left;">Java/Groovy（GUI 配置为主）</td>
 <td style="text-align: left;">Python（代码为主，更灵活）</td>
 </tr>
 <tr>
-<td style="text-align: left;"><strong>脚本维护</strong></td>
+<td style="text-align: left;">脚本维护</td>
 <td style="text-align: left;">XML 配置，可读性差</td>
 <td style="text-align: left;">Python 代码，易维护、易版本控制</td>
 </tr>
 <tr>
-<td style="text-align: left;"><strong>复杂逻辑</strong></td>
+<td style="text-align: left;">复杂逻辑</td>
 <td style="text-align: left;">BeanShell/Groovy 脚本，调试困难</td>
 <td style="text-align: left;">原生 Python，支持断点、IDE 调试</td>
 </tr>
 <tr>
-<td style="text-align: left;"><strong>分布式压测</strong></td>
+<td style="text-align: left;">分布式压测</td>
 <td style="text-align: left;">Master-Slave 模式（需配置）</td>
 <td style="text-align: left;">Master-Worker 模式（一条命令启动）</td>
 </tr>
 <tr>
-<td style="text-align: left;"><strong>资源消耗</strong></td>
+<td style="text-align: left;">资源消耗</td>
 <td style="text-align: left;">每个 VU 约 1MB 堆内存</td>
 <td style="text-align: left;">每个 VU 约 几十 KB（轻量级协程）</td>
 </tr>
 <tr>
-<td style="text-align: left;"><strong>实时监控</strong></td>
+<td style="text-align: left;">实时监控</td>
 <td style="text-align: left;">需配置 Backend Listener</td>
 <td style="text-align: left;">自带 Web UI，实时展示曲线</td>
 </tr>
 <tr>
-<td style="text-align: left;"><strong>扩展性</strong></td>
+<td style="text-align: left;">扩展性</td>
 <td style="text-align: left;">插件机制，Java 生态</td>
 <td style="text-align: left;">Python 生态，集成第三方库容易</td>
 </tr>
 <tr>
-<td style="text-align: left;"><strong>适用场景</strong></td>
+<td style="text-align: left;">适用场景</td>
 <td style="text-align: left;">标准化压测、团队协作、合规审计</td>
 <td style="text-align: left;">复杂业务逻辑、快速迭代、技术团队</td>
 </tr>
 </tbody>
 </table>
-<p><strong>Locust 核心优势</strong>：
-- <strong>轻量级</strong>：基于协程（gevent），单机可支持数万并发
-- <strong>灵活</strong>：Python 代码编写，支持复杂业务逻辑（如加密、签名）
-- <strong>易扩展</strong>：可直接调用第三方库（如 requests、PyCryptodome）
-- <strong>实时监控</strong>：Web UI 实时展示 TPS、RT、错误率曲线</p>
+<p>Locust 核心优势：
+- 轻量级：基于协程（gevent），单机可支持数万并发
+- 灵活：Python 代码编写，支持复杂业务逻辑（如加密、签名）
+- 易扩展：可直接调用第三方库（如 requests、PyCryptodome）
+- 实时监控：Web UI 实时展示 TPS、RT、错误率曲线</p>
 <h4 id="452-locust">4.5.2 Locust 压测脚本示例</h4>
-<p><strong>场景</strong>：会员日活动全链路压测（登录 → 做任务 → 抽奖）</p>
+<p>场景：会员日活动全链路压测（登录 → 做任务 → 抽奖）</p>
 <div class="highlight"><pre><span></span><code><span class="c1"># locustfile.py</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">locust</span><span class="w"> </span><span class="kn">import</span> <span class="n">HttpUser</span><span class="p">,</span> <span class="n">task</span><span class="p">,</span> <span class="n">between</span><span class="p">,</span> <span class="n">events</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">json</span>
@@ -4671,7 +4665,7 @@
 
 <span class="c1"># 自定义事件监听：实时统计业务指标</span>
 <span class="nd">@events</span><span class="o">.</span><span class="n">request</span><span class="o">.</span><span class="n">add_listener</span>
-<span class="k">def</span><span class="w"> </span><span class="nf">on_request</span><span class="p">(</span><span class="n">request_type</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">response_time</span><span class="p">,</span> <span class="n">response_length</span><span class="p">,</span> <span class="n">exception</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">on_request</span><span class="p">(</span><span class="n">request_type</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">response_time</span><span class="p">,</span> <span class="n">response_length</span><span class="p">,</span> <span class="n">exception</span><span class="p">,</span> <span class="n">kwargs</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">"""每个请求完成后触发"""</span>
     <span class="k">if</span> <span class="n">exception</span><span class="p">:</span>
         <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"请求失败: </span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s2">, 错误: </span><span class="si">{</span><span class="n">exception</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
@@ -4679,16 +4673,16 @@
         <span class="c1"># 可扩展：将数据推送到 InfluxDB</span>
         <span class="k">pass</span>
 </code></pre></div>
-<p><strong>关键设计说明</strong>：</p>
+<p>关键设计说明：</p>
 <ol>
-<li><strong>任务权重</strong>：<code>@task(10)</code> 表示拉新任务权重为 10，抽奖权重为 3，流量配比约为 10:3</li>
-<li><strong>幂等 Token</strong>：每个写接口都生成唯一的幂等 Token，防止重复提交</li>
-<li><strong>动态令牌管理</strong>：登录后自动提取 <code>accessToken</code>，后续请求自动携带</li>
-<li><strong>业务逻辑验证</strong>：<code>catch_response=True</code> 允许自定义成功/失败判断逻辑</li>
-<li><strong>链式依赖</strong>：抽奖成功后记录 <code>prizeId</code>，用于后续"查领奖记录"场景</li>
+<li>任务权重：<code>@task(10)</code> 表示拉新任务权重为 10，抽奖权重为 3，流量配比约为 10:3</li>
+<li>幂等 Token：每个写接口都生成唯一的幂等 Token，防止重复提交</li>
+<li>动态令牌管理：登录后自动提取 <code>accessToken</code>，后续请求自动携带</li>
+<li>业务逻辑验证：<code>catch_response=True</code> 允许自定义成功/失败判断逻辑</li>
+<li>链式依赖：抽奖成功后记录 <code>prizeId</code>，用于后续"查领奖记录"场景</li>
 </ol>
 <h4 id="453">4.5.3 分布式压测与监控</h4>
-<p><strong>启动 Master 节点</strong>：
+<p>启动 Master 节点：
 </p><div class="highlight"><pre><span></span><code><span class="c1"># 启动 Web UI（默认 http://localhost:8089）</span>
 locust<span class="w"> </span>-f<span class="w"> </span>locustfile.py<span class="w"> </span>--master
 
@@ -4698,7 +4692,7 @@ locust<span class="w"> </span>-f<span class="w"> </span>locustfile.py<span class
 <span class="c1"># -r: 每秒启动用户数 100</span>
 <span class="c1"># -t: 持续时间 30 分钟</span>
 </code></pre></div><p></p>
-<p><strong>启动 Worker 节点</strong>（多台压测机）：
+<p>启动 Worker 节点（多台压测机）：
 </p><div class="highlight"><pre><span></span><code><span class="c1"># Worker 1</span>
 locust<span class="w"> </span>-f<span class="w"> </span>locustfile.py<span class="w"> </span>--worker<span class="w"> </span>--master-host<span class="o">=</span><span class="m">192</span>.168.1.100
 
@@ -4708,12 +4702,12 @@ locust<span class="w"> </span>-f<span class="w"> </span>locustfile.py<span class
 <span class="c1"># Worker 3</span>
 locust<span class="w"> </span>-f<span class="w"> </span>locustfile.py<span class="w"> </span>--worker<span class="w"> </span>--master-host<span class="o">=</span><span class="m">192</span>.168.1.100
 </code></pre></div><p></p>
-<p><strong>实时监控（Web UI）</strong>：
-- <strong>Total RPS</strong>：总请求数/秒
-- <strong>Total Failures/s</strong>：失败请求数/秒
-- <strong>Response Time (ms)</strong>：平均响应时间
-- <strong>Active Users</strong>：当前活跃用户数</p>
-<p><strong>导出报告</strong>：
+<p>实时监控（Web UI）：
+- Total RPS：总请求数/秒
+- Total Failures/s：失败请求数/秒
+- Response Time (ms)：平均响应时间
+- Active Users：当前活跃用户数</p>
+<p>导出报告：
 </p><div class="highlight"><pre><span></span><code><span class="c1"># 导出 CSV 格式结果</span>
 locust<span class="w"> </span>-f<span class="w"> </span>locustfile.py<span class="w"> </span>--headless<span class="w"> </span>-u<span class="w"> </span><span class="m">1000</span><span class="w"> </span>-r<span class="w"> </span><span class="m">100</span><span class="w"> </span>-t<span class="w"> </span>30m<span class="w"> </span>--csv<span class="o">=</span>member_day_test
 
@@ -4723,7 +4717,9 @@ locust<span class="w"> </span>-f<span class="w"> </span>locustfile.py<span class
 <span class="c1"># - member_day_test_failures.csv（失败记录）</span>
 </code></pre></div><p></p>
 <h4 id="454-locust">4.5.4 Locust 高级特性</h4>
-<p><strong>1. 自定义负载形状（阶梯加压）</strong>：
+<ol>
+<li>
+<p>自定义负载形状（阶梯加压）：
 </p><div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">locust</span><span class="w"> </span><span class="kn">import</span> <span class="n">LoadTestShape</span>
 
 <span class="k">class</span><span class="w"> </span><span class="nc">StagesLoadShape</span><span class="p">(</span><span class="n">LoadTestShape</span><span class="p">):</span>
@@ -4749,7 +4745,9 @@ locust<span class="w"> </span>-f<span class="w"> </span>locustfile.py<span class
 <span class="c1"># 使用自定义负载形状</span>
 <span class="n">locust</span> <span class="o">-</span><span class="n">f</span> <span class="n">locustfile</span><span class="o">.</span><span class="n">py</span> <span class="o">--</span><span class="n">headless</span> <span class="o">--</span><span class="n">class</span><span class="o">-</span><span class="n">shape</span><span class="o">=</span><span class="n">StagesLoadShape</span>
 </code></pre></div><p></p>
-<p><strong>2. 集成 InfluxDB + Grafana 实时监控</strong>：
+</li>
+<li>
+<p>集成 InfluxDB + Grafana 实时监控：
 </p><div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">locust</span><span class="w"> </span><span class="kn">import</span> <span class="n">events</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">influxdb_client</span><span class="w"> </span><span class="kn">import</span> <span class="n">InfluxDBClient</span><span class="p">,</span> <span class="n">Point</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">influxdb_client.client.write_api</span><span class="w"> </span><span class="kn">import</span> <span class="n">SYNCHRONOUS</span>
@@ -4759,7 +4757,7 @@ locust<span class="w"> </span>-f<span class="w"> </span>locustfile.py<span class
 <span class="n">write_api</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">write_api</span><span class="p">(</span><span class="n">write_options</span><span class="o">=</span><span class="n">SYNCHRONOUS</span><span class="p">)</span>
 
 <span class="nd">@events</span><span class="o">.</span><span class="n">request</span><span class="o">.</span><span class="n">add_listener</span>
-<span class="k">def</span><span class="w"> </span><span class="nf">on_request</span><span class="p">(</span><span class="n">request_type</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">response_time</span><span class="p">,</span> <span class="n">response_length</span><span class="p">,</span> <span class="n">exception</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">on_request</span><span class="p">(</span><span class="n">request_type</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">response_time</span><span class="p">,</span> <span class="n">response_length</span><span class="p">,</span> <span class="n">exception</span><span class="p">,</span> <span class="n">kwargs</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">"""每个请求推送到 InfluxDB"""</span>
     <span class="n">point</span> <span class="o">=</span> <span class="n">Point</span><span class="p">(</span><span class="s2">"locust_requests"</span><span class="p">)</span> \
         <span class="o">.</span><span class="n">tag</span><span class="p">(</span><span class="s2">"request_type"</span><span class="p">,</span> <span class="n">request_type</span><span class="p">)</span> \
@@ -4770,7 +4768,9 @@ locust<span class="w"> </span>-f<span class="w"> </span>locustfile.py<span class
 
     <span class="n">write_api</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">bucket</span><span class="o">=</span><span class="s2">"locust"</span><span class="p">,</span> <span class="n">record</span><span class="o">=</span><span class="n">point</span><span class="p">)</span>
 </code></pre></div><p></p>
-<p><strong>3. 复杂业务逻辑（加密参数）</strong>：
+</li>
+<li>
+<p>复杂业务逻辑（加密参数）：
 </p><div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">Crypto.Cipher</span><span class="w"> </span><span class="kn">import</span> <span class="n">AES</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">base64</span>
 
@@ -4792,44 +4792,46 @@ locust<span class="w"> </span>-f<span class="w"> </span>locustfile.py<span class
 
         <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="s2">"/api/encrypted"</span><span class="p">,</span> <span class="n">json</span><span class="o">=</span><span class="p">{</span><span class="s2">"data"</span><span class="p">:</span> <span class="n">encrypted_data</span><span class="p">})</span>
 </code></pre></div><p></p>
+</li>
+</ol>
 <h4 id="455-jmeter-vs-locust">4.5.5 面试对比：JMeter vs Locust</h4>
-<p><strong>面试官可能追问</strong>："你为什么选择 Locust 而不是 JMeter？两者的优劣是什么？"</p>
-<p><strong>回答策略</strong>：</p>
+<p>面试官可能追问："你为什么选择 Locust 而不是 JMeter？两者的优劣是什么？"</p>
+<p>回答策略：</p>
 <blockquote>
 <p>"我们项目中同时使用了 JMeter 和 Locust，各有优势：</p>
-<p><strong>JMeter 适合标准化压测</strong>：
+<p>JMeter 适合标准化压测：
 - 团队协作友好：GUI 配置，非技术人员也能操作
 - 合规审计：JMX 文件可直接作为测试用例存档
 - 生态成熟：大量插件、文档、培训资料</p>
-<p><strong>Locust 适合复杂业务逻辑</strong>：
-- <strong>加密参数</strong>：本次压测的登录接口需要 AES 加密，Locust 直接调用 PyCryptodome 库，JMeter 需要写 BeanShell 脚本，调试困难
-- <strong>动态签名</strong>：每个请求需要根据时间戳和用户 ID 生成签名，Python 代码一目了然
-- <strong>链式依赖</strong>：抽奖成功后才能查领奖记录，Locust 的 <code>on_start</code> 和任务权重机制天然支持
-- <strong>轻量级</strong>：单机支持数万并发，JMeter 单机安全上限约 1500-2000 线程</p>
-<p><strong>我的建议</strong>：
-- 如果是<strong>标准化接口压测</strong>（如 REST API、数据库、MQ），优先 JMeter
-- 如果是<strong>复杂业务逻辑压测</strong>（如加密、签名、多步骤依赖），优先 Locust
-- 如果是<strong>全链路压测</strong>（包括前端、网关、后端），可以组合使用：JMeter 压测标准接口，Locust 压测复杂逻辑"</p>
+<p>Locust 适合复杂业务逻辑：
+- 加密参数：本次压测的登录接口需要 AES 加密，Locust 直接调用 PyCryptodome 库，JMeter 需要写 BeanShell 脚本，调试困难
+- 动态签名：每个请求需要根据时间戳和用户 ID 生成签名，Python 代码一目了然
+- 链式依赖：抽奖成功后才能查领奖记录，Locust 的 <code>on_start</code> 和任务权重机制天然支持
+- 轻量级：单机支持数万并发，JMeter 单机安全上限约 1500-2000 线程</p>
+<p>我的建议：
+- 如果是标准化接口压测（如 REST API、数据库、MQ），优先 JMeter
+- 如果是复杂业务逻辑压测（如加密、签名、多步骤依赖），优先 Locust
+- 如果是全链路压测（包括前端、网关、后端），可以组合使用：JMeter 压测标准接口，Locust 压测复杂逻辑"</p>
 </blockquote>
-<p><strong>加分项</strong>：</p>
+<p>加分项：</p>
 <blockquote>
-<p>"我在项目中还遇到了一个 JMeter 难以解决的问题：<strong>动态令牌管理</strong>。每次请求需要从上一个接口的响应中提取变量，JMeter 的 JSON Extractor 虽然能实现，但配置复杂且难以调试。而 Locust 直接用 Python 代码解析 JSON，一行代码就能搞定：</p>
+<p>"我在项目中还遇到了一个 JMeter 难以解决的问题：动态令牌管理。每次请求需要从上一个接口的响应中提取变量，JMeter 的 JSON Extractor 虽然能实现，但配置复杂且难以调试。而 Locust 直接用 Python 代码解析 JSON，一行代码就能搞定：</p>
 <div class="highlight"><pre><span></span><code><span class="n">data</span> <span class="o">=</span> <span class="n">response</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
 <span class="bp">self</span><span class="o">.</span><span class="n">access_token</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s2">"data"</span><span class="p">][</span><span class="s2">"accessToken"</span><span class="p">]</span>
 </code></pre></div>
-<p>这让我深刻体会到：<strong>工具选择没有绝对优劣，关键是根据场景选择最合适的工具</strong>。"</p>
+<p>这让我深刻体会到：工具选择没有绝对优劣，关键是根据场景选择最合适的工具。"</p>
 </blockquote>
 <h2 id="_9">五、面试追问高频题与深度答疑</h2>
 <h3 id="q1elknginx">Q1：压测链路业务配比，当只有elk+nginx时，如何获取？</h3>
 <blockquote>
-<p><strong>面试官考察点</strong>：在没有 APM 的情况下，是否具备从基础日志中提取压测数据的能力。</p>
+<p>面试官考察点：在没有 APM 的情况下，是否具备从基础日志中提取压测数据的能力。</p>
 </blockquote>
-<p><strong>（一）Nginx 日志提取接口 PV 分布</strong></p>
+<p>（一）Nginx 日志提取接口 PV 分布</p>
 <p>当没有 APM 时，Nginx access.log 是最基础的数据来源。</p>
-<p><strong>基础命令</strong>：
+<p>基础命令：
 </p><div class="highlight"><pre><span></span><code>cat<span class="w"> </span>access.log<span class="w"> </span><span class="p">|</span><span class="w"> </span>awk<span class="w"> </span><span class="s1">'{print $7}'</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>sort<span class="w"> </span><span class="p">|</span><span class="w"> </span>uniq<span class="w"> </span>-c<span class="w"> </span><span class="p">|</span><span class="w"> </span>sort<span class="w"> </span>-rn<span class="w"> </span><span class="p">|</span><span class="w"> </span>head<span class="w"> </span>-20
 </code></pre></div><p></p>
-<p><strong>生产级优化</strong>（面试加分点）：
+<p>生产级优化（面试加分点）：
 </p><div class="highlight"><pre><span></span><code><span class="c1"># 1. 过滤静态资源，只看业务接口</span>
 cat<span class="w"> </span>access.log<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>-v<span class="w"> </span>-E<span class="w"> </span><span class="s1">'\.(css|js|png|jpg|gif|ico)$'</span><span class="w"> </span><span class="se">\</span>
 <span class="w">  </span><span class="p">|</span><span class="w"> </span>awk<span class="w"> </span><span class="s1">'{print $7}'</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>sort<span class="w"> </span><span class="p">|</span><span class="w"> </span>uniq<span class="w"> </span>-c<span class="w"> </span><span class="p">|</span><span class="w"> </span>sort<span class="w"> </span>-rn<span class="w"> </span><span class="p">|</span><span class="w"> </span>head<span class="w"> </span>-20
@@ -4843,12 +4845,12 @@ grep<span class="w"> </span><span class="s2">"15/Jul/2025:10:0[0-9]"</span><span
 <span class="w">  </span><span class="p">|</span><span class="w"> </span>awk<span class="w"> </span><span class="s1">'{print $4, $7}'</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>awk<span class="w"> </span>-F:<span class="w"> </span><span class="s1">'{print $2":"$3}'</span><span class="w"> </span><span class="se">\</span>
 <span class="w">  </span><span class="p">|</span><span class="w"> </span>uniq<span class="w"> </span>-c<span class="w"> </span><span class="p">|</span><span class="w"> </span>awk<span class="w"> </span><span class="s1">'{print $1/60, $2}'</span><span class="w">  </span><span class="c1"># 每分钟调用量 ÷ 60 = QPS</span>
 </code></pre></div><p></p>
-<p><strong>推荐工具</strong>：
-- <strong>GoAccess</strong>：实时分析 Nginx 日志，生成 HTML 报告，直接看接口 PV 排名
-- <strong>ELK/Kibana</strong>：将 Nginx 日志导入 ES，用 Kibana Visualize 做接口调用量折线图</p>
-<p><strong>（二）ELK 提取业务转化率</strong></p>
+<p>推荐工具：
+- GoAccess：实时分析 Nginx 日志，生成 HTML 报告，直接看接口 PV 排名
+- ELK/Kibana：将 Nginx 日志导入 ES，用 Kibana Visualize 做接口调用量折线图</p>
+<p>（二）ELK 提取业务转化率</p>
 <p>ELK 存储的是应用日志（如业务日志、错误日志），可用于提取转化率。</p>
-<p><strong>典型查询（Kibana Discover）</strong>：
+<p>典型查询（Kibana Discover）：
 </p><div class="highlight"><pre><span></span><code># 查询中奖日志
 message: "lottery_success" AND activity: "会员日"
 
@@ -4858,14 +4860,14 @@ activity: "会员日" AND message: "lottery_success" | count()
 # 计算中奖率
 中奖次数 / 抽奖请求次数（需两条查询合并）
 </code></pre></div><p></p>
-<p><strong>注意</strong>：ELK 查业务转化率的前提是<strong>应用日志中有业务埋点</strong>（如中奖、领奖的日志输出）。如果没有业务埋点，则需从业务数据库/数据仓库获取。</p>
-<p><strong>（三）业务配比计算流程（ELK + Nginx 组合）</strong></p>
+<p>注意：ELK 查业务转化率的前提是应用日志中有业务埋点（如中奖、领奖的日志输出）。如果没有业务埋点，则需从业务数据库/数据仓库获取。</p>
+<p>（三）业务配比计算流程（ELK + Nginx 组合）</p>
 <div class="highlight"><pre><span></span><code>1. Nginx 日志 → 各接口 PV 比例（如登录 10%、任务提交 60%、抽奖 30%）
 2. ELK 日志 → 业务转化率（如中奖率 32.83%、领奖率 50.62%）
 3. 业务数据库 → 用户漏斗数据（如登录转化率、任务完成率）
 4. 三者结合 → 校准压测脚本的业务配比
 </code></pre></div>
-<p><strong>（四）局限性对比</strong></p>
+<p>（四）局限性对比</p>
 <table>
 <thead>
 <tr>
@@ -4876,23 +4878,23 @@ activity: "会员日" AND message: "lottery_success" | count()
 </thead>
 <tbody>
 <tr>
-<td style="text-align: left;"><strong>Nginx 日志</strong></td>
+<td style="text-align: left;">Nginx 日志</td>
 <td style="text-align: left;">有 PV/QPS，无需额外部署</td>
 <td style="text-align: left;">无响应时间、无业务转化率</td>
 </tr>
 <tr>
-<td style="text-align: left;"><strong>ELK 日志</strong></td>
+<td style="text-align: left;">ELK 日志</td>
 <td style="text-align: left;">可查业务埋点、错误堆栈</td>
 <td style="text-align: left;">需应用埋点，无调用链路</td>
 </tr>
 <tr>
-<td style="text-align: left;"><strong>APM</strong></td>
+<td style="text-align: left;">APM</td>
 <td style="text-align: left;">有调用链路、RT、错误率</td>
 <td style="text-align: left;">需部署探针，有学习成本</td>
 </tr>
 </tbody>
 </table>
-<p><strong>面试金句</strong>：</p>
+<p>面试金句：</p>
 <blockquote>
 <p>"当只有 Nginx + ELK 时，我会先用 Shell 命令或 GoAccess 从 Nginx 日志提取接口 PV 分布，再用 ELK 查业务埋点日志获取转化率。虽然没有 APM 的链路追踪，但组合使用仍能得到合理的压测配比。如果条件允许，我会建议团队引入 SkyWalking 等轻量级 APM。"</p>
 </blockquote>
@@ -4907,31 +4909,31 @@ activity: "会员日" AND message: "lottery_success" | count()
 <p>3.实时性差（离线分析，无法动态调整压测模型）。”</p>
 <h3 id="q2qps1rt500ms">Q2：如何评估并发用户数？压测机台数怎么算？（QPS=1万，RT=500ms）</h3>
 <blockquote>
-<p><strong>面试官考察点</strong>：是否掌握 <strong>Little定律</strong> 和施压机性能瓶颈。</p>
+<p>面试官考察点：是否掌握 Little定律 和施压机性能瓶颈。</p>
 </blockquote>
-<p><strong>第一步：计算总并发线程数（VU）</strong></p>
+<p>第一步：计算总并发线程数（VU）</p>
 <ul>
-<li><strong>Little定律</strong>：并发用户数 = QPS × 平均响应时间（秒）</li>
-<li>代入：10,000 QPS × 0.5s = <strong>5,000 并发线程（VU）</strong></li>
+<li>Little定律：并发用户数 = QPS × 平均响应时间（秒）</li>
+<li>代入：10,000 QPS × 0.5s = 5,000 并发线程（VU）</li>
 </ul>
-<p><strong>第二步：计算所需压测机台数</strong></p>
-<p><strong>单台施压机上限认知</strong>：</p>
+<p>第二步：计算所需压测机台数</p>
+<p>单台施压机上限认知：</p>
 <ul>
-<li>JMeter每个线程（VU）默认占用约 <strong>1MB 堆内存</strong></li>
+<li>JMeter每个线程（VU）默认占用约 1MB 堆内存</li>
 <li>8C16G施压机，分配 <code>-Xmx12G</code>，理论上限 12,000 线程</li>
-<li><strong>生产经验值</strong>：单台安全并发控制在 <strong>1,500 ~ 2,000 VU</strong>（超过则GC频繁，数据失真）</li>
+<li>生产经验值：单台安全并发控制在 1,500 ~ 2,000 VU（超过则GC频繁，数据失真）</li>
 </ul>
-<p><strong>计算公式</strong>：</p>
+<p>计算公式：</p>
 <ul>
-<li>所需台数 = 5,000 ÷ 1,500 ≈ <strong>3.3 台</strong></li>
-<li><strong>最终建议</strong>：准备 <strong>4台施压机</strong>（3主力 + 1冗余），确保施压机带宽 &gt; 被压机带宽</li>
+<li>所需台数 = 5,000 ÷ 1,500 ≈ 3.3 台</li>
+<li>最终建议：准备 4台施压机（3主力 + 1冗余），确保施压机带宽 &gt; 被压机带宽</li>
 </ul>
 <h3 id="q3-tps-cpuarthas">Q3：压测时 TPS 上不去但 CPU/内存不高的排查方向？Arthas 何时上场？</h3>
 <blockquote>
-<p><strong>面试官考察点</strong>：区分"业务处理慢"与"网络/中间件/OS限制"的能力，以及是否会使用高级动态诊断工具。</p>
+<p>面试官考察点：区分"业务处理慢"与"网络/中间件/OS限制"的能力，以及是否会使用高级动态诊断工具。</p>
 </blockquote>
-<p><strong>核心结论</strong>：TPS上不去但CPU/内存空闲 → <strong>瓶颈不在应用计算或堆内存，而是卡在"IO等待"或"外部协调"</strong>。</p>
-<p><strong>（一）基础排查方向（按优先级）</strong>：</p>
+<p>核心结论：TPS上不去但CPU/内存空闲 → 瓶颈不在应用计算或堆内存，而是卡在"IO等待"或"外部协调"。</p>
+<p>（一）基础排查方向（按优先级）：</p>
 <table>
 <thead>
 <tr>
@@ -4943,38 +4945,38 @@ activity: "会员日" AND message: "lottery_success" | count()
 <tbody>
 <tr>
 <td style="text-align: left;">1</td>
-<td style="text-align: left;"><strong>数据库/Redis连接池</strong></td>
+<td style="text-align: left;">数据库/Redis连接池</td>
 <td style="text-align: left;">查看 <code>DataSource</code> 活跃连接数是否等于 <code>maximumPoolSize</code>，大量线程在等待连接</td>
 </tr>
 <tr>
 <td style="text-align: left;">2</td>
-<td style="text-align: left;"><strong>下游依赖超时（AI/第三方）</strong></td>
+<td style="text-align: left;">下游依赖超时（AI/第三方）</td>
 <td style="text-align: left;">检查调用第三方接口的响应超时配置，线程堆栈是否有大量 <code>SocketTimeout</code></td>
 </tr>
 <tr>
 <td style="text-align: left;">3</td>
-<td style="text-align: left;"><strong>网卡带宽打满</strong></td>
+<td style="text-align: left;">网卡带宽打满</td>
 <td style="text-align: left;">用 <code>iftop</code>/<code>nload</code> 查看网卡流量是否达到内网限速（如1Gbps）</td>
 </tr>
 <tr>
 <td style="text-align: left;">4</td>
-<td style="text-align: left;"><strong>OS内核限制</strong></td>
+<td style="text-align: left;">OS内核限制</td>
 <td style="text-align: left;">检查 <code>net.ipv4.ip_local_port_range</code>（默认3万）是否耗尽，<code>TIME_WAIT</code> 堆积</td>
 </tr>
 <tr>
 <td style="text-align: left;">5</td>
-<td style="text-align: left;"><strong>分布式锁竞争</strong></td>
+<td style="text-align: left;">分布式锁竞争</td>
 <td style="text-align: left;">抽奖扣库存用 <code>Redisson</code> 或 <code>select...for update</code>，大量线程在自旋等待锁释放</td>
 </tr>
 <tr>
 <td style="text-align: left;">6</td>
-<td style="text-align: left;"><strong>GC停顿</strong></td>
+<td style="text-align: left;">GC停顿</td>
 <td style="text-align: left;">查看GC日志，检查是否频繁发生STW（虽然CPU不高，G1的Concurrent Mark阶段偶发）</td>
 </tr>
 </tbody>
 </table>
-<p><strong>（二）高级武器——Arthas（在线动态诊断，无需重启）</strong></p>
-<p>当 <code>jstack</code> 只能看到线程状态但无法定位深层原因时，<strong>Arthas 是冲击高分的关键</strong>。以下是3个杀手级场景：</p>
+<p>（二）高级武器——Arthas（在线动态诊断，无需重启）</p>
+<p>当 <code>jstack</code> 只能看到线程状态但无法定位深层原因时，Arthas 是冲击高分的关键。以下是3个杀手级场景：</p>
 <table>
 <thead>
 <tr>
@@ -4985,622 +4987,60 @@ activity: "会员日" AND message: "lottery_success" | count()
 </thead>
 <tbody>
 <tr>
-<td style="text-align: left;"><strong>定位外部接口超时根因</strong></td>
+<td style="text-align: left;">定位外部接口超时根因</td>
 <td style="text-align: left;"><code>trace com.xxx.TaskService submitTask</code></td>
-<td style="text-align: left;">动态打印方法内<strong>每一步</strong>的精确耗时。若发现 900ms 耗费在 <code>HttpClient.execute()</code>，而业务代码仅用 1ms → <strong>秒级定位网络IO超时</strong>。</td>
+<td style="text-align: left;">动态打印方法内每一步的精确耗时。若发现 900ms 耗费在 <code>HttpClient.execute()</code>，而业务代码仅用 1ms → 秒级定位网络IO超时。</td>
 </tr>
 <tr>
-<td style="text-align: left;"><strong>线上临时开启 DEBUG 日志</strong></td>
+<td style="text-align: left;">线上临时开启 DEBUG 日志</td>
 <td style="text-align: left;"><code>logger --name ROOT --level debug</code></td>
-<td style="text-align: left;">怀疑分布式锁 <code>tryLock</code> 在空转，但线上 INFO 级别看不到。实时改为 DEBUG 观察等待时间，验证完再改回，<strong>免重启</strong>。</td>
+<td style="text-align: left;">怀疑分布式锁 <code>tryLock</code> 在空转，但线上 INFO 级别看不到。实时改为 DEBUG 观察等待时间，验证完再改回，免重启。</td>
 </tr>
 <tr>
-<td style="text-align: left;"><strong>反编译验证线上代码版本</strong></td>
+<td style="text-align: left;">反编译验证线上代码版本</td>
 <td style="text-align: left;"><code>jad --source-only com.xxx.StockService</code></td>
-<td style="text-align: left;">怀疑部署包不是最新代码。直接反编译 JVM 内存中的字节码，若发现确实缺少判空逻辑 → <strong>实锤截图，终结扯皮</strong>。</td>
+<td style="text-align: left;">怀疑部署包不是最新代码。直接反编译 JVM 内存中的字节码，若发现确实缺少判空逻辑 → 实锤截图，终结扯皮。</td>
 </tr>
 </tbody>
 </table>
-<p><strong>面试金句</strong>：</p>
+<p>面试金句：</p>
 <blockquote>
-<p>“当 <code>top -H</code> 和 <code>jstack</code> 看不出明显锁等待时，我会果断上 <strong>Arthas 的 <code>watch</code> 命令</strong>，监控扣库存方法的入参和返回值，观察 <code>remainingStock</code> 是否在临界值异常归零。Arthas 让我能在不停服的情况下完成‘手术刀式’的精准诊断。”</p>
+<p>“当 <code>top -H</code> 和 <code>jstack</code> 看不出明显锁等待时，我会果断上 Arthas 的 <code>watch</code> 命令，监控扣库存方法的入参和返回值，观察 <code>remainingStock</code> 是否在临界值异常归零。Arthas 让我能在不停服的情况下完成‘手术刀式’的精准诊断。”</p>
 </blockquote>
 <h3 id="q4">Q4:压测有没有遇到什么瓶颈,做了什么优化?</h3>
-<blockquote>
-<p><strong>面试官考察点</strong>:是否具备真实的压测实战经验,以及从发现问题到解决问题的完整闭环能力。</p>
-</blockquote>
-<p><strong>核心结论</strong>:压测过程中确实遇到了多个瓶颈,主要集中在<strong>数据库连接池耗尽、缓存穿透导致DB压力、分布式锁竞争加剧</strong>三个方面。</p>
-<h4 id="_10">(一)瓶颈一:数据库连接池耗尽</h4>
-<p><strong>问题现象</strong>:
-- 压测到500 TPS时,错误率突然飙升至15%
-- 应用日志大量报错:<code>HikariPool-1 - Connection is not available, request timed out after 30000ms</code>
-- 通过 <code>jstack</code> 发现大量线程处于 <code>WAITING</code> 状态,堆栈显示在 <code>HikariPool.getConnection</code></p>
-<p><strong>根因分析</strong>:
-- HikariCP默认配置 <code>maximumPoolSize=10</code>,远低于实际需求
-- 每个抽奖请求涉及多表操作(用户积分扣减、库存扣减、中奖记录写入),平均耗时200ms
-- 500 TPS下,理论连接需求 = 500 × 0.2 = 100个连接</p>
-<p><strong>优化方案</strong>:
-</p><div class="highlight"><pre><span></span><code><span class="c1"># HikariCP 配置调整</span>
-<span class="nt">spring</span><span class="p">:</span>
-<span class="w">  </span><span class="nt">datasource</span><span class="p">:</span>
-<span class="w">    </span><span class="nt">hikari</span><span class="p">:</span>
-<span class="w">      </span><span class="nt">maximum-pool-size</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">100</span><span class="w">        </span><span class="c1"># 从10调整为100</span>
-<span class="w">      </span><span class="nt">minimum-idle</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">20</span><span class="w">              </span><span class="c1"># 最小空闲连接数</span>
-<span class="w">      </span><span class="nt">connection-timeout</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">10000</span><span class="w">     </span><span class="c1"># 连接超时从30s改为10s</span>
-<span class="w">      </span><span class="nt">idle-timeout</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">600000</span><span class="w">          </span><span class="c1"># 空闲连接超时10分钟</span>
-<span class="w">      </span><span class="nt">max-lifetime</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1800000</span><span class="w">         </span><span class="c1"># 连接最大存活30分钟</span>
-</code></pre></div><p></p>
-<p><strong>优化效果</strong>:
-- 错误率从15%降至0.02%
-- 连接池利用率从95%降至60%
-- 支持TPS从500提升到850</p>
-<hr/>
-<h4 id="db">(二)瓶颈二:热点奖品缓存穿透导致DB压力激增</h4>
-<p><strong>问题现象</strong>:
-- 压测300 TPS持续10分钟后,数据库CPU飙升至85%
-- DB连接数从50增至200,慢查询日志出现大量 <code>SELECT * FROM prize_stock WHERE prize_id = 100</code>
-- Redis命中率从95%降至60%</p>
-<p><strong>根因分析</strong>:
-- 热点奖品ID(如iPhone、现金红包)被大量并发请求
-- Redis中的库存Key设置TTL=10分钟,压测期间频繁过期导致缓存穿透
-- 缓存失效瞬间,大量请求直接查询数据库,形成"缓存雪崩"</p>
-<p><strong>优化方案</strong>:</p>
-<p><strong>方案一:热点Key永不过期 + 异步刷新</strong>
-</p><div class="highlight"><pre><span></span><code><span class="c1">// 伪代码:热点奖品库存Key永不过期</span>
-<span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">initHotPrizeCache</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="n">String</span><span class="w"> </span><span class="n">key</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">"prize_stock:"</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">hotPrizeId</span><span class="p">;</span>
-<span class="w">    </span><span class="n">redisTemplate</span><span class="p">.</span><span class="na">opsForValue</span><span class="p">().</span><span class="na">set</span><span class="p">(</span><span class="n">key</span><span class="p">,</span><span class="w"> </span><span class="n">stock</span><span class="p">,</span><span class="w"> </span><span class="n">Duration</span><span class="p">.</span><span class="na">ofDays</span><span class="p">(</span><span class="mi">30</span><span class="p">));</span><span class="w"> </span><span class="c1">// 设置长TTL</span>
-
-<span class="w">    </span><span class="c1">// 启动后台线程定时刷新库存</span>
-<span class="w">    </span><span class="n">scheduledExecutor</span><span class="p">.</span><span class="na">scheduleAtFixedRate</span><span class="p">(()</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="n">Integer</span><span class="w"> </span><span class="n">dbStock</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">stockDao</span><span class="p">.</span><span class="na">selectById</span><span class="p">(</span><span class="n">hotPrizeId</span><span class="p">);</span>
-<span class="w">        </span><span class="n">redisTemplate</span><span class="p">.</span><span class="na">opsForValue</span><span class="p">().</span><span class="na">set</span><span class="p">(</span><span class="n">key</span><span class="p">,</span><span class="w"> </span><span class="n">dbStock</span><span class="p">);</span>
-<span class="w">    </span><span class="p">},</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w"> </span><span class="n">TimeUnit</span><span class="p">.</span><span class="na">MINUTES</span><span class="p">);</span><span class="w"> </span><span class="c1">// 每5分钟从DB同步</span>
-<span class="p">}</span>
-</code></pre></div><p></p>
-<p><strong>方案二:使用Redis分布式锁防止缓存击穿</strong>
-</p><div class="highlight"><pre><span></span><code><span class="c1">// 双重检查锁 + 缓存重建</span>
-<span class="kd">public</span><span class="w"> </span><span class="n">Integer</span><span class="w"> </span><span class="nf">getPrizeStock</span><span class="p">(</span><span class="n">Long</span><span class="w"> </span><span class="n">prizeId</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="n">String</span><span class="w"> </span><span class="n">key</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">"prize_stock:"</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">prizeId</span><span class="p">;</span>
-<span class="w">    </span><span class="n">Integer</span><span class="w"> </span><span class="n">stock</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">Integer</span><span class="p">)</span><span class="w"> </span><span class="n">redisTemplate</span><span class="p">.</span><span class="na">opsForValue</span><span class="p">().</span><span class="na">get</span><span class="p">(</span><span class="n">key</span><span class="p">);</span>
-
-<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">stock</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="kc">null</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="c1">// 加分布式锁防止多个线程同时重建缓存</span>
-<span class="w">        </span><span class="n">String</span><span class="w"> </span><span class="n">lockKey</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">"lock:prize_stock:"</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">prizeId</span><span class="p">;</span>
-<span class="w">        </span><span class="n">RLock</span><span class="w"> </span><span class="n">lock</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">redissonClient</span><span class="p">.</span><span class="na">getLock</span><span class="p">(</span><span class="n">lockKey</span><span class="p">);</span>
-<span class="w">        </span><span class="k">try</span><span class="w"> </span><span class="p">{</span>
-<span class="w">            </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">lock</span><span class="p">.</span><span class="na">tryLock</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span><span class="w"> </span><span class="n">TimeUnit</span><span class="p">.</span><span class="na">SECONDS</span><span class="p">))</span><span class="w"> </span><span class="p">{</span>
-<span class="w">                </span><span class="c1">// 再次检查缓存(双重检查)</span>
-<span class="w">                </span><span class="n">stock</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">Integer</span><span class="p">)</span><span class="w"> </span><span class="n">redisTemplate</span><span class="p">.</span><span class="na">opsForValue</span><span class="p">().</span><span class="na">get</span><span class="p">(</span><span class="n">key</span><span class="p">);</span>
-<span class="w">                </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">stock</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="kc">null</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">                    </span><span class="n">stock</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">stockDao</span><span class="p">.</span><span class="na">selectById</span><span class="p">(</span><span class="n">prizeId</span><span class="p">);</span>
-<span class="w">                    </span><span class="n">redisTemplate</span><span class="p">.</span><span class="na">opsForValue</span><span class="p">().</span><span class="na">set</span><span class="p">(</span><span class="n">key</span><span class="p">,</span><span class="w"> </span><span class="n">stock</span><span class="p">,</span><span class="w"> </span><span class="n">Duration</span><span class="p">.</span><span class="na">ofMinutes</span><span class="p">(</span><span class="mi">10</span><span class="p">));</span>
-<span class="w">                </span><span class="p">}</span>
-<span class="w">            </span><span class="p">}</span>
-<span class="w">        </span><span class="p">}</span><span class="w"> </span><span class="k">finally</span><span class="w"> </span><span class="p">{</span>
-<span class="w">            </span><span class="n">lock</span><span class="p">.</span><span class="na">unlock</span><span class="p">();</span>
-<span class="w">        </span><span class="p">}</span>
-<span class="w">    </span><span class="p">}</span>
-<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">stock</span><span class="p">;</span>
-<span class="p">}</span>
-</code></pre></div><p></p>
-<p><strong>优化效果</strong>:
-- Redis命中率从60%回升至95%
-- DB CPU从85%降至35%
-- DB连接数稳定在80左右</p>
-<hr/>
-<h4 id="_11">(三)瓶颈三:分布式锁竞争导致响应时间抖动</h4>
-<p><strong>问题现象</strong>:
-- 压测600 TPS时,P99 RT合格(480ms),但P999 RT飙升至3.5秒
-- Grafana监控显示抽奖接口RT出现明显毛刺
-- 日志中出现 <code>Redisson tryLock timeout</code> 警告</p>
-<p><strong>根因分析</strong>:
-- 抽奖扣库存使用 <code>Redisson.tryLock()</code>,高并发下大量线程在自旋等待锁释放
-- 锁持有时间过长(平均150ms),导致锁等待队列堆积
-- Redis单节点锁在600 TPS下成为瓶颈</p>
-<p><strong>优化方案</strong>:</p>
-<p><strong>方案一:锁粒度优化——从全局锁改为分段锁</strong>
-</p><div class="highlight"><pre><span></span><code><span class="c1">// 原方案:全局锁(所有奖品共用)</span>
-<span class="n">String</span><span class="w"> </span><span class="n">lockKey</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">"lock:lottery_draw"</span><span class="p">;</span>
-
-<span class="c1">// 优化方案:分段锁(按奖品ID分锁)</span>
-<span class="n">String</span><span class="w"> </span><span class="n">lockKey</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">"lock:lottery_draw:"</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">prizeId</span><span class="p">;</span>
-
-<span class="c1">// 进一步优化:按奖品ID + 用户ID分锁(防止同一用户重复中奖)</span>
-<span class="n">String</span><span class="w"> </span><span class="n">lockKey</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">"lock:lottery_draw:"</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">prizeId</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="s">":"</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">userId</span><span class="p">;</span>
-</code></pre></div><p></p>
-<p><strong>方案二:锁持有时间压缩——原子操作替代锁</strong>
-</p><div class="highlight"><pre><span></span><code><span class="c1">// 原方案:先查库存,再加锁扣减</span>
-<span class="n">Integer</span><span class="w"> </span><span class="n">stock</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">getStock</span><span class="p">(</span><span class="n">prizeId</span><span class="p">);</span>
-<span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">stock</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="n">lock</span><span class="p">.</span><span class="na">lock</span><span class="p">();</span>
-<span class="w">    </span><span class="k">try</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="n">stockDao</span><span class="p">.</span><span class="na">decrementStock</span><span class="p">(</span><span class="n">prizeId</span><span class="p">);</span>
-<span class="w">    </span><span class="p">}</span><span class="w"> </span><span class="k">finally</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="n">lock</span><span class="p">.</span><span class="na">unlock</span><span class="p">();</span>
-<span class="w">    </span><span class="p">}</span>
-<span class="p">}</span>
-
-<span class="c1">// 优化方案:Redis Lua脚本原子扣减(无需分布式锁)</span>
-<span class="n">String</span><span class="w"> </span><span class="n">script</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">"local stock = redis.call('GET', KEYS[1]) "</span><span class="w"> </span><span class="o">+</span>
-<span class="w">                </span><span class="s">"if tonumber(stock) &gt; 0 then "</span><span class="w"> </span><span class="o">+</span>
-<span class="w">                </span><span class="s">"    redis.call('DECR', KEYS[1]) "</span><span class="w"> </span><span class="o">+</span>
-<span class="w">                </span><span class="s">"    return 1 "</span><span class="w"> </span><span class="o">+</span>
-<span class="w">                </span><span class="s">"else return 0 end"</span><span class="p">;</span>
-<span class="n">Long</span><span class="w"> </span><span class="n">result</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">redisTemplate</span><span class="p">.</span><span class="na">execute</span><span class="p">(</span><span class="k">new</span><span class="w"> </span><span class="n">DefaultRedisScript</span><span class="o">&lt;&gt;</span><span class="p">(</span><span class="n">script</span><span class="p">,</span><span class="w"> </span><span class="n">Long</span><span class="p">.</span><span class="na">class</span><span class="p">),</span>
-<span class="w">                                    </span><span class="n">Arrays</span><span class="p">.</span><span class="na">asList</span><span class="p">(</span><span class="s">"prize_stock:"</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">prizeId</span><span class="p">));</span>
-<span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">result</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="c1">// 扣减成功,异步写入DB</span>
-<span class="w">    </span><span class="n">asyncStockDao</span><span class="p">.</span><span class="na">decrementStock</span><span class="p">(</span><span class="n">prizeId</span><span class="p">);</span>
-<span class="p">}</span>
-</code></pre></div><p></p>
-<p><strong>方案三:引入队列削峰</strong>
-</p><div class="highlight"><pre><span></span><code><span class="c1">// 高并发场景:抽奖请求先入队,异步处理</span>
-<span class="nd">@RestController</span>
-<span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">LotteryController</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="nd">@Autowired</span>
-<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="n">RabbitMQProducer</span><span class="w"> </span><span class="n">producer</span><span class="p">;</span>
-
-<span class="w">    </span><span class="nd">@PostMapping</span><span class="p">(</span><span class="s">"/lottery/draw"</span><span class="p">)</span>
-<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="n">Result</span><span class="w"> </span><span class="nf">draw</span><span class="p">(</span><span class="nd">@RequestBody</span><span class="w"> </span><span class="n">LotteryRequest</span><span class="w"> </span><span class="n">req</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="c1">// 快速入队响应</span>
-<span class="w">        </span><span class="n">producer</span><span class="p">.</span><span class="na">send</span><span class="p">(</span><span class="s">"lottery_queue"</span><span class="p">,</span><span class="w"> </span><span class="n">req</span><span class="p">);</span>
-<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">Result</span><span class="p">.</span><span class="na">success</span><span class="p">(</span><span class="s">"抽奖请求已提交,请稍后查看结果"</span><span class="p">);</span>
-<span class="w">    </span><span class="p">}</span>
-<span class="p">}</span>
-
-<span class="c1">// 后台消费者批量处理</span>
-<span class="nd">@Consumer</span><span class="p">(</span><span class="n">queueName</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">"lottery_queue"</span><span class="p">)</span>
-<span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">consume</span><span class="p">(</span><span class="n">List</span><span class="o">&lt;</span><span class="n">LotteryRequest</span><span class="o">&gt;</span><span class="w"> </span><span class="n">requests</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="c1">// 批量扣减库存,减少锁竞争</span>
-<span class="w">    </span><span class="n">stockDao</span><span class="p">.</span><span class="na">batchDecrementStock</span><span class="p">(</span><span class="n">extractPrizeIds</span><span class="p">(</span><span class="n">requests</span><span class="p">));</span>
-<span class="p">}</span>
-</code></pre></div><p></p>
-<p><strong>优化效果</strong>:
-- P999 RT从3.5秒降至600ms
-- 锁等待超时错误从20%降至0
-- 支持TPS从600提升到850</p>
-<hr/>
-<h4 id="key">(四)瓶颈四:活动奖品配置大 Key 导致抽奖接口响应慢</h4>
-<p><strong>问题现象</strong>:
-- 压测"抽奖"环节时,接口 P95 RT 从 200ms 升至 1.2s
-- Redis 内存占用持续上涨,突破 80%
-- 通过 <code>redis-cli --bigkeys</code> 发现 Key <code>activity:prizes:2025</code> 大小约 1.5MB
-- 用 <code>redis-cli --stat</code> 观察到,每次抽奖查询该 Key 时,内网带宽出现 120Mbps 流量尖峰</p>
-<p><strong>根因分析</strong>:
-- <strong>业务场景</strong>:活动有多个奖品(iPhone、现金红包、会员权益、积分等),每个奖品包含:
-  - 基础信息:名称、图片URL、描述、价值
-  - 库存信息:总库存、剩余库存、已发放数量
-  - 限制规则:每人限领次数、用户等级限制、地域限制
-  - 展示配置:排序权重、标签、活动时间
-- <strong>错误设计</strong>:开发将所有奖品的完整配置存成单个 String Key:
-  </p><div class="highlight"><pre><span></span><code>Key: activity:prizes:2025
-Value: {
-  "prizes": [
-    {"id":1,"name":"iPhone","img":"http://...","stock":100,"rules":{...}},
-    {"id":2,"name":"现金红包","img":"http://...","stock":5000,"rules":{...}},
-    ... // 共 20+ 个奖品,总计 1.5MB
-  ]
-}
+<p>思路：现象 → 分析排查 → 优化方向</p>
+<h4 id="key">大Key</h4>
+<h5 id="_10">现象</h5>
+<p>压测持续到第10分钟时：</p>
+<ul>
+<li>RT曲线陡增：核心抽奖接口的P99 RT从30ms飙升到1.2秒。</li>
+<li>DB负载异常：MySQL的CPU从10%突然飙到80%。</li>
+<li>资源矛盾：应用服务器CPU和内存都还有余量，说明瓶颈不在应用层。</li>
+<li>监控面板：redis 命中率下降至60%，evicted_keys（淘汰键数）指标正在以每秒几百个的速度疯狂增长，同时Redis内存使用量一直压在maxmemory的水位线上。</li>
+</ul>
+<h5 id="_11">排查</h5>
+<p>1.分析Redis驱逐策略与Key分布</p>
+<div class="highlight"><pre><span></span><code>redis-cli<span class="w"> </span>INFO<span class="w"> </span>stats<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>evicted_keys
+redis-cli<span class="w"> </span>CONFIG<span class="w"> </span>GET<span class="w"> </span>maxmemory-policy
 </code></pre></div>
-- <strong>性能瓶颈</strong>:
-  - 每次抽奖都查询 1.5MB 配置数据(实际只需读取库存字段)
-  - 单次 GET 操作耗时 150ms+(Redis 序列化 + 网络传输)
-  - 高并发下占用大量带宽和 CPU,导致 Redis 响应变慢
-  - 影响其他依赖 Redis 的接口(如用户信息查询)<p></p>
-<p><strong>排查手段</strong>:
-</p><div class="highlight"><pre><span></span><code><span class="c1"># 1. 使用 bigkeys 扫描大 Key</span>
-redis-cli<span class="w"> </span>--bigkeys<span class="w"> </span>-i<span class="w"> </span><span class="m">0</span>.1
-
-<span class="c1"># 2. 实时监控网络流量(观察到流量尖峰)</span>
-redis-cli<span class="w"> </span>--stat
-
-<span class="c1"># 3. 查看大 Key 具体内容</span>
-redis-cli<span class="w"> </span>--raw<span class="w"> </span>GET<span class="w"> </span><span class="s2">"activity:prizes:2025"</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>wc<span class="w"> </span>-c<span class="w">  </span><span class="c1"># 查看字节数</span>
-</code></pre></div><p></p>
-<p><strong>优化方案</strong>:</p>
-<p><strong>方案一:数据结构重构——按奖品拆分 Key</strong>
-</p><div class="highlight"><pre><span></span><code><span class="c1">// 原方案:所有奖品配置存成单个 String(错误)</span>
-<span class="n">String</span><span class="w"> </span><span class="n">key</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">"activity:prizes:2025"</span><span class="p">;</span>
-<span class="n">String</span><span class="w"> </span><span class="n">allPrizesJson</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">redisTemplate</span><span class="p">.</span><span class="na">opsForValue</span><span class="p">().</span><span class="na">get</span><span class="p">(</span><span class="n">key</span><span class="p">);</span><span class="w"> </span><span class="c1">// 1.5MB</span>
-
-<span class="c1">// 优化方案:每个奖品独立 Key</span>
-<span class="n">String</span><span class="w"> </span><span class="n">key</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">"activity:prize:"</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">prizeId</span><span class="p">;</span>
-<span class="n">Prize</span><span class="w"> </span><span class="n">prize</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">Prize</span><span class="p">)</span><span class="w"> </span><span class="n">redisTemplate</span><span class="p">.</span><span class="na">opsForValue</span><span class="p">().</span><span class="na">get</span><span class="p">(</span><span class="n">key</span><span class="p">);</span><span class="w"> </span><span class="c1">// &lt;10KB</span>
-
-<span class="c1">// 初始化时批量写入</span>
-<span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">initPrizeCache</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="n">Prize</span><span class="w"> </span><span class="n">prize</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="n">prizeList</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="n">String</span><span class="w"> </span><span class="n">key</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">"activity:prize:"</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">prize</span><span class="p">.</span><span class="na">getId</span><span class="p">();</span>
-<span class="w">        </span><span class="n">redisTemplate</span><span class="p">.</span><span class="na">opsForValue</span><span class="p">().</span><span class="na">set</span><span class="p">(</span><span class="n">key</span><span class="p">,</span><span class="w"> </span><span class="n">prize</span><span class="p">,</span><span class="w"> </span><span class="mi">7</span><span class="p">,</span><span class="w"> </span><span class="n">TimeUnit</span><span class="p">.</span><span class="na">DAYS</span><span class="p">);</span>
-<span class="w">    </span><span class="p">}</span>
-<span class="p">}</span>
-</code></pre></div><p></p>
-<p><strong>方案二:库存与配置分离——核心数据独立缓存</strong>
-</p><div class="highlight"><pre><span></span><code><span class="c1">// 将高频访问的库存数据独立存储</span>
-<span class="c1">// Key 1: 库存信息(高频读写)</span>
-<span class="n">String</span><span class="w"> </span><span class="n">stockKey</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">"activity:prize:stock:"</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">prizeId</span><span class="p">;</span>
-<span class="n">redisTemplate</span><span class="p">.</span><span class="na">opsForValue</span><span class="p">().</span><span class="na">set</span><span class="p">(</span><span class="n">stockKey</span><span class="p">,</span><span class="w"> </span><span class="n">stock</span><span class="p">,</span><span class="w"> </span><span class="mi">7</span><span class="p">,</span><span class="w"> </span><span class="n">TimeUnit</span><span class="p">.</span><span class="na">DAYS</span><span class="p">);</span>
-
-<span class="c1">// Key 2: 配置信息(低频只读)</span>
-<span class="n">String</span><span class="w"> </span><span class="n">configKey</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">"activity:prize:config:"</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">prizeId</span><span class="p">;</span>
-<span class="n">redisTemplate</span><span class="p">.</span><span class="na">opsForValue</span><span class="p">().</span><span class="na">set</span><span class="p">(</span><span class="n">configKey</span><span class="p">,</span><span class="w"> </span><span class="n">config</span><span class="p">,</span><span class="w"> </span><span class="mi">7</span><span class="p">,</span><span class="w"> </span><span class="n">TimeUnit</span><span class="p">.</span><span class="na">DAYS</span><span class="p">);</span>
-
-<span class="c1">// 抽奖时只查询库存(几 KB)</span>
-<span class="n">Integer</span><span class="w"> </span><span class="n">stock</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">Integer</span><span class="p">)</span><span class="w"> </span><span class="n">redisTemplate</span><span class="p">.</span><span class="na">opsForValue</span><span class="p">().</span><span class="na">get</span><span class="p">(</span><span class="n">stockKey</span><span class="p">);</span>
-</code></pre></div><p></p>
-<p><strong>方案三:本地缓存热点奖品配置</strong>
-</p><div class="highlight"><pre><span></span><code><span class="c1">// 使用 Caffeine 缓存热点奖品配置(如 iPhone、现金红包)</span>
-<span class="kd">private</span><span class="w"> </span><span class="n">Cache</span><span class="o">&lt;</span><span class="n">Long</span><span class="p">,</span><span class="w"> </span><span class="n">Prize</span><span class="o">&gt;</span><span class="w"> </span><span class="n">prizeCache</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Caffeine</span><span class="p">.</span><span class="na">newBuilder</span><span class="p">()</span>
-<span class="w">    </span><span class="p">.</span><span class="na">maximumSize</span><span class="p">(</span><span class="mi">20</span><span class="p">)</span><span class="w"> </span><span class="c1">// 缓存热点奖品</span>
-<span class="w">    </span><span class="p">.</span><span class="na">expireAfterWrite</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="w"> </span><span class="n">TimeUnit</span><span class="p">.</span><span class="na">MINUTES</span><span class="p">)</span>
-<span class="w">    </span><span class="p">.</span><span class="na">build</span><span class="p">();</span>
-
-<span class="kd">public</span><span class="w"> </span><span class="n">Prize</span><span class="w"> </span><span class="nf">getPrize</span><span class="p">(</span><span class="n">Long</span><span class="w"> </span><span class="n">prizeId</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="c1">// 先查本地缓存</span>
-<span class="w">    </span><span class="n">Prize</span><span class="w"> </span><span class="n">prize</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">prizeCache</span><span class="p">.</span><span class="na">getIfPresent</span><span class="p">(</span><span class="n">prizeId</span><span class="p">);</span>
-<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">prize</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="kc">null</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">prize</span><span class="p">;</span>
-<span class="w">    </span><span class="p">}</span>
-
-<span class="w">    </span><span class="c1">// 本地未命中,查 Redis</span>
-<span class="w">    </span><span class="n">String</span><span class="w"> </span><span class="n">key</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">"activity:prize:"</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">prizeId</span><span class="p">;</span>
-<span class="w">    </span><span class="n">prize</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">Prize</span><span class="p">)</span><span class="w"> </span><span class="n">redisTemplate</span><span class="p">.</span><span class="na">opsForValue</span><span class="p">().</span><span class="na">get</span><span class="p">(</span><span class="n">key</span><span class="p">);</span>
-<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">prize</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="kc">null</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="n">prizeCache</span><span class="p">.</span><span class="na">put</span><span class="p">(</span><span class="n">prizeId</span><span class="p">,</span><span class="w"> </span><span class="n">prize</span><span class="p">);</span>
-<span class="w">    </span><span class="p">}</span>
-<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">prize</span><span class="p">;</span>
-<span class="p">}</span>
-</code></pre></div><p></p>
-<p><strong>方案四:Redis Hash 结构——按字段拆分(适合部分更新场景)</strong>
-</p><div class="highlight"><pre><span></span><code><span class="c1">// 使用 Hash 结构存储奖品信息,按字段拆分</span>
-<span class="n">String</span><span class="w"> </span><span class="n">key</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">"activity:prize:"</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">prizeId</span><span class="p">;</span>
-<span class="n">redisTemplate</span><span class="p">.</span><span class="na">opsForHash</span><span class="p">().</span><span class="na">put</span><span class="p">(</span><span class="n">key</span><span class="p">,</span><span class="w"> </span><span class="s">"name"</span><span class="p">,</span><span class="w"> </span><span class="s">"iPhone"</span><span class="p">);</span>
-<span class="n">redisTemplate</span><span class="p">.</span><span class="na">opsForHash</span><span class="p">().</span><span class="na">put</span><span class="p">(</span><span class="n">key</span><span class="p">,</span><span class="w"> </span><span class="s">"stock"</span><span class="p">,</span><span class="w"> </span><span class="s">"100"</span><span class="p">);</span>
-<span class="n">redisTemplate</span><span class="p">.</span><span class="na">opsForHash</span><span class="p">().</span><span class="na">put</span><span class="p">(</span><span class="n">key</span><span class="p">,</span><span class="w"> </span><span class="s">"config"</span><span class="p">,</span><span class="w"> </span><span class="n">configJson</span><span class="p">);</span>
-
-<span class="c1">// 只获取库存字段(HGET 传输量极小)</span>
-<span class="n">Integer</span><span class="w"> </span><span class="n">stock</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">Integer</span><span class="p">)</span><span class="w"> </span><span class="n">redisTemplate</span><span class="p">.</span><span class="na">opsForHash</span><span class="p">().</span><span class="na">get</span><span class="p">(</span><span class="n">key</span><span class="p">,</span><span class="w"> </span><span class="s">"stock"</span><span class="p">);</span>
-</code></pre></div><p></p>
-<p><strong>优化效果</strong>:
-- Redis 内存占用从 80% 降至稳定水位 45%
-- "抽奖"接口 P95 RT 从 1.2s 降至 180ms
-- 单次查询 Redis 数据量从 1.5MB 降至 &lt;10KB
-- Redis 缓存命中率保持 95% 以上</p>
-<p><strong>面试对比分析：大 Key 问题 vs 缓存击穿</strong></p>
-<blockquote>
-<p><strong>面试官可能追问</strong>："你刚才说大 Key 导致性能问题，那和缓存击穿有什么区别？在实际项目中如何区分？"</p>
-</blockquote>
-<table>
-<thead>
-<tr>
-<th style="text-align: left;">维度</th>
-<th style="text-align: left;">大 Key 问题</th>
-<th style="text-align: left;">缓存击穿（缓存未命中）</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align: left;"><strong>问题本质</strong></td>
-<td style="text-align: left;">Redis Key 存在，但 Value 过大（1MB+）</td>
-<td style="text-align: left;">Redis Key 不存在或失效，大量请求穿透到 DB</td>
-</tr>
-<tr>
-<td style="text-align: left;"><strong>典型场景</strong></td>
-<td style="text-align: left;">将多个实体的完整信息存成单个 Key（如所有奖品配置）</td>
-<td style="text-align: left;">键名拼接错误、缓存过期、缓存被意外删除</td>
-</tr>
-<tr>
-<td style="text-align: left;"><strong>问题表现</strong></td>
-<td style="text-align: left;">Redis 响应变慢、内存占用高、网络带宽打满</td>
-<td style="text-align: left;">数据库 QPS 飙升、连接池耗尽、慢查询增多</td>
-</tr>
-<tr>
-<td style="text-align: left;"><strong>排查手段</strong></td>
-<td style="text-align: left;"><code>redis-cli --bigkeys</code> 扫描大 Key<br/><code>redis-cli --stat</code> 观察网络流量尖峰</td>
-<td style="text-align: left;">检查应用日志是否有缓存未命中日志<br/>对比 Redis Key 和业务代码中的键名拼接逻辑</td>
-</tr>
-<tr>
-<td style="text-align: left;"><strong>根因定位</strong></td>
-<td style="text-align: left;">业务代码设计问题（将多个实体存成单个 Key）</td>
-<td style="text-align: left;">键名拼接逻辑错误（如奖品编码写错）</td>
-</tr>
-<tr>
-<td style="text-align: left;"><strong>优化方案</strong></td>
-<td style="text-align: left;">数据结构重构（String 改 Hash/拆分 Key）<br/>本地缓存热点数据</td>
-<td style="text-align: left;">修复键名拼接逻辑<br/>增加缓存预热<br/>增加分布式锁防止并发重建</td>
-</tr>
-</tbody>
-</table>
-<p><strong>实际案例对比</strong>：</p>
-<p><strong>案例一：大 Key 问题（本次压测）</strong>
-</p><div class="highlight"><pre><span></span><code><span class="c1"># 问题：所有奖品配置存成单个 Key，大小 1.5MB</span>
-Key:<span class="w"> </span>activity:prizes:2025
-Value:<span class="w"> </span><span class="o">{</span><span class="s2">"prizes"</span>:<span class="o">[{</span>...<span class="o">}</span>,<span class="o">{</span>...<span class="o">}]}</span><span class="w"> </span>//<span class="w"> </span><span class="m">1</span>.5MB
-
-<span class="c1"># 排查：通过 bigkeys 发现</span>
-$<span class="w"> </span>redis-cli<span class="w"> </span>--bigkeys
-<span class="o">[</span>found<span class="o">]</span><span class="w"> </span><span class="s2">"activity:prizes:2025"</span><span class="w"> </span>with<span class="w"> </span><span class="m">1572864</span><span class="w"> </span>bytes
-
-<span class="c1"># 优化：按奖品拆分 Key</span>
-Key:<span class="w"> </span>activity:prize:1
-Value:<span class="w"> </span><span class="o">{</span><span class="s2">"name"</span>:<span class="s2">"iPhone"</span>,<span class="s2">"stock"</span>:100<span class="o">}</span><span class="w"> </span>//<span class="w"> </span>&lt;10KB
-</code></pre></div><p></p>
-<p><strong>案例二：缓存击穿（历史项目）</strong>
-</p><div class="highlight"><pre><span></span><code><span class="c1"># 问题：奖品编码拼接错误，导致缓存 Key 不存在</span>
-业务代码：String<span class="w"> </span><span class="nv">key</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"activity:prize:"</span><span class="w"> </span>+<span class="w"> </span>prizeCode<span class="p">;</span><span class="w"> </span>//<span class="w"> </span><span class="nv">prizeCode</span><span class="o">=</span><span class="s2">"iPhone15"</span>
-实际缓存：activity:prize:iPhone-15-pro-max<span class="w">  </span>//<span class="w"> </span>缓存中是<span class="s2">"iPhone-15-pro-max"</span>
-
-<span class="c1"># 排查：对比 Redis Key 和业务代码</span>
-$<span class="w"> </span>redis-cli<span class="w"> </span>KEYS<span class="w"> </span><span class="s2">"activity:prize:*"</span>
-<span class="m">1</span><span class="o">)</span><span class="w"> </span><span class="s2">"activity:prize:iPhone-15-pro-max"</span>
-<span class="m">2</span><span class="o">)</span><span class="w"> </span><span class="s2">"activity:prize:现金红包"</span>
-
-<span class="c1"># 应用日志显示：</span>
-<span class="o">[</span>WARN<span class="o">]</span><span class="w"> </span>Cache<span class="w"> </span>miss<span class="w"> </span><span class="k">for</span><span class="w"> </span>key:<span class="w"> </span>activity:prize:iPhone15
-
-<span class="c1"># 优化：修复键名拼接逻辑</span>
-String<span class="w"> </span><span class="nv">key</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"activity:prize:"</span><span class="w"> </span>+<span class="w"> </span>prizeCode.replace<span class="o">(</span><span class="s2">"-"</span>,<span class="w"> </span><span class="s2">""</span><span class="o">)</span><span class="p">;</span><span class="w"> </span>//<span class="w"> </span>去掉横杠
-</code></pre></div><p></p>
-<p><strong>面试金句</strong>：</p>
-<blockquote>
-<p>"大 Key 和缓存击穿虽然都会导致性能问题，但根因和排查思路完全不同。大 Key 是'有缓存但太大'，缓存击穿是'没有缓存或缓存失效'。我在项目中先用 <code>redis-cli --bigkeys</code> 和 <code>--stat</code> 排除大 Key 问题，再检查应用日志和 Redis Key 列表定位缓存击穿。这两个问题都需要在代码 Review 阶段预防，而不是等压测才发现。"</p>
-</blockquote>
-<hr/>
-<h4 id="_12">(五)瓶颈五:同步调用积分系统导致任务提交和抽奖接口超时</h4>
-<p><strong>问题现象</strong>:
-- 压测"做任务"环节时,任务提交接口 P999 RT 飙升至 2-4 秒
-- 压测"抽奖"环节时,抽奖接口 P999 RT 飙升至 3-5 秒
-- 压测到 400 TPS 时,Tomcat 线程池出现大量 BLOCKED 状态线程
-- 应用日志报错: <code>java.net.SocketTimeoutException: Read timed out</code>
-- 通过 Arthas 的 <code>trace</code> 命令发现,积分系统调用耗时 500ms-2s</p>
-<p><strong>根因分析</strong>:
-- <strong>业务场景</strong>:
-  - <strong>做任务</strong>:用户完成任务后,需同步调用积分系统增加积分或发放抽奖次数
-  - <strong>抽奖</strong>:用户抽奖时,需同步调用积分系统扣减积分(如消耗积分抽奖)
-- <strong>同步阻塞</strong>:业务逻辑要求必须拿到积分系统响应才能继续,无法跳过
-- <strong>性能瓶颈</strong>:
-  - 积分系统是外部微服务,响应时间不可控(平均 500ms,高峰期可达 2s)
-  - 同步调用导致 Tomcat 线程长时间阻塞,并发能力受限
-  - 当积分系统故障或响应慢时,会拖垮整个活动系统
-  - 积分系统自身也可能因为活动高峰流量而压力过大</p>
-<p><strong>Arthas 排查过程</strong>:
-</p><div class="highlight"><pre><span></span><code><span class="c1"># 追踪任务提交接口的耗时分布</span>
-trace<span class="w"> </span>com.xxx.activity.service.TaskService<span class="w"> </span>submitTask<span class="w"> </span><span class="s1">'#cost &gt; 100'</span><span class="w"> </span>-n<span class="w"> </span><span class="m">5</span>
-
-<span class="c1"># 追踪抽奖接口的耗时分布</span>
-trace<span class="w"> </span>com.xxx.activity.service.LotteryService<span class="w"> </span>drawLottery<span class="w"> </span><span class="s1">'#cost &gt; 100'</span><span class="w"> </span>-n<span class="w"> </span><span class="m">5</span>
-
-<span class="c1"># 追踪积分系统调用链路</span>
-trace<span class="w"> </span>com.xxx.point.service.PointService<span class="w"> </span>addPoint<span class="w"> </span><span class="s1">'#cost &gt; 100'</span><span class="w"> </span>-n<span class="w"> </span><span class="m">5</span>
-trace<span class="w"> </span>com.xxx.point.service.PointService<span class="w"> </span>deductPoint<span class="w"> </span><span class="s1">'#cost &gt; 100'</span><span class="w"> </span>-n<span class="w"> </span><span class="m">5</span>
-</code></pre></div><p></p>
-<p><strong>优化方案</strong>:</p>
-<p><strong>方案一:引入超时控制与熔断降级(Sentinel,适合弱依赖场景)</strong>
-</p><div class="highlight"><pre><span></span><code><span class="c1">// 使用 Sentinel 进行熔断降级</span>
-<span class="nd">@SentinelResource</span><span class="p">(</span>
-<span class="w">    </span><span class="n">value</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">"addPoint"</span><span class="p">,</span>
-<span class="w">    </span><span class="n">fallback</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">"addPointFallback"</span>
-<span class="p">)</span>
-<span class="kd">public</span><span class="w"> </span><span class="n">PointResult</span><span class="w"> </span><span class="nf">addPoint</span><span class="p">(</span><span class="n">String</span><span class="w"> </span><span class="n">userId</span><span class="p">,</span><span class="w"> </span><span class="n">Integer</span><span class="w"> </span><span class="n">points</span><span class="p">,</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="n">taskId</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="c1">// 设置超时时间为 500ms</span>
-<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">pointServiceClient</span><span class="p">.</span><span class="na">addPoint</span><span class="p">(</span><span class="n">userId</span><span class="p">,</span><span class="w"> </span><span class="n">points</span><span class="p">,</span><span class="w"> </span><span class="n">taskId</span><span class="p">,</span><span class="w"> </span><span class="mi">500</span><span class="p">,</span><span class="w"> </span><span class="n">TimeUnit</span><span class="p">.</span><span class="na">MILLISECONDS</span><span class="p">);</span>
-<span class="p">}</span>
-
-<span class="c1">// 熔断后降级逻辑:异步补偿</span>
-<span class="kd">public</span><span class="w"> </span><span class="n">PointResult</span><span class="w"> </span><span class="nf">addPointFallback</span><span class="p">(</span><span class="n">String</span><span class="w"> </span><span class="n">userId</span><span class="p">,</span><span class="w"> </span><span class="n">Integer</span><span class="w"> </span><span class="n">points</span><span class="p">,</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="n">taskId</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="c1">// 记录到补偿表,定时任务重试</span>
-<span class="w">    </span><span class="n">compensateDao</span><span class="p">.</span><span class="na">insert</span><span class="p">(</span><span class="k">new</span><span class="w"> </span><span class="n">CompensateTask</span><span class="p">(</span><span class="n">userId</span><span class="p">,</span><span class="w"> </span><span class="n">points</span><span class="p">,</span><span class="w"> </span><span class="n">taskId</span><span class="p">,</span><span class="w"> </span><span class="s">"ADD_POINT"</span><span class="p">));</span>
-
-<span class="w">    </span><span class="c1">// 返回成功(先快速响应,后台补偿)</span>
-<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">PointResult</span><span class="p">.</span><span class="na">success</span><span class="p">(</span><span class="s">"积分将在 5 分钟内到账"</span><span class="p">);</span>
-<span class="p">}</span>
-
-<span class="c1">// Sentinel 熔断规则</span>
-<span class="n">DegradeRule</span><span class="w"> </span><span class="n">rule</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">DegradeRule</span><span class="p">(</span><span class="s">"addPoint"</span><span class="p">)</span>
-<span class="w">    </span><span class="p">.</span><span class="na">setGrade</span><span class="p">(</span><span class="n">CircuitBreakerStrategy</span><span class="p">.</span><span class="na">SLOW_REQUEST_RATIO</span><span class="p">.</span><span class="na">getType</span><span class="p">())</span>
-<span class="w">    </span><span class="p">.</span><span class="na">setSlowRatioThreshold</span><span class="p">(</span><span class="mf">0.5</span><span class="p">)</span><span class="w">  </span><span class="c1">// 慢调用比例 &gt; 50%</span>
-<span class="w">    </span><span class="p">.</span><span class="na">setStatIntervalMs</span><span class="p">(</span><span class="mi">10000</span><span class="p">)</span>
-<span class="w">    </span><span class="p">.</span><span class="na">setSlowRequestDuration</span><span class="p">(</span><span class="mi">500</span><span class="p">)</span><span class="w">  </span><span class="c1">// 慢调用阈值 500ms</span>
-<span class="w">    </span><span class="p">.</span><span class="na">setTimeWindow</span><span class="p">(</span><span class="mi">10</span><span class="p">);</span><span class="w">           </span><span class="c1">// 熔断时长 10 秒</span>
-</code></pre></div><p></p>
-<p><strong>方案二:消息队列异步解耦(RabbitMQ,推荐)</strong>
-</p><div class="highlight"><pre><span></span><code><span class="c1">// 做任务:快速入队</span>
-<span class="nd">@PostMapping</span><span class="p">(</span><span class="s">"/task/complete"</span><span class="p">)</span>
-<span class="kd">public</span><span class="w"> </span><span class="n">Result</span><span class="w"> </span><span class="nf">completeTask</span><span class="p">(</span><span class="nd">@RequestBody</span><span class="w"> </span><span class="n">TaskRequest</span><span class="w"> </span><span class="n">req</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="n">String</span><span class="w"> </span><span class="n">taskId</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">UUID</span><span class="p">.</span><span class="na">randomUUID</span><span class="p">().</span><span class="na">toString</span><span class="p">();</span>
-<span class="w">    </span><span class="n">req</span><span class="p">.</span><span class="na">setTaskId</span><span class="p">(</span><span class="n">taskId</span><span class="p">);</span>
-
-<span class="w">    </span><span class="c1">// 快速入队(耗时 &lt;10ms)</span>
-<span class="w">    </span><span class="n">rabbitTemplate</span><span class="p">.</span><span class="na">convertAndSend</span><span class="p">(</span><span class="s">"task_exchange"</span><span class="p">,</span><span class="w"> </span><span class="s">"task.complete"</span><span class="p">,</span><span class="w"> </span><span class="n">req</span><span class="p">);</span>
-
-<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">Result</span><span class="p">.</span><span class="na">success</span><span class="p">(</span><span class="s">"任务完成,积分将在 5 分钟内到账"</span><span class="p">);</span>
-<span class="p">}</span>
-
-<span class="c1">// 抽奖:快速入队</span>
-<span class="nd">@PostMapping</span><span class="p">(</span><span class="s">"/lottery/draw"</span><span class="p">)</span>
-<span class="kd">public</span><span class="w"> </span><span class="n">Result</span><span class="w"> </span><span class="nf">drawLottery</span><span class="p">(</span><span class="nd">@RequestBody</span><span class="w"> </span><span class="n">LotteryRequest</span><span class="w"> </span><span class="n">req</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="n">String</span><span class="w"> </span><span class="n">lotteryId</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">UUID</span><span class="p">.</span><span class="na">randomUUID</span><span class="p">().</span><span class="na">toString</span><span class="p">();</span>
-<span class="w">    </span><span class="n">req</span><span class="p">.</span><span class="na">setLotteryId</span><span class="p">(</span><span class="n">lotteryId</span><span class="p">);</span>
-
-<span class="w">    </span><span class="c1">// 快速入队(耗时 &lt;10ms)</span>
-<span class="w">    </span><span class="n">rabbitTemplate</span><span class="p">.</span><span class="na">convertAndSend</span><span class="p">(</span><span class="s">"lottery_exchange"</span><span class="p">,</span><span class="w"> </span><span class="s">"lottery.draw"</span><span class="p">,</span><span class="w"> </span><span class="n">req</span><span class="p">);</span>
-
-<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">Result</span><span class="p">.</span><span class="na">success</span><span class="p">(</span><span class="s">"抽奖请求已提交,请稍后查看结果"</span><span class="p">);</span>
-<span class="p">}</span>
-
-<span class="c1">// 消费者:异步调用积分系统</span>
-<span class="nd">@RabbitListener</span><span class="p">(</span><span class="n">queues</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">"task_complete_queue"</span><span class="p">)</span>
-<span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">consumeTaskComplete</span><span class="p">(</span><span class="n">TaskRequest</span><span class="w"> </span><span class="n">req</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="n">String</span><span class="w"> </span><span class="n">userId</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">req</span><span class="p">.</span><span class="na">getUserId</span><span class="p">();</span>
-<span class="w">    </span><span class="n">Integer</span><span class="w"> </span><span class="n">points</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">req</span><span class="p">.</span><span class="na">getPoints</span><span class="p">();</span>
-<span class="w">    </span><span class="n">String</span><span class="w"> </span><span class="n">taskId</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">req</span><span class="p">.</span><span class="na">getTaskId</span><span class="p">();</span>
-
-<span class="w">    </span><span class="k">try</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="c1">// 调用积分系统(可设置更长超时,不阻塞主流程)</span>
-<span class="w">        </span><span class="n">PointResult</span><span class="w"> </span><span class="n">result</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">pointServiceClient</span><span class="p">.</span><span class="na">addPoint</span><span class="p">(</span><span class="n">userId</span><span class="p">,</span><span class="w"> </span><span class="n">points</span><span class="p">,</span><span class="w"> </span><span class="n">taskId</span><span class="p">);</span>
-
-<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">result</span><span class="p">.</span><span class="na">isSuccess</span><span class="p">())</span><span class="w"> </span><span class="p">{</span>
-<span class="w">            </span><span class="c1">// 发放抽奖次数</span>
-<span class="w">            </span><span class="n">lotteryService</span><span class="p">.</span><span class="na">addLotteryChance</span><span class="p">(</span><span class="n">userId</span><span class="p">,</span><span class="w"> </span><span class="n">taskId</span><span class="p">);</span>
-<span class="w">            </span><span class="n">log</span><span class="p">.</span><span class="na">info</span><span class="p">(</span><span class="s">"积分发放成功: userId={}, points={}"</span><span class="p">,</span><span class="w"> </span><span class="n">userId</span><span class="p">,</span><span class="w"> </span><span class="n">points</span><span class="p">);</span>
-<span class="w">        </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span>
-<span class="w">            </span><span class="n">log</span><span class="p">.</span><span class="na">warn</span><span class="p">(</span><span class="s">"积分发放失败: userId={}, reason={}"</span><span class="p">,</span><span class="w"> </span><span class="n">userId</span><span class="p">,</span><span class="w"> </span><span class="n">result</span><span class="p">.</span><span class="na">getMsg</span><span class="p">());</span>
-<span class="w">        </span><span class="p">}</span>
-<span class="w">    </span><span class="p">}</span><span class="w"> </span><span class="k">catch</span><span class="w"> </span><span class="p">(</span><span class="n">Exception</span><span class="w"> </span><span class="n">e</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="n">log</span><span class="p">.</span><span class="na">error</span><span class="p">(</span><span class="s">"积分系统异常: userId={}"</span><span class="p">,</span><span class="w"> </span><span class="n">userId</span><span class="p">,</span><span class="w"> </span><span class="n">e</span><span class="p">);</span>
-<span class="w">        </span><span class="c1">// 发送到死信队列,人工介入或重试</span>
-<span class="w">        </span><span class="n">rabbitTemplate</span><span class="p">.</span><span class="na">convertAndSend</span><span class="p">(</span><span class="s">"task_dlx_exchange"</span><span class="p">,</span><span class="w"> </span><span class="s">"task.failed"</span><span class="p">,</span><span class="w"> </span><span class="n">req</span><span class="p">);</span>
-<span class="w">    </span><span class="p">}</span>
-<span class="p">}</span>
-</code></pre></div><p></p>
-<p><strong>方案三:本地积分预扣 + 异步同步(适合强依赖场景)</strong>
-</p><div class="highlight"><pre><span></span><code><span class="c1">// 抽奖时:本地预扣积分,异步同步到积分系统</span>
-<span class="nd">@Transactional</span>
-<span class="kd">public</span><span class="w"> </span><span class="n">LotteryResult</span><span class="w"> </span><span class="nf">drawLottery</span><span class="p">(</span><span class="n">String</span><span class="w"> </span><span class="n">userId</span><span class="p">,</span><span class="w"> </span><span class="n">Long</span><span class="w"> </span><span class="n">prizeId</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="c1">// 1. 本地预扣积分(快速)</span>
-<span class="w">    </span><span class="n">UserPoint</span><span class="w"> </span><span class="n">userPoint</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">userPointDao</span><span class="p">.</span><span class="na">selectByUserId</span><span class="p">(</span><span class="n">userId</span><span class="p">);</span>
-<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">userPoint</span><span class="p">.</span><span class="na">getPoints</span><span class="p">()</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mi">10</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="k">throw</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">BusinessException</span><span class="p">(</span><span class="s">"积分不足"</span><span class="p">);</span>
-<span class="w">    </span><span class="p">}</span>
-<span class="w">    </span><span class="n">userPoint</span><span class="p">.</span><span class="na">setPoints</span><span class="p">(</span><span class="n">userPoint</span><span class="p">.</span><span class="na">getPoints</span><span class="p">()</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">10</span><span class="p">);</span>
-<span class="w">    </span><span class="n">userPointDao</span><span class="p">.</span><span class="na">updateById</span><span class="p">(</span><span class="n">userPoint</span><span class="p">);</span>
-
-<span class="w">    </span><span class="c1">// 2. 执行抽奖逻辑</span>
-<span class="w">    </span><span class="n">Prize</span><span class="w"> </span><span class="n">prize</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">lotteryEngine</span><span class="p">.</span><span class="na">draw</span><span class="p">(</span><span class="n">prizeId</span><span class="p">);</span>
-
-<span class="w">    </span><span class="c1">// 3. 异步同步到积分系统</span>
-<span class="w">    </span><span class="n">CompletableFuture</span><span class="p">.</span><span class="na">runAsync</span><span class="p">(()</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="n">pointServiceClient</span><span class="p">.</span><span class="na">deductPoint</span><span class="p">(</span><span class="n">userId</span><span class="p">,</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span><span class="w"> </span><span class="s">"抽奖消费"</span><span class="p">);</span>
-<span class="w">    </span><span class="p">},</span><span class="w"> </span><span class="n">asyncExecutor</span><span class="p">);</span>
-
-<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">LotteryResult</span><span class="p">.</span><span class="na">success</span><span class="p">(</span><span class="n">prize</span><span class="p">);</span>
-<span class="p">}</span>
-</code></pre></div><p></p>
-<p><strong>方案四:积分系统接口优化(服务端优化)</strong>
-</p><div class="highlight"><pre><span></span><code><span class="c1">// 积分系统侧:批量接口提升吞吐量</span>
-<span class="nd">@PostMapping</span><span class="p">(</span><span class="s">"/point/batchAdd"</span><span class="p">)</span>
-<span class="kd">public</span><span class="w"> </span><span class="n">BatchResult</span><span class="w"> </span><span class="nf">batchAddPoint</span><span class="p">(</span><span class="nd">@RequestBody</span><span class="w"> </span><span class="n">List</span><span class="o">&lt;</span><span class="n">PointRequest</span><span class="o">&gt;</span><span class="w"> </span><span class="n">requests</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="c1">// 批量插入数据库,减少 IO 次数</span>
-<span class="w">    </span><span class="n">List</span><span class="o">&lt;</span><span class="n">PointRecord</span><span class="o">&gt;</span><span class="w"> </span><span class="n">records</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">requests</span><span class="p">.</span><span class="na">stream</span><span class="p">()</span>
-<span class="w">        </span><span class="p">.</span><span class="na">map</span><span class="p">(</span><span class="n">req</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">PointRecord</span><span class="p">(</span><span class="n">req</span><span class="p">.</span><span class="na">getUserId</span><span class="p">(),</span><span class="w"> </span><span class="n">req</span><span class="p">.</span><span class="na">getPoints</span><span class="p">(),</span><span class="w"> </span><span class="n">req</span><span class="p">.</span><span class="na">getTaskId</span><span class="p">()))</span>
-<span class="w">        </span><span class="p">.</span><span class="na">collect</span><span class="p">(</span><span class="n">Collectors</span><span class="p">.</span><span class="na">toList</span><span class="p">());</span>
-<span class="w">    </span><span class="n">pointRecordDao</span><span class="p">.</span><span class="na">batchInsert</span><span class="p">(</span><span class="n">records</span><span class="p">);</span>
-
-<span class="w">    </span><span class="c1">// 批量更新用户积分(使用 CASE WHEN 批量更新)</span>
-<span class="w">    </span><span class="n">userPointDao</span><span class="p">.</span><span class="na">batchAddPoints</span><span class="p">(</span><span class="n">records</span><span class="p">);</span>
-
-<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">BatchResult</span><span class="p">.</span><span class="na">success</span><span class="p">(</span><span class="n">requests</span><span class="p">.</span><span class="na">size</span><span class="p">());</span>
-<span class="p">}</span>
-
-<span class="c1">// 活动侧:定时批量调用积分系统</span>
-<span class="nd">@Scheduled</span><span class="p">(</span><span class="n">fixedRate</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">5000</span><span class="p">)</span><span class="w"> </span><span class="c1">// 每 5 秒批量同步一次</span>
-<span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">batchSyncPoints</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="c1">// 从本地缓冲区取出待同步的积分变更</span>
-<span class="w">    </span><span class="n">List</span><span class="o">&lt;</span><span class="n">PointRequest</span><span class="o">&gt;</span><span class="w"> </span><span class="n">pendingPoints</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">pointBuffer</span><span class="p">.</span><span class="na">drain</span><span class="p">(</span><span class="mi">100</span><span class="p">);</span>
-
-<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="n">pendingPoints</span><span class="p">.</span><span class="na">isEmpty</span><span class="p">())</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="c1">// 批量调用积分系统</span>
-<span class="w">        </span><span class="n">pointServiceClient</span><span class="p">.</span><span class="na">batchAddPoint</span><span class="p">(</span><span class="n">pendingPoints</span><span class="p">);</span>
-<span class="w">    </span><span class="p">}</span>
-<span class="p">}</span>
-</code></pre></div><p></p>
-<p><strong>优化效果</strong>:
-- "任务提交"接口 P99 RT 从 2s 降至 150ms
-- "抽奖"接口 P99 RT 从 3s 降至 180ms
-- 积分系统故障时自动降级,不影响用户操作
-- 系统并发能力提升约 50%(从 400 TPS 提升至 850 TPS)
-- 实现了业务解耦,积分系统可独立扩容</p>
-<p><strong>补充:如何保证最终一致性?</strong>
-</p><div class="highlight"><pre><span></span><code><span class="c1">// 消费者端增加幂等性校验</span>
-<span class="nd">@RabbitListener</span><span class="p">(</span><span class="n">queues</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">"task_complete_queue"</span><span class="p">)</span>
-<span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">consumeTaskComplete</span><span class="p">(</span><span class="n">TaskRequest</span><span class="w"> </span><span class="n">req</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="n">String</span><span class="w"> </span><span class="n">taskId</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">req</span><span class="p">.</span><span class="na">getTaskId</span><span class="p">();</span>
-
-<span class="w">    </span><span class="c1">// 幂等性校验:检查是否已处理过该任务</span>
-<span class="w">    </span><span class="n">String</span><span class="w"> </span><span class="n">lockKey</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">"task:lock:"</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">taskId</span><span class="p">;</span>
-<span class="w">    </span><span class="kt">boolean</span><span class="w"> </span><span class="n">locked</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">redisTemplate</span><span class="p">.</span><span class="na">opsForValue</span><span class="p">().</span><span class="na">setIfAbsent</span><span class="p">(</span><span class="n">lockKey</span><span class="p">,</span><span class="w"> </span><span class="s">"1"</span><span class="p">,</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w"> </span><span class="n">TimeUnit</span><span class="p">.</span><span class="na">MINUTES</span><span class="p">);</span>
-<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="n">locked</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="n">log</span><span class="p">.</span><span class="na">warn</span><span class="p">(</span><span class="s">"任务已处理,跳过: taskId={}"</span><span class="p">,</span><span class="w"> </span><span class="n">taskId</span><span class="p">);</span>
-<span class="w">        </span><span class="k">return</span><span class="p">;</span>
-<span class="w">    </span><span class="p">}</span>
-
-<span class="w">    </span><span class="c1">// 执行业务逻辑...</span>
-<span class="p">}</span>
-
-<span class="c1">// 增加补偿机制:定时任务扫描未完成任务</span>
-<span class="nd">@Scheduled</span><span class="p">(</span><span class="n">fixedRate</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">300000</span><span class="p">)</span><span class="w"> </span><span class="c1">// 每 5 分钟执行一次</span>
-<span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">checkUnfinishedTasks</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="n">List</span><span class="o">&lt;</span><span class="n">Task</span><span class="o">&gt;</span><span class="w"> </span><span class="n">unfinishedTasks</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">taskDao</span><span class="p">.</span><span class="na">selectUnfinishedTasks</span><span class="p">();</span>
-<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="n">Task</span><span class="w"> </span><span class="n">task</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="n">unfinishedTasks</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="c1">// 重新发送到队列</span>
-<span class="w">        </span><span class="n">rabbitTemplate</span><span class="p">.</span><span class="na">convertAndSend</span><span class="p">(</span><span class="s">"task_exchange"</span><span class="p">,</span><span class="w"> </span><span class="s">"task.complete"</span><span class="p">,</span><span class="w"> </span><span class="n">task</span><span class="p">);</span>
-<span class="w">    </span><span class="p">}</span>
-<span class="p">}</span>
-
-<span class="c1">// 积分系统侧:增加分布式锁防止重复扣减</span>
-<span class="kd">public</span><span class="w"> </span><span class="n">PointResult</span><span class="w"> </span><span class="nf">addPoint</span><span class="p">(</span><span class="n">String</span><span class="w"> </span><span class="n">userId</span><span class="p">,</span><span class="w"> </span><span class="n">Integer</span><span class="w"> </span><span class="n">points</span><span class="p">,</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="n">taskId</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="n">String</span><span class="w"> </span><span class="n">lockKey</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">"point:lock:"</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">taskId</span><span class="p">;</span>
-<span class="w">    </span><span class="n">RLock</span><span class="w"> </span><span class="n">lock</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">redissonClient</span><span class="p">.</span><span class="na">getLock</span><span class="p">(</span><span class="n">lockKey</span><span class="p">);</span>
-
-<span class="w">    </span><span class="k">try</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">lock</span><span class="p">.</span><span class="na">tryLock</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span><span class="w"> </span><span class="n">TimeUnit</span><span class="p">.</span><span class="na">SECONDS</span><span class="p">))</span><span class="w"> </span><span class="p">{</span>
-<span class="w">            </span><span class="c1">// 再次检查是否已处理(双重检查)</span>
-<span class="w">            </span><span class="n">PointRecord</span><span class="w"> </span><span class="n">record</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">pointRecordDao</span><span class="p">.</span><span class="na">selectByTaskId</span><span class="p">(</span><span class="n">taskId</span><span class="p">);</span>
-<span class="w">            </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">record</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="kc">null</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">                </span><span class="k">return</span><span class="w"> </span><span class="n">PointResult</span><span class="p">.</span><span class="na">success</span><span class="p">(</span><span class="s">"已处理"</span><span class="p">);</span>
-<span class="w">            </span><span class="p">}</span>
-
-<span class="w">            </span><span class="c1">// 执行积分增加逻辑</span>
-<span class="w">            </span><span class="n">userPointDao</span><span class="p">.</span><span class="na">addPoint</span><span class="p">(</span><span class="n">userId</span><span class="p">,</span><span class="w"> </span><span class="n">points</span><span class="p">);</span>
-<span class="w">            </span><span class="n">pointRecordDao</span><span class="p">.</span><span class="na">insert</span><span class="p">(</span><span class="k">new</span><span class="w"> </span><span class="n">PointRecord</span><span class="p">(</span><span class="n">userId</span><span class="p">,</span><span class="w"> </span><span class="n">points</span><span class="p">,</span><span class="w"> </span><span class="n">taskId</span><span class="p">));</span>
-
-<span class="w">            </span><span class="k">return</span><span class="w"> </span><span class="n">PointResult</span><span class="p">.</span><span class="na">success</span><span class="p">();</span>
-<span class="w">        </span><span class="p">}</span>
-<span class="w">    </span><span class="p">}</span><span class="w"> </span><span class="k">finally</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="n">lock</span><span class="p">.</span><span class="na">unlock</span><span class="p">();</span>
-<span class="w">    </span><span class="p">}</span>
-<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">PointResult</span><span class="p">.</span><span class="na">fail</span><span class="p">(</span><span class="s">"获取锁失败"</span><span class="p">);</span>
-<span class="p">}</span>
-</code></pre></div><p></p>
-<hr/>
-<h4 id="_13">(六)其他优化措施</h4>
-<table>
-<thead>
-<tr>
-<th style="text-align: left;">优化项</th>
-<th style="text-align: left;">具体措施</th>
-<th style="text-align: left;">效果</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align: left;"><strong>日志优化</strong></td>
-<td style="text-align: left;">生产环境禁用DEBUG日志,INFO日志改为异步写入(Logback AsyncAppender)</td>
-<td style="text-align: left;">磁盘IO从80%降至30%</td>
-</tr>
-<tr>
-<td style="text-align: left;"><strong>索引优化</strong></td>
-<td style="text-align: left;">为 <code>user_points.user_id</code> 和 <code>prize_stock.prize_id</code> 添加唯一索引</td>
-<td style="text-align: left;">查询RT从200ms降至50ms</td>
-</tr>
-<tr>
-<td style="text-align: left;"><strong>批量处理</strong></td>
-<td style="text-align: left;">中奖记录从单条插入改为批量插入(每100条一批)</td>
-<td style="text-align: left;">DB写入TPS从200提升到800</td>
-</tr>
-<tr>
-<td style="text-align: left;"><strong>预热策略</strong></td>
-<td style="text-align: left;">压测前预热热点奖品缓存和用户积分缓存</td>
-<td style="text-align: left;">冷启动RT从2秒降至500ms</td>
-</tr>
-</tbody>
-</table>
-<hr/>
-<p><strong>面试金句</strong>:</p>
-<blockquote>
-<p>"压测最大的价值不是得出一个数字,而是发现瓶颈并验证优化效果。我们这次压测从500 TPS提升到850 TPS,过程中解决了数据库连接池耗尽、热点奖品缓存穿透、分布式锁竞争、活动奖品配置大 Key、同步调用积分系统超时五个关键瓶颈,每个瓶颈的优化都是基于真实数据分析和根因定位,而不是盲目调参。"</p>
-</blockquote>
+<p>策略是 allkeys-lru，说明最近最少使用的Key被清掉了。结合现象，怀疑是大key挤占了其他缓存的空间。</p>
+<p>2.定位大Key（Big Key）</p>
+<div class="highlight"><pre><span></span><code>redis-cli<span class="w"> </span>--bigkeys
+redis-cli<span class="w"> </span>MEMORY<span class="w"> </span>USAGE<span class="w"> </span><span class="o">{</span>key<span class="o">}</span>
+</code></pre></div>
+<p>使用 redis-cli --bigkeys 扫描，重点查看 prize_config 对应的数据结构大小。</p>
+<p>3.怀疑缓存穿透/击穿流量</p>
+<p>查看Redis监控的 keyspace_misses（未命中数）与 keyspace_hits（命中数）曲线。未命中数陡增的时间点应与 evicted_keys 陡增时间点完全重合，并确认是否未做<code>缓存空值处理</code>或<code>布隆过滤器前置拦截</code>或<code>缓存失效时间（TTL）设置是否集中</code>。</p>
+<h5 id="_12">根因</h5>
+<p>技术债务+业务演进</p>
+<p>由于奖品配置由运营同事在平台配置的，加上最初设计时所有奖品都存在string格式的key，后续有效的、无效的奖品都存在这个key里，加上ttl永不过期。</p>
+<p>在压测高并发下，内存很快触达maxmemory。</p>
+<p>虽然 allkeys-lru 没有淘汰这个极热的大Key（因为它太常被访问），但这个Key自身占用了大量内存，导致Redis中其他业务缓存（如抽奖校验、限流计数器等）被allkeys-lru频繁淘汰。</p>
+<h5 id="_13">优化</h5>
+<ul>
+<li>大Key拆解为Redis Hash，只缓存有效奖品</li>
+<li>逻辑过期 + 本地缓存：引入逻辑过期机制，物理TTL设为永不过期，在Value中埋入logicExpireTime，由后台异步线程定时刷新，彻底消除击穿风险。同时，在应用内存引入Caffeine本地缓存作为第一道防线，压测时99%的奖品读请求由本地内存直接返回，完全不经过Redis。</li>
+</ul>
 <h2 id="_14">六、压测通过标准建议</h2>
 <table>
 <thead>
@@ -5628,7 +5068,7 @@ trace<span class="w"> </span>com.xxx.point.service.PointService<span class="w"> 
 </tr>
 <tr>
 <td style="text-align: left;">压测时长</td>
-<td style="text-align: left;">峰值水位持续 <strong>30分钟</strong> 无劣化趋势</td>
+<td style="text-align: left;">峰值水位持续 30分钟 无劣化趋势</td>
 </tr>
 <tr>
 <td style="text-align: left;">超卖检测</td>
@@ -5637,7 +5077,7 @@ trace<span class="w"> </span>com.xxx.point.service.PointService<span class="w"> 
 </tbody>
 </table>
 <blockquote>
-<p><strong>面试官终极追问提示</strong>:"如果压测时发现 P99 响应时间合格,但 P999 飞得很高,你如何排查?"——此时可回答:<strong>检查GC日志中的Full GC频率、查看是否有跨机房调用、检查是否有热点Key的驱逐重加载逻辑。</strong></p>
+<p>面试官终极追问提示:"如果压测时发现 P99 响应时间合格,但 P999 飞得很高,你如何排查?"——此时可回答:检查GC日志中的Full GC频率、查看是否有跨机房调用、检查是否有热点Key的驱逐重加载逻辑。</p>
 </blockquote>
 </article>
 </div>
