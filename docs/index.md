@@ -15,4 +15,4 @@ hide:
 
 ## db
 
-- [Mysql监控](./utils/performance/monitor/mysql.md)
+- [Mysql监控](./utils/performance/monitor/mysql/#_4)
