@@ -61,9 +61,9 @@ nav:
                 - Day4: python/pandas/day04.md
                 - Day5: python/pandas/day05.md
           - kafka:
-                - 一些概念: python/kafka/concept.md
-                - kafka-python: python/kafka/kafka-python.md
+                - 概念: python/kafka/concept.md
                 - confluent_kafka: python/kafka/confluent_kafka.md
+                - kafka-python: python/kafka/kafka-python.md
           - redis:
                 - 特性: python/redis/redis_note.md
                 - 常用方法: python/redis/function.md
@@ -108,6 +108,13 @@ nav:
           - ElasticSearch: other/elasticsearch.md
           - PostgreSQL: sql/pg/readme.md
           - 数仓和数据中台: sql/data.md
+          - Hadoop:
+            - Hadoop生态: sql/hadoop/ecosystem.md
+            - Scala:
+                  - Day01: sql/hadoop/scala/day01.md
+                  - Day02: sql/hadoop/scala/day02.md
+                  - Day03: sql/hadoop/scala/day03.md
+                  - Day04: sql/hadoop/scala/day04.md
     - Shell:
           - 复习: shell/review.md
           - git: other/git_notes.md
@@ -155,13 +162,6 @@ nav:
                 - Charles: utils/charles_notes.md
                 - Postman: utils/postman_notes.md
                 - Apifox: utils/apifox_notes.md
-    - Hadoop:
-          - Hadoop生态: hadoop/ecosystem.md
-          - Scala:
-                - Day01: hadoop/scala/day01.md
-                - Day02: hadoop/scala/day02.md
-                - Day03: hadoop/scala/day03.md
-                - Day04: hadoop/scala/day04.md
     - 其他:
           - 区块链: other/blockchain.md
           - 深度学习: other/deep_learning.md

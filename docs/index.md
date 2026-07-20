@@ -13,6 +13,12 @@ hide:
 - [JVM内存结构](./java/jvmgc/jvm.md)
 - [GC监控](./java/jvmgc/jmx.md)
 
-## db
+## DB
 
 - [Mysql监控](./utils/performance/monitor/mysql/#_4)
+
+## MQ
+
+Kafka
+
+- [基本概念](./python/kafka/concept.md)
