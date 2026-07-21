@@ -126,7 +126,7 @@ mkdocs编写的文档提交到github后，可以通过github action[部署到git
 
         提示框类型还有note、tip、success、fail、question、warning等。
 
-        参考资料：[mkdocs-material官方使用文档示例](https://squidfunk.github.io/mkdocs-material/reference/admonitions/#admonition-icons-fontawesome)
+        > 参考资料：[mkdocs-material官方使用文档示例](https://squidfunk.github.io/mkdocs-material/reference/admonitions/#admonition-icons-fontawesome)
          
     === "code.md"
 
@@ -235,7 +235,7 @@ jobs:
 
 3.之后push代码时便会触发工作流，运行成功后访问`https://{username}.github.io`即可查看。
 
-参考资料：[Quickstart for GitHub Actions](https://docs.github.com/en/actions/quickstart)
+> 参考资料：[Quickstart for GitHub Actions](https://docs.github.com/en/actions/quickstart)
 
 ---
 
@@ -260,9 +260,9 @@ Supported layouts
 
 实在不行用[Mermaid Live Editor](https://mermaid.ai/live)，在线编辑（支持拖放）后保存图片；另外，`"theme": "redux"`这主题好看。
 
-参考资料：
+> 参考资料
 
-1. [ELK Layout](https://www.npmjs.com/package/@mermaid-js/layout-elk)
-2. [mkdocs-material customize Mermaid.js](https://squidfunk.github.io/mkdocs-material/reference/diagrams/?h=mermaid#customization)
+> 1. [ELK Layout](https://www.npmjs.com/package/@mermaid-js/layout-elk)
+> 2. [mkdocs-material customize Mermaid.js](https://squidfunk.github.io/mkdocs-material/reference/diagrams/?h=mermaid#customization)
 
 ---
