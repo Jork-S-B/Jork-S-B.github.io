@@ -65,7 +65,7 @@
             body[data-md-color-scheme="slate"] .gslide-title { color: var(--md-default-fg-color); }
             body[data-md-color-scheme="slate"] .gslide-desc { color: var(--md-default-fg-color); }
         </style><meta name="panzoom-theme" content="material">
-<meta name="panzoom-data" content='{"selectors": [".mermaid", ".d2"], "initial_zoom_level": 1.0}'> </head>
+<meta name="panzoom-data" content='{"selectors": [".d2", ".mermaid"], "initial_zoom_level": 1.0}'> </head>
   
   
     
@@ -8346,7 +8346,7 @@ profiler<span class="w"> </span>start<span class="w"> </span>--event<span class=
 profiler<span class="w"> </span>stop
 </code></pre></div>
 <ol>
-<li>看火焰图，找到顶层的热点方法，火焰图宽方法=频繁创建对象。</li>
+<li>看火焰图，纵向深度为调用栈，横向宽度为cpu耗时占比，优先找图中最宽的平台。</li>
 <li>使用<code>trace</code>命令进一步挖掘怀疑方法的内部调用耗时。</li>
 </ol>
 <div class="highlight"><pre><span></span><code><span class="c1"># 只追踪耗时 &gt;10ms 的调用</span>

@@ -65,7 +65,7 @@
             body[data-md-color-scheme="slate"] .gslide-title { color: var(--md-default-fg-color); }
             body[data-md-color-scheme="slate"] .gslide-desc { color: var(--md-default-fg-color); }
         </style><meta name="panzoom-theme" content="material">
-<meta name="panzoom-data" content='{"selectors": [".mermaid", ".d2"], "initial_zoom_level": 1.0}'> </head>
+<meta name="panzoom-data" content='{"selectors": [".d2", ".mermaid"], "initial_zoom_level": 1.0}'> </head>
   
   
     
@@ -5644,10 +5644,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#sql" class="md-nav__link">
+  <a href="#_3" class="md-nav__link">
     <span class="md-ellipsis">
       
-        🔧 慢查询SQL分析
+        🔧 慢查询的分析方法
       
     </span>
   </a>
@@ -5668,10 +5668,55 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="🚁 Table Locks">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🔧 锁竞争
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🔧 锁竞争">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        如何优化
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
         
           <li class="md-nav__item">
-  <a href="#_3" class="md-nav__link">
+  <a href="#_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🔧 死锁
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
     <span class="md-ellipsis">
       
         🚁 相关变量
@@ -5683,17 +5728,6 @@
         
       </ul>
     </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#_4" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        慢查询的分析方法
-      
-    </span>
-  </a>
   
 </li>
       
@@ -7986,10 +8020,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#sql" class="md-nav__link">
+  <a href="#_3" class="md-nav__link">
     <span class="md-ellipsis">
       
-        🔧 慢查询SQL分析
+        🔧 慢查询的分析方法
       
     </span>
   </a>
@@ -8010,10 +8044,55 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="🚁 Table Locks">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🔧 锁竞争
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🔧 锁竞争">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        如何优化
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
         
           <li class="md-nav__item">
-  <a href="#_3" class="md-nav__link">
+  <a href="#_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🔧 死锁
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
     <span class="md-ellipsis">
       
         🚁 相关变量
@@ -8025,17 +8104,6 @@
         
       </ul>
     </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#_4" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        慢查询的分析方法
-      
-    </span>
-  </a>
   
 </li>
       
@@ -8107,116 +8175,7 @@
 </tr>
 </tbody>
 </table>
-<h4 id="sql">🔧 慢查询SQL分析</h4>
-<p>1.找到慢查询SQL原语句</p>
-<div class="highlight"><pre><span></span><code><span class="k">SELECT</span><span class="w"> </span><span class="n">START_TIME</span><span class="p">,</span><span class="w"> </span><span class="n">USER_HOST</span><span class="p">,</span><span class="w"> </span><span class="n">QUERY_TIME</span><span class="p">,</span><span class="w"> </span><span class="n">LOCK_TIME</span><span class="p">,</span><span class="w"> </span><span class="n">DB</span><span class="p">,</span><span class="w"> </span><span class="n">SQL_TEXT</span>
-<span class="k">FROM</span><span class="w"> </span><span class="n">MYSQL</span><span class="p">.</span><span class="n">SLOW_LOG</span>
-<span class="k">ORDER</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">START_TIME</span><span class="w"> </span><span class="k">DESC</span><span class="w"> </span><span class="k">LIMIT</span><span class="w"> </span><span class="mi">10</span><span class="p">;</span>
-</code></pre></div>
-<p>2.EXPLAIN SQL，或者navicat查看执行计划，查询结果如下：</p>
-<table>
-<thead>
-<tr>
-<th>id</th>
-<th>select_type</th>
-<th>table</th>
-<th>type</th>
-<th>possible_keys</th>
-<th>key</th>
-<th>key_len</th>
-<th>ref</th>
-<th>rows</th>
-<th>Extra</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>1</td>
-<td>SIMPLE</td>
-<td>orders</td>
-<td>ALL</td>
-<td>NULL</td>
-<td>NULL</td>
-<td>NULL</td>
-<td>NULL</td>
-<td>10000</td>
-<td>Using where</td>
-</tr>
-</tbody>
-</table>
-<p>关键字段说明：</p>
-<ul>
-<li>type = ALL 表示进行全表扫描。</li>
-<li>rows = 10000 表示扫描大约10000行数据。</li>
-<li>Extra = Using where 表示使用WHERE过滤数据。</li>
-<li>possible_keys = NULL 表示没有合适的索引可用。</li>
-</ul>
-<p>!!! note "type值优先级"。</p>
-<pre><code>CONST &gt; EQ_REF &gt; REF &gt; RANGE &gt; INDEX &gt; ALL
-
-| type类型  | 说明                                            |
-|----------|-----------------------------------------------|
-| `const`  | 主键或唯一索引查找，速度最快                                |
-| `eq_ref` | 多表连接时使用主键/唯一索引                                |
-| `ref`    | 普通索引查找，效率较高                                   |
-| `range`  | 范围查询，如`WHERE id BETWEEN 1 AND 10`，需**注意**合理使用 |
-| `index`  | 全索引扫描，即遍历整个索引，**仍需优化**                        |
-| `ALL`    | 全表扫描，**应添加索引优化**                              |
-</code></pre>
-<p>3.得出结论：未使用索引进行全表查询，导致性能下降。</p>
-<p>4.如何优化：</p>
-<ul>
-<li>添加索引</li>
-<li>避免SELECT *</li>
-<li>拆分复杂查询</li>
-<li>定期执行<code>ANALYZE TABLE</code>，更新统计信息帮助优化器选择更优执行计划</li>
-<li>持续监控并优化慢SQL</li>
-</ul>
-<p>5.优化后回测，再次查看执行计划。</p>
-<h3 id="table-locks">🚁 Table Locks</h3>
-<p>表级锁，控制并发访问的机制，防止同时对一个表进行读写。</p>
-<p>包含以下指标:</p>
-<ul>
-<li>
-<p>Table_locks_immediate<br>
-  表示一个线程请求表锁时，立即获得锁的次数。即：无需等待，直接加锁成功。</p>
-</li>
-<li>
-<p>Table_locks_waited<br>
-  表示一个线程请求表锁时，需要等待其他线程释放锁的次数。即：发生锁竞争，出现阻塞。</p>
-</li>
-</ul>
-<p>理想状态下，Table_locks_immediate 应远大于 Table_locks_waited。</p>
-<p>若后者持续增长，说明存在较多锁竞争，可能影响并发性能。</p>
-<div class="admonition note">
-<p class="admonition-title">优化建议</p>
-<ul>
-<li>优先使用<code>InnoDB</code>存储引擎: 支持行级锁，大幅减少锁冲突。</li>
-<li>优化慢查询、添加合适索引。</li>
-<li>尽量避免长事务，及时提交事务以释放锁资源。</li>
-<li>设置报警规则，当<code>Table_locks_waited</code>突增时及时通知。</li>
-</ul>
-</div>
-<div class="admonition note">
-<p class="admonition-title">死锁</p>
-<p>日志报错出现死锁时，让ai给SQL查出现死锁的表，并在压测时执行sql。</p>
-<p>或者在mysql配置文件中启用死锁日志记录: innodb_print_all_deadlocks = ON</p>
-</div>
-<h3 id="_3">🚁 相关变量</h3>
-<div class="highlight"><pre><span></span><code><span class="o">#</span><span class="w"> </span><span class="err">查看数据库中与慢查询相关的变量</span>
-<span class="k">show</span><span class="w"> </span><span class="n">variables</span><span class="w"> </span><span class="k">like</span><span class="w"> </span><span class="s1">'%slow_query%'</span><span class="p">;</span>
-
-<span class="o">#</span><span class="w"> </span><span class="err">查询数据库中的最大连接数</span>
-<span class="k">show</span><span class="w"> </span><span class="n">variables</span><span class="w"> </span><span class="k">like</span><span class="w"> </span><span class="s1">'%max_connections%'</span><span class="p">;</span>
-
-<span class="o">#</span><span class="w"> </span><span class="err">查询数据库中的连接数历史峰值</span>
-<span class="k">show</span><span class="w"> </span><span class="n">variables</span><span class="w"> </span><span class="k">like</span><span class="w"> </span><span class="s1">'%max_used_connections%'</span><span class="p">;</span>
-
-<span class="o">#</span><span class="w"> </span><span class="err">长查询的执行时间阈值，超过该时间的查询被记录为慢查询</span>
-<span class="k">show</span><span class="w"> </span><span class="n">variables</span><span class="w"> </span><span class="k">like</span><span class="w"> </span><span class="s1">'%long_query%'</span><span class="p">;</span>
-</code></pre></div>
-<hr>
-<h2 id="_4">慢查询的分析方法</h2>
+<h4 id="_3">🔧 慢查询的分析方法</h4>
 <p>1.定位：取执行时间大于阈值的sql，找扫描行数多，或扫描行数远大于返回行数的sql</p>
 <p>2.分析：explain sql看执行计划，关注字段</p>
 <ul>
@@ -8240,6 +8199,86 @@
 <li>未覆盖索引时，根据查询条件拿到id，再回到聚簇索引随机io（这里就是回表），以id匹配数据行。</li>
 <li>覆盖索引时，理想情况在叶子节点拿到匹配记录，无回表操作。</li>
 </ul>
+<p>4.如何优化：</p>
+<ul>
+<li>添加合适的索引，避免<code>SELECT *</code></li>
+<li>拆分复杂查询，持续监控并优化慢SQL</li>
+<li>定期执行<code>ANALYZE TABLE</code>，更新统计信息帮助优化器选择更优执行计划</li>
+</ul>
+<h3 id="table-locks">🚁 Table Locks</h3>
+<p>表级锁，控制并发访问的机制，防止同时对一个表进行读写。</p>
+<p>包含以下指标:</p>
+<ul>
+<li>
+<p>Table_locks_immediate<br>
+  表示一个线程请求表锁时，立即获得锁的次数。即：无需等待，直接加锁成功。</p>
+</li>
+<li>
+<p>Table_locks_waited<br>
+  表示一个线程请求表锁时，需要等待其他线程释放锁的次数。即：发生锁竞争，出现阻塞。</p>
+</li>
+</ul>
+<p>理想状态下，<code>Table_locks_immediate</code> 应远大于 <code>Table_locks_waited</code>。</p>
+<p>若后者持续增长，说明存在较多锁竞争，可能影响并发性能。</p>
+<div class="admonition note">
+<p class="admonition-title">优化建议</p>
+<ul>
+<li>优先使用<code>InnoDB</code>存储引擎: 支持行级锁，大幅减少锁冲突。</li>
+<li>优化慢查询、添加合适索引。</li>
+<li>尽量避免长事务，及时提交事务以释放锁资源。</li>
+<li>设置报警规则，当<code>Table_locks_waited</code>突增时及时通知。</li>
+</ul>
+</div>
+<h4 id="_4">🔧 锁竞争</h4>
+<p>激烈锁竞争会导致线程阻塞，间接导致线程池资源耗尽，表现为系统响应慢。</p>
+<p>可能造成锁竞争的原因: </p>
+<ol>
+<li>代码层面: 锁粒度太大，如为保护某个共享变量而锁住大方法或类</li>
+<li>数据库层面: 写语句缺索引，导致锁升级为大量行锁甚至全表锁</li>
+<li>大事务: 大量sql+非db操作，其中某个环节慢导致锁升级</li>
+<li>热点行竞争: 如秒杀场景多个订单并发操作同一商品</li>
+</ol>
+<h5 id="_5">如何优化</h5>
+<p>本质: 执行慢 + 热点竞争，因此解决思路包括减少冲突（拆分热点、异步化）、加快冲突解决（索引优化、缩小事务、缩短锁持续时间）</p>
+<p>针对代码</p>
+<ul>
+<li>缩小锁粒度，只锁需要保护的最小代码块</li>
+<li>使用无锁、原子性质的数据结构如<code>AtomicInteger</code></li>
+<li>避免锁内IO，减少锁占用时间</li>
+<li>固定锁获取顺序，防止死锁</li>
+</ul>
+<p>针对DB</p>
+<ul>
+<li>确保索引有效</li>
+<li>拆分大事务，尽快提交以释放锁</li>
+<li>优化热点行：使用异步扣减或队列（如redis lua脚本预扣减，再异步同步至db）</li>
+<li>使用乐观锁（版本号机制）代替悲观锁（for update），失败则重试</li>
+</ul>
+<h4 id="_6">🔧 死锁</h4>
+<p>死锁，同样分为代码/DB层面，具体原因如事务A锁表1等表2，事务B锁表2等表1，互相等对方释放锁。</p>
+<p>发生死锁时内存不释放，大量死锁线程积压后，会耗尽内存触发OOM。</p>
+<p>大量死锁时表现</p>
+<ul>
+<li>指标: CPU使用率不高，内存占用持续增长。</li>
+<li>业务: 事务无法提交或回滚，破坏数据一致性，服务无响应。</li>
+</ul>
+<div class="admonition note">
+<p class="admonition-title">监控死锁</p>
+<p>mysql配置文件中启用死锁日志记录: innodb_print_all_deadlocks = ON</p>
+</div>
+<h3 id="_7">🚁 相关变量</h3>
+<div class="highlight"><pre><span></span><code><span class="o">#</span><span class="w"> </span><span class="err">查看数据库中与慢查询相关的变量</span>
+<span class="k">show</span><span class="w"> </span><span class="n">variables</span><span class="w"> </span><span class="k">like</span><span class="w"> </span><span class="s1">'%slow_query%'</span><span class="p">;</span>
+
+<span class="o">#</span><span class="w"> </span><span class="err">查询数据库中的最大连接数</span>
+<span class="k">show</span><span class="w"> </span><span class="n">variables</span><span class="w"> </span><span class="k">like</span><span class="w"> </span><span class="s1">'%max_connections%'</span><span class="p">;</span>
+
+<span class="o">#</span><span class="w"> </span><span class="err">查询数据库中的连接数历史峰值</span>
+<span class="k">show</span><span class="w"> </span><span class="n">variables</span><span class="w"> </span><span class="k">like</span><span class="w"> </span><span class="s1">'%max_used_connections%'</span><span class="p">;</span>
+
+<span class="o">#</span><span class="w"> </span><span class="err">长查询的执行时间阈值，超过该时间的查询被记录为慢查询</span>
+<span class="k">show</span><span class="w"> </span><span class="n">variables</span><span class="w"> </span><span class="k">like</span><span class="w"> </span><span class="s1">'%long_query%'</span><span class="p">;</span>
+</code></pre></div>
 
 
 
