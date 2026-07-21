@@ -15,7 +15,9 @@ hide:
 
 ## DB
 
-- [Mysql监控](./utils/performance/monitor/mysql/#_4)
+- [Mysql监控](./utils/performance/monitor/mysql)
+- [锁竞争&死锁](./utils/performance/monitor/mysql)
+
 
 ## MQ
 
