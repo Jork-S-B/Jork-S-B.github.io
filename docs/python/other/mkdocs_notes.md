@@ -1,5 +1,3 @@
-# mkdocs使用记录
-
 mkdocs：基于Python的文档生成工具，用于快速、简单的生成网站。
 
 ## 📌 mkdocs常用命令
@@ -238,5 +236,33 @@ jobs:
 3.之后push代码时便会触发工作流，运行成功后访问`https://{username}.github.io`即可查看。
 
 参考资料：[Quickstart for GitHub Actions](https://docs.github.com/en/actions/quickstart)
+
+---
+
+## 📌 关于mermaid
+
+### 第三方插件
+
+`mkdocs-mermaid2-plugin`，有时需要刷新才能展示mermaid对应图表，且无法与`panzoom`配合放大。
+
+### 原版自带
+
+有些图表渲染不对，搭配`@mermaid-js/layout-elk`可能可规避。
+
+Supported layouts
+
+- `elk`: The default layout, which is `elk.layered`.
+- `elk.layered`: Layered layout
+- `elk.stress`: Stress layout
+- `elk.force`: Force layout
+- `elk.mrtree`: Multi-root tree layout
+- `elk.sporeOverlap`: Spore overlap layout
+
+实在不行用[Mermaid Live Editor](https://mermaid.ai/live)，在线编辑（支持拖放）后保存图片；另外，`"theme": "redux"`这主题好看。
+
+参考资料：
+
+1. [ELK Layout](https://www.npmjs.com/package/@mermaid-js/layout-elk)
+2. [mkdocs-material customize Mermaid.js](https://squidfunk.github.io/mkdocs-material/reference/diagrams/?h=mermaid#customization)
 
 ---

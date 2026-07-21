@@ -246,14 +246,24 @@ theme:
         name: 切换至浅色模式
 
 extra_css:
-  - stylesheets/extra.css  # 自定义css文件
+  - extra/extra.css  # 自定义css文件
+
+extra_javascript:
+  - extra/mermaid.mjs
 
 markdown_extensions:
+  # mkdocs自带的mermaid插件
   - pymdownx.superfences:
-      custom_fences:
-        - name: mermaid
-          class: mermaid
-          format: !!python/name:mermaid2.fence_mermaid
+     custom_fences:
+       - name: mermaid
+         class: mermaid
+         format: !!python/name:pymdownx.superfences.fence_code_format
+  # mermaid2，第三方插件配套配置
+#   - pymdownx.superfences:
+#       custom_fences:
+#         - name: mermaid
+#           class: mermaid
+#           format: !!python/name:mermaid2.fence_mermaid
   # emoji等图标的扩展
   - attr_list
   - pymdownx.emoji:
@@ -276,7 +286,10 @@ markdown_extensions:
 plugins:
   # 图片放大插件，需要先pip install mkdocs-glightbox
   - glightbox
-  - mermaid2
+  # mermaid图专用插件
+  - panzoom:
+      full_screen: True
+#   - mermaid2
   # 中文搜索插件，需要pip install jieba
   - search:
       # 正则表达式，\s 匹配任何空白字符，包括空格、制表符、换行符等；\u200b 不可视的特殊占位符，文本渲染时用到，此处实测对搜索结果挺大

@@ -17,6 +17,11 @@ Java的跨平台特性得以实现靠的是JVM，相当于Java在每个平台都
 GC线程也是守护线程的一种，用于回收不再使用的对象，并释放占用的内存空间。
 
 ```mermaid
+---
+config:
+  layout: elk
+---
+
 graph TB
     subgraph JVM["JVM 内存结构"]
         direction TB
