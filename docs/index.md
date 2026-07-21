@@ -15,9 +15,11 @@ hide:
 
 ## DB
 
-- [Mysql监控](./utils/performance/monitor/mysql)
-- [锁竞争&死锁](./utils/performance/monitor/mysql)
+Mysql监控
 
+- [连接数被打满](./utils/performance/monitor/mysql/)
+- [慢查询](./utils/performance/monitor/mysql)
+- [锁竞争&死锁](./utils/performance/monitor/mysql)
 
 ## MQ
 
