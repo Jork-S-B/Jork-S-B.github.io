@@ -1,3 +1,7 @@
+---
+tags: [mkdocs]
+---
+
 mkdocs：基于Python的文档生成工具，用于快速、简单的生成网站。
 
 ## 📌 mkdocs常用命令
@@ -257,6 +261,20 @@ Supported layouts
 - `elk.force`: Force layout
 - `elk.mrtree`: Multi-root tree layout
 - `elk.sporeOverlap`: Spore overlap layout
+
+=== "使用示例"
+
+        ```
+        ---
+        config:
+        layout: elk
+        ---
+
+        graph TB
+        ...
+        {原mermaid代码}
+
+        ```
 
 实在不行用[Mermaid Live Editor](https://mermaid.ai/live)，在线编辑（支持拖放）后保存图片；另外，`"theme": "redux"`这主题好看。
 

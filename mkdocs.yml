@@ -289,6 +289,7 @@ plugins:
   # mermaid图专用插件
   - panzoom:
       full_screen: True
+      key: "none"
 #   - mermaid2
   # 中文搜索插件，需要pip install jieba
   - search:

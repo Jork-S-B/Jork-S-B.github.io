@@ -1,7 +1,3 @@
----
-tags: [GC]
----
-
 ## jmx_exporter
 
 Q: 适用于什么类型的java项目？springboot和非springboot项目都能用这个exporter么？
@@ -36,7 +32,7 @@ A: Young GC 每秒超过 5 次，或 Full GC 每小时超过 10 次。
 
 ### 2.停顿时间
 
-- Young GC 理想情况下: 5至50ms；Full GC 200ms以下。否则通常会对高并发响应有明显影响。
+- 理想STW: Young GC 5至50ms；Full GC 200ms以下。否则通常会对高并发响应有明显影响。
 - 适用于一般Web服务，高敏感业务更严格。
 
 ??? question "Young GC 和 Full GC 的关系"
@@ -64,9 +60,12 @@ A: Young GC 每秒超过 5 次，或 Full GC 每小时超过 10 次。
 ??? note "OOM分类"
 
     1. 内存泄漏：如死锁、资源未正确关闭
-    2. JVM配置不当：如堆内存过小、元空间溢出等
-    3. 数据处理设计缺陷：如一次性读数GB的文件至内存、递归深度失控
-    4. 其他
+    2. 数据处理设计缺陷：内存溢出如一次性读数GB的文件至内存、递归深度失控
+    3. 多进程/多线程的资源竞争
+    4. JVM配置不当：如堆内存过小、元空间溢出等
+    5. 其他
+
+    通过长时间压测，可以发现内存泄漏问题，报错`OutOfMemory`
 
 ### 4.内存利用率低
 
@@ -110,16 +109,10 @@ flowchart TD
 
 以上GC指标也可通过`jvm`命令直接看汇总：`GARBAGE-COLLECTORS`区域，显示 PS Scavenge 和 PS MarkSweep 的总次数和总耗时。
 
-!!! tip
+!!! tip "结合上文所述指标"
 
-    结合上文所述的“停顿时间”：当 Young GC 超500ms，Full GC 超200ms，通常会对高并发响应有明显影响。
-
-    还有GC频次，结合容器运行时长，及上文提到的：
-
-    - Young GC（Minor GC）：高并发下 **1~2次/分钟** 算正常；**> 5次/分钟** 即为频繁，需排查。
-    - Full GC：理想情况 0 次；**1次/小时** 可接受；**> 1次/30分钟** 或 一天内发生数次，即属严重频繁，必须干预。
-    - 硬指标：若 GC 总耗时 > 应用总运行时间的 5%~10%，说明 GC 已成为性能瓶颈。
-
+    - GC频繁: Young GC 每秒超过 5 次，或 Full GC 每小时超过 10 次。
+    - GC停顿时间: Young GC 超 50ms，或 Full GC 超 200ms。
 
 #### Step 2：profiler
 
@@ -145,11 +138,23 @@ trace com.example.UserService processOrder '#cost > 10'
 1. `thread -n 3`，打印cpu占用前3的线程
 2. 使用`trace`命令进一步挖掘怀疑方法的内部调用耗时。
 
-#### Step 4：heapdump（可选）
+#### Step 4：heapdump
 
 `heapdump --live /tmp/dump.hprof`
 
 dump live 对象到指定文件，展示存活对象实例数 Top N
+
+搭配`Eclipse MAT`开源工具分析
+
+1. Leak Suspects Report（泄漏嫌疑报告）：定位内存泄漏，自动分析并给出内存占用最大的几个问题，点击 Details 可以查看详细的引用链，快速定位到问题代码。
+2. Histogram（直方图）：查找大对象，快速找出占用内存最多的类型。
+3. Dominator Tree（支配树）：快速找到占用内存最大的具体对象实例。
+4. Thread Overview 视图：分析线程，查看每个线程的栈信息和局部变量，分析是否有线程持有大量对象引用。
+
+关键术语解释
+
+- Shallow Heap（浅堆）：对象本身占用的内存大小。
+- Retained Heap（深堆/保留堆）：当该对象被回收时，能够释放出的全部内存大小。也是分析内存泄漏的核心指标。
 
 ---
 
