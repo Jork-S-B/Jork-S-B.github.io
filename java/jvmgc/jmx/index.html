@@ -65,7 +65,7 @@
             body[data-md-color-scheme="slate"] .gslide-title { color: var(--md-default-fg-color); }
             body[data-md-color-scheme="slate"] .gslide-desc { color: var(--md-default-fg-color); }
         </style><meta name="panzoom-theme" content="material">
-<meta name="panzoom-data" content='{"selectors": [".d2", ".mermaid"], "initial_zoom_level": 1.0}'> </head>
+<meta name="panzoom-data" content='{"selectors": [".mermaid", ".d2"], "initial_zoom_level": 1.0}'> </head>
   
   
     
@@ -3801,7 +3801,7 @@
   <a href="#step-4heapdump" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Step 4：heapdump（可选）
+        Step 4：heapdump
       
     </span>
   </a>
@@ -8184,7 +8184,7 @@
   <a href="#step-4heapdump" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Step 4：heapdump（可选）
+        Step 4：heapdump
       
     </span>
   </a>
@@ -8249,7 +8249,7 @@
 <p>A: Young GC 每秒超过 5 次，或 Full GC 每小时超过 10 次。</p>
 <h3 id="2">2.停顿时间</h3>
 <ul>
-<li>Young GC 理想情况下: 5至50ms；Full GC 200ms以下。否则通常会对高并发响应有明显影响。</li>
+<li>理想STW: Young GC 5至50ms；Full GC 200ms以下。否则通常会对高并发响应有明显影响。</li>
 <li>适用于一般Web服务，高敏感业务更严格。</li>
 </ul>
 <details class="question">
@@ -8277,10 +8277,12 @@
 <summary>OOM分类</summary>
 <ol>
 <li>内存泄漏：如死锁、资源未正确关闭</li>
+<li>数据处理设计缺陷：内存溢出如一次性读数GB的文件至内存、递归深度失控</li>
+<li>多进程/多线程的资源竞争</li>
 <li>JVM配置不当：如堆内存过小、元空间溢出等</li>
-<li>数据处理设计缺陷：如一次性读数GB的文件至内存、递归深度失控</li>
 <li>其他</li>
 </ol>
+<p>通过长时间压测，可以发现内存泄漏问题，报错<code>OutOfMemory</code></p>
 </details>
 <h3 id="4">4.内存利用率低</h3>
 <p>堆内存长期空闲超过 50%，但服务器内存充足（资源浪费）。</p>
@@ -8290,7 +8292,7 @@
 <h3 id="1rt">1.rt周期性飙升</h3>
 <p>飙升时间点若跟 full gc 吻合，说明 stw 影响业务，需优化jvm参数（调大年轻代、调触发gc的内存阈值等）</p>
 <h3 id="2cpugc">2.CPU飙升且GC频繁</h3>
-<div class="panzoom-box" data-key="alt" id="panzoom0" oncontextmenu="return false;">
+<div class="panzoom-box" data-key="none" id="panzoom0" oncontextmenu="return false;">
     
     <nav class="panzoom-nav">
     <button class="panzoom-info panzoom-button">
@@ -8324,7 +8326,7 @@
     I --&gt;|否| K[修复代码]
     J --&gt; K</code></pre> 
     <div class="panzoom-info-box panzoom-info-box-bottom panzoom-hidden">
-Hold "Alt" / "Option" to enable pan &amp; zoom
+Use mouse to pan and zoom
 </div>
 </div>
 <h4 id="step-1dashboard">Step 1：dashboard</h4>
@@ -8337,13 +8339,10 @@ Hold "Alt" / "Option" to enable pan &amp; zoom
 </ul>
 <p>以上GC指标也可通过<code>jvm</code>命令直接看汇总：<code>GARBAGE-COLLECTORS</code>区域，显示 PS Scavenge 和 PS MarkSweep 的总次数和总耗时。</p>
 <div class="admonition tip">
-<p class="admonition-title">Tip</p>
-<p>结合上文所述的“停顿时间”：当 Young GC 超500ms，Full GC 超200ms，通常会对高并发响应有明显影响。</p>
-<p>还有GC频次，结合容器运行时长，及上文提到的：</p>
+<p class="admonition-title">结合上文所述指标</p>
 <ul>
-<li>Young GC（Minor GC）：高并发下 <strong>1~2次/分钟</strong> 算正常；<strong>&gt; 5次/分钟</strong> 即为频繁，需排查。</li>
-<li>Full GC：理想情况 0 次；<strong>1次/小时</strong> 可接受；<strong>&gt; 1次/30分钟</strong> 或 一天内发生数次，即属严重频繁，必须干预。</li>
-<li>硬指标：若 GC 总耗时 &gt; 应用总运行时间的 5%~10%，说明 GC 已成为性能瓶颈。</li>
+<li>GC频繁: Young GC 每秒超过 5 次，或 Full GC 每小时超过 10 次。</li>
+<li>GC停顿时间: Young GC 超 50ms，或 Full GC 超 200ms。</li>
 </ul>
 </div>
 <h4 id="step-2profiler">Step 2：profiler</h4>
@@ -8366,9 +8365,21 @@ trace<span class="w"> </span>com.example.UserService<span class="w"> </span>proc
 <li><code>thread -n 3</code>，打印cpu占用前3的线程</li>
 <li>使用<code>trace</code>命令进一步挖掘怀疑方法的内部调用耗时。</li>
 </ol>
-<h4 id="step-4heapdump">Step 4：heapdump（可选）</h4>
+<h4 id="step-4heapdump">Step 4：heapdump</h4>
 <p><code>heapdump --live /tmp/dump.hprof</code></p>
 <p>dump live 对象到指定文件，展示存活对象实例数 Top N</p>
+<p>搭配<code>Eclipse MAT</code>开源工具分析</p>
+<ol>
+<li>Leak Suspects Report（泄漏嫌疑报告）：定位内存泄漏，自动分析并给出内存占用最大的几个问题，点击 Details 可以查看详细的引用链，快速定位到问题代码。</li>
+<li>Histogram（直方图）：查找大对象，快速找出占用内存最多的类型。</li>
+<li>Dominator Tree（支配树）：快速找到占用内存最大的具体对象实例。</li>
+<li>Thread Overview 视图：分析线程，查看每个线程的栈信息和局部变量，分析是否有线程持有大量对象引用。</li>
+</ol>
+<p>关键术语解释</p>
+<ul>
+<li>Shallow Heap（浅堆）：对象本身占用的内存大小。</li>
+<li>Retained Heap（深堆/保留堆）：当该对象被回收时，能够释放出的全部内存大小。也是分析内存泄漏的核心指标。</li>
+</ul>
 <hr>
 <p>参考资料: </p>
 <p><a href="https://cloud.tencent.com/developer/article/2596879">JVM 调参实战指南</a></p>
@@ -8378,9 +8389,6 @@ trace<span class="w"> </span>com.example.UserService<span class="w"> </span>proc
 
 
 
-
-  
-  
 
 
 

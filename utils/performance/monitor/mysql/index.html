@@ -65,7 +65,7 @@
             body[data-md-color-scheme="slate"] .gslide-title { color: var(--md-default-fg-color); }
             body[data-md-color-scheme="slate"] .gslide-desc { color: var(--md-default-fg-color); }
         </style><meta name="panzoom-theme" content="material">
-<meta name="panzoom-data" content='{"selectors": [".d2", ".mermaid"], "initial_zoom_level": 1.0}'> </head>
+<meta name="panzoom-data" content='{"selectors": [".mermaid", ".d2"], "initial_zoom_level": 1.0}'> </head>
   
   
     
@@ -8231,12 +8231,21 @@
 <h2 id="_2">📌 需要关注的指标</h2>
 <p>Current QPS - 每秒处理查询数</p>
 <h3 id="connections">🚁 Connections</h3>
-<p>连接数，常见的连接数被打满的原因: </p>
+<p>连接数；常见的连接池被打满的原因（按发生概率排列）: </p>
 <ol>
-<li>DB瓶颈: 慢SQL或锁竞争，持续占用连接</li>
-<li>下游服务响应慢或不可用，造成堆积</li>
-<li>超时配置不合理，如获取连接超时时间过短，当出现连接池不足时，后续请求无法获取连接。</li>
-<li>其他</li>
+<li>
+<p>代码层的连接泄漏: 因代码缺陷或异常处理不当，未能正确将连接归还给连接池。如<code>finally</code>中无<code>close()</code>，异常导致事务未回滚且连接未释放；或流式处理未及时关闭。</p>
+<p>特征：系统刚重启时正常，随着运行时间推移，连接数呈线性上升，最终在某次业务高峰瞬间被打满。</p>
+</li>
+<li>
+<p>DB瓶颈: 慢SQL与长事务，持续占用连接。</p>
+</li>
+<li>僵尸连接: 未开启<code>keepalive</code>或检测间隔太长，遇到网络抖动或数据库重启时，连接池未能及时感知，导致僵尸连接占用名额。</li>
+<li>配置不合理: 最大连接数太小。</li>
+<li>
+<p>瞬时流量: <strong>极少数情况</strong>，在<strong>没有</strong>代码缺陷、SQL性能优良、网络正常的前提下，纯粹的流量暴增（如秒杀瞬间）导致并发请求数超过连接池容量。</p>
+<p>特征：流量回落后连接数迅速下降，且报错集中在峰值的那几秒钟，日常运行完全正常。</p>
+</li>
 </ol>
 <p>结合现象分析</p>
 <table>
@@ -8314,6 +8323,10 @@
 </table>
 <h4 id="_4">🔧 慢查询的分析方法</h4>
 <p>1.定位：取执行时间大于阈值的sql，找扫描行数多，或扫描行数远大于返回行数的sql</p>
+<div class="highlight"><pre><span></span><code><span class="k">SELECT</span><span class="w"> </span><span class="n">START_TIME</span><span class="p">,</span><span class="w"> </span><span class="n">USER_HOST</span><span class="p">,</span><span class="w"> </span><span class="n">QUERY_TIME</span><span class="p">,</span><span class="w"> </span><span class="n">LOCK_TIME</span><span class="p">,</span><span class="w"> </span><span class="n">DB</span><span class="p">,</span><span class="w"> </span><span class="n">SQL_TEXT</span>
+<span class="k">FROM</span><span class="w"> </span><span class="n">MYSQL</span><span class="p">.</span><span class="n">SLOW_LOG</span>
+<span class="k">ORDER</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">START_TIME</span><span class="w"> </span><span class="k">DESC</span><span class="w"> </span><span class="k">LIMIT</span><span class="w"> </span><span class="mi">10</span><span class="p">;</span>
+</code></pre></div>
 <p>2.分析：explain sql看执行计划，关注字段</p>
 <ul>
 <li>type，all、index需要优化，最好是range或ref</li>
@@ -8330,12 +8343,12 @@
 </ul>
 <div class="admonition tip">
 <p class="admonition-title">回表</p>
-</div>
 <p>首先，数据挂在聚簇索引的叶子节点</p>
 <ul>
 <li>未覆盖索引时，根据查询条件拿到id，再回到聚簇索引随机io（这里就是回表），以id匹配数据行。</li>
 <li>覆盖索引时，理想情况在叶子节点拿到匹配记录，无回表操作。</li>
 </ul>
+</div>
 <p>4.如何优化：</p>
 <ul>
 <li>添加合适的索引，避免<code>SELECT *</code></li>
