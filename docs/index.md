@@ -25,4 +25,12 @@ Mysql监控
 
 Kafka
 
-- [基本概念](./python/kafka/concept.md)
+- [基本概念](./python/kafka/concept)
+
+RabbitMQ
+
+# CICD
+
+# 自动化
+
+apiauto(./python/autotest/apiauto)

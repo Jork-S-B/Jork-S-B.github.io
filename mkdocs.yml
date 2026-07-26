@@ -16,6 +16,7 @@ nav:
                 - 装饰器: python/advanced/decorator.md
                 - 生成器: python/advanced/yield.md
           - 自动化:
+                - apiauto: python/autotest/apiauto.md
                 - 分层设计: python/autotest/layering_model.md
                 - pytest:
                       - fixture: python/autotest/pytest/fixture.md
