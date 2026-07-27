@@ -83,6 +83,11 @@
     <label class="md-overlay" for="__drawer"></label>
     <div data-md-component="skip">
       
+        
+        <a href="#_1" class="md-skip">
+          跳转至
+        </a>
+      
     </div>
     <div data-md-component="announce">
       
@@ -1434,6 +1439,24 @@
       
       
       
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    mitmproxy
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
       <a href="./" class="md-nav__link md-nav__link--active">
         
   
@@ -1450,6 +1473,62 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix="">
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        目录结构
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="目录结构">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        动态路由&amp;热插拔
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#jenkinsfile-k8s_deployment" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Jenkinsfile &amp; k8s_deployment
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
       
     </li>
   
@@ -7843,6 +7922,53 @@
   
   
   
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix="">
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        目录结构
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="目录结构">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        动态路由&amp;热插拔
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#jenkinsfile-k8s_deployment" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Jenkinsfile &amp; k8s_deployment
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
 </nav>
                   </div>
                 </div>
@@ -7866,6 +7992,327 @@
 <p>通过mitmproxy库能实现类似Fiddler抓包工具的功能，也适用于APP，但处理HTTPS请求前需要安装及配置证书。</p>
 <p>参考资料：<a href="https://blog.csdn.net/feiyu68/article/details/119665869">mitmproxy的使用以及遇到的问题</a></p>
 <p>代码示例可参考：<a href="https://gitee.com/Jork-S-B/basic-auto-test/blob/master/Commons/my_proxy/api_proxy.py">使用mitmproxy+jinja2，捕获请求并生成对应的接口测试用例</a></p>
+<hr>
+<p>基于mitmproxy开发的mock服务，解决第三方强依赖的痛点。</p>
+<p>简单示例：支付请求提交成功，返回成功响应，并通过多线程异步返回回调报文（如订单的子订单号等）。</p>
+<h2 id="_1">目录结构</h2>
+<div class="highlight"><pre><span></span><code>main.py
+├── config/               # 配置管理
+├── projects/             # 业务项目模块，按业务领域划分
+│   ├── project1/
+│   └── project2/
+├── utils/                # 工具库：配置加载、日志、加解密等
+└── varify_mock/          # Mock服务验证脚本
+    ├── app.py
+    ├── mock_engine.py
+    └── mock_script.py
+</code></pre></div>
+<h3 id="_2">动态路由&amp;热插拔</h3>
+<p>实现步骤: </p>
+<ol>
+<li>
+<p>动态模块发现(main.py:16-41)</p>
+<ul>
+<li>使用 pkgutil.iter_modules() 扫描 projects/ 目录</li>
+<li>通过 importlib.import_module() 动态加载模块</li>
+<li>检测模块是否实现了 handle_request(flow, api_path) 函数</li>
+</ul>
+</li>
+<li>
+<p>动态路由分发(main.py:49-106): 根据请求路径格式分发，如：/projects/{project_name}/{api_path}</p>
+</li>
+<li>热插拔，重启服务后自动加载新项目。需要创建 handler 文件，且必须实现 handle_request 函数</li>
+</ol>
+<div class="tabbed-set tabbed-alternate" data-tabs="1:1"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio"><div class="tabbed-labels"><label for="__tabbed_1_1">projects\wuhaomin\whm.py</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">re</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">datetime</span><span class="w"> </span><span class="kn">import</span> <span class="n">datetime</span>
+
+<span class="kn">from</span><span class="w"> </span><span class="nn">mitmproxy</span><span class="w"> </span><span class="kn">import</span> <span class="n">http</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">json</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">datetime</span>
+
+<span class="kn">from</span><span class="w"> </span><span class="nn">utils.encryption_decryption</span><span class="w"> </span><span class="kn">import</span> <span class="n">encrypt_aes</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">utils.log_utils</span><span class="w"> </span><span class="kn">import</span> <span class="n">logger</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">handle_request</span><span class="p">(</span><span class="n">flow</span><span class="p">:</span> <span class="n">http</span><span class="o">.</span><span class="n">HTTPFlow</span><span class="p">,</span> <span class="n">api_path</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">"""whm测试Mock请求"""</span>
+    <span class="n">api_path</span> <span class="o">=</span> <span class="n">api_path</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">'?'</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="c1"># 新增：测试接口 - 处理 /test/{id}/v1/mf</span>
+    <span class="n">test_aes_match</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">match</span><span class="p">(</span><span class="sa">r</span><span class="s2">"/test/(\d+)/v1/mf$"</span><span class="p">,</span> <span class="n">api_path</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">flow</span><span class="o">.</span><span class="n">request</span><span class="o">.</span><span class="n">method</span> <span class="o">==</span> <span class="s2">"GET"</span> <span class="ow">and</span> <span class="n">test_aes_match</span><span class="p">:</span>
+        <span class="c1"># 处理测试接口</span>
+        <span class="n">test_id</span> <span class="o">=</span> <span class="n">test_aes_match</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+        <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">"测试AES加密接口，参数ID: </span><span class="si">{</span><span class="n">test_id</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+        <span class="n">_test_aes_encryption</span><span class="p">(</span><span class="n">flow</span><span class="p">,</span> <span class="n">test_id</span><span class="p">)</span>
+        <span class="k">return</span> <span class="kc">True</span>
+    <span class="k">return</span> <span class="kc">False</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">_test_aes_encryption</span><span class="p">(</span><span class="n">flow</span><span class="p">:</span> <span class="n">http</span><span class="o">.</span><span class="n">HTTPFlow</span><span class="p">,</span> <span class="n">test_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">"""</span>
+<span class="sd">    测试AES加密接口</span>
+<span class="sd">    访问: GET http://localhost:30080/projects/wuhaomin/test/123/v1/mf</span>
+<span class="sd">    返回: AES加密后的123</span>
+<span class="sd">    """</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">"开始AES加密处理，参数: </span><span class="si">{</span><span class="n">test_id</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+        <span class="n">KEY_SEED</span> <span class="o">=</span> <span class="s2">"i9DO9V2i9Yu2436w3456409L91A28wbA"</span>
+        <span class="c1"># 使用工具类中的AES加密函数</span>
+        <span class="n">encrypted_data</span> <span class="o">=</span> <span class="n">encrypt_aes</span><span class="p">(</span><span class="n">test_id</span><span class="p">,</span> <span class="n">KEY_SEED</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">encrypted_data</span><span class="p">:</span>
+            <span class="c1"># 构造响应数据</span>
+            <span class="n">response_data</span> <span class="o">=</span> <span class="p">{</span>
+                <span class="s2">"original"</span><span class="p">:</span> <span class="n">test_id</span><span class="p">,</span>
+                <span class="s2">"encrypted"</span><span class="p">:</span> <span class="n">encrypted_data</span><span class="p">,</span>
+                <span class="s2">"message"</span><span class="p">:</span> <span class="s2">"AES加密成功"</span><span class="p">,</span>
+                <span class="s2">"timestamp"</span><span class="p">:</span> <span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span><span class="o">.</span><span class="n">now</span><span class="p">()</span><span class="o">.</span><span class="n">isoformat</span><span class="p">()</span>
+            <span class="p">}</span>
+
+            <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">"AES加密完成，原始数据: </span><span class="si">{</span><span class="n">test_id</span><span class="si">}</span><span class="s2">, 加密结果: </span><span class="si">{</span><span class="n">encrypted_data</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+
+            <span class="n">flow</span><span class="o">.</span><span class="n">response</span> <span class="o">=</span> <span class="n">http</span><span class="o">.</span><span class="n">Response</span><span class="o">.</span><span class="n">make</span><span class="p">(</span>
+                <span class="mi">200</span><span class="p">,</span>
+                <span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">response_data</span><span class="p">,</span> <span class="n">ensure_ascii</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="s1">'utf-8'</span><span class="p">),</span>
+                <span class="p">{</span><span class="s2">"Content-Type"</span><span class="p">:</span> <span class="s2">"application/json;charset=UTF-8"</span><span class="p">}</span>
+            <span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="c1"># 加密失败</span>
+            <span class="n">error_msg</span> <span class="o">=</span> <span class="p">{</span><span class="s2">"error"</span><span class="p">:</span> <span class="s2">"AES加密失败"</span><span class="p">}</span>
+            <span class="n">logger</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="s2">"AES加密失败"</span><span class="p">)</span>
+            <span class="n">flow</span><span class="o">.</span><span class="n">response</span> <span class="o">=</span> <span class="n">http</span><span class="o">.</span><span class="n">Response</span><span class="o">.</span><span class="n">make</span><span class="p">(</span>
+                <span class="mi">500</span><span class="p">,</span> 
+                <span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">error_msg</span><span class="p">)</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="s1">'utf-8'</span><span class="p">),</span> 
+                <span class="p">{</span><span class="s2">"Content-Type"</span><span class="p">:</span> <span class="s2">"application/json"</span><span class="p">}</span>
+            <span class="p">)</span>
+
+    <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+        <span class="n">error_msg</span> <span class="o">=</span> <span class="p">{</span><span class="s2">"error"</span><span class="p">:</span> <span class="sa">f</span><span class="s2">"服务器内部错误: </span><span class="si">{</span><span class="nb">str</span><span class="p">(</span><span class="n">e</span><span class="p">)</span><span class="si">}</span><span class="s2">"</span><span class="p">}</span>
+        <span class="n">logger</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="sa">f</span><span class="s2">"测试AES加密接口错误: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">"</span><span class="p">,</span> <span class="n">exc_info</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+        <span class="n">flow</span><span class="o">.</span><span class="n">response</span> <span class="o">=</span> <span class="n">http</span><span class="o">.</span><span class="n">Response</span><span class="o">.</span><span class="n">make</span><span class="p">(</span>
+            <span class="mi">500</span><span class="p">,</span> 
+            <span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">error_msg</span><span class="p">)</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="s1">'utf-8'</span><span class="p">),</span> 
+            <span class="p">{</span><span class="s2">"Content-Type"</span><span class="p">:</span> <span class="s2">"application/json"</span><span class="p">}</span>
+        <span class="p">)</span>
+</code></pre></div>
+</div>
+</div>
+</div>
+<h3 id="jenkinsfile-k8s_deployment">Jenkinsfile &amp; k8s_deployment</h3>
+<div class="tabbed-set tabbed-alternate" data-tabs="2:2"><input checked="checked" id="__tabbed_2_1" name="__tabbed_2" type="radio"><input id="__tabbed_2_2" name="__tabbed_2" type="radio"><div class="tabbed-labels"><label for="__tabbed_2_1">Jenkinsfile</label><label for="__tabbed_2_2">k8s_deployment.yaml</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code>// 动态生成版本号
+def createVersion() {
+    return new Date().format('yyyyMMdd') + "_${env.BUILD_ID}"
+}
+
+pipeline {
+    agent any
+
+    parameters {
+        choice(name: 'BRANCH', choices: ['master'], description: '要构建的Git分支名称')
+        choice(name: 'ENV', choices: ['test'], description: '部署环境')
+        string(name: 'REPLICAS', defaultValue: '2', description: 'K8s副本数量')
+    }
+
+    environment {
+        // ---【核心配置】---
+        BUILD_VERSION = createVersion()
+
+        // 项目配置
+        GIT_URL = 'https://xx.git' //
+        IMAGE_NAME = 'mitmproxy-mock-service' // 镜像名称
+        K8S_DEPLOYMENT_NAME = 'mock-service-deployment' // K8s Deployment 的实际名称
+        FULL_WORK_DIR = "./"
+        DOCKERFILE_PATH = "Dockerfile" // Dockerfile 相对仓库根目录的路径
+        DEPLOY_CONFIG_PATH = "k8s_deployment.yaml" // K8s 模板文件路径
+
+        // 镜像仓库配置
+        // IMAGE_REGISTRY = 'xx.images.com' // 部署时使用的仓库
+        IMAGE_NAMESPACE = "${params.ENV}" // 命名空间使用环境名
+
+        // K8s 资源限制
+        CPU_LIMITS = "2"
+        MEMORY_LIMITS = "4Gi"
+        REPLICAS = "${params.REPLICAS}"
+
+        // 凭据 ID
+        GIT_CREDS_ID = 'git-account-jenkins' // jenkins的git凭证
+        K8S_CONNECT_FILE = 'kubeconfig-test'
+
+    }
+
+    stages {
+        stage('代码拉取') {
+            steps {
+                git branch: params.BRANCH,
+                    credentialsId: env.GIT_CREDS_ID,
+                    url: env.GIT_URL
+                sh "git log -1 --oneline"
+            }
+        }
+
+        stage('镜像构建与推送') {
+            steps {
+                script {
+                    def fullImageName = "${env.IMAGE_REGISTRY}/${env.IMAGE_NAMESPACE}/${env.IMAGE_NAME}:${env.BUILD_VERSION}"
+                    def latestImageName = "${env.IMAGE_REGISTRY}/${env.IMAGE_NAMESPACE}/${env.IMAGE_NAME}:latest"
+
+                    echo "Preparing to build and push image: ${fullImageName}"
+
+                    // 步骤 1: 使用 withCredentials 安全地获取凭据并登录
+                    // 我们不再使用 docker.withRegistry，而是手动登录
+                    withCredentials([usernamePassword(credentialsId: env.REGISTRY_CREDS_ID, usernameVariable: 'DOCKER_USER', passwordVariable: 'DOCKER_PASS')]) {
+                        // 使用 --password-stdin 是一种更安全的登录方式，避免密码出现在进程列表中
+                        sh "echo \$DOCKER_PASS | docker login ${env.IMAGE_REGISTRY} -u \$DOCKER_USER --password-stdin"
+                    }
+
+                    // 步骤 2: 执行构建、推送和清理
+                    try {
+                        // 构建镜像
+                        echo "Building Docker image from context '.'..."
+                        sh "docker build -t ${fullImageName} -f ${env.DOCKERFILE_PATH} ."
+
+                        // 为镜像打上 latest 标签
+                        sh "docker tag ${fullImageName} ${latestImageName}"
+
+                        // 推送带版本号的镜像
+                        echo "Pushing versioned image: ${fullImageName}"
+                        sh "docker push ${fullImageName}"
+
+                        // 推送 latest 标签的镜像
+                        echo "Pushing latest image: ${latestImageName}"
+                        sh "docker push ${latestImageName}"
+
+                    } finally {
+                        // 步骤 3: 无论成功与否，都尝试登出并清理本地镜像，保持 Agent 干净
+                        echo "Cleaning up local images and logging out..."
+                        sh "docker rmi ${fullImageName} || true"
+                        sh "docker rmi ${latestImageName} || true"
+                        sh "docker logout ${env.IMAGE_REGISTRY}"
+                    }
+                }
+            }
+        }
+
+        stage('K8s部署') {
+            steps {
+                script {
+                    withCredentials([file(credentialsId: env.K8S_CONNECT_FILE, variable: 'KUBECONFIG')]) {
+                        def fullImageName = "${env.IMAGE_REGISTRY}/${env.IMAGE_NAMESPACE}/${env.IMAGE_NAME}:${env.BUILD_VERSION}"
+
+                        echo "Deploying to Kubernetes..."
+                        echo "  Namespace: ${params.ENV}"
+                        echo "  Service Name: ${env.K8S_DEPLOYMENT_NAME}"
+                        echo "  Image: ${fullImageName}"
+
+                        // 使用 sed 动态替换模板中的变量
+                        sh """
+                            sed -e "s#\\\${NAMESPACE}#${params.ENV}#g" \
+                            -e "s#\\\${SERVICE_NAME}#${env.K8S_DEPLOYMENT_NAME}#g" \
+                            -e "s#\\\${IMAGE}#${fullImageName}#g" \
+                            -e "s#\\\${CPU_LIMITS}#${env.CPU_LIMITS}#g" \
+                            -e "s#\\\${MEMORY_LIMITS}#${env.MEMORY_LIMITS}#g" \
+                            -e "s#\\\${REPLICAS}#${env.REPLICAS}#g" \
+                            ${env.DEPLOY_CONFIG_PATH} &gt; processed.yaml
+
+                            echo "===== Generated K8s Config ====="
+                            cat processed.yaml
+                            echo "=============================="
+
+                            kubectl apply -f processed.yaml --kubeconfig="$KUBECONFIG"
+                        """
+
+                        // 验证部署状态
+                        sh """
+                            kubectl rollout status deployment/${env.K8S_DEPLOYMENT_NAME} \
+                                -n ${params.ENV} \
+                                --timeout=300s \
+                                --kubeconfig="$KUBECONFIG"
+                        """
+                    }
+                }
+            }
+        }
+    }
+
+    post {
+        always {
+            echo "Pipeline finished for version ${env.BUILD_VERSION}."
+        }
+    }
+}
+</code></pre></div>
+</div>
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code><span class="c1"># Deployment 资源</span>
+<span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">apps/v1</span>
+<span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Deployment</span>
+<span class="nt">metadata</span><span class="p">:</span>
+<span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">${SERVICE_NAME}</span>
+<span class="nt">namespace</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">${NAMESPACE}</span>
+<span class="nt">labels</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">app</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">${SERVICE_NAME}</span>
+<span class="nt">spec</span><span class="p">:</span>
+<span class="nt">replicas</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">${REPLICAS}</span>
+<span class="nt">selector</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">matchLabels</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">app</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">${SERVICE_NAME}</span>
+<span class="nt">template</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">metadata</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">labels</span><span class="p">:</span>
+<span class="w">        </span><span class="nt">app</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">${SERVICE_NAME}</span>
+<span class="w">    </span><span class="nt">spec</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">imagePullSecrets</span><span class="p">:</span><span class="w">  </span><span class="c1"># 测试环境镜像拉取凭据</span>
+<span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">paas.image.registry.test</span>
+<span class="w">    </span><span class="nt">containers</span><span class="p">:</span>
+<span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">${SERVICE_NAME}</span><span class="w"> </span><span class="c1"># 容器名称使用SERVICE_NAME</span>
+<span class="w">        </span><span class="nt">image</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">${IMAGE}</span>
+<span class="w">        </span><span class="nt">imagePullPolicy</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Always</span><span class="w"> </span><span class="c1"># 推荐使用Always来确保拉取最新镜像</span>
+<span class="w">        </span><span class="nt">ports</span><span class="p">:</span>
+<span class="w">            </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">containerPort</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">8080</span><span class="w"> </span><span class="c1"># mitmproxy监听的端口</span>
+<span class="w">            </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">http</span>
+<span class="w">            </span><span class="nt">protocol</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">TCP</span>
+<span class="w">        </span><span class="nt">resources</span><span class="p">:</span>
+<span class="w">            </span><span class="nt">requests</span><span class="p">:</span><span class="w"> </span><span class="c1"># 为 Python 服务设置合理的资源请求</span>
+<span class="w">            </span><span class="nt">cpu</span><span class="p">:</span><span class="w"> </span><span class="s">"2"</span>
+<span class="w">            </span><span class="nt">memory</span><span class="p">:</span><span class="w"> </span><span class="s">"2Gi"</span>
+<span class="w">            </span><span class="nt">limits</span><span class="p">:</span>
+<span class="w">            </span><span class="nt">cpu</span><span class="p">:</span><span class="w"> </span><span class="s">"${CPU_LIMITS}"</span>
+<span class="w">            </span><span class="nt">memory</span><span class="p">:</span><span class="w"> </span><span class="s">"${MEMORY_LIMITS}"</span>
+<span class="c1">#          livenessProbe:</span>
+<span class="c1">#            tcpSocket:</span>
+<span class="c1">#              port: 8080</span>
+<span class="c1">#            initialDelaySeconds: 15</span>
+<span class="c1">#            periodSeconds: 20</span>
+<span class="c1">#          readinessProbe:</span>
+<span class="c1">#            tcpSocket:</span>
+<span class="c1">#              port: 8080</span>
+<span class="c1">#            initialDelaySeconds: 5</span>
+<span class="c1">#            periodSeconds: 10</span>
+<span class="nn">---</span>
+<span class="c1"># Service 资源</span>
+<span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">v1</span>
+<span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Service</span>
+<span class="nt">metadata</span><span class="p">:</span>
+<span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">${SERVICE_NAME}</span>
+<span class="nt">namespace</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">${NAMESPACE}</span>
+<span class="nt">spec</span><span class="p">:</span>
+<span class="nt">selector</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">app</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">${SERVICE_NAME}</span>
+<span class="nt">ports</span><span class="p">:</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">http</span>
+<span class="w">    </span><span class="nt">port</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">80</span><span class="w"> </span><span class="c1"># Service 对外暴露 80 端口</span>
+<span class="w">    </span><span class="nt">protocol</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">TCP</span>
+<span class="w">    </span><span class="nt">targetPort</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">8080</span><span class="w"> </span><span class="c1"># 将流量转发到容器的 80 端口</span>
+</code></pre></div>
+</div>
+</div>
+</div>
 
 
 

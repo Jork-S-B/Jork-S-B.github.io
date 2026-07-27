@@ -7868,17 +7868,6 @@
   
 </li>
       
-        <li class="md-nav__item">
-  <a href="#mitmproxymock" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        基于mitmproxy的mock服务
-      
-    </span>
-  </a>
-  
-</li>
-      
     </ul>
   
 </nav>
@@ -7912,9 +7901,6 @@
 <p>问题定位：不同测试用例可能对同一个接口有不同的期望返回。并发执行时，如果不做隔离，会出现“桩数据污染”。</p>
 <p>解决方案：框架在发送请求时生成唯一的Mock-ID（UUID），并在请求头中携带。</p>
 <p>Flask桩端维护一个内存映射表（如Redis或Dict），根据请求头中的ID动态返回对应的Mock数据。</p>
-<h2 id="mitmproxymock">基于mitmproxy的mock服务</h2>
-<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="../mock.jpg" data-desc-position="bottom"><img alt="mock" src="../mock.jpg"></a>
-<a href="../mock.eddx">下载该脑图</a></p>
 <hr>
 <p>性能</p>
 <p>1.压测链路业务配比如何确定？数据来源呢？</p>
