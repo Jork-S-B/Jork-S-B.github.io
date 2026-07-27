@@ -24,11 +24,6 @@ A：【问题定位】→【解决方案】→【代码/步骤】→【避坑】
 
 Flask桩端维护一个内存映射表（如Redis或Dict），根据请求头中的ID动态返回对应的Mock数据。
 
-## 基于mitmproxy的mock服务
-
-![mock](mock.jpg)
-[下载该脑图](mock.eddx)
-
 
 ---
 

@@ -33,4 +33,5 @@ RabbitMQ
 
 # 自动化
 
-apiauto(./python/autotest/apiauto)
+- [apiauto](./python/autotest/apiauto)
+- [mock服务](./python/autotest/mitmproxy)
