@@ -65,7 +65,7 @@
             body[data-md-color-scheme="slate"] .gslide-title { color: var(--md-default-fg-color); }
             body[data-md-color-scheme="slate"] .gslide-desc { color: var(--md-default-fg-color); }
         </style><meta name="panzoom-theme" content="material">
-<meta name="panzoom-data" content='{"selectors": [".mermaid", ".d2"], "initial_zoom_level": 1.0}'> </head>
+<meta name="panzoom-data" content='{"selectors": [".d2", ".mermaid"], "initial_zoom_level": 1.0}'> </head>
   
   
     
@@ -1119,6 +1119,123 @@
       
     </span>
   </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#pytest" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        pytest配置与上下文管理
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="pytest配置与上下文管理">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#pytestini" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        pytest.ini
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#conftestpy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        conftest.py
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="conftest.py">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        重试机制
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        并行执行
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="并行执行">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#q1-s-captureno-worker" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        📌 Q1: -s（--capture=no）失效 / 多worker日志交织
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q2-sessionfixtureworker" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        📌 Q2: session级fixture被每个worker独立执行
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        📌 Q3: 并行模式如何实现数据隔离
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        多环境切换
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -2840,7 +2957,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../redis/redis_note/" class="md-nav__link">
+      <a href="../../redis/characteristics/" class="md-nav__link">
         
   
   
@@ -2848,34 +2965,6 @@
     
   
     特性
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../redis/function/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    常用方法
   
 
     
@@ -8061,6 +8150,123 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#pytest" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        pytest配置与上下文管理
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="pytest配置与上下文管理">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#pytestini" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        pytest.ini
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#conftestpy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        conftest.py
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="conftest.py">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        重试机制
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        并行执行
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="并行执行">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#q1-s-captureno-worker" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        📌 Q1: -s（--capture=no）失效 / 多worker日志交织
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q2-sessionfixtureworker" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        📌 Q2: session级fixture被每个worker独立执行
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        📌 Q3: 并行模式如何实现数据隔离
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        多环境切换
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -8290,8 +8496,8 @@
 </div>
 </div>
 </div>
-<h1 id="pytest">pytest配置与上下文管理</h1>
-<h2 id="pytestini">pytest.ini</h2>
+<h2 id="pytest">pytest配置与上下文管理</h2>
+<h3 id="pytestini">pytest.ini</h3>
 <p>pytest常用命令参数</p>
 <div class="highlight"><pre><span></span><code>python<span class="w"> </span>testcases<span class="se">\t</span>est_project<span class="se">\t</span>est_xx_order.py::TestOrderManager<span class="w">  </span><span class="c1"># 常规执行</span>
 
@@ -8349,9 +8555,9 @@ pytest<span class="w"> </span>-m<span class="w"> </span><span class="s2">"slow a
 </div>
 </div>
 </div>
-<h2 id="conftestpy">conftest.py</h2>
+<h3 id="conftestpy">conftest.py</h3>
 <p>fixture: 定义测试用的共享资源。scope参数值可选（作用域从小到大）：function、class、module、package、session。</p>
-<h3 id="_2">重试机制</h3>
+<h4 id="_2">重试机制</h4>
 <p>解决异步场景下数据同步延迟</p>
 <div class="tabbed-set tabbed-alternate" data-tabs="6:1"><input checked="checked" id="__tabbed_6_1" name="__tabbed_6" type="radio"><div class="tabbed-labels"><label for="__tabbed_6_1">重试机制装饰器</label></div>
 <div class="tabbed-content">
@@ -8386,7 +8592,7 @@ pytest<span class="w"> </span>-m<span class="w"> </span><span class="s2">"slow a
 </div>
 </div>
 </div>
-<h3 id="_3">并行执行</h3>
+<h4 id="_3">并行执行</h4>
 <p>采用<code>--dist loadscope</code>策略，将同一模块用例分配到同一worker串行执行，避免数据竞争。</p>
 <details class="note">
 <summary>--dist的分发模式</summary>
@@ -8427,7 +8633,7 @@ pytest<span class="w"> </span>-m<span class="w"> </span><span class="s2">"slow a
 </tbody>
 </table>
 </details>
-<h4 id="q1-s-captureno-worker">📌 Q1: -s（--capture=no）失效 / 多worker日志交织</h4>
+<h5 id="q1-s-captureno-worker">📌 Q1: -s（--capture=no）失效 / 多worker日志交织</h5>
 <p>-s/--capture=no: 输出print的信息</p>
 <p>并行执行时，各worker往终端打印print信息，输出错乱，严重时会导致 Terminal 卡死。</p>
 <p>解决方案:</p>
@@ -8503,7 +8709,7 @@ pytest<span class="w"> </span>-m<span class="w"> </span><span class="s2">"slow a
 </div>
 </div>
 </div>
-<h4 id="q2-sessionfixtureworker">📌 Q2: session级fixture被每个worker独立执行</h4>
+<h5 id="q2-sessionfixtureworker">📌 Q2: session级fixture被每个worker独立执行</h5>
 <p>官方的解决方案是使用文件锁(FileLock)进行跨进程通信，确保昂贵的初始化工作（如获取 token、启动服务）只由第一个 worker 执行，其他 worker 等待并读取结果。</p>
 <div class="tabbed-set tabbed-alternate" data-tabs="8:1"><input checked="checked" id="__tabbed_8_1" name="__tabbed_8" type="radio"><div class="tabbed-labels"><label for="__tabbed_8_1">conftest.py</label></div>
 <div class="tabbed-content">
@@ -8546,7 +8752,7 @@ pytest<span class="w"> </span>-m<span class="w"> </span><span class="s2">"slow a
 <li>同属一个业务流e2e场景，应考虑合并为一个用例。</li>
 </ul>
 </div>
-<h4 id="q3">📌 Q3: 并行模式如何实现数据隔离</h4>
+<h5 id="q3">📌 Q3: 并行模式如何实现数据隔离</h5>
 <p>“数据工厂”的核心是将测试数据的创建逻辑与测试用例本身解耦，并确保每个用例或 worker 获得独立、隔离的数据。</p>
 <div class="highlight"><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">pytest</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">faker</span><span class="w"> </span><span class="kn">import</span> <span class="n">Faker</span>
@@ -8583,7 +8789,7 @@ pytest<span class="w"> </span>-m<span class="w"> </span><span class="s2">"slow a
     <span class="nb">print</span><span class="p">(</span><span class="n">order2</span><span class="p">)</span>
     <span class="c1"># 输出: {'order_id': 'ORD_yyy', 'channel': 'WeChat', 'amount': 99.99, ...}</span>
 </code></pre></div>
-<h3 id="_4">多环境切换</h3>
+<h4 id="_4">多环境切换</h4>
 <p>基于 pytest_addoption 和 fixture，结合 test.yaml / sit.yaml / prod.yaml 配置文件，通过命令行参数 --apienv 动态切换运行环境。</p>
 <div class="tabbed-set tabbed-alternate" data-tabs="9:2"><input checked="checked" id="__tabbed_9_1" name="__tabbed_9" type="radio"><input id="__tabbed_9_2" name="__tabbed_9" type="radio"><div class="tabbed-labels"><label for="__tabbed_9_1">conftest.py</label><label for="__tabbed_9_2">Jenkinsfile</label></div>
 <div class="tabbed-content">

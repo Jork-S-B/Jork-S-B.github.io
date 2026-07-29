@@ -61,7 +61,7 @@
             body[data-md-color-scheme="slate"] .gslide-title { color: var(--md-default-fg-color); }
             body[data-md-color-scheme="slate"] .gslide-desc { color: var(--md-default-fg-color); }
         </style><meta name="panzoom-theme" content="material">
-<meta name="panzoom-data" content='{"selectors": [".mermaid", ".d2"], "initial_zoom_level": 1.0}'> </head>
+<meta name="panzoom-data" content='{"selectors": [".d2", ".mermaid"], "initial_zoom_level": 1.0}'> </head>
   
   
     
@@ -2693,7 +2693,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../python/redis/redis_note/" class="md-nav__link">
+      <a href="../../python/redis/characteristics/" class="md-nav__link">
         
   
   
@@ -2701,34 +2701,6 @@
     
   
     特性
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../python/redis/function/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    常用方法
   
 
     
@@ -7880,39 +7852,6 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#q4-redis" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        📌 Q4： Redis 通常存储哪些类型的业务数据？存储的原因是什么？
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#q5-redis" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        📌 Q5： Redis 有哪些特性？测试人员会关注什么？
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#q6-redis" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        📌 Q6： 移动云盘项目中 Redis 爆满问题的压测场景、脚本设计及问题排查过程？
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
   <a href="#q10-playwright-selenium" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -7937,45 +7876,6 @@
         
       </ul>
     </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#_2" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        📌 第三方支付的营销活动详情
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="📌 第三方支付的营销活动详情">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#_3" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        🚁 支付如何测试设计？
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#-" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        📌 意图识别-语义搜图-回忆相册，如何进行测试设计？
-      
-    </span>
-  </a>
   
 </li>
       
@@ -8191,27 +8091,6 @@
 <ul>
 <li>方案：编写自动化脚本实时扫描数据库，校验是否存在‘支付已成功’但‘权益状态’超过 5 分钟仍为‘未处理’的异常订单。这属于<strong>实时对账监控</strong>。”</li>
 </ul>
-<h2 id="q4-redis">📌 Q4： Redis 通常存储哪些类型的业务数据？存储的原因是什么？</h2>
-<p>1.通常存储的业务数据：</p>
-<ul>
-<li>高频配置类数据：比如计酬数据源、渠道的基本信息、结算规则模板、费率参数等。这些数据在结算周期内几乎不变，但查询极度频繁。</li>
-<li>状态与中间结果：计酬计算的引擎执行时的临时变量、状态管理等。</li>
-<li>安全与权限数据：用户的 Session Token、接口防刷的频率限制（Rate Limiting）以及各地市操作员的菜单权限缓存。</li>
-</ul>
-<p>2.存储原因：</p>
-<ul>
-<li>降低数据库压力：减少数据库IO，同时加速读取；高并发或大批量导出时，数据库 CPU 会瞬间飙升。通过 Redis 做缓冲层，可以将响应耗时从百毫秒级降低到毫秒级。</li>
-<li>支持分布式一致性：多实例部署时，如果数据存在本地内存，多个实例间无法同步。Redis 作为<strong>分布式缓存</strong>，保证了所有节点读取到的状态是唯一的。</li>
-<li>利用原子性操作：在处理渠道费用发放额度时，我们利用 Redis 的 <code>INCR/DECR</code> 等原子操作来防止‘超发’或‘并发覆盖’问题，这比在关系型数据库加锁成本更低。</li>
-</ul>
-<p>3.存储的数据结构：</p>
-<ul>
-<li>复杂的数据以 Hash 结构存储，比如渠道详情、结算规则模板等。</li>
-<li>简单的数据以 String 结构存储，比如结算开关、用户Session Token等。</li>
-<li>去重类需求利用 Set 结构。</li>
-</ul>
-<h2 id="q5-redis">📌 Q5： Redis 有哪些特性？测试人员会关注什么？</h2>
-<h2 id="q6-redis">📌 Q6： 移动云盘项目中 Redis 爆满问题的压测场景、脚本设计及问题排查过程？</h2>
 <h2 id="q10-playwright-selenium">📌 Q10：为什么要用 Playwright 而不是 Selenium ？</h2>
 <p>根据项目现状，有大量 Selenium 脚本稳定运行则不动；新项目可考虑 Playwright 。</p>
 <ul>
@@ -8258,13 +8137,6 @@ playwright<span class="w"> </span>show-trace<span class="w"> </span>xxx_manage.z
 <li>模拟慢网速、弱网环境：<code>route.fulfill(delay=3000)</code></li>
 </ul>
 </div>
-<h2 id="_2">📌 第三方支付的营销活动详情</h2>
-<p>第三方如：书旗、如祺等，通过走对方的支付，订单状态为<code>已签约已支付</code>时，可领取云盘及对方的权益。</p>
-<h3 id="_3">🚁 支付如何测试设计？</h3>
-<p>{todo}</p>
-<h2 id="-">📌 意图识别-语义搜图-回忆相册，如何进行测试设计？</h2>
-<p>1.主导智能相册模块测试，覆盖从聚类、元数据提取、向量化处理到结果透传的完整链路；通过代码走读梳理定时任务调度逻辑，并集成意图识别-语义搜图-回忆相册的端到端测试，上线后核心链路零故障。</p>
-<p>{todo}</p>
 <h2 id="apm">📌 APM 数据看板，有现成工具为什么还重复开发？</h2>
 <ul>
 <li>数据清洗：排除健康检查、探活、静态资源，通过聚合到同一个大屏，解决数据孤岛问题</li>
