@@ -27,7 +27,11 @@ Kafka
 
 - [基本概念](./python/kafka/concept)
 
-RabbitMQ
+RocketMQ
+
+## Redis
+
+- [特性](python/redis/characteristics)
 
 # CICD
 

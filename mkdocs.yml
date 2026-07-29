@@ -66,8 +66,7 @@ nav:
                 - confluent_kafka: python/kafka/confluent_kafka.md
                 - kafka-python: python/kafka/kafka-python.md
           - redis:
-                - 特性: python/redis/redis_note.md
-                - 常用方法: python/redis/function.md
+                - 特性: python/redis/characteristics.md
           - 其他:
                 - 数据结构: python/other/structure/structure.md
                 - 算法:

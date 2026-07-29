@@ -216,9 +216,9 @@ def test_place_order(self, handle_order_data, order_type):
 
     ```
 
-# pytest配置与上下文管理
+## pytest配置与上下文管理
 
-## pytest.ini
+### pytest.ini
 
 
 pytest常用命令参数
@@ -282,11 +282,11 @@ python testcases\test_project\test_xx_order.py::TestOrderManager  # 常规执行
 
         ```
 
-## conftest.py
+### conftest.py
 
 fixture: 定义测试用的共享资源。scope参数值可选（作用域从小到大）：function、class、module、package、session。
 
-### 重试机制
+#### 重试机制
 
 解决异步场景下数据同步延迟
 
@@ -321,7 +321,7 @@ fixture: 定义测试用的共享资源。scope参数值可选（作用域从小
         return decorator
     ```
 
-### 并行执行
+#### 并行执行
 
 采用`--dist loadscope`策略，将同一模块用例分配到同一worker串行执行，避免数据竞争。
 
@@ -334,7 +334,7 @@ fixture: 定义测试用的共享资源。scope参数值可选（作用域从小
     | **loadfile** | `pytest -n 4 --dist=loadfile` | 按**测试文件**分组，同一文件的用例在同一个 worker 执行 | 文件内有共享的 fixture 或全局变量 |
     | **loadgroup** | `pytest -n 4 --dist=loadgroup` | 按 `@pytest.mark.xdist_group(name="...")` 标记分组 | 需要**精细控制**哪些用例必须在同一 worker 执行 |
 
-#### 📌 Q1: -s（--capture=no）失效 / 多worker日志交织
+##### 📌 Q1: -s（--capture=no）失效 / 多worker日志交织
 
 -s/--capture=no: 输出print的信息
 
@@ -414,7 +414,7 @@ fixture: 定义测试用的共享资源。scope参数值可选（作用域从小
         
     ```
 
-#### 📌 Q2: session级fixture被每个worker独立执行
+##### 📌 Q2: session级fixture被每个worker独立执行
 
 官方的解决方案是使用文件锁(FileLock)进行跨进程通信，确保昂贵的初始化工作（如获取 token、启动服务）只由第一个 worker 执行，其他 worker 等待并读取结果。
 
@@ -456,7 +456,7 @@ fixture: 定义测试用的共享资源。scope参数值可选（作用域从小
     - 违背自动化独立性原则：用例之间无依赖，可独立运行。
     - 同属一个业务流e2e场景，应考虑合并为一个用例。
 
-#### 📌 Q3: 并行模式如何实现数据隔离
+##### 📌 Q3: 并行模式如何实现数据隔离
 
 “数据工厂”的核心是将测试数据的创建逻辑与测试用例本身解耦，并确保每个用例或 worker 获得独立、隔离的数据。
 
@@ -497,7 +497,7 @@ def test_callback(order_data_factory):
     # 输出: {'order_id': 'ORD_yyy', 'channel': 'WeChat', 'amount': 99.99, ...}
 ```
 
-### 多环境切换
+#### 多环境切换
 
 基于 pytest_addoption 和 fixture，结合 test.yaml / sit.yaml / prod.yaml 配置文件，通过命令行参数 --apienv 动态切换运行环境。
 
