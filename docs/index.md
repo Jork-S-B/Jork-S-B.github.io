@@ -6,14 +6,14 @@ hide:
   - navigation
 ---
 
-# 全链路压测
+## 全链路压测
 
-## GC
+### GC
 
 - [JVM内存结构](./java/jvmgc/jvm.md)
 - [GC监控](./java/jvmgc/jmx.md)
 
-## DB
+### DB
 
 Mysql监控
 
@@ -21,7 +21,7 @@ Mysql监控
 - [慢查询](./utils/performance/monitor/mysql/#slow-queries)
 - [锁竞争&死锁](./utils/performance/monitor/mysql/#table-locks)
 
-## MQ
+### MQ
 
 Kafka
 
@@ -29,13 +29,18 @@ Kafka
 
 RocketMQ
 
-## Redis
+- [基本概念](./python/rocketmq/concept)
+
+### Redis
 
 - [特性](python/redis/characteristics)
+- [分布式锁](python/redis/redisson)
 
-# CICD
-
-# 自动化
+## 自动化
 
 - [apiauto](./python/autotest/apiauto)
 - [mock服务](./python/autotest/mitmproxy)
+
+## CICD
+
+- [CICD](./other/cicd)

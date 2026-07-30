@@ -342,7 +342,7 @@ fixture: 定义测试用的共享资源。scope参数值可选（作用域从小
 
 解决方案:
 
-1. 本地调试/并行模式时，使用 -rP 参数替代 -s: `pytest -n 4 -rX`，显示失败用例的print（按 Worker 汇总好再打印）。
+1. 本地调试/并行模式时，使用 -rX 参数替代 -s: `pytest -n 4 -rX`，显示失败用例的print（按 Worker 汇总好再打印）。
 2. 按 Worker 进程拆分日志文件
 
 === "conftest.py"

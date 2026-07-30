@@ -194,7 +194,7 @@ def delivery_report(err, msg):
 
 conf = {
     'bootstrap.servers': 'localhost:9092',
-    'acks': 'all',
+    'acks': 'all',  # 确保不丢消息
     'retries': 3,
     'batch.size': 16384,
     'linger.ms': 10,

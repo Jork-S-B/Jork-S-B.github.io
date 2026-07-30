@@ -67,6 +67,7 @@ nav:
                 - kafka-python: python/kafka/kafka-python.md
           - redis:
                 - 特性: python/redis/characteristics.md
+                - 分布式锁: python/redis/redisson.md
           - 其他:
                 - 数据结构: python/other/structure/structure.md
                 - 算法:

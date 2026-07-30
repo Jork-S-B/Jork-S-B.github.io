@@ -12,7 +12,7 @@
 - 副本（Replica）: 分区的冗余备份。Leader 负责读写，Follower 负责同步（ISR 机制），保障高可用。
 - ISR（同步副本集）: 与 Leader 保持同步的 Follower 集合，只有 ISR 内的副本才能被选为新 Leader。
 
-!!! tip "关于 Leader 和 Follower "
+!!! tip "关于 Leader 和 Follower"
 
     - 生产者/消费者都只跟 Leader 交互，Follower 只负责同步数据，不负责读写（除非特意配置读 Follower 降级，可解决跨机房网络延迟问题）。
     - Follower: 只是一个“热备份硬盘”，除了复制数据和等待接班，平时处于“闲置”状态。
@@ -111,6 +111,24 @@ sequenceDiagram
 - **分区内有序，全局无序**，因此扩容后，消息顺序性必然受影响。
 - 分区数越多，Broker 内存中维护的元数据越多，Controller 选举开销越大，且日志段（LogSegment）文件增多，磁盘 I/O 可能抖动。
 - 扩容必然伴随 Rebalance，导致消费暂停（STW）和重复消费（Re-processing）。
+
+## 削峰测试
+
+场景设计：流量洪峰（流量3分钟内从100 TPS飙升至8000 TPS，持续5分钟后回落）。
+
+压测脚本
+
+- confluent-kafka：用多线程/进程控制发送速率。借助time.sleep()实现锯齿波，关键配置开启`compression.type=snappy`，`queue.buffering.max.messages=100000`防止回调积压导致内存溢出。
+- kafka-producer-perf-test + playload
+
+测试执行：Producer以8000 TPS写入，Consumer处理逻辑模拟30ms耗时（单分区极限约333 TPS），Topic设6分区，Consumer实例6个（极限约2000 TPS），制造4倍超额积压。
+
+Grafana观察
+
+- Broker稳定性：看`kafka_network_io`和`CPU使用率`压力。
+- 生产速率（kafka_topic_partition_current_offset斜率）与消费速率（kafka_consumer_group_current_offset斜率）叠加折线图，直观显示削峰过程（消费者打满后不持续飙升）。
+- 积压消化速度：洪峰结束后，观察`kafka_consumer_lag`曲线是否呈平滑线性下降（若呈阶梯状，说明消费者Rebalance或GC卡顿）。
+- 丢失率：Producer开启回调`on_delivery`，Grafana统计**消息发送失败计数**必须恒为0。
 
 ---
 
