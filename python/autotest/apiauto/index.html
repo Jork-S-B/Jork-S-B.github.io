@@ -2978,6 +2978,34 @@
 
               
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../redis/redisson/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    分布式锁
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
@@ -8638,7 +8666,7 @@ pytest<span class="w"> </span>-m<span class="w"> </span><span class="s2">"slow a
 <p>并行执行时，各worker往终端打印print信息，输出错乱，严重时会导致 Terminal 卡死。</p>
 <p>解决方案:</p>
 <ol>
-<li>本地调试/并行模式时，使用 -rP 参数替代 -s: <code>pytest -n 4 -rX</code>，显示失败用例的print（按 Worker 汇总好再打印）。</li>
+<li>本地调试/并行模式时，使用 -rX 参数替代 -s: <code>pytest -n 4 -rX</code>，显示失败用例的print（按 Worker 汇总好再打印）。</li>
 <li>按 Worker 进程拆分日志文件</li>
 </ol>
 <div class="tabbed-set tabbed-alternate" data-tabs="7:2"><input checked="checked" id="__tabbed_7_1" name="__tabbed_7" type="radio"><input id="__tabbed_7_2" name="__tabbed_7" type="radio"><div class="tabbed-labels"><label for="__tabbed_7_1">conftest.py</label><label for="__tabbed_7_2">base_api.py</label></div>
