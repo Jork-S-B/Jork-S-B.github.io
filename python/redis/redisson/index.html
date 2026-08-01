@@ -65,7 +65,7 @@
             body[data-md-color-scheme="slate"] .gslide-title { color: var(--md-default-fg-color); }
             body[data-md-color-scheme="slate"] .gslide-desc { color: var(--md-default-fg-color); }
         </style><meta name="panzoom-theme" content="material">
-<meta name="panzoom-data" content='{"selectors": [".d2", ".mermaid"], "initial_zoom_level": 1.0}'> </head>
+<meta name="panzoom-data" content='{"selectors": [".mermaid", ".d2"], "initial_zoom_level": 1.0}'> </head>
   
   
     
@@ -82,6 +82,11 @@
     <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
     <label class="md-overlay" for="__drawer"></label>
     <div data-md-component="skip">
+      
+        
+        <a href="#_1" class="md-skip">
+          跳转至
+        </a>
       
     </div>
     <div data-md-component="announce">
@@ -2740,6 +2745,24 @@
       
       
       
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    分布式锁
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
       <a href="./" class="md-nav__link md-nav__link--active">
         
   
@@ -2756,6 +2779,67 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix="">
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        分布式锁设计
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        分布式锁测试
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        分布式锁竞争
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#watchdog" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        watchdog
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
       
     </li>
   
@@ -7843,6 +7927,58 @@
   
   
   
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix="">
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        分布式锁设计
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        分布式锁测试
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        分布式锁竞争
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#watchdog" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        watchdog
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
 </nav>
                   </div>
                 </div>
@@ -7867,6 +8003,7 @@
 <hr>
 <p><a href="https://www.cnblogs.com/kevinwan/p/16441659.html">go-zero微服务实战系列（九、极致优化秒杀性能）</a></p>
 <p>库存扣减流程包括: 查库存-&gt;库存扣减-&gt;订单处理</p>
+<h2 id="_1">分布式锁设计</h2>
 <p>Q: 分布式环境中为了防止库存超卖，通常需保证库存检查与扣减的原子性，方案有redis lua原子操作、redission分布式锁，两者如何选择？</p>
 <p>核心原则: </p>
 <ul>
@@ -7890,6 +8027,7 @@
 <li>成功后，将扣减事件发送到MQ，消费者异步创建订单并扣减DB库存（最终一致性）。此时的Lua只负责快速拦截流量，不做强一致性事务。</li>
 </ol>
 <hr>
+<h2 id="_2">分布式锁测试</h2>
 <p>Q: 避免库存重复扣减的方式有哪些？如何测试？</p>
 <ul>
 <li>前端防抖</li>
@@ -7904,6 +8042,57 @@
 <li>幂等: 基于同一订单号的重复发请求，检查仅第一次请求被正常处理；根据traceid查其他请求被拦截或返回缓存结果。</li>
 <li>极端场景测回滚，如扣减库存成功但后续生成订单失败，或者分布式锁超时（Nacos缩短锁过期时间）导致业务未完成。</li>
 </ul>
+<h2 id="_3">分布式锁竞争</h2>
+<p>高并发出现激烈的分布式锁竞争，伴随的现象如下: </p>
+<ul>
+<li>吞吐量（RPS/TPS）断崖式下跌：并发数增加时，吞吐量不再线性增长，反而趋于平缓甚至急剧下降。这是因为大量线程在阻塞等待，真正干活的线程占比极低。</li>
+<li>平均响应时间（RT）呈指数级飙升：尤其是 P99（99分位线）和 P999 飙升。你会发现<strong>成功率可能正常</strong>，但“慢请求”占比暴增。</li>
+<li>获取锁失败率激增：如果代码设置了超时时间（如 tryLock(100ms)），监控上会看到大量 TimeoutException 或“获取锁失败”的自定义错误码。</li>
+<li>若锁内有lua脚本原子操作，redis CPU 使用率飙升。</li>
+</ul>
+<p>排查步骤: </p>
+<ol>
+<li>
+<p>APM工具</p>
+</li>
+<li>
+<p>SkyWalking 的 “服务” 仪表盘，观察被压服务的 “慢查询” 或 “高耗时” 端点（Endpoint），检查响应时间（Avg/ P99）曲线与压测时显示的抖动时间点是否吻合。</p>
+</li>
+<li>
+<p>SkyWalking 的 “数据库” 或 “缓存” 面板，如果 Redis 的响应时间正常（&lt;1ms），初步排除网络和存储瓶颈，把嫌疑锁定在“应用内部排队”。</p>
+</li>
+<li>
+<p>链路追踪</p>
+</li>
+</ol>
+<p>SkyWalking 的 “追踪（Trace）” 界面，筛选出该接口的 “慢追踪” 记录（例如筛选耗时 &gt; 3s 的采样请求），观察链路火焰图、Span 中是否存在大量的 waiting 或 blocked 标记。</p>
+<p>结论：如果后续业务代码耗时极短，而总耗时极长，说明请求在进入业务方法之前就被卡住了。此时，矛头直指分布式锁（Redisson/ZK）的 lock 获取操作。</p>
+<ol>
+<li>锁竞争排查-Arthas</li>
+</ol>
+<div class="highlight"><pre><span></span><code><span class="c1"># 压测以复现现象</span>
+<span class="c1"># 持续抓取当前最繁忙的阻塞线程（间隔1秒，连抓5次）</span>
+thread<span class="w"> </span>-n<span class="w"> </span><span class="m">10</span><span class="w"> </span>-i<span class="w"> </span><span class="m">1000</span><span class="w"> </span><span class="m">5</span>
+
+<span class="c1"># 大量业务线程处于 WAITING/BLOCKED 状态，卡在分布式锁的获取方法上。</span>
+<span class="c1"># 之后可用 trace 或 watch 命令深挖方法耗时</span>
+</code></pre></div>
+<p>根因定位：锁的 Key 范围过大（例如锁住了整个商户号，导致该商户下的所有用户请求串行化）。</p>
+<p>测试建议：推动开发改为细粒度锁（如商户号+商品ID）或引入分段锁（Striped Lock）。</p>
+<h2 id="watchdog">watchdog</h2>
+<p>在业务未完成时自动续期，避免锁提前释放。适用于业务执行时间无法准确预估的长任务（如批处理、文件上传）。</p>
+<p>如果能精确预估业务耗时（如常规数据库增删改查），建议<strong>显式传入</strong> leaseTime （租赁期限）。这样可以省去看门狗频繁续期带来的网络开销（每10秒一次 RTT），性能更优。</p>
+<p>触发条件: 未显式传入 leaseTime ，达到续期间隔时触发。</p>
+<ul>
+<li>默认锁超时时间：internalLockLeaseTime = 30 秒（可通过配置修改）。</li>
+<li>续期间隔：每 internalLockLeaseTime / 3，即 10 秒执行一次续期。</li>
+</ul>
+<hr>
+<p>锁竞争除了锁的 Key 范围过大，加上看门狗对热点key频繁续期叠加影响，伴随的现象也可能有所不同:</p>
+<p>排查步骤: </p>
+<ol>
+<li></li>
+</ol>
 
 
 
