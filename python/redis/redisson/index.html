@@ -65,7 +65,7 @@
             body[data-md-color-scheme="slate"] .gslide-title { color: var(--md-default-fg-color); }
             body[data-md-color-scheme="slate"] .gslide-desc { color: var(--md-default-fg-color); }
         </style><meta name="panzoom-theme" content="material">
-<meta name="panzoom-data" content='{"selectors": [".mermaid", ".d2"], "initial_zoom_level": 1.0}'> </head>
+<meta name="panzoom-data" content='{"selectors": [".d2", ".mermaid"], "initial_zoom_level": 1.0}'> </head>
   
   
     
@@ -8045,9 +8045,9 @@
 <h2 id="_3">分布式锁竞争</h2>
 <p>高并发出现激烈的分布式锁竞争，伴随的现象如下: </p>
 <ul>
-<li>吞吐量（RPS/TPS）断崖式下跌：并发数增加时，吞吐量不再线性增长，反而趋于平缓甚至急剧下降。这是因为大量线程在阻塞等待，真正干活的线程占比极低。</li>
-<li>平均响应时间（RT）呈指数级飙升：尤其是 P99（99分位线）和 P999 飙升。你会发现<strong>成功率可能正常</strong>，但“慢请求”占比暴增。</li>
-<li>获取锁失败率激增：如果代码设置了超时时间（如 tryLock(100ms)），监控上会看到大量 TimeoutException 或“获取锁失败”的自定义错误码。</li>
+<li>吞吐量（RPS/TPS）断崖式下跌: 并发数增加时，吞吐量不再线性增长，反而趋于平缓甚至急剧下降。这是因为大量线程在阻塞等待，真正干活的线程占比极低。</li>
+<li>平均响应时间（RT）呈指数级飙升: 尤其是 P99（99分位线）和 P999 飙升。你会发现<strong>成功率可能正常</strong>，但“慢请求”占比暴增。</li>
+<li>获取锁失败率激增: 如果代码设置了超时时间（如 tryLock(100ms)），监控上会看到大量 TimeoutException 或“获取锁失败”的自定义错误码。</li>
 <li>若锁内有lua脚本原子操作，redis CPU 使用率飙升。</li>
 </ul>
 <p>排查步骤: </p>
@@ -8066,7 +8066,7 @@
 </li>
 </ol>
 <p>SkyWalking 的 “追踪（Trace）” 界面，筛选出该接口的 “慢追踪” 记录（例如筛选耗时 &gt; 3s 的采样请求），观察链路火焰图、Span 中是否存在大量的 waiting 或 blocked 标记。</p>
-<p>结论：如果后续业务代码耗时极短，而总耗时极长，说明请求在进入业务方法之前就被卡住了。此时，矛头直指分布式锁（Redisson/ZK）的 lock 获取操作。</p>
+<p>结论: 如果后续业务代码耗时极短，而总耗时极长，说明请求在进入业务方法之前就被卡住了。此时，矛头直指分布式锁（Redisson/ZK）的 lock 获取操作。</p>
 <ol>
 <li>锁竞争排查-Arthas</li>
 </ol>
@@ -8075,24 +8075,46 @@
 thread<span class="w"> </span>-n<span class="w"> </span><span class="m">10</span><span class="w"> </span>-i<span class="w"> </span><span class="m">1000</span><span class="w"> </span><span class="m">5</span>
 
 <span class="c1"># 大量业务线程处于 WAITING/BLOCKED 状态，卡在分布式锁的获取方法上。</span>
-<span class="c1"># 之后可用 trace 或 watch 命令深挖方法耗时</span>
+<span class="c1"># 后续可用 trace 或 watch 命令深挖方法耗时</span>
 </code></pre></div>
-<p>根因定位：锁的 Key 范围过大（例如锁住了整个商户号，导致该商户下的所有用户请求串行化）。</p>
-<p>测试建议：推动开发改为细粒度锁（如商户号+商品ID）或引入分段锁（Striped Lock）。</p>
+<p>根因定位: 锁的 Key 范围过大（例如锁住了整个商户号，导致该商户下的所有用户请求串行化）。</p>
+<p>优化建议: 推动开发改为细粒度锁（如商户号+商品ID）或引入分段锁（Striped Lock）。</p>
 <h2 id="watchdog">watchdog</h2>
+<p>为了解决分布式锁“业务执行时间不确定”而设计的自动续期机制。</p>
 <p>在业务未完成时自动续期，避免锁提前释放。适用于业务执行时间无法准确预估的长任务（如批处理、文件上传）。</p>
 <p>如果能精确预估业务耗时（如常规数据库增删改查），建议<strong>显式传入</strong> leaseTime （租赁期限）。这样可以省去看门狗频繁续期带来的网络开销（每10秒一次 RTT），性能更优。</p>
 <p>触发条件: 未显式传入 leaseTime ，达到续期间隔时触发。</p>
 <ul>
-<li>默认锁超时时间：internalLockLeaseTime = 30 秒（可通过配置修改）。</li>
-<li>续期间隔：每 internalLockLeaseTime / 3，即 10 秒执行一次续期。</li>
+<li>默认锁超时时间: internalLockLeaseTime = 30 秒（可通过配置修改）。</li>
+<li>续期间隔: 每 internalLockLeaseTime / 3，即 10 秒执行一次续期。</li>
 </ul>
 <hr>
 <p>锁竞争除了锁的 Key 范围过大，加上看门狗对热点key频繁续期叠加影响，伴随的现象也可能有所不同:</p>
+<ul>
+<li>吞吐量（RPS）: 呈“断崖式”下跌，不仅不增长，甚至在并发数稳定后，RPS 依然持续缓慢下滑（普通竞争是趋于平稳，这里是持续衰退）。</li>
+<li>响应时间（RT）: P99 曲线呈现“爬楼梯”上升形态，每过 10 秒（看门狗默认续期间隔），响应时间就跳跃一次，持续往上堆叠。</li>
+<li>错误类型: 除了常规的 TimeoutException，还会高频出现 RedisConnectionException 或 Unexpected exception during expire。这是因为 Redis 忙于处理续期命令，导致正常的加锁请求被丢弃或超时。</li>
+</ul>
 <p>排查步骤: </p>
 <ol>
-<li></li>
+<li>链路跟踪</li>
 </ol>
+<p>通过APM链路跟踪，可观察到也是业务代码耗时极短，而总耗时极长，伴随 RedissonLock.tryAcquire 或 LockAsync 方法出现了循环重试的痕迹。</p>
+<ol>
+<li>锁竞争排查-Arthas</li>
+</ol>
+<div class="highlight"><pre><span></span><code><span class="c1"># 压测以复测现象</span>
+dashboard<span class="w"> </span>-i<span class="w"> </span><span class="m">1000</span><span class="w">  </span><span class="c1"># 观察线程池状态</span>
+
+<span class="c1"># redisson-netty 线程池的活跃线程数异常增高（正常只有几个，现在变成几十个）。这些线程正是看门狗用来发送续期命令（pexpire）的 IO 线程</span>
+<span class="c1"># 看门狗续期的核心方法: org.redisson.RedissonLock#renewExpiration</span>
+
+<span class="c1"># 监控续期方法的调用次数和耗时，过滤出耗时超过 500ms 的续期操作</span>
+watch<span class="w"> </span>org.redisson.RedissonLock<span class="w"> </span>renewExpiration<span class="w"> </span><span class="s2">"{params, cost}"</span><span class="w"> </span>-n<span class="w"> </span><span class="m">20</span><span class="w"> </span><span class="s1">'#cost&gt;500'</span>
+<span class="c1"># 正常情况: 每10秒续期一次，但发现热点key被频繁续期</span>
+</code></pre></div>
+<p>根因定位: 锁被持有更久 -&gt; 等待队列更长 -&gt; 看门狗续期消耗 Redis CPU -&gt; 所有命令（包括 tryLock）变慢 -&gt; 死循环</p>
+<p>优化建议: 1.调整锁粒度，加快冲突解决；2.tryLock显式传入leaseTime，避免看门狗频繁续期。</p>
 
 
 
