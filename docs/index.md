@@ -8,6 +8,8 @@ hide:
 
 ## 全链路压测
 
+- [案例](./per/performance/case_v3)
+
 ### GC
 
 - [JVM内存结构](./java/jvmgc/jvm.md)
