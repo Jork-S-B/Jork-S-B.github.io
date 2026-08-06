@@ -65,7 +65,7 @@
             body[data-md-color-scheme="slate"] .gslide-title { color: var(--md-default-fg-color); }
             body[data-md-color-scheme="slate"] .gslide-desc { color: var(--md-default-fg-color); }
         </style><meta name="panzoom-theme" content="material">
-<meta name="panzoom-data" content='{"selectors": [".d2", ".mermaid"], "initial_zoom_level": 1.0}'> </head>
+<meta name="panzoom-data" content='{"selectors": [".mermaid", ".d2"], "initial_zoom_level": 1.0}'> </head>
   
   
     
@@ -2735,6 +2735,45 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#kafka" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        前置洞察Kafka消费积压
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="前置洞察Kafka消费积压">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_9" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        识别风险
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_10" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        前置洞察
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#broker" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2786,7 +2825,7 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#_9" class="md-nav__link">
+  <a href="#_11" class="md-nav__link">
     <span class="md-ellipsis">
       
         幂等
@@ -8179,6 +8218,45 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#kafka" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        前置洞察Kafka消费积压
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="前置洞察Kafka消费积压">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_9" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        识别风险
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_10" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        前置洞察
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#broker" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -8230,7 +8308,7 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#_9" class="md-nav__link">
+  <a href="#_11" class="md-nav__link">
     <span class="md-ellipsis">
       
         幂等
@@ -8435,6 +8513,17 @@ Use mouse to pan and zoom
 <li>积压消化速度：洪峰结束后，观察<code>kafka_consumer_lag</code>曲线是否呈平滑线性下降（若呈阶梯状，说明消费者Rebalance或GC卡顿）。</li>
 <li>丢失率：Producer开启回调<code>on_delivery</code>，Grafana统计<strong>消息发送失败计数</strong>必须恒为0。</li>
 </ul>
+<h2 id="kafka">前置洞察Kafka消费积压</h2>
+<h3 id="_9">识别风险</h3>
+<p>当月数据量特别大（比如双倍），或者Hadoop任务执行慢，导致消息积压。</p>
+<p>另外Kafka的数据是有保留期限（比如 7 天）的。如果积压太久没消费完，旧数据会被 Kafka 自动删除，导致数据丢失，属于重大生产事故。</p>
+<h3 id="_10">前置洞察</h3>
+<p>双倍测试数据灌入Kafka，然后观察 Hadoop 消费者的消费速率（Lag 增长情况）。</p>
+<ul>
+<li>压力试探：验证在极限流量下，服务器内存/CPU 会不会爆，消费者会不会自动宕机重启。</li>
+<li>参数调优：配合开发调整了 Kafka 消费者的 max.poll.records（每次拉取条数）和 session.timeout.ms，确保在批量处理慢的情况下，消费者不会被 Kafka 集群误判为‘死亡’而踢出组，引发大面积重平衡。</li>
+<li>预案制定：定好监控阈值（比如积压超过 500 万条就报警），并提前写好了扩容脚本——一旦监控报警，立马给 Hadoop 任务增加并发计算资源（Executor数量），确保在 Kafka 过期删除之前把数据全部消费完。”</li>
+</ul>
 <hr>
 <h2 id="broker">Broker</h2>
 <ul>
@@ -8457,7 +8546,7 @@ docker<span class="w"> </span><span class="nb">exec</span><span class="w"> </spa
 <li>-time -2 表示获取最早 offset(分区第一条消息)</li>
 <li>-time 0 或其他时间戳 表示获取小于等于该时间戳的最大 offset</li>
 </ul>
-<h3 id="_9">幂等</h3>
+<h3 id="_11">幂等</h3>
 <p>收到消息 → Redis SISMEMBER 查询 → 存在则丢弃，不存在则处理 → 处理后写入Redis</p>
 <p>幂等检查预设的异常场景: </p>
 <ul>

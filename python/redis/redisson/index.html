@@ -65,7 +65,7 @@
             body[data-md-color-scheme="slate"] .gslide-title { color: var(--md-default-fg-color); }
             body[data-md-color-scheme="slate"] .gslide-desc { color: var(--md-default-fg-color); }
         </style><meta name="panzoom-theme" content="material">
-<meta name="panzoom-data" content='{"selectors": [".d2", ".mermaid"], "initial_zoom_level": 1.0}'> </head>
+<meta name="panzoom-data" content='{"selectors": [".mermaid", ".d2"], "initial_zoom_level": 1.0}'> </head>
   
   
     
@@ -8016,10 +8016,11 @@
 <p>具体来说，当应用触发一次RPC调用，比如请求下游微服务、调用第三方API、或者通过Dubbo/gRPC等框架请求隔壁服务，当前线程就会进入阻塞状态。</p>
 <p>此时，CPU并没有在计算，而是在等待网络数据包到达，这段时间就是“RPC引起的IO等待”。</p>
 <p>在性能排查中，这个指标通常意味着: </p>
-<pre><code>- 网络链路存在延迟（物理距离、交换机拥堵）。
-- 下游服务处理慢（对方没返回，导致你的连接一直处于读等待状态）。
-- 序列化/反序列化开销大（虽然属于CPU范畴，但传输数据包过大会加剧网络传输等待）。
-</code></pre>
+<ul>
+<li>网络链路存在延迟（物理距离、交换机拥堵）。</li>
+<li>下游服务处理慢（对方没返回，导致你的连接一直处于读等待状态）。</li>
+<li>序列化/反序列化开销大（虽然属于CPU范畴，但传输数据包过大会加剧网络传输等待）。</li>
+</ul>
 </details>
 <p>在实际落地中，极少用Redisson锁直接扣高并发库存（因为阻塞太伤性能），但也不会只用裸Lua（因为无法落库）。推荐采用Lua预扣 + 异步落库，也是主流方案。</p>
 <ol>
