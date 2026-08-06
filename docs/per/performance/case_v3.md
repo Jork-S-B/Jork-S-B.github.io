@@ -817,6 +817,11 @@ cat access.log | awk '{print $7}' | sort | uniq -c | sort -rn | head -20
 
 ### Q4:压测有没有遇到什么瓶颈,做了什么优化?
 
+
+
+
+
+
 思路：现象 → 分析排查 → 优化方向
 
 #### 大Key
