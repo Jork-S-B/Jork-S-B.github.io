@@ -169,7 +169,8 @@ nav:
           - CICD: other/cicd.md
           - Windows:
                 - 系统盘空间抢救方案: other/windows/system_disk.md
-                - 默认编码: other/windows/default_encoding.md
+                - powershell默认编码: other/windows/default_encoding.md
+                - 关闭自动更新: other/windows/disable_auto_update.md
           - mermaid: other/mermaid.md
     - ielts:
           - vocabulary:
