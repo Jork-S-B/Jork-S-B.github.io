@@ -83,6 +83,11 @@
     <label class="md-overlay" for="__drawer"></label>
     <div data-md-component="skip">
       
+        
+        <a href="#windows-10" class="md-skip">
+          跳转至
+        </a>
+      
     </div>
     <div data-md-component="announce">
       
@@ -6274,6 +6279,24 @@
       
       
       
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    关闭自动更新
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
       <a href="./" class="md-nav__link md-nav__link--active">
         
   
@@ -6290,6 +6313,45 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix="">
+      
+        <li class="md-nav__item">
+  <a href="#windows-10" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Windows 10
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#windows-11" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Windows 11
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
       
     </li>
   
@@ -7867,6 +7929,36 @@
   
   
   
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix="">
+      
+        <li class="md-nav__item">
+  <a href="#windows-10" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Windows 10
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#windows-11" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Windows 11
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
 </nav>
                   </div>
                 </div>
@@ -7887,6 +7979,7 @@
 
   <h1>关闭自动更新</h1>
 
+<h2 id="windows-10">Windows 10</h2>
 <div class="tabbed-set tabbed-alternate" data-tabs="1:2"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio"><input id="__tabbed_1_2" name="__tabbed_1" type="radio"><div class="tabbed-labels"><label for="__tabbed_1_1">关闭window自更新.bat</label><label for="__tabbed_1_2">开启window自更新.bat</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
@@ -7917,6 +8010,36 @@ sc config wuauserv start= auto
 sc start wuauserv
 net start wuauserv
 pause
+</code></pre></div>
+</div>
+</div>
+</div>
+<h2 id="windows-11">Windows 11</h2>
+<p>ps1 + taskschd.msc</p>
+<p>定时计划配置: </p>
+<ol>
+<li>
+<p>修改ps脚本执行策略，从网络或本地自建的ps脚本默认无法运行，因此需修改策略。</p>
+<div class="highlight"><pre><span></span><code><span class="nb">Set-ExecutionPolicy</span> <span class="n">-ExecutionPolicy</span> <span class="n">RemoteSigned</span> <span class="n">-Scope</span> <span class="n">CurrentUser</span>
+</code></pre></div>
+</li>
+<li>
+<p>taskschd.msc 打开任务计划程序，创建任务。</p>
+<ul>
+<li>设置触发器: 用户登录时触发/启动时触发</li>
+<li>设置操作: <code>powershell.exe -ExecutionPolicy Bypass -File "C:\你的路径\DisableUpdates.ps1"</code></li>
+<li>-ExecutionPolicy Bypass，相当于sudo</li>
+</ul>
+</li>
+</ol>
+<div class="tabbed-set tabbed-alternate" data-tabs="2:2"><input checked="checked" id="__tabbed_2_1" name="__tabbed_2" type="radio"><input id="__tabbed_2_2" name="__tabbed_2" type="radio"><div class="tabbed-labels"><label for="__tabbed_2_1">disableUpdate.ps1</label><label for="__tabbed_2_2">enableUpdate.ps1</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code>
+</code></pre></div>
+</div>
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code>
 </code></pre></div>
 </div>
 </div>
