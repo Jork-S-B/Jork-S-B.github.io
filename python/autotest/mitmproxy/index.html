@@ -65,7 +65,7 @@
             body[data-md-color-scheme="slate"] .gslide-title { color: var(--md-default-fg-color); }
             body[data-md-color-scheme="slate"] .gslide-desc { color: var(--md-default-fg-color); }
         </style><meta name="panzoom-theme" content="material">
-<meta name="panzoom-data" content='{"selectors": [".mermaid", ".d2"], "initial_zoom_level": 1.0}'> </head>
+<meta name="panzoom-data" content='{"selectors": [".d2", ".mermaid"], "initial_zoom_level": 1.0}'> </head>
   
   
     
@@ -1523,6 +1523,17 @@
         
       </ul>
     </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        正向代理&amp;反向代理
+      
+    </span>
+  </a>
   
 </li>
       
@@ -8023,6 +8034,17 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        正向代理&amp;反向代理
+      
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -8369,6 +8391,12 @@ pipeline {
 </div>
 </div>
 </div>
+<h2 id="_3">正向代理&amp;反向代理</h2>
+<ul>
+<li>正向代理: 用户通过代理服务器，突破访问限制，如科学上网、内网员工（通过代理服务器）访问限制外的网站。</li>
+<li>反向代理: 客户端不知道自己在访问具体的哪台后台服务器，只看到反向代理服务器。经典的反向代理工具有<a href="/other/nginx_notes/">nginx</a>、haproxy等。</li>
+</ul>
+<p>该mock服务，以及mitmproxy默认启用的模式都属于正向代理: 客户端能感知到，且需手动设置代理。</p>
 
 
 
