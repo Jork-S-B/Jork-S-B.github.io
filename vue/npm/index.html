@@ -65,7 +65,7 @@
             body[data-md-color-scheme="slate"] .gslide-title { color: var(--md-default-fg-color); }
             body[data-md-color-scheme="slate"] .gslide-desc { color: var(--md-default-fg-color); }
         </style><meta name="panzoom-theme" content="material">
-<meta name="panzoom-data" content='{"selectors": [".d2", ".mermaid"], "initial_zoom_level": 1.0}'> </head>
+<meta name="panzoom-data" content='{"selectors": [".mermaid", ".d2"], "initial_zoom_level": 1.0}'> </head>
   
   
     
@@ -3849,6 +3849,17 @@
         
       </ul>
     </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#npmnpx" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        npm和npx
+      
+    </span>
+  </a>
   
 </li>
       
@@ -7803,7 +7814,7 @@
   <span class="md-ellipsis">
     
   
-    免费中间件
+    个人应用工具
   
 
     
@@ -7819,7 +7830,7 @@
             <span class="md-nav__icon md-icon"></span>
             
   
-    免费中间件
+    个人应用工具
   
 
           </label>
@@ -7832,14 +7843,14 @@
   
   
     <li class="md-nav__item">
-      <a href="../../vibe/mvp/ngrok/" class="md-nav__link">
+      <a href="../../vibe/personal/ngrok/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    ngrok
+    内网穿透
   
 
     
@@ -7918,7 +7929,35 @@
   
   
     <li class="md-nav__item">
-      <a href="../../vibe/sdd/re_skill/" class="md-nav__link">
+      <a href="../../vibe/sdd/claude/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    agent编程工具
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../vibe/sdd/relate_skill/" class="md-nav__link">
         
   
   
@@ -8045,6 +8084,17 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#npmnpx" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        npm和npx
+      
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -8088,6 +8138,12 @@
 <span class="c"># 运行安装脚本</span>
 <span class="nb">iwr </span><span class="n">https</span><span class="p">://</span><span class="n">get</span><span class="p">.</span><span class="n">pnpm</span><span class="p">.</span><span class="n">io</span><span class="p">/</span><span class="n">install</span><span class="p">.</span><span class="n">ps1</span> <span class="n">-useb</span> <span class="p">|</span> <span class="nb">iex</span>
 </code></pre></div>
+<h2 id="npmnpx">npm和npx</h2>
+<ul>
+<li>npm: node的包管理器，作用是全局安装和管理依赖</li>
+<li>npx: node的包执行器，作用是临时安装依赖，用来解决npm全局安装的依赖只能有一个版本的问题，以及尽量减少项目package.json中的依赖项。</li>
+</ul>
+<p>npx执行机制: 当执行时，先看目标包是否在<code>$PATH</code>环境变量里，如没有，则找当前目录的<code>node_modules</code>，如果还没有，就临时安装目标包来执行。</p>
 
 
 

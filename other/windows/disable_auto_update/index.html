@@ -65,7 +65,7 @@
             body[data-md-color-scheme="slate"] .gslide-title { color: var(--md-default-fg-color); }
             body[data-md-color-scheme="slate"] .gslide-desc { color: var(--md-default-fg-color); }
         </style><meta name="panzoom-theme" content="material">
-<meta name="panzoom-data" content='{"selectors": [".d2", ".mermaid"], "initial_zoom_level": 1.0}'> </head>
+<meta name="panzoom-data" content='{"selectors": [".mermaid", ".d2"], "initial_zoom_level": 1.0}'> </head>
   
   
     
@@ -7760,7 +7760,7 @@
   <span class="md-ellipsis">
     
   
-    免费中间件
+    个人应用工具
   
 
     
@@ -7776,7 +7776,7 @@
             <span class="md-nav__icon md-icon"></span>
             
   
-    免费中间件
+    个人应用工具
   
 
           </label>
@@ -7789,14 +7789,14 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../vibe/mvp/ngrok/" class="md-nav__link">
+      <a href="../../../vibe/personal/ngrok/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    ngrok
+    内网穿透
   
 
     
@@ -7875,7 +7875,35 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../vibe/sdd/re_skill/" class="md-nav__link">
+      <a href="../../../vibe/sdd/claude/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    agent编程工具
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../vibe/sdd/relate_skill/" class="md-nav__link">
         
   
   
@@ -8035,11 +8063,49 @@ pause
 <div class="tabbed-set tabbed-alternate" data-tabs="2:2"><input checked="checked" id="__tabbed_2_1" name="__tabbed_2" type="radio"><input id="__tabbed_2_2" name="__tabbed_2" type="radio"><div class="tabbed-labels"><label for="__tabbed_2_1">disableUpdate.ps1</label><label for="__tabbed_2_2">enableUpdate.ps1</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
-<div class="highlight"><pre><span></span><code>
+<div class="highlight"><pre><span></span><code><span class="c"># 1. 停止并禁用核心更新服务</span>
+<span class="nb">Stop-Service</span> <span class="n">-Name</span> <span class="n">wuauserv</span> <span class="n">-Force</span>
+<span class="nb">Set-Service</span> <span class="n">-Name</span> <span class="n">wuauserv</span> <span class="n">-StartupType</span> <span class="n">Disabled</span>
+
+<span class="c"># 2. 停止并禁用更新 Orchestrator 服务（负责强制重启和安装）</span>
+<span class="nb">Stop-Service</span> <span class="n">-Name</span> <span class="n">UsoSvc</span> <span class="n">-Force</span>
+<span class="nb">Set-Service</span> <span class="n">-Name</span> <span class="n">UsoSvc</span> <span class="n">-StartupType</span> <span class="n">Disabled</span>
+
+<span class="c"># 3. 【关键步骤】清除服务的自动恢复操作，防止系统自动重启它们</span>
+<span class="c">#    参数说明：reset= 86400 表示重置失败计数为1天（可自行调整）</span>
+<span class="c">#    actions 表示失败后不执行任何操作</span>
+<span class="n">sc</span><span class="p">.</span><span class="n">exe</span> <span class="n">failure</span> <span class="n">wuauserv</span> <span class="n">reset</span><span class="p">=</span> <span class="n">86400</span> <span class="n">actions</span><span class="p">=</span> <span class="n">run</span><span class="p">/</span><span class="n">0</span>
+<span class="n">sc</span><span class="p">.</span><span class="n">exe</span> <span class="n">failure</span> <span class="n">UsoSvc</span> <span class="n">reset</span><span class="p">=</span> <span class="n">86400</span> <span class="n">actions</span><span class="p">=</span> <span class="n">run</span><span class="p">/</span><span class="n">0</span>
+
+<span class="c"># 4. （可选）停止并禁用 Windows Update Medic Service（另一个隐藏的保护服务）</span>
+<span class="c">#    该服务是Windows 10/11的新机制，用于修复更新组件</span>
+<span class="nb">Stop-Service</span> <span class="n">-Name</span> <span class="n">WaaSMedicSvc</span> <span class="n">-Force</span> <span class="n">-ErrorAction</span> <span class="n">SilentlyContinue</span>
+<span class="nb">Set-Service</span> <span class="n">-Name</span> <span class="n">WaaSMedicSvc</span> <span class="n">-StartupType</span> <span class="n">Disabled</span> <span class="n">-ErrorAction</span> <span class="n">SilentlyContinue</span>
 </code></pre></div>
 </div>
 <div class="tabbed-block">
-<div class="highlight"><pre><span></span><code>
+<div class="highlight"><pre><span></span><code><span class="c"># 1. 恢复 Windows Update 主服务 (wuauserv)</span>
+<span class="c">#    默认启动类型为“手动(触发器启动)” - 即 Manual (Trigger Start)</span>
+<span class="nb">Set-Service</span> <span class="n">-Name</span> <span class="n">wuauserv</span> <span class="n">-StartupType</span> <span class="n">Manual</span>
+<span class="nb">Start-Service</span> <span class="n">-Name</span> <span class="n">wuauserv</span> <span class="n">-ErrorAction</span> <span class="n">SilentlyContinue</span>
+
+<span class="c"># 2. 恢复 Update Orchestrator 服务 (UsoSvc) - 负责强制更新</span>
+<span class="nb">Set-Service</span> <span class="n">-Name</span> <span class="n">UsoSvc</span> <span class="n">-StartupType</span> <span class="n">Manual</span>
+<span class="nb">Start-Service</span> <span class="n">-Name</span> <span class="n">UsoSvc</span> <span class="n">-ErrorAction</span> <span class="n">SilentlyContinue</span>
+
+<span class="c"># 3. 恢复 Windows Update Medic Service (WaaSMedicSvc) - 隐藏的“医生”服务</span>
+<span class="c">#    该服务默认启动类型为“手动”，用于修复更新组件，建议恢复</span>
+<span class="nb">Set-Service</span> <span class="n">-Name</span> <span class="n">WaaSMedicSvc</span> <span class="n">-StartupType</span> <span class="n">Manual</span>
+<span class="nb">Start-Service</span> <span class="n">-Name</span> <span class="n">WaaSMedicSvc</span> <span class="n">-ErrorAction</span> <span class="n">SilentlyContinue</span>
+
+<span class="c"># 4. 恢复服务失败时的默认恢复操作（取消“无操作”设置）</span>
+<span class="c">#    默认行为：第一次失败重启服务，第二次失败重启，第三次失败重启（间隔可参考）</span>
+<span class="c">#    参数 reset= 86400 表示重置失败计数为1天，actions= 指定失败后的操作</span>
+<span class="n">sc</span><span class="p">.</span><span class="n">exe</span> <span class="n">failure</span> <span class="n">wuauserv</span> <span class="n">reset</span><span class="p">=</span> <span class="n">86400</span> <span class="n">actions</span><span class="p">=</span> <span class="n">restart</span><span class="p">/</span><span class="n">5000</span><span class="p">/</span><span class="n">restart</span><span class="p">/</span><span class="n">10000</span><span class="p">/</span><span class="n">restart</span><span class="p">/</span><span class="n">60000</span>
+<span class="n">sc</span><span class="p">.</span><span class="n">exe</span> <span class="n">failure</span> <span class="n">UsoSvc</span> <span class="n">reset</span><span class="p">=</span> <span class="n">86400</span> <span class="n">actions</span><span class="p">=</span> <span class="n">restart</span><span class="p">/</span><span class="n">5000</span><span class="p">/</span><span class="n">restart</span><span class="p">/</span><span class="n">10000</span><span class="p">/</span><span class="n">restart</span><span class="p">/</span><span class="n">60000</span>
+<span class="c"># WaaSMedicSvc 默认恢复操作也类似，但通常不需要修改，这里恢复为默认空（系统默认）</span>
+<span class="c"># 如果之前修改过，可以重置：</span>
+<span class="n">sc</span><span class="p">.</span><span class="n">exe</span> <span class="n">failure</span> <span class="n">WaaSMedicSvc</span> <span class="n">reset</span><span class="p">=</span> <span class="n">86400</span> <span class="n">actions</span><span class="p">=</span> <span class="n">restart</span><span class="p">/</span><span class="n">5000</span><span class="p">/</span><span class="n">restart</span><span class="p">/</span><span class="n">10000</span><span class="p">/</span><span class="n">restart</span><span class="p">/</span><span class="n">60000</span>
 </code></pre></div>
 </div>
 </div>
