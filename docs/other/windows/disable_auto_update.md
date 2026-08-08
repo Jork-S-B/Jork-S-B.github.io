@@ -1,3 +1,5 @@
+## Windows 10
+
 === "关闭window自更新.bat"
 
     ```
@@ -30,4 +32,32 @@
     sc start wuauserv
     net start wuauserv
     pause
+    ```
+
+## Windows 11
+
+ps1 + taskschd.msc
+
+定时计划配置: 
+
+1. 修改ps脚本执行策略，从网络或本地自建的ps脚本默认无法运行，因此需修改策略。
+
+    ```PowerShell
+    Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser
+    ```
+
+2. taskschd.msc 打开任务计划程序，创建任务。
+
+    - 设置触发器: 用户登录时触发/启动时触发
+    - 设置操作: `powershell.exe -ExecutionPolicy Bypass -File "C:\你的路径\DisableUpdates.ps1"`
+    - -ExecutionPolicy Bypass，相当于sudo
+
+=== "disableUpdate.ps1"
+
+    ```PowerShell
+    ```
+
+=== "enableUpdate.ps1"
+
+    ```PowerShell
     ```
