@@ -207,10 +207,11 @@ nav:
           - 基本名词: vibe/basic_nouns.md
           - rag/retrieval: vibe/rag.md
           - SSE流式响应机制: other/sse.md
-          - 免费中间件:
-                - ngrok: vibe/mvp/ngrok.md
+          - 个人应用工具:
+                - 内网穿透: vibe/personal/ngrok.md
           - SDD:
-                - 相关skill: vibe/sdd/re_skill.md
+                - agent编程工具: vibe/sdd/claude.md
+                - 相关skill: vibe/sdd/relate_skill.md
 
 # 搜索栏右侧git链接
 repo_url: https://github.com/Jork-S-B/Jork-S-B.github.io/tree/main
