@@ -13,21 +13,21 @@
 
 ## Claude Cli
 
-/skills: 查看技能列表
-/model: 切换或查看当前使用的模型
-/init: 初始化当前目录为 Claude Code 项目
-/compact: 压缩对话历史，减少 token 使用
-/add-dir: 添加一个目录到上下文
-/todos: 显示当前任务列表（如果已通过提示词生成 TODO 清单）
-/review: 对当前打开或选中的代码进行审查（触发内置代码审查流程）
-/test: 运行测试（需项目配置了测试命令，如 npm test 或 pytest）
-/rewind: 回滚会话
+- /skills: 查看技能列表
+- /model: 切换或查看当前使用的模型
+- /init: 初始化当前目录为 Claude Code 项目
+- /compact: 压缩对话历史，减少 token 使用
+- /add-dir: 添加一个目录到上下文
+- /todos: 显示当前任务列表（如果已通过提示词生成 TODO 清单）
+- /review: 对当前打开或选中的代码进行审查（触发内置代码审查流程）
+- /test: 运行测试（需项目配置了测试命令，如 npm test 或 pytest）
+- /rewind: 回滚会话
 
 或者安装可视化插件，如`Claude Code for VS Code`
 
 ## 使用Skill
 
-[复习一下相关知识](../basic_nouns/#skill)
+[复习一下相关知识](/vibe/basic_nouns/#skill)
 
 ### 使用现成的Skill
 
