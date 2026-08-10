@@ -107,7 +107,9 @@ nav:
                 - 备忘: sql/oracle/other_notes.md
           - Mysql: sql/mysql_notes.md
           - ElasticSearch: other/elasticsearch.md
-          - PostgreSQL: sql/pg/readme.md
+          - PostgreSQL: 
+                  - 基础: sql/pg/readme.md
+                  - etl用到的函数: sql/pg/etl_func.md
           - 数仓和数据中台: sql/data.md
           - Hadoop:
             - Hadoop生态: sql/hadoop/ecosystem.md

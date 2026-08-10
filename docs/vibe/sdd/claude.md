@@ -21,9 +21,102 @@
 - /todos: 显示当前任务列表（如果已通过提示词生成 TODO 清单）
 - /review: 对当前打开或选中的代码进行审查（触发内置代码审查流程）
 - /test: 运行测试（需项目配置了测试命令，如 npm test 或 pytest）
-- /rewind: 回滚会话
+- /rewind: 回滚/回退会话
+- /fork: 从指定会话新建分支
+- /resume: 恢复至指定会话
+- /new: 新建会话
 
 或者安装可视化插件，如`Claude Code for VS Code`
+
+### 权限
+
+- `bypass permissions on`，自动执行命令，不进行询问（慎用，`rm -rf`也会执行，容易误删）
+- 部分放行，参考: [Claude Code 权限配置完全指南：让安全操作自动放行，危险命令必须确认](https://zhuanlan.zhihu.com/p/2044730355807147165)
+
+    - 配置以 Python 项目为主
+    - Node/前端项目: 可加 Bash(node *)、Bash(npm run *)、Bash(yarn *)、Bash(pnpm *)（注意 npm run 能执行 package.json 里任意命令，信任项目才放行）。
+
+=== "settings.local.json/settings.json"
+
+    ```json
+    {
+    "permissions": {
+        "allow": [
+        "Edit",
+        "Write",
+        "Read",
+        "Glob",
+        "Grep",
+        "TodoWrite",
+        "WebSearch",
+        "WebFetch",
+        "Bash(gh *)",
+        "Bash(git *)",
+        "Bash(find *)",
+        "Bash(rg *)",
+        "Bash(grep *)",
+        "Bash(ls *)",
+        "Bash(cat *)",
+        "Bash(tree *)",
+        "Bash(head *)",
+        "Bash(tail *)",
+        "Bash(echo *)",
+        "Bash(pwd)",
+        "Bash(which *)",
+        "Bash(wc *)",
+        "Bash(diff *)",
+        "Bash(sort *)",
+        "Bash(uniq *)",
+        "Bash(stat *)",
+        "Bash(file *)",
+        "Bash(du *)",
+        "Bash(df *)",
+        "Bash(jq *)",
+        "Bash(mkdir *)",
+        "Bash(touch *)",
+        "Bash(cp *)",
+        "Bash(pytest *)",
+        "Bash(ruff *)",
+        "Bash(black *)",
+        "Bash(prettier *)",
+        "Bash(eslint *)",
+        "Bash(mypy *)",
+        "Bash(python *)",
+        "Bash(python3 *)",
+        "Bash(pip install *)"
+        ],
+        "ask": [
+        "Bash(git reset --hard *)",
+        "Bash(rm *)",
+        "Bash(mv *)",
+        "Bash(chmod *)",
+        "Bash(chown *)",
+        "Bash(npm install *)",
+        "Bash(gh repo delete *)",
+        "Bash(gh pr merge *)",
+        "Bash(gh release *)"
+        ],
+        "deny": [
+        "Bash(sudo *)",
+        "Bash(rm -rf /*)",
+        "Bash(rm -rf ~*)",
+        "Bash(git push --force*)",
+        "Bash(git push *--force*)",
+        "Bash(git push *-f)",
+        "Bash(git push *-f *)",
+        "Bash(dd *)",
+        "Bash(mkfs *)",
+        "Read(.env)",
+        "Read(**/.env)",
+        "Read(**/.env.*)",
+        "Read(**/secrets/**)",
+        "Read(**/*credentials*)"
+        ],
+        "defaultMode": "default"
+    }
+    }
+
+    ```
 
 ## 使用Skill
 
