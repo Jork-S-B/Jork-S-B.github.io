@@ -214,8 +214,9 @@ nav:
                 - agent编程工具: vibe/sdd/claude.md
                 - 相关skill: vibe/sdd/relate_skill.md
           - agent应用:
-                - UI自动化: vibe/agent_app/ui_autotest_agent.md
-          - SSE流式响应机制: vibe/sse.md
+                - UI自动化探索: 
+                        - ui_autotest_autogen: vibe/agent_app/ui_autotest_autogen.md
+                        - multi_agents_uiautotest: vibe/agent_app/multi_agents_uiautotest.md
 
 
 # 搜索栏右侧git链接
