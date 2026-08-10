@@ -10,19 +10,6 @@
 
 总结：作用域越小，隔离性越好但性能越差；作用域越大，性能越好但需要处理状态重置问题。实际使用时，一般优先选最小够用的作用域，遇到性能瓶颈再提升级别。
 
-
-### 🚁 通过 fixture 实现多环境快速切换
-
-1.配置与代码分离：环境相关的 URL、账号、数据库连接，通过配置文件（YAML/JSON/INI）或环境变量管理。
-
-2.fixture 动态加载配置：定义一个 env_config - session 级别的 fixture，根据传入的环境标识（如 --env）读取对应配置。
-
-3.自定义命令行参数：在 conftest.py 中通过 pytest_addoption 添加 --env 参数，用户执行 pytest --env=staging 即可切换。
-
-4.依赖传递：其他 fixture（如 api_client）依赖 env_config，自动获得当前环境的 base_url、headers 等。
-
-通过这种方式，在 CI/CD 中通过环境变量 `PYTEST_ADDOPTS="--env=staging"` 来动态注入，真正做到“配置即代码”。
-
 ### 🚁 setUp/tearDown方法
 
 setUp/tearDown是执行测试用例的前置/后置方法，用于初始化/清理环境。继承unittest的类可直接使用同名方法。

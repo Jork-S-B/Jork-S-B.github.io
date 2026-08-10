@@ -23,6 +23,7 @@ nav:
                       - conftest: python/autotest/pytest/conftest.md
                       - pytest.main: python/autotest/pytest/pytest.main.md
                       - pytest.ini: python/autotest/pytest/pytest.ini.md
+                      - 用例依赖关系: python/autotest/pytest/dependency.md
                 - unittest: python/autotest/unittest/unittest_notes.md
                 - selenium: python/autotest/selenium.md
                 - app自动化:

@@ -613,13 +613,13 @@ def test_callback(order_data_factory):
 2. 通过指定"自定义用例标记 + 自定义命令行参数"巡检
 
     - @pytest.marker.prod
-    - `pytest.ini`或`pyproject.toml`注册标记
+    - 全局配置`pytest.ini`或`pyproject.toml`注册标记
     - pytest -m "prod" --apienv=prod
 
 3. 飞书机器人配置
     
     [飞书机器人配置步骤参考](/vibe/personal/ngrok/#_1)
-    
+
     1. 创建机器人，权限及形式（群聊或私聊）
     2. 设置事件，回调地址及消息事件
     3. 设置回调，回调地址及交互方式如卡片
