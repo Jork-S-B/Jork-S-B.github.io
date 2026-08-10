@@ -138,7 +138,7 @@ main.py
             BUILD_VERSION = createVersion()
 
             // 项目配置
-            GIT_URL = 'https://xx.git' //
+            GIT_URL = 'https://xx.git'
             IMAGE_NAME = 'mitmproxy-mock-service' // 镜像名称
             K8S_DEPLOYMENT_NAME = 'mock-service-deployment' // K8s Deployment 的实际名称
             FULL_WORK_DIR = "./"
