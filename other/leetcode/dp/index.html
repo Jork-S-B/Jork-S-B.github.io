@@ -10,28 +10,28 @@
       
       
       
-        <link rel="prev" href="../../../redis/redisson/">
+        <link rel="prev" href="../sort/">
       
       
-        <link rel="next" href="../../oj/sort/">
+        <link rel="next" href="../window/">
       
       
         
       
       
-      <link rel="icon" href="../../../../assets/images/favicon.png">
+      <link rel="icon" href="../../../assets/images/favicon.png">
       <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
     
     
       
-        <title>数据结构 - whm</title>
+        <title>动态规划 - whm</title>
       
     
     
-      <link rel="stylesheet" href="../../../../assets/stylesheets/main.ec1eaa64.min.css">
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.ec1eaa64.min.css">
       
         
-        <link rel="stylesheet" href="../../../../assets/stylesheets/palette.ab4e12ef.min.css">
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.ab4e12ef.min.css">
       
       
 
@@ -44,17 +44,17 @@
       
     
     
-      <link rel="stylesheet" href="../../../../extra/extra.css">
+      <link rel="stylesheet" href="../../../extra/extra.css">
     
-      <link rel="stylesheet" href="../../../../assets/stylesheets/panzoom.css">
+      <link rel="stylesheet" href="../../../assets/stylesheets/panzoom.css">
     
-    <script>__md_scope=new URL("../../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
 
     
     
-  <link href="../../../../assets/stylesheets/glightbox.min.css" rel="stylesheet"><script src="../../../../assets/javascripts/glightbox.min.js"></script><style id="glightbox-style">
+  <link href="../../../assets/stylesheets/glightbox.min.css" rel="stylesheet"><script src="../../../assets/javascripts/glightbox.min.js"></script><style id="glightbox-style">
             html.glightbox-open { overflow: initial; height: 100%; }
             .gslide-title { margin-top: 0px; user-select: text; }
             .gslide-desc { color: #666; user-select: text; }
@@ -65,7 +65,7 @@
             body[data-md-color-scheme="slate"] .gslide-title { color: var(--md-default-fg-color); }
             body[data-md-color-scheme="slate"] .gslide-desc { color: var(--md-default-fg-color); }
         </style><meta name="panzoom-theme" content="material">
-<meta name="panzoom-data" content='{"selectors": [".mermaid", ".d2"], "initial_zoom_level": 1.0}'> </head>
+<meta name="panzoom-data" content='{"selectors": [".d2", ".mermaid"], "initial_zoom_level": 1.0}'> </head>
   
   
     
@@ -84,7 +84,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#_1" class="md-skip">
+        <a href="#70" class="md-skip">
           跳转至
         </a>
       
@@ -98,7 +98,7 @@
 
 <header class="md-header" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="页眉">
-    <a href="../../../.." title="whm" class="md-header__button md-logo" aria-label="whm" data-md-component="logo">
+    <a href="../../.." title="whm" class="md-header__button md-logo" aria-label="whm" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M256 512a256 256 0 1 0 0-512 256 256 0 1 0 0 512m-90.6-190.1c20.4 28 53.4 46.1 90.6 46.1s70.2-18.1 90.6-46.1c7.8-10.7 22.8-13.1 33.5-5.3s13.1 22.8 5.3 33.5C356.3 390 309.2 416 256 416s-100.3-26-129.4-65.9c-7.8-10.7-5.4-25.7 5.3-33.5s25.7-5.4 33.5 5.3M144 208a32 32 0 1 1 64 0 32 32 0 1 1-64 0m164 8c0 11-9 20-20 20s-20-9-20-20c0-33.1 26.9-60 60-60h16c33.1 0 60 26.9 60 60 0 11-9 20-20 20s-20-9-20-20-9-20-20-20h-16c-11 0-20 9-20 20"></path></svg>
@@ -118,7 +118,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              数据结构
+              动态规划
             
           </span>
         </div>
@@ -229,7 +229,7 @@
   
   
     <li class="md-tabs__item">
-      <a href="../../../.." class="md-tabs__link">
+      <a href="../../.." class="md-tabs__link">
         
   
   
@@ -248,7 +248,12 @@
   
   
   
+  
     
+    
+      
+  
+  
   
   
     
@@ -257,22 +262,11 @@
   
   
   
-    
-  
   
     
     
-      
-  
-  
-  
-    
-  
-  
-    
-    
-      <li class="md-tabs__item md-tabs__item--active">
-        <a href="../../../advanced/concurrent_futures/gil/" class="md-tabs__link">
+      <li class="md-tabs__item">
+        <a href="../../../python/advanced/concurrent_futures/gil/" class="md-tabs__link">
           
   
   
@@ -305,7 +299,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="../../../../java/springboot/basic/" class="md-tabs__link">
+        <a href="../../../java/springboot/basic/" class="md-tabs__link">
           
   
   
@@ -328,7 +322,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="../../../../vue/basic/" class="md-tabs__link">
+        <a href="../../../vue/basic/" class="md-tabs__link">
           
   
   
@@ -355,7 +349,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="../../../../sql/oracle/sqlldr_import/" class="md-tabs__link">
+        <a href="../../../sql/oracle/sqlldr_import/" class="md-tabs__link">
           
   
   
@@ -378,7 +372,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="../../../../shell/review/" class="md-tabs__link">
+        <a href="../../../shell/review/" class="md-tabs__link">
           
   
   
@@ -398,7 +392,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="../../../../test/software_engineering/" class="md-tabs__link">
+        <a href="../../../test/software_engineering/" class="md-tabs__link">
           
   
   
@@ -414,11 +408,22 @@
   
   
   
+    
+  
   
     
     
-      <li class="md-tabs__item">
-        <a href="../../../../other/blockchain/" class="md-tabs__link">
+      
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../must/" class="md-tabs__link">
           
   
   
@@ -426,6 +431,9 @@
 
         </a>
       </li>
+    
+  
+
     
   
 
@@ -445,7 +453,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="../../../../ielts/vocabulary/synonym_substitution/" class="md-tabs__link">
+        <a href="../../../ielts/vocabulary/synonym_substitution/" class="md-tabs__link">
           
   
   
@@ -468,7 +476,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="../../../../vibe/basic_nouns/" class="md-tabs__link">
+        <a href="../../../vibe/basic_nouns/" class="md-tabs__link">
           
   
   
@@ -502,7 +510,7 @@
 
 <nav class="md-nav md-nav--primary md-nav--lifted" aria-label="导航栏" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="../../../.." title="whm" class="md-nav__button md-logo" aria-label="whm" data-md-component="logo">
+    <a href="../../.." title="whm" class="md-nav__button md-logo" aria-label="whm" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M256 512a256 256 0 1 0 0-512 256 256 0 1 0 0 512m-90.6-190.1c20.4 28 53.4 46.1 90.6 46.1s70.2-18.1 90.6-46.1c7.8-10.7 22.8-13.1 33.5-5.3s13.1 22.8 5.3 33.5C356.3 390 309.2 416 256 416s-100.3-26-129.4-65.9c-7.8-10.7-5.4-25.7 5.3-33.5s25.7-5.4 33.5 5.3M144 208a32 32 0 1 1 64 0 32 32 0 1 1-64 0m164 8c0 11-9 20-20 20s-20-9-20-20c0-33.1 26.9-60 60-60h16c33.1 0 60 26.9 60 60 0 11-9 20-20 20s-20-9-20-20-9-20-20-20h-16c-11 0-20 9-20 20"></path></svg>
@@ -532,7 +540,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../.." class="md-nav__link">
+      <a href="../../.." class="md-nav__link">
         
   
   
@@ -558,29 +566,24 @@
       
   
   
-    
   
   
-  
     
     
     
     
       
-        
-        
-      
       
     
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked="">
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2">
         
           
-          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="">
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
             
   
   
@@ -598,7 +601,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_2">
             <span class="md-nav__icon md-icon"></span>
             
@@ -716,7 +719,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../advanced/concurrent_futures/gil/" class="md-nav__link">
+      <a href="../../../python/advanced/concurrent_futures/gil/" class="md-nav__link">
         
   
   
@@ -744,7 +747,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../advanced/concurrent_futures/thread/" class="md-nav__link">
+      <a href="../../../python/advanced/concurrent_futures/thread/" class="md-nav__link">
         
   
   
@@ -772,7 +775,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../advanced/concurrent_futures/multiprocessing/" class="md-nav__link">
+      <a href="../../../python/advanced/concurrent_futures/multiprocessing/" class="md-nav__link">
         
   
   
@@ -800,7 +803,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../advanced/concurrent_futures/async/" class="md-nav__link">
+      <a href="../../../python/advanced/concurrent_futures/async/" class="md-nav__link">
         
   
   
@@ -836,7 +839,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../advanced/mutable%26immutable/" class="md-nav__link">
+      <a href="../../../python/advanced/mutable%26immutable/" class="md-nav__link">
         
   
   
@@ -864,7 +867,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../advanced/decorator/" class="md-nav__link">
+      <a href="../../../python/advanced/decorator/" class="md-nav__link">
         
   
   
@@ -892,7 +895,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../advanced/yield/" class="md-nav__link">
+      <a href="../../../python/advanced/yield/" class="md-nav__link">
         
   
   
@@ -978,7 +981,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../autotest/apiauto/" class="md-nav__link">
+      <a href="../../../python/autotest/apiauto/" class="md-nav__link">
         
   
   
@@ -1006,7 +1009,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../autotest/layering_model/" class="md-nav__link">
+      <a href="../../../python/autotest/layering_model/" class="md-nav__link">
         
   
   
@@ -1084,7 +1087,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../autotest/pytest/fixture/" class="md-nav__link">
+      <a href="../../../python/autotest/pytest/fixture/" class="md-nav__link">
         
   
   
@@ -1112,7 +1115,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../autotest/pytest/conftest/" class="md-nav__link">
+      <a href="../../../python/autotest/pytest/conftest/" class="md-nav__link">
         
   
   
@@ -1140,7 +1143,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../autotest/pytest/pytest.main/" class="md-nav__link">
+      <a href="../../../python/autotest/pytest/pytest.main/" class="md-nav__link">
         
   
   
@@ -1168,7 +1171,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../autotest/pytest/pytest.ini/" class="md-nav__link">
+      <a href="../../../python/autotest/pytest/pytest.ini/" class="md-nav__link">
         
   
   
@@ -1196,7 +1199,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../autotest/pytest/dependency/" class="md-nav__link">
+      <a href="../../../python/autotest/pytest/dependency/" class="md-nav__link">
         
   
   
@@ -1232,7 +1235,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../autotest/unittest/unittest_notes/" class="md-nav__link">
+      <a href="../../../python/autotest/unittest/unittest_notes/" class="md-nav__link">
         
   
   
@@ -1260,7 +1263,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../autotest/selenium/" class="md-nav__link">
+      <a href="../../../python/autotest/selenium/" class="md-nav__link">
         
   
   
@@ -1338,7 +1341,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../autotest/app/mumu_sim/" class="md-nav__link">
+      <a href="../../../python/autotest/app/mumu_sim/" class="md-nav__link">
         
   
   
@@ -1366,7 +1369,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../autotest/app/appium/" class="md-nav__link">
+      <a href="../../../python/autotest/app/appium/" class="md-nav__link">
         
   
   
@@ -1394,7 +1397,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../autotest/app/uiautomator2/" class="md-nav__link">
+      <a href="../../../python/autotest/app/uiautomator2/" class="md-nav__link">
         
   
   
@@ -1422,7 +1425,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../autotest/app/webdriveragent/" class="md-nav__link">
+      <a href="../../../python/autotest/app/webdriveragent/" class="md-nav__link">
         
   
   
@@ -1458,7 +1461,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../autotest/mitmproxy/" class="md-nav__link">
+      <a href="../../../python/autotest/mitmproxy/" class="md-nav__link">
         
   
   
@@ -1486,7 +1489,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../autotest/requests/" class="md-nav__link">
+      <a href="../../../python/autotest/requests/" class="md-nav__link">
         
   
   
@@ -1564,7 +1567,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../autotest/playwright/001_basic/" class="md-nav__link">
+      <a href="../../../python/autotest/playwright/001_basic/" class="md-nav__link">
         
   
   
@@ -1592,7 +1595,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../autotest/playwright/002_po/" class="md-nav__link">
+      <a href="../../../python/autotest/playwright/002_po/" class="md-nav__link">
         
   
   
@@ -1686,7 +1689,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../basic/oop/" class="md-nav__link">
+      <a href="../../../python/basic/oop/" class="md-nav__link">
         
   
   
@@ -1764,7 +1767,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../basic/datatype/number/" class="md-nav__link">
+      <a href="../../../python/basic/datatype/number/" class="md-nav__link">
         
   
   
@@ -1792,7 +1795,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../basic/datatype/sequence/" class="md-nav__link">
+      <a href="../../../python/basic/datatype/sequence/" class="md-nav__link">
         
   
   
@@ -1820,7 +1823,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../basic/datatype/dict%26set/" class="md-nav__link">
+      <a href="../../../python/basic/datatype/dict%26set/" class="md-nav__link">
         
   
   
@@ -1914,7 +1917,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../builtin/builtin_func/" class="md-nav__link">
+      <a href="../../../python/builtin/builtin_func/" class="md-nav__link">
         
   
   
@@ -1942,7 +1945,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../builtin/re/" class="md-nav__link">
+      <a href="../../../python/builtin/re/" class="md-nav__link">
         
   
   
@@ -1970,7 +1973,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../builtin/pypath/" class="md-nav__link">
+      <a href="../../../python/builtin/pypath/" class="md-nav__link">
         
   
   
@@ -1998,7 +2001,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../builtin/pyjson_notes/" class="md-nav__link">
+      <a href="../../../python/builtin/pyjson_notes/" class="md-nav__link">
         
   
   
@@ -2026,7 +2029,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../builtin/collections/" class="md-nav__link">
+      <a href="../../../python/builtin/collections/" class="md-nav__link">
         
   
   
@@ -2112,7 +2115,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../env/" class="md-nav__link">
+      <a href="../../../python/other/env/" class="md-nav__link">
         
   
   
@@ -2140,7 +2143,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../uv/" class="md-nav__link">
+      <a href="../../../python/other/uv/" class="md-nav__link">
         
   
   
@@ -2168,7 +2171,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../web/flask/" class="md-nav__link">
+      <a href="../../../python/web/flask/" class="md-nav__link">
         
   
   
@@ -2246,7 +2249,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../web/django/django_orm/" class="md-nav__link">
+      <a href="../../../python/web/django/django_orm/" class="md-nav__link">
         
   
   
@@ -2274,7 +2277,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../web/django/django_templates/" class="md-nav__link">
+      <a href="../../../python/web/django/django_templates/" class="md-nav__link">
         
   
   
@@ -2302,7 +2305,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../web/django/cookie%26session/" class="md-nav__link">
+      <a href="../../../python/web/django/cookie%26session/" class="md-nav__link">
         
   
   
@@ -2396,7 +2399,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../pandas/day01/" class="md-nav__link">
+      <a href="../../../python/pandas/day01/" class="md-nav__link">
         
   
   
@@ -2424,7 +2427,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../pandas/day02/" class="md-nav__link">
+      <a href="../../../python/pandas/day02/" class="md-nav__link">
         
   
   
@@ -2452,7 +2455,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../pandas/day03/" class="md-nav__link">
+      <a href="../../../python/pandas/day03/" class="md-nav__link">
         
   
   
@@ -2480,7 +2483,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../pandas/day04/" class="md-nav__link">
+      <a href="../../../python/pandas/day04/" class="md-nav__link">
         
   
   
@@ -2508,7 +2511,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../pandas/day05/" class="md-nav__link">
+      <a href="../../../python/pandas/day05/" class="md-nav__link">
         
   
   
@@ -2594,7 +2597,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../kafka/concept/" class="md-nav__link">
+      <a href="../../../python/kafka/concept/" class="md-nav__link">
         
   
   
@@ -2622,7 +2625,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../kafka/confluent_kafka/" class="md-nav__link">
+      <a href="../../../python/kafka/confluent_kafka/" class="md-nav__link">
         
   
   
@@ -2650,7 +2653,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../kafka/kafka-python/" class="md-nav__link">
+      <a href="../../../python/kafka/kafka-python/" class="md-nav__link">
         
   
   
@@ -2736,7 +2739,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../redis/characteristics/" class="md-nav__link">
+      <a href="../../../python/redis/characteristics/" class="md-nav__link">
         
   
   
@@ -2764,7 +2767,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../redis/redisson/" class="md-nav__link">
+      <a href="../../../python/redis/redisson/" class="md-nav__link">
         
   
   
@@ -2797,8 +2800,6 @@
                 
   
   
-    
-  
   
   
     
@@ -2809,11 +2810,11 @@
       
     
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_9" checked="">
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_9">
         
           
           <label class="md-nav__link" for="__nav_2_9" id="__nav_2_9_label" tabindex="0">
@@ -2834,7 +2835,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_9_label" aria-expanded="true">
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_9_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_2_9">
             <span class="md-nav__icon md-icon"></span>
             
@@ -2849,256 +2850,10 @@
                 
   
   
-    
-  
-  
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    数据结构
-  
-
-    
-  </span>
-  
-  
-
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    数据结构
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="目录">
-  
-  
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      目录
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix="">
-      
-        <li class="md-nav__item">
-  <a href="#_1" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        📌 二叉树
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#_2" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        📌 堆
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#_3" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        📌 链表
-      
-    </span>
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    
-    
-    
-    
-      
-      
-    
-    
-    <li class="md-nav__item md-nav__item--nested">
-      
-        
-        
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_9_2">
-        
-          
-          <label class="md-nav__link" for="__nav_2_9_2" id="__nav_2_9_2_label" tabindex="0">
-            
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    算法
-  
-
-    
-  </span>
-  
-  
-
-            <span class="md-nav__icon md-icon"></span>
-          </label>
-        
-        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_2_9_2_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_2_9_2">
-            <span class="md-nav__icon md-icon"></span>
-            
-  
-    算法
-  
-
-          </label>
-          <ul class="md-nav__list" data-md-scrollfix="">
-            
-              
-                
-  
-  
   
   
     <li class="md-nav__item">
-      <a href="../../oj/sort/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    排序
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../oj/dp/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    动态规划
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../oj/window/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    滑动窗口
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-          </ul>
-        </nav>
-      
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../mv_py_path/" class="md-nav__link">
+      <a href="../../../python/other/mv_py_path/" class="md-nav__link">
         
   
   
@@ -3126,7 +2881,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../mkdocs_notes/" class="md-nav__link">
+      <a href="../../../python/other/mkdocs_notes/" class="md-nav__link">
         
   
   
@@ -3154,7 +2909,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../pydocx/pydocx_notes/" class="md-nav__link">
+      <a href="../../../python/other/pydocx/pydocx_notes/" class="md-nav__link">
         
   
   
@@ -3182,7 +2937,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../pyexcel/pyexcel_notes/" class="md-nav__link">
+      <a href="../../../python/other/pyexcel/pyexcel_notes/" class="md-nav__link">
         
   
   
@@ -3210,7 +2965,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../scrapy_notes/" class="md-nav__link">
+      <a href="../../../python/other/scrapy_notes/" class="md-nav__link">
         
   
   
@@ -3238,7 +2993,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../coding_standard/" class="md-nav__link">
+      <a href="../../../python/other/coding_standard/" class="md-nav__link">
         
   
   
@@ -3266,7 +3021,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../garbage_collection/" class="md-nav__link">
+      <a href="../../../python/other/garbage_collection/" class="md-nav__link">
         
   
   
@@ -3409,7 +3164,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../java/springboot/basic/" class="md-nav__link">
+      <a href="../../../java/springboot/basic/" class="md-nav__link">
         
   
   
@@ -3444,206 +3199,8 @@
   
   
   
-    
-    
-    
-    
-      
-      
-    
-    
-    <li class="md-nav__item md-nav__item--nested">
-      
-        
-        
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_2">
-        
-          
-          <label class="md-nav__link" for="__nav_3_2" id="__nav_3_2_label" tabindex="0">
-            
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    leetcode热题100
-  
-
-    
-  </span>
-  
-  
-
-            <span class="md-nav__icon md-icon"></span>
-          </label>
-        
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_2_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_3_2">
-            <span class="md-nav__icon md-icon"></span>
-            
-  
-    leetcode热题100
-  
-
-          </label>
-          <ul class="md-nav__list" data-md-scrollfix="">
-            
-              
-                
-  
-  
-  
-  
     <li class="md-nav__item">
-      <a href="../../../../java/leetcode/hash/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    哈希
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../../../java/leetcode/two_pointers/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    双指针
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../../../java/leetcode/array/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    普通数组
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../../../java/leetcode/binary_search/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    二分查找
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../../../java/leetcode/stack/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    栈
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-          </ul>
-        </nav>
-      
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../../../java/junit5/" class="md-nav__link">
+      <a href="../../../java/junit5/" class="md-nav__link">
         
   
   
@@ -3671,7 +3228,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../java/cucumber/" class="md-nav__link">
+      <a href="../../../java/cucumber/" class="md-nav__link">
         
   
   
@@ -3699,7 +3256,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../java/jvmgc/jvm/" class="md-nav__link">
+      <a href="../../../java/jvmgc/jvm/" class="md-nav__link">
         
   
   
@@ -3727,7 +3284,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../java/jvmgc/jmx/" class="md-nav__link">
+      <a href="../../../java/jvmgc/jmx/" class="md-nav__link">
         
   
   
@@ -3812,7 +3369,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../vue/basic/" class="md-nav__link">
+      <a href="../../../vue/basic/" class="md-nav__link">
         
   
   
@@ -3840,7 +3397,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../vue/npm/" class="md-nav__link">
+      <a href="../../../vue/npm/" class="md-nav__link">
         
   
   
@@ -3975,7 +3532,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../sql/oracle/sqlldr_import/" class="md-nav__link">
+      <a href="../../../sql/oracle/sqlldr_import/" class="md-nav__link">
         
   
   
@@ -4003,7 +3560,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../sql/oracle/some/" class="md-nav__link">
+      <a href="../../../sql/oracle/some/" class="md-nav__link">
         
   
   
@@ -4031,7 +3588,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../sql/oracle/lock%26unlock/" class="md-nav__link">
+      <a href="../../../sql/oracle/lock%26unlock/" class="md-nav__link">
         
   
   
@@ -4059,7 +3616,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../sql/oracle/procedure/" class="md-nav__link">
+      <a href="../../../sql/oracle/procedure/" class="md-nav__link">
         
   
   
@@ -4087,7 +3644,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../sql/oracle/gather_table_stats/" class="md-nav__link">
+      <a href="../../../sql/oracle/gather_table_stats/" class="md-nav__link">
         
   
   
@@ -4115,7 +3672,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../sql/oracle/other_notes/" class="md-nav__link">
+      <a href="../../../sql/oracle/other_notes/" class="md-nav__link">
         
   
   
@@ -4151,7 +3708,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../sql/mysql_notes/" class="md-nav__link">
+      <a href="../../../sql/mysql_notes/" class="md-nav__link">
         
   
   
@@ -4179,7 +3736,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../other/elasticsearch/" class="md-nav__link">
+      <a href="../../elasticsearch/" class="md-nav__link">
         
   
   
@@ -4257,7 +3814,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../sql/pg/readme/" class="md-nav__link">
+      <a href="../../../sql/pg/readme/" class="md-nav__link">
         
   
   
@@ -4285,7 +3842,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../sql/pg/etl_func/" class="md-nav__link">
+      <a href="../../../sql/pg/etl_func/" class="md-nav__link">
         
   
   
@@ -4321,7 +3878,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../sql/data/" class="md-nav__link">
+      <a href="../../../sql/data/" class="md-nav__link">
         
   
   
@@ -4399,7 +3956,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../sql/hadoop/ecosystem/" class="md-nav__link">
+      <a href="../../../sql/hadoop/ecosystem/" class="md-nav__link">
         
   
   
@@ -4477,7 +4034,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../sql/hadoop/scala/day01/" class="md-nav__link">
+      <a href="../../../sql/hadoop/scala/day01/" class="md-nav__link">
         
   
   
@@ -4505,7 +4062,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../sql/hadoop/scala/day02/" class="md-nav__link">
+      <a href="../../../sql/hadoop/scala/day02/" class="md-nav__link">
         
   
   
@@ -4533,7 +4090,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../sql/hadoop/scala/day03/" class="md-nav__link">
+      <a href="../../../sql/hadoop/scala/day03/" class="md-nav__link">
         
   
   
@@ -4561,7 +4118,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../sql/hadoop/scala/day04/" class="md-nav__link">
+      <a href="../../../sql/hadoop/scala/day04/" class="md-nav__link">
         
   
   
@@ -4662,7 +4219,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../shell/review/" class="md-nav__link">
+      <a href="../../../shell/review/" class="md-nav__link">
         
   
   
@@ -4690,7 +4247,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../other/git_notes/" class="md-nav__link">
+      <a href="../../git_notes/" class="md-nav__link">
         
   
   
@@ -4718,7 +4275,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../shell/timestamp/" class="md-nav__link">
+      <a href="../../../shell/timestamp/" class="md-nav__link">
         
   
   
@@ -4746,7 +4303,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../shell/regex/" class="md-nav__link">
+      <a href="../../../shell/regex/" class="md-nav__link">
         
   
   
@@ -4824,7 +4381,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../shell/k8s/basic/" class="md-nav__link">
+      <a href="../../../shell/k8s/basic/" class="md-nav__link">
         
   
   
@@ -4852,7 +4409,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../shell/k8s/probe/" class="md-nav__link">
+      <a href="../../../shell/k8s/probe/" class="md-nav__link">
         
   
   
@@ -4880,7 +4437,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../shell/k8s/kind/" class="md-nav__link">
+      <a href="../../../shell/k8s/kind/" class="md-nav__link">
         
   
   
@@ -4908,7 +4465,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../shell/k8s/deploy/" class="md-nav__link">
+      <a href="../../../shell/k8s/deploy/" class="md-nav__link">
         
   
   
@@ -4994,7 +4551,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../shell/docker/windows_docker/" class="md-nav__link">
+      <a href="../../../shell/docker/windows_docker/" class="md-nav__link">
         
   
   
@@ -5022,7 +4579,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../shell/docker/archlinux_docker/" class="md-nav__link">
+      <a href="../../../shell/docker/archlinux_docker/" class="md-nav__link">
         
   
   
@@ -5050,7 +4607,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../shell/docker/build_mysql/" class="md-nav__link">
+      <a href="../../../shell/docker/build_mysql/" class="md-nav__link">
         
   
   
@@ -5078,7 +4635,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../shell/docker/build_oracle/" class="md-nav__link">
+      <a href="../../../shell/docker/build_oracle/" class="md-nav__link">
         
   
   
@@ -5106,7 +4663,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../shell/docker/build_jenkins/" class="md-nav__link">
+      <a href="../../../shell/docker/build_jenkins/" class="md-nav__link">
         
   
   
@@ -5134,7 +4691,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../shell/docker/build_rockylinux/" class="md-nav__link">
+      <a href="../../../shell/docker/build_rockylinux/" class="md-nav__link">
         
   
   
@@ -5162,7 +4719,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../shell/docker/build_hbase/" class="md-nav__link">
+      <a href="../../../shell/docker/build_hbase/" class="md-nav__link">
         
   
   
@@ -5190,7 +4747,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../shell/docker/compose/" class="md-nav__link">
+      <a href="../../../shell/docker/compose/" class="md-nav__link">
         
   
   
@@ -5283,7 +4840,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../test/software_engineering/" class="md-nav__link">
+      <a href="../../../test/software_engineering/" class="md-nav__link">
         
   
   
@@ -5361,7 +4918,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../test/coverage/" class="md-nav__link">
+      <a href="../../../test/coverage/" class="md-nav__link">
         
   
   
@@ -5389,7 +4946,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../test/test_app/" class="md-nav__link">
+      <a href="../../../test/test_app/" class="md-nav__link">
         
   
   
@@ -5467,7 +5024,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../test/test_performance/" class="md-nav__link">
+      <a href="../../../test/test_performance/" class="md-nav__link">
         
   
   
@@ -5545,7 +5102,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../utils/jmeter_notes/" class="md-nav__link">
+      <a href="../../../utils/jmeter_notes/" class="md-nav__link">
         
   
   
@@ -5573,7 +5130,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../utils/locust_notes/" class="md-nav__link">
+      <a href="../../../utils/locust_notes/" class="md-nav__link">
         
   
   
@@ -5601,7 +5158,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../utils/arthas/" class="md-nav__link">
+      <a href="../../../utils/arthas/" class="md-nav__link">
         
   
   
@@ -5687,7 +5244,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../utils/performance/monitor/platform/" class="md-nav__link">
+      <a href="../../../utils/performance/monitor/platform/" class="md-nav__link">
         
   
   
@@ -5715,7 +5272,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../utils/nmon/" class="md-nav__link">
+      <a href="../../../utils/nmon/" class="md-nav__link">
         
   
   
@@ -5743,7 +5300,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../utils/performance/monitor/server/" class="md-nav__link">
+      <a href="../../../utils/performance/monitor/server/" class="md-nav__link">
         
   
   
@@ -5771,7 +5328,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../utils/performance/monitor/mysql/" class="md-nav__link">
+      <a href="../../../utils/performance/monitor/mysql/" class="md-nav__link">
         
   
   
@@ -5799,7 +5356,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../utils/performance/monitor/Skywalking/" class="md-nav__link">
+      <a href="../../../utils/performance/monitor/Skywalking/" class="md-nav__link">
         
   
   
@@ -5885,7 +5442,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../other/high_performance/" class="md-nav__link">
+      <a href="../../high_performance/" class="md-nav__link">
         
   
   
@@ -5913,7 +5470,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../other/high_availability/" class="md-nav__link">
+      <a href="../../high_availability/" class="md-nav__link">
         
   
   
@@ -5941,7 +5498,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../other/nginx_notes/" class="md-nav__link">
+      <a href="../../nginx_notes/" class="md-nav__link">
         
   
   
@@ -5969,7 +5526,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../other/tomcat_notes/" class="md-nav__link">
+      <a href="../../tomcat_notes/" class="md-nav__link">
         
   
   
@@ -6013,7 +5570,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../test/test_security/" class="md-nav__link">
+      <a href="../../../test/test_security/" class="md-nav__link">
         
   
   
@@ -6099,7 +5656,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../utils/fiddler_notes/" class="md-nav__link">
+      <a href="../../../utils/fiddler_notes/" class="md-nav__link">
         
   
   
@@ -6127,7 +5684,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../utils/charles_notes/" class="md-nav__link">
+      <a href="../../../utils/charles_notes/" class="md-nav__link">
         
   
   
@@ -6155,7 +5712,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../utils/postman_notes/" class="md-nav__link">
+      <a href="../../../utils/postman_notes/" class="md-nav__link">
         
   
   
@@ -6183,7 +5740,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../utils/apifox_notes/" class="md-nav__link">
+      <a href="../../../utils/apifox_notes/" class="md-nav__link">
         
   
   
@@ -6223,24 +5780,29 @@
       
   
   
+    
   
   
+  
     
     
     
     
-      
-      
-    
-    
-    <li class="md-nav__item md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8">
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8" checked="">
         
           
-          <label class="md-nav__link" for="__nav_8" id="__nav_8_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_8" id="__nav_8_label" tabindex="">
             
   
   
@@ -6258,7 +5820,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_8_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_8_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_8">
             <span class="md-nav__icon md-icon"></span>
             
@@ -6273,10 +5835,387 @@
                 
   
   
+    
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8_1" checked="">
+        
+          
+          <label class="md-nav__link" for="__nav_8_1" id="__nav_8_1_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    leetcode&amp;oj
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_8_1_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_8_1">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    leetcode&amp;oj
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix="">
+            
+              
+                
+  
+  
   
   
     <li class="md-nav__item">
-      <a href="../../../../other/blockchain/" class="md-nav__link">
+      <a href="../must/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    需掌握的清单
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../structure/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    数据结构
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../hash/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    哈希
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../two_pointers/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    双指针
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../binary_search/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    二分查找
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../stack/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    栈
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../sort/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    排序
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    动态规划
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    动态规划
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix="">
+      
+        <li class="md-nav__item">
+  <a href="#70" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        📌 70. 爬楼梯
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#198" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        📌 198. 打家劫舍
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../window/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    滑动窗口
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../blockchain/" class="md-nav__link">
         
   
   
@@ -6304,7 +6243,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../other/deep_learning/" class="md-nav__link">
+      <a href="../../deep_learning/" class="md-nav__link">
         
   
   
@@ -6332,7 +6271,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../other/cicd/" class="md-nav__link">
+      <a href="../../cicd/" class="md-nav__link">
         
   
   
@@ -6371,10 +6310,10 @@
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8_4">
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8_5">
         
           
-          <label class="md-nav__link" for="__nav_8_4" id="__nav_8_4_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_8_5" id="__nav_8_5_label" tabindex="0">
             
   
   
@@ -6392,8 +6331,8 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_8_4_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_8_4">
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_8_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_8_5">
             <span class="md-nav__icon md-icon"></span>
             
   
@@ -6410,7 +6349,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../other/windows/system_disk/" class="md-nav__link">
+      <a href="../../windows/system_disk/" class="md-nav__link">
         
   
   
@@ -6438,7 +6377,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../other/windows/default_encoding/" class="md-nav__link">
+      <a href="../../windows/default_encoding/" class="md-nav__link">
         
   
   
@@ -6466,7 +6405,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../other/windows/disable_auto_update/" class="md-nav__link">
+      <a href="../../windows/disable_auto_update/" class="md-nav__link">
         
   
   
@@ -6502,7 +6441,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../other/mermaid/" class="md-nav__link">
+      <a href="../../mermaid/" class="md-nav__link">
         
   
   
@@ -6637,7 +6576,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../ielts/vocabulary/synonym_substitution/" class="md-nav__link">
+      <a href="../../../ielts/vocabulary/synonym_substitution/" class="md-nav__link">
         
   
   
@@ -6665,7 +6604,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../ielts/vocabulary/phrase%26sentence/" class="md-nav__link">
+      <a href="../../../ielts/vocabulary/phrase%26sentence/" class="md-nav__link">
         
   
   
@@ -6693,7 +6632,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../ielts/vocabulary/notes/" class="md-nav__link">
+      <a href="../../../ielts/vocabulary/notes/" class="md-nav__link">
         
   
   
@@ -6829,7 +6768,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../ielts/reading/the_economist/rent_or_buy/" class="md-nav__link">
+      <a href="../../../ielts/reading/the_economist/rent_or_buy/" class="md-nav__link">
         
   
   
@@ -6857,7 +6796,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../ielts/reading/the_economist/self_checkout/" class="md-nav__link">
+      <a href="../../../ielts/reading/the_economist/self_checkout/" class="md-nav__link">
         
   
   
@@ -6885,7 +6824,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../ielts/reading/the_economist/the_impact_of_AI_on_entry_level_job/" class="md-nav__link">
+      <a href="../../../ielts/reading/the_economist/the_impact_of_AI_on_entry_level_job/" class="md-nav__link">
         
   
   
@@ -6971,7 +6910,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../ielts/reading/ted/ai_age_learning/" class="md-nav__link">
+      <a href="../../../ielts/reading/ted/ai_age_learning/" class="md-nav__link">
         
   
   
@@ -6999,7 +6938,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../ielts/reading/ted/self_introduction/" class="md-nav__link">
+      <a href="../../../ielts/reading/ted/self_introduction/" class="md-nav__link">
         
   
   
@@ -7085,7 +7024,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../ielts/reading/authentic/C7-T4-P3/" class="md-nav__link">
+      <a href="../../../ielts/reading/authentic/C7-T4-P3/" class="md-nav__link">
         
   
   
@@ -7113,7 +7052,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../ielts/reading/authentic/C11-T3-P3/" class="md-nav__link">
+      <a href="../../../ielts/reading/authentic/C11-T3-P3/" class="md-nav__link">
         
   
   
@@ -7141,7 +7080,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../ielts/reading/authentic/C12-T2-P2/" class="md-nav__link">
+      <a href="../../../ielts/reading/authentic/C12-T2-P2/" class="md-nav__link">
         
   
   
@@ -7227,7 +7166,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../ielts/reading/current_affair/ban_hidden_door_handles/" class="md-nav__link">
+      <a href="../../../ielts/reading/current_affair/ban_hidden_door_handles/" class="md-nav__link">
         
   
   
@@ -7321,7 +7260,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../ielts/spoken/universal/" class="md-nav__link">
+      <a href="../../../ielts/spoken/universal/" class="md-nav__link">
         
   
   
@@ -7399,7 +7338,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../ielts/spoken/topic/daily_life/" class="md-nav__link">
+      <a href="../../../ielts/spoken/topic/daily_life/" class="md-nav__link">
         
   
   
@@ -7427,7 +7366,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../ielts/spoken/topic/education/" class="md-nav__link">
+      <a href="../../../ielts/spoken/topic/education/" class="md-nav__link">
         
   
   
@@ -7455,7 +7394,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../ielts/spoken/topic/pet/" class="md-nav__link">
+      <a href="../../../ielts/spoken/topic/pet/" class="md-nav__link">
         
   
   
@@ -7483,7 +7422,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../ielts/spoken/topic/job/" class="md-nav__link">
+      <a href="../../../ielts/spoken/topic/job/" class="md-nav__link">
         
   
   
@@ -7511,7 +7450,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../ielts/spoken/topic/character/" class="md-nav__link">
+      <a href="../../../ielts/spoken/topic/character/" class="md-nav__link">
         
   
   
@@ -7605,7 +7544,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../ielts/listening/technique/" class="md-nav__link">
+      <a href="../../../ielts/listening/technique/" class="md-nav__link">
         
   
   
@@ -7683,7 +7622,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../ielts/listening/authentic/C10-T2-Section3/" class="md-nav__link">
+      <a href="../../../ielts/listening/authentic/C10-T2-Section3/" class="md-nav__link">
         
   
   
@@ -7784,7 +7723,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../vibe/basic_nouns/" class="md-nav__link">
+      <a href="../../../vibe/basic_nouns/" class="md-nav__link">
         
   
   
@@ -7812,7 +7751,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../vibe/rag/" class="md-nav__link">
+      <a href="../../../vibe/rag/" class="md-nav__link">
         
   
   
@@ -7890,7 +7829,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../vibe/personal/ngrok/" class="md-nav__link">
+      <a href="../../../vibe/personal/ngrok/" class="md-nav__link">
         
   
   
@@ -7976,7 +7915,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../vibe/sdd/claude/" class="md-nav__link">
+      <a href="../../../vibe/sdd/claude/" class="md-nav__link">
         
   
   
@@ -8004,7 +7943,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../vibe/sdd/relate_skill/" class="md-nav__link">
+      <a href="../../../vibe/sdd/relate_skill/" class="md-nav__link">
         
   
   
@@ -8140,7 +8079,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../vibe/agent_app/ui_autotest_autogen/" class="md-nav__link">
+      <a href="../../../vibe/agent_app/ui_autotest_autogen/" class="md-nav__link">
         
   
   
@@ -8168,7 +8107,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../vibe/agent_app/multi_agents_uiautotest/" class="md-nav__link">
+      <a href="../../../vibe/agent_app/multi_agents_uiautotest/" class="md-nav__link">
         
   
   
@@ -8237,10 +8176,10 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix="">
       
         <li class="md-nav__item">
-  <a href="#_1" class="md-nav__link">
+  <a href="#70" class="md-nav__link">
     <span class="md-ellipsis">
       
-        📌 二叉树
+        📌 70. 爬楼梯
       
     </span>
   </a>
@@ -8248,21 +8187,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#_2" class="md-nav__link">
+  <a href="#198" class="md-nav__link">
     <span class="md-ellipsis">
       
-        📌 堆
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#_3" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        📌 链表
+        📌 198. 打家劫舍
       
     </span>
   </a>
@@ -8289,63 +8217,84 @@
   
 
 
-  <h1>数据结构</h1>
+  <h1>动态规划</h1>
 
-<ul>
-<li>栈-stack</li>
-<li>队列-queue</li>
-<li>堆-heap</li>
-<li>链表-linked list</li>
-<li>树-tree</li>
-<li>散列-hash table</li>
-<li>图-graph</li>
-</ul>
-<h2 id="_1">📌 二叉树</h2>
-<p>🎗 特性</p>
-<ul>
-<li>第一层节点小于第二层节点，依此类推。</li>
-<li>树左边的节点小于右边的节点，依此类推。</li>
-<li>前序遍历：根左右；中序遍历：左根右；后序遍历：左右根。</li>
-<li>二叉树的第k层的节点数最多为：2的(k-1)次方。</li>
-<li>有一个完全二叉树的叶子节点个数为1234个，那么它最多有(1234 + 1233 = 2467)个节点。</li>
-</ul>
-<h2 id="_2">📌 堆</h2>
-<p>🎗 特性</p>
-<ul>
-<li>堆中某个节点的值总是不大于（最大堆）或不小于（最小堆）其父节点的值。</li>
-<li>堆总是一棵完全二叉树，即除了最后一层节点以外，其他层的节点数量都是最大值，最后一层的节点都排列在左边。</li>
-</ul>
-<p>🎗 分类</p>
-<ul>
-<li>最大堆（大根堆）：根节点的值是所有节点中最大的，并且每个父节点的值都大于或等于其子节点的值。</li>
-<li>最小堆（小根堆）：根节点的值是所有节点中最小的，并且每个父节点的值都小于或等于其子节点的值。</li>
-</ul>
-<p>🎗 操作</p>
-<ul>
-<li>插入元素：通常需要比较新元素与父节点的值，并通过交换元素来保持堆的性质。</li>
-<li>删除元素：从堆中删除元素（通常是根节点），并用最后一个元素替换根节点，然后重新调整堆以保持其性质。</li>
-</ul>
-<h2 id="_3">📌 链表</h2>
-<p>由一系列节点（Node）组成，每个节点包含两个部分：数据部分和指向下一个节点的指针部分。</p>
-<p>链表的结构允许在内存中非连续的位置存储数据，并通过指针将这些位置连接起来。</p>
-<p>🎗 优点</p>
-<ul>
-<li>
-<p>动态分配内存：链表不需要预先分配固定大小的内存空间，可以根据需要动态地添加或删除节点。</p>
-</li>
-<li>
-<p>插入和删除操作高效：在链表中插入或删除节点通常只需要修改相关节点的指针，而不需要移动大量数据。</p>
-</li>
-</ul>
-<p>🎗 缺点</p>
-<ul>
-<li>
-<p>访问元素慢：与数组相比，链表中的元素没有固定的索引，访问特定位置的元素通常需要从头节点开始遍历链表。</p>
-</li>
-<li>
-<p>需要额外的空间存储指针：链表中的每个节点都需要额外的空间来存储指向下一个节点的指针。</p>
-</li>
-</ul>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">List</span>
+
+<span class="k">class</span><span class="w"> </span><span class="nc">Solution</span><span class="p">:</span>
+
+    <span class="nd">@staticmethod</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">generate</span><span class="p">(</span><span class="n">numRows</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="nb">int</span><span class="p">]]:</span>
+        <span class="c1"># 118. 杨辉三角_leetcode</span>
+        <span class="c1"># 在「杨辉三角」中，每个数是它左上方和右上方的数的和。</span>
+        <span class="k">if</span> <span class="n">numRows</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="k">return</span> <span class="p">[[</span><span class="mi">1</span><span class="p">]]</span>
+        <span class="n">fib</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">*</span> <span class="p">(</span><span class="n">numRows</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
+        <span class="n">fib</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+        <span class="n">fib</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span>
+
+        <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="n">numRows</span> <span class="o">+</span> <span class="mi">1</span><span class="p">):</span>
+            <span class="n">num</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+            <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">n</span> <span class="o">-</span> <span class="mi">2</span> <span class="o">+</span> <span class="mi">1</span><span class="p">):</span>  <span class="c1"># 计算的次数为numRows-2，所以循环次数为numRows-2+1</span>
+                <span class="n">num</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">fib</span><span class="p">[</span><span class="n">n</span> <span class="o">-</span> <span class="mi">1</span><span class="p">][</span><span class="n">i</span><span class="p">]</span> <span class="o">+</span> <span class="n">fib</span><span class="p">[</span><span class="n">n</span> <span class="o">-</span> <span class="mi">1</span><span class="p">][</span><span class="n">i</span> <span class="o">-</span> <span class="mi">1</span><span class="p">])</span>
+            <span class="n">num</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+            <span class="n">fib</span><span class="p">[</span><span class="n">n</span><span class="p">]</span> <span class="o">=</span> <span class="n">num</span>
+
+        <span class="n">fib</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">fib</span>
+
+    <span class="nd">@staticmethod</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">climbStair</span><span class="p">(</span><span class="n">n</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+        <span class="c1"># 顽猴爬山，每次跳1步或3步，问爬n个台阶有多少种跳跃方式</span>
+        <span class="k">if</span> <span class="n">n</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="k">return</span> <span class="mi">1</span>
+        <span class="n">nums</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">*</span> <span class="p">(</span><span class="n">n</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
+        <span class="n">nums</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
+        <span class="n">nums</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="n">n</span> <span class="o">+</span> <span class="mi">1</span><span class="p">):</span>
+            <span class="n">nums</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">nums</span><span class="p">[</span><span class="n">i</span> <span class="o">-</span> <span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="o">+</span> <span class="n">nums</span><span class="p">[</span><span class="n">i</span> <span class="o">-</span> <span class="mi">3</span><span class="p">]</span>
+        <span class="k">return</span> <span class="n">nums</span><span class="p">[</span><span class="n">n</span><span class="p">]</span>
+</code></pre></div>
+<h2 id="70">📌 <a href="https://leetcode.cn/problems/climbing-stairs/description/?envType=study-plan-v2&amp;envId=top-100-liked">70. 爬楼梯</a></h2>
+<p>假设你正在爬楼梯。需要 n 阶你才能到达楼顶。</p>
+<p>每次你可以爬 1 或 2 个台阶。你有多少种不同的方法可以爬到楼顶呢？</p>
+<div class="highlight"><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">Solution</span><span class="p">:</span>
+    <span class="nd">@staticmethod</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">climbStair</span><span class="p">(</span><span class="n">n</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">n</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="k">return</span> <span class="mi">1</span>
+        <span class="n">nums</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">*</span> <span class="p">(</span><span class="n">n</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>  <span class="c1"># 空列表</span>
+        <span class="n">nums</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">nums</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span>  <span class="c1"># 初始化</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="n">n</span> <span class="o">+</span> <span class="mi">1</span><span class="p">):</span>
+            <span class="n">nums</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">nums</span><span class="p">[</span><span class="n">i</span> <span class="o">-</span> <span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="o">+</span> <span class="n">nums</span><span class="p">[</span><span class="n">i</span> <span class="o">-</span> <span class="mi">2</span><span class="p">]</span>
+        <span class="k">return</span> <span class="n">nums</span><span class="p">[</span><span class="n">n</span><span class="p">]</span>
+
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">"__main__"</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">Solution</span><span class="o">.</span><span class="n">climbStair</span><span class="p">(</span><span class="mi">3</span><span class="p">))</span>
+</code></pre></div>
+<h2 id="198">📌 <a href="https://leetcode.cn/problems/house-robber/description/?envType=study-plan-v2&amp;envId=top-100-liked">198. 打家劫舍</a></h2>
+<p>你是一个专业的小偷，计划偷窃沿街的房屋。每间房内都藏有一定的现金，影响你偷窃的唯一制约因素就是相邻的房屋装有相互连通的防盗系统，如果两间相邻的房屋在同一晚上被小偷闯入，系统会自动报警。</p>
+<p>给定一个代表每个房屋存放金额的非负整数数组，计算你 不触动警报装置的情况下 ，一夜之内能够偷窃到的最高金额。</p>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">List</span>
+
+
+<span class="k">class</span><span class="w"> </span><span class="nc">Solution</span><span class="p">:</span>
+
+    <span class="nd">@staticmethod</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">rob</span><span class="p">(</span><span class="n">nums</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">int</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+        <span class="n">nums_len</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">nums</span><span class="p">)</span>
+        <span class="n">res</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">*</span> <span class="p">(</span><span class="n">nums_len</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>  <span class="c1"># 空列表</span>
+        <span class="n">res</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">nums</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">nums_len</span><span class="p">):</span>
+            <span class="n">res</span><span class="p">[</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">nums</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">+</span> <span class="n">res</span><span class="p">[</span><span class="n">i</span> <span class="o">-</span> <span class="mi">1</span><span class="p">],</span> <span class="n">res</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+        <span class="k">return</span> <span class="n">res</span><span class="p">[</span><span class="n">nums_len</span><span class="p">]</span>
+
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">"__main__"</span><span class="p">:</span>
+    <span class="n">tmp</span> <span class="o">=</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">Solution</span><span class="o">.</span><span class="n">rob</span><span class="p">(</span><span class="n">tmp</span><span class="p">))</span>
+</code></pre></div>
 
 
 
@@ -8381,7 +8330,7 @@
       <nav class="md-footer__inner md-grid" aria-label="页脚">
         
           
-          <a href="../../../redis/redisson/" class="md-footer__link md-footer__link--prev" aria-label="上一页: 分布式锁">
+          <a href="../sort/" class="md-footer__link md-footer__link--prev" aria-label="上一页: 排序">
             <div class="md-footer__button md-icon">
               
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"></path></svg>
@@ -8391,20 +8340,20 @@
                 上一页
               </span>
               <div class="md-ellipsis">
-                分布式锁
+                排序
               </div>
             </div>
           </a>
         
         
           
-          <a href="../../oj/sort/" class="md-footer__link md-footer__link--next" aria-label="下一页: 排序">
+          <a href="../window/" class="md-footer__link md-footer__link--next" aria-label="下一页: 滑动窗口">
             <div class="md-footer__title">
               <span class="md-footer__direction">
                 下一页
               </span>
               <div class="md-ellipsis">
-                排序
+                滑动窗口
               </div>
             </div>
             <div class="md-footer__button md-icon">
@@ -8441,16 +8390,16 @@
     
       
       
-      <script id="__config" type="application/json">{"annotate": null, "base": "../../../..", "features": ["navigation.footer", "navigation.top", "navigation.tabs", "navigation.instant", "content.code.copy"], "search": "../../../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}, "version": null}</script>
+      <script id="__config" type="application/json">{"annotate": null, "base": "../../..", "features": ["navigation.footer", "navigation.top", "navigation.tabs", "navigation.instant", "content.code.copy"], "search": "../../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}, "version": null}</script>
     
     
-      <script src="../../../../assets/javascripts/bundle.d7400e89.min.js"></script>
+      <script src="../../../assets/javascripts/bundle.d7400e89.min.js"></script>
       
-        <script src="../../../../extra/mermaid.mjs" type="module"></script>
+        <script src="../../../extra/mermaid.mjs" type="module"></script>
       
-        <script src="../../../../assets/javascripts/panzoom.min.js"></script>
+        <script src="../../../assets/javascripts/panzoom.min.js"></script>
       
-        <script src="../../../../assets/javascripts/zoompan.js"></script>
+        <script src="../../../assets/javascripts/zoompan.js"></script>
       
     
   
