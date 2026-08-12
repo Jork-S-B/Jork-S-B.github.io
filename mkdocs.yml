@@ -70,11 +70,6 @@ nav:
                 - 特性: python/redis/characteristics.md
                 - 分布式锁: python/redis/redisson.md
           - 其他:
-                - 数据结构: python/other/structure/structure.md
-                - 算法:
-                      - 排序: python/other/oj/sort.md
-                      - 动态规划: python/other/oj/dp.md
-                      - 滑动窗口: python/other/oj/window.md
                 - Python安装路径迁移: python/other/mv_py_path.md
                 - mkdocs使用记录: python/other/mkdocs_notes.md
                 - docx: python/other/pydocx/pydocx_notes.md
@@ -85,12 +80,6 @@ nav:
     - Java:
           - Spring Boot:
                 - 组件: java/springboot/basic.md
-          - leetcode热题100:
-                - 哈希: java/leetcode/hash.md
-                - 双指针: java/leetcode/two_pointers.md
-                - 普通数组: java/leetcode/array.md
-                - 二分查找: java/leetcode/binary_search.md
-                - 栈: java/leetcode/stack.md
           - JUnit 5: java/junit5.md
           - Cucumber: java/cucumber.md
           - JVM内存结构: java/jvmgc/jvm.md
@@ -167,6 +156,16 @@ nav:
                 - Postman: utils/postman_notes.md
                 - Apifox: utils/apifox_notes.md
     - 其他:
+          - leetcode&oj:
+                - 需掌握的清单: other/leetcode/must.md
+                - 数据结构: other/leetcode/structure.md
+                - 哈希: other/leetcode/hash.md
+                - 双指针: other/leetcode/two_pointers.md
+                - 二分查找: other/leetcode/binary_search.md
+                - 栈: other/leetcode/stack.md
+                - 排序: other/leetcode/sort.md
+                - 动态规划: other/leetcode/dp.md
+                - 滑动窗口: other/leetcode/window.md
           - 区块链: other/blockchain.md
           - 深度学习: other/deep_learning.md
           - CICD: other/cicd.md
