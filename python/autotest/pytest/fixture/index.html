@@ -6528,6 +6528,34 @@
 
               
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../other/trading/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    trading
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
@@ -8357,6 +8385,16 @@
 <li>session: 会话级，整个会话只执行一次。适合重量级资源，比如<em>全局登录 token、数据库连接池、Docker 容器</em>等。</li>
 </ul>
 <p>总结：作用域越小，隔离性越好但性能越差；作用域越大，性能越好但需要处理状态重置问题。实际使用时，一般优先选最小够用的作用域，遇到性能瓶颈再提升级别。</p>
+<details class="question">
+<summary>为什么不让所有Fixture都用session级别？</summary>
+<ol>
+<li>隔离性被破坏，当用例对同一变量读取/修改时，会导致数据污染。</li>
+<li>清理风险高，中途异常退出可能导致资源无法正确释放。</li>
+<li>并行运行冲突，多个worker进程会各自执行一次session级fixture。</li>
+<li>数据库事务无法回滚，若测试<strong>依赖回滚来还原数据</strong>，根本无法使用<code>transaction=True</code>这类机制，最终只能手工写大量SQL清理。</li>
+<li>大量依赖塞入全局fixture，会导致整个测试套件启动极慢。</li>
+</ol>
+</details>
 <h3 id="setupteardown">🚁 setUp/tearDown方法</h3>
 <p>setUp/tearDown是执行测试用例的前置/后置方法，用于初始化/清理环境。继承unittest的类可直接使用同名方法。</p>
 <p>pytest中也有<a href="https://blog.csdn.net/qq_36502272/article/details/100671845">类似名称的方法</a>，也可通过<code>yield fixtures</code>实现类似功能。</p>
