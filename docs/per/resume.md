@@ -173,7 +173,7 @@ A：面试官您好，我讲一下广东移动渠道费用管理系统这个项�
 
 ```bash
 # Trace Viewer 调试命令
-pytest test_xxx_manage.py -s
+pytest test_xxx_manage.py -s --tracing=retain-on-failure
 playwright show-trace xxx_manage.zip
 ```
 

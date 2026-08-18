@@ -10,18 +10,13 @@
 
 总结：作用域越小，隔离性越好但性能越差；作用域越大，性能越好但需要处理状态重置问题。实际使用时，一般优先选最小够用的作用域，遇到性能瓶颈再提升级别。
 
+??? question "为什么不让所有Fixture都用session级别？"
 
-### 🚁 通过 fixture 实现多环境快速切换
-
-1.配置与代码分离：环境相关的 URL、账号、数据库连接，通过配置文件（YAML/JSON/INI）或环境变量管理。
-
-2.fixture 动态加载配置：定义一个 env_config - session 级别的 fixture，根据传入的环境标识（如 --env）读取对应配置。
-
-3.自定义命令行参数：在 conftest.py 中通过 pytest_addoption 添加 --env 参数，用户执行 pytest --env=staging 即可切换。
-
-4.依赖传递：其他 fixture（如 api_client）依赖 env_config，自动获得当前环境的 base_url、headers 等。
-
-通过这种方式，在 CI/CD 中通过环境变量 `PYTEST_ADDOPTS="--env=staging"` 来动态注入，真正做到“配置即代码”。
+    1. 隔离性被破坏，当用例对同一变量读取/修改时，会导致数据污染。
+    2. 清理风险高，中途异常退出可能导致资源无法正确释放。
+    3. 并行运行冲突，多个worker进程会各自执行一次session级fixture。
+    4. 数据库事务无法回滚，若测试**依赖回滚来还原数据**，根本无法使用`transaction=True`这类机制，最终只能手工写大量SQL清理。
+    5. 大量依赖塞入全局fixture，会导致整个测试套件启动极慢。
 
 ### 🚁 setUp/tearDown方法
 

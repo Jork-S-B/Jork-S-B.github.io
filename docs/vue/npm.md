@@ -28,3 +28,10 @@ Set-ExecutionPolicy RemoteSigned -Scope CurrentUser -Force
 iwr https://get.pnpm.io/install.ps1 -useb | iex
 
 ```
+
+## npm和npx
+
+- npm: node的包管理器，作用是全局安装和管理依赖
+- npx: node的包执行器，作用是临时安装依赖，用来解决npm全局安装的依赖只能有一个版本的问题，以及尽量减少项目package.json中的依赖项。
+
+npx执行机制: 当执行时，先看目标包是否在`$PATH`环境变量里，如没有，则找当前目录的`node_modules`，如果还没有，就临时安装目标包来执行。

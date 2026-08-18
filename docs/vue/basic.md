@@ -526,9 +526,26 @@ router.beforeEach，对请求做拦截，如检查请求头合法。
     })
     ```
 
+## Vite
+
+前端构建工具，功能包括:
+
+- 路径别名
+- 开发服务器代理，如前端请求 /api/v1/users 自动转发到 http://localhost:8000/api/v1/users
+
+为什么需要代理？
+
+- 避免跨域问题（CORS）
+- 前端和后端可以在不同端口运行
+
 ## 📌 axios
 
 web用来发送接口请求与后端进行交互的框架，对响应做拦截：响应成功、响应失败、异常处理等。
+
+- 与后端 RESTful API 通信，支持 GET、POST、PUT、DELETE等
+- 拦截器：在请求/响应前后统一处理逻辑（如添加 token、错误处理、请求认证和授权）
+- 转换 ：将 JavaScript 对象转换为 JSON 格式发送和接收
+- 超时控制
 
 安装axios: npm install axios@1.3.5 --save
 

@@ -35,7 +35,7 @@ class Solution:
     @staticmethod
     # 删除nums无序列表中所有的val值
     def removeElement(nums: List[int], val: int) -> int:
-        # 27. 移除元素，返回移除后数组的新长度
+        # leetcode_27. 移除元素，返回移除后数组的新长度
         while val in nums:
             nums.remove(val)
         length = len(nums)
@@ -45,7 +45,7 @@ class Solution:
     @staticmethod
     # 删除nums非严格递增列表中重复的元素
     def removeDuplicates(nums: List[int]) -> int:
-        # 26. 删除有序数组中的重复项
+        # leetcode_26. 删除有序数组中的重复项
         # nums = list(set(nums))  # 通过转为集合去重，但leetcode用不了该方法
         for i in range(len(nums) - 1, 0, -1):  # 遍历pop()需要倒序进行，正序pop()会改变原索引
             if nums[i] == nums[i - 1]:
