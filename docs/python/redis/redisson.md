@@ -114,22 +114,22 @@ thread -n 10 -i 1000 5
 
 1. 链路跟踪
 
-通过APM链路跟踪，可观察到也是业务代码耗时极短，而总耗时极长，伴随 RedissonLock.tryAcquire 或 LockAsync 方法出现了循环重试的痕迹。
+    通过APM链路跟踪，可观察到也是业务代码耗时极短，而总耗时极长，伴随 RedissonLock.tryAcquire 或 LockAsync 方法出现了循环重试的痕迹。
 
 2. 锁竞争排查-Arthas
 
-```bash
-# 压测以复测现象
-dashboard -i 1000  # 观察线程池状态
+    ```bash
+    # 压测以复测现象
+    dashboard -i 1000  # 观察线程池状态
 
-# redisson-netty 线程池的活跃线程数异常增高（正常只有几个，现在变成几十个）。这些线程正是看门狗用来发送续期命令（pexpire）的 IO 线程
-# 看门狗续期的核心方法: org.redisson.RedissonLock#renewExpiration
+    # redisson-netty 线程池的活跃线程数异常增高（正常只有几个，现在变成几十个）。这些线程正是看门狗用来发送续期命令（pexpire）的 IO 线程
+    # 看门狗续期的核心方法: org.redisson.RedissonLock#renewExpiration
 
-# 监控续期方法的调用次数和耗时，过滤出耗时超过 500ms 的续期操作
-watch org.redisson.RedissonLock renewExpiration "{params, cost}" -n 20 '#cost>500'
-# 正常情况: 每10秒续期一次，但发现热点key被频繁续期
+    # 监控续期方法的调用次数和耗时，过滤出耗时超过 500ms 的续期操作
+    watch org.redisson.RedissonLock renewExpiration "{params, cost}" -n 20 '#cost>500'
+    # 正常情况: 每10秒续期一次，但发现热点key被频繁续期
 
-```
+    ```
 
 根因定位: 锁被持有更久 -> 等待队列更长 -> 看门狗续期消耗 Redis CPU -> 所有命令（包括 tryLock）变慢 -> 死循环
 
