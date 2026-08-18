@@ -65,7 +65,7 @@
             body[data-md-color-scheme="slate"] .gslide-title { color: var(--md-default-fg-color); }
             body[data-md-color-scheme="slate"] .gslide-desc { color: var(--md-default-fg-color); }
         </style><meta name="panzoom-theme" content="material">
-<meta name="panzoom-data" content='{"selectors": [".d2", ".mermaid"], "initial_zoom_level": 1.0}'> </head>
+<meta name="panzoom-data" content='{"selectors": [".mermaid", ".d2"], "initial_zoom_level": 1.0}'> </head>
   
   
     
@@ -2804,6 +2804,23 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="前置洞察">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_11" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        预案制定
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
         
       </ul>
@@ -2863,7 +2880,7 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#_11" class="md-nav__link">
+  <a href="#_12" class="md-nav__link">
     <span class="md-ellipsis">
       
         幂等
@@ -8543,6 +8560,23 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="前置洞察">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_11" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        预案制定
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
         
       </ul>
@@ -8602,7 +8636,7 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#_11" class="md-nav__link">
+  <a href="#_12" class="md-nav__link">
     <span class="md-ellipsis">
       
         幂等
@@ -8643,7 +8677,7 @@
 <ul>
 <li>消息（Record）: Key-Value 二进制数据，可带时间戳和 Headers。</li>
 <li>主题（Topic）: 消息的逻辑分类（类似数据库的“表”）。</li>
-<li>分区（Partition）: Topic 的物理分片（有序、不可变日志），<strong>分区内有序，全局无序</strong>。</li>
+<li>分区（Partition）: Topic 的物理分片（有序、不可变日志），<strong>分区内有序，全局无序</strong>；只能扩不能缩。</li>
 <li>偏移量（Offset）: 分区内每条消息的唯一序号（由 Broker 分配，不可变）。</li>
 <li>Lag（消费滞后）: 衡量消费者健康度的核心指标，公式: Lag = 生产者最大Offset - 消费者当前Offset。</li>
 <li>生产者（Producer）: 发送消息，可指定分区策略（轮询、哈希 Key、自定义）。</li>
@@ -8816,8 +8850,28 @@ Use mouse to pan and zoom
 <ul>
 <li>压力试探：验证在极限流量下，服务器内存/CPU 会不会爆，消费者会不会自动宕机重启。</li>
 <li>参数调优：配合开发调整了 Kafka 消费者的 max.poll.records（每次拉取条数）和 session.timeout.ms，确保在批量处理慢的情况下，消费者不会被 Kafka 集群误判为‘死亡’而踢出组，引发大面积重平衡。</li>
-<li>预案制定：定好监控阈值（比如积压超过 500 万条就报警），并提前写好了扩容脚本——一旦监控报警，立马给 Hadoop 任务增加并发计算资源（Executor数量），确保在 Kafka 过期删除之前把数据全部消费完。”</li>
 </ul>
+<h4 id="_11">预案制定</h4>
+<ul>
+<li>部署: kafka预留分区数（如50、100），KDEA动态扩容消费者实例。</li>
+<li>监控与预警: Prometheus + AlertManager，预警携带<code>topic</code>、<code>consumer_group</code>等信息。</li>
+<li>
+<p>消息积压SOP</p>
+</li>
+<li>
+<p>观察消费者实例是否已等于分区数，避免人工干预导致Rebalance。</p>
+</li>
+<li>排查消费慢的原因: 数据倾斜？还是下游依赖慢等</li>
+<li>兜底策略: 非核心业务分流（降级）、死信快速跳过、调参（消费者单次拉取量调大，减少外部锁竞争次数）等</li>
+<li>征得架构师同意后，扩分区扩消费者实例</li>
+</ul>
+<div class="highlight"><pre><span></span><code><span class="c1"># 扩分区</span>
+kafka-topics.sh<span class="w"> </span>--alter<span class="w"> </span>--topic<span class="w"> </span>your-topic<span class="w"> </span>--partitions<span class="w"> </span><span class="m">80</span>
+<span class="c1"># 同步更新 KEDA 的 maxReplicaCount</span>
+kubectl<span class="w"> </span>patch<span class="w"> </span>scaledobject<span class="w"> </span>kafka-consumer-scaler<span class="w"> </span>-p<span class="w"> </span><span class="s1">'{"spec":{"maxReplicaCount":80}}'</span><span class="w"> </span>--type<span class="o">=</span>merge
+<span class="c1"># 手动重启消费者pod（否则新分区不会分配给老消费者）</span>
+kubectl<span class="w"> </span>rollout<span class="w"> </span>restart<span class="w"> </span>deployment/consumer-deployment
+</code></pre></div>
 <hr>
 <h2 id="broker">Broker</h2>
 <ul>
@@ -8840,7 +8894,7 @@ docker<span class="w"> </span><span class="nb">exec</span><span class="w"> </spa
 <li>-time -2 表示获取最早 offset(分区第一条消息)</li>
 <li>-time 0 或其他时间戳 表示获取小于等于该时间戳的最大 offset</li>
 </ul>
-<h3 id="_11">幂等</h3>
+<h3 id="_12">幂等</h3>
 <p>收到消息 → Redis SISMEMBER 查询 → 存在则丢弃，不存在则处理 → 处理后写入Redis</p>
 <p>幂等检查预设的异常场景: </p>
 <ul>
