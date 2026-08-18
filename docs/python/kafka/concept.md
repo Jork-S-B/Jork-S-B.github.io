@@ -2,7 +2,7 @@
 
 - 消息（Record）: Key-Value 二进制数据，可带时间戳和 Headers。
 - 主题（Topic）: 消息的逻辑分类（类似数据库的“表”）。
-- 分区（Partition）: Topic 的物理分片（有序、不可变日志），**分区内有序，全局无序**。
+- 分区（Partition）: Topic 的物理分片（有序、不可变日志），**分区内有序，全局无序**；只能扩不能缩。
 - 偏移量（Offset）: 分区内每条消息的唯一序号（由 Broker 分配，不可变）。
 - Lag（消费滞后）: 衡量消费者健康度的核心指标，公式: Lag = 生产者最大Offset - 消费者当前Offset。
 - 生产者（Producer）: 发送消息，可指定分区策略（轮询、哈希 Key、自定义）。
@@ -144,7 +144,26 @@ Grafana观察
 
 - 压力试探：验证在极限流量下，服务器内存/CPU 会不会爆，消费者会不会自动宕机重启。
 - 参数调优：配合开发调整了 Kafka 消费者的 max.poll.records（每次拉取条数）和 session.timeout.ms，确保在批量处理慢的情况下，消费者不会被 Kafka 集群误判为‘死亡’而踢出组，引发大面积重平衡。
-- 预案制定：定好监控阈值（比如积压超过 500 万条就报警），并提前写好了扩容脚本——一旦监控报警，立马给 Hadoop 任务增加并发计算资源（Executor数量），确保在 Kafka 过期删除之前把数据全部消费完。”
+
+#### 预案制定
+
+- 部署: kafka预留分区数（如50、100），KDEA动态扩容消费者实例。
+- 监控与预警: Prometheus + AlertManager，预警携带`topic`、`consumer_group`等信息。
+- 消息积压SOP
+
+1. 观察消费者实例是否已等于分区数，避免人工干预导致Rebalance。
+2. 排查消费慢的原因: 数据倾斜？还是下游依赖慢等
+3. 兜底策略: 非核心业务分流（降级）、死信快速跳过、调参（消费者单次拉取量调大，减少外部锁竞争次数）等
+4. 征得架构师同意后，扩分区扩消费者实例
+
+```shell
+# 扩分区
+kafka-topics.sh --alter --topic your-topic --partitions 80
+# 同步更新 KEDA 的 maxReplicaCount
+kubectl patch scaledobject kafka-consumer-scaler -p '{"spec":{"maxReplicaCount":80}}' --type=merge
+# 手动重启消费者pod（否则新分区不会分配给老消费者）
+kubectl rollout restart deployment/consumer-deployment
+```
 
 ---
 
