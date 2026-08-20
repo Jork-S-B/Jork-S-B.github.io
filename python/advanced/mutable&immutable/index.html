@@ -65,7 +65,7 @@
             body[data-md-color-scheme="slate"] .gslide-title { color: var(--md-default-fg-color); }
             body[data-md-color-scheme="slate"] .gslide-desc { color: var(--md-default-fg-color); }
         </style><meta name="panzoom-theme" content="material">
-<meta name="panzoom-data" content='{"selectors": [".mermaid", ".d2"], "initial_zoom_level": 1.0}'> </head>
+<meta name="panzoom-data" content='{"selectors": [".d2", ".mermaid"], "initial_zoom_level": 1.0}'> </head>
   
   
     
@@ -907,7 +907,29 @@
   <a href="#_1" class="md-nav__link">
     <span class="md-ellipsis">
       
-        📌 方法参数默认值为可变类型
+        📌 字符串的拼接方式
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#tuple-list-dict" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        📌 tuple list dict 适用场景
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#is" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        📌 == 和 is
       
     </span>
   </a>
@@ -918,7 +940,7 @@
   <a href="#_2" class="md-nav__link">
     <span class="md-ellipsis">
       
-        📌 不定数量的方法传参
+        📌 方法参数默认值为可变类型
       
     </span>
   </a>
@@ -929,7 +951,7 @@
   <a href="#_3" class="md-nav__link">
     <span class="md-ellipsis">
       
-        📌 浅拷贝与深拷贝
+        📌 不定数量的方法传参
       
     </span>
   </a>
@@ -938,6 +960,17 @@
       
         <li class="md-nav__item">
   <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        📌 浅拷贝与深拷贝
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
     <span class="md-ellipsis">
       
         📌 推导式
@@ -8231,7 +8264,29 @@
   <a href="#_1" class="md-nav__link">
     <span class="md-ellipsis">
       
-        📌 方法参数默认值为可变类型
+        📌 字符串的拼接方式
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#tuple-list-dict" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        📌 tuple list dict 适用场景
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#is" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        📌 == 和 is
       
     </span>
   </a>
@@ -8242,7 +8297,7 @@
   <a href="#_2" class="md-nav__link">
     <span class="md-ellipsis">
       
-        📌 不定数量的方法传参
+        📌 方法参数默认值为可变类型
       
     </span>
   </a>
@@ -8253,7 +8308,7 @@
   <a href="#_3" class="md-nav__link">
     <span class="md-ellipsis">
       
-        📌 浅拷贝与深拷贝
+        📌 不定数量的方法传参
       
     </span>
   </a>
@@ -8262,6 +8317,17 @@
       
         <li class="md-nav__item">
   <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        📌 浅拷贝与深拷贝
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
     <span class="md-ellipsis">
       
         📌 推导式
@@ -8295,7 +8361,73 @@
 
 <p>可变类型主要包括：列表、字典、集合</p>
 <p>不可变类型主要包括：整数、字符串、浮点数、元组</p>
-<h2 id="_1">📌 方法参数默认值为可变类型</h2>
+<h2 id="_1">📌 字符串的拼接方式</h2>
+<p>字符串不可变，每次拼接都是创建新对象并复制数据，这是性能开销的根源。</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">拼接方式</th>
+<th style="text-align: left;">代码示例</th>
+<th style="text-align: left;">时间复杂度</th>
+<th style="text-align: left;">内存开销</th>
+<th style="text-align: left;">适用场景（推荐指数）</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">字面量隐式拼接</td>
+<td style="text-align: left;"><code>s = "Hello " "World"</code></td>
+<td style="text-align: left;">O(n) （编译时完成，运行时零开销）</td>
+<td style="text-align: left;">极低（常量池优化）</td>
+<td style="text-align: left;">静态长字符串换行。代码中直接写死的多行文本（如SQL、正则）。</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>+</code> 运算符</td>
+<td style="text-align: left;"><code>s = "A" + str(num) + "B"</code></td>
+<td style="text-align: left;">O(n) （CPython会做常量折叠优化）</td>
+<td style="text-align: left;">单次分配</td>
+<td style="text-align: left;">少量确定变量的简单组合，绝对禁止在循环中使用。</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>f-string</code></td>
+<td style="text-align: left;"><code>s = f"User {name} age {age}"</code></td>
+<td style="text-align: left;">O(n) （底层调用 <code>PyUnicode_Append</code>）</td>
+<td style="text-align: left;">单次分配</td>
+<td style="text-align: left;">运行时表达式嵌入，可读性强。</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>str.join()</code>（列表）</td>
+<td style="text-align: left;"><code>s = "".join(list_of_parts)</code></td>
+<td style="text-align: left;">O(n) （预计算总长，一次性分配内存）</td>
+<td style="text-align: left;">极低（仅一份最终结果+列表引用）</td>
+<td style="text-align: left;">动态循环拼接时首选，或已知所有片段能存入列表的场景。</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>io.StringIO</code></td>
+<td style="text-align: left;"><code>buf.write("A"); buf.write("B")</code></td>
+<td style="text-align: left;">O(n) （分段缓冲，动态扩容）</td>
+<td style="text-align: left;">中等（维护缓冲区，类似动态数组）</td>
+<td style="text-align: left;">流式分段写入，适合写入逻辑复杂（含条件判断、嵌套函数）、或需要模拟文件的操作。</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>追求性能且数量已知，用<code>list + join()</code></li>
+<li>追求逻辑复杂、书写优雅且可接受最终占用内存，用<code>StringIO</code></li>
+<li>追求极致内存效率且可流式处理，用<a href="./yield/#_1"><code>yield</code></a></li>
+</ul>
+<h2 id="tuple-list-dict">📌 tuple list dict 适用场景</h2>
+<ul>
+<li>元组：适用于字段固定、只需遍历、关注数据完整性的场景；不可变使其可哈希，可作为字典的键<code>{(x1,x2,x3): value}</code>，相比列表更省内存，防误改。</li>
+<li>列表：内部方法有<code>append()</code>、<code>insert()</code>、<code>pop()</code>等，适用于需要频繁修改的（有序）场景。</li>
+<li>字典：键值对，适用于通过唯一键快速取值的映射关系；计数或者计算词频也使用，但<code>Counter</code>更优雅。</li>
+</ul>
+<h2 id="is">📌 == 和 is</h2>
+<ul>
+<li><code>==</code>: 对比变量值</li>
+<li><code>is</code>: 对比内存地址</li>
+</ul>
+<h2 id="_2">📌 方法参数默认值为可变类型</h2>
 <p>方法参数默认值为可变类型时，若函数调用未传值，则调用函数时操作的实际是同个对象。</p>
 <p>应当使用None作为默认值，并在程序中重新初始化。</p>
 <div class="highlight"><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">func</span><span class="p">(</span><span class="n">arg_a</span><span class="p">,</span> <span class="n">list_arg</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
@@ -8303,7 +8435,7 @@
     <span class="n">list_arg</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">arg_a</span><span class="p">)</span>
     <span class="nb">print</span><span class="p">(</span><span class="n">list_arg</span><span class="p">)</span>
 </code></pre></div>
-<h2 id="_2">📌 不定数量的方法传参</h2>
+<h2 id="_3">📌 不定数量的方法传参</h2>
 <ul>
 <li><code>*args</code>将传参打包为元组tuple，<code>**kwargs</code>将传参打包为字典dict。</li>
 <li><code>*args</code>和<code>**kwargs</code>是约定俗成的命名方式，实际上可以是任何名称。</li>
@@ -8322,7 +8454,7 @@
 <span class="c1"># args: (2, 3)</span>
 <span class="c1"># kwargs: {'key1': 'value1', 'key2': 'value2'}</span>
 </code></pre></div>
-<h2 id="_3">📌 浅拷贝与深拷贝</h2>
+<h2 id="_4">📌 浅拷贝与深拷贝</h2>
 <p>针对可变类型的元素</p>
 <ul>
 <li>
@@ -8348,14 +8480,14 @@
 <span class="nb">print</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>  <span class="c1"># 输出[1, 2, [3, 4]]</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">b</span><span class="p">)</span>  <span class="c1"># 输出[1, 1, [5, 4]]</span>
 </code></pre></div>
-<h2 id="_4">📌 推导式</h2>
+<h2 id="_5">📌 推导式</h2>
 <p>用于从序列或其他可迭代对象创建新的列表、集合或字典。</p>
 <ul>
 <li>列表推导式格式如：<code>[表达式 for 变量 in 列表 if 条件]</code></li>
 <li>字典推导式格式如：<code>{表达式1:表达式2 for 变量 in 列表 if 条件}</code></li>
 <li>集合推导式格式如：<code>{表达式 for 变量 in 列表 if 条件}</code></li>
 </ul>
-<div class="tabbed-set tabbed-alternate" data-tabs="1:2"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio"><input id="__tabbed_1_2" name="__tabbed_1" type="radio"><div class="tabbed-labels"><label for="__tabbed_1_1">示例（伪代码）</label><label for="__tabbed_1_2">推导式获取两个字典中差异的键值对</label></div>
+<div class="tabbed-set tabbed-alternate" data-tabs="1:2"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio"><input id="__tabbed_1_2" name="__tabbed_1" type="radio"><div class="tabbed-labels"><label for="__tabbed_1_1">推导式面试题</label><label for="__tabbed_1_2">推导式获取两个字典中差异的键值对</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
 <div class="highlight"><pre><span></span><code><span class="c1"># 面试题1：一行代码筛选出：字符串列表中，以下划线开头的字符串</span>

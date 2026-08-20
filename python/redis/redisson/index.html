@@ -65,7 +65,7 @@
             body[data-md-color-scheme="slate"] .gslide-title { color: var(--md-default-fg-color); }
             body[data-md-color-scheme="slate"] .gslide-desc { color: var(--md-default-fg-color); }
         </style><meta name="panzoom-theme" content="material">
-<meta name="panzoom-data" content='{"selectors": [".mermaid", ".d2"], "initial_zoom_level": 1.0}'> </head>
+<meta name="panzoom-data" content='{"selectors": [".d2", ".mermaid"], "initial_zoom_level": 1.0}'> </head>
   
   
     
@@ -8392,12 +8392,12 @@ thread<span class="w"> </span>-n<span class="w"> </span><span class="m">10</span
 </ul>
 <p>排查步骤: </p>
 <ol>
-<li>链路跟踪</li>
-</ol>
+<li>
+<p>链路跟踪</p>
 <p>通过APM链路跟踪，可观察到也是业务代码耗时极短，而总耗时极长，伴随 RedissonLock.tryAcquire 或 LockAsync 方法出现了循环重试的痕迹。</p>
-<ol>
-<li>锁竞争排查-Arthas</li>
-</ol>
+</li>
+<li>
+<p>锁竞争排查-Arthas</p>
 <div class="highlight"><pre><span></span><code><span class="c1"># 压测以复测现象</span>
 dashboard<span class="w"> </span>-i<span class="w"> </span><span class="m">1000</span><span class="w">  </span><span class="c1"># 观察线程池状态</span>
 
@@ -8408,6 +8408,8 @@ dashboard<span class="w"> </span>-i<span class="w"> </span><span class="m">1000<
 watch<span class="w"> </span>org.redisson.RedissonLock<span class="w"> </span>renewExpiration<span class="w"> </span><span class="s2">"{params, cost}"</span><span class="w"> </span>-n<span class="w"> </span><span class="m">20</span><span class="w"> </span><span class="s1">'#cost&gt;500'</span>
 <span class="c1"># 正常情况: 每10秒续期一次，但发现热点key被频繁续期</span>
 </code></pre></div>
+</li>
+</ol>
 <p>根因定位: 锁被持有更久 -&gt; 等待队列更长 -&gt; 看门狗续期消耗 Redis CPU -&gt; 所有命令（包括 tryLock）变慢 -&gt; 死循环</p>
 <p>优化建议: 1.调整锁粒度，加快冲突解决；2.tryLock显式传入leaseTime，避免看门狗频繁续期。</p>
 
