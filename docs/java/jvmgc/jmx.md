@@ -144,6 +144,16 @@ trace com.example.UserService processOrder '#cost > 10'
 
 dump live 对象到指定文件，展示存活对象实例数 Top N
 
+!!! warning "heapdump的风险"
+
+    - heapdump执行时通常会强制Full GC，如果堆内存很大，可能会导致应用线程完全卡死几分钟甚至更久，影响原本正在恢复的业务。
+    - heapdump文件大小基本等于堆内存大小，需关注磁盘IO与空间。
+
+    建议在heapdump前，先`histogram`看对象分布，只统计JVM里对象的实例数量和占用字节数，几乎不影响业务。
+
+    - 如果发现 byte[] 或某个业务大对象实例数异常多，怀疑内存泄漏。
+    - 如果发现对象总数正常，只是特定大集合占着，怀疑死锁。
+
 搭配`Eclipse MAT`开源工具分析
 
 1. Leak Suspects Report（泄漏嫌疑报告）：定位内存泄漏，自动分析并给出内存占用最大的几个问题，点击 Details 可以查看详细的引用链，快速定位到问题代码。
