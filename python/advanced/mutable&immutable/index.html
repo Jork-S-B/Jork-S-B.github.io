@@ -65,7 +65,7 @@
             body[data-md-color-scheme="slate"] .gslide-title { color: var(--md-default-fg-color); }
             body[data-md-color-scheme="slate"] .gslide-desc { color: var(--md-default-fg-color); }
         </style><meta name="panzoom-theme" content="material">
-<meta name="panzoom-data" content='{"selectors": [".d2", ".mermaid"], "initial_zoom_level": 1.0}'> </head>
+<meta name="panzoom-data" content='{"selectors": [".mermaid", ".d2"], "initial_zoom_level": 1.0}'> </head>
   
   
     
@@ -8414,13 +8414,13 @@
 <ul>
 <li>追求性能且数量已知，用<code>list + join()</code></li>
 <li>追求逻辑复杂、书写优雅且可接受最终占用内存，用<code>StringIO</code></li>
-<li>追求极致内存效率且可流式处理，用<a href="./yield/#_1"><code>yield</code></a></li>
+<li>追求极致内存效率且可流式处理，用<a href="/python/advanced/yield/#_1"><code>yield</code></a></li>
 </ul>
 <h2 id="tuple-list-dict">📌 tuple list dict 适用场景</h2>
 <ul>
 <li>元组：适用于字段固定、只需遍历、关注数据完整性的场景；不可变使其可哈希，可作为字典的键<code>{(x1,x2,x3): value}</code>，相比列表更省内存，防误改。</li>
 <li>列表：内部方法有<code>append()</code>、<code>insert()</code>、<code>pop()</code>等，适用于需要频繁修改的（有序）场景。</li>
-<li>字典：键值对，适用于通过唯一键快速取值的映射关系；计数或者计算词频也使用，但<code>Counter</code>更优雅。</li>
+<li>字典：键值对，适用于通过唯一键快速取值的映射关系；计数或者计算词频也适用，但<code>Counter</code>更优雅。</li>
 </ul>
 <h2 id="is">📌 == 和 is</h2>
 <ul>
