@@ -100,3 +100,34 @@ WebDriverWait(driver, 10).until(lambda x: x.find_element(by='xpath', value=value
 1.[selenium中文文档](https://python-selenium-zh.readthedocs.io/zh-cn/latest/)
 
 2.[谷歌浏览器驱动下载指路](https://blog.csdn.net/m0_54958293/article/details/134663146)
+
+---
+
+## 📌 SeleniumGrid
+
+核心作用
+
+1. 分布式并行执行（提速增效）
+2. 多浏览器/多版本兼容性测试（覆盖广度）
+3. 跨操作系统平台测试（环境隔离）
+
+改造点
+
+1. 启动 Selenium-Grid 服务（前置条件），如通过 Docker 启动一个包含 Hub 和 Chrome 节点的集群
+
+    ```
+    # 包含 Hub+Node，访问 http://localhost:4444，看到 Grid 控制台即表示成功。
+    docker run -d -p 4444:4444 -p 7900:7900 --shm-size="2g" selenium/standalone-chrome:latest
+    ```
+
+2. 修改 WebDriver 初始化对象（最核心改动）
+
+    ```
+    # 指向 Grid Hub 的地址（默认 4444 端口）
+    driver = webdriver.Remote(
+        command_executor="http://localhost:4444",  # 1. 改地址
+        options=webdriver.ChromeOptions()          # 2. 传入配置对象
+    )
+    ```
+
+3. 务必确保 driver.quit() 被执行，否则可能导致占用节点。
