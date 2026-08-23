@@ -65,7 +65,7 @@
             body[data-md-color-scheme="slate"] .gslide-title { color: var(--md-default-fg-color); }
             body[data-md-color-scheme="slate"] .gslide-desc { color: var(--md-default-fg-color); }
         </style><meta name="panzoom-theme" content="material">
-<meta name="panzoom-data" content='{"selectors": [".d2", ".mermaid"], "initial_zoom_level": 1.0}'> </head>
+<meta name="panzoom-data" content='{"selectors": [".mermaid", ".d2"], "initial_zoom_level": 1.0}'> </head>
   
   
     
@@ -8339,22 +8339,21 @@
 </ul>
 <h2 id="_3">分布式锁竞争</h2>
 <p>高并发出现激烈的分布式锁竞争，伴随的现象如下: </p>
+<p>P99抖动、RPS骤降、慢请求占比增加</p>
 <ul>
-<li>吞吐量（RPS/TPS）断崖式下跌: 并发数增加时，吞吐量不再线性增长，反而趋于平缓甚至急剧下降。这是因为大量线程在阻塞等待，真正干活的线程占比极低。</li>
-<li>平均响应时间（RT）呈指数级飙升: 尤其是 P99（99分位线）和 P999 飙升。你会发现<strong>成功率可能正常</strong>，但“慢请求”占比暴增。</li>
+<li>吞吐量（RPS/TPS）断崖式下跌: 并发数增加时，吞吐量不再线性增长，反而趋于平缓甚至急剧下降。</li>
+<li>平均响应时间（RT）呈指数级飙升: 尤其是 P99（99分位线）和 P999 飙升，成功率正常，但“慢请求”占比暴增。</li>
 <li>获取锁失败率激增: 如果代码设置了超时时间（如 tryLock(100ms)），监控上会看到大量 TimeoutException 或“获取锁失败”的自定义错误码。</li>
 <li>若锁内有lua脚本原子操作，redis CPU 使用率飙升。</li>
 </ul>
 <p>排查步骤: </p>
 <ol>
 <li>
-<p>APM工具</p>
-</li>
-<li>
-<p>SkyWalking 的 “服务” 仪表盘，观察被压服务的 “慢查询” 或 “高耗时” 端点（Endpoint），检查响应时间（Avg/ P99）曲线与压测时显示的抖动时间点是否吻合。</p>
-</li>
-<li>
-<p>SkyWalking 的 “数据库” 或 “缓存” 面板，如果 Redis 的响应时间正常（&lt;1ms），初步排除网络和存储瓶颈，把嫌疑锁定在“应用内部排队”。</p>
+<p>APM工具看哪一段链路慢: 网关慢还是业务内部慢</p>
+<ul>
+<li>SkyWalking 的 “服务” 仪表盘，观察被压服务的 “慢查询” 或 “高耗时” 端点（Endpoint），检查响应时间（Avg/ P99）曲线与压测时显示的抖动时间点是否吻合。</li>
+<li>SkyWalking 的 “数据库” 或 “缓存” 面板，如果 Redis 的响应时间正常（&lt;1ms），初步排除网络和存储瓶颈，把嫌疑锁定在“应用内部排队”。</li>
+</ul>
 </li>
 <li>
 <p>链路追踪</p>
@@ -8366,11 +8365,17 @@
 <li>锁竞争排查-Arthas</li>
 </ol>
 <div class="highlight"><pre><span></span><code><span class="c1"># 压测以复现现象</span>
-<span class="c1"># 持续抓取当前最繁忙的阻塞线程（间隔1秒，连抓5次）</span>
+<span class="c1"># 1. 持续抓取当前最繁忙的阻塞线程（间隔1秒，连抓5次）</span>
 thread<span class="w"> </span>-n<span class="w"> </span><span class="m">10</span><span class="w"> </span>-i<span class="w"> </span><span class="m">1000</span><span class="w"> </span><span class="m">5</span>
 
 <span class="c1"># 大量业务线程处于 WAITING/BLOCKED 状态，卡在分布式锁的获取方法上。</span>
-<span class="c1"># 后续可用 trace 或 watch 命令深挖方法耗时</span>
+<span class="c1"># 2. 找到繁忙线程后还需要找内部耗时慢的热点方法，找热力图栈顶的宽方法。</span>
+profiler<span class="w"> </span>start
+<span class="c1"># 压测持续1-2分钟后</span>
+profiler<span class="w"> </span>stop<span class="w"> </span>--format<span class="w"> </span>html
+
+<span class="c1"># 3. 链路追踪深挖，搭配jad或源码定位锁粒度</span>
+trace<span class="w"> </span>com.xxx.PrizeService<span class="w"> </span>claimPrize<span class="w"> </span><span class="s1">'#cost &gt; 50'</span><span class="w"> </span>-n<span class="w"> </span><span class="m">10</span><span class="w"> </span>--skipJDKMethod<span class="w"> </span><span class="nb">false</span>
 </code></pre></div>
 <p>根因定位: 锁的 Key 范围过大（例如锁住了整个商户号，导致该商户下的所有用户请求串行化）。</p>
 <p>优化建议: 推动开发改为细粒度锁（如商户号+商品ID）或引入分段锁（Striped Lock）。</p>

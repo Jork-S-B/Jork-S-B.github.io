@@ -65,7 +65,7 @@
             body[data-md-color-scheme="slate"] .gslide-title { color: var(--md-default-fg-color); }
             body[data-md-color-scheme="slate"] .gslide-desc { color: var(--md-default-fg-color); }
         </style><meta name="panzoom-theme" content="material">
-<meta name="panzoom-data" content='{"selectors": [".d2", ".mermaid"], "initial_zoom_level": 1.0}'> </head>
+<meta name="panzoom-data" content='{"selectors": [".mermaid", ".d2"], "initial_zoom_level": 1.0}'> </head>
   
   
     
@@ -8690,6 +8690,18 @@ trace<span class="w"> </span>com.example.UserService<span class="w"> </span>proc
 <h4 id="step-4heapdump">Step 4：heapdump</h4>
 <p><code>heapdump --live /tmp/dump.hprof</code></p>
 <p>dump live 对象到指定文件，展示存活对象实例数 Top N</p>
+<div class="admonition warning">
+<p class="admonition-title">heapdump的风险</p>
+<ul>
+<li>heapdump执行时通常会强制Full GC，如果堆内存很大，可能会导致应用线程完全卡死几分钟甚至更久，影响原本正在恢复的业务。</li>
+<li>heapdump文件大小基本等于堆内存大小，需关注磁盘IO与空间。</li>
+</ul>
+<p>建议在heapdump前，先<code>histogram</code>看对象分布，只统计JVM里对象的实例数量和占用字节数，几乎不影响业务。</p>
+<ul>
+<li>如果发现 byte[] 或某个业务大对象实例数异常多，怀疑内存泄漏。</li>
+<li>如果发现对象总数正常，只是特定大集合占着，怀疑死锁。</li>
+</ul>
+</div>
 <p>搭配<code>Eclipse MAT</code>开源工具分析</p>
 <ol>
 <li>Leak Suspects Report（泄漏嫌疑报告）：定位内存泄漏，自动分析并给出内存占用最大的几个问题，点击 Details 可以查看详细的引用链，快速定位到问题代码。</li>

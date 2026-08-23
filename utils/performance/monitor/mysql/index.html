@@ -65,7 +65,7 @@
             body[data-md-color-scheme="slate"] .gslide-title { color: var(--md-default-fg-color); }
             body[data-md-color-scheme="slate"] .gslide-desc { color: var(--md-default-fg-color); }
         </style><meta name="panzoom-theme" content="material">
-<meta name="panzoom-data" content='{"selectors": [".d2", ".mermaid"], "initial_zoom_level": 1.0}'> </head>
+<meta name="panzoom-data" content='{"selectors": [".mermaid", ".d2"], "initial_zoom_level": 1.0}'> </head>
   
   
     
@@ -5537,6 +5537,23 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="🔧 死锁">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_8" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        案例
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
         
       </ul>
@@ -8485,6 +8502,23 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="🔧 死锁">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_8" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        案例
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
         
       </ul>
@@ -8734,6 +8768,12 @@
 <li>指标: CPU使用率不高，内存占用持续增长。</li>
 <li>业务: 事务无法提交或回滚，破坏数据一致性，服务无响应。</li>
 </ul>
+<h5 id="_8">案例</h5>
+<p>问题现象: 压测流量归零后，服务器 CPU 正常，但内存占用持续高位不回落。</p>
+<p>排查1: 通过 Arthas 的 dashboard 观察 JVM 资源。发现 Old 区占满却几乎没有 GC 活动（GC Count 和 GC Time 基本停滞）。<br>
+基本排除“内存泄漏导致频繁 Full GC”的可能，怀疑焦点从‘对象创建过多’转移到‘线程阻塞导致对象无法释放’上。</p>
+<p>排查2: thread -b 死锁检测，输出死锁线程 ID 和锁资源信息。结合调用栈，定位到根因是两处业务代码的加锁顺序颠倒（A方法先锁本地再锁分布式，B方法反之），导致线程互相死等。</p>
+<p>处理与闭环: 推动统一加锁顺序，使用同样的压测模型做了回归复测。</p>
 
 
 
