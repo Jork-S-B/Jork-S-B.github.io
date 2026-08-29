@@ -56,6 +56,7 @@ nav:
                       - ORM: python/web/django/django_orm.md
                       - DTL模版引擎: python/web/django/django_templates.md
                       - Cookie与Session: python/web/django/cookie&session.md
+                - FastAPI: python/web/fastapi.md
           - Pandas:
                 - Day1: python/pandas/day01.md
                 - Day2: python/pandas/day02.md

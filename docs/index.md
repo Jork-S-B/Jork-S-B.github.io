@@ -6,6 +6,8 @@ hide:
   - navigation
 ---
 
+- [resume](./per/resume)
+
 ## 全链路压测
 
 - [案例](./per/performance/case_v3)

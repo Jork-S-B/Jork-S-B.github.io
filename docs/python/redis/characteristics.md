@@ -157,7 +157,7 @@ redis-cli --bigkeys
 
 - 缓存命中hitrate，键是否被有效命中。
 - 慢查询slowlog，需要先设置阈值。
-- bigkey，数据结构选择是否合理；包括`HGETALL` 大Hash、`SMEMBERS` 大Set，阻塞主线程的时间。
+- bigkey: 业务数据无界积累（未设置合理TTL）、数据结构设计不当、流量突增等。
 - 内存淘汰策略，是否频繁的内存逐出
 - TTL设置是否合理，如永不过期，容易造成内存泄漏。
 
