@@ -7837,6 +7837,34 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#sandbox" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        📌 sandbox
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="📌 sandbox">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        云沙箱路线
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -8349,6 +8377,34 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#sandbox" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        📌 sandbox
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="📌 sandbox">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        云沙箱路线
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -8433,6 +8489,17 @@ token是单个数字，可能无法准确表达其原意，因此向量化为多
 <hr>
 <p>参考资料：</p>
 <p><a href="https://zhuanlan.zhihu.com/p/24484122371">大模型参数如何设置（温度、Top-p、Top-k）+使用场景</a></p>
+<h2 id="sandbox">📌 sandbox</h2>
+<p>基于传统虚拟机做精简，保留应用必须的虚拟硬件，称为MicroVM。</p>
+<p>Q: 为什么不用docker容器？<br>
+A: 容器本质是进程，多个容器共享宿主机操作系统内核，一旦有内核漏洞或逃逸，还是可能会影响宿主机。</p>
+<ul>
+<li>MicroVM作用: 隔离环境，以防agent运行危险命令影响宿主机。</li>
+<li>MicroVM局限: 启停不足于支持毫秒级响应的需求。</li>
+</ul>
+<h3 id="_3">云沙箱路线</h3>
+<p>开源方案目前有: CubeSandbox、E2B</p>
+<p>通过云沙箱底座，管理（创建、销毁、回收）MicroVM资源。</p>
 
 
 
