@@ -57,6 +57,11 @@ apiauto
         return inner
     ```
 
+#### 📌 Q: 串联/关联接口参数如何传递
+
+- 通过`fixture`+具体请求响应传递，也适合后续并发改造；testcase和fixture需分离，职责独立。
+- 其他方式还有: 类变量、全局变量、redis缓存等。
+
 ### 3.断言
 
 - 数据提取: jsonpath/正则表达式
@@ -219,7 +224,6 @@ def test_place_order(self, handle_order_data, order_type):
 ## pytest配置与上下文管理
 
 ### pytest.ini
-
 
 pytest常用命令参数
 
