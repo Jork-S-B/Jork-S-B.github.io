@@ -65,7 +65,7 @@
             body[data-md-color-scheme="slate"] .gslide-title { color: var(--md-default-fg-color); }
             body[data-md-color-scheme="slate"] .gslide-desc { color: var(--md-default-fg-color); }
         </style><meta name="panzoom-theme" content="material">
-<meta name="panzoom-data" content='{"selectors": [".mermaid", ".d2"], "initial_zoom_level": 1.0}'> </head>
+<meta name="panzoom-data" content='{"selectors": [".d2", ".mermaid"], "initial_zoom_level": 1.0}'> </head>
   
   
     
@@ -7865,6 +7865,45 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        📌 注意力机制
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="📌 注意力机制">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#token" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        token缓存
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        📌 大模型选择
+      
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -8405,6 +8444,45 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        📌 注意力机制
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="📌 注意力机制">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#token" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        token缓存
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        📌 大模型选择
+      
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -8500,6 +8578,41 @@ A: 容器本质是进程，多个容器共享宿主机操作系统内核，一�
 <h3 id="_3">云沙箱路线</h3>
 <p>开源方案目前有: CubeSandbox、E2B</p>
 <p>通过云沙箱底座，管理（创建、销毁、回收）MicroVM资源。</p>
+<h2 id="_4">📌 注意力机制</h2>
+<p>长上下文读取时，根据语义重要性分配注意力，并行计算所有Token间的关系，解决RNN记不住长文的痛点</p>
+<p>但因复杂度是O(n²)，所以长文本极耗算力。因此，这也是为什么要做KV Cache（缓存历史计算的K/V）来加速推理的原因。</p>
+<h3 id="token">token缓存</h3>
+<p>多次请求使用相同的系统提示词（System Prompt）、长文档背景或历史对话前缀，可以命中缓存，减少算力消耗，且首字延迟更低。</p>
+<p>当场景需分级时，如“重推理”和“轻处理”的任务，应保持使用同个模型: 通过派发子agent返回结果给主agent的方式进行。</p>
+<p>而在agent开发工具，还可通过让agent读代码文件以享受缓存，而非把代码直接写在prompt中。</p>
+<p>总结</p>
+<ul>
+<li>前缀匹配决定缓存: 前缀里任何位置的变化，都会让其后所有内容的缓存失效</li>
+<li>用消息代替指令修改: 切换模式、时间更新等改动，塞进对话消息，别去动系统指令</li>
+<li>勿中途切工具/模型: 延迟加载代替工具增删</li>
+<li>如同监控在线率一样监控命中率</li>
+<li>分叉必须共享主对话前缀</li>
+</ul>
+<h2 id="_5">📌 大模型选择</h2>
+<ol>
+<li>
+<p>分场景</p>
+<ul>
+<li><code>重推理</code>还是<code>轻处理</code>任务</li>
+<li>上下文窗口大小要求，如长文档刚需：若1M的上下文窗口能直接塞入语料，则不必做复杂的RAG切片。既减少了工程复杂度，又避免了切片丢失上下文的幻觉。</li>
+</ul>
+</li>
+<li>
+<p>细分领域</p>
+<ul>
+<li>代码垂直（如Claude 3.5/3.7）：训练语料含海量高质量GitHub代码，抽象能力和工程架构力碾压同级。</li>
+<li>中文原生（如DeepSeek、文心）：中文语义理解（成语、古诗词、谐音梗）远优于海外模型，且价值观对齐更贴合本土监管。</li>
+</ul>
+</li>
+<li>
+<p>成本控制的考量</p>
+</li>
+</ol>
 
 
 
