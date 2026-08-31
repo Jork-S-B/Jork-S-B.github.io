@@ -72,27 +72,27 @@ P99抖动、RPS骤降、慢请求占比增加
 
 2. 链路追踪
 
-SkyWalking 的 “追踪（Trace）” 界面，筛选出该接口的 “慢追踪” 记录（例如筛选耗时 > 3s 的采样请求），观察链路火焰图、Span 中是否存在大量的 waiting 或 blocked 标记。
+    SkyWalking 的 “追踪（Trace）” 界面，筛选出该接口的 “慢追踪” 记录（例如筛选耗时 > 3s 的采样请求），观察链路火焰图、Span 中是否存在大量的 waiting 或 blocked 标记。
 
-结论: 如果后续业务代码耗时极短，而总耗时极长，说明请求在进入业务方法之前就被卡住了。此时，矛头直指分布式锁（Redisson/ZK）的 lock 获取操作。
+    结论: 如果后续业务代码耗时极短，而总耗时极长，说明请求在进入业务方法之前就被卡住了。此时，矛头直指分布式锁（Redisson/ZK）的 lock 获取操作。
 
 3. 锁竞争排查-Arthas
 
-```bash
-# 压测以复现现象
-# 1. 持续抓取当前最繁忙的阻塞线程（间隔1秒，连抓5次）
-thread -n 10 -i 1000 5
+    ```bash
+    # 压测以复现现象
+    # 1. 持续抓取当前最繁忙的阻塞线程（间隔1秒，连抓5次）
+    thread -n 10 -i 1000 5
 
-# 大量业务线程处于 WAITING/BLOCKED 状态，卡在分布式锁的获取方法上。
-# 2. 找到繁忙线程后还需要找内部耗时慢的热点方法，找热力图栈顶的宽方法。
-profiler start
-# 压测持续1-2分钟后
-profiler stop --format html
+    # 大量业务线程处于 WAITING/BLOCKED 状态，卡在分布式锁的获取方法上。
+    # 2. 找到繁忙线程后还需要找内部耗时慢的热点方法，找热力图栈顶的宽方法。
+    profiler start
+    # 压测持续1-2分钟后
+    profiler stop --format html
 
-# 3. 链路追踪深挖，搭配jad或源码定位锁粒度
-trace com.xxx.PrizeService claimPrize '#cost > 50' -n 10 --skipJDKMethod false
+    # 3. 链路追踪深挖，搭配jad或源码定位锁粒度
+    trace com.xxx.PrizeService claimPrize '#cost > 50' -n 10 --skipJDKMethod false
 
-```
+    ```
 
 根因定位: 锁的 Key 范围过大（例如锁住了整个商户号，导致该商户下的所有用户请求串行化）。
 
