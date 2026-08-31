@@ -65,7 +65,7 @@
             body[data-md-color-scheme="slate"] .gslide-title { color: var(--md-default-fg-color); }
             body[data-md-color-scheme="slate"] .gslide-desc { color: var(--md-default-fg-color); }
         </style><meta name="panzoom-theme" content="material">
-<meta name="panzoom-data" content='{"selectors": [".d2", ".mermaid"], "initial_zoom_level": 1.0}'> </head>
+<meta name="panzoom-data" content='{"selectors": [".mermaid", ".d2"], "initial_zoom_level": 1.0}'> </head>
   
   
     
@@ -4002,7 +4002,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../sql/data/" class="md-nav__link">
+      <a href="../../../sql/dwr/" class="md-nav__link">
         
   
   
@@ -8385,13 +8385,11 @@
 </li>
 <li>
 <p>链路追踪</p>
-</li>
-</ol>
 <p>SkyWalking 的 “追踪（Trace）” 界面，筛选出该接口的 “慢追踪” 记录（例如筛选耗时 &gt; 3s 的采样请求），观察链路火焰图、Span 中是否存在大量的 waiting 或 blocked 标记。</p>
 <p>结论: 如果后续业务代码耗时极短，而总耗时极长，说明请求在进入业务方法之前就被卡住了。此时，矛头直指分布式锁（Redisson/ZK）的 lock 获取操作。</p>
-<ol>
-<li>锁竞争排查-Arthas</li>
-</ol>
+</li>
+<li>
+<p>锁竞争排查-Arthas</p>
 <div class="highlight"><pre><span></span><code><span class="c1"># 压测以复现现象</span>
 <span class="c1"># 1. 持续抓取当前最繁忙的阻塞线程（间隔1秒，连抓5次）</span>
 thread<span class="w"> </span>-n<span class="w"> </span><span class="m">10</span><span class="w"> </span>-i<span class="w"> </span><span class="m">1000</span><span class="w"> </span><span class="m">5</span>
@@ -8405,6 +8403,8 @@ profiler<span class="w"> </span>stop<span class="w"> </span>--format<span class=
 <span class="c1"># 3. 链路追踪深挖，搭配jad或源码定位锁粒度</span>
 trace<span class="w"> </span>com.xxx.PrizeService<span class="w"> </span>claimPrize<span class="w"> </span><span class="s1">'#cost &gt; 50'</span><span class="w"> </span>-n<span class="w"> </span><span class="m">10</span><span class="w"> </span>--skipJDKMethod<span class="w"> </span><span class="nb">false</span>
 </code></pre></div>
+</li>
+</ol>
 <p>根因定位: 锁的 Key 范围过大（例如锁住了整个商户号，导致该商户下的所有用户请求串行化）。</p>
 <p>优化建议: 推动开发改为细粒度锁（如商户号+商品ID）或引入分段锁（Striped Lock）。</p>
 <h2 id="watchdog">watchdog</h2>
