@@ -22,6 +22,16 @@ INSTR(str, substr)
 
 返回 substr 在 str 中第一次出现的索引位置；如果 substr 不在 str 中，则返回 0。
 
+INSTR('01,02,03,04', '02'), 返回 2
+
+## SUBSTR
+
+SUBSTR(str, start, length)
+
+返回 str 中从 start 开始的 length 个字符。
+
+SUBSTR('YYYYMMDD', 5, 2), 返回 'MM' 
+
 ## ROW_NUMBER
 
 ROW_NUMBER() OVER (PARTITION BY column_name1 ORDER BY column_name2)
