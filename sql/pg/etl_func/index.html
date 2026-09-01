@@ -3977,6 +3977,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#substr" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        SUBSTR
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#row_number" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -8320,6 +8331,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#substr" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        SUBSTR
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#row_number" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -8375,6 +8397,11 @@
 <h2 id="instr">INSTR</h2>
 <p>INSTR(str, substr)</p>
 <p>返回 substr 在 str 中第一次出现的索引位置；如果 substr 不在 str 中，则返回 0。</p>
+<p>INSTR('01,02,03,04', '02'), 返回 2</p>
+<h2 id="substr">SUBSTR</h2>
+<p>SUBSTR(str, start, length)</p>
+<p>返回 str 中从 start 开始的 length 个字符。</p>
+<p>SUBSTR('YYYYMMDD', 5, 2), 返回 'MM' </p>
 <h2 id="row_number">ROW_NUMBER</h2>
 <p>ROW_NUMBER() OVER (PARTITION BY column_name1 ORDER BY column_name2)</p>
 <p>为查询结果集按<code>column_name1</code>分区、按<code>column_name2</code>排序，并分配唯一连续编号，从 1 开始，适合用于去重。</p>
