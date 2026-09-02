@@ -1,3 +1,5 @@
+开源项目: https://github.com/datawhalechina/all-in-rag
+
 ## 📌 基本名词
 
 *检索增强生成*(Retrieval Augmented Generation): 检索增强生成，将传统信息检索系统(如数据库)与生成式大语言模型进行结合，实现智能信息检索和生成。

@@ -215,11 +215,13 @@ nav:
           - SDD:
                 - agent编程工具: vibe/sdd/claude.md
                 - 相关skill: vibe/sdd/relate_skill.md
+                - 自用skill: vibe/sdd/self_using_skill.md
           - agent应用:
                 - UI自动化探索: 
                         - ui_autotest_autogen: vibe/agent_app/ui_autotest_autogen.md
                         - multi_agents_uiautotest: vibe/agent_app/multi_agents_uiautotest.md
-
+                - 数据分析:
+                        - bi: vibe/agent_app/bi.md
 
 # 搜索栏右侧git链接
 repo_url: https://github.com/Jork-S-B/Jork-S-B.github.io/tree/main
