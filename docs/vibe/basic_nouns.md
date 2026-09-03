@@ -1,4 +1,4 @@
-开源项目: https://github.com/adongwanai/AgentGuide
+AgentGuide项目路径: https://github.com/adongwanai/AgentGuide
 
 ## 📌 LLM
 
