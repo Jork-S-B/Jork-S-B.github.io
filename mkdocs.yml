@@ -175,7 +175,11 @@ nav:
                 - powershell默认编码: other/windows/default_encoding.md
                 - 关闭自动更新: other/windows/disable_auto_update.md
           - mermaid: other/mermaid.md
-          - trading: other/trading.md
+    - 投资:
+          - trading: 
+                - 投资流水账: trading/investment_journal.md
+                - 短债etf调研: trading/short_term_debt.md
+                - 量化交易入门: trading/quant.md
     - ielts:
           - vocabulary:
                 - Synonym substitution: ielts/vocabulary/synonym_substitution.md
