@@ -6,16 +6,22 @@
 
 DeepSWE score, 右上角区间内的模型most efficient
 
+---
+
 [DesignArena](https://www.designarena.ai/leaderboard/code): 由社区用户盲测的AI设计排行榜，包括h5、网站设计、游戏UI设计等。
 
 代码分类 Preference vs Speed    
 Top-left quadrant shows models with low cost and high ratings
+
+---
 
 [Artificial Analysis](https://artificialanalysis.ai/?cost=intelligence-vs-cost-per-task)
 
 Intelligence Index vs. Cost per Intelligence Index Task  
 Artificial Analysis Intelligence Index · Weighted average cost (USD) per Artificial Analysis Intelligence Index task  
 Most attractive quadrant，区间内的模型更具性价比。
+
+---
 
 202609: 
 

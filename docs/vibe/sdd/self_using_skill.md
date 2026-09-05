@@ -21,15 +21,11 @@ npx skills add chaojiwudibing/learn-by-building
 
 包括5个技能
 
-web-video-presentation 网页视频 / 演示
-
-web-design-engineer 设计 / 前端
-
-gpt-image-2 图像生成 / Prompt
-
-beautiful-article 任意素材 → 一篇精美的文章
-
-kb-retriever 检索 / 本地知识库
+- web-video-presentation 网页视频 / 演示
+- web-design-engineer 设计 / 前端
+- gpt-image-2 图像生成 / Prompt
+- beautiful-article 任意素材 → 一篇精美的文章
+- kb-retriever 检索 / 本地知识库
 
 项目中文readme: https://github.com/ConardLi/garden-skills/blob/main/README.zh-CN.md
 
@@ -57,7 +53,7 @@ skill内部流程
 
 #### 设计哲学
 
-一个成熟的larness,包含六个核心。
+一个成熟的`harness`,包含六个核心。
 
 目标: 把模型能力/工具能力/人的判断，组织成一条稳定可控的生产流程。
 

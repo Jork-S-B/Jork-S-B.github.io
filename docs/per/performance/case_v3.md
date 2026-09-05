@@ -141,7 +141,7 @@ tags: [全链路压测]
 
 ## 四、方案与资源规范
 
-[click me](./plan)
+[click me](/per/performance/plan)
 
 ## 五、面试追问高频题与深度答疑
 
