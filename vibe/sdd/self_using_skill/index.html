@@ -13,7 +13,7 @@
         <link rel="prev" href="../relate_skill/">
       
       
-        <link rel="next" href="../../agent_app/ui_autotest_autogen/">
+        <link rel="next" href="../../agent_app/practice/">
       
       
         
@@ -65,7 +65,7 @@
             body[data-md-color-scheme="slate"] .gslide-title { color: var(--md-default-fg-color); }
             body[data-md-color-scheme="slate"] .gslide-desc { color: var(--md-default-fg-color); }
         </style><meta name="panzoom-theme" content="material">
-<meta name="panzoom-data" content='{"selectors": [".d2", ".mermaid"], "initial_zoom_level": 1.0}'> </head>
+<meta name="panzoom-data" content='{"selectors": [".mermaid", ".d2"], "initial_zoom_level": 1.0}'> </head>
   
   
     
@@ -8038,6 +8038,34 @@
 
               
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../personal/MiniMax-H3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    MiniMax-H3云端部署
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
@@ -8367,6 +8395,34 @@
   
   
   
+    <li class="md-nav__item">
+      <a href="../../agent_app/practice/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    实战
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
     
     
     
@@ -8379,10 +8435,10 @@
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_11_5_1">
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_11_5_2">
         
           
-          <label class="md-nav__link" for="__nav_11_5_1" id="__nav_11_5_1_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_11_5_2" id="__nav_11_5_2_label" tabindex="0">
             
   
   
@@ -8400,8 +8456,8 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_11_5_1_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_11_5_1">
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_11_5_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_11_5_2">
             <span class="md-nav__icon md-icon"></span>
             
   
@@ -8493,10 +8549,10 @@
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_11_5_2">
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_11_5_3">
         
           
-          <label class="md-nav__link" for="__nav_11_5_2" id="__nav_11_5_2_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_11_5_3" id="__nav_11_5_3_label" tabindex="0">
             
   
   
@@ -8514,8 +8570,8 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_11_5_2_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_11_5_2">
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_11_5_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_11_5_3">
             <span class="md-nav__icon md-icon"></span>
             
   
@@ -8719,10 +8775,88 @@ npx skills add chaojiwudibing/learn-by-building
 <p>kb-retriever 检索 / 本地知识库</p>
 <p>项目中文readme: https://github.com/ConardLi/garden-skills/blob/main/README.zh-CN.md</p>
 <h3 id="web-video-presentation">web-video-presentation</h3>
-<p>windows手动安装skill，通过符号链接避免多agent工具多份skill代码</p>
+<p>下载压缩包，windows手动安装skill，通过符号链接避免"多agent工具多份skill代码"</p>
 <p>mklink /D "C:\Users\q7299.claude\skills\web-video-presentation" "F:\Administrator\Downloads\skills\web-video-presentation"</p>
+<hr>
+<p>skill内部流程</p>
+<ol>
+<li>文章转口播稿</li>
+<li>口播稿转开发大纲</li>
+<li>每步视觉演示</li>
+<li>步骤与口播节奏对齐</li>
+</ol>
+<p>但如何保证产出稳定性？</p>
+<ol>
+<li>划定边界</li>
+<li>设检查点</li>
+<li>自检</li>
+<li>修复</li>
+</ol>
 <h4 id="_1">设计哲学</h4>
+<p>一个成熟的larness,包含六个核心。</p>
+<p>目标: 把模型能力/工具能力/人的判断，组织成一条稳定可控的生产流程。</p>
+<ol>
+<li>
+<p>上下文管理: 模型到底看到了什么</p>
+<p>类似skill的按需读取策略(渐进式披露)，运行到某个阶段读对应的、最需要的文档信息，避免被无关内容干扰。</p>
+</li>
+<li>
+<p>工具系统: 模型到底能做什么</p>
+<p>本skill中主要是读写，但多agent并行开发需要考虑冲突问题。</p>
+<ul>
+<li>隔离机制: 1.按章节独立文件夹、CSS前缀；2.全局变量兜底，控制主题、风格、间距</li>
+</ul>
+</li>
+<li>
+<p>执行与编排: 模型下一步该做什么</p>
+<p>分步执行: 由预设的任务作为起点，步骤 + 人工检查节点组合。</p>
+<p>人工检查节点包括: 初稿审批、素材选择、后续并行开发还是mvp版本(mvp版本为后续的开发提供基准参考)、分支选择等。</p>
+</li>
+<li>
+<p>状态与记忆: 系统如何跨步骤保持连续性</p>
+<p>持久化开发大纲，将检查点关键决策文档记录，作为开发持续记忆，避免上下文信息不对称。</p>
+<p>本skill额外的特色设计: <code>script.md</code>把握叙事节奏、<code>article.md</code>把握信息密度。</p>
+</li>
+<li>
+<p>评估与观测: 系统怎么知道自己做得对不对</p>
+<p>如何避免agent自评失真？</p>
+<ul>
+<li>自检、修复、汇报: 1.Agent Teams, 由独立的Reviewer Agent审查，但该模式token花费高；2.SubAgent, 由子代理审查，评估效果次之。</li>
+</ul>
+</li>
+<li>
+<p>约束与恢复: 出错了怎么办，怎么避免跑偏</p>
+<p>节奏不对、ai味太浓这类问题如何处理？如何从某个步骤重做而非全部推倒？</p>
+<ul>
+<li>最小切片原则: 定位反馈修复的点在哪一层，只改最小切片。</li>
+</ul>
+</li>
+</ol>
+<details>
+<summary>Agent Teams &amp; SubAgent</summary>
+</details>
+<ul>
+<li>SubAgent, 主Agent任务分发，子Agent执行任务将结果传回，各子Agent之间不干扰（也不讨论），适合结果导向型任务。</li>
+<li>Agent Teams, 组长+组员，每个组员都是独立会话（token花费高），共享任务列表，适合需要交互反馈的任务。</li>
+</ul>
 <h4 id="_2">实操</h4>
+<ol>
+<li>Claude Code</li>
+<li>MiniMax-M2.7，需要带视觉的模型，需处理视频、音频合成。</li>
+<li>CC-Switch，快速切换模型配置</li>
+<li>mmx-cli，agent口播音频合成阶段适用。</li>
+<li>安装该skill</li>
+<li>Agent Teams + tmux, 适合多章节并行开发。</li>
+</ol>
+<p>tmux, 开源终端管理器，多窗口展示agent会话。</p>
+<p>claude的实验性功能: Agent Teams，<code>setting.json</code>设置如下</p>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">    </span><span class="nt">"env"</span><span class="p">:{</span>
+<span class="w">        </span><span class="nt">"CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1"</span>
+<span class="w">    </span><span class="p">},</span>
+<span class="w">    </span><span class="nt">"teammateMode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"tmux"</span><span class="p">,</span>
+<span class="p">}</span>
+</code></pre></div>
 
 
 
@@ -8775,13 +8909,13 @@ npx skills add chaojiwudibing/learn-by-building
         
         
           
-          <a href="../../agent_app/ui_autotest_autogen/" class="md-footer__link md-footer__link--next" aria-label="下一页: ui_autotest_autogen">
+          <a href="../../agent_app/practice/" class="md-footer__link md-footer__link--next" aria-label="下一页: 实战">
             <div class="md-footer__title">
               <span class="md-footer__direction">
                 下一页
               </span>
               <div class="md-ellipsis">
-                ui_autotest_autogen
+                实战
               </div>
             </div>
             <div class="md-footer__button md-icon">
