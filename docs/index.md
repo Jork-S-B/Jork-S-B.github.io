@@ -52,3 +52,7 @@ RocketMQ
 ## 数仓
 
 - [数仓分层](./sql/dwr)
+
+## 工程能力
+
+- [FastAPI](/python/web/fastapi)
