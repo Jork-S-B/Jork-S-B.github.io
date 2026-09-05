@@ -11,6 +11,21 @@
 - 可在~/.claude.json添加配置`"hasCompletedOnboarding": true`
 - 或者在CC Switch设置并切换供应商
 
+!!! tip "CC Switch模型配置说明"
+
+    - Opus 默认处理主任务（顾问）
+    - Sonnet 处理一般问题
+    - Haiku 处理底层重复任务
+
+    但问题是，任务默认走 Opus，成本下不来。
+
+    Anthropic 2026年4月发布的 Claude「顾问策略」中说明: 
+
+    - Sonnet / Haiku 作为执行者：默认跑通整个工作流，承担绝大部分工作
+    - Opus 作为顾问：仅在执行者遇到棘手难题、无法做出合理决策时，通过 API 调用其审阅上下文、给出修正方案，然后执行者继续干活
+
+    todo: 如何配置？顾问模型何时介入？
+
 ## Claude Cli
 
 - /skills: 查看技能列表
