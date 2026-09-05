@@ -216,11 +216,13 @@ nav:
           - rag/retrieval: vibe/rag.md
           - 个人应用工具:
                 - 内网穿透: vibe/personal/ngrok.md
+                - MiniMax-H3云端部署: vibe/personal/MiniMax-H3.md
           - SDD:
                 - agent编程工具: vibe/sdd/claude.md
                 - 相关skill: vibe/sdd/relate_skill.md
                 - 自用skill: vibe/sdd/self_using_skill.md
           - agent应用:
+                - 实战: vibe/agent_app/practice.md
                 - UI自动化探索: 
                         - ui_autotest_autogen: vibe/agent_app/ui_autotest_autogen.md
                         - multi_agents_uiautotest: vibe/agent_app/multi_agents_uiautotest.md
