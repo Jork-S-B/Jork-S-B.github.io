@@ -65,7 +65,7 @@
             body[data-md-color-scheme="slate"] .gslide-title { color: var(--md-default-fg-color); }
             body[data-md-color-scheme="slate"] .gslide-desc { color: var(--md-default-fg-color); }
         </style><meta name="panzoom-theme" content="material">
-<meta name="panzoom-data" content='{"selectors": [".mermaid", ".d2"], "initial_zoom_level": 1.0}'> </head>
+<meta name="panzoom-data" content='{"selectors": [".d2", ".mermaid"], "initial_zoom_level": 1.0}'> </head>
   
   
     
@@ -7986,6 +7986,23 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="📌 Agent">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#mcpcli" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        mcp还是cli？
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
         <li class="md-nav__item">
@@ -8735,6 +8752,23 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="📌 Agent">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#mcpcli" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        mcp还是cli？
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
         <li class="md-nav__item">
@@ -8895,6 +8929,48 @@ token是单个数字，可能无法准确表达其原意，因此向量化为多
 大模型最通用的交互方式，相当于调用内置的skill。</p>
 <p>MCP-model context protocol，是智能体中，执行者和工具、脚本间调用的通信协议。
 相当于调用符合该标准的外部工具。</p>
+<h3 id="mcpcli">mcp还是cli？</h3>
+<p>CLI 和 MCP 的核心区别在于<strong>服务对象</strong>与<strong>交互逻辑</strong></p>
+<ul>
+<li>CLI 要求操作者输入绝对准确的指令。</li>
+<li>MCP 允许 AI 用自然语言和标准化协议自主探索和调用工具。</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>核心维度</th>
+<th>CLI (命令行界面)</th>
+<th>MCP (模型上下文协议)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>主要服务对象</td>
+<td>人类（开发者、运维）与传统自动化脚本</td>
+<td>AI 智能体（大语言模型、AI 客户端）</td>
+</tr>
+<tr>
+<td>交互逻辑</td>
+<td>指令驱动：输入确定的命令与参数（如 mysql -u root），错一个字母就报错。</td>
+<td>意图驱动：AI 客户端与 MCP 服务端动态握手，AI 根据用户模糊的自然语言自主选择调用哪个工具。</td>
+</tr>
+<tr>
+<td>安全与权限</td>
+<td>高风险直连：通常在具有完整 Shell 权限的终端中运行。</td>
+<td>沙盒化隔离：MCP 是独立的后台进程，通过 stdio/SSE 通信，只向 AI 暴露限定的工具和数据，无需给 AI 终端权限。</td>
+</tr>
+<tr>
+<td>上下文感知</td>
+<td>无：每次执行都是独立的，没有持久状态，也不懂业务背景。</td>
+<td>强：自带 Resources 概念，能主动把数据库表结构、系统状态等作为“上下文”喂给 AI。</td>
+</tr>
+<tr>
+<td>跨平台接入</td>
+<td>依赖执行环境：换个没有 Bash 或对应命令的系统就无法运行。</td>
+<td>协议级通用：写好一个 MCP Server，Cursor、Claude Desktop 等所有支持该协议的 AI 软件直接无缝挂载。</td>
+</tr>
+</tbody>
+</table>
 <h2 id="skill">📌 Skill</h2>
 <p>定义：在智能体框架中，Skill通常定义 Agent 拥有的能力集合。</p>
 <p>1.提示词：ai的人设，系统提示词一般优先级高于用户提示词</p>

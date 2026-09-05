@@ -20,7 +20,7 @@
     
     
       
-        <title>性能拐点排查实战指南 - whm</title>
+        <title>Plan - whm</title>
       
     
     
@@ -61,7 +61,7 @@
             body[data-md-color-scheme="slate"] .gslide-title { color: var(--md-default-fg-color); }
             body[data-md-color-scheme="slate"] .gslide-desc { color: var(--md-default-fg-color); }
         </style><meta name="panzoom-theme" content="material">
-<meta name="panzoom-data" content='{"selectors": [".mermaid", ".d2"], "initial_zoom_level": 1.0}'> </head>
+<meta name="panzoom-data" content='{"selectors": [".d2", ".mermaid"], "initial_zoom_level": 1.0}'> </head>
   
   
     
@@ -114,7 +114,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              性能拐点排查实战指南
+              Plan
             
           </span>
         </div>
@@ -8515,8 +8515,6 @@
   
   
   
-    
-  
   
     <label class="md-nav__title" for="__toc">
       <span class="md-nav__icon md-icon"></span>
@@ -8525,152 +8523,24 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix="">
       
         <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        一、核心业务流量模型（权重配比）
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#_2" class="md-nav__link">
     <span class="md-ellipsis">
       
-        一、整体排查思路
+        二、核心技术架构与设计决策
       
     </span>
   </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#step-1" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        二、Step 1: 可视化监控定位异常环节
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="二、Step 1: 可视化监控定位异常环节">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#21" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        2.1 分层监控体系
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#22-grafana-dashboard" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        2.2 Grafana Dashboard 关键指标
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#23" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        2.3 快速定位异常环节的判断逻辑
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#step-2" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        三、Step 2: 异常环节内部日志检查
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="三、Step 2: 异常环节内部日志检查">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#31-redis" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        3.1 Redis 层日志检查
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#32" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        3.2 数据库层日志检查
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#33" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        3.3 应用层日志检查
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#step-3" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        四、Step 3: 深度工具定位
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="四、Step 3: 深度工具定位">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#41-arthas" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        4.1 Arthas 调用链追踪
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#42-skywalking" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        4.2 SkyWalking 调用链分析
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
   
 </li>
       
@@ -8678,103 +8548,58 @@
   <a href="#_3" class="md-nav__link">
     <span class="md-ellipsis">
       
-        五、实战案例
+        三、队列并发安全深度论证（重要补充）
       
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="五、实战案例">
+    <nav class="md-nav" aria-label="三、队列并发安全深度论证（重要补充）">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#1-redis-key" class="md-nav__link">
+  <a href="#1" class="md-nav__link">
     <span class="md-ellipsis">
       
-        案例 1: Redis 大 Key 导致内存暴涨与接口变慢
+        1. 为什么绝对不存在并发冲突？
       
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="案例 1: Redis 大 Key 导致内存暴涨与接口变慢">
-      <ul class="md-nav__list">
+</li>
         
           <li class="md-nav__item">
+  <a href="#2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. 唯一的“伪并发”场景与防呆设计
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#_4" class="md-nav__link">
     <span class="md-ellipsis">
       
-        现象
+        四、代码仓库目录与镜像打包设计
       
     </span>
   </a>
   
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#step-1_1" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Step 1: 可视化监控定位
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#step-2_1" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Step 2: 日志与工具检查
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#_5" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        根因分析
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#_6" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        解决方案
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#2-api" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        案例 2: 同步调用外部风控 API 导致响应慢
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="案例 2: 同步调用外部风控 API 导致响应慢">
+    <nav class="md-nav" aria-label="四、代码仓库目录与镜像打包设计">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#_7" class="md-nav__link">
+  <a href="#1_1" class="md-nav__link">
     <span class="md-ellipsis">
       
-        现象
+        1. 项目目录结构（推荐）
       
     </span>
   </a>
@@ -8782,10 +8607,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#step-1_2" class="md-nav__link">
+  <a href="#2-dockerfile" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Step 1: 可视化监控定位
+        2. Dockerfile（关键）
       
     </span>
   </a>
@@ -8793,43 +8618,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#step-2-arthas" class="md-nav__link">
+  <a href="#3-dockerignore" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Step 2: Arthas 追踪定位
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#_8" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        根因分析
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#_9" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        解决方案
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#_10" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        优化效果
+        3. .dockerignore（优化构建速度）
       
     </span>
   </a>
@@ -8840,6 +8632,51 @@
     </nav>
   
 </li>
+      
+        <li class="md-nav__item">
+  <a href="#locust" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        五、Locust 关键代码实现（完整核心片段）
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="五、Locust 关键代码实现（完整核心片段）">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-accountpool-csv" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. AccountPool 分片加载（CSV 与代码同级）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-401" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. 主用户类（含 401 自动重试 + 有界队列）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-loadtestshape" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. 阶梯升压控制（LoadTestShape）
+      
+    </span>
+  </a>
+  
+</li>
         
       </ul>
     </nav>
@@ -8847,10 +8684,49 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#_11" class="md-nav__link">
+  <a href="#k8s" class="md-nav__link">
     <span class="md-ellipsis">
       
-        六、排查优先级矩阵
+        六、K8s 分布式部署与分片配置
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="六、K8s 分布式部署与分片配置">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-worker-deployment" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Worker Deployment（含环境变量注入）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-master-service-deployment" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Master Service &amp; Deployment（简要）
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        七、资源规划与阶梯升压策略
       
     </span>
   </a>
@@ -8858,10 +8734,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#_12" class="md-nav__link">
+  <a href="#checklist" class="md-nav__link">
     <span class="md-ellipsis">
       
-        七、完整排查流程示例
+        八、监控与成功标准（Checklist）
       
     </span>
   </a>
@@ -8869,10 +8745,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#_13" class="md-nav__link">
+  <a href="#_6" class="md-nav__link">
     <span class="md-ellipsis">
       
-        八、工具速查表
+        九、执行前最终检查清单
       
     </span>
   </a>
@@ -8899,858 +8775,556 @@
   
 
 
-<h1 id="_1">性能拐点排查实战指南</h1>
-<h2 id="_2">一、整体排查思路</h2>
-<div class="highlight"><pre><span></span><code>┌─────────────────────────────────────────────────────────────────┐
-│                    性能拐点排查链路                               │
-├─────────────────────────────────────────────────────────────────┤
-│                                                                 │
-│   性能拐点出现                                                   │
-│        │                                                        │
-│        ▼                                                        │
-│   ┌─────────────────────────────────────────────┐               │
-│   │  Step 1: 可视化监控 → 定位异常环节           │               │
-│   │  (Grafana / SkyWalking / Arthas)            │               │
-│   └─────────────────────────────────────────────┘               │
-│        │                                                        │
-│        ▼                                                        │
-│   ┌─────────────────────────────────────────────┐               │
-│   │  Step 2: 异常环节内部日志检查                │               │
-│   │  (应用日志 / 中间件日志 / 系统日志)          │               │
-│   └─────────────────────────────────────────────┘               │
-│        │                                                        │
-│        ▼                                                        │
-│   ┌─────────────────────────────────────────────┐               │
-│   │  Step 3: 深度工具定位                        │               │
-│   │  (trace / dump / profile)                   │               │
-│   └─────────────────────────────────────────────┘               │
-│        │                                                        │
-│        ▼                                                        │
-│   定因 → 优化 → 验证                                            │
-│                                                                 │
-└─────────────────────────────────────────────────────────────────┘
-</code></pre></div>
+  <h1>Plan</h1>
+
+<h2 id="_1">一、核心业务流量模型（权重配比）</h2>
+<p>基于埋点数据（PV/UV/中奖/领奖率），最终确定的接口权重与预期 QPS 分配如下：</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">接口类型</th>
+<th style="text-align: left;">权重占比</th>
+<th style="text-align: left;">目标 QPS</th>
+<th style="text-align: left;">依赖/关联说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><strong>浏览（首页/列表）</strong></td>
+<td style="text-align: left;">500 (50%)</td>
+<td style="text-align: left;">12,500</td>
+<td style="text-align: left;">纯读，无依赖</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>活动说明</strong></td>
+<td style="text-align: left;">150 (15%)</td>
+<td style="text-align: left;">3,750</td>
+<td style="text-align: left;">纯读，无依赖</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>任务详情</strong></td>
+<td style="text-align: left;">150 (15%)</td>
+<td style="text-align: left;">3,750</td>
+<td style="text-align: left;">弱依赖（产生 <code>task_id</code> 缓存，但不强制跳转）</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>任务跳转（开始任务）</strong></td>
+<td style="text-align: left;">100 (10%)</td>
+<td style="text-align: left;">2,500</td>
+<td style="text-align: left;">依赖 <code>task_id</code>（优先取缓存，无则随机池兜底）</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>登录</strong></td>
+<td style="text-align: left;">50 (5%)</td>
+<td style="text-align: left;">1,250</td>
+<td style="text-align: left;">独立接口，负责刷新 Token</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>抽奖</strong></td>
+<td style="text-align: left;">43 (4.3%)</td>
+<td style="text-align: left;">1,075</td>
+<td style="text-align: left;">无依赖（产出 <code>prize_id</code>，但按 50.62% 概率入队）</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>领奖</strong></td>
+<td style="text-align: left;">7 (0.7%)</td>
+<td style="text-align: left;">175</td>
+<td style="text-align: left;"><strong>弱关联</strong>（消费队列中的 <code>user_id + prize_id</code>；队列空则查奖品列表）</td>
+</tr>
+</tbody>
+</table>
 <hr>
-<h2 id="step-1">二、Step 1: 可视化监控定位异常环节</h2>
-<h3 id="21">2.1 分层监控体系</h3>
-<div class="highlight"><pre><span></span><code>┌────────────────────────────────────────────────────────────────┐
-│                      监控分层架构                               │
-├────────────────────────────────────────────────────────────────┤
-│                                                                │
-│  Layer 4: 业务层                                               │
-│  ├── 接口成功率、业务错误码分布                                 │
-│  └── 来源: 业务埋点、日志聚合                                   │
-│                                                                │
-│  Layer 3: 应用层                                               │
-│  ├── JVM (GC频率、堆内存、线程数)                              │
-│  ├── 线程池 (活跃线程、队列长度)                                │
-│  └── 来源: Prometheus + Micrometer / SkyWalking               │
-│                                                                │
-│  Layer 2: 中间件层                                             │
-│  ├── MySQL (连接数、慢查询、锁等待)                            │
-│  ├── Redis (内存、命中率、慢命令)                              │
-│  └── 来源: Exporter (mysql_exporter, redis_exporter)          │
-│                                                                │
-│  Layer 1: 基础设施层                                           │
-│  ├── CPU、内存、磁盘I/O、网络带宽                              │
-│  └── 来源: Node Exporter + cAdvisor                           │
-│                                                                │
-└────────────────────────────────────────────────────────────────┘
-</code></pre></div>
-<h3 id="22-grafana-dashboard">2.2 Grafana Dashboard 关键指标</h3>
-<p><strong>应用层面板</strong>：</p>
-<div class="highlight"><pre><span></span><code>┌─────────────────────────────────────────────────────────────┐
-│                    应用层监控面板                            │
-├──────────────────┬──────────────────┬───────────────────────┤
-│  JVM堆内存使用率  │  GC频率          │  线程状态分布         │
-│  当前: 78%       │  Young: 12次/分  │  RUNNABLE: 85        │
-│  ⚠️ 接近警戒线   │  Full: 0次/分    │  BLOCKED: 12 ⚠️      │
-│                  │                  │  WAITING: 45         │
-├──────────────────┴──────────────────┴───────────────────────┤
-│                                                             │
-│  线程池监控                                                  │
-│  ┌─────────────────────────────────────────────────────┐   │
-│  │ Tomcat线程池                                         │   │
-│  │ ├─ active: 180 / maxThreads: 200                    │   │
-│  │ ├─ queueSize: 45 ⚠️ 队列堆积                        │   │
-│  │ └─ rejected: 12                                     │   │
-│  └─────────────────────────────────────────────────────┘   │
-│                                                             │
-└─────────────────────────────────────────────────────────────┘
-</code></pre></div>
-<p><strong>Redis 监控面板</strong>：</p>
-<div class="highlight"><pre><span></span><code>┌─────────────────────────────────────────────────────────────┐
-│                    Redis 监控面板                           │
-├──────────────────┬──────────────────┬───────────────────────┤
-│  内存使用率      │  缓存命中率      │  慢命令数             │
-│  当前: 92% ⚠️    │  当前: 60% ⚠️    │  最近5分钟: 156       │
-│  持续上涨不回落  │  从95%跌落       │  GET耗时200ms+        │
-├──────────────────┴──────────────────┴───────────────────────┤
-│                                                             │
-│  Key 统计                                                   │
-│  ┌─────────────────────────────────────────────────────┐   │
-│  │ ├─ 总Key数: 1,250,000                               │   │
-│  │ ├─ 过期Key: 0 ⚠️ 无TTL设置                          │   │
-│  │ ├─ evicted_keys: 45,230 ⚠️ 频繁逐出                 │   │
-│  │ └─ 大Key: user:tag:xxx (2MB) ⚠️                     │   │
-│  └─────────────────────────────────────────────────────┘   │
-│                                                             │
-└─────────────────────────────────────────────────────────────┘
-</code></pre></div>
-<p><strong>数据库层面板</strong>：</p>
-<div class="highlight"><pre><span></span><code>┌─────────────────────────────────────────────────────────────┐
-│                    MySQL 监控面板                           │
-├──────────────────┬──────────────────┬───────────────────────┤
-│  连接数          │  慢查询数        │  锁等待               │
-│  当前: 145/150   │  最近5分钟: 23   │  等待事务: 12         │
-│  ⚠️ 接近上限     │  ⚠️ 异常增多     │  ⚠️ 行锁竞争          │
-├──────────────────┴──────────────────┴───────────────────────┤
-│                                                             │
-│  连接池监控 (HikariCP)                                       │
-│  ┌─────────────────────────────────────────────────────┐   │
-│  │ ├─ active: 18 / maximum: 20                         │   │
-│  │ ├─ idle: 2                                          │   │
-│  │ ├─ pending: 45 ⚠️ 大量等待获取连接                  │   │
-│  │ └─ usage: 90%                                       │   │
-│  └─────────────────────────────────────────────────────┘   │
-│                                                             │
-└─────────────────────────────────────────────────────────────┘
-</code></pre></div>
-<h3 id="23">2.3 快速定位异常环节的判断逻辑</h3>
-<div class="highlight"><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">locate_bottleneck</span><span class="p">(</span><span class="n">metrics</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">"""</span>
-<span class="sd">    根据监控指标快速定位瓶颈环节</span>
-<span class="sd">    """</span>
-
-    <span class="c1"># 1. Redis层判断</span>
-    <span class="k">if</span> <span class="n">metrics</span><span class="o">.</span><span class="n">redis_memory_usage</span> <span class="o">&gt;</span> <span class="mf">0.9</span><span class="p">:</span>
-        <span class="k">return</span> <span class="s2">"Redis内存接近爆满，可能触发逐出策略"</span>
-
-    <span class="k">if</span> <span class="n">metrics</span><span class="o">.</span><span class="n">redis_evicted_keys</span> <span class="o">&gt;</span> <span class="n">threshold</span><span class="p">:</span>
-        <span class="k">return</span> <span class="s2">"Redis频繁逐出Key，缓存命中率下降"</span>
-
-    <span class="k">if</span> <span class="n">metrics</span><span class="o">.</span><span class="n">redis_slowlog_count</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
-        <span class="k">return</span> <span class="s2">"存在Redis慢命令"</span>
-
-    <span class="c1"># 2. 数据库层判断</span>
-    <span class="k">if</span> <span class="n">metrics</span><span class="o">.</span><span class="n">db_connection_usage</span> <span class="o">&gt;</span> <span class="mf">0.9</span><span class="p">:</span>
-        <span class="k">return</span> <span class="s2">"数据库连接池不足"</span>
-
-    <span class="k">if</span> <span class="n">metrics</span><span class="o">.</span><span class="n">slow_query_count</span> <span class="o">&gt;</span> <span class="n">threshold</span><span class="p">:</span>
-        <span class="k">return</span> <span class="s2">"存在慢查询"</span>
-
-    <span class="k">if</span> <span class="n">metrics</span><span class="o">.</span><span class="n">lock_wait_count</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
-        <span class="k">return</span> <span class="s2">"数据库锁竞争"</span>
-
-    <span class="c1"># 3. 应用层判断</span>
-    <span class="k">if</span> <span class="n">metrics</span><span class="o">.</span><span class="n">thread_pool_queue_size</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
-        <span class="k">return</span> <span class="s2">"线程池队列堆积"</span>
-
-    <span class="k">if</span> <span class="n">metrics</span><span class="o">.</span><span class="n">blocked_thread_count</span> <span class="o">&gt;</span> <span class="mi">10</span><span class="p">:</span>
-        <span class="k">return</span> <span class="s2">"线程阻塞（可能存在锁竞争）"</span>
-
-    <span class="k">if</span> <span class="n">metrics</span><span class="o">.</span><span class="n">gc_pause_time</span> <span class="o">&gt;</span> <span class="mi">100</span><span class="p">:</span>
-        <span class="k">return</span> <span class="s2">"GC停顿过长"</span>
-
-    <span class="c1"># 4. 外部依赖判断</span>
-    <span class="k">if</span> <span class="n">metrics</span><span class="o">.</span><span class="n">external_api_rt</span> <span class="o">&gt;</span> <span class="mi">500</span><span class="p">:</span>
-        <span class="k">return</span> <span class="s2">"外部API响应慢，阻塞主流程"</span>
-
-    <span class="c1"># 5. 基础设施层判断</span>
-    <span class="k">if</span> <span class="n">metrics</span><span class="o">.</span><span class="n">cpu_usage</span> <span class="o">&gt;</span> <span class="mf">0.85</span><span class="p">:</span>
-        <span class="k">return</span> <span class="s2">"CPU资源瓶颈"</span>
-
-    <span class="k">if</span> <span class="n">metrics</span><span class="o">.</span><span class="n">memory_usage</span> <span class="o">&gt;</span> <span class="mf">0.9</span><span class="p">:</span>
-        <span class="k">return</span> <span class="s2">"内存资源瓶颈"</span>
-
-    <span class="k">if</span> <span class="n">metrics</span><span class="o">.</span><span class="n">network_io_wait</span> <span class="o">&gt;</span> <span class="n">threshold</span><span class="p">:</span>
-        <span class="k">return</span> <span class="s2">"网络I/O瓶颈"</span>
-
-    <span class="k">return</span> <span class="s2">"需要进一步分析"</span>
-</code></pre></div>
+<h2 id="_2">二、核心技术架构与设计决策</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">架构决策点</th>
+<th style="text-align: left;">最终落地方案</th>
+<th style="text-align: left;">解决的核心痛点</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><strong>压测引擎</strong></td>
+<td style="text-align: left;">Locust + FastHttpUser（K8s 分布式）</td>
+<td style="text-align: left;">高并发协程模型，资源占用低</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>流量调度</strong></td>
+<td style="text-align: left;">顶层使用 <strong><code>@task</code> 加权随机</strong>（拒绝全量 SequentialTaskSet）</td>
+<td style="text-align: left;">保证 50% 浏览 vs 0.7% 领奖的悬殊比例不失真</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>抽奖→领奖关联</strong></td>
+<td style="text-align: left;"><strong>会话级有界队列</strong>（<code>self.pending_prizes</code>，Max=5） + 50.62% 衰减因子</td>
+<td style="text-align: left;">解耦权重，同时精准模拟“中奖后一半人放弃”的真实数据</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>队列并发安全</strong></td>
+<td style="text-align: left;"><strong>实例私有队列 + 单协程串行执行</strong>，无锁设计</td>
+<td style="text-align: left;">无需引入线程锁/Redis分布式锁，零并发冲突，性能最优</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>鉴权与容灾</strong></td>
+<td style="text-align: left;">CSV 账号池硬隔离分片 + <strong>401 自动重试机制</strong>（<code>_auth_request</code> 封装）</td>
+<td style="text-align: left;">解决分布式下账号互踢风暴；模拟 Token 过期自动续期</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>分布式账号隔离</strong></td>
+<td style="text-align: left;">K8s Downward API 注入 <code>POD_NAME</code>，按序号对 CSV <strong>逻辑分片（Sharding）</strong></td>
+<td style="text-align: left;">17 个 Worker 各用各的账号段，绝对互斥</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>代码与数据打包</strong></td>
+<td style="text-align: left;"><strong>Dockerfile 内置 CSV</strong>（<code>COPY</code> 进 <code>/app</code>），不可变镜像交付</td>
+<td style="text-align: left;">规避 ConfigMap 1MiB 大小限制，无需依赖外部存储卷</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>可观测性</strong></td>
+<td style="text-align: left;"><strong>被测服务</strong>挂载 SkyWalking Agent；<strong>Locust 仅传递 <code>sw8</code> Header</strong></td>
+<td style="text-align: left;">客户端不发压污染，链路追踪清晰</td>
+</tr>
+</tbody>
+</table>
 <hr>
-<h2 id="step-2">三、Step 2: 异常环节内部日志检查</h2>
-<h3 id="31-redis">3.1 Redis 层日志检查</h3>
-<p><strong>Redis 慢查询日志</strong>：</p>
-<div class="highlight"><pre><span></span><code><span class="c1"># 查看 Redis 慢查询</span>
-redis-cli<span class="w"> </span>SLOWLOG<span class="w"> </span>GET<span class="w"> </span><span class="m">20</span>
-
-<span class="c1"># 输出示例</span>
-<span class="m">1</span><span class="o">)</span><span class="w"> </span><span class="m">1</span><span class="o">)</span><span class="w"> </span><span class="o">(</span>integer<span class="o">)</span><span class="w"> </span><span class="m">1</span>
-<span class="w">   </span><span class="m">2</span><span class="o">)</span><span class="w"> </span><span class="o">(</span>integer<span class="o">)</span><span class="w"> </span><span class="m">1726123456</span>
-<span class="w">   </span><span class="m">3</span><span class="o">)</span><span class="w"> </span><span class="o">(</span>integer<span class="o">)</span><span class="w"> </span><span class="m">234567</span><span class="w">    </span><span class="c1"># 执行时间(微秒) = 234ms</span>
-<span class="w">   </span><span class="m">4</span><span class="o">)</span><span class="w"> </span><span class="m">1</span><span class="o">)</span><span class="w"> </span><span class="s2">"GET"</span>
-<span class="w">      </span><span class="m">2</span><span class="o">)</span><span class="w"> </span><span class="s2">"user:tag:12345"</span>
-<span class="w">   </span><span class="m">5</span><span class="o">)</span><span class="w"> </span><span class="s2">"192.168.1.100:54321"</span>
-<span class="w">   </span><span class="m">6</span><span class="o">)</span><span class="w"> </span><span class="s2">"ad-platform"</span>
-</code></pre></div>
-<p><strong>大 Key 定位</strong>：</p>
-<div class="highlight"><pre><span></span><code><span class="c1"># 扫描大 Key</span>
-redis-cli<span class="w"> </span>--bigkeys
-
-<span class="c1"># 输出示例</span>
---------<span class="w"> </span>summary<span class="w"> </span>-------
-Biggest<span class="w"> </span>string<span class="w"> </span>found<span class="w"> </span><span class="s1">'user:tag:ad_space_001'</span><span class="w"> </span>has<span class="w"> </span><span class="m">2097152</span><span class="w"> </span>bytes<span class="w">  </span><span class="c1"># 2MB大Key</span>
-
-<span class="c1"># 实时监控网络流量</span>
-redis-cli<span class="w"> </span>--stat
-<span class="c1"># 观察到每秒有几次极高的入流量尖峰（如200Mbps）</span>
-</code></pre></div>
-<p><strong>内存与逐出分析</strong>：</p>
-<div class="highlight"><pre><span></span><code><span class="c1"># 查看内存详情</span>
-redis-cli<span class="w"> </span>INFO<span class="w"> </span>memory
-
-<span class="c1"># 关键指标</span>
-used_memory:8589934592<span class="w">        </span><span class="c1"># 已使用内存</span>
-maxmemory:9663676416<span class="w">          </span><span class="c1"># 最大内存限制</span>
-mem_fragmentation_ratio:1.02<span class="w">  </span><span class="c1"># 内存碎片率</span>
-evicted_keys:45230<span class="w">            </span><span class="c1"># 已逐出的Key数量 ⚠️</span>
-
-<span class="c1"># 查看Key数量变化</span>
-redis-cli<span class="w"> </span>INFO<span class="w"> </span>keyspace
-db0:keys<span class="o">=</span><span class="m">1250000</span>,expires<span class="o">=</span><span class="m">0</span>,avg_ttl<span class="o">=</span><span class="m">0</span><span class="w">  </span><span class="c1"># expires=0 表示无过期时间 ⚠️</span>
-</code></pre></div>
-<h3 id="32">3.2 数据库层日志检查</h3>
-<p><strong>MySQL 慢查询日志</strong>：</p>
-<div class="highlight"><pre><span></span><code><span class="c1">-- 开启慢查询日志</span>
-<span class="k">SET</span><span class="w"> </span><span class="k">GLOBAL</span><span class="w"> </span><span class="n">slow_query_log</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">'ON'</span><span class="p">;</span>
-<span class="k">SET</span><span class="w"> </span><span class="k">GLOBAL</span><span class="w"> </span><span class="n">long_query_time</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span>
-
-<span class="c1">-- 查看慢查询</span>
-<span class="k">SELECT</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">mysql</span><span class="p">.</span><span class="n">slow_log</span><span class="w"> </span>
-<span class="k">WHERE</span><span class="w"> </span><span class="n">start_time</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="n">DATE_SUB</span><span class="p">(</span><span class="n">NOW</span><span class="p">(),</span><span class="w"> </span><span class="nb">INTERVAL</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="n">HOUR</span><span class="p">)</span>
-<span class="k">ORDER</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">query_time</span><span class="w"> </span><span class="k">DESC</span><span class="w"> </span>
-<span class="k">LIMIT</span><span class="w"> </span><span class="mi">10</span><span class="p">;</span>
-
-<span class="c1">-- 分析执行计划</span>
-<span class="k">EXPLAIN</span><span class="w"> </span><span class="k">SELECT</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">ad_rules</span><span class="w"> </span><span class="k">WHERE</span><span class="w"> </span><span class="n">ad_space_id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">123</span><span class="p">;</span>
-</code></pre></div>
-<p><strong>执行计划关键字段解读</strong>：</p>
-<div class="highlight"><pre><span></span><code>+----+-------------+----------+------------+------+---------------+---------------+---------+-------+------+----------+-------+
-| id | select_type | table    | partitions | type | possible_keys | key           | key_len | ref   | rows | filtered | Extra |
-+----+-------------+----------+------------+------+---------------+---------------+---------+-------+------+----------+-------+
-|  1 | SIMPLE      | ad_rules | NULL       | ref  | idx_space     | idx_space     | 4       | const |  156 |    100.0 | NULL  |
-+----+-------------+----------+------------+------+---------------+---------------+---------+-------+------+----------+-------+
-
-关键字段说明：
-- type: 访问类型，从优到差：system &gt; const &gt; eq_ref &gt; ref &gt; range &gt; index &gt; ALL
-  ⚠️ ALL 表示全表扫描，需要优化
-- key: 实际使用的索引，NULL 表示未使用索引
-- rows: 预估扫描行数，值越大效率越低
-- Extra: 额外信息
-  - Using index: 覆盖索引，性能好
-  - Using filesort: 文件排序，需要优化
-  - Using temporary: 使用临时表，需要优化
-</code></pre></div>
-<details class="tip">
-<summary>回表</summary>
-<p>背景：InnoDB 使用 B+ 树索引：</p>
+<h2 id="_3">三、队列并发安全深度论证（重要补充）</h2>
+<h3 id="1">1. 为什么绝对不存在并发冲突？</h3>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">维度</th>
+<th style="text-align: left;">分析</th>
+<th style="text-align: left;">结论</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><strong>单 VU 内部执行模型</strong></td>
+<td style="text-align: left;">Locust 中每个虚拟用户（VU）是一个独立的 <strong>Greenlet（协程）</strong>。同一个 VU 内的 <code>do_draw</code>（抽奖）和 <code>do_claim</code>（领奖）<strong>严格串行执行</strong>，中间隔着 <code>wait_time</code>（思考时间）。</td>
+<td style="text-align: left;">同一时刻只有一个操作在修改 <code>self.pending_prizes</code>。</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>队列作用域</strong></td>
+<td style="text-align: left;"><code>self.pending_prizes</code> 是 <strong>实例属性</strong>，绑定在单个 VU 对象上。VU-A 的队列和 VU-B 的队列<strong>内存地址完全隔离</strong>。</td>
+<td style="text-align: left;">不存在多 VU 竞争同一把锁的场景。</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>跨 Worker 隔离</strong></td>
+<td style="text-align: left;">K8s 中 17 个 Worker 是独立进程，内存空间互不共享。Worker-1 里的 VU 完全看不到 Worker-2 里的队列。</td>
+<td style="text-align: left;">分布式架构天然物理隔离。</td>
+</tr>
+</tbody>
+</table>
+<h3 id="2">2. 唯一的“伪并发”场景与防呆设计</h3>
+<p><strong>场景</strong>：一个用户连续抽中 6 次奖，但一次都没领，队列会怎样？</p>
 <ul>
-<li>
-<p>聚簇索引（一般是主键索引）的叶子节点上直接存储了完整的一行数据。</p>
-</li>
-<li>
-<p>二级索引（普通索引、唯一索引等）的叶子节点上只存储了索引列的值 + 主键的值。</p>
-</li>
+<li><strong>无保护</strong>：队列无限膨胀 → 单 VU 内存泄漏 → Worker OOM。</li>
+<li><strong>我们的方案</strong>：设定 <code>MAX_PENDING = 5</code>，当队列已满时，<strong>丢弃最旧的奖品</strong>（<code>pop(0)</code>），保证内存恒定。</li>
 </ul>
-<p>所谓回表，就是当我们通过二级索引查找数据时，如果要查询的字段不在该二级索引的叶子节点中，那么数据库会先通过二级索引找到对应的主键值，再拿着主键值回到聚簇索引中，把整行数据读出来。这个“回到聚簇索引再查一次”的动作，就叫回表。</p>
-<p>举例：</p>
-<p>表 user，主键是 id，有一个普通索引 idx_name 在 name 列上。</p>
-<p>执行 SELECT id, name, age FROM user WHERE name = '张三'。</p>
-<p>因为 idx_name 只存了 name 和 id，不包含 age，所以 InnoDB 会先从 idx_name 找到匹配的 id，再根据 id 去主键索引里查出 age。这就是一次回表。</p>
-</details>
-<p><strong>锁等待分析</strong>：</p>
-<div class="highlight"><pre><span></span><code><span class="c1">-- 查看当前锁等待</span>
-<span class="k">SELECT</span><span class="w"> </span>
-<span class="w">    </span><span class="n">r</span><span class="p">.</span><span class="n">trx_id</span><span class="w"> </span><span class="n">waiting_trx_id</span><span class="p">,</span>
-<span class="w">    </span><span class="n">r</span><span class="p">.</span><span class="n">trx_mysql_thread_id</span><span class="w"> </span><span class="n">waiting_thread</span><span class="p">,</span>
-<span class="w">    </span><span class="n">r</span><span class="p">.</span><span class="n">trx_query</span><span class="w"> </span><span class="n">waiting_query</span><span class="p">,</span>
-<span class="w">    </span><span class="n">b</span><span class="p">.</span><span class="n">trx_id</span><span class="w"> </span><span class="n">blocking_trx_id</span><span class="p">,</span>
-<span class="w">    </span><span class="n">b</span><span class="p">.</span><span class="n">trx_mysql_thread_id</span><span class="w"> </span><span class="n">blocking_thread</span><span class="p">,</span>
-<span class="w">    </span><span class="n">b</span><span class="p">.</span><span class="n">trx_query</span><span class="w"> </span><span class="n">blocking_query</span>
-<span class="k">FROM</span><span class="w"> </span><span class="n">information_schema</span><span class="p">.</span><span class="n">innodb_lock_waits</span><span class="w"> </span><span class="n">w</span>
-<span class="k">INNER</span><span class="w"> </span><span class="k">JOIN</span><span class="w"> </span><span class="n">information_schema</span><span class="p">.</span><span class="n">innodb_trx</span><span class="w"> </span><span class="n">b</span><span class="w"> </span><span class="k">ON</span><span class="w"> </span><span class="n">b</span><span class="p">.</span><span class="n">trx_id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">w</span><span class="p">.</span><span class="n">blocking_trx_id</span>
-<span class="k">INNER</span><span class="w"> </span><span class="k">JOIN</span><span class="w"> </span><span class="n">information_schema</span><span class="p">.</span><span class="n">innodb_trx</span><span class="w"> </span><span class="n">r</span><span class="w"> </span><span class="k">ON</span><span class="w"> </span><span class="n">r</span><span class="p">.</span><span class="n">trx_id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">w</span><span class="p">.</span><span class="n">requesting_trx_id</span><span class="p">;</span>
-
-<span class="c1">-- 查看InnoDB状态</span>
-<span class="k">SHOW</span><span class="w"> </span><span class="n">ENGINE</span><span class="w"> </span><span class="n">INNODB</span><span class="w"> </span><span class="n">STATUS</span><span class="err">\</span><span class="k">G</span>
+<blockquote>
+<p><strong>关键实现细节</strong>：<code>append</code> 和 <code>pop(0)</code> 在同一个函数（<code>do_draw</code>）的同一个协程中<strong>顺序执行</strong>，不涉及任何跨线程/跨协程切换，因此 100% 线程安全，无需 <code>threading.Lock</code>。</p>
+</blockquote>
+<hr>
+<h2 id="_4">四、代码仓库目录与镜像打包设计</h2>
+<h3 id="1_1">1. 项目目录结构（推荐）</h3>
+<div class="highlight"><pre><span></span><code>locust-loadtest/
+├── Dockerfile                     # 镜像构建文件
+├── requirements.txt               # Python 依赖（如有额外需要）
+├── locustfile.py                  # 主压测脚本
+├── accounts.csv                   # 账号池（≥ 57,600 行）
+├── README.md                      # 使用说明（可选）
+└── .dockerignore                  # 忽略无用文件（如 .git, __pycache__）
 </code></pre></div>
-<p><strong>锁等待分析要点</strong>：</p>
-<div class="highlight"><pre><span></span><code>INNODB STATUS 输出关键部分：
-=====================================
-TRANSACTIONS
-=====================================
-Trx id counter 1234567
-Purge done for trx's n:o &lt; 1234560
-History list length 1024
----TRANSACTION 1234566, ACTIVE 45 sec starting index read
-mysql tables in use 1, locked 1
-LOCK WAIT 2 lock struct(s), heap size 1136, 1 row lock(s)
-MySQL thread id 100, OS thread handle 12345, query id 67890 localhost root updating
-UPDATE ad_rules SET status = 1 WHERE id = 100
-------- TRX HAS BEEN WAITING 45 SEC FOR THIS LOCK TO BE GRANTED:
-RECORD LOCKS space id 58 page no 4 n bits 72 index PRIMARY of table `ad_db`.`ad_rules`
----WAITING FOR LOCK: RECORD LOCKS space id 58 page no 4 n bits 72 index PRIMARY
-Record lock, heap no 2 PHYSICAL RECORD: n_fields 5; compact format; info bits 0
+<h3 id="2-dockerfile">2. Dockerfile（关键）</h3>
+<div class="highlight"><pre><span></span><code><span class="k">FROM</span><span class="w"> </span><span class="s">locustio/locust:2.24.1</span>
 
-分析步骤：
-1. 找到 LOCK WAIT 标记，确认存在锁等待
-2. 查看 WAITING FOR LOCK 部分，确认等待的锁类型和位置
-3. 通过 thread id 定位阻塞事务：SELECT * FROM information_schema.innodb_trx WHERE trx_mysql_thread_id = &lt;thread_id&gt;;
-4. 分析阻塞事务的 SQL 语句，决定是否 KILL 或优化
+<span class="c"># 设置工作目录</span>
+<span class="k">WORKDIR</span><span class="w"> </span><span class="s">/app</span>
+
+<span class="c"># 复制依赖文件（利用 Docker 缓存层）</span>
+<span class="k">COPY</span><span class="w"> </span>requirements.txt<span class="w"> </span>./
+<span class="k">RUN</span><span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span>--no-cache-dir<span class="w"> </span>-r<span class="w"> </span>requirements.txt<span class="w"> </span>-i<span class="w"> </span>https://mirrors.aliyun.com/pypi/simple/
+
+<span class="c"># 复制压测脚本和账号数据（核心）</span>
+<span class="k">COPY</span><span class="w"> </span>locustfile.py<span class="w"> </span>.
+<span class="k">COPY</span><span class="w"> </span>accounts.csv<span class="w"> </span>.
+
+<span class="c"># 验证文件已复制（可选，构建时查看日志）</span>
+<span class="k">RUN</span><span class="w"> </span>ls<span class="w"> </span>-la<span class="w"> </span>/app/
+
+<span class="c"># 默认启动命令（由 K8s 覆盖，此处仅为留空）</span>
+<span class="k">CMD</span><span class="w"> </span><span class="p">[</span><span class="s2">"locust"</span><span class="p">,</span><span class="w"> </span><span class="s2">"--version"</span><span class="p">]</span>
 </code></pre></div>
-<h3 id="33">3.3 应用层日志检查</h3>
-<p><strong>JVM 日志分析</strong>：</p>
-<div class="highlight"><pre><span></span><code><span class="c1"># 查看 GC 日志</span>
-jstat<span class="w"> </span>-gcutil<span class="w"> </span>&lt;pid&gt;<span class="w"> </span><span class="m">1000</span><span class="w"> </span><span class="m">10</span>
-
-<span class="c1"># 输出示例</span>
-<span class="c1">#  S0     S1     E      O      M     CCS    YGC     YGCT    FGC    FGCT    GCT   </span>
-<span class="c1">#  0.00  45.21  78.34  67.89  95.12  89.23    156    2.345     2    0.456   2.801</span>
-
-<span class="c1"># 线程栈分析</span>
-jstack<span class="w"> </span>&lt;pid&gt;<span class="w"> </span>&gt;<span class="w"> </span>thread_dump.txt
-</code></pre></div>
-<p><strong>应用异常日志</strong>：</p>
-<div class="highlight"><pre><span></span><code><span class="c1"># 搜索关键异常</span>
-grep<span class="w"> </span>-E<span class="w"> </span><span class="s2">"Exception|Error|Timeout|Rejected"</span><span class="w"> </span>/var/log/app/app.log<span class="w"> </span><span class="p">|</span><span class="w"> </span>tail<span class="w"> </span>-100
-
-<span class="c1"># 搜索慢请求</span>
-grep<span class="w"> </span><span class="s2">"cost="</span><span class="w"> </span>/var/log/app/app.log<span class="w"> </span><span class="p">|</span><span class="w"> </span>awk<span class="w"> </span>-F<span class="s1">'cost='</span><span class="w"> </span><span class="s1">'{print $2}'</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>sort<span class="w"> </span>-n<span class="w"> </span><span class="p">|</span><span class="w"> </span>tail<span class="w"> </span>-20
+<h3 id="3-dockerignore">3. .dockerignore（优化构建速度）</h3>
+<div class="highlight"><pre><span></span><code>__pycache__
+*.pyc
+.git
+.gitignore
+README.md
+*.log
 </code></pre></div>
 <hr>
-<h2 id="step-3">四、Step 3: 深度工具定位</h2>
-<h3 id="41-arthas">4.1 Arthas 调用链追踪</h3>
-<p><strong>追踪方法耗时</strong>：</p>
-<div class="highlight"><pre><span></span><code><span class="c1"># 追踪风控API调用</span>
-trace<span class="w"> </span>com.xxx.advfilter.handler.ListJudgeShuffleHandler<span class="w"> </span>doJudge<span class="w"> </span><span class="s1">'#cost &gt; 100'</span><span class="w"> </span>-n<span class="w"> </span><span class="m">5</span>
+<h2 id="locust">五、Locust 关键代码实现（完整核心片段）</h2>
+<h3 id="1-accountpool-csv">1. AccountPool 分片加载（CSV 与代码同级）</h3>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">csv</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">queue</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">random</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">locust</span><span class="w"> </span><span class="kn">import</span> <span class="n">FastHttpUser</span><span class="p">,</span> <span class="n">task</span><span class="p">,</span> <span class="n">between</span><span class="p">,</span> <span class="n">LoadTestShape</span>
 
-<span class="c1"># 输出示例</span>
-<span class="sb">`</span>---<span class="o">[</span><span class="m">856</span>.45ms<span class="o">]</span><span class="w"> </span>com.xxx.service.AdService:match<span class="o">()</span>
-<span class="w">    </span>+---<span class="o">[</span><span class="m">12</span>.15ms<span class="o">]</span><span class="w"> </span>com.xxx.dao.UserDao:getTags<span class="o">()</span>
-<span class="w">    </span>+---<span class="o">[</span><span class="m">45</span>.23ms<span class="o">]</span><span class="w"> </span>com.xxx.dao.AdDao:getRules<span class="o">()</span>
-<span class="w">    </span>+---<span class="o">[</span><span class="m">23</span>.32ms<span class="o">]</span><span class="w"> </span>com.xxx.service.AdService:filterAds<span class="o">()</span>
-<span class="w">    </span><span class="sb">`</span>---<span class="o">[</span><span class="m">756</span>.12ms<span class="o">]</span><span class="w"> </span>com.xxx.external.RiskControlApi:check<span class="o">()</span><span class="w">  </span>←<span class="w"> </span>瓶颈！
-</code></pre></div>
-<p><strong>监控 Redis 调用</strong>：</p>
-<div class="highlight"><pre><span></span><code><span class="c1"># 追踪 Redis 操作</span>
-trace<span class="w"> </span>redis.clients.jedis.Jedis<span class="w"> </span>get<span class="w"> </span><span class="s1">'#cost &gt; 50'</span><span class="w"> </span>-n<span class="w"> </span><span class="m">5</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">AccountPool</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">"""按 K8s Pod 序号分片加载 CSV，实现硬隔离"""</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="c1"># 1. 获取 Pod 序号（如 locust-worker-5 -&gt; 5）</span>
+        <span class="n">pod_name</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">getenv</span><span class="p">(</span><span class="s2">"POD_NAME"</span><span class="p">,</span> <span class="s2">"locust-worker-0"</span><span class="p">)</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">worker_id</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">pod_name</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">"-"</span><span class="p">)[</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
+        <span class="k">except</span> <span class="ne">ValueError</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">worker_id</span> <span class="o">=</span> <span class="mi">0</span>
 
-<span class="c1"># 输出示例</span>
-<span class="sb">`</span>---<span class="o">[</span><span class="m">234</span>.56ms<span class="o">]</span><span class="w"> </span>redis.clients.jedis.Jedis:get<span class="o">()</span>
-<span class="w">    </span><span class="sb">`</span>---<span class="o">[</span><span class="m">230</span>.12ms<span class="o">]</span><span class="w"> </span>redis.clients.jedis.Connection:sendCommand<span class="o">()</span><span class="w">  </span>←<span class="w"> </span>网络传输耗时
+        <span class="bp">self</span><span class="o">.</span><span class="n">total_workers</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">getenv</span><span class="p">(</span><span class="s2">"TOTAL_WORKERS"</span><span class="p">,</span> <span class="mi">17</span><span class="p">))</span>
+
+        <span class="c1"># 2. 读取与脚本同目录的 CSV（利用 __file__ 定位）</span>
+        <span class="n">base_dir</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">abspath</span><span class="p">(</span><span class="vm">__file__</span><span class="p">))</span>
+        <span class="n">csv_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">base_dir</span><span class="p">,</span> <span class="s2">"accounts.csv"</span><span class="p">)</span>
+
+        <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">csv_path</span><span class="p">,</span> <span class="s1">'r'</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s1">'utf-8'</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+            <span class="n">reader</span> <span class="o">=</span> <span class="n">csv</span><span class="o">.</span><span class="n">DictReader</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>  <span class="c1"># 列名：username, password</span>
+            <span class="n">all_accounts</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">reader</span><span class="p">)</span>
+
+        <span class="c1"># 3. 分片切割（均分）</span>
+        <span class="n">total</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">all_accounts</span><span class="p">)</span>
+        <span class="n">chunk_size</span> <span class="o">=</span> <span class="n">total</span> <span class="o">//</span> <span class="bp">self</span><span class="o">.</span><span class="n">total_workers</span>
+        <span class="n">start</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">worker_id</span> <span class="o">*</span> <span class="n">chunk_size</span>
+        <span class="n">end</span> <span class="o">=</span> <span class="n">start</span> <span class="o">+</span> <span class="n">chunk_size</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">worker_id</span> <span class="o">&lt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">total_workers</span> <span class="o">-</span> <span class="mi">1</span> <span class="k">else</span> <span class="n">total</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">my_accounts</span> <span class="o">=</span> <span class="n">all_accounts</span><span class="p">[</span><span class="n">start</span><span class="p">:</span><span class="n">end</span><span class="p">]</span>
+        <span class="n">random</span><span class="o">.</span><span class="n">shuffle</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">my_accounts</span><span class="p">)</span>  <span class="c1"># 打乱，避免同时压测前缀连续账号</span>
+
+        <span class="c1"># 4. 放入线程安全队列（跨 VU 取账号互斥）</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">pool</span> <span class="o">=</span> <span class="n">queue</span><span class="o">.</span><span class="n">Queue</span><span class="p">()</span>
+        <span class="k">for</span> <span class="n">acc</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">my_accounts</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">pool</span><span class="o">.</span><span class="n">put</span><span class="p">(</span><span class="n">acc</span><span class="p">)</span>
+
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Worker-</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">worker_id</span><span class="si">}</span><span class="s2"> 分得账号数: </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">my_accounts</span><span class="p">)</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">get_account</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">"""阻塞获取一个账号，直至有可用"""</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">pool</span><span class="o">.</span><span class="n">get</span><span class="p">()</span>
+
+<span class="c1"># 全局初始化（在所有 VU 启动前执行一次）</span>
+<span class="n">account_pool</span> <span class="o">=</span> <span class="n">AccountPool</span><span class="p">()</span>
 </code></pre></div>
-<h3 id="42-skywalking">4.2 SkyWalking 调用链分析</h3>
-<div class="highlight"><pre><span></span><code>┌─────────────────────────────────────────────────────────────┐
-│                    SkyWalking Trace 详情                    │
-├─────────────────────────────────────────────────────────────┤
-│                                                             │
-│  /api/v1/ad/match  [总耗时: 856ms]                          │
-│  │                                                          │
-│  ├─ Redis GET user:tag:123        [234ms] ⚠️ 大Key读取      │
-│  │                                                          │
-│  ├─ MySQL SELECT ad_rules          [45ms]                    │
-│  │                                                          │
-│  ├─ 业务逻辑匹配                    [23ms]                   │
-│  │                                                          │
-│  └─ HTTP 风控API调用               [756ms] ⚠️ 外部依赖慢     │
-│     └─ http://risk-control/check                            │
-│                                                             │
-└─────────────────────────────────────────────────────────────┘
+<h3 id="2-401">2. 主用户类（含 401 自动重试 + 有界队列）</h3>
+<div class="highlight"><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">AppUser</span><span class="p">(</span><span class="n">FastHttpUser</span><span class="p">):</span>
+    <span class="n">wait_time</span> <span class="o">=</span> <span class="n">between</span><span class="p">(</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">1.5</span><span class="p">)</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">on_start</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">"""每个 VU 启动时，从分片池中领取专属账号"""</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">account</span> <span class="o">=</span> <span class="n">account_pool</span><span class="o">.</span><span class="n">get_account</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">username</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">account</span><span class="p">[</span><span class="s2">"username"</span><span class="p">]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">password</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">account</span><span class="p">[</span><span class="s2">"password"</span><span class="p">]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">token</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">user_id</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">cached_task_id</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">pending_prizes</span> <span class="o">=</span> <span class="p">[]</span>  <span class="c1"># 有界队列，Max=5</span>
+
+        <span class="c1"># 首次登录（必须成功，否则该 VU 报废）</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_do_login</span><span class="p">()</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">_do_login</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">"""执行真实登录，更新 token 和 user_id"""</span>
+        <span class="n">payload</span> <span class="o">=</span> <span class="p">{</span><span class="s2">"username"</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">username</span><span class="p">,</span> <span class="s2">"password"</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">password</span><span class="p">}</span>
+        <span class="n">resp</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="s2">"/api/login"</span><span class="p">,</span> <span class="n">json</span><span class="o">=</span><span class="n">payload</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">resp</span><span class="o">.</span><span class="n">status_code</span> <span class="o">==</span> <span class="mi">200</span><span class="p">:</span>
+            <span class="n">data</span> <span class="o">=</span> <span class="n">resp</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">token</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">"token"</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">user_id</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">"user_id"</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">username</span><span class="p">)</span>
+            <span class="k">return</span> <span class="kc">True</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="sa">f</span><span class="s2">"用户 </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">username</span><span class="si">}</span><span class="s2"> 登录失败，状态码: </span><span class="si">{</span><span class="n">resp</span><span class="o">.</span><span class="n">status_code</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">_auth_request</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">method</span><span class="p">,</span> <span class="n">url</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">"""</span>
+<span class="sd">        核心封装：自动携带 Token，若返回 401 则刷新 Token 并重试一次</span>
+<span class="sd">        """</span>
+        <span class="k">if</span> <span class="s2">"headers"</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">kwargs</span><span class="p">:</span>
+            <span class="n">kwargs</span><span class="p">[</span><span class="s2">"headers"</span><span class="p">]</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">token</span><span class="p">:</span>
+            <span class="n">kwargs</span><span class="p">[</span><span class="s2">"headers"</span><span class="p">][</span><span class="s2">"Authorization"</span><span class="p">]</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">"Bearer </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">token</span><span class="si">}</span><span class="s2">"</span>
+
+        <span class="n">resp</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">request</span><span class="p">(</span><span class="n">method</span><span class="p">,</span> <span class="n">url</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+
+        <span class="c1"># 鉴权失败，尝试重新登录并重试</span>
+        <span class="k">if</span> <span class="n">resp</span><span class="o">.</span><span class="n">status_code</span> <span class="o">==</span> <span class="mi">401</span><span class="p">:</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_do_login</span><span class="p">():</span>
+                <span class="n">kwargs</span><span class="p">[</span><span class="s2">"headers"</span><span class="p">][</span><span class="s2">"Authorization"</span><span class="p">]</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">"Bearer </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">token</span><span class="si">}</span><span class="s2">"</span>
+                <span class="n">resp</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">request</span><span class="p">(</span><span class="n">method</span><span class="p">,</span> <span class="n">url</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">resp</span><span class="o">.</span><span class="n">failure</span><span class="p">(</span><span class="sa">f</span><span class="s2">"重新登录失败，用户 </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">username</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">resp</span>
+
+    <span class="c1"># ========== 业务接口（按权重分配） ==========</span>
+    <span class="nd">@task</span><span class="p">(</span><span class="mi">500</span><span class="p">)</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">browse</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">resp</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_auth_request</span><span class="p">(</span><span class="s2">"GET"</span><span class="p">,</span> <span class="s2">"/api/activity/list"</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">resp</span><span class="o">.</span><span class="n">status_code</span> <span class="o">!=</span> <span class="mi">200</span><span class="p">:</span>
+            <span class="n">resp</span><span class="o">.</span><span class="n">failure</span><span class="p">(</span><span class="sa">f</span><span class="s2">"浏览失败: </span><span class="si">{</span><span class="n">resp</span><span class="o">.</span><span class="n">status_code</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+
+    <span class="nd">@task</span><span class="p">(</span><span class="mi">150</span><span class="p">)</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">view_rules</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="c1"># 类似实现...</span>
+        <span class="k">pass</span>
+
+    <span class="nd">@task</span><span class="p">(</span><span class="mi">150</span><span class="p">)</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">view_task_detail</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">task_id</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">([</span><span class="mi">1001</span><span class="p">,</span> <span class="mi">1002</span><span class="p">,</span> <span class="mi">1003</span><span class="p">])</span>
+        <span class="n">resp</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_auth_request</span><span class="p">(</span><span class="s2">"GET"</span><span class="p">,</span> <span class="sa">f</span><span class="s2">"/api/task/detail?task_id=</span><span class="si">{</span><span class="n">task_id</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">resp</span><span class="o">.</span><span class="n">status_code</span> <span class="o">==</span> <span class="mi">200</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">cached_task_id</span> <span class="o">=</span> <span class="n">task_id</span>  <span class="c1"># 缓存，供后续跳转</span>
+
+    <span class="nd">@task</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">start_task</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">task_id</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">cached_task_id</span> <span class="ow">or</span> <span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">([</span><span class="mi">1001</span><span class="p">,</span> <span class="mi">1002</span><span class="p">,</span> <span class="mi">1003</span><span class="p">])</span>
+        <span class="n">resp</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_auth_request</span><span class="p">(</span><span class="s2">"POST"</span><span class="p">,</span> <span class="s2">"/api/task/start"</span><span class="p">,</span> <span class="n">json</span><span class="o">=</span><span class="p">{</span><span class="s2">"task_id"</span><span class="p">:</span> <span class="n">task_id</span><span class="p">})</span>
+
+    <span class="nd">@task</span><span class="p">(</span><span class="mi">50</span><span class="p">)</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">do_login</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">"""主动刷新 Token（模拟用户重新登录）"""</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_do_login</span><span class="p">()</span>
+
+    <span class="c1"># ========== 抽奖 + 有界队列（核心） ==========</span>
+    <span class="n">MAX_PENDING</span> <span class="o">=</span> <span class="mi">5</span>  <span class="c1"># 队列容量保护</span>
+
+    <span class="nd">@task</span><span class="p">(</span><span class="mi">43</span><span class="p">)</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">do_draw</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">resp</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_auth_request</span><span class="p">(</span><span class="s2">"POST"</span><span class="p">,</span> <span class="s2">"/api/draw"</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">resp</span><span class="o">.</span><span class="n">status_code</span> <span class="o">!=</span> <span class="mi">200</span><span class="p">:</span>
+            <span class="n">resp</span><span class="o">.</span><span class="n">failure</span><span class="p">(</span><span class="sa">f</span><span class="s2">"抽奖失败: </span><span class="si">{</span><span class="n">resp</span><span class="o">.</span><span class="n">status_code</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+            <span class="k">return</span>
+
+        <span class="n">data</span> <span class="o">=</span> <span class="n">resp</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
+        <span class="k">if</span> <span class="n">data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">"data"</span><span class="p">,</span> <span class="p">{})</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">"win"</span><span class="p">)</span> <span class="ow">is</span> <span class="kc">True</span><span class="p">:</span>
+            <span class="n">prize_id</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s2">"data"</span><span class="p">]</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">"prize_id"</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">prize_id</span> <span class="ow">and</span> <span class="n">random</span><span class="o">.</span><span class="n">random</span><span class="p">()</span> <span class="o">&lt;</span> <span class="mf">0.5062</span><span class="p">:</span>  <span class="c1"># 50.62% 领奖率</span>
+                <span class="c1"># 队列容量保护（丢弃最旧奖品，防止内存泄漏）</span>
+                <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">pending_prizes</span><span class="p">)</span> <span class="o">&gt;=</span> <span class="bp">self</span><span class="o">.</span><span class="n">MAX_PENDING</span><span class="p">:</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">pending_prizes</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>  <span class="c1"># 丢弃最旧的</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">pending_prizes</span><span class="o">.</span><span class="n">append</span><span class="p">({</span>
+                    <span class="s2">"user_id"</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">user_id</span><span class="p">,</span>
+                    <span class="s2">"prize_id"</span><span class="p">:</span> <span class="n">prize_id</span>
+                <span class="p">})</span>
+
+    <span class="nd">@task</span><span class="p">(</span><span class="mi">7</span><span class="p">)</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">do_claim</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">pending_prizes</span><span class="p">:</span>
+            <span class="n">item</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">pending_prizes</span><span class="o">.</span><span class="n">pop</span><span class="p">()</span>  <span class="c1"># LIFO，模拟最近中奖先领</span>
+            <span class="n">resp</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_auth_request</span><span class="p">(</span><span class="s2">"POST"</span><span class="p">,</span> <span class="s2">"/api/claim"</span><span class="p">,</span> <span class="n">json</span><span class="o">=</span><span class="p">{</span>
+                <span class="s2">"prize_id"</span><span class="p">:</span> <span class="n">item</span><span class="p">[</span><span class="s2">"prize_id"</span><span class="p">],</span>
+                <span class="s2">"user_id"</span><span class="p">:</span> <span class="n">item</span><span class="p">[</span><span class="s2">"user_id"</span><span class="p">]</span>
+            <span class="p">})</span>
+            <span class="k">if</span> <span class="n">resp</span><span class="o">.</span><span class="n">status_code</span> <span class="o">!=</span> <span class="mi">200</span><span class="p">:</span>
+                <span class="n">resp</span><span class="o">.</span><span class="n">failure</span><span class="p">(</span><span class="sa">f</span><span class="s2">"领奖失败: </span><span class="si">{</span><span class="n">resp</span><span class="o">.</span><span class="n">status_code</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="c1"># 队列为空，查看我的奖品（维持发压连贯性）</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_auth_request</span><span class="p">(</span><span class="s2">"GET"</span><span class="p">,</span> <span class="s2">"/api/prize/my-list"</span><span class="p">)</span>
+</code></pre></div>
+<h3 id="3-loadtestshape">3. 阶梯升压控制（LoadTestShape）</h3>
+<div class="highlight"><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">StepsLoadTest</span><span class="p">(</span><span class="n">LoadTestShape</span><span class="p">):</span>
+    <span class="n">stages</span> <span class="o">=</span> <span class="p">[</span>
+        <span class="p">{</span><span class="s2">"duration"</span><span class="p">:</span> <span class="mi">120</span><span class="p">,</span> <span class="s2">"users"</span><span class="p">:</span> <span class="mi">12000</span><span class="p">,</span> <span class="s2">"spawn_rate"</span><span class="p">:</span> <span class="mi">50</span><span class="p">},</span>   <span class="c1"># 25%</span>
+        <span class="p">{</span><span class="s2">"duration"</span><span class="p">:</span> <span class="mi">120</span><span class="p">,</span> <span class="s2">"users"</span><span class="p">:</span> <span class="mi">24000</span><span class="p">,</span> <span class="s2">"spawn_rate"</span><span class="p">:</span> <span class="mi">50</span><span class="p">},</span>   <span class="c1"># 50%</span>
+        <span class="p">{</span><span class="s2">"duration"</span><span class="p">:</span> <span class="mi">180</span><span class="p">,</span> <span class="s2">"users"</span><span class="p">:</span> <span class="mi">36000</span><span class="p">,</span> <span class="s2">"spawn_rate"</span><span class="p">:</span> <span class="mi">50</span><span class="p">},</span>   <span class="c1"># 75%</span>
+        <span class="p">{</span><span class="s2">"duration"</span><span class="p">:</span> <span class="mi">300</span><span class="p">,</span> <span class="s2">"users"</span><span class="p">:</span> <span class="mi">48000</span><span class="p">,</span> <span class="s2">"spawn_rate"</span><span class="p">:</span> <span class="mi">50</span><span class="p">},</span>   <span class="c1"># 100% 目标</span>
+        <span class="p">{</span><span class="s2">"duration"</span><span class="p">:</span> <span class="mi">120</span><span class="p">,</span> <span class="s2">"users"</span><span class="p">:</span> <span class="mi">57600</span><span class="p">,</span> <span class="s2">"spawn_rate"</span><span class="p">:</span> <span class="mi">50</span><span class="p">},</span>   <span class="c1"># 120% 破极</span>
+    <span class="p">]</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">tick</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">run_time</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_run_time</span><span class="p">()</span>
+        <span class="k">for</span> <span class="n">stage</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">stages</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">run_time</span> <span class="o">&lt;</span> <span class="n">stage</span><span class="p">[</span><span class="s2">"duration"</span><span class="p">]:</span>
+                <span class="k">return</span> <span class="p">(</span><span class="n">stage</span><span class="p">[</span><span class="s2">"users"</span><span class="p">],</span> <span class="n">stage</span><span class="p">[</span><span class="s2">"spawn_rate"</span><span class="p">])</span>
+        <span class="k">return</span> <span class="kc">None</span>
 </code></pre></div>
 <hr>
-<h2 id="_3">五、实战案例</h2>
-<h3 id="1-redis-key">案例 1: Redis 大 Key 导致内存暴涨与接口变慢</h3>
-<h4 id="_4">现象</h4>
+<h2 id="k8s">六、K8s 分布式部署与分片配置</h2>
+<h3 id="1-worker-deployment">1. Worker Deployment（含环境变量注入）</h3>
+<div class="highlight"><pre><span></span><code><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">apps/v1</span>
+<span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Deployment</span>
+<span class="nt">metadata</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">locust-worker</span>
+<span class="nt">spec</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">replicas</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">17</span>
+<span class="w">  </span><span class="nt">selector</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">matchLabels</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">app</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">locust-worker</span>
+<span class="w">  </span><span class="nt">template</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">metadata</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">labels</span><span class="p">:</span>
+<span class="w">        </span><span class="nt">app</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">locust-worker</span>
+<span class="w">    </span><span class="nt">spec</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">containers</span><span class="p">:</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">worker</span>
+<span class="w">        </span><span class="nt">image</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">your-registry/locust-loadtest:latest</span><span class="w">   </span><span class="c1"># 镜像内含 CSV</span>
+<span class="w">        </span><span class="nt">args</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="s">"--worker"</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="s">"--master-host=locust-master"</span><span class="p p-Indicator">]</span>
+<span class="w">        </span><span class="nt">env</span><span class="p">:</span>
+<span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">POD_NAME</span>
+<span class="w">          </span><span class="nt">valueFrom</span><span class="p">:</span>
+<span class="w">            </span><span class="nt">fieldRef</span><span class="p">:</span>
+<span class="w">              </span><span class="nt">fieldPath</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">metadata.name</span>
+<span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">TOTAL_WORKERS</span>
+<span class="w">          </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="s">"17"</span><span class="w">          </span><span class="c1"># 必须与 replicas 保持一致</span>
+<span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">LOCUST_HOST</span><span class="w">   </span><span class="c1"># 可选，被测服务地址</span>
+<span class="w">          </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="s">"https://your-target-domain.com"</span>
+<span class="w">        </span><span class="nt">resources</span><span class="p">:</span>
+<span class="w">          </span><span class="nt">requests</span><span class="p">:</span>
+<span class="w">            </span><span class="nt">cpu</span><span class="p">:</span><span class="w"> </span><span class="s">"2"</span>
+<span class="w">            </span><span class="nt">memory</span><span class="p">:</span><span class="w"> </span><span class="s">"4Gi"</span>
+<span class="w">          </span><span class="nt">limits</span><span class="p">:</span>
+<span class="w">            </span><span class="nt">cpu</span><span class="p">:</span><span class="w"> </span><span class="s">"4"</span>
+<span class="w">            </span><span class="nt">memory</span><span class="p">:</span><span class="w"> </span><span class="s">"6Gi"</span>
+<span class="w">        </span><span class="c1"># 调大文件句柄限制（关键）</span>
+<span class="w">        </span><span class="nt">securityContext</span><span class="p">:</span>
+<span class="w">          </span><span class="nt">sysctls</span><span class="p">:</span>
+<span class="w">          </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">net.core.somaxconn</span>
+<span class="w">            </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="s">"65535"</span>
+<span class="w">          </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">net.ipv4.tcp_max_syn_backlog</span>
+<span class="w">            </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="s">"65535"</span>
+</code></pre></div>
+<h3 id="2-master-service-deployment">2. Master Service &amp; Deployment（简要）</h3>
+<div class="highlight"><pre><span></span><code><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">v1</span>
+<span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Service</span>
+<span class="nt">metadata</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">locust-master</span>
+<span class="nt">spec</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">clusterIP</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">None</span>
+<span class="w">  </span><span class="nt">ports</span><span class="p">:</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">comm</span>
+<span class="w">    </span><span class="nt">port</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">5557</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">comm2</span>
+<span class="w">    </span><span class="nt">port</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">5558</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">web-ui</span>
+<span class="w">    </span><span class="nt">port</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">8089</span>
+<span class="w">  </span><span class="nt">selector</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">app</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">locust-master</span>
+<span class="nn">---</span>
+<span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">apps/v1</span>
+<span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Deployment</span>
+<span class="nt">metadata</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">locust-master</span>
+<span class="nt">spec</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">replicas</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1</span>
+<span class="w">  </span><span class="nt">template</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">spec</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">containers</span><span class="p">:</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">master</span>
+<span class="w">        </span><span class="nt">image</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">your-registry/locust-loadtest:latest</span>
+<span class="w">        </span><span class="nt">args</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="s">"--master"</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="s">"--headless"</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="s">"--web-port=8089"</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="s">"--expect-workers=17"</span><span class="p p-Indicator">]</span>
+<span class="w">        </span><span class="nt">ports</span><span class="p">:</span>
+<span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">containerPort</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">8089</span>
+<span class="w">        </span><span class="nt">resources</span><span class="p">:</span>
+<span class="w">          </span><span class="nt">requests</span><span class="p">:</span>
+<span class="w">            </span><span class="nt">cpu</span><span class="p">:</span><span class="w"> </span><span class="s">"500m"</span>
+<span class="w">            </span><span class="nt">memory</span><span class="p">:</span><span class="w"> </span><span class="s">"1Gi"</span>
+</code></pre></div>
+<hr>
+<h2 id="_5">七、资源规划与阶梯升压策略</h2>
 <table>
 <thead>
 <tr>
-<th>指标</th>
-<th>数值</th>
-<th>状态</th>
+<th style="text-align: left;">阶段</th>
+<th style="text-align: left;">时长</th>
+<th style="text-align: left;">总 VU（用户数）</th>
+<th style="text-align: left;">目标总 QPS</th>
+<th style="text-align: left;">校验目的</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>Redis 内存使用率</td>
-<td>92% → 持续上涨</td>
-<td>⚠️ 接近爆满</td>
+<td style="text-align: left;">Stage 1</td>
+<td style="text-align: left;">2 min</td>
+<td style="text-align: left;">12,000</td>
+<td style="text-align: left;">~6,250 (25%)</td>
+<td style="text-align: left;">验证连通性与缓存</td>
 </tr>
 <tr>
-<td>缓存命中率</td>
-<td>95% → 60%</td>
-<td>⚠️ 大幅下降</td>
+<td style="text-align: left;">Stage 2</td>
+<td style="text-align: left;">2 min</td>
+<td style="text-align: left;">24,000</td>
+<td style="text-align: left;">~12,500 (50%)</td>
+<td style="text-align: left;">观察中间件水位</td>
 </tr>
 <tr>
-<td>核心 API P95 RT</td>
-<td>150ms → 1.8s</td>
-<td>⚠️ 抖动剧烈</td>
+<td style="text-align: left;">Stage 3</td>
+<td style="text-align: left;">3 min</td>
+<td style="text-align: left;">36,000</td>
+<td style="text-align: left;">~18,750 (75%)</td>
+<td style="text-align: left;">逼近临界点</td>
 </tr>
 <tr>
-<td>evicted_keys</td>
-<td>每秒数千次</td>
-<td>⚠️ 频繁逐出</td>
-</tr>
-</tbody>
-</table>
-<h4 id="step-1_1">Step 1: 可视化监控定位</h4>
-<div class="highlight"><pre><span></span><code>┌─────────────────────────────────────────────────────────────┐
-│  Grafana 监控发现                                            │
-├─────────────────────────────────────────────────────────────┤
-│                                                             │
-│  Redis 内存趋势图                                            │
-│  ┌─────────────────────────────────────────────────────┐   │
-│  │     ▲                                               │   │
-│  │    ╱                                                │   │
-│  │   ╱  持续上涨，不回落                               │   │
-│  │  ╱                                                  │   │
-│  │ ╱                                                   │   │
-│  │─────────────────────────────────────────────────    │   │
-│  │  90%警戒线                                          │   │
-│  └─────────────────────────────────────────────────────┘   │
-│                                                             │
-│  缓存命中率趋势                                              │
-│  ┌─────────────────────────────────────────────────────┐   │
-│  │ ────────┐                                           │   │
-│  │         ╲                                           │   │
-│  │          ╲ 从95%跌至60%                             │   │
-│  │           ─────────────────────────────────────     │   │
-│  └─────────────────────────────────────────────────────┘   │
-│                                                             │
-└─────────────────────────────────────────────────────────────┘
-</code></pre></div>
-<h4 id="step-2_1">Step 2: 日志与工具检查</h4>
-<div class="highlight"><pre><span></span><code><span class="c1"># 1. 大 Key 扫描</span>
-redis-cli<span class="w"> </span>--bigkeys
-
-<span class="c1"># 输出</span>
---------<span class="w"> </span>summary<span class="w"> </span>-------
-Biggest<span class="w"> </span>string<span class="w"> </span>found<span class="w"> </span><span class="s1">'user:tag:ad_space_001'</span><span class="w"> </span>has<span class="w"> </span><span class="m">2097152</span><span class="w"> </span>bytes<span class="w">  </span><span class="c1"># 2MB</span>
-
-<span class="c1"># 2. 检查该 Key 的 TTL</span>
-redis-cli<span class="w"> </span>TTL<span class="w"> </span>user:tag:ad_space_001
-<span class="o">(</span>integer<span class="o">)</span><span class="w"> </span>-1<span class="w">  </span><span class="c1"># -1 表示永不过期 ⚠️</span>
-
-<span class="c1"># 3. 检查逐出情况</span>
-redis-cli<span class="w"> </span>INFO<span class="w"> </span>stats<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>evicted
-evicted_keys:45230<span class="w">  </span><span class="c1"># 大量逐出</span>
-
-<span class="c1"># 4. 网络流量监控</span>
-redis-cli<span class="w"> </span>--stat
-<span class="c1"># 观察到每秒有几次 200Mbps 的入流量尖峰</span>
-
-<span class="c1"># 5. Arthas 追踪调用栈</span>
-trace<span class="w"> </span>com.xxx.service.AdService<span class="w"> </span>getTags<span class="w"> </span><span class="s1">'#cost &gt; 100'</span><span class="w"> </span>-n<span class="w"> </span><span class="m">5</span>
-
-<span class="c1"># 输出</span>
-<span class="sb">`</span>---<span class="o">[</span><span class="m">234</span>.56ms<span class="o">]</span><span class="w"> </span>com.xxx.service.AdService:getTags<span class="o">()</span>
-<span class="w">    </span><span class="sb">`</span>---<span class="o">[</span><span class="m">230</span>.12ms<span class="o">]</span><span class="w"> </span>redis.clients.jedis.Jedis:get<span class="o">()</span>
-<span class="w">        </span>└─<span class="w"> </span>Key:<span class="w"> </span>user:tag:ad_space_001<span class="w">  </span><span class="c1"># 确认是这个大Key</span>
-</code></pre></div>
-<h4 id="_5">根因分析</h4>
-<div class="highlight"><pre><span></span><code>┌─────────────────────────────────────────────────────────────┐
-│                    根因链路                                  │
-├─────────────────────────────────────────────────────────────┤
-│                                                             │
-│  1. 业务代码使用 String 存储用户标签                         │
-│     └─ 单个 Key 存储广告位所有用户标签，Value 达到 2MB       │
-│                                                             │
-│  2. 未设置 TTL 过期时间                                      │
-│     └─ Key 永不过期，持续累积                                │
-│                                                             │
-│  3. 内存触达 maxmemory (90%+)                                │
-│     └─ 触发 allkeys-lru 逐出策略                            │
-│                                                             │
-│  4. 热数据被错误逐出                                         │
-│     └─ 当日活跃用户的标签被踢出                              │
-│                                                             │
-│  5. 缓存命中率从 95% 跌至 60%                                │
-│     └─ 大量请求穿透到 MySQL                                  │
-│                                                             │
-│  6. 接口 RT 抖动、TPS 下降                                   │
-│                                                             │
-└─────────────────────────────────────────────────────────────┘
-</code></pre></div>
-<h4 id="_6">解决方案</h4>
-<table>
-<thead>
-<tr>
-<th>优化项</th>
-<th>优化前</th>
-<th>优化后</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>数据结构</td>
-<td>String (2MB)</td>
-<td>Hash (按用户ID分片)</td>
+<td style="text-align: left;">Stage 4</td>
+<td style="text-align: left;">5 min</td>
+<td style="text-align: left;"><strong>48,000</strong></td>
+<td style="text-align: left;"><strong>~25,000 (100%)</strong></td>
+<td style="text-align: left;"><strong>目标容量持续验证</strong></td>
 </tr>
 <tr>
-<td>TTL</td>
-<td>无过期</td>
-<td>24小时滑动过期</td>
-</tr>
-<tr>
-<td>单次传输量</td>
-<td>2MB</td>
-<td>&lt; 20KB</td>
-</tr>
-<tr>
-<td>内存占用</td>
-<td>92%</td>
-<td>55%</td>
-</tr>
-<tr>
-<td>缓存命中率</td>
-<td>60%</td>
-<td>95%</td>
-</tr>
-</tbody>
-</table>
-<p><strong>代码改造示例</strong>：</p>
-<div class="highlight"><pre><span></span><code><span class="c1">// 优化前：String 存储所有用户标签</span>
-<span class="n">redisTemplate</span><span class="p">.</span><span class="na">opsForValue</span><span class="p">().</span><span class="na">set</span><span class="p">(</span><span class="s">"user:tag:ad_space_001"</span><span class="p">,</span><span class="w"> </span><span class="n">allUserTags</span><span class="p">);</span>
-
-<span class="c1">// 优化后：Hash 分片存储</span>
-<span class="n">String</span><span class="w"> </span><span class="n">shardKey</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">"user:tag:"</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="p">(</span><span class="n">userId</span><span class="w"> </span><span class="o">%</span><span class="w"> </span><span class="mi">100</span><span class="p">);</span>
-<span class="n">redisTemplate</span><span class="p">.</span><span class="na">opsForHash</span><span class="p">().</span><span class="na">put</span><span class="p">(</span><span class="n">shardKey</span><span class="p">,</span><span class="w"> </span><span class="n">String</span><span class="p">.</span><span class="na">valueOf</span><span class="p">(</span><span class="n">userId</span><span class="p">),</span><span class="w"> </span><span class="n">userTags</span><span class="p">);</span>
-<span class="n">redisTemplate</span><span class="p">.</span><span class="na">expire</span><span class="p">(</span><span class="n">shardKey</span><span class="p">,</span><span class="w"> </span><span class="mi">24</span><span class="p">,</span><span class="w"> </span><span class="n">TimeUnit</span><span class="p">.</span><span class="na">HOURS</span><span class="p">);</span>
-
-<span class="c1">// 读取时只获取单个用户</span>
-<span class="n">String</span><span class="w"> </span><span class="n">tags</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">String</span><span class="p">)</span><span class="w"> </span><span class="n">redisTemplate</span><span class="p">.</span><span class="na">opsForHash</span><span class="p">().</span><span class="na">get</span><span class="p">(</span><span class="n">shardKey</span><span class="p">,</span><span class="w"> </span><span class="n">String</span><span class="p">.</span><span class="na">valueOf</span><span class="p">(</span><span class="n">userId</span><span class="p">));</span>
-</code></pre></div>
-<hr>
-<h3 id="2-api">案例 2: 同步调用外部风控 API 导致响应慢</h3>
-<h4 id="_7">现象</h4>
-<table>
-<thead>
-<tr>
-<th>指标</th>
-<th>数值</th>
-<th>状态</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>核心 API 平均 RT</td>
-<td>60ms → 450ms</td>
-<td>⚠️ 大幅上升</td>
-</tr>
-<tr>
-<td>P99 RT</td>
-<td>150ms → 800ms</td>
-<td>⚠️ 不可接受</td>
-</tr>
-<tr>
-<td>TPS</td>
-<td>5200 → 3800</td>
-<td>⚠️ 下降明显</td>
-</tr>
-<tr>
-<td>CPU 使用率</td>
-<td>45%</td>
-<td>正常</td>
-</tr>
-<tr>
-<td>错误率</td>
-<td>0%</td>
-<td>正常</td>
-</tr>
-</tbody>
-</table>
-<h4 id="step-1_2">Step 1: 可视化监控定位</h4>
-<div class="highlight"><pre><span></span><code>┌─────────────────────────────────────────────────────────────┐
-│  SkyWalking 调用链分析                                       │
-├─────────────────────────────────────────────────────────────┤
-│                                                             │
-│  /api/v1/ad/match  [总耗时: 856ms]                          │
-│  │                                                          │
-│  ├─ Redis GET user:tag:123        [12ms]   ✓ 正常           │
-│  │                                                          │
-│  ├─ MySQL SELECT ad_rules          [45ms]  ✓ 正常           │
-│  │                                                          │
-│  ├─ 业务逻辑匹配                    [23ms]  ✓ 正常           │
-│  │                                                          │
-│  └─ HTTP 风控API调用               [756ms] ⚠️ 瓶颈          │
-│     └─ http://risk-control/check                            │
-│         └─ 占总耗时 88%                                      │
-│                                                             │
-└─────────────────────────────────────────────────────────────┘
-</code></pre></div>
-<h4 id="step-2-arthas">Step 2: Arthas 追踪定位</h4>
-<div class="highlight"><pre><span></span><code><span class="c1"># 追踪核心方法耗时</span>
-trace<span class="w"> </span>com.xxx.advfilter.handler.ListJudgeShuffleHandler<span class="w"> </span>doJudge<span class="w"> </span><span class="s1">'#cost &gt; 100'</span><span class="w"> </span>-n<span class="w"> </span><span class="m">5</span>
-
-<span class="c1"># 输出</span>
-<span class="sb">`</span>---<span class="o">[</span><span class="m">856</span>.23ms<span class="o">]</span><span class="w"> </span>cn.xxx.advfilter.handler.ListJudgeShuffleHandler:doJudge<span class="o">()</span>
-<span class="w">    </span>+---<span class="o">[</span><span class="m">12</span>.15ms<span class="o">]</span><span class="w"> </span>cn.xxx.service.UserTagService:getTags<span class="o">()</span>
-<span class="w">    </span>+---<span class="o">[</span><span class="m">45</span>.32ms<span class="o">]</span><span class="w"> </span>cn.xxx.service.AdRuleService:getRules<span class="o">()</span>
-<span class="w">    </span>+---<span class="o">[</span><span class="m">23</span>.45ms<span class="o">]</span><span class="w"> </span>cn.xxx.service.AdMatchService:doMatch<span class="o">()</span>
-<span class="w">    </span><span class="sb">`</span>---<span class="o">[</span><span class="m">756</span>.31ms<span class="o">]</span><span class="w"> </span>cn.xxx.external.RiskControlClient:check<span class="o">()</span><span class="w">  </span>←<span class="w"> </span>瓶颈！
-
-<span class="c1"># 进一步追踪风控调用</span>
-trace<span class="w"> </span>cn.xxx.external.RiskControlClient<span class="w"> </span>check<span class="w"> </span><span class="s1">'#cost &gt; 200'</span><span class="w"> </span>-n<span class="w"> </span><span class="m">5</span>
-
-<span class="c1"># 输出</span>
-<span class="sb">`</span>---<span class="o">[</span><span class="m">756</span>.12ms<span class="o">]</span><span class="w"> </span>cn.xxx.external.RiskControlClient:check<span class="o">()</span>
-<span class="w">    </span><span class="sb">`</span>---<span class="o">[</span><span class="m">755</span>.89ms<span class="o">]</span><span class="w"> </span>org.apache.http.impl.client.CloseableHttpClient:execute<span class="o">()</span>
-<span class="w">        </span>└─<span class="w"> </span>同步阻塞等待外部响应
-</code></pre></div>
-<h4 id="_8">根因分析</h4>
-<div class="highlight"><pre><span></span><code>┌─────────────────────────────────────────────────────────────┐
-│                    根因链路                                  │
-├─────────────────────────────────────────────────────────────┤
-│                                                             │
-│  1. 业务逻辑强依赖风控 API 结果                              │
-│     └─ 必须拿到结果才能决定是否展示广告                      │
-│                                                             │
-│  2. 风控 API 响应慢 (300ms - 1s)                             │
-│     └─ 外部系统性能问题，不可控                              │
-│                                                             │
-│  3. 同步调用阻塞线程                                         │
-│     └─ 每个请求都要等待风控返回                              │
-│                                                             │
-│  4. 线程池被占满                                             │
-│     └─ 大量线程处于 WAITING 状态                             │
-│                                                             │
-│  5. 新请求排队等待                                           │
-│     └─ RT 飙升，TPS 下降                                     │
-│                                                             │
-└─────────────────────────────────────────────────────────────┘
-</code></pre></div>
-<h4 id="_9">解决方案</h4>
-<p><strong>方案一：异步化改造</strong></p>
-<div class="highlight"><pre><span></span><code><span class="c1">// 优化前：同步调用</span>
-<span class="kd">public</span><span class="w"> </span><span class="n">AdResult</span><span class="w"> </span><span class="nf">match</span><span class="p">(</span><span class="n">String</span><span class="w"> </span><span class="n">userId</span><span class="p">,</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="n">adSpaceId</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="n">List</span><span class="o">&lt;</span><span class="n">Ad</span><span class="o">&gt;</span><span class="w"> </span><span class="n">candidates</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">getCandidates</span><span class="p">(</span><span class="n">userId</span><span class="p">,</span><span class="w"> </span><span class="n">adSpaceId</span><span class="p">);</span>
-<span class="w">    </span><span class="n">RiskResult</span><span class="w"> </span><span class="n">riskResult</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">riskControlClient</span><span class="p">.</span><span class="na">check</span><span class="p">(</span><span class="n">userId</span><span class="p">,</span><span class="w"> </span><span class="n">candidates</span><span class="p">);</span><span class="w">  </span><span class="c1">// 阻塞756ms</span>
-<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">filterByRisk</span><span class="p">(</span><span class="n">candidates</span><span class="p">,</span><span class="w"> </span><span class="n">riskResult</span><span class="p">);</span>
-<span class="p">}</span>
-
-<span class="c1">// 优化后：异步调用 + CompletableFuture</span>
-<span class="kd">public</span><span class="w"> </span><span class="n">CompletableFuture</span><span class="o">&lt;</span><span class="n">AdResult</span><span class="o">&gt;</span><span class="w"> </span><span class="nf">matchAsync</span><span class="p">(</span><span class="n">String</span><span class="w"> </span><span class="n">userId</span><span class="p">,</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="n">adSpaceId</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="n">List</span><span class="o">&lt;</span><span class="n">Ad</span><span class="o">&gt;</span><span class="w"> </span><span class="n">candidates</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">getCandidates</span><span class="p">(</span><span class="n">userId</span><span class="p">,</span><span class="w"> </span><span class="n">adSpaceId</span><span class="p">);</span>
-
-<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">CompletableFuture</span><span class="p">.</span><span class="na">supplyAsync</span><span class="p">(()</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span>
-<span class="w">        </span><span class="n">riskControlClient</span><span class="p">.</span><span class="na">check</span><span class="p">(</span><span class="n">userId</span><span class="p">,</span><span class="w"> </span><span class="n">candidates</span><span class="p">),</span><span class="w"> </span>
-<span class="w">        </span><span class="n">riskExecutorService</span><span class="w">  </span><span class="c1">// 专用线程池</span>
-<span class="w">    </span><span class="p">).</span><span class="na">thenApply</span><span class="p">(</span><span class="n">riskResult</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span>
-<span class="w">        </span><span class="n">filterByRisk</span><span class="p">(</span><span class="n">candidates</span><span class="p">,</span><span class="w"> </span><span class="n">riskResult</span><span class="p">)</span>
-<span class="w">    </span><span class="p">).</span><span class="na">orTimeout</span><span class="p">(</span><span class="mi">500</span><span class="p">,</span><span class="w"> </span><span class="n">TimeUnit</span><span class="p">.</span><span class="na">MILLISECONDS</span><span class="p">)</span><span class="w">  </span><span class="c1">// 超时控制</span>
-<span class="w">     </span><span class="p">.</span><span class="na">exceptionally</span><span class="p">(</span><span class="n">ex</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">getDefaultAd</span><span class="p">());</span><span class="w">    </span><span class="c1">// 降级处理</span>
-<span class="p">}</span>
-</code></pre></div>
-<p><strong>方案二：熔断降级</strong></p>
-<div class="highlight"><pre><span></span><code><span class="c1">// 使用 Sentinel 熔断</span>
-<span class="nd">@SentinelResource</span><span class="p">(</span>
-<span class="w">    </span><span class="n">value</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">"riskControl"</span><span class="p">,</span>
-<span class="w">    </span><span class="n">fallback</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">"getDefaultAd"</span><span class="p">,</span>
-<span class="w">    </span><span class="n">blockHandler</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">"handleBlock"</span>
-<span class="p">)</span>
-<span class="kd">public</span><span class="w"> </span><span class="n">RiskResult</span><span class="w"> </span><span class="nf">check</span><span class="p">(</span><span class="n">String</span><span class="w"> </span><span class="n">userId</span><span class="p">,</span><span class="w"> </span><span class="n">List</span><span class="o">&lt;</span><span class="n">Ad</span><span class="o">&gt;</span><span class="w"> </span><span class="n">candidates</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">riskControlClient</span><span class="p">.</span><span class="na">check</span><span class="p">(</span><span class="n">userId</span><span class="p">,</span><span class="w"> </span><span class="n">candidates</span><span class="p">);</span>
-<span class="p">}</span>
-
-<span class="c1">// 熔断降级方法</span>
-<span class="kd">public</span><span class="w"> </span><span class="n">AdResult</span><span class="w"> </span><span class="nf">handleBlock</span><span class="p">(</span><span class="n">String</span><span class="w"> </span><span class="n">userId</span><span class="p">,</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="n">adSpaceId</span><span class="p">,</span><span class="w"> </span><span class="n">BlockException</span><span class="w"> </span><span class="n">ex</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="n">log</span><span class="p">.</span><span class="na">warn</span><span class="p">(</span><span class="s">"风控API熔断，返回兜底广告"</span><span class="p">);</span>
-<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">getDefaultAd</span><span class="p">();</span><span class="w">  </span><span class="c1">// 返回通用兜底广告</span>
-<span class="p">}</span>
-</code></pre></div>
-<p><strong>Sentinel 配置</strong>：</p>
-<div class="highlight"><pre><span></span><code><span class="c1">// 熔断规则：响应时间超过500ms触发熔断</span>
-<span class="n">DegradeRule</span><span class="w"> </span><span class="n">rule</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">DegradeRule</span><span class="p">(</span><span class="s">"riskControl"</span><span class="p">)</span>
-<span class="w">    </span><span class="p">.</span><span class="na">setGrade</span><span class="p">(</span><span class="n">CircuitBreakerStrategy</span><span class="p">.</span><span class="na">SLOW_REQUEST_RATIO</span><span class="p">.</span><span class="na">getType</span><span class="p">())</span>
-<span class="w">    </span><span class="p">.</span><span class="na">setCount</span><span class="p">(</span><span class="mi">500</span><span class="p">)</span><span class="w">           </span><span class="c1">// 慢调用阈值500ms</span>
-<span class="w">    </span><span class="p">.</span><span class="na">setSlowRatioThreshold</span><span class="p">(</span><span class="mf">0.5</span><span class="p">)</span><span class="w">  </span><span class="c1">// 慢调用比例50%</span>
-<span class="w">    </span><span class="p">.</span><span class="na">setMinRequestAmount</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span><span class="w">     </span><span class="c1">// 最小请求数</span>
-<span class="w">    </span><span class="p">.</span><span class="na">setStatIntervalMs</span><span class="p">(</span><span class="mi">10000</span><span class="p">)</span><span class="w">    </span><span class="c1">// 统计时长10s</span>
-<span class="w">    </span><span class="p">.</span><span class="na">setTimeWindow</span><span class="p">(</span><span class="mi">10</span><span class="p">);</span><span class="w">          </span><span class="c1">// 熔断时长10s</span>
-</code></pre></div>
-<h4 id="_10">优化效果</h4>
-<table>
-<thead>
-<tr>
-<th>指标</th>
-<th>优化前</th>
-<th>优化后</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>核心 API RT</td>
-<td>450ms</td>
-<td>60ms</td>
-</tr>
-<tr>
-<td>P99 RT</td>
-<td>800ms</td>
-<td>150ms</td>
-</tr>
-<tr>
-<td>TPS</td>
-<td>3800</td>
-<td>5200</td>
-</tr>
-<tr>
-<td>风控超时影响</td>
-<td>阻塞主流程</td>
-<td>熔断降级</td>
+<td style="text-align: left;">Stage 5</td>
+<td style="text-align: left;">2 min</td>
+<td style="text-align: left;">57,600</td>
+<td style="text-align: left;">~30,000 (120%)</td>
+<td style="text-align: left;">寻找系统天花板</td>
 </tr>
 </tbody>
 </table>
 <hr>
-<h2 id="_11">六、排查优先级矩阵</h2>
+<h2 id="checklist">八、监控与成功标准（Checklist）</h2>
 <table>
 <thead>
 <tr>
-<th>现象</th>
-<th>优先排查</th>
-<th>工具</th>
-<th>典型原因</th>
+<th style="text-align: left;">层级</th>
+<th style="text-align: left;">工具</th>
+<th style="text-align: left;">重点关注指标</th>
+<th style="text-align: left;">通过阈值</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>TPS低 + CPU低</td>
-<td>数据库锁/连接池/外部依赖</td>
-<td>SHOW PROCESSLIST, Arthas trace</td>
-<td>行锁竞争、连接池满、外部API慢</td>
+<td style="text-align: left;">压测客户端</td>
+<td style="text-align: left;">Locust Web UI / CSV</td>
+<td style="text-align: left;">总 QPS 是否达到 25k；错误率</td>
+<td style="text-align: left;">错误率 &lt; 1%</td>
 </tr>
 <tr>
-<td>TPS低 + CPU高</td>
-<td>业务逻辑/GC</td>
-<td>火焰图, jstat</td>
-<td>死循环、频繁GC</td>
+<td style="text-align: left;">压测机（Worker）</td>
+<td style="text-align: left;">Grafana + Prometheus</td>
+<td style="text-align: left;">CPU ≥ 85% 预警；内存无持续增长（队列防溢出）</td>
+<td style="text-align: left;">CPU &lt; 90%，内存 &lt; 5Gi</td>
 </tr>
 <tr>
-<td>RT抖动 + 内存涨</td>
-<td>Redis大Key/内存泄漏</td>
-<td>--bigkeys, jmap</td>
-<td>大Key、无TTL、内存泄漏</td>
+<td style="text-align: left;">被测服务</td>
+<td style="text-align: left;">SkyWalking（服务端 Agent）</td>
+<td style="text-align: left;">抽奖/领奖 P95 RT；数据库连接池活跃数</td>
+<td style="text-align: left;">P95 &lt; 200ms（读）/ &lt; 500ms（写）</td>
 </tr>
 <tr>
-<td>错误率上升</td>
-<td>线程池/超时配置</td>
-<td>应用日志, SkyWalking</td>
-<td>线程池满、超时配置不当</td>
-</tr>
-<tr>
-<td>连接超时</td>
-<td>端口耗尽/带宽</td>
-<td>netstat, iftop</td>
-<td>TIME_WAIT过多、带宽打满</td>
-</tr>
-<tr>
-<td>缓存命中率下降</td>
-<td>Redis逐出/TTL</td>
-<td>INFO stats, --bigkeys</td>
-<td>内存满触发逐出、Key过期策略</td>
+<td style="text-align: left;">业务逻辑</td>
+<td style="text-align: left;">数据库/日志</td>
+<td style="text-align: left;">中奖入队数 ≈ 领奖请求数 × 2（因 50% 转化率）</td>
+<td style="text-align: left;">无奖品丢失或重复领取</td>
 </tr>
 </tbody>
 </table>
 <hr>
-<h2 id="_12">七、完整排查流程示例</h2>
-<div class="highlight"><pre><span></span><code>┌─────────────────────────────────────────────────────────────────┐
-│              性能拐点排查实战流程                                │
-├─────────────────────────────────────────────────────────────────┤
-│                                                                 │
-│  【现象】5000并发时，TPS 从 5200 降至 3800，RT 从 60ms 升至 450ms │
-│                                                                 │
-│  Step 1: 看 Grafana 监控面板                                    │
-│  ├─ 应用层: CPU 45%, 堆内存 60%, GC正常                        │
-│  ├─ 线程池: active=180/200, queue=50 ⚠️                        │
-│  ├─ Redis: 内存 92% ⚠️, 命中率 60% ⚠️                          │
-│  └─ MySQL: 连接数 45/150, 慢查询 0                              │
-│                                                                 │
-│  Step 2: 定位到 Redis 内存接近爆满                              │
-│  ├─ redis-cli --bigkeys 发现 2MB 大Key                         │
-│  ├─ INFO stats 显示 evicted_keys 大量逐出                      │
-│  └─ 分析: 大Key + 无TTL → 内存满 → 逐出热数据 → 命中率下降     │
-│                                                                 │
-│  Step 3: Arthas 追踪确认                                        │
-│  ├─ trace 发现 GET user:tag:xxx 耗时 234ms                     │
-│  └─ 确认是用户标签存储问题                                      │
-│                                                                 │
-│  Step 4: 优化                                                   │
-│  ├─ String 改 Hash，按用户ID分片                                │
-│  ├─ 设置 24小时 TTL                                             │
-│  └─ 单次传输从 2MB 降到 &lt;20KB                                   │
-│                                                                 │
-│  Step 5: 验证                                                   │
-│  └─ 再次压测，TPS 稳定在 5200，RT 60ms，内存 55%                │
-│                                                                 │
-└─────────────────────────────────────────────────────────────────┘
-</code></pre></div>
-<hr>
-<h2 id="_13">八、工具速查表</h2>
-<table>
-<thead>
-<tr>
-<th>排查方向</th>
-<th>工具</th>
-<th>命令/用法</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><strong>Redis 大Key</strong></td>
-<td>redis-cli</td>
-<td><code>redis-cli --bigkeys</code></td>
-</tr>
-<tr>
-<td><strong>Redis 慢查询</strong></td>
-<td>redis-cli</td>
-<td><code>redis-cli SLOWLOG GET 20</code></td>
-</tr>
-<tr>
-<td><strong>Redis 内存</strong></td>
-<td>redis-cli</td>
-<td><code>redis-cli INFO memory</code></td>
-</tr>
-<tr>
-<td><strong>MySQL 慢查询</strong></td>
-<td>MySQL</td>
-<td><code>SELECT * FROM mysql.slow_log</code></td>
-</tr>
-<tr>
-<td><strong>MySQL 锁等待</strong></td>
-<td>MySQL</td>
-<td><code>SHOW ENGINE INNODB STATUS</code></td>
-</tr>
-<tr>
-<td><strong>JVM GC</strong></td>
-<td>jstat</td>
-<td><code>jstat -gcutil &lt;pid&gt; 1000</code></td>
-</tr>
-<tr>
-<td><strong>线程栈</strong></td>
-<td>jstack</td>
-<td><code>jstack &lt;pid&gt; &gt; dump.txt</code></td>
-</tr>
-<tr>
-<td><strong>方法耗时</strong></td>
-<td>Arthas</td>
-<td><code>trace 类名 方法名 '#cost &gt; 100'</code></td>
-</tr>
-<tr>
-<td><strong>调用链</strong></td>
-<td>SkyWalking</td>
-<td>查看 Trace 详情</td>
-</tr>
-<tr>
-<td><strong>网络流量</strong></td>
-<td>iftop</td>
-<td><code>iftop -i eth0</code></td>
-</tr>
-<tr>
-<td><strong>端口状态</strong></td>
-<td>netstat</td>
-<td><code>netstat -an \| grep TIME_WAIT</code></td>
-</tr>
-</tbody>
-</table>
+<h2 id="_6">九、执行前最终检查清单</h2>
+<ul class="task-list">
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled=""><span class="task-list-indicator"></span></label> <code>accounts.csv</code> 账号数量 ≥ <strong>57,600</strong> 行（<code>wc -l accounts.csv</code> 确认）。</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled=""><span class="task-list-indicator"></span></label> <code>TOTAL_WORKERS</code> 环境变量值与 Deployment <code>replicas</code> 一致（均为 17）。</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled=""><span class="task-list-indicator"></span></label> Docker 镜像已构建并推送到仓库（<code>docker build -t your-registry/locust-loadtest:latest .</code>）。</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled=""><span class="task-list-indicator"></span></label> 被测服务已挂载 SkyWalking Agent，且压测接口已预热（如奖品池预先填充）。</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled=""><span class="task-list-indicator"></span></label> K8s 集群节点 <code>ulimit -n</code> 已调大，或 Pod 中已配置 <code>securityContext.sysctls</code>。</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled=""><span class="task-list-indicator"></span></label> Master 启动参数包含 <code>--expect-workers=17</code>，确保 Worker 全部连入后才开始发压。</li>
+</ul>
 
 
 
