@@ -65,7 +65,7 @@
             body[data-md-color-scheme="slate"] .gslide-title { color: var(--md-default-fg-color); }
             body[data-md-color-scheme="slate"] .gslide-desc { color: var(--md-default-fg-color); }
         </style><meta name="panzoom-theme" content="material">
-<meta name="panzoom-data" content='{"selectors": [".d2", ".mermaid"], "initial_zoom_level": 1.0}'> </head>
+<meta name="panzoom-data" content='{"selectors": [".mermaid", ".d2"], "initial_zoom_level": 1.0}'> </head>
   
   
     
@@ -8350,6 +8350,56 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="2.编码agent选型">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#21agent" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.1.人机协作编码agent
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#22ade" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.2.ADE
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#23agent" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.3.办公Agent
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#24" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.4.智能助理
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
     </ul>
@@ -8620,6 +8670,56 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="2.编码agent选型">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#21agent" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.1.人机协作编码agent
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#22ade" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.2.ADE
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#23agent" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.3.办公Agent
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#24" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.4.智能助理
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
     </ul>
@@ -8664,6 +8764,25 @@ Most attractive quadrant，区间内的模型更具性价比。</p>
 <li>顾问模型(WebUI设计规范): KIMI K3</li>
 </ul>
 <h2 id="2agent">2.编码agent选型</h2>
+<p>分类，自动化程度由低到高。</p>
+<p>缺少类似大模型的Benchmark客观数据，更多的是个人主观评价。</p>
+<h3 id="21agent">2.1.人机协作编码agent</h3>
+<p>ide/编辑器 + agent插件，常见的如: Cursor、Trae、Kiro</p>
+<p>基本都是vscode套壳，其中Zed比较特殊，由Rust原生打造。</p>
+<p>适用场景: 老项目、需要人工介入</p>
+<h3 id="22ade">2.2.ADE</h3>
+<ul>
+<li>CLI: Claude Code、Codex Cli、Pi Agent、OpenCode</li>
+<li>GUI：Codex、Deepseek Harness</li>
+</ul>
+<p>相较于Claude Code、Codex这种封装好完整Agent Harness的工具，Pi Agent只提供最小核心，Harness交给用户。</p>
+<p>DSH也是提供完整Agent Harness，但每个模块都可插播可拼装。</p>
+<p>省心选择: GPT套餐 + Codex + Mac</p>
+<h3 id="23agent">2.3.办公Agent</h3>
+<p>基于Agent包装GUI，常见的如: Workbuddy、TraeWork</p>
+<h3 id="24">2.4.智能助理</h3>
+<p>开箱即用的数字员工，自带预设技能 + 自进化宣传，常见的如: Hermes、小龙虾</p>
+<p>这里的自进化，本质还是上下文的记忆工程，短期内确实可以自进化，但上下文的大小、模型的聪明区、模型的注意力机制等限制，东西塞的越多越容易出幻觉。</p>
 
 
 
