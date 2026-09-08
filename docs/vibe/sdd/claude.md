@@ -3,8 +3,9 @@ vscode
 1. 插件: idea keymap，`ctrl+y-删除行`可考虑删掉
 2. 设置: wrapTabs-窗口堆叠展示
 
-- Agent: 属于是广泛的概念。
-- Claude Code: 相较于Agent，CC是智能体的一种具体实现形式。
+Agent: 属于是广泛的概念。
+
+Claude Code: 相较于Agent，CC是智能体的一种具体实现形式。
 
 ## 安装Claude Code
 
