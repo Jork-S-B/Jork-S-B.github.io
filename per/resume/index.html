@@ -61,7 +61,7 @@
             body[data-md-color-scheme="slate"] .gslide-title { color: var(--md-default-fg-color); }
             body[data-md-color-scheme="slate"] .gslide-desc { color: var(--md-default-fg-color); }
         </style><meta name="panzoom-theme" content="material">
-<meta name="panzoom-data" content='{"selectors": [".mermaid", ".d2"], "initial_zoom_level": 1.0}'> </head>
+<meta name="panzoom-data" content='{"selectors": [".d2", ".mermaid"], "initial_zoom_level": 1.0}'> </head>
   
   
     
@@ -6582,14 +6582,14 @@
   
   
     <li class="md-nav__item">
-      <a href="../../trading/short_term_debt/" class="md-nav__link">
+      <a href="../../trading/quant/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    短债etf调研
+    量化交易入门
   
 
     
@@ -6610,14 +6610,42 @@
   
   
     <li class="md-nav__item">
-      <a href="../../trading/quant/" class="md-nav__link">
+      <a href="../../trading/out_sea/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    量化交易入门
+    出海
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../trading/short_term_debt/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    短债etf调研
   
 
     
@@ -8671,7 +8699,7 @@
 <p>2.分批哈希对比 (Batch Hash Check)</p>
 <p>核心点：为提高效率，引入 “递归下钻” 的思路：</p>
 <ul>
-<li>分批/分片策略： 按照主键 ID 取模或按创建时间分片（例如：每 10 万条数据一个 Bucket）。</li>
+<li>分批/分片策略： 按照主键 ID 取模 - 主键 ID 范围桶（Range Bucket）。</li>
 <li>
 <p>哈希计算逻辑：</p>
 <ul>
@@ -8689,7 +8717,7 @@
 <li>
 <p>故障定位（下钻）：</p>
 <ul>
-<li>如果 Batch_01 的 MD5 对不上，将该批次再细分为 10 个小批次，递归定位，直到锁定具体的几个 ID，最后只对这几个 ID 进行全字段打印对比。</li>
+<li>如果 Batch_01 的 MD5 对不上，将该批次再细分为 10 个小批次（或提前切片），递归定位，直到锁定具体的几个 ID，最后只对这几个 ID 进行全字段打印对比。</li>
 </ul>
 </li>
 </ul>

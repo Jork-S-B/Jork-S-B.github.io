@@ -65,7 +65,7 @@
             body[data-md-color-scheme="slate"] .gslide-title { color: var(--md-default-fg-color); }
             body[data-md-color-scheme="slate"] .gslide-desc { color: var(--md-default-fg-color); }
         </style><meta name="panzoom-theme" content="material">
-<meta name="panzoom-data" content='{"selectors": [".mermaid", ".d2"], "initial_zoom_level": 1.0}'> </head>
+<meta name="panzoom-data" content='{"selectors": [".d2", ".mermaid"], "initial_zoom_level": 1.0}'> </head>
   
   
     
@@ -4000,10 +4000,27 @@
   <a href="#_1" class="md-nav__link">
     <span class="md-ellipsis">
       
-        数仓分层
+        📌 数仓分层
       
     </span>
   </a>
+  
+    <nav class="md-nav" aria-label="📌 数仓分层">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#qa" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q&amp;A
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -6771,14 +6788,14 @@
   
   
     <li class="md-nav__item">
-      <a href="../../trading/short_term_debt/" class="md-nav__link">
+      <a href="../../trading/quant/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    短债etf调研
+    量化交易入门
   
 
     
@@ -6799,14 +6816,42 @@
   
   
     <li class="md-nav__item">
-      <a href="../../trading/quant/" class="md-nav__link">
+      <a href="../../trading/out_sea/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    量化交易入门
+    出海
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../trading/short_term_debt/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    短债etf调研
   
 
     
@@ -8715,10 +8760,27 @@
   <a href="#_1" class="md-nav__link">
     <span class="md-ellipsis">
       
-        数仓分层
+        📌 数仓分层
       
     </span>
   </a>
+  
+    <nav class="md-nav" aria-label="📌 数仓分层">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#qa" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q&amp;A
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -8866,13 +8928,33 @@
 
   <h1>数仓和数据中台</h1>
 
-<h2 id="_1">数仓分层</h2>
+<h2 id="_1">📌 数仓分层</h2>
 <ol>
 <li>ODS 数据源入湖</li>
 <li>DWD 明细清晰: 过滤、去重、ID转名称等</li>
 <li>DWS 预聚合: 汇总结果转宽表，空间换时间</li>
 <li>ads bi报表展示，以视图或结果表的形式避免复杂运算。</li>
 </ol>
+<h3 id="qa">Q&amp;A</h3>
+<p>Q: 表A有日期-YYYYMMDD、金额字段，写SQL：汇总 1 月份总额，计算 2 月环比（（2 月 - 1 月）/ 1 月）。</p>
+<p>思路: CTE(group by) + 临时表，求多月结果集，搭配<code>CASE WHEN</code>进行环比计算。</p>
+<p>异常场景的考量: </p>
+<p>数据侧</p>
+<ul>
+<li>数据源如何去重</li>
+<li>上游的数据同步(尤其ODS到DWD)是否有延迟，延迟是否影响数据准确性，或者导致分子、分母数值为0，分母为0时给默认值还是异常提示</li>
+<li>上下游表模型字段类型与长度是否统一</li>
+</ul>
+<p>业务侧</p>
+<ul>
+<li>业务逻辑的边界值</li>
+<li>结果四舍五入</li>
+</ul>
+<p>逻辑侧</p>
+<ul>
+<li>涉及年份时跨年计算</li>
+<li>聚合函数 + 循环时，关注取值正确性</li>
+</ul>
 <h2 id="_2">📌 数据仓库</h2>
 <p>data warehouse，将企业内不同业务系统（如erp、crm）的数据，通过etl（抽取、转换、加载）过程清洗后，按预定义的模型加载。</p>
 <p>目的：解决数据孤岛问题，为报表（report）和商业智能（bi）提供标准化的数据源。</p>
