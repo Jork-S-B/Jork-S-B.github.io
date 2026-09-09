@@ -178,8 +178,9 @@ nav:
     - 投资:
           - trading: 
                 - 投资流水账: trading/investment_journal.md
-                - 短债etf调研: trading/short_term_debt.md
                 - 量化交易入门: trading/quant.md
+                - 出海: trading/out_sea.md
+                - 短债etf调研: trading/short_term_debt.md
     - ielts:
           - vocabulary:
                 - Synonym substitution: ielts/vocabulary/synonym_substitution.md
