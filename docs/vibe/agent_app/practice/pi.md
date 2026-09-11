@@ -14,3 +14,19 @@ Q: 为什么无需调用工具时，就循环结束并输出结果？
 
 A: 在模型的对齐训练阶段，要么调用工具，要么给最终答复。两者都不满足时，在这轮对齐只能得到得分。  
 因此久而久之，模型就学会了以上的循环。当然，完成任务不仅包括给最终回复，信息不足时回答不知道不瞎编，也是一种类型。
+
+## 1.安装
+
+[Pi Agent github Release](https://github.com/earendil-works/pi)，找符合系统环境的版本
+
+```powershell
+# powershell，amd64 选 x64
+$env:PROCESSOR_ARCHITECTURE
+
+```
+
+## 2.skills
+
+本次实战以`mattpocock skills`为主力
+
+项目地址: https://github.com/mattpocock/skills
