@@ -91,10 +91,10 @@ skill内部流程
 
     - 最小切片原则: 定位反馈修复的点在哪一层，只改最小切片。
 
-??? "Agent Teams & SubAgent"
+??? note "Agent Teams & SubAgent"
 
-- SubAgent, 主Agent任务分发，子Agent执行任务将结果传回，各子Agent之间不干扰（也不讨论），适合结果导向型任务。
-- Agent Teams, 组长+组员，每个组员都是独立会话（token花费高），共享任务列表，适合需要交互反馈的任务。
+    - SubAgent, 主Agent任务分发，子Agent执行任务将结果传回，各子Agent之间不干扰（也不讨论），适合结果导向型任务。
+    - Agent Teams, 组长+组员，每个组员都是独立会话（token花费高），共享任务列表，适合需要交互反馈的任务。
 
 #### 实操
 
