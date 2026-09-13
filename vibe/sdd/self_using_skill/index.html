@@ -8281,6 +8281,34 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="mattpocock skills">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        按工作流使用
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        技能清单速览
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
         <li class="md-nav__item">
@@ -8319,7 +8347,7 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#_1" class="md-nav__link">
+  <a href="#_3" class="md-nav__link">
     <span class="md-ellipsis">
       
         设计哲学
@@ -8330,7 +8358,7 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#_2" class="md-nav__link">
+  <a href="#_4" class="md-nav__link">
     <span class="md-ellipsis">
       
         实操
@@ -8779,6 +8807,34 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="mattpocock skills">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        按工作流使用
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        技能清单速览
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
         <li class="md-nav__item">
@@ -8817,7 +8873,7 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#_1" class="md-nav__link">
+  <a href="#_3" class="md-nav__link">
     <span class="md-ellipsis">
       
         设计哲学
@@ -8828,7 +8884,7 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#_2" class="md-nav__link">
+  <a href="#_4" class="md-nav__link">
     <span class="md-ellipsis">
       
         实操
@@ -8871,16 +8927,40 @@
   <h1>自用skill</h1>
 
 <h2 id="mattpocock-skills">mattpocock skills</h2>
-<p>My agent skills that I use every day to do real engineering - not vibe coding.</p>
-<p>程序员实用工具集</p>
 <p>项目地址: https://github.com/mattpocock/skills</p>
-<h2 id="learn-by-building">learn-by-building</h2>
-<p>ai编程时，不懂就问的skill</p>
-<div class="highlight"><pre><span></span><code># 快速安装
-npx skills add chaojiwudibing/learn-by-building
+<p>My agent skills that I use every day to do real engineering - not vibe coding.</p>
+<p>程序员实用<strong>工具集</strong></p>
+<div class="highlight"><pre><span></span><code><span class="c1"># 快速安装</span>
+npx<span class="w"> </span>skills@latest<span class="w"> </span>add<span class="w"> </span>mattpocock/skills
+
+<span class="c1"># 仓库初始化</span>
+/setup-matt-pocock-skills
+<span class="c1"># 选择仓库管理方式: 基于github或者本地md文件</span>
 </code></pre></div>
+<h3 id="_1">按工作流使用</h3>
+<ol>
+<li><strong>对齐需求</strong> — 每次想改动代码前，先跑 <code>/grill-me</code>（非代码）或 <code>/grill-with-docs</code>（代码相关，还会顺带沉淀 <code>CONTEXT.md</code> 领域词汇和 ADR）</li>
+<li><strong>生成 spec</strong> — <code>/to-spec</code> 把对齐后的对话直接转成 spec 发到 issue tracker</li>
+<li><strong>拆分任务</strong> — <code>/to-tickets</code> 把计划拆成可验证的 tracer-bullet tickets（大型规划用 <code>/wayfinder</code> 生成决策地图）</li>
+<li><strong>实现</strong> — <code>/implement</code> 按 spec/tickets 驱动 <code>/tdd</code>（红-绿-重构）和 <code>/code-review</code></li>
+<li><strong>排错</strong> — 代码不工作时用 <code>/diagnosing-bugs</code> 的分阶段门控调试循环</li>
+<li><strong>定期维护架构</strong> — 每隔几天跑一次 <code>/improve-codebase-architecture</code>，扫描代码库的深化机会并生成 HTML 报告（注意它是“巡检”而非“抢救”）</li>
+</ol>
+<p><code>grill-me</code>, 使用时需关注本次讨论的范围，不然容易无休止讨论，被牵着鼻子走。</p>
+<h3 id="_2">技能清单速览</h3>
+<ul>
+<li><strong>Engineering（用户手动调用）</strong>：<code>ask-matt</code>（不知道用哪个技能时的路由器）、<code>grill-with-docs</code>、<code>triage</code>、<code>improve-codebase-architecture</code>、<code>setup-matt-pocock-skills</code>、<code>to-spec</code>、<code>to-tickets</code>、<code>implement</code>、<code>wayfinder</code></li>
+<li><strong>Engineering（模型自动调用）</strong>：<code>prototype</code>、<code>diagnosing-bugs</code>、<code>research</code>、<code>tdd</code>、<code>domain-modeling</code>、<code>codebase-design</code>、<code>code-review</code>、<code>resolving-merge-conflicts</code>、<code>wizard</code></li>
+<li><strong>Productivity</strong>：用户调用 <code>grill-me</code>、<code>handoff</code>、<code>teach</code>、<code>to-questionnaire</code>、<code>wait-what</code>；模型调用 <code>grilling</code>、<code>writing-for-agents</code></li>
+</ul>
+<h2 id="learn-by-building">learn-by-building</h2>
 <p>项目地址: https://github.com/chaojiwudibing/learn-by-building</p>
+<p>ai编程时，不懂就问的skill</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># 快速安装</span>
+npx<span class="w"> </span>skills<span class="w"> </span>add<span class="w"> </span>chaojiwudibing/learn-by-building
+</code></pre></div>
 <h2 id="garden-skills">Garden Skills</h2>
+<p>项目中文readme: https://github.com/ConardLi/garden-skills/blob/main/README.zh-CN.md</p>
 <p>包括5个技能</p>
 <ul>
 <li>web-video-presentation 网页视频 / 演示</li>
@@ -8889,7 +8969,6 @@ npx skills add chaojiwudibing/learn-by-building
 <li>beautiful-article 任意素材 → 一篇精美的文章</li>
 <li>kb-retriever 检索 / 本地知识库</li>
 </ul>
-<p>项目中文readme: https://github.com/ConardLi/garden-skills/blob/main/README.zh-CN.md</p>
 <h3 id="web-video-presentation">web-video-presentation</h3>
 <p>下载压缩包，windows手动安装skill，通过符号链接避免"多agent工具多份skill代码"</p>
 <p>mklink /D "C:\Users\q7299.claude\skills\web-video-presentation" "F:\Administrator\Downloads\skills\web-video-presentation"</p>
@@ -8908,7 +8987,7 @@ npx skills add chaojiwudibing/learn-by-building
 <li>自检</li>
 <li>修复</li>
 </ol>
-<h4 id="_1">设计哲学</h4>
+<h4 id="_3">设计哲学</h4>
 <p>一个成熟的<code>harness</code>,包含六个核心。</p>
 <p>目标: 把模型能力/工具能力/人的判断，组织成一条稳定可控的生产流程。</p>
 <ol>
@@ -8955,7 +9034,7 @@ npx skills add chaojiwudibing/learn-by-building
 <li>Agent Teams, 组长+组员，每个组员都是独立会话（token花费高），共享任务列表，适合需要交互反馈的任务。</li>
 </ul>
 </details>
-<h4 id="_2">实操</h4>
+<h4 id="_4">实操</h4>
 <ol>
 <li>Claude Code</li>
 <li>MiniMax-M2.7，需要带视觉的模型，需处理视频、音频合成。</li>
