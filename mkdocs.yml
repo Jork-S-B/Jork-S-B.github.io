@@ -223,6 +223,7 @@ nav:
                 - 相关skill: vibe/sdd/relate_skill.md
                 - 自用skill: vibe/sdd/self_using_skill.md
           - agent应用:
+                - 评估体系: vibe/agent_app/evaluation.md
                 - 实战:
                         - 1.选型: vibe/agent_app/practice/selection.md
                         - 2.Pi Agent: vibe/agent_app/practice/pi.md
