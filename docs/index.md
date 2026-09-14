@@ -56,3 +56,7 @@ RocketMQ
 ## 工程能力
 
 - [FastAPI](/python/web/fastapi)
+
+## ai
+
+- [harness设计哲学](/vibe/sdd/self_using_skill/#_3)

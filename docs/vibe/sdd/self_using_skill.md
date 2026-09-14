@@ -57,9 +57,12 @@ npx skills add chaojiwudibing/learn-by-building
 
 ### web-video-presentation
 
-下载压缩包，windows手动安装skill，通过符号链接避免"多agent工具多份skill代码"
+下载压缩包，windows手动安装skill，通过符号链接避免"多agent工具多份skill代码"，或者`npx skills add {本地路径}`时选择符号链接
 
+```powershell
+# 符号链接
 mklink /D "C:\Users\q7299\.claude\skills\web-video-presentation" "F:\Administrator\Downloads\skills\web-video-presentation"
+```
 
 ---
 

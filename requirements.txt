@@ -5,3 +5,4 @@ jieba
 # mkdocs-git-revision-date-localized-plugin
 # mkdocs-mermaid2-plugin
 mkdocs-panzoom-plugin
+edge_tts  # 免费，用户合成音频

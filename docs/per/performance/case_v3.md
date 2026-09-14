@@ -139,7 +139,7 @@ tags: [全链路压测]
 - 目标TPS：700-1000
 - 实际达标TPS：850
 
-## 四、方案与资源规范
+## 四、方案与资源规划
 
 [click me](/per/performance/plan)
 

@@ -57,7 +57,7 @@ Claude Code: 相较于Agent，CC是智能体的一种具体实现形式。
     - 配置以 Python 项目为主
     - Node/前端项目: 可加 Bash(node *)、Bash(npm run *)、Bash(yarn *)、Bash(pnpm *)（注意 npm run 能执行 package.json 里任意命令，信任项目才放行）。
 
-=== "settings.local.json/settings.json"
+??? note "settings.local.json或settings.json"
 
     ```json
     {
