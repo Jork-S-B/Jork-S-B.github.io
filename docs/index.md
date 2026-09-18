@@ -7,6 +7,7 @@ hide:
 ---
 
 - [resume](./per/resume)
+- [八股](./per/formula)
 
 ## 全链路压测
 
