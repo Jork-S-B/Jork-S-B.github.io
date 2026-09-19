@@ -24,7 +24,7 @@
     
     
       
-        <title>相关skill - whm</title>
+        <title>sdd_skill - whm</title>
       
     
     
@@ -84,7 +84,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#openspec" class="md-skip">
+        <a href="#_1" class="md-skip">
           跳转至
         </a>
       
@@ -118,7 +118,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              相关skill
+              sdd_skill
             
           </span>
         </div>
@@ -8231,7 +8231,7 @@
   <span class="md-ellipsis">
     
   
-    相关skill
+    sdd_skill
   
 
     
@@ -8249,7 +8249,7 @@
   <span class="md-ellipsis">
     
   
-    相关skill
+    sdd_skill
   
 
     
@@ -8271,6 +8271,56 @@
       目录
     </label>
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix="">
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        适用场景结论
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#mattpocock-skills" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        mattpocock skills
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="mattpocock skills">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        按工作流使用
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        技能清单速览
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
       
         <li class="md-nav__item">
   <a href="#openspec" class="md-nav__link">
@@ -8821,6 +8871,56 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix="">
       
         <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        适用场景结论
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#mattpocock-skills" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        mattpocock skills
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="mattpocock skills">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        按工作流使用
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        技能清单速览
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#openspec" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -8912,21 +9012,67 @@
   
 
 
-  <h1>相关skill</h1>
+  <h1>sdd_skill</h1>
 
+<h2 id="_1">适用场景结论</h2>
+<p>从0到1，选<code>superpowers</code>，体验比<code>mattpocock skills</code>较好。</p>
+<p>原因是前者定义计划更细致，后者更倾向用户自己作为调度者把控流程，自动化程度较低。</p>
+<p>然而在小改动方面，<code>mattpocock skills</code>更方便更轻量。</p>
+<hr>
+<p><code>openspec</code>适合团队协作、大型项目的场景。它的规格文档里除了ADR，还包含了变更记录，属于重要的上下文信息。</p>
+<h2 id="mattpocock-skills">mattpocock skills</h2>
+<p>项目地址: https://github.com/mattpocock/skills</p>
+<p>My agent skills that I use every day to do real engineering - not vibe coding.</p>
+<p>程序员实用<strong>工具集</strong></p>
+<div class="highlight"><pre><span></span><code><span class="c1"># 快速安装</span>
+npx<span class="w"> </span>skills@latest<span class="w"> </span>add<span class="w"> </span>mattpocock/skills
+
+<span class="c1"># 仓库初始化</span>
+/setup-matt-pocock-skills
+<span class="c1"># 选择仓库管理方式: 基于github或者本地md文件</span>
+</code></pre></div>
+<h3 id="_2">按工作流使用</h3>
+<ol>
+<li><strong>对齐需求</strong> — 每次想改动代码前，先跑 <code>/grill-me</code>（非代码）或 <code>/grill-with-docs</code>（代码相关，还会顺带沉淀 <code>CONTEXT.md</code>和 ADR-架构决策记录）</li>
+<li><strong>生成 spec</strong> — <code>/to-spec</code> 把对齐后的对话直接转成 spec 发到 issue tracker</li>
+<li><strong>拆分任务</strong> — <code>/to-tickets</code> 把计划拆成可验证、可独立交付的 tracer-bullet tickets（大型规划用 <code>/wayfinder</code> 生成决策地图）</li>
+<li><strong>实现</strong> — <code>/implement</code> 按 spec/tickets 驱动 <code>/tdd</code>（红-绿，没有重构）和 <code>/code-review</code>（重构，包括编码标准、满足规格）</li>
+<li><strong>排错</strong> — 代码不工作时用 <code>/diagnosing-bugs</code> 的分阶段门控调试循环</li>
+<li>
+<p><strong>定期维护架构</strong> — 每隔几天跑一次燃烧token <code>/improve-codebase-architecture</code>，扫描代码库的深化机会并生成 HTML 报告（注意它是“巡检”而非“抢救”）</p>
+</li>
+<li>
+<p><code>grill-me</code>, 使用时需关注本次讨论的范围，不然容易无休止讨论，被牵着鼻子走。</p>
+</li>
+<li>1至4步，是核心的工作流程。明确的小改动不需要使用，模糊的需求用grill，复杂需求用to-spec，再复杂有多个功能点用to-tickets。根据复杂度灵活组合。</li>
+</ol>
+<h3 id="_3">技能清单速览</h3>
+<ul>
+<li><strong>Engineering（用户手动调用）</strong>: <code>ask-matt</code>（不知道用哪个技能时的路由器）、<code>grill-with-docs</code>、<code>triage</code>（多人协作时使用，分类属于需求、bug、建议等，需要搭配初始化使用）、<code>improve-codebase-architecture</code>、<code>setup-matt-pocock-skills</code>、<code>to-spec</code>、<code>to-tickets</code>、<code>implement</code>、<code>wayfinder</code></li>
+<li><strong>Engineering（模型自动调用）</strong>: <code>prototype</code>、<code>diagnosing-bugs</code>、<code>research</code>、<code>tdd</code>、<code>domain-modeling</code>、<code>codebase-design</code>、<code>code-review</code>、<code>resolving-merge-conflicts</code>、<code>wizard</code></li>
+</ul>
+<p><code>wayfinder</code>, 在grill使用后还说不清需求，或者想边做边看效果时使用。产出决策地图 + tickets(包括依赖、优先级等)，再逐项细分进行grill, research 或 prototype</p>
+<p><code>research</code>, 探索并把代码仓相关内容，引入agent上下文。</p>
+<p><code>prototype</code>, 原型驱动开发，通过该技能快速出原型图。</p>
+<p>其他技能补充说明: </p>
+<ul>
+<li><code>teach</code>, 基于agent教学，需要提供上下文信息。产物: 分章节生成html，包含重点和题目等。</li>
+<li><code>handoff</code>, 把当前任务上下文压缩并持久化，交给下一个agent。</li>
+</ul>
+<hr>
 <h2 id="openspec">openspec</h2>
 <div class="highlight"><pre><span></span><code><span class="c1"># 通过npm安装</span>
 npm<span class="w"> </span>install<span class="w"> </span>-g<span class="w"> </span>@fission-ai/openspec@latest
 </code></pre></div>
 <hr>
 <h3 id="openspecskill">通过openspec优化skill</h3>
-<div class="highlight"><pre><span></span><code><span class="c1"># 步骤1：探索需求</span>
+<div class="highlight"><pre><span></span><code><span class="c1"># 步骤1: 探索需求</span>
 /openspec-explore<span class="w"> </span><span class="s2">"idea"</span>
 
-<span class="c1"># 步骤2：生成规范文档</span>
+<span class="c1"># 步骤2: 生成规范文档</span>
 /openspec-propose
 
-<span class="c1"># 步骤3：应用变更至skill</span>
+<span class="c1"># 步骤3: 应用变更至skill</span>
 /openspec-apply
 </code></pre></div>
 <h2 id="superpowers">superpowers</h2>
@@ -8968,9 +9114,9 @@ claude
 /opsx:propose<span class="w"> </span><span class="s2">"idea"</span>
 <span class="c1"># 功能或需求不合适时，手动修改spec或者ai交互进行修改</span>
 
-/gstack:browse<span class="w"> </span><span class="s2">"竞品/技术方案调研"</span><span class="w">     </span>←<span class="w"> </span>新增：浏览器调研，事实沉淀
+/gstack:browse<span class="w"> </span><span class="s2">"竞品/技术方案调研"</span><span class="w">     </span>←<span class="w"> </span>新增:<span class="w"> </span>浏览器调研，事实沉淀
 /superpowers:brainstorm<span class="w">                </span><span class="c1"># 头脑风暴</span>
-/gstack:design-review<span class="w">                  </span>←<span class="w"> </span>新增：设计稿/方案评审，提前获取反馈
+/gstack:design-review<span class="w">                  </span>←<span class="w"> </span>新增:<span class="w"> </span>设计稿/方案评审，提前获取反馈
 /superpowers:write-plan<span class="w">                </span><span class="c1"># 编写实施计划</span>
 
 <span class="c1">## 二、TDD开发</span>
@@ -8979,9 +9125,9 @@ claude
 /superpowers:execute-plan<span class="w">              </span><span class="c1"># 执行计划</span>
 
 <span class="c1">## 三、反馈优化闭环（gstack 核心循环）</span>
-/gstack:qa<span class="w">                            </span>←<span class="w"> </span>新增：QA自动化验证，获取质量反馈
-/gstack:review<span class="w">                        </span>←<span class="w"> </span>新增：代码审查，发现潜在问题
-/gstack:browse<span class="w"> </span><span class="s2">"功能验收"</span><span class="w">             </span>←<span class="w"> </span>新增：浏览器真实环境验收
+/gstack:qa<span class="w">                            </span>←<span class="w"> </span>新增:<span class="w"> </span>QA自动化验证，获取质量反馈
+/gstack:review<span class="w">                        </span>←<span class="w"> </span>新增:<span class="w"> </span>代码审查，发现潜在问题
+/gstack:browse<span class="w"> </span><span class="s2">"功能验收"</span><span class="w">             </span>←<span class="w"> </span>新增:<span class="w"> </span>浏览器真实环境验收
 <span class="c1"># 根据反馈修正 → 重新执行步骤二/三（闭环迭代）</span>
 
 <span class="c1">## 四、验证与归档</span>
@@ -8989,8 +9135,8 @@ claude
 /opsx:archive<span class="w">                          </span><span class="c1"># 归档</span>
 
 <span class="c1">## 五、复盘沉淀</span>
-/gstack:retro<span class="w">                          </span>←<span class="w"> </span>新增：回顾总结，沉淀经验教训
-/gstack:document-generate<span class="w">              </span>←<span class="w"> </span>新增：生成文档，知识入库
+/gstack:retro<span class="w">                          </span>←<span class="w"> </span>新增:<span class="w"> </span>回顾总结，沉淀经验教训
+/gstack:document-generate<span class="w">              </span>←<span class="w"> </span>新增:<span class="w"> </span>生成文档，知识入库
 
 ---
 闭环机制说明
@@ -9028,10 +9174,10 @@ claude
 <span class="w">                    </span>│<span class="w">     </span>再次沉淀，反哺下一轮规划<span class="w">       </span>│
 <span class="w">                    </span>└─────────────────────────────────┘
 
-关键变化：
--<span class="w"> </span>调研前置：/gstack:browse<span class="w"> </span>在<span class="w"> </span>brainstorm<span class="w"> </span>前做事实调研，避免闭门造车
--<span class="w"> </span>反馈内循环：qa<span class="w"> </span>→<span class="w"> </span>review<span class="w"> </span>→<span class="w"> </span>browse验收<span class="w"> </span>形成快速迭代，不通过就回退开发
--<span class="w"> </span>复盘外循环：每个周期结束用<span class="w"> </span>retro<span class="w"> </span>+<span class="w"> </span>document-generate<span class="w"> </span>沉淀经验，反哺下一轮规划
+关键变化:<span class="w"> </span>
+-<span class="w"> </span>调研前置:<span class="w"> </span>/gstack:browse<span class="w"> </span>在<span class="w"> </span>brainstorm<span class="w"> </span>前做事实调研，避免闭门造车
+-<span class="w"> </span>反馈内循环:<span class="w"> </span>qa<span class="w"> </span>→<span class="w"> </span>review<span class="w"> </span>→<span class="w"> </span>browse验收<span class="w"> </span>形成快速迭代，不通过就回退开发
+-<span class="w"> </span>复盘外循环:<span class="w"> </span>每个周期结束用<span class="w"> </span>retro<span class="w"> </span>+<span class="w"> </span>document-generate<span class="w"> </span>沉淀经验，反哺下一轮规划
 </code></pre></div>
 
 
