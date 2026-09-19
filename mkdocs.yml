@@ -214,6 +214,7 @@ nav:
                       - 剑雅10听力-T2-Section3: ielts/listening/authentic/C10-T2-Section3.md
     - ai:
           - 基本名词: vibe/basic_nouns.md
+          - 提示词: vibe/prompt.md
           - rag/retrieval: vibe/rag.md
           - 个人应用工具:
                 - 内网穿透: vibe/personal/ngrok.md

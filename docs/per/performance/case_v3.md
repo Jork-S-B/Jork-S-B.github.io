@@ -344,7 +344,6 @@ redis-cli MEMORY USAGE {key}
 - 大Key拆解为Redis Hash，只缓存有效奖品
 - 逻辑过期 + 本地缓存：引入逻辑过期机制，物理TTL设为永不过期，在Value中埋入logicExpireTime，由后台异步线程定时刷新，彻底消除击穿风险。同时，在应用内存引入Caffeine本地缓存作为第一道防线，压测时99%的奖品读请求由本地内存直接返回，完全不经过Redis。
 
-
 ## 六、压测通过标准建议
 
 | 维度 | 标准 |

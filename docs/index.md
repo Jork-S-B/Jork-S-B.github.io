@@ -8,6 +8,7 @@ hide:
 
 - [resume](./per/resume)
 - [八股](./per/formula)
+- [oj](other/leetcode/must)
 
 ## 全链路压测
 
