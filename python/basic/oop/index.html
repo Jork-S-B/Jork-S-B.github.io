@@ -9336,117 +9336,99 @@
 <ol>
 <li>
 <p>封装</p>
-</li>
-<li>
-<p>把属性和方法包装在类里。</p>
-</li>
+<ul>
+<li>把属性和方法包装在类里。</li>
 <li>Python 没有真正私有：<code>_x</code> 是约定保护，<code>__x</code> 会触发名称改写为 <code>_类名__x</code>。</li>
-<li>
-<p>可用 <code>property</code>、描述符控制属性访问。</p>
+<li>可用 <code>property</code>、描述符控制属性访问。</li>
+</ul>
 </li>
 <li>
 <p>继承</p>
-</li>
-<li>
-<p>支持单继承和多继承。</p>
-</li>
+<ul>
+<li>支持单继承和多继承。</li>
 <li>子类可复用、扩展、重写父类方法。</li>
 <li>用 <code>super()</code> 按 MRO 调用父类方法。</li>
-<li>
-<p>多继承方法查找顺序由 C3 算法 MRO 决定：<code>类.__mro__</code>。</p>
+<li>多继承方法查找顺序由 C3 算法 MRO 决定：<code>类.__mro__</code>。</li>
+</ul>
 </li>
 <li>
 <p>多态</p>
-</li>
-<li>
-<p>同一接口，不同实现；子类重写父类方法。</p>
-</li>
-<li>
-<p>Python 更强调 鸭子类型：不关心对象是什么类型，只关心它有没有对应方法/行为。</p>
+<ul>
+<li>同一接口，不同实现；子类重写父类方法。</li>
+<li>Python 更强调 鸭子类型：不关心对象是什么类型，只关心它有没有对应方法/行为。</li>
+</ul>
 </li>
 <li>
 <p>抽象</p>
-</li>
-<li>
-<p>通过 <code>abc.ABC</code>、<code>@abstractmethod</code> 定义抽象基类，约束子类实现。</p>
-</li>
-<li>
-<p>也可用 <code>typing.Protocol</code> 做结构化子类型。</p>
+<ul>
+<li>通过 <code>abc.ABC</code>、<code>@abstractmethod</code> 定义抽象基类，约束子类实现。</li>
+<li>也可用 <code>typing.Protocol</code> 做结构化子类型。</li>
+</ul>
 </li>
 <li>
 <p>类也是对象</p>
-</li>
-<li>
-<p>Python 中一切皆对象，类本身也是对象。</p>
-</li>
+<ul>
+<li>Python 中一切皆对象，类本身也是对象。</li>
 <li>类通常由 <code>type</code> 创建；元类 <code>metaclass</code> 可控制类的创建过程。</li>
-<li>
-<p>Python 3 所有类默认继承 <code>object</code>，都是新式类。</p>
+<li>Python 3 所有类默认继承 <code>object</code>，都是新式类。</li>
+</ul>
 </li>
 <li>
 <p>类属性与实例属性</p>
-</li>
-<li>
-<p>类属性属于类，所有实例共享。</p>
-</li>
+<ul>
+<li>类属性属于类，所有实例共享。</li>
 <li>实例属性属于具体实例，通常写在 <code>__init__</code> 里。</li>
-<li>
-<p>查找顺序大致：实例 <code>__dict__</code> → 类 <code>__dict__</code> → 父类 MRO。</p>
+<li>查找顺序大致：实例 <code>__dict__</code> → 类 <code>__dict__</code> → 父类 MRO。</li>
+</ul>
 </li>
 <li>
 <p>方法类型</p>
-</li>
-<li>
-<p>实例方法：第一个参数 <code>self</code>。</p>
-</li>
+<ul>
+<li>实例方法：第一个参数 <code>self</code>。</li>
 <li>类方法：<code>@classmethod</code>，第一个参数 <code>cls</code>。</li>
 <li>静态方法：<code>@staticmethod</code>，无默认绑定参数。</li>
-<li>
-<p>属性方法：<code>@property</code>，把方法当属性访问。</p>
+<li>属性方法：<code>@property</code>，把方法当属性访问。</li>
+</ul>
 </li>
 <li>
 <p>魔术方法 / 协议</p>
-</li>
-<li>
-<p><code>__init__</code>：初始化实例。</p>
-</li>
+<ul>
+<li><code>__init__</code>：初始化实例。</li>
 <li><code>__new__</code>：创建实例。</li>
 <li><code>__str__</code> / <code>__repr__</code>：字符串表示。</li>
 <li><code>__eq__</code> / <code>__hash__</code>：相等与哈希。</li>
 <li><code>__getitem__</code> / <code>__iter__</code> / <code>__next__</code>：容器、迭代协议。</li>
 <li><code>__enter__</code> / <code>__exit__</code>：上下文管理器。</li>
 <li><code>__call__</code>：让实例可调用。</li>
-<li>
-<p>通过这些实现运算符重载和内置协议。</p>
+</ul>
 </li>
+</ol>
+<p>通过这些实现运算符重载和内置协议。</p>
+<ol>
 <li>
 <p>动态性</p>
-</li>
-<li>
-<p>运行时可以给类或实例动态添加、修改、删除属性/方法。</p>
-</li>
+<ul>
+<li>运行时可以给类或实例动态添加、修改、删除属性/方法。</li>
 <li>可以猴子补丁。</li>
 <li>可以用 <code>type()</code> 动态创建类。</li>
-<li>
-<p><code>__slots__</code> 可限制实例属性、节省内存。</p>
+<li><code>__slots__</code> 可限制实例属性、节省内存。</li>
+</ul>
 </li>
 <li>
 <p>属性管理</p>
-</li>
-<li>
-<p><code>property</code>：getter/setter/deleter。</p>
-</li>
+<ul>
+<li><code>property</code>：getter/setter/deleter。</li>
 <li>描述符：实现 <code>__get__</code>、<code>__set__</code>、<code>__delete__</code>，是 <code>property</code>、方法绑定等的基础。</li>
-<li>
-<p><code>__getattr__</code>、<code>__getattribute__</code> 可拦截属性访问。</p>
+<li><code>__getattr__</code>、<code>__getattribute__</code> 可拦截属性访问。</li>
+</ul>
 </li>
 <li>
 <p>构造与析构</p>
-</li>
-<li>
-<p><code>__new__</code> 负责创建，<code>__init__</code> 负责初始化。</p>
-</li>
+<ul>
+<li><code>__new__</code> 负责创建，<code>__init__</code> 负责初始化。</li>
 <li><code>__del__</code> 是析构方法，但不保证及时调用，不推荐依赖它做资源释放。</li>
+</ul>
+</li>
 </ol>
 
 
