@@ -30,7 +30,7 @@
 
 ## 面向对象
 
-[Python类的主要特性](python/basic/oop)
+[Python类的主要特性](/python/basic/oop)
 
 ## http
 
