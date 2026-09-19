@@ -61,4 +61,4 @@ RocketMQ
 
 ## ai
 
-- [harness设计哲学](/vibe/sdd/self_using_skill/#_3)
+- [harness设计哲学](/vibe/sdd/self_using_skill)

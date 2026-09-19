@@ -1,6 +1,6 @@
 ## Sigma
 
-项目地址: 项目地址: https://github.com/chaojiwudibing/learn-by-building
+项目地址: 项目地址: https://github.com/sanyuan0704/sanyuan-skills
 
 基于agent的1对1教学，但ai不断提问，不直接给答案，让用户慢慢摸到重点。
 
