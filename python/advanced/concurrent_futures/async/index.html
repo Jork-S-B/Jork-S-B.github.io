@@ -65,7 +65,7 @@
             body[data-md-color-scheme="slate"] .gslide-title { color: var(--md-default-fg-color); }
             body[data-md-color-scheme="slate"] .gslide-desc { color: var(--md-default-fg-color); }
         </style><meta name="panzoom-theme" content="material">
-<meta name="panzoom-data" content='{"selectors": [".d2", ".mermaid"], "initial_zoom_level": 1.0}'> </head>
+<meta name="panzoom-data" content='{"selectors": [".mermaid", ".d2"], "initial_zoom_level": 1.0}'> </head>
   
   
     
@@ -84,7 +84,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#await" class="md-skip">
+        <a href="#uvloop" class="md-skip">
           跳转至
         </a>
       
@@ -900,6 +900,17 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix="">
       
         <li class="md-nav__item">
+  <a href="#uvloop" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🚁 uvloop
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#await" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -937,28 +948,6 @@
     <span class="md-ellipsis">
       
         🚁 concurrent.futures.Future对象
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#uvloop" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        🚁 uvloop
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#semaphore" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        🚁 通过信号量(semaphore)控制并发数量
       
     </span>
   </a>
@@ -8821,6 +8810,17 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix="">
       
         <li class="md-nav__item">
+  <a href="#uvloop" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🚁 uvloop
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#await" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -8864,28 +8864,6 @@
   
 </li>
       
-        <li class="md-nav__item">
-  <a href="#uvloop" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        🚁 uvloop
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#semaphore" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        🚁 通过信号量(semaphore)控制并发数量
-      
-    </span>
-  </a>
-  
-</li>
-      
     </ul>
   
 </nav>
@@ -8908,6 +8886,85 @@
 
   <h1>协程</h1>
 
+<table>
+<thead>
+<tr>
+<th>代码</th>
+<th>概念</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>async def gen_cases</code></td>
+<td>协程函数</td>
+</tr>
+<tr>
+<td><code>gen_cases(r)</code> 不加 await</td>
+<td>只是协程对象，不执行</td>
+</tr>
+<tr>
+<td><code>await client...create</code></td>
+<td>在结果返回前挂起，交还控制权给事件循环(EventLoop)</td>
+</tr>
+<tr>
+<td><code>asyncio.gather(*[...])</code></td>
+<td>协程任务采集后一起交给事件循环</td>
+</tr>
+<tr>
+<td><code>asyncio.run(main())</code></td>
+<td>事件循环入口</td>
+</tr>
+<tr>
+<td><code>async with sem</code></td>
+<td>Semaphore限流，控制并发数</td>
+</tr>
+</tbody>
+</table>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">asyncio</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">openai</span><span class="w"> </span><span class="kn">import</span> <span class="n">AsyncOpenAI</span>
+
+<span class="n">client</span> <span class="o">=</span> <span class="n">AsyncOpenAI</span><span class="p">()</span>
+
+<span class="c1"># 全局一份信号量：最多 10 个请求同时在飞</span>
+<span class="n">sem</span> <span class="o">=</span> <span class="n">asyncio</span><span class="o">.</span><span class="n">Semaphore</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+
+<span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">gen_cases</span><span class="p">(</span><span class="n">requirement</span><span class="p">):</span>
+    <span class="c1"># 进门前先领令牌，领不到就挂起排队（交还事件循环）</span>
+    <span class="k">async</span> <span class="k">with</span> <span class="n">sem</span><span class="p">:</span>
+        <span class="n">resp</span> <span class="o">=</span> <span class="k">await</span> <span class="n">client</span><span class="o">.</span><span class="n">chat</span><span class="o">.</span><span class="n">completions</span><span class="o">.</span><span class="n">create</span><span class="p">(</span>
+            <span class="n">model</span><span class="o">=</span><span class="s2">"gpt-4o-mini"</span><span class="p">,</span>
+            <span class="n">messages</span><span class="o">=</span><span class="p">[{</span><span class="s2">"role"</span><span class="p">:</span> <span class="s2">"user"</span><span class="p">,</span> <span class="s2">"content"</span><span class="p">:</span> <span class="sa">f</span><span class="s2">"为这个需求生成测试用例：</span><span class="si">{</span><span class="n">requirement</span><span class="si">}</span><span class="s2">"</span><span class="p">}],</span>
+        <span class="p">)</span>
+        <span class="k">return</span> <span class="n">resp</span><span class="o">.</span><span class="n">choices</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">message</span><span class="o">.</span><span class="n">content</span>
+
+<span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">main</span><span class="p">():</span>
+    <span class="n">reqs</span> <span class="o">=</span> <span class="p">[</span><span class="s2">"登录功能"</span><span class="p">,</span> <span class="s2">"支付功能"</span><span class="p">,</span> <span class="s2">"注册功能"</span><span class="p">,</span> <span class="o">...</span><span class="p">]</span>  <span class="c1"># 假设 1000 个</span>
+
+    <span class="c1"># 1. 列表推导：把每个 req 变成协程（此时都还没跑）</span>
+    <span class="c1"># 2. *：拆开成一个个协程</span>
+    <span class="c1"># 3. gather：一起交给事件循环</span>
+    <span class="c1"># 4. await：main 在此等全部跑完</span>
+    <span class="n">results</span> <span class="o">=</span> <span class="k">await</span> <span class="n">asyncio</span><span class="o">.</span><span class="n">gather</span><span class="p">(</span><span class="o">*</span><span class="p">[</span><span class="n">gen_cases</span><span class="p">(</span><span class="n">r</span><span class="p">)</span> <span class="k">for</span> <span class="n">r</span> <span class="ow">in</span> <span class="n">reqs</span><span class="p">])</span>
+
+    <span class="k">for</span> <span class="n">r</span> <span class="ow">in</span> <span class="n">results</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">r</span><span class="p">)</span>
+
+<span class="c1"># 整个异步程序的入口：建事件循环 → 跑 main → 关闭</span>
+<span class="n">asyncio</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">main</span><span class="p">())</span>
+</code></pre></div>
+<hr>
+<h2 id="uvloop">🚁 uvloop</h2>
+<p>asyncio事件循环的替代方案，基于uvloop的asyncio的速度几乎接近了Go程序的速度。</p>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">asyncio</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">uvloop</span>
+
+<span class="n">asyncio</span><span class="o">.</span><span class="n">set_event_loop_policy</span><span class="p">(</span><span class="n">uvloop</span><span class="o">.</span><span class="n">EventLoopPolicy</span><span class="p">())</span>
+
+<span class="c1"># 编写异步代码，与之前步骤一致</span>
+
+<span class="n">asyncio</span><span class="o">.</span><span class="n">run</span><span class="p">()</span>
+</code></pre></div>
+<hr>
 <p>协程函数，使用<code>asynic</code>定义的函数：<code>asynic def func</code>，在python3.5引入。</p>
 <p>协程对象，执行协程函数()时仅得到协程对象，内部代码不会执行。</p>
 <div class="highlight"><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">asyncio</span>
@@ -8920,7 +8977,7 @@
 <span class="c1"># loop.run_until_complete(func())</span>
 <span class="n">asyncio</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">func</span><span class="p">())</span>  <span class="c1"># 与以上两行等价，但asyncio.run在python3.7以上才可用</span>
 </code></pre></div>
-<h3 id="await">🚁 await</h3>
+<h2 id="await">🚁 await</h2>
 <p>await + 可等待的对象（包括协程对象、asyncio.Future对象、Task对象）</p>
 <p>挂起当前协程（任务），等待IO操作完成之后再继续执行。</p>
 <div class="highlight"><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">asyncio</span>
@@ -8941,7 +8998,7 @@
 
 <span class="n">asyncio</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">func</span><span class="p">())</span>
 </code></pre></div>
-<h3 id="task">🚁 Task对象</h3>
+<h2 id="task">🚁 Task对象</h2>
 <p>在事件循环中，将协程对象封装为Task对象，交给事件循环进行处理。</p>
 <div class="highlight"><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">asyncio</span>
 
@@ -8965,9 +9022,9 @@
 
 <span class="n">asyncio</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">main</span><span class="p">())</span>
 </code></pre></div>
-<h3 id="asynciofuture">🚁 asyncio.Future对象</h3>
+<h2 id="asynciofuture">🚁 asyncio.Future对象</h2>
 <p>等待异步结果，Task的基类，更底层，一般不会直接用。</p>
-<h3 id="concurrentfuturesfuture">🚁 concurrent.futures.Future对象</h3>
+<h2 id="concurrentfuturesfuture">🚁 concurrent.futures.Future对象</h2>
 <p>使用线程池、进程池实现异步操作时用到的对象，主要在异步与同步间转换时使用，如异步编程时，遇到不支持异步的第三方组件。</p>
 <div class="highlight"><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">time</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">asyncio</span>
@@ -8997,48 +9054,6 @@
         <span class="nb">print</span><span class="p">(</span><span class="s1">'custom process pool'</span><span class="p">,</span> <span class="n">result</span><span class="p">)</span>
 
 <span class="n">asyncio</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">main</span><span class="p">())</span>
-</code></pre></div>
-<h3 id="uvloop">🚁 uvloop</h3>
-<p>asyncio事件循环的替代方案，基于uvloop的asyncio的速度几乎接近了Go程序的速度。</p>
-<div class="highlight"><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">asyncio</span>
-<span class="kn">import</span><span class="w"> </span><span class="nn">uvloop</span>
-
-<span class="n">asyncio</span><span class="o">.</span><span class="n">set_event_loop_policy</span><span class="p">(</span><span class="n">uvloop</span><span class="o">.</span><span class="n">EventLoopPolicy</span><span class="p">())</span>
-
-<span class="c1"># 编写异步代码，与之前步骤一致</span>
-
-<span class="n">asyncio</span><span class="o">.</span><span class="n">run</span><span class="p">()</span>
-</code></pre></div>
-<h3 id="semaphore">🚁 通过信号量(semaphore)控制并发数量</h3>
-<div class="highlight"><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">asyncio</span>
-<span class="kn">import</span><span class="w"> </span><span class="nn">aiohttp</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">List</span>
-
-<span class="c1"># 限制最大并发数为3</span>
-<span class="n">semaphore</span> <span class="o">=</span> <span class="n">asyncio</span><span class="o">.</span><span class="n">Semaphore</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
-
-<span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">fetch_data</span><span class="p">(</span><span class="n">url</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
-    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Fetching </span><span class="si">{</span><span class="n">url</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
-    <span class="k">async</span> <span class="k">with</span> <span class="n">semaphore</span><span class="p">:</span>
-        <span class="c1"># 模拟网络请求或其他耗时操作</span>
-        <span class="k">await</span> <span class="n">asyncio</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
-        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Fetched </span><span class="si">{</span><span class="n">url</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
-
-<span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">main</span><span class="p">(</span><span class="n">urls</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]):</span>
-    <span class="k">async</span> <span class="k">with</span> <span class="n">aiohttp</span><span class="o">.</span><span class="n">ClientSession</span><span class="p">()</span> <span class="k">as</span> <span class="n">session</span><span class="p">:</span>
-        <span class="n">tasks</span> <span class="o">=</span> <span class="p">[</span><span class="n">fetch_data</span><span class="p">(</span><span class="n">url</span><span class="p">)</span> <span class="k">for</span> <span class="n">url</span> <span class="ow">in</span> <span class="n">urls</span><span class="p">]</span>
-        <span class="k">await</span> <span class="n">asyncio</span><span class="o">.</span><span class="n">gather</span><span class="p">(</span><span class="o">*</span><span class="n">tasks</span><span class="p">)</span>
-
-<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">"__main__"</span><span class="p">:</span>
-    <span class="n">urls</span> <span class="o">=</span> <span class="p">[</span>
-        <span class="s2">"http://example.com/1"</span><span class="p">,</span>
-        <span class="s2">"http://example.com/2"</span><span class="p">,</span>
-        <span class="s2">"http://example.com/3"</span><span class="p">,</span>
-        <span class="s2">"http://example.com/4"</span><span class="p">,</span>
-        <span class="s2">"http://example.com/5"</span><span class="p">,</span>
-        <span class="s2">"http://example.com/6"</span>
-    <span class="p">]</span>
-    <span class="n">asyncio</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">main</span><span class="p">(</span><span class="n">urls</span><span class="p">))</span>
 </code></pre></div>
 
 
