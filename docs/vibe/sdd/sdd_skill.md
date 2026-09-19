@@ -52,8 +52,8 @@ npx skills@latest add mattpocock/skills
 
 其他技能补充说明: 
 
-`teach`, 基于agent教学，需要提供上下文信息。产物: 分章节生成html，包含重点和题目等。
-`handoff`, 把当前任务上下文压缩并持久化，交给下一个agent。
+- `teach`, 基于agent教学，需要提供上下文信息。产物: 分章节生成html，包含重点和题目等。
+- `handoff`, 把当前任务上下文压缩并持久化，交给下一个agent。
 
 ---
 
