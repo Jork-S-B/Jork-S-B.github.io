@@ -1,3 +1,30 @@
+## Sigma
+
+项目地址: 项目地址: https://github.com/chaojiwudibing/learn-by-building
+
+基于agent的1对1教学，但ai不断提问，不直接给答案，让用户慢慢摸到重点。
+
+```bash
+npx skills add sanyuan0704/sanyuan-skills --path skills/Sigma
+
+# Usage
+# /sigma Python decorators
+# /sigma 量子力学 --level beginner
+# /sigma React hooks --level intermediate --lang zh
+# /sigma linear algebra --resume    # Resume previous session
+```
+
+## learn-by-building
+
+项目地址: https://github.com/chaojiwudibing/learn-by-building
+
+ai编程时，不懂就问的skill
+
+```bash
+# 快速安装
+npx skills add chaojiwudibing/learn-by-building
+```
+
 ## Garden Skills
 
 项目中文readme: https://github.com/ConardLi/garden-skills/blob/main/README.zh-CN.md
@@ -100,31 +127,4 @@ claude的实验性功能: Agent Teams，`setting.json`设置如下
     },
     "teammateMode": "tmux",
 }
-```
-
-## Sigma
-
-项目地址: 项目地址: https://github.com/chaojiwudibing/learn-by-building
-
-基于agent的1对1教学，但ai不断提问，不直接给答案，让用户慢慢摸到重点。
-
-```bash
-npx skills add sanyuan0704/sanyuan-skills --path skills/Sigma
-
-# Usage
-# /sigma Python decorators
-# /sigma 量子力学 --level beginner
-# /sigma React hooks --level intermediate --lang zh
-# /sigma linear algebra --resume    # Resume previous session
-```
-
-## learn-by-building
-
-项目地址: https://github.com/chaojiwudibing/learn-by-building
-
-ai编程时，不懂就问的skill
-
-```bash
-# 快速安装
-npx skills add chaojiwudibing/learn-by-building
 ```
