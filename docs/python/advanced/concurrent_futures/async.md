@@ -1,3 +1,65 @@
+| 代码 | 概念 |
+|---|---|
+| `async def gen_cases` | 协程函数 |
+| `gen_cases(r)` 不加 await | 只是协程对象，不执行 |
+| `await client...create` | 在结果返回前挂起，交还控制权给事件循环(EventLoop) |
+| `asyncio.gather(*[...])` | 协程任务采集后一起交给事件循环 |
+| `asyncio.run(main())` | 事件循环入口 |
+| `async with sem` | Semaphore限流，控制并发数 |
+
+```python
+import asyncio
+from openai import AsyncOpenAI
+
+client = AsyncOpenAI()
+
+# 全局一份信号量：最多 10 个请求同时在飞
+sem = asyncio.Semaphore(10)
+
+async def gen_cases(requirement):
+    # 进门前先领令牌，领不到就挂起排队（交还事件循环）
+    async with sem:
+        resp = await client.chat.completions.create(
+            model="gpt-4o-mini",
+            messages=[{"role": "user", "content": f"为这个需求生成测试用例：{requirement}"}],
+        )
+        return resp.choices[0].message.content
+
+async def main():
+    reqs = ["登录功能", "支付功能", "注册功能", ...]  # 假设 1000 个
+
+    # 1. 列表推导：把每个 req 变成协程（此时都还没跑）
+    # 2. *：拆开成一个个协程
+    # 3. gather：一起交给事件循环
+    # 4. await：main 在此等全部跑完
+    results = await asyncio.gather(*[gen_cases(r) for r in reqs])
+
+    for r in results:
+        print(r)
+
+# 整个异步程序的入口：建事件循环 → 跑 main → 关闭
+asyncio.run(main())
+```
+
+---
+
+## 🚁 uvloop
+
+asyncio事件循环的替代方案，基于uvloop的asyncio的速度几乎接近了Go程序的速度。
+
+```python
+import asyncio
+import uvloop
+
+asyncio.set_event_loop_policy(uvloop.EventLoopPolicy())
+
+# 编写异步代码，与之前步骤一致
+
+asyncio.run()
+```
+
+---
+
 协程函数，使用`asynic`定义的函数：`asynic def func`，在python3.5引入。
     
 协程对象，执行协程函数()时仅得到协程对象，内部代码不会执行。
@@ -15,7 +77,7 @@ asyncio.run(func())  # 与以上两行等价，但asyncio.run在python3.7以上�
 
 ```
 
-### 🚁 await
+## 🚁 await
 
 await + 可等待的对象（包括协程对象、asyncio.Future对象、Task对象）
 
@@ -42,7 +104,7 @@ asyncio.run(func())
 
 ```
 
-### 🚁 Task对象
+## 🚁 Task对象
 
 在事件循环中，将协程对象封装为Task对象，交给事件循环进行处理。
 
@@ -71,11 +133,11 @@ asyncio.run(main())
 
 ```
 
-### 🚁 asyncio.Future对象
+## 🚁 asyncio.Future对象
 
 等待异步结果，Task的基类，更底层，一般不会直接用。
 
-### 🚁 concurrent.futures.Future对象
+## 🚁 concurrent.futures.Future对象
 
 使用线程池、进程池实现异步操作时用到的对象，主要在异步与同步间转换时使用，如异步编程时，遇到不支持异步的第三方组件。
 
@@ -111,52 +173,3 @@ asyncio.run(main())
 
 ```
 
-### 🚁 uvloop
-
-asyncio事件循环的替代方案，基于uvloop的asyncio的速度几乎接近了Go程序的速度。
-
-```python
-import asyncio
-import uvloop
-
-asyncio.set_event_loop_policy(uvloop.EventLoopPolicy())
-
-# 编写异步代码，与之前步骤一致
-
-asyncio.run()
-```
-
-### 🚁 通过信号量(semaphore)控制并发数量
-
-```python
-import asyncio
-import aiohttp
-from typing import List
-
-# 限制最大并发数为3
-semaphore = asyncio.Semaphore(3)
-
-async def fetch_data(url: str):
-    print(f"Fetching {url}")
-    async with semaphore:
-        # 模拟网络请求或其他耗时操作
-        await asyncio.sleep(1)
-        print(f"Fetched {url}")
-
-async def main(urls: List[str]):
-    async with aiohttp.ClientSession() as session:
-        tasks = [fetch_data(url) for url in urls]
-        await asyncio.gather(*tasks)
-
-if __name__ == "__main__":
-    urls = [
-        "http://example.com/1",
-        "http://example.com/2",
-        "http://example.com/3",
-        "http://example.com/4",
-        "http://example.com/5",
-        "http://example.com/6"
-    ]
-    asyncio.run(main(urls))
-
-```
