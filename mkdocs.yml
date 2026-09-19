@@ -221,7 +221,7 @@ nav:
                 - MiniMax-H3云端部署: vibe/personal/MiniMax-H3.md
           - SDD:
                 - agent编程工具: vibe/sdd/claude.md
-                - 相关skill: vibe/sdd/relate_skill.md
+                - sdd_skill: vibe/sdd/sdd_skill.md
                 - 自用skill: vibe/sdd/self_using_skill.md
           - agent应用:
                 - 评估体系: vibe/agent_app/evaluation.md

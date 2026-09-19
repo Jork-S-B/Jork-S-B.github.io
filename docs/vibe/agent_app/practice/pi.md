@@ -61,3 +61,5 @@ Tool工具层，读写文件、查数据库等，工具来源包括:
 $env:PROCESSOR_ARCHITECTURE
 
 ```
+
+https://github.com/orionpax1997/kickstart.pi

@@ -1,48 +1,3 @@
-## mattpocock skills
-
-项目地址: https://github.com/mattpocock/skills
-
-My agent skills that I use every day to do real engineering - not vibe coding.
-
-程序员实用**工具集**
-
-```bash
-# 快速安装
-npx skills@latest add mattpocock/skills
-
-# 仓库初始化
-/setup-matt-pocock-skills
-# 选择仓库管理方式: 基于github或者本地md文件
-
-```
-
-### 按工作流使用
-
-1. **对齐需求** — 每次想改动代码前，先跑 `/grill-me`（非代码）或 `/grill-with-docs`（代码相关，还会顺带沉淀 `CONTEXT.md` 领域词汇和 ADR）
-2. **生成 spec** — `/to-spec` 把对齐后的对话直接转成 spec 发到 issue tracker
-3. **拆分任务** — `/to-tickets` 把计划拆成可验证的 tracer-bullet tickets（大型规划用 `/wayfinder` 生成决策地图）
-4. **实现** — `/implement` 按 spec/tickets 驱动 `/tdd`（红-绿-重构）和 `/code-review`
-5. **排错** — 代码不工作时用 `/diagnosing-bugs` 的分阶段门控调试循环
-6. **定期维护架构** — 每隔几天跑一次 `/improve-codebase-architecture`，扫描代码库的深化机会并生成 HTML 报告（注意它是“巡检”而非“抢救”）
-
-`grill-me`, 使用时需关注本次讨论的范围，不然容易无休止讨论，被牵着鼻子走。
-
-### 技能清单速览
-
-- **Engineering（用户手动调用）**：`ask-matt`（不知道用哪个技能时的路由器）、`grill-with-docs`、`triage`、`improve-codebase-architecture`、`setup-matt-pocock-skills`、`to-spec`、`to-tickets`、`implement`、`wayfinder`
-- **Engineering（模型自动调用）**：`prototype`、`diagnosing-bugs`、`research`、`tdd`、`domain-modeling`、`codebase-design`、`code-review`、`resolving-merge-conflicts`、`wizard`
-- **Productivity**：用户调用 `grill-me`、`handoff`、`teach`、`to-questionnaire`、`wait-what`；模型调用 `grilling`、`writing-for-agents`
-
-## learn-by-building
-
-项目地址: https://github.com/chaojiwudibing/learn-by-building
-
-ai编程时，不懂就问的skill
-
-```bash
-# 快速安装
-npx skills add chaojiwudibing/learn-by-building
-```
 ## Garden Skills
 
 项目中文readme: https://github.com/ConardLi/garden-skills/blob/main/README.zh-CN.md
@@ -147,3 +102,29 @@ claude的实验性功能: Agent Teams，`setting.json`设置如下
 }
 ```
 
+## Sigma
+
+项目地址: 项目地址: https://github.com/chaojiwudibing/learn-by-building
+
+基于agent的1对1教学，但ai不断提问，不直接给答案，让用户慢慢摸到重点。
+
+```bash
+npx skills add sanyuan0704/sanyuan-skills --path skills/Sigma
+
+# Usage
+# /sigma Python decorators
+# /sigma 量子力学 --level beginner
+# /sigma React hooks --level intermediate --lang zh
+# /sigma linear algebra --resume    # Resume previous session
+```
+
+## learn-by-building
+
+项目地址: https://github.com/chaojiwudibing/learn-by-building
+
+ai编程时，不懂就问的skill
+
+```bash
+# 快速安装
+npx skills add chaojiwudibing/learn-by-building
+```
