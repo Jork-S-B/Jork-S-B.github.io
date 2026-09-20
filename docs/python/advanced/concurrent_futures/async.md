@@ -1,11 +1,13 @@
 | 代码 | 概念 |
 |---|---|
-| `async def gen_cases` | 协程函数 |
-| `gen_cases(r)` 不加 await | 只是协程对象，不执行 |
+| `async def gen_cases` | 定义协程函数 |
+| `gen_cases(r)` 不加 await 时 | 只是协程对象，不执行 |
 | `await client...create` | 在结果返回前挂起，交还控制权给事件循环(EventLoop) |
 | `asyncio.gather(*[...])` | 协程任务采集后一起交给事件循环 |
 | `asyncio.run(main())` | 事件循环入口 |
 | `async with sem` | Semaphore限流，控制并发数 |
+
+事件循环与OS的交互: 当 Socket 就绪或 I/O 完成时，OS 唤醒正在等待的事件循环；事件循环执行 I/O 回调、完成 Future，再调度 Task 恢复协程。
 
 ```python
 import asyncio
@@ -41,11 +43,31 @@ async def main():
 asyncio.run(main())
 ```
 
----
-
 ## 🚁 uvloop
 
-asyncio事件循环的替代方案，基于uvloop的asyncio的速度几乎接近了Go程序的速度。
+asyncio事件循环的替代方案，基于uvloop的asyncio的速度几乎接近了Go程序(前提是单核+IO密集型任务)的速度。
+
+基于C语言的底层库: `libuv`（跨平台统一 epoll/kqueue/IOCP），只需替换事件循环，`解决异步IO的效率`。
+
+??? question "为什么 C 库比 Python 快"
+
+    1. 解释 vs 编译
+
+        Python 代码要先编译成字节码，再由解释器逐条读、逐条执行。每执行一条字节码，都有一次“分发开销”（判断这是哪条指令、然后跳到对应处理）。
+
+        C 代码编译成机器码，CPU 直接执行指令，没有“逐条读”这一层。
+
+    2. 动态类型检查
+
+        Python 里 total += i，解释器每一轮都要先查 total 是什么类型、i 是什么类型，才能决定怎么加。
+
+        C 里 int total，类型编译期就定死，直接整数加法，不查。
+
+    3. 对象模型开销
+
+        Python 的 int 是对象（PyObject），有引用计数、有结构体头。每次运算都要创建新对象、改引用计数、释放旧对象。
+
+        C 的 int 就是内存里 4/8 个字节，算完就完事。
 
 ```python
 import asyncio
@@ -58,7 +80,68 @@ asyncio.set_event_loop_policy(uvloop.EventLoopPolicy())
 asyncio.run()
 ```
 
----
+## 🚁 异步编程中遇到CPU密集任务
+
+思路: 把CPU密集/同步阻塞任务，放到事件循环外，避免阻塞主线程。
+
+cpu_bound() 保持普通同步函数，用 loop.run_in_executor(process_pool, cpu_bound, text)，再 await 它
+
+```python
+import asyncio
+import os
+import time
+from concurrent.futures import ProcessPoolExecutor
+
+
+def cpu_bound(n: int) -> int:
+    """模拟 CPU 密集任务：纯 Python 计算，适合放进程池。"""
+    total = 0
+    for i in range(n):
+        total += i * i
+    return total
+
+
+async def heartbeat(stop: asyncio.Event) -> None:
+    """心跳协程：如果事件循环没被阻塞，它会持续打印。"""
+    i = 0
+    while not stop.is_set():
+        print(f"[heartbeat {i}] {time.strftime('%X')}")
+        i += 1
+        await asyncio.sleep(0.3)
+
+
+async def main() -> None:
+    loop = asyncio.get_running_loop()
+
+    stop = asyncio.Event()
+    hb_task = asyncio.create_task(heartbeat(stop))
+
+    # 关键：CPU 密集用 ProcessPoolExecutor，而不是默认 ThreadPoolExecutor
+    max_workers = os.cpu_count() or 4
+
+    with ProcessPoolExecutor(max_workers=max_workers) as pool:
+        nums = [8_000_000, 9_000_000, 10_000_000, 11_000_000]
+
+        futures = [
+            loop.run_in_executor(pool, cpu_bound, n)
+            for n in nums
+        ]
+
+        results = await asyncio.gather(*futures)
+        print("results:", results)
+
+    stop.set()
+    await hb_task
+
+
+if __name__ == "__main__":
+    start = time.perf_counter()
+    asyncio.run(main())
+    print(f"elapsed: {time.perf_counter() - start:.2f}s")
+
+```
+
+## old
 
 协程函数，使用`asynic`定义的函数：`asynic def func`，在python3.5引入。
     
@@ -77,7 +160,7 @@ asyncio.run(func())  # 与以上两行等价，但asyncio.run在python3.7以上�
 
 ```
 
-## 🚁 await
+### 🚁 await
 
 await + 可等待的对象（包括协程对象、asyncio.Future对象、Task对象）
 
@@ -104,7 +187,7 @@ asyncio.run(func())
 
 ```
 
-## 🚁 Task对象
+### 🚁 Task对象
 
 在事件循环中，将协程对象封装为Task对象，交给事件循环进行处理。
 
@@ -133,11 +216,11 @@ asyncio.run(main())
 
 ```
 
-## 🚁 asyncio.Future对象
+### 🚁 asyncio.Future对象
 
 等待异步结果，Task的基类，更底层，一般不会直接用。
 
-## 🚁 concurrent.futures.Future对象
+### 🚁 concurrent.futures.Future对象
 
 使用线程池、进程池实现异步操作时用到的对象，主要在异步与同步间转换时使用，如异步编程时，遇到不支持异步的第三方组件。
 
