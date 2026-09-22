@@ -87,8 +87,10 @@ redis-cli config set slowlog-log-slower-than 100000
 # 获取最近 10 条慢查询
 redis-cli slowlog get 10
 
-# 查找大keys
+# 查找大key(根据元素个数快筛，给嫌疑名单)
 redis-cli --bigkeys
+# 结合`MEMORY USAGE`定量排查才合理
+MEMORY USAGE
 ```
 
 ## 📌 关键指标

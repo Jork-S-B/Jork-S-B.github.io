@@ -319,15 +319,18 @@ redis-cli CONFIG GET maxmemory-policy
 2.定位大Key（Big Key）
 
 ```bash
+# --bigkeys 只做(元素个数)初筛（快、采样、给嫌疑名单），定量必须用 MEMORY USAGE 补刀，拿到真实字节数才算实锤。
 redis-cli --bigkeys
 redis-cli MEMORY USAGE {key}
 ```
 
 使用 redis-cli --bigkeys 扫描，重点查看 prize_config 对应的数据结构大小。
 
-3.怀疑缓存穿透/击穿流量
+3.若怀疑缓存穿透/击穿流量
 
-查看Redis监控的 keyspace_misses（未命中数）与 keyspace_hits（命中数）曲线。未命中数陡增的时间点应与 evicted_keys 陡增时间点完全重合，并确认是否未做`缓存空值处理`或`布隆过滤器前置拦截`或`缓存失效时间（TTL）设置是否集中`。
+查看Redis监控的 keyspace_misses（未命中数）与 keyspace_hits（命中数）曲线。
+
+未命中数陡增的时间点应与 evicted_keys 陡增时间点完全重合，并确认是否未做`缓存空值处理`或`布隆过滤器前置拦截`或`缓存失效时间（TTL）设置是否集中`。
 
 ##### 根因
 
@@ -343,6 +346,14 @@ redis-cli MEMORY USAGE {key}
 
 - 大Key拆解为Redis Hash，只缓存有效奖品
 - 逻辑过期 + 本地缓存：引入逻辑过期机制，物理TTL设为永不过期，在Value中埋入logicExpireTime，由后台异步线程定时刷新，彻底消除击穿风险。同时，在应用内存引入Caffeine本地缓存作为第一道防线，压测时99%的奖品读请求由本地内存直接返回，完全不经过Redis。
+
+??? tip "del和unlink"
+
+    大Key删除禁止 DEL，一律 UNLINK
+
+    - del：遍历并释放小内存块，根据该键值大小，这个过程可能耗时几百毫秒到数秒；且Redis命令处理是单线程的，这期间所有命令排队。
+    - UNLINK：异步删除（4.0+）
+
 
 ## 六、压测通过标准建议
 
