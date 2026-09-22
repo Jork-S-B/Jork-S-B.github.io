@@ -9274,8 +9274,10 @@ redis-cli<span class="w"> </span>config<span class="w"> </span><span class="nb">
 <span class="c1"># 获取最近 10 条慢查询</span>
 redis-cli<span class="w"> </span>slowlog<span class="w"> </span>get<span class="w"> </span><span class="m">10</span>
 
-<span class="c1"># 查找大keys</span>
+<span class="c1"># 查找大key(根据元素个数快筛，给嫌疑名单)</span>
 redis-cli<span class="w"> </span>--bigkeys
+<span class="c1"># 结合`MEMORY USAGE`定量排查才合理</span>
+MEMORY<span class="w"> </span>USAGE
 </code></pre></div>
 <h2 id="_3">📌 关键指标</h2>
 <ul>

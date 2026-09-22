@@ -9509,12 +9509,14 @@ redis-cli<span class="w"> </span>CONFIG<span class="w"> </span>GET<span class="w
 </code></pre></div>
 <p>策略是 allkeys-lru，说明最近最少使用的Key被清掉了。结合现象，怀疑是大key挤占了其他缓存的空间。</p>
 <p>2.定位大Key（Big Key）</p>
-<div class="highlight"><pre><span></span><code>redis-cli<span class="w"> </span>--bigkeys
+<div class="highlight"><pre><span></span><code><span class="c1"># --bigkeys 只做(元素个数)初筛（快、采样、给嫌疑名单），定量必须用 MEMORY USAGE 补刀，拿到真实字节数才算实锤。</span>
+redis-cli<span class="w"> </span>--bigkeys
 redis-cli<span class="w"> </span>MEMORY<span class="w"> </span>USAGE<span class="w"> </span><span class="o">{</span>key<span class="o">}</span>
 </code></pre></div>
 <p>使用 redis-cli --bigkeys 扫描，重点查看 prize_config 对应的数据结构大小。</p>
-<p>3.怀疑缓存穿透/击穿流量</p>
-<p>查看Redis监控的 keyspace_misses（未命中数）与 keyspace_hits（命中数）曲线。未命中数陡增的时间点应与 evicted_keys 陡增时间点完全重合，并确认是否未做<code>缓存空值处理</code>或<code>布隆过滤器前置拦截</code>或<code>缓存失效时间（TTL）设置是否集中</code>。</p>
+<p>3.若怀疑缓存穿透/击穿流量</p>
+<p>查看Redis监控的 keyspace_misses（未命中数）与 keyspace_hits（命中数）曲线。</p>
+<p>未命中数陡增的时间点应与 evicted_keys 陡增时间点完全重合，并确认是否未做<code>缓存空值处理</code>或<code>布隆过滤器前置拦截</code>或<code>缓存失效时间（TTL）设置是否集中</code>。</p>
 <h5 id="_13">根因</h5>
 <p>技术债务+业务演进</p>
 <p>由于奖品配置由运营同事在平台配置的，加上最初设计时所有奖品都存在string格式的key，后续有效的、无效的奖品都存在这个key里，加上ttl永不过期。</p>
@@ -9525,6 +9527,14 @@ redis-cli<span class="w"> </span>MEMORY<span class="w"> </span>USAGE<span class=
 <li>大Key拆解为Redis Hash，只缓存有效奖品</li>
 <li>逻辑过期 + 本地缓存：引入逻辑过期机制，物理TTL设为永不过期，在Value中埋入logicExpireTime，由后台异步线程定时刷新，彻底消除击穿风险。同时，在应用内存引入Caffeine本地缓存作为第一道防线，压测时99%的奖品读请求由本地内存直接返回，完全不经过Redis。</li>
 </ul>
+<details class="tip">
+<summary>del和unlink</summary>
+<p>大Key删除禁止 DEL，一律 UNLINK</p>
+<ul>
+<li>del：遍历并释放小内存块，根据该键值大小，这个过程可能耗时几百毫秒到数秒；且Redis命令处理是单线程的，这期间所有命令排队。</li>
+<li>UNLINK：异步删除（4.0+）</li>
+</ul>
+</details>
 <h2 id="_15">六、压测通过标准建议</h2>
 <table>
 <thead>
