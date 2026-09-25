@@ -24,7 +24,7 @@ npx skills@latest add mattpocock/skills
 
 # 仓库初始化
 /setup-matt-pocock-skills
-# 选择仓库管理方式: 基于github或者本地md文件
+# 选择仓库管理方式: 基于github issue或者本地md文件
 
 ```
 ### 按工作流使用
@@ -36,8 +36,8 @@ npx skills@latest add mattpocock/skills
 5. **排错** — 代码不工作时用 `/diagnosing-bugs` 的分阶段门控调试循环
 6. **定期维护架构** — 每隔几天跑一次燃烧token `/improve-codebase-architecture`，扫描代码库的深化机会并生成 HTML 报告（注意它是“巡检”而非“抢救”）
 
-- `grill-me`, 使用时需关注本次讨论的范围，不然容易无休止讨论，被牵着鼻子走。
-- 1至4步，是核心的工作流程。明确的小改动不需要使用，模糊的需求用grill，复杂需求用to-spec，再复杂有多个功能点用to-tickets。根据复杂度灵活组合。
+- 上述1至4点，是核心的工作流程。明确的小改动不需要使用，模糊的需求用grill，复杂需求用to-spec，再复杂有多个功能点用to-tickets。根据复杂度灵活组合。
+- `grill-me`, 使用时可在提示词中明确本次讨论的范围/目的，防止无休止讨论。同时在问题跑偏时，及时介入纠正。
 
 ### 技能清单速览
 
