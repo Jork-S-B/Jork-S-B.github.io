@@ -53,9 +53,9 @@ ai的单元测试覆盖率不可信，引入`突变测试`(运算符取反，预
 
 ## mattpocock skills
 
-`grill-with-docs`, 在模型聪明区(1m上下文，聪明区约200k)能理清思路时使用
+### wayfinder
 
-`wayfinder`, 具体实现有迷雾，想边做边看效果时使用。产出: 决策地图 + tickets(包括依赖、优先级等)，再逐项细分进行grill, research 或 prototype
+具体实现方案有迷雾，想边做边看效果时使用。产出: 决策地图 + tickets(包括依赖、优先级等)，再逐项细分进行grill, research 或 prototype
 
 - 可以让ai梳理wayfinder的目标，前提清除迷雾为主，不让ai自由发挥。目标不要定太远，决策不对就及时调整。
 - 要求输出: 可选目标的依赖关系图 DAG
@@ -67,3 +67,20 @@ ai的单元测试覆盖率不可信，引入`突变测试`(运算符取反，预
     - /new，当上下文没用，或上下文内容有错误则新开窗口
     - /compact，在当前上下文窗口压缩，但压缩后恢复到能继续工作，可能模型还得research
     - /handoff，当前上下文压缩后持久化为文件，可交给另一个模型
+
+### subagent配置
+
+搭配`mattpocock skills`使用时，还需代码review agent。LLM-as-Judge，模型配置需要使用不同厂商的LLM，否则通过率容易虚高。
+
+```
+帮我配置一个 review agent https://pi.dev/packages/pi-subagents-lite 用于 skill: code-review
+调用时机: 不要修改skill，而在agent.md中说明调用时机。
+另外，后续`research`任务调用 explore 子agent。
+
+```
+
+后续引入`codegraph`，使用后agent.md长度估计需要通过`/writing-for-agent`精简
+
+### grill-with-docs
+
+在模型聪明区(1m上下文，聪明区约200k)能理清思路时使用

@@ -62,4 +62,17 @@ $env:PROCESSOR_ARCHITECTURE
 
 ```
 
-https://github.com/orionpax1997/kickstart.pi
+{todo，开箱即用的pi agent}: https://github.com/orionpax1997/kickstart.pi
+
+### subagent
+
+Pi Agent默认无子agent功能，通过扩展来实现该功能。
+
+https://pi.dev/packages/pi-subagents-lite
+
+包含2个子agent: 
+
+- general: 通用任务
+- explore: 探索任务，需要上下文较大的苦力模型
+
+
