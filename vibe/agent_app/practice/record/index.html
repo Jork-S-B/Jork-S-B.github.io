@@ -65,7 +65,7 @@
             body[data-md-color-scheme="slate"] .gslide-title { color: var(--md-default-fg-color); }
             body[data-md-color-scheme="slate"] .gslide-desc { color: var(--md-default-fg-color); }
         </style><meta name="panzoom-theme" content="material">
-<meta name="panzoom-data" content='{"selectors": [".mermaid", ".d2"], "initial_zoom_level": 1.0}'> </head>
+<meta name="panzoom-data" content='{"selectors": [".d2", ".mermaid"], "initial_zoom_level": 1.0}'> </head>
   
   
     
@@ -8636,6 +8636,23 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="7.方向把控">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#research" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        research任务
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
     </ul>
@@ -9008,6 +9025,23 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="7.方向把控">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#research" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        research任务
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
     </ul>
@@ -9120,14 +9154,14 @@
 <li>explore: 探索任务，需要上下文较大的苦力模型</li>
 </ul>
 <p>搭配<code>mattpocock skills</code>使用时，还需<strong>代码review</strong> agent。LLM-as-Judge，模型配置需要使用不同厂商的LLM，否则通过率容易虚高。</p>
-<div class="highlight"><pre><span></span><code>帮我配置一个 review agent https://pi.dev/packages/pi-subagents-lite 用于 skill: code-review
-调用时机: 不要修改skill，而在agent.md中说明调用时机。
-另外，后续`research`任务调用 explore 子agent。
+<div class="highlight"><pre><span></span><code>帮我配置一个 review agent；参考: https://pi.dev/packages/pi-subagents-lite 
+用于 skill: code-review，不要修改skill.md，而在agent.md中说明调用时机。
 </code></pre></div>
+<p>另外，后续<code>research</code>任务调用 explore 子agent。</p>
 <ul>
 <li>产物: 原工单补充answer</li>
 </ul>
-<p>后续引入<code>codegraph</code>，agent.md长度估计不短，需要通过<code>/writing-for-agent</code>精简</p>
+<p>后续引入<code>codegraph</code>，agent.md长度估计不短，超过100行建议通过<code>/writing-for-agent</code>（也是matt-pocock的skill）重构</p>
 <h2 id="6">6.骨架搭建</h2>
 <p><code>/grill-with-docs</code>，在模型聪明区(1m上下文，聪明区约200k)能理清思路时使用</p>
 <div class="highlight"><pre><span></span><code>/grill-with-docs 确认xx文档中的工具链可行性，完成仓库骨架搭建（可编译运行，且写测试用例跑通，提供可手动执行的cli命令）。
@@ -9147,6 +9181,17 @@
 <p>依旧细节少抓，但把控方向。随着大模型上下文的增长，我们心里需要有大概的锚点，防止模型跑偏带来的修复成本。</p>
 <div class="highlight"><pre><span></span><code>根据 fsr.md 里程碑，然后 read scratch 目录下已经完成的内容，帮我画图: 从目前到里程碑，中间还有哪些目标节点的DAG依赖图
 要求: 按 /ask-matt 里的描述，按 wayfinder, grill-with-docs, to-spec 的粒度拆分，且标注应使用哪个对应的skill推进目标
+</code></pre></div>
+<ul>
+<li>产物: mermaid格式的dag依赖图</li>
+</ul>
+<h3 id="research">research任务</h3>
+<ul>
+<li>大模型的上下文管理和注意力机制尤为关键，冗余的上下文会让模型变笨；还有，大模型的注意力呈U型，即首尾上下文的权重比较大。</li>
+<li>探索任务的上下文开销占用都会比较大，因此需要用 subagent 去探索，把有效的信息给到主 Agent，避免上下文过长。</li>
+<li>codegraph mcp，相比ai编程工具常规的grep/read，反复搜代码仓更高效。</li>
+</ul>
+<div class="highlight"><pre><span></span><code>同样修改agent.md: research/探索任务后续都采用 subagent + codegraph mcp 进行，尤其针对 /implement 、 /code-review
 </code></pre></div>
 
 

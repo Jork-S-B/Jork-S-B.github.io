@@ -65,7 +65,7 @@
             body[data-md-color-scheme="slate"] .gslide-title { color: var(--md-default-fg-color); }
             body[data-md-color-scheme="slate"] .gslide-desc { color: var(--md-default-fg-color); }
         </style><meta name="panzoom-theme" content="material">
-<meta name="panzoom-data" content='{"selectors": [".mermaid", ".d2"], "initial_zoom_level": 1.0}'> </head>
+<meta name="panzoom-data" content='{"selectors": [".d2", ".mermaid"], "initial_zoom_level": 1.0}'> </head>
   
   
     
@@ -9147,17 +9147,39 @@ a a b b -&gt; -1
 </code></pre></div>
 </div>
 <div class="tabbed-block">
-<div class="highlight"><pre><span></span><code><span class="c1"># 取首个重复的char下标，dict手动计数或者 collections.Counter</span>
+<div class="highlight"><pre><span></span><code><span class="c1"># 取首个重复的char下标，dict手动计数 或者 collections.Counter</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">collections</span><span class="w"> </span><span class="kn">import</span> <span class="n">Counter</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">first_unique_char_index</span><span class="p">(</span><span class="n">s</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+    <span class="c1"># s_count = {}</span>
+    <span class="c1"># for i in s:</span>
+    <span class="c1">#     s_count[i] = s_count.get(i, 0) + 1</span>
+
+    <span class="n">s_count</span> <span class="o">=</span> <span class="n">Counter</span><span class="p">(</span><span class="n">s</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">i</span><span class="p">,</span><span class="n">val</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">s</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">s_count</span><span class="p">[</span><span class="n">val</span><span class="p">]</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span> <span class="k">return</span> <span class="n">i</span>
+    <span class="k">return</span> <span class="o">-</span><span class="mi">1</span>
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">'__main__'</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">first_unique_char_index</span><span class="p">(</span><span class="s1">'abc'</span><span class="p">))</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">first_unique_char_index</span><span class="p">(</span><span class="s1">'babc'</span><span class="p">))</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">first_unique_char_index</span><span class="p">(</span><span class="s1">'aabc'</span><span class="p">))</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">first_unique_char_index</span><span class="p">(</span><span class="s1">'aabb'</span><span class="p">))</span>
 </code></pre></div>
 </div>
 </div>
 </div>
 <h2 id="_2">取质数</h2>
 <p>1~100的列表，请你设计代码，取列表中的质数，并返回质数列表。</p>
-<div class="highlight"><pre><span></span><code><span class="c1"># 小范围逐个试除，质数: 只能被1和本身整除的数</span>
-<span class="c1"># 1. 分段处理，1不处理，2是质数</span>
-<span class="c1"># 2. 3~100逐个试除并排除偶数，即每次迭代步长为2</span>
-<span class="c1"># 3. 缩小范围可从end下手，只需要判断到 sqrt(end)</span>
+<div class="highlight"><pre><span></span><code><span class="s2">"""</span>
+<span class="s2">小范围逐个试除，质数: 只能被1和本身整除的数</span>
+<span class="s2">1. 分段处理，1-非质数非合数，不处理，2、3是质数，初始res数组为[2,3]；4是合数，循环从5开始。</span>
+<span class="s2">2. 除2以外偶数都非质数，因此步长为2</span>
+<span class="s2">3. 如何试除？如9、15、25、35</span>
+<span class="s2">    分层</span>
+<span class="s2">    3.1. 如9、25，能开方因此排除质数</span>
+<span class="s2">    3.2. 如15、35，用已知的质数逐个试除</span>
+<span class="s2">    3.3. 如97，遍历试除但有停止条件，避免太多非必要的试除( p*p &gt; i )</span>
 </code></pre></div>
 <hr>
 <h2 id="1-two-pointers">1. 双指针（Two Pointers）</h2>
