@@ -90,15 +90,16 @@ https://pi.dev/packages/pi-subagents-lite
 搭配`mattpocock skills`使用时，还需**代码review** agent。LLM-as-Judge，模型配置需要使用不同厂商的LLM，否则通过率容易虚高。
 
 ```
-帮我配置一个 review agent https://pi.dev/packages/pi-subagents-lite 用于 skill: code-review
-调用时机: 不要修改skill，而在agent.md中说明调用时机。
-另外，后续`research`任务调用 explore 子agent。
+帮我配置一个 review agent；参考: https://pi.dev/packages/pi-subagents-lite 
+用于 skill: code-review，不要修改skill.md，而在agent.md中说明调用时机。
 
 ```
 
+另外，后续`research`任务调用 explore 子agent。
+
 * 产物: 原工单补充answer
 
-后续引入`codegraph`，agent.md长度估计不短，需要通过`/writing-for-agent`精简
+后续引入`codegraph`，agent.md长度估计不短，超过100行建议通过`/writing-for-agent`（也是matt-pocock的skill）重构
 
 ## 6.骨架搭建
 
@@ -124,4 +125,16 @@ https://pi.dev/packages/pi-subagents-lite
 根据 fsr.md 里程碑，然后 read scratch 目录下已经完成的内容，帮我画图: 从目前到里程碑，中间还有哪些目标节点的DAG依赖图
 要求: 按 /ask-matt 里的描述，按 wayfinder, grill-with-docs, to-spec 的粒度拆分，且标注应使用哪个对应的skill推进目标
 
+```
+
+* 产物: mermaid格式的dag依赖图
+
+### research任务
+
+- 大模型的上下文管理和注意力机制尤为关键，冗余的上下文会让模型变笨；还有，大模型的注意力呈U型，即首尾上下文的权重比较大。
+- 探索任务的上下文开销占用都会比较大，因此需要用 subagent 去探索，把有效的信息给到主 Agent，避免上下文过长。
+- codegraph mcp，相比ai编程工具常规的grep/read，反复搜代码仓更高效。
+
+```
+同样修改agent.md: research/探索任务后续都采用 subagent + codegraph mcp 进行，尤其针对 /implement 、 /code-review
 ```

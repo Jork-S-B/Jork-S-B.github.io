@@ -16,8 +16,24 @@
 === "py"
 
     ```python
-    # 取首个重复的char下标，dict手动计数或者 collections.Counter
+    # 取首个重复的char下标，dict手动计数 或者 collections.Counter
+    from collections import Counter
 
+    def first_unique_char_index(s: str) -> int:
+        # s_count = {}
+        # for i in s:
+        #     s_count[i] = s_count.get(i, 0) + 1
+
+        s_count = Counter(s)
+        for i,val in enumerate(s):
+            if s_count[val] == 1: return i
+        return -1
+
+    if __name__ == '__main__':
+        print(first_unique_char_index('abc'))
+        print(first_unique_char_index('babc'))
+        print(first_unique_char_index('aabc'))
+        print(first_unique_char_index('aabb'))
 
     ```
 
@@ -26,10 +42,15 @@
 1~100的列表，请你设计代码，取列表中的质数，并返回质数列表。
 
 ```python
-# 小范围逐个试除，质数: 只能被1和本身整除的数
-# 1. 分段处理，1不处理，2是质数
-# 2. 3~100逐个试除并排除偶数，即每次迭代步长为2
-# 3. 缩小范围可从end下手，只需要判断到 sqrt(end)
+"""
+小范围逐个试除，质数: 只能被1和本身整除的数
+1. 分段处理，1-非质数非合数，不处理，2、3是质数，初始res数组为[2,3]；4是合数，循环从5开始。
+2. 除2以外偶数都非质数，因此步长为2
+3. 如何试除？如9、15、25、35
+    分层
+    3.1. 如9、25，能开方因此排除质数
+    3.2. 如15、35，用已知的质数逐个试除
+    3.3. 如97，遍历试除但有停止条件，避免太多非必要的试除( p*p > i )
 
 ```
 
