@@ -8946,10 +8946,10 @@
 <p>Fiddler可以在请求发送至服务端前打断点，或者在服务端发响应结果时打断点(请求前，响应后)。</p>
 <p>通过请求断点，在<code>Inspectors</code>选项卡可修改cookie、修改session、修改报文内容等。</p>
 <p>https请求抓包，需要在<code>Tools</code>-&gt;<code>Options...</code>-&gt;<code>HTTPS</code>选项卡，勾选<code>Capture HTTPS CONNENCTS</code>等选项，并安装证书。</p>
-<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="../image/https.png" data-desc-position="bottom"><img alt="img.png" src="../image/https.png"></a></p>
+<p></p>
 <h3 id="_2">🚁 请求转发</h3>
 <p>在<code>AutoResponder</code>选项卡，增加转发规则，设置匹配请求的方式及转发的内容。</p>
-<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="../image/AutoResponder.png" data-desc-position="bottom"><img alt="img.png" src="../image/AutoResponder.png"></a></p>
+<p></p>
 <p>匹配请求的方式：</p>
 <ul>
 <li>
@@ -8975,7 +8975,7 @@
 <li>从捕获的请求列表，拖拽待测请求至右侧<code>Composer</code>选项卡，便可写入报文。</li>
 <li>修改请求报文，单击<code>Execute</code>按钮即可发送请求。</li>
 </ol>
-<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="../image/Composer.png" data-desc-position="bottom"><img alt="img.png" src="../image/Composer.png"></a></p>
+<p></p>
 <h3 id="_4">🚁 请求代理</h3>
 <p>1.<code>Tools</code>-&gt;<code>Options...</code>-&gt;<code>Connections</code>选项卡，设置端口号，勾选<code>Allow remote computers to connect</code>选项。</p>
 <p>2.设置代理认证：<code>FiddlerScript</code>选项卡，在<code>OnBeforeRequest</code>方法中增加<code>Proxy-Authorization</code>，如：</p>
@@ -8985,7 +8985,7 @@
     }
 </code></pre></div>
 <p>其中<code>Basic</code>的后半部分是将"用户名：密码"进行base64加密生成的，可以通过自带的<code>TextWizard</code>工具生成。</p>
-<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="../image/TextWizard.png" data-desc-position="bottom"><img alt="img.png" src="../image/TextWizard.png"></a></p>
+<p></p>
 <p>3.手机连接同区域网的WiFi后，手动配置代理，把机器IP及端口填入对应项。若设置了代理认证则还需填写用户名、密码。</p>
 <p>此外，同域的计算机也可设置代理，将浏览器请求通过Fiddler代理后转发出去。</p>
 <div class="admonition note">
@@ -8995,7 +8995,7 @@
 <h3 id="_5">🚁 模拟弱网</h3>
 <p>1.<code>Rules</code>-&gt;<code>Performance</code>-&gt;<code>Simulate Modem Speeds</code>，开启调制解调器。</p>
 <p>2.<code>Rules</code>-&gt;<code>Customize Rules</code>或者<code>FiddlerScript</code>选项卡，搜索关键字<code>m_SimulateModem</code>，如下图。</p>
-<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="../image/m_SimulateModem.png" data-desc-position="bottom"><img alt="img.png" src="../image/m_SimulateModem.png"></a></p>
+<p></p>
 <p>默认配置为：每发送1KB延迟300ms；每接收1KB延迟150ms。可见Fiddler模拟弱网本质是设置延迟时间，相对的charles则是限制带宽的方式。</p>
 <div class="admonition note">
 <p class="admonition-title">补充</p>
