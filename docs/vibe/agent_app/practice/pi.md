@@ -62,4 +62,25 @@ $env:PROCESSOR_ARCHITECTURE
 
 ```
 
-{todo，开箱即用的pi agent}: https://github.com/orionpax1997/kickstart.pi
+---
+
+1. 选合适的方式安装
+
+https://pi.dev/
+
+安装后在当前shell会话加载配置: `source ~/.bashrc`
+
+2. 配置模型
+
+接入自定义模型，可通过`pi-model-manager`该TUI拓展接入/管理模型。
+
+`pi install npm:pi-model-manager`
+
+??? tip "workbuddy反代部署指南"
+
+    https://github.com/ithtelab/workbuddy-manager/blob/main/deploy/README.md
+
+3. 选装插件
+
+开箱即用的pi agent: https://github.com/orionpax1997/kickstart.pi
+

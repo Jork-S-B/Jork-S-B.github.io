@@ -13,6 +13,10 @@ DeepSWE score, 右上角区间内的模型most efficient
 代码分类 Preference vs Speed    
 Top-left quadrant shows models with low cost and high ratings
 
+更新不勤，仅参考；有些模型可能会为了提高智力评级而降低编码能力。
+
+Arena-竞技场
+
 ---
 
 [Artificial Analysis](https://artificialanalysis.ai/?cost=intelligence-vs-cost-per-task)
@@ -22,6 +26,14 @@ Artificial Analysis Intelligence Index · Weighted average cost (USD) per Artifi
 Most attractive quadrant，区间内的模型更具性价比。
 
 ---
+
+### 1.1.coding plan
+
+选coding plan本质还是选模型
+
+https://openrouter.ai/rankings#top-models
+
+看使用量飙升的模型
 
 202609: 
 
