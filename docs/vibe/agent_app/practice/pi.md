@@ -1,6 +1,42 @@
-[Pi Agent解读](https://dg-ai-notes.pages.dev/)
+## 环境准备
 
-[解读的源码](https://github.com/buchidonggua/dg-ai-notes)
+1. 选合适的方式安装
+
+https://pi.dev/
+
+安装后在当前shell会话加载配置: `source ~/.bashrc`
+
+2. 配置模型
+
+接入自定义模型，可通过`pi-model-manager`该TUI拓展接入/管理模型。
+
+`pi install npm:pi-model-manager`
+
+??? tip "workbuddy反代部署指南"
+
+    https://github.com/ithtelab/workbuddy-manager/blob/main/deploy/README.md
+
+3. 选装插件
+
+开箱即用的pi agent: https://github.com/orionpax1997/kickstart.pi
+
+---
+
+## 补充
+
+[Pi Agent 源码](https://github.com/earendil-works/pi)
+
+[Pi Agent 安装并接入火山引擎](https://console.volcengine.com/ark/region:cn-beijing/docs/82379/2666476?lang=zh)
+
+```powershell
+# 查看系统架构: amd64 或 arm64
+$env:PROCESSOR_ARCHITECTURE
+
+```
+
+---
+
+[Pi Agent解读](https://dg-ai-notes.pages.dev/)
 
 [B站原视频](https://b23.tv/G9WIM75)
 
@@ -47,40 +83,3 @@ Tool工具层，读写文件、查数据库等，工具来源包括:
 ## Agent封装为服务
 
 {todo}
-
----
-
-## 环境准备
-
-[Pi Agent 源码](https://github.com/earendil-works/pi)
-
-[Pi Agent 安装并接入火山引擎](https://console.volcengine.com/ark/region:cn-beijing/docs/82379/2666476?lang=zh)
-
-```powershell
-# 查看系统架构: amd64 或 arm64
-$env:PROCESSOR_ARCHITECTURE
-
-```
-
----
-
-1. 选合适的方式安装
-
-https://pi.dev/
-
-安装后在当前shell会话加载配置: `source ~/.bashrc`
-
-2. 配置模型
-
-接入自定义模型，可通过`pi-model-manager`该TUI拓展接入/管理模型。
-
-`pi install npm:pi-model-manager`
-
-??? tip "workbuddy反代部署指南"
-
-    https://github.com/ithtelab/workbuddy-manager/blob/main/deploy/README.md
-
-3. 选装插件
-
-开箱即用的pi agent: https://github.com/orionpax1997/kickstart.pi
-
