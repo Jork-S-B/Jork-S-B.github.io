@@ -8396,7 +8396,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../vibe/agent_app/practice/selection/" class="md-nav__link">
+      <a href="../../vibe/agent_app/practice/1_selection/" class="md-nav__link">
         
   
   
@@ -8424,7 +8424,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../vibe/agent_app/practice/pi/" class="md-nav__link">
+      <a href="../../vibe/agent_app/practice/2_pi/" class="md-nav__link">
         
   
   
@@ -8452,7 +8452,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../vibe/agent_app/practice/record/" class="md-nav__link">
+      <a href="../../vibe/agent_app/practice/3_record/" class="md-nav__link">
         
   
   
@@ -8947,7 +8947,7 @@
 <p>1.异常中断与补偿测试（核心）：</p>
 <ul>
 <li>场景：支付成功了，但‘权益下发’服务挂了或超时了。</li>
-<li>测试点：验证系统是否具备<strong>自动重试</strong>机制。如果重试 N 次仍失败，是否进入了<strong>死信队列（DLQ）<strong>或生成了</strong>异常工单</strong>供人工介入。</li>
+<li>测试点：验证系统是否具备<strong>自动重试</strong>机制。如果重试 N 次仍失败，是否进入了<strong>死信队列（DLQ）</strong>或生成了<strong>异常工单</strong>供人工介入。</li>
 <li>操作：在测试环境通过 Mock 掉权益接口返回 500 或超时，观察支付服务的补偿逻辑。</li>
 </ul>
 <details class="tip">
