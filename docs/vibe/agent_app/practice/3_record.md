@@ -138,3 +138,7 @@ https://pi.dev/packages/pi-subagents-lite
 ```
 同样修改agent.md: research/探索任务后续都采用 subagent + codegraph mcp 进行，尤其针对 /implement 、 /code-review
 ```
+
+## 8.阶段总结
+
+重构清理门禁: 清理以确保给ai更好的生成环境、重构以保证代码质量。

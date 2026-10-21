@@ -226,9 +226,9 @@ nav:
           - agent应用:
                 - 评估体系: vibe/agent_app/evaluation.md
                 - 实战:
-                        - 1.选型: vibe/agent_app/practice/selection.md
-                        - 2.Pi Agent: vibe/agent_app/practice/pi.md
-                        - 3.实操记录: vibe/agent_app/practice/record.md
+                        - 1.选型: vibe/agent_app/practice/1_selection.md
+                        - 2.Pi Agent: vibe/agent_app/practice/2_pi.md
+                        - 3.实操记录: vibe/agent_app/practice/3_record.md
                 - UI自动化探索: 
                         - ui_autotest_autogen: vibe/agent_app/ui_autotest_autogen.md
                         - multi_agents_uiautotest: vibe/agent_app/multi_agents_uiautotest.md

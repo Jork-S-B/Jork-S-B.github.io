@@ -301,5 +301,22 @@ skill必有的文件: SKILL.md
 ## 工作流
 
 - Coze: 扣子，面向公网普通用户、内容创作者、产品运营的智能体开发平台。
-- Dify：面向企业内部非技术人员，开源的LLM应用开发平台
-- LangGraph: 面向技术人员 + 复杂任务。
+- Dify: 面向企业内部非技术人员，开源的LLM应用开发平台
+- LangChain/LangGraph: 面向技术人员 + 复杂任务；LangChain负责AI交互，LangGraph负责流程编排。
+
+### 从运行时到开箱即用
+
+| 层 | 价值 | 什么时候用 | 官方列举的代表产品 |
+| :--- | :--- | :--- | :--- |
+| Runtime（运行时） | 持久化执行、流式、人机协作、持久化 | 需要底层控制；长时间运行、有状态的工作流与 Agent | LangGraph、Temporal、Inngest |
+| Framework（框架） | 抽象与集成 | 想快速起步；想统一团队的建设方式 | LangChain、Vercel AI SDK、CrewAI、OpenAI Agents SDK、Google ADK、LlamaIndex |
+| Harness（成套装备） | 预置工具、预置提示词、子代理 | 想要更自主的 Agent；要应对复杂、非确定性任务 | Deep Agents SDK、Claude Agent SDK、Manus |
+
+LangGraph适用的场景
+
+1. 需要对编排做细粒度、底层控制，如“前3步必须确定性执行，第4步起允许LLM自由决策”这种结构，高层框架很难表达得干净。
+2. 长时间运行、有状态，需要持久化执行，如跨天等待外部回执的订单流程、跑几小时的批量分析。
+3. 确定性与智能体步骤混合的复杂工作流，如审批流里插入一个“A1预审”节点，人在关键节点拍板。
+4. 需要生产级部署基础设施，如官方配套的`LangSmith Deployment`提供部署与观测。
+
+Agent 层级的可观测能力依赖于 OpenTelemetry, 基于 OTLP 协议，采集和导出 traces（调用链）、metrics（指标）和 logs（日志）三种遥测信号。

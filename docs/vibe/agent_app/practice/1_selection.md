@@ -46,6 +46,8 @@ https://openrouter.ai/rankings#top-models
 
 缺少类似大模型的Benchmark客观数据，更多的是个人主观评价。
 
+20261021现在有了: https://www.databricks.com/blog/benchmarking-coding-agents-databricks-multi-million-line-codebase
+
 ### 2.1.人机协作编码agent
 
 ide/编辑器 + agent插件，常见的如: Cursor、Trae、Kiro
