@@ -2,13 +2,13 @@
 
 为什么选Pi？除了Pi Agent只提供最小核心，Harness交给用户。Pi的系统上下文精简，在对话占用的上下文少（比起某些agent动辄2k上下文）。
 
-1. 选合适的方式安装
+1.选合适的方式安装
 
 https://pi.dev/
 
 安装后在当前shell会话加载配置: `source ~/.bashrc`
 
-2. 配置模型
+2.配置模型
 
 接入自定义模型，可通过`pi-model-manager`该TUI拓展接入/管理模型。
 
@@ -18,7 +18,7 @@ https://pi.dev/
 
     https://github.com/ithtelab/workbuddy-manager/blob/main/deploy/README.md
 
-3. 选装插件
+3.选装插件
 
 开箱即用的pi agent: https://github.com/orionpax1997/kickstart.pi
 
@@ -52,6 +52,11 @@ Q: 为什么无需调用工具时，就循环结束并输出结果？
 
 A: 在模型的对齐训练阶段，要么调用工具，要么给最终答复。两者都不满足时，在这轮对齐只能得到得分。  
 因此久而久之，模型就学会了以上的循环。当然，完成任务不仅包括给最终回复，信息不足时回答不知道不瞎编，也是一种类型。
+
+!!! tip "Cot"
+
+    - CoT（思维链）: 先推理再行动
+    - ReAct（推理与行动）: 让模型在一个 “思考 → 行动 → 观察” 的循环中工作；将CoT的推理能力“外化”并嵌入一个更大的闭环中。
 
 ## 基本骨架
 
