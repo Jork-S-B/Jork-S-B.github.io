@@ -62,9 +62,9 @@ skill内部流程
 3. 自检
 4. 修复
 
-#### 设计哲学
+#### 该skill中的harness应用
 
-一个成熟的`harness`,包含六个核心。
+[Harness Engineering](https://www.runoob.com/ai-agent/harness-engineering.html)
 
 目标: 把模型能力/工具能力/人的判断，组织成一条稳定可控的生产流程。
 
