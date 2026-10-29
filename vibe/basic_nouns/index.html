@@ -20,7 +20,7 @@
       
       
       <link rel="icon" href="../../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.8.0">
     
     
       
@@ -28,10 +28,10 @@
       
     
     
-      <link rel="stylesheet" href="../../assets/stylesheets/main.ec1eaa64.min.css">
+      <link rel="stylesheet" href="../../assets/stylesheets/main.57a0d79d.min.css">
       
         
-        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.fb2fffe2.min.css">
       
       
 
@@ -65,7 +65,7 @@
             body[data-md-color-scheme="slate"] .gslide-title { color: var(--md-default-fg-color); }
             body[data-md-color-scheme="slate"] .gslide-desc { color: var(--md-default-fg-color); }
         </style><meta name="panzoom-theme" content="material">
-<meta name="panzoom-data" content='{"selectors": [".d2", ".mermaid"], "initial_zoom_level": 1.0}'> </head>
+<meta name="panzoom-data" content='{"selectors": [".mermaid", ".d2"], "initial_zoom_level": 1.0}'> </head>
   
   
     
@@ -8135,10 +8135,10 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#token" class="md-nav__link">
+  <a href="#kv-cache" class="md-nav__link">
     <span class="md-ellipsis">
       
-        token缓存
+        KV Cache
       
     </span>
   </a>
@@ -8147,17 +8147,6 @@
         
       </ul>
     </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#_6" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        📌 大模型选择
-      
-    </span>
-  </a>
   
 </li>
       
@@ -9110,10 +9099,10 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#token" class="md-nav__link">
+  <a href="#kv-cache" class="md-nav__link">
     <span class="md-ellipsis">
       
-        token缓存
+        KV Cache
       
     </span>
   </a>
@@ -9122,17 +9111,6 @@
         
       </ul>
     </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#_6" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        📌 大模型选择
-      
-    </span>
-  </a>
   
 </li>
       
@@ -9296,7 +9274,13 @@ A: 容器本质是进程，多个容器共享宿主机操作系统内核，一�
 <h2 id="_5">📌 注意力机制</h2>
 <p>长上下文读取时，根据语义重要性分配注意力，并行计算所有Token间的关系，解决RNN记不住长文的痛点</p>
 <p>但因复杂度是O(n²)，所以长文本极耗算力。因此，这也是为什么要做KV Cache（缓存历史计算的K/V）来加速推理的原因。</p>
-<h3 id="token">token缓存</h3>
+<p>当前模型的自注意力机制，还存在着以下的特点，也是测试的要点：</p>
+<ol>
+<li>模型对于长文本中首尾的权重会较高，那么文本中间的段落出现一些混淆的信息（比如订单号、IMEI号），可能会读错。</li>
+<li>早期层的符号线索被淹没</li>
+<li>多任务/指令挤占注意力资源</li>
+</ol>
+<h3 id="kv-cache">KV Cache</h3>
 <p>多次请求使用相同的系统提示词（System Prompt）、长文档背景或历史对话前缀，可以命中缓存，减少算力消耗，且首字延迟更低。</p>
 <p>当场景需分级时，如“重推理”和“轻处理”的任务，应保持使用同个模型: 通过派发子agent返回结果给主agent的方式进行。</p>
 <p>而在agent开发工具，还可通过让agent读代码文件以享受缓存，而非把代码直接写在prompt中。</p>
@@ -9308,26 +9292,20 @@ A: 容器本质是进程，多个容器共享宿主机操作系统内核，一�
 <li>如同监控在线率一样监控命中率</li>
 <li>分叉必须共享主对话前缀</li>
 </ul>
-<h2 id="_6">📌 大模型选择</h2>
-<ol>
-<li>
-<p>分场景</p>
+<div class="admonition tip">
+<p class="admonition-title">QKV</p>
 <ul>
-<li><code>重推理</code>还是<code>轻处理</code>任务</li>
-<li>上下文窗口大小要求，如长文档刚需：若1M的上下文窗口能直接塞入语料，则不必做复杂的RAG切片。既减少了工程复杂度，又避免了切片丢失上下文的幻觉。</li>
+<li>Q = Query（查询）：当前 token 用来“提问”的向量，表示它想关注什么信息。</li>
+<li>K = Key（键）：每个 token 用来“被匹配”的向量，表示它能提供什么信息，用来和 Q 计算注意力权重。</li>
+<li>V = Value（值）：每个 token 实际携带的内容向量，注意力权重加权后汇总成输出。</li>
 </ul>
-</li>
-<li>
-<p>细分领域</p>
+<p>在 KV Cache 中：</p>
 <ul>
-<li>代码垂直（如Claude 3.5/3.7）：训练语料含海量高质量GitHub代码，抽象能力和工程架构力碾压同级。</li>
-<li>中文原生（如DeepSeek、文心）：中文语义理解（成语、古诗词、谐音梗）远优于海外模型，且价值观对齐更贴合本土监管。</li>
+<li>只缓存历史 token 的 K 和 V；</li>
+<li>Q 不缓存，因为每生成一个新 token，都会产生一个新的 Query，需要重新计算；</li>
+<li>缓存 K/V 的目的是避免在自回归生成时重复计算历史 token 的 Key 和 Value，从而加速推理。</li>
 </ul>
-</li>
-<li>
-<p>成本控制的考量</p>
-</li>
-</ol>
+</div>
 
 
 
@@ -9423,10 +9401,10 @@ A: 容器本质是进程，多个容器共享宿主机操作系统内核，一�
     
       
       
-      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.footer", "navigation.top", "navigation.tabs", "navigation.instant", "content.code.copy"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}, "version": null}</script>
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.footer", "navigation.top", "navigation.tabs", "navigation.instant", "content.code.copy"], "search": "../../assets/javascripts/workers/search.a7633da7.min.js", "tags": null, "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}, "version": null}</script>
     
     
-      <script src="../../assets/javascripts/bundle.d7400e89.min.js"></script>
+      <script src="../../assets/javascripts/bundle.c21346df.min.js"></script>
       
         <script src="../../extra/mermaid.mjs" type="module"></script>
       
