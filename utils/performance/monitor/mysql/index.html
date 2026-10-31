@@ -5562,19 +5562,19 @@
   <a href="#_5" class="md-nav__link">
     <span class="md-ellipsis">
       
-        🔧 锁竞争
+        🔧 热点行锁/锁竞争
       
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="🔧 锁竞争">
+    <nav class="md-nav" aria-label="🔧 热点行锁/锁竞争">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
   <a href="#_6" class="md-nav__link">
     <span class="md-ellipsis">
       
-        如何优化锁竞争
+        如何治理锁竞争
       
     </span>
   </a>
@@ -9094,19 +9094,19 @@
   <a href="#_5" class="md-nav__link">
     <span class="md-ellipsis">
       
-        🔧 锁竞争
+        🔧 热点行锁/锁竞争
       
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="🔧 锁竞争">
+    <nav class="md-nav" aria-label="🔧 热点行锁/锁竞争">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
   <a href="#_6" class="md-nav__link">
     <span class="md-ellipsis">
       
-        如何优化锁竞争
+        如何治理锁竞争
       
     </span>
   </a>
@@ -9360,7 +9360,8 @@
 <li>设置报警规则，当<code>Table_locks_waited</code>突增时及时通知。</li>
 </ul>
 </div>
-<h4 id="_5">🔧 锁竞争</h4>
+<h4 id="_5">🔧 热点行锁/锁竞争</h4>
+<p>热点行锁，也叫做innodb行锁，是数据模型的物理必然结果，只能治理。</p>
 <p>激烈锁竞争会导致线程阻塞，间接导致线程池资源耗尽，表现为系统响应慢。</p>
 <p>可能造成锁竞争的原因: </p>
 <ol>
@@ -9369,8 +9370,9 @@
 <li>大事务: 大量sql+非db操作，其中某个环节慢导致锁升级</li>
 <li>热点行竞争: 如秒杀场景多个订单并发操作同一商品</li>
 </ol>
-<h5 id="_6">如何优化锁竞争</h5>
-<p>锁竞争的本质: 执行慢 + 热点竞争，因此解决思路包括减少冲突（拆分热点、异步化）、加快冲突解决（索引优化、缩小事务、缩短锁持续时间）</p>
+<h5 id="_6">如何治理锁竞争</h5>
+<p>监控指标: data_lock_waits / innodb_row_lock_waits; 当锁超时，错误率会上升。</p>
+<p>锁竞争的本质: 执行慢 + 热点竞争，因此解决思路包括减少冲突（拆分热点、异步化）、加快冲突解决（索引优化、缩小事务、缩短锁持续时间）; 缩短持锁时间、Redis 预扣替代、分段库存、按主键更新等。</p>
 <p>针对代码</p>
 <ul>
 <li>缩小锁粒度，只锁需要保护的最小代码块</li>
@@ -9385,9 +9387,13 @@
 <li>优化热点行：使用异步扣减或队列（如redis lua脚本预扣减，再异步同步至db）</li>
 <li>使用乐观锁（版本号机制）代替悲观锁（for update），失败则重试</li>
 </ul>
+<p>针对业务配置</p>
+<ul>
+<li>sku分段，如不同规格的奖品</li>
+</ul>
 <h4 id="_7">🔧 死锁</h4>
 <p>死锁，同样分为代码/DB层面，具体原因如事务A锁表1等表2，事务B锁表2等表1，互相等对方释放锁。</p>
-<p>发生死锁时，内存不释放，大量死锁线程积压后，会耗尽内存触发OOM。</p>
+<p>发生死锁时，内存不释放（未考虑inndb死锁检测与回滚的情况），大量死锁线程积压后，会耗尽内存触发OOM。</p>
 <p>大量死锁时的表现</p>
 <ul>
 <li>指标: CPU使用率不高，内存占用持续增长。</li>

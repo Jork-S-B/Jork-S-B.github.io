@@ -8986,6 +8986,10 @@
 <p>结论: 如果后续业务代码耗时极短，而总耗时极长，说明请求在进入业务方法之前就被卡住了。此时，矛头直指分布式锁（Redisson/ZK）的 lock 获取操作。</p>
 </li>
 <li>
+<p>监控面板</p>
+<p><code>INFO commandstats</code> - <code>usec_per_call</code>，服务端响应时间，正常情况下响应是微秒级。</p>
+</li>
+<li>
 <p>锁竞争排查-Arthas</p>
 <div class="highlight"><pre><span></span><code><span class="c1"># 压测以复现现象</span>
 <span class="c1"># 1. 持续抓取当前最繁忙的阻塞线程（间隔1秒，连抓5次）</span>

@@ -8692,6 +8692,45 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="8.阶段总结">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#81git-commit" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8.1.git commit清理与改造
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#82" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8.2.文档清理
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#83" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8.3.测试清理与重构
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
     </ul>
@@ -9092,6 +9131,45 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="8.阶段总结">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#81git-commit" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8.1.git commit清理与改造
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#82" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8.2.文档清理
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#83" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8.3.测试清理与重构
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
     </ul>
@@ -9173,6 +9251,14 @@
 <p>产物: 包含架构设计、技术选型的概要设计文档</p>
 </li>
 </ul>
+<div class="admonition note">
+<p class="admonition-title">反馈回路/反馈循环的设计</p>
+<ol>
+<li>agent内部层面: 思考、执行、观察</li>
+<li>单元测试/调试层面: 调试结果回传，修正在运行，配合有界重试</li>
+<li>突变测试+定时任务，不宜放在反馈回路中；那人工定期地把报错批量交给ai处理？</li>
+</ol>
+</div>
 <h2 id="5">5.清除迷雾</h2>
 <h3 id="51wayfinder">5.1.wayfinder拆工单</h3>
 <p>具体实现方案有迷雾，想边做边看效果时使用。产出: 决策地图 + tickets(包括依赖、优先级等)，再逐项细分进行grill, research 或 prototype</p>
@@ -9201,7 +9287,7 @@
 <p>包含2个子agent: </p>
 <ul>
 <li>general: 通用任务</li>
-<li>explore: 探索任务，需要上下文较大的苦力模型</li>
+<li>explore: 探索任务，优选上下文空间较大、成本低的苦力模型即可</li>
 </ul>
 <p>搭配<code>mattpocock skills</code>使用时，还需<strong>代码review</strong> agent。LLM-as-Judge，模型配置需要使用不同厂商的LLM，否则通过率容易虚高。</p>
 <div class="highlight"><pre><span></span><code>帮我配置一个 review agent；参考: https://pi.dev/packages/pi-subagents-lite 
@@ -9211,9 +9297,9 @@
 <ul>
 <li>产物: 原工单补充answer</li>
 </ul>
-<p>后续引入<code>codegraph</code>，agent.md长度估计不短，超过100行建议通过<code>/writing-for-agent</code>（也是matt-pocock的skill）重构</p>
+<p>后续引入<code>codegraph</code>，agent.md长度估计不短，超过<strong>100行</strong>建议通过<code>/writing-for-agent</code>（也是matt-pocock的skill）重构</p>
 <h2 id="6">6.骨架搭建</h2>
-<p><code>/grill-with-docs</code>，在模型聪明区(1m上下文，聪明区约200k)能理清思路时使用</p>
+<p><code>/grill-with-docs</code>，在模型聪明区(1m上下文，聪明区约200k，也有说256k-来自openai的文章)能理清思路时使用</p>
 <div class="highlight"><pre><span></span><code>/grill-with-docs 确认xx文档中的工具链可行性，完成仓库骨架搭建（可编译运行，且写测试用例跑通，提供可手动执行的cli命令）。
 </code></pre></div>
 <ol>
@@ -9244,7 +9330,43 @@
 <div class="highlight"><pre><span></span><code>同样修改agent.md: research/探索任务后续都采用 subagent + codegraph mcp 进行，尤其针对 /implement 、 /code-review
 </code></pre></div>
 <h2 id="8">8.阶段总结</h2>
-<p>重构清理门禁: 清理以确保给ai更好的生成环境、重构以保证代码质量。</p>
+<h3 id="81git-commit">8.1.git commit清理与改造</h3>
+<p>清理以确保给ai更好的生成环境、重构以保证代码质量。</p>
+<p>改造<code>/implement</code>涉及分支管理的内容</p>
+<ul>
+<li>ticket - 在worktree管理，单次提交可包括多个工单，工单拆细是为了更好的利用模型聪明区</li>
+<li>spec - 对应feature分支</li>
+<li>个人功能分支先 <code>rebase</code> main 跟紧主干（修改合并历史），合并 PR 时选择 <code>Squash</code> 压成一个提交进主分支。</li>
+<li>不必合并前检查，提示词约束即可，避免拖慢反馈循环，写入<code>agent.md</code>。</li>
+</ul>
+<p>整理当前分支为主分支</p>
+<ul>
+<li>commit 数较多，按 pr 粒度合并处理，通过 subagent 串行执行。</li>
+<li>搭配<code>/writing-for-agent</code>，提交信息是写给 agent 看的</li>
+<li>main分支设置为保护分支，防止直接合并。</li>
+</ul>
+<div class="admonition note">
+<p class="admonition-title">Harness护栏</p>
+<p><a href="https://www.runoob.com/ai-agent/harness-engineering.html">Harness Engineering</a></p>
+<p>整个实操过程，本质是搭建Harness护栏。</p>
+<ol>
+<li>SDD-规格驱动开发，ai思考+人工审查定好规格，包括设计、技术架构等，才有后续的开发。</li>
+<li>开发过程中的反馈循环，agent层面的审查/评测+反馈，以及人工层面的验收、方向把控。</li>
+<li>上下文工程，包括仓库内部上下文的管理、agent单次任务上下文的管理；避免agent.md过长，而是提供一个稳定、小巧的入口点，让ai按需读取。</li>
+<li>熵管理-垃圾回收，定期扫描偏差、更新质量等级、发起针对性重构 PR。</li>
+</ol>
+</div>
+<h3 id="82">8.2.文档清理</h3>
+<p>当前阶段的SDD，会把规格文档保留为业务资产；但对于 Ai First <strong>个人</strong>开发场景，代码才是唯一真源，规格文档、注释可能反而是干扰（尤其随着时间推移）。</p>
+<ul>
+<li>adr 保留，决策、意图与架构等顶层设计要保留（在代码中无法探索到），并时常维护。</li>
+<li>spec、ticket 细节文档清理掉，不重复维护。</li>
+<li>调研、调试时的临时原型、脚本等中间产物，无长期价值。</li>
+</ul>
+<p>文档清理这一步需拆分任务，读文档内容的任务占用模型上下文空间较多。</p>
+<p>当前阶段的模型，似乎直接给答案，后续就顺着答案思路走。有时可以先提问让ai探索，再根据探索结果提问或引导。</p>
+<h3 id="83">8.3.测试清理与重构</h3>
+<p>单元测试的清理，测试质量不高（当前ai编写的单元测试通过率虚高），不维护（过期、断链）会拖慢反馈循环。</p>
 
 
 
