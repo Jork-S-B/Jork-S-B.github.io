@@ -155,7 +155,7 @@ https://pi.dev/packages/pi-subagents-lite
 
 - ticket - 在worktree管理，单次提交可包括多个工单，工单拆细是为了更好的利用模型聪明区
 - spec - 对应feature分支
-- 个人功能分支先 `rebase` main 跟紧主干，合并 PR 时选择 `Squash` 压成一个提交进主分支。
+- 个人功能分支先 `rebase` main 跟紧主干（修改合并历史），合并 PR 时选择 `Squash` 压成一个提交进主分支。
 - 不必合并前检查，提示词约束即可，避免拖慢反馈循环，写入`agent.md`。
 
 整理当前分支为主分支
