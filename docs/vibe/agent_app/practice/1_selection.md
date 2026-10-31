@@ -76,3 +76,15 @@ DSH也是提供完整Agent Harness，但每个模块都可插播可拼装。
 开箱即用的数字员工，自带预设技能 + 自进化宣传，常见的如: Hermes、小龙虾
 
 这里的自进化，本质还是上下文的记忆工程，短期内确实可以自进化，但上下文的大小、模型的聪明区、模型的注意力机制等限制，东西塞的越多越容易出幻觉。
+
+## 3.开源项目参考
+
+1.[vue-fastapi-admin](https://github.com/mizhexiaoxiao/vue-fastapi-admin)
+
+基于 FastAPI + Vue3 + Naive UI 的现代化前后端分离开发平台，融合了 RBAC 权限管理、动态路由和 JWT 鉴权，助力中小型应用快速搭建，也可用于学习参考。
+
+2.[workbuddy-manager](https://github.com/ithtelab/workbuddy-manager)
+
+UI好看，基于shadcn/ui组件库。
+
+其他: workbuddy的专家、灵感生成的html做参考。   
