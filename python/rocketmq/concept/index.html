@@ -8889,7 +8889,7 @@
 <div class="admonition tip">
 <p class="admonition-title">消费者扩容</p>
 <p>特性: 一个Queue同一时刻只能被同一个Consumer Group内的一个消费者实例占用。</p>
-<p>因此，与Kafka类似，扩容消费者实例的同时需要扩容Queue数量（新建Topic分区），但要注意，动态增加Queue会导致顺序消息乱序。</p>
+<p>因此，与Kafka类似，扩容消费者实例的同时需要扩容Queue数量（新建Topic分区），但要注意，动态增加Queue会导致顺序消息乱序（避免动态扩容，配合消费端做幂等控制）。</p>
 </div>
 <h2 id="_2">消息传递流程</h2>
 <ul>
