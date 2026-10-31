@@ -57,6 +57,12 @@ Requirements Analysis
 
 * 产物: 包含架构设计、技术选型的概要设计文档
 
+!!! note "反馈回路/反馈循环的设计"
+
+    1. agent内部层面: 思考、执行、观察
+    2. 单元测试/调试层面: 调试结果回传，修正在运行，配合有界重试
+    3. 突变测试+定时任务，不宜放在反馈回路中；那人工定期地把报错批量交给ai处理？
+
 ## 5.清除迷雾
 
 ### 5.1.wayfinder拆工单
@@ -85,7 +91,7 @@ https://pi.dev/packages/pi-subagents-lite
 包含2个子agent: 
 
 - general: 通用任务
-- explore: 探索任务，需要上下文较大的苦力模型
+- explore: 探索任务，优选上下文空间较大、成本低的苦力模型即可
 
 搭配`mattpocock skills`使用时，还需**代码review** agent。LLM-as-Judge，模型配置需要使用不同厂商的LLM，否则通过率容易虚高。
 
@@ -99,11 +105,11 @@ https://pi.dev/packages/pi-subagents-lite
 
 * 产物: 原工单补充answer
 
-后续引入`codegraph`，agent.md长度估计不短，超过100行建议通过`/writing-for-agent`（也是matt-pocock的skill）重构
+后续引入`codegraph`，agent.md长度估计不短，超过**100行**建议通过`/writing-for-agent`（也是matt-pocock的skill）重构
 
 ## 6.骨架搭建
 
-`/grill-with-docs`，在模型聪明区(1m上下文，聪明区约200k)能理清思路时使用
+`/grill-with-docs`，在模型聪明区(1m上下文，聪明区约200k，也有说256k-来自openai的文章)能理清思路时使用
 
 ```
 /grill-with-docs 确认xx文档中的工具链可行性，完成仓库骨架搭建（可编译运行，且写测试用例跑通，提供可手动执行的cli命令）。
@@ -141,4 +147,46 @@ https://pi.dev/packages/pi-subagents-lite
 
 ## 8.阶段总结
 
-重构清理门禁: 清理以确保给ai更好的生成环境、重构以保证代码质量。
+### 8.1.git commit清理与改造
+
+清理以确保给ai更好的生成环境、重构以保证代码质量。
+
+改造`/implement`涉及分支管理的内容
+
+- ticket - 在worktree管理，单次提交可包括多个工单，工单拆细是为了更好的利用模型聪明区
+- spec - 对应feature分支
+- 个人功能分支先 `rebase` main 跟紧主干，合并 PR 时选择 `Squash` 压成一个提交进主分支。
+- 不必合并前检查，提示词约束即可，避免拖慢反馈循环，写入`agent.md`。
+
+整理当前分支为主分支
+
+- commit 数较多，按 pr 粒度合并处理，通过 subagent 串行执行。
+- 搭配`/writing-for-agent`，提交信息是写给 agent 看的
+- main分支设置为保护分支，防止直接合并。
+
+!!! note "Harness护栏"
+
+    [Harness Engineering](https://www.runoob.com/ai-agent/harness-engineering.html)
+
+    整个实操过程，本质是搭建Harness护栏。
+
+    1. SDD-规格驱动开发，ai思考+人工审查定好规格，包括设计、技术架构等，才有后续的开发。
+    2. 开发过程中的反馈循环，agent层面的审查/评测+反馈，以及人工层面的验收、方向把控。
+    3. 上下文工程，包括仓库内部上下文的管理、agent单次任务上下文的管理；避免agent.md过长，而是提供一个稳定、小巧的入口点，让ai按需读取。
+    4. 熵管理-垃圾回收，定期扫描偏差、更新质量等级、发起针对性重构 PR。
+
+### 8.2.文档清理
+
+当前阶段的SDD，会把规格文档保留为业务资产；但对于 Ai First **个人**开发场景，代码才是唯一真源，规格文档、注释可能反而是干扰（尤其随着时间推移）。
+
+- adr 保留，决策、意图与架构等顶层设计要保留（在代码中无法探索到），并时常维护。
+- spec、ticket 细节文档清理掉，不重复维护。
+- 调研、调试时的临时原型、脚本等中间产物，无长期价值。
+
+文档清理这一步需拆分任务，读文档内容的任务占用模型上下文空间较多。
+
+当前阶段的模型，似乎直接给答案，后续就顺着答案思路走。有时可以先提问让ai探索，再根据探索结果提问或引导。
+
+### 8.3.测试清理与重构
+
+单元测试的清理，测试质量不高（当前ai编写的单元测试通过率虚高），不维护（过期、断链）会拖慢反馈循环。
