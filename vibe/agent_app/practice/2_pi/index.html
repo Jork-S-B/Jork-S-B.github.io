@@ -8992,10 +8992,23 @@
 <p>为什么选Pi？除了Pi Agent只提供最小核心，Harness交给用户。Pi的系统上下文精简，在对话占用的上下文少（比起某些agent动辄2k上下文）。</p>
 <p>1.选合适的方式安装</p>
 <p>https://pi.dev/</p>
-<p>安装后在当前shell会话加载配置: <code>source ~/.bashrc</code></p>
+<p>官网或者命令</p>
+<ul>
+<li>curl -fsSL https://pi.dev/install.sh | sh</li>
+<li>powershell -c "irm https://pi.dev/install.ps1 | iex"</li>
+<li>npm install -g --ignore-scripts @earendil-works/pi-coding-agent</li>
+</ul>
+<hr>
+<ul>
+<li>unix内核: 安装后在当前shell会话加载配置: <code>source ~/.bashrc</code></li>
+<li>windows: 安装后新开 powershell 窗口进入pi</li>
+</ul>
 <p>2.配置模型</p>
 <p>接入自定义模型，可通过<code>pi-model-manager</code>该TUI拓展接入/管理模型。</p>
 <p><code>pi install npm:pi-model-manager</code></p>
+<ul>
+<li>windows环境下还需要配置 shellPath 为<code>Git Bash</code>安装的路径, 避免执行操作时 agent 使用 powershell</li>
+</ul>
 <details class="tip">
 <summary>workbuddy反代部署指南</summary>
 <p>https://github.com/ithtelab/workbuddy-manager/blob/main/deploy/README.md</p>
