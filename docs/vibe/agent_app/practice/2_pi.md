@@ -6,13 +6,24 @@
 
 https://pi.dev/
 
-安装后在当前shell会话加载配置: `source ~/.bashrc`
+官网或者命令
+
+- curl -fsSL https://pi.dev/install.sh | sh
+- powershell -c "irm https://pi.dev/install.ps1 | iex"
+- npm install -g --ignore-scripts @earendil-works/pi-coding-agent
+
+---
+
+- unix内核: 安装后在当前shell会话加载配置: `source ~/.bashrc`
+- windows: 安装后新开 powershell 窗口进入pi
 
 2.配置模型
 
 接入自定义模型，可通过`pi-model-manager`该TUI拓展接入/管理模型。
 
 `pi install npm:pi-model-manager`
+
+- windows环境下还需要配置 shellPath 为`Git Bash`安装的路径, 避免执行操作时 agent 使用 powershell
 
 ??? tip "workbuddy反代部署指南"
 
